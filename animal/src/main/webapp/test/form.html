@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>test</title>
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+</head>
+<body>
+
+  <h1>테스트</h1>
+
+  <form id='form1' class="form-horizontal">
+
+    <label>카테고리</label> <select id="Form">
+      <option value="0" selected="selected">내 다이어리</option>
+      <option value="1">새글</option>
+    </select>
+    
+    <div class="detailForm form-group">
+      <label for="fno" class="col-sm-2 control-label">번호</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="fno" readonly>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="ftitle" class="col-sm-2 control-label">제목</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="ftitle" placeholder="제목">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="fcontent" class="col-sm-2 control-label">내용</label>
+      <div class="col-sm-10">
+        <textarea id="fcontent" class="form-control" rows='10' cols='60'
+          placeholder="제목"></textarea>
+      </div>
+    </div>
+    
+    <div class="detailForm form-group">
+      <label class="col-sm-2 control-label">조회수</label>
+      <div class="col-sm-10">
+        <p id="fviews" class="form-control-static"></p>
+      </div>
+    </div>
+    
+    <div class="detailForm form-group">
+      <label class="col-sm-2 control-label">등록일</label>
+      <div class="col-sm-10">
+        <p id="fcreatedDate" class="form-control-static"></p>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="ffile" class="col-sm-2 control-label">첨부파일</label>
+      <div class="col-sm-10">
+        <input type='file' class="form-control" id="ffile"><br> <input
+          type='hidden' class="form-control" id='fattachFile'>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="fpassword" class="col-sm-2 control-label">암호</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="fpassword"
+          placeholder="Password">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
+        <button id='updateBtn' type='button'
+          class="detailForm btn btn-primary btn-xs">변경</button>
+        <button id='deleteBtn' type='button'
+          class="detailForm btn btn-primary btn-xs">삭제</button>
+      </div>
+    </div>
+
+  </form>
+
+  <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
+  <script>
+      $("select")
+          .change(
+              function() {
+                if ($('#Form').val() == "0") {
+                  $('.detailForm').css('display', 'none');// 상세정보 출력을 위한 폼 항목은 감춘다.
+                  $('.newForm').css('display', '');// 새 글 등록을 위한 폼 항목은 보인다.
+                }
+                  
+                else {
+                  $('.detailForm').css('display', '');
+                  $('.newForm').css('display', 'none');
+                }
+                  
+              }).change();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
