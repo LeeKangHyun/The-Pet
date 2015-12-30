@@ -6,7 +6,6 @@
   "moduleType": [],
   "license": "MIT",
   "private": true,
-
   "ignore": [
     "**/.*",
     "node_modules",
@@ -14,19 +13,19 @@
     "test",
     "tests"
   ],
-    "dependencies": {
-        "bootstrap": "~3.3.6",
-        "jquery": "1.11.3",
-        "fullcalendar": "2.5.0",
-        "moment": "2.10.6"
-    },
-    "install": {
-        "path": "src/main/webapp/lib",
-        "sources": {
-            "bootstrap": "bower_components/bootstrap/dist/**",
-            "jquery": "bower_components/jquery/dist/**",
-            "fullcalendar": "bower_components/fullcalendar/dist/**",
-            "moment": "bower_components/moment/min/**"
-        }
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "1.11.3",
+    "fullcalendar": "2.5.0",
+    "moment": "2.10.6"
+  },
+  "install": {
+    "path": "src/main/webapp/lib",
+    "sources": {
+      "bootstrap": "bower_components/bootstrap/dist/**",
+      "jquery": "bower_components/jquery/dist/**",
+      "fullcalendar": "bower_components/fullcalendar/dist/**",
+      "moment": "bower_components/moment/min/**"
     }
+  }
 }
