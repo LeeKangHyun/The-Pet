@@ -17,17 +17,15 @@
     "bootstrap": "~3.3.6",
     "jquery": "1.11.3",
     "fullcalendar": "2.5.0",
-    "moment": "2.10.6",
-    "jquery-ui": "jqueryui#~1.11.4"
+    "moment": "2.10.6"
   },
   "install": {
     "path": "src/main/webapp/lib",
     "sources": {
-      "bootstrap": "bower_components/bootstrap/dist/**",
+      "bootstrap": "bower_components/bootstrap/**",
       "jquery": "bower_components/jquery/dist/**",
       "fullcalendar": "bower_components/fullcalendar/dist/**",
-      "moment": "bower_components/moment/min/**",
-      "jquery-ui": "bower_components/jquery-ui/**"
+      "moment": "bower_components/moment/min/**"
     }
   }
 }
