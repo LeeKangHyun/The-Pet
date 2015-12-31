@@ -42,7 +42,10 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
                 <h4 id="modalTitle" class="modal-title"></h4>
             </div>
-            <div id="modalBody" class="modal-body"></div>
+            <div id="modalBody" class="modal-body">
+                
+
+            </div>
             <div id="modalStart" class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -128,7 +131,7 @@
           //달력에서 일정 눌렀을 때 조그만창에 결과 나오는 부분
           eventClick:  function(event, jsEvent, view) {
             $('#modalTitle').html(event.title);
-            $('#modalBody').html('des: ' + event.description);
+            $('#modalBody').html('des: ' + event.description + 'color: ' + event.color);
             $('#modalStart').html('start: ' + event.start.format())
             $('#fullCalModal').modal();
         }
