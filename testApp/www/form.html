@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>test</title>
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+  <style>
+    /*body {
+      width: 80%;
+      height: auto;
+      padding-top: 50px;
+      margin: auto;
+    }
+
+    div > div {
+      max-width: 75%;
+    }*/
+  </style>
+</head>
+
+<body>
+
+  <section>
+    <form id='form1' class="form-horizontal">
+
+      <div class="form-group">
+        <label for="fcate" class="col-sm-2 control-label">카테고리</label>
+        <div class="col-sm-10">
+          <select id="Form">
+            <option value="0" selected="selected">산책코스</option>
+            <option value="1">자랑해요</option>
+            <option value="2">찾아주세요</option>
+            <option value="3">분양</option>
+            <option value="4">짝짓기</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ftitle" class="col-sm-2 control-label">제목</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="ftitle" placeholder="제목">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">작성일</label>
+        <div class="col-sm-10">
+          <input type="date" id="fcreatedDate" class="form-control-static">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fcontent" class="col-sm-2 control-label">내용</label>
+        <div class="col-sm-10">
+          <textarea id="fcontent" class="form-control" rows='10' cols='60'></textarea>
+        </div>
+      </div>
+
+      <div class="pFile form-group">
+        <label for="ffile" class="col-sm-2 control-label">첨부파일</label>
+        <div class="col-sm-10">
+          <input type='file' class="form-control" id="ffile">
+        </div>
+      </div>
+
+      <div class="pPetn form-group">
+        <label for="fpet" class="col-sm-2 control-label">PET 이름</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="fpet" placeholder="pet이름">
+        </div>
+      </div>
+
+      <div class="pPets form-group">
+        <label for="ftype" class="col-sm-2 control-label">구분</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="fspec" placeholder="구분">
+        </div>
+      </div>
+
+      <div class="pPets form-group">
+        <label for="ftype" class="col-sm-2 control-label">종류</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="ftype" placeholder="종류">
+        </div>
+      </div>
+
+      <div class="pPetg form-group">
+        <label for="ftype" class="col-sm-2 control-label">성별</label>
+        <div class="col-sm-10">
+          <input type="radio" id="fgen" name="gender" value="수컷" checked="checked">수컷
+          <input type="radio" id="fgen" name="gender" value="암컷">암컷
+        </div>
+      </div>
+
+      <div class="pPetm form-group">
+        <label for="fmoney" class="col-sm-2 control-label">금액</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="fmoney">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
+          <button id='updateBtn' type='button' class="detailForm btn btn-primary btn-xs">변경</button>
+          <button id='deleteBtn' type='button' class="detailForm btn btn-primary btn-xs">삭제</button>
+        </div>
+      </div>
+
+    </form>
+  </section>
+
+  <script type="text/javascript" src="lib/jquery/jquery.js"></script>
+  <script>
+    $("select").change(function() {
+      if ($('#Form').val() == "0") {
+        $('.pPet').css('display', 'none');
+        $('.pPetg').css('display', 'none');
+        $('.pPetn').css('display', 'none');
+        $('.pPetm').css('display', 'none');
+        $('.pPets').css('display', 'none');
+        $('.pFile').css('display', '');
+      } else if ($('#Form').val() == "1") {
+        $('.pPet').css('display', 'none');
+        $('.pPetg').css('display', 'none');
+        $('.pPetn').css('display', 'none');
+        $('.pPetm').css('display', 'none');
+        $('.pPets').css('display', 'none');
+        $('.pFile').css('display', '');
+      } else if ($('#Form').val() == "2") {
+        $('.pPet').css('display', '');
+        $('.pPetg').css('display', '');
+        $('.pPetn').css('display', '');
+        $('.pPetm').css('display', '');
+        $('.pPets').css('display', '');
+        $('.pFile').css('display', '');
+      } else if ($('#Form').val() == "3") {
+        $('.pPet').css('display', '');
+        $('.pPetg').css('display', 'none');
+        $('.pPetn').css('display', 'none');
+        $('.pPetm').css('display', '');
+        $('.pPets').css('display', '');
+        $('.pFile').css('display', '');
+      } else if ($('#Form').val() == "4") {
+        $('.pPet').css('display', '');
+        $('.pPetg').css('display', '');
+        $('.pPetn').css('display', 'none');
+        $('.pPetm').css('display', '');
+        $('.pPets').css('display', '');
+        $('.pFile').css('display', '');
+      }
+
+    }).change();
+  </script>
+</body>
+
+</html>
