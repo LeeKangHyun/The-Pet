@@ -7,13 +7,16 @@
   <link rel='stylesheet' href='../lib/fullcalendar/fullcalendar.css' />
   <link rel='stylesheet' tpye='text/css' href='../lib/fullcalendar/fullcalendar.print.css'
   media='print' />
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css'
+  />
+
   <script src="../lib/bootstrap/bootstrap.min.js"></script>
   <script src='../lib/jquery/jquery.min.js'></script>
   <script src='../lib/moment/moment.min.js'></script>
-  <script src='../lib/fullcalendar/fullcalendar.js'></script>
+  <script src='../lib/fullcalendar/fullcalendar.min.js'></script>
   <script src='../lib/fullcalendar/lang/ko.js'></script>
 
+  <script src='../lib/bootstrap/js/modal.js'></script>
 </head>
 
 <body>
@@ -34,25 +37,20 @@
 
   <div id="fullCalModal" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">x</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h4 id="modalTitle" class="modal-title"></h4>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            <div id="modalStart" class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-default"><a id="eventUrl" target="_blank">Event Page</a></button>
+            </div>
         </div>
-
-        <div id="modalBody" class="modal-body"></div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button class="btn btn-primary">Remove</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
   <script>
     $(document).ready(function() {
@@ -113,33 +111,44 @@
             color: 'blue'
           }, {
             title: 'Dinner',
-            start: '2015-12-12T20:00:00'
+            start: '2015-12-12T20:00:00',
+            description: "<p>This is just a fake description for the Free Pizza.</p>"
           }, {
             title: 'Birthday Party',
             start: '2015-12-13T07:00:00',
-            color: 'blue'
+            color: 'blue',
+            description: "<p>This is just a fake description for the Free Pizza.</p><p>Nothing to see!</p>"
           }],
+
           eventRender: function(event, element) {
             element.attr('title', event.tooltip);
           },
           timeFormat: 'H:mm',
 
           //달력에서 일정 눌렀을 때 조그만창에 결과 나오는 부분
-          eventClick: function(calEvent, jsEvent, view) {
-
-            if (calEvent.end) {
-              alert('title : ' + calEvent.title + '\nstart : ' +
-                calEvent.start.format() + '\nend : ' + calEvent.end
-                .format() + '\ntag color : ' + calEvent.color);
-            } else {
-              alert('title : ' + calEvent.title + '\nstart : ' +
-                calEvent.start.format() + '\ntag color : ' +
-                calEvent.color);
-            }
-
-            // change the border color just for fun
-            //$(this).css('border-color', 'red'); // 이거설정하면 이벤트 클릭했을때 이벤트 태두리색생김
-          }
+          eventClick:  function(event, jsEvent, view) {
+            $('#modalTitle').html(event.title);
+            $('#modalBody').html('des: ' + event.description);
+            $('#modalStart').html('start: ' + event.start.format())
+            $('#fullCalModal').modal();
+        }
+            //   ,
+            //
+            //   eventClick: function(calEvent, jsEvent, view) {
+            //
+            //     if (calEvent.end) {
+            //       alert('title : ' + calEvent.title + '\nstart : ' +
+            //         calEvent.start.format() + '\nend : ' + calEvent.end
+            //         .format() + '\ntag color : ' + calEvent.color);
+            //     } else {
+            //       alert('title : ' + calEvent.title + '\nstart : ' +
+            //         calEvent.start.format() + '\ntag color : ' +
+            //         calEvent.color);
+            //     }
+            //
+            //     // change the border color just for fun
+            //     //$(this).css('border-color', 'red'); // 이거설정하면 이벤트 클릭했을때 이벤트 태두리색생김
+            //   }
 
         });
       }
