@@ -4,19 +4,14 @@
 <head>
   <meta charset='UTF-8'>
   <title>test</title>
+  <!-- css -->
+  <link href="../lib/jquery-uploadfile/css/uploadfile.css" rel="stylesheet">
   <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
-  <style>
-    body {
-      width: 80%;
-      height: auto;
-      padding-top: 50px;
-      margin: auto;
-    }
 
-    div > div {
-      max-width: 75%;
-    }
-  </style>
+  <!-- js -->
+  <script src="../lib/jquery-uploadfile/js/jquery.uploadfile.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -58,12 +53,7 @@
         </div>
       </div>
 
-      <div class="pFile form-group">
-        <label for="ffile" class="col-sm-2 control-label">첨부파일</label>
-        <div class="col-sm-10">
-          <input type='file' class="form-control" id="ffile">
-        </div>
-      </div>
+      <div class="pFile" id="mFile">upload</div>
 
       <div class="pPetn form-group">
         <label for="fpet" class="col-sm-2 control-label">PET 이름</label>
@@ -112,7 +102,21 @@
     </form>
   </section>
 
-  <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var uploadObj = $("#mFile").uploadFile({
+        url: "#",
+        multiple: true,
+        dragDrop: true,
+        autoSubmit: false,
+        showFileSize: false,
+        showPreview: false,
+        previewHeight: 480,
+        fileName: "myfile"
+      });
+    });
+  </script>
   <script>
     $("select").change(function() {
       if ($('#Form').val() == "0") {
@@ -153,6 +157,8 @@
       }
     }).change();
   </script>
+
+
 </body>
 
 </html>

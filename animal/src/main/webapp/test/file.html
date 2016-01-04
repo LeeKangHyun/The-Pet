@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>파일</title>
+
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/multifile/jQuery.MultiFile.min.js"></script>
+
+</head>
+
+<body>
+  <form method="post" enctype="multipart/form-data" id="multifile" class="multifile">
+    <input multiple type="file" id="mFile" class="with-preview" name="uploadedFile[]"/>
+
+    <div id="mFile-list" style="border:2px solid #c9c9c9;min-height:50px;width:70%;"></div>
+
+  </form>
+
+  <script>
+    $(function() {
+      $('#mFile').MultiFile({
+        accept: 'gif|jpg|jpeg',
+        max: 5,
+        list: '#mFile-list'
+      });
+    });
+  </script>
+</body>
+
+</html>

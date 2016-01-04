@@ -7,16 +7,17 @@
   <link rel='stylesheet' href='../lib/fullcalendar/fullcalendar.css' />
   <link rel='stylesheet' tpye='text/css' href='../lib/fullcalendar/fullcalendar.print.css'
   media='print' />
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css'
+  <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet' type='text/css'
   />
+  <link href="../lib/css/jquery-ui.css" rel='stylesheet' type='text/css'>
 
-  <script src="../lib/bootstrap/bootstrap.min.js"></script>
   <script src='../lib/jquery/jquery.min.js'></script>
   <script src='../lib/moment/moment.min.js'></script>
   <script src='../lib/fullcalendar/fullcalendar.min.js'></script>
   <script src='../lib/fullcalendar/lang/ko.js'></script>
 
   <script src='../lib/bootstrap/js/modal.js'></script>
+
 </head>
 
 <body>
@@ -81,7 +82,7 @@
             center: 'prevYear title nextYear today',
             right: 'next'
           },
-          theme: false, // false : 태마 적용 안함
+          theme: true, // false : 태마 적용 안함
           fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
           weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가

@@ -17,7 +17,11 @@
     "bootstrap": "~3.3.6",
     "jquery": "1.11.3",
     "fullcalendar": "2.5.0",
-    "moment": "2.10.6"
+    "moment": "2.10.6",
+    "multifile": "~2.2.0",
+    "jquery.fileapi": "~0.4.11",
+    "dropzone": "~4.2.0",
+    "jquery-uploadfile": "~4.0.2"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -25,7 +29,11 @@
       "bootstrap": "bower_components/bootstrap/**",
       "jquery": "bower_components/jquery/dist/**",
       "fullcalendar": "bower_components/fullcalendar/dist/**",
-      "moment": "bower_components/moment/min/**"
+      "moment": "bower_components/moment/min/**",
+      "multifile": "bower_components/multifile/**",
+      "jquery.fileapi": "bower_components/jquery.fileapi/**",
+      "dropzone": "bower_components/dropzone/dist/**",
+      "jquery-uploadfile": "bower_components/jquery-uploadfile/**"
     }
   }
 }
