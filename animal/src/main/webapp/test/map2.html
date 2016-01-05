@@ -2,26 +2,26 @@
 <html>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>지도 API</title>
-  <script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=62a17c6d8b7c66317ca7b9c39fd35ec3807368d0"
-  charset="utf-8"></script>
+  <meta charset="utf-8">
+  <title>geolocation으로 마커 표시하기</title>
 
-  <script type="text/javascript">
-    var map;
+</head>
 
-    function init() {
-      map = new daum.maps.Map(document.getElementById('map'), { // 지도표시 div
-        center: new daum.maps.LatLng(37.537123, 127.005523),
-        level: 3
-      });
+<body>
 
-      // 지도에 마커를 생성하고 표시한다
-      var marker = new daum.maps.Marker({
-        position: new daum.maps.LatLng(37.537123, 127.005523), // 마커의 좌표
-        map: map // 마커를 표시할 지도 객체
-      });
-    }
+  <div id="map" style="width:100%;height:350px;"></div>
+
+  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77"></script>
+
+
+  <script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+      mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 10 // 지도의 확대 레벨
+      };
+
+    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
@@ -47,11 +47,33 @@
 
       displayMarker(locPosition, message);
     }
-  </script>
-</head>
 
-<body onload="init()">
-  <div id="map" style="width:600px;height:400px;"></div>
+    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+    function displayMarker(locPosition, message) {
+
+      // 마커를 생성합니다
+      var marker = new daum.maps.Marker({
+        map: map,
+        position: locPosition
+      });
+
+      var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+      // 인포윈도우를 생성합니다
+      var infowindow = new daum.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+      });
+
+      // 인포윈도우를 마커위에 표시합니다
+      infowindow.open(map, marker);
+
+      // 지도 중심좌표를 접속위치로 변경합니다
+      map.setCenter(locPosition);
+    }
+  </script>
+
 </body>
 
 </html>
