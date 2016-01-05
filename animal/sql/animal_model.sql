@@ -191,8 +191,8 @@ ALTER TABLE Member
 -- 쪽지
 CREATE TABLE Message (
   MSG_NUM     INTEGER      NOT NULL COMMENT '쪽지번호', -- 쪽지번호
-  MEM_NUM     INTEGER      NULL     COMMENT '보내는이', -- 보내는이
-  MEM_NUM2    INTEGER      NULL     COMMENT '받는이', -- 받는이
+  MEM_NUM     INTEGER      NOT NULL COMMENT '보내는이', -- 보내는이
+  MEM_NUM2    INTEGER      NOT NULL COMMENT '받는이', -- 받는이
   MSG_CONTENT VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
   COL         BOOLEAN      NULL     COMMENT '조회상태' -- 조회상태
 )
@@ -213,7 +213,7 @@ CREATE TABLE Education (
   EDU_NUM     INTEGER      NOT NULL COMMENT '교육번호', -- 교육번호
   EDU_VIEWS   INTEGER      NULL     COMMENT '조회수', -- 조회수
   EDU_CRE     DATETIME     NULL     COMMENT '작성일', -- 작성일
-  EDU_TITLE   VARCHAR(50)  NULL     COMMENT '제목', -- 제목
+  EDU_TITLE   VARCHAR(50)  NOT NULL COMMENT '제목', -- 제목
   EDU_CONTENT VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
   EDU_DIV     VARCHAR(50)  NOT NULL COMMENT '구분', -- 구분
   MEM_NUM     INTEGER      NULL     COMMENT '회원번호' -- 회원번호
