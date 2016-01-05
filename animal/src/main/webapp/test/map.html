@@ -1,20 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Daum 지도 API v3 예제: 기본 지도 생성하기</title>
-<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=62a17c6d8b7c66317ca7b9c39fd35ec3807368d0 " charset="utf-8"></script>
-<script type="text/javascript">
-var map;
-function init() {
-	map = new daum.maps.Map(document.getElementById('map'), {
-		center: new daum.maps.LatLng(37.537123, 127.005523),
-		level: 3
-	});
-}
-</script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Daum 지도 API v3 예제: 기본 지도 생성하기</title>
+  <script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=62a17c6d8b7c66317ca7b9c39fd35ec3807368d0"
+  charset="utf-8"></script>
+
+  <script type="text/javascript">
+    var map;
+
+    function init() {
+      map = new daum.maps.Map(document.getElementById('map'), { // 지도표시 div
+        center: new daum.maps.LatLng(37.537123, 127.005523),
+        level: 3
+      });
+
+      // 지도에 마커를 생성하고 표시한다
+      var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537123, 127.005523), // 마커의 좌표
+        map: map // 마커를 표시할 지도 객체
+      });
+    }
+
+    function getInfo() {
+      // 지도의 현재 중심좌표를 얻어옵니다
+      var center = map.getCenter();
+
+      // 지도의 현재 레벨을 얻어옵니다
+      var level = map.getLevel();
+
+      // 지도타입을 얻어옵니다
+      var mapTypeId = map.getMapTypeId();
+
+      // 지도의 현재 영역을 얻어옵니다
+      var bounds = map.getBounds();
+
+      // 영역의 남서쪽 좌표를 얻어옵니다
+      var swLatLng = bounds.getSouthWest();
+
+      // 영역의 북동쪽 좌표를 얻어옵니다
+      var neLatLng = bounds.getNorthEast();
+
+      // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+      var boundsStr = bounds.toString();
+
+
+      var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
+      message += '경도 ' + center.getLng() + ' 이고 <br>';
+      message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
+      message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
+      message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() +
+        ' 이고 <br>';
+      message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() +
+        ' 입니다';
+
+      var infoDiv = document.getElementById('infoDiv');
+      infoDiv.innerHTML = message;
+    }
+  </script>
 </head>
+
 <body onload="init()">
-	<div id="map" style="width:600px;height:400px;"></div>
+  <div id="map" style="width:600px;height:400px;"></div>
+
+  <p>
+    <button onclick="getInfo()">지도 정보 보기</button>
+    <br>
+  </p>
+  <p id="infoDiv"></p>
 </body>
+
 </html>
