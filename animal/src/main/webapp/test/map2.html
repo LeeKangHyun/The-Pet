@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>지도 API</title>
+  <script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=62a17c6d8b7c66317ca7b9c39fd35ec3807368d0"
+  charset="utf-8"></script>
+
+  <script type="text/javascript">
+    var map;
+
+    function init() {
+      map = new daum.maps.Map(document.getElementById('map'), { // 지도표시 div
+        center: new daum.maps.LatLng(37.537123, 127.005523),
+        level: 3
+      });
+
+      // 지도에 마커를 생성하고 표시한다
+      var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537123, 127.005523), // 마커의 좌표
+        map: map // 마커를 표시할 지도 객체
+      });
+    }
+
+    // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+    if (navigator.geolocation) {
+
+      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+      navigator.geolocation.getCurrentPosition(function(position) {
+
+        var lat = position.coords.latitude, // 위도
+          lon = position.coords.longitude; // 경도
+
+        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+          message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+
+      });
+
+    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+      var locPosition = new daum.maps.LatLng(33.450701, 126.570667),
+        message = 'geolocation을 사용할수 없어요..'
+
+      displayMarker(locPosition, message);
+    }
+  </script>
+</head>
+
+<body onload="init()">
+  <div id="map" style="width:600px;height:400px;"></div>
+</body>
+
+</html>
