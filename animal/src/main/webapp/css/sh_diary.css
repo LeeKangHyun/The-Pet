@@ -1,3 +1,4 @@
-.main-body .diary-pet-info p {
-    max-width: 250px;
+.main-body .diary-pet-info {
+    width: 250px;
+    height: auto;
 }
