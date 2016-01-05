@@ -22,21 +22,9 @@ ALTER TABLE Mating
 ALTER TABLE TABLE6
   DROP FOREIGN KEY FK_Schedule_TO_TABLE6; -- 다이어리 - 일정 -> 산책코스
 
--- 항목
-ALTER TABLE Notice
-  DROP FOREIGN KEY FK_Schedule_TO_Notice; -- 다이어리 - 일정 -> 항목
-
--- 항목
-ALTER TABLE Notice
-  DROP FOREIGN KEY FK_Category_TO_Notice; -- 카테고리 -> 항목
-
 -- 댓글
 ALTER TABLE Comment
   DROP FOREIGN KEY FK_Member_TO_Comment; -- 회원 -> 댓글
-
--- 댓글
-ALTER TABLE Comment
-  DROP FOREIGN KEY FK_Notice_TO_Comment; -- 항목 -> 댓글
 
 -- 댓글
 ALTER TABLE Comment
@@ -106,10 +94,6 @@ ALTER TABLE Mating
 ALTER TABLE TABLE6
   DROP PRIMARY KEY; -- 산책코스 기본키
 
--- 항목
-ALTER TABLE Notice
-  DROP PRIMARY KEY; -- 항목 기본키
-
 -- 댓글
 ALTER TABLE Comment
   DROP PRIMARY KEY; -- 댓글 기본키
@@ -135,10 +119,6 @@ ALTER TABLE TABLE13
   DROP PRIMARY KEY; -- 테이블코드 기본키
 
 -- 카테고리
-ALTER TABLE TABLE14
-  DROP PRIMARY KEY; -- 카테고리 기본키
-
--- 카테고리
 ALTER TABLE Category
   DROP PRIMARY KEY; -- 카테고리 기본키
 
@@ -160,9 +140,6 @@ DROP TABLE IF EXISTS Mating RESTRICT;
 -- 산책코스
 DROP TABLE IF EXISTS TABLE6 RESTRICT;
 
--- 항목
-DROP TABLE IF EXISTS Notice RESTRICT;
-
 -- 댓글
 DROP TABLE IF EXISTS Comment RESTRICT;
 
@@ -180,9 +157,6 @@ DROP TABLE IF EXISTS TABLE12 RESTRICT;
 
 -- 테이블코드
 DROP TABLE IF EXISTS TABLE13 RESTRICT;
-
--- 카테고리
-DROP TABLE IF EXISTS TABLE14 RESTRICT;
 
 -- 카테고리
 DROP TABLE IF EXISTS Category RESTRICT;
@@ -322,22 +296,6 @@ ALTER TABLE TABLE6
       COL -- 산책번호
     );
 
--- 항목
-CREATE TABLE Notice (
-  NOTI_NUM  INTEGER NOT NULL COMMENT '게시물번호', -- 게시물번호
-  CATE_CODE CHAR(6) NOT NULL COMMENT '카테고리코드', -- 카테고리코드
-  SCH_NUM   INTEGER NULL     COMMENT '일정번호' -- 일정번호
-)
-COMMENT '항목';
-
--- 항목
-ALTER TABLE Notice
-  ADD CONSTRAINT PK_Notice -- 항목 기본키
-    PRIMARY KEY (
-      NOTI_NUM,  -- 게시물번호
-      CATE_CODE  -- 카테고리코드
-    );
-
 -- 댓글
 CREATE TABLE Comment (
   CMT_NUM     INTEGER      NOT NULL COMMENT '댓글번호', -- 댓글번호
@@ -345,10 +303,8 @@ CREATE TABLE Comment (
   MEM_NUM     INTEGER      NULL     COMMENT '회원번호', -- 회원번호
   SCH_NUM     INTEGER      NULL     COMMENT '일정번호', -- 일정번호
   EDU_NUM     INTEGER      NULL     COMMENT '교육번호', -- 교육번호
-  NOTI_NUM    INTEGER      NULL     COMMENT '게시물번호', -- 게시물번호
   PO_NUM      INTEGER      NULL     COMMENT '분양번호', -- 분양번호
-  MAT_NUM     INTEGER      NULL     COMMENT '짝짓기번호', -- 짝짓기번호
-  CATE_CODE   CHAR(6)      NULL     COMMENT '카테고리코드' -- 카테고리코드
+  MAT_NUM     INTEGER      NULL     COMMENT '짝짓기번호' -- 짝짓기번호
 )
 COMMENT '댓글';
 
@@ -469,20 +425,6 @@ ALTER TABLE TABLE13
     );
 
 -- 카테고리
-CREATE TABLE TABLE14 (
-  COL  <데이터 타입 없음> NOT NULL COMMENT '카테고리번호', -- 카테고리번호
-  COL2 <데이터 타입 없음> NULL     COMMENT '카테고리명' -- 카테고리명
-)
-COMMENT '카테고리';
-
--- 카테고리
-ALTER TABLE TABLE14
-  ADD CONSTRAINT PK_TABLE14 -- 카테고리 기본키
-    PRIMARY KEY (
-      COL -- 카테고리번호
-    );
-
--- 카테고리
 CREATE TABLE Category (
   CATE_CODE CHAR(6)     NOT NULL COMMENT '카테고리코드', -- 카테고리코드
   CATE_NAME VARCHAR(50) NOT NULL COMMENT '카테고리명' -- 카테고리명
@@ -562,26 +504,6 @@ ALTER TABLE TABLE6
       SCH_NUM -- 일정번호
     );
 
--- 항목
-ALTER TABLE Notice
-  ADD CONSTRAINT FK_Schedule_TO_Notice -- 다이어리 - 일정 -> 항목
-    FOREIGN KEY (
-      SCH_NUM -- 일정번호
-    )
-    REFERENCES Schedule ( -- 다이어리 - 일정
-      SCH_NUM -- 일정번호
-    );
-
--- 항목
-ALTER TABLE Notice
-  ADD CONSTRAINT FK_Category_TO_Notice -- 카테고리 -> 항목
-    FOREIGN KEY (
-      CATE_CODE -- 카테고리코드
-    )
-    REFERENCES Category ( -- 카테고리
-      CATE_CODE -- 카테고리코드
-    );
-
 -- 댓글
 ALTER TABLE Comment
   ADD CONSTRAINT FK_Member_TO_Comment -- 회원 -> 댓글
@@ -590,18 +512,6 @@ ALTER TABLE Comment
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
-
--- 댓글
-ALTER TABLE Comment
-  ADD CONSTRAINT FK_Notice_TO_Comment -- 항목 -> 댓글
-    FOREIGN KEY (
-      NOTI_NUM,  -- 게시물번호
-      CATE_CODE  -- 카테고리코드
-    )
-    REFERENCES Notice ( -- 항목
-      NOTI_NUM,  -- 게시물번호
-      CATE_CODE  -- 카테고리코드
     );
 
 -- 댓글
