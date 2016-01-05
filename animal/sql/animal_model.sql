@@ -341,7 +341,6 @@ ALTER TABLE Pet
 -- 팻 유니크 인덱스
 CREATE UNIQUE INDEX UIX_Pet
   ON Pet ( -- 팻
-    TAG_COLOR ASC -- 태그색
   );
 
 ALTER TABLE Pet
