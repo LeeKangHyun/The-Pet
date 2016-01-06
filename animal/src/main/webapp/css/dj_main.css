@@ -1,0 +1,41 @@
+.m_content {
+    margin-left: 220px;
+    margin-top: 43px;
+    float: left;
+    width: 1024px;
+    height: 768;
+}
+
+.m_img {
+    width: 1024px;
+    height: 768px;
+}
+
+/*
+div {
+    border : 1px solid red;
+}
+*/
+
+.m_boast {
+    padding-top: 10px;
+}
+
+.m_most {
+    width: 300px;
+    height: auto;
+    padding-left: 28px;
+}
+.m_most > video {
+    width: 300px;
+    height: auto;
+}
+
+.m_most > li {
+    list-style: none;
+}
+
+a:hover {
+    color: white;
+}
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>main 화면 구성하기</title>
+  <!--  내가만든 css들  -->
+  <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet">
+  <link href="css/sh_diary.css" type="text/css" rel="stylesheet">
+    
+  <!-- 대진 메인 css -->
+  <link href="css/dj_main.css" type="text/css" rel="stylesheet">
+
+  <!--  폰트아이콘 링크  -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- 캘린더 css -->
+  <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
+  <link rel='stylesheet' tpye='text/css' href='lib/fullcalendar/fullcalendar.print.css'
+  media='print' />
+  <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet' type='text/css'
+  />
+
+  <!-- 캘린더 스크립트 -->
+  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src='lib/jquery/jquery.min.js'></script>
+  <script src='lib/moment/moment.min.js'></script>
+  <script src='lib/fullcalendar/fullcalendar.js'></script>
+
+</head>
+
+<body>
+  <section>
+    <div class="main">
+      <input type="checkbox" id="menuToggle" />
+
+      <div class="menu">
+        <div class="header_title">
+          <a href="#">Header Title</a>
+        </div>
+        
+        <nav class="menu-nav">
+          <ul class="menu-nav-ul">
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> About</a></li>
+
+            <li class="menu-has-sub"><a href="#"><i class="fa fa-home fa-lg"></i> Info<span class="sub-arrow"></span></a>
+              <ul>
+                <li><a href="#">Sub1</a></li>
+                <li><a href="#">Sub2</a></li>
+                <li><a href="#">Sub3</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Blog</a></li>
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Contect</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+    </div>
+    <div class="m_content">
+      <img class="m_img" src="images/설현00026.jpeg">
+      
+      <div class="m_boast">
+        <div>
+            <a href="#"><h6>자랑하기</h6></a>
+        </div>
+        <table border="1px solid red">
+            <tr>
+                <td class="m_most">
+                    <video src="files/a.mp4" type="video/mp4" controls></video>
+                    <li>title</li>
+                </td>
+                <td class="m_most">
+                    <video src="files/aoa.mp4" type="video/mp4" controls></video>
+                    <li>title</li>
+                </td>
+                <td class="m_most">
+                    <video src="files/aoa_moya.mp4" type="video/mp4" controls></video>
+                    <li>title</li>
+                </td>
+            </tr>           
+        </table>
+      <div>
+        <li>에라이</li>
+          <li>에라이</li>
+          <li>에라이</li>
+          <li>에라이</li>
+          <li>에라이</li>
+          <li>에라이</li>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    $(document).ready(function() {
+
+      $('.menu-has-sub').click(function(e) {
+        $(this).toggleClass('tap');
+      });
+      // page is now ready, initialize the calendar...
+
+      $('#calendar').fullCalendar({
+        // put your options and callbacks here
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
