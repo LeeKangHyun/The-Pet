@@ -11,7 +11,7 @@
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- 캘린더 css -->
-  <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
+  <link rel='stylesheet' href='css/fullcalendar_custom.css' />
   <link rel='stylesheet' tpye='text/css' href='lib/fullcalendar/fullcalendar.print.css' media='print' />
   <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet' type='text/css'
   />
@@ -21,14 +21,16 @@
   <script src='lib/jquery/jquery.min.js'></script>
   <script src='lib/moment/moment.min.js'></script>
   <script src='lib/fullcalendar/fullcalendar.js'></script>
+  <script src='lib/fullcalendar/lang/ko.js'></script>
 
     <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
 </head>
 <body>
     <section>
-    <div class="main">
+<!--    <div class="main">-->
 
         <!--  메뉴 버튼  -->
+        <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
         <input type="checkbox" id="menuToggle" />
 
         <div class="menu">
@@ -41,15 +43,6 @@
                 <ul class="menu-nav-ul">
                     <li><a href="#"><i class="fa fa-home fa-lg"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-home fa-lg"></i> About</a></li>
-
-                    <li class="menu-has-sub"><a href="#"><i class="fa fa-home fa-lg"></i> Info<span class="sub-arrow"></span></a>
-                        <ul>
-                            <li><a href="#">Sub1</a></li>
-                            <li><a href="#">Sub2</a></li>
-                            <li><a href="#">Sub3</a></li>
-                        </ul>
-                    </li>
-
                     <li><a href="#"><i class="fa fa-home fa-lg"></i> Blog</a></li>
                     <li><a href="#"><i class="fa fa-home fa-lg"></i> Contect</a></li>
                 </ul>
@@ -57,28 +50,44 @@
         <!--  //메뉴 내용  -->
         </div>
 
-        <!--  메뉴 버튼  -->
-        <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
 
         <div class="main-body">
-<!--
-            <div class="diary-pet-info">
-   class="btn btn-default"             
-            </div>
--->
-            <div class="addSce">
-              <button type="button" id="my-today-button" >Today</button>
-              <a role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
-              <a role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
-              <br><br>
+            
+            <div id="diary-pet-info">
+                <table border="0">
+                  <tr>
+                    <td rowspan="2">
+                      <img class="mImg"  src="images/p1.jpeg">
+                    </td>
+                    <td>
+                      <label class="pInfo">이름 : </label>
+                      <input class='petName' type="text" value="이성경" disabled>
+                    </td>
+                  </tr>
+                  <tr>
+                    <!-- 색상 값 value는 hex 값으로만 적용된다. -->
+                    <td>
+                      <span class="pInfo">태그색 : </span>
+                      <input type="color" value="#ff0000" disabled>
+                    </td>
+                  </tr>
+                </table>
             </div>
             
-            <button type="button">222</button>
-            <div id="calendar"></div>
+            <div id="right">
+                <div class="addSce">
+                  <button type="button" id="my-today-button" class="btn btn-default">Today</button>
+                  <a role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
+                  <a role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
+                  <br><br>
+                </div>
 
+                <div id="calendar"></div>
+            </div>
+            
         </div>
 
-    </div>
+<!--    </div>-->
     </section>
 
 <script>
