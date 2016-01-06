@@ -1,6 +1,6 @@
 .main-body {
     text-align: center;
-    
+
 }
 .main-body .diary-pet-info {
     width: 250px;
@@ -64,8 +64,6 @@
 
 #calendar {
 /*    margin-left: 300px;*/
-    width: 700px;
-    height: auto;
+    width: 1024px;
     border: 1px solid black;
-    z-index: 599;
 }

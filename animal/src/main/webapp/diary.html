@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Slid Menu</title>
-    <!--  내가만든 css들  -->
+  <meta charset="utf-8">
+  <title>Slid Menu</title>
+  <!--  내가만든 css들  -->
   <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet">
   <link href="css/sh_diary.css" type="text/css" rel="stylesheet">
 
@@ -12,7 +13,8 @@
 
   <!-- 캘린더 css -->
   <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
-  <link rel='stylesheet' tpye='text/css' href='lib/fullcalendar/fullcalendar.print.css' media='print' />
+  <link rel='stylesheet' tpye='text/css' href='lib/fullcalendar/fullcalendar.print.css'
+  media='print' />
   <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel='stylesheet' type='text/css'
   />
 
@@ -21,152 +23,165 @@
   <script src='lib/jquery/jquery.min.js'></script>
   <script src='lib/moment/moment.min.js'></script>
   <script src='lib/fullcalendar/fullcalendar.js'></script>
+  <script src="lib/fullcalendar/lang/ko.js"></script>
 
-    <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
+  <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
 </head>
+
 <body>
-    <section>
+  <header>
+    <div class="header_title">
+      <a href="#">Header Title</a>
+    </div>
+  </header>
+
+  <section>
     <div class="main">
 
-        <!--  메뉴 버튼  -->
-        <input type="checkbox" id="menuToggle" />
+      <!--  메뉴 버튼  -->
+      <input type="checkbox" id="menuToggle" />
 
-        <div class="menu">
-            <div class="header_title">
-                <a href="#">Header Title</a>
-            </div>
-
-            <!--  메뉴 내용  -->
-            <nav class="menu-nav">
-                <ul class="menu-nav-ul">
-                    <li><a href="#"><i class="fa fa-home fa-lg"></i> Home</a></li>
-                    <li><a href="#"><i class="fa fa-home fa-lg"></i> About</a></li>
-
-                    <li class="menu-has-sub"><a href="#"><i class="fa fa-home fa-lg"></i> Info<span class="sub-arrow"></span></a>
-                        <ul>
-                            <li><a href="#">Sub1</a></li>
-                            <li><a href="#">Sub2</a></li>
-                            <li><a href="#">Sub3</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="#"><i class="fa fa-home fa-lg"></i> Blog</a></li>
-                    <li><a href="#"><i class="fa fa-home fa-lg"></i> Contect</a></li>
-                </ul>
-            </nav>
-        <!--  //메뉴 내용  -->
-        </div>
-
-        <!--  메뉴 버튼  -->
+      <div class="menu">
         <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+        <!--  메뉴 내용  -->
 
-        <div class="main-body">
-<!--
-            <div class="diary-pet-info">
-   class="btn btn-default"             
-            </div>
--->
-            <div class="addSce">
-              <button type="button" id="my-today-button" >Today</button>
-              <a role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
-              <a role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
-              <br><br>
-            </div>
-            
-            <button type="button">222</button>
-            <div id="calendar"></div>
+        <nav class="menu-nav">
+          <ul class="menu-nav-ul">
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> About</a></li>
 
-        </div>
+            <li class="menu-has-sub"><a href="#"><i class="fa fa-home fa-lg"></i> Info<span class="sub-arrow"></span></a>
+              <ul>
+                <li><a href="#">Sub1</a></li>
+                <li><a href="#">Sub2</a></li>
+                <li><a href="#">Sub3</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Blog</a></li>
+            <li><a href="#"><i class="fa fa-home fa-lg"></i> Contect</a></li>
+          </ul>
+        </nav>
+        <!--  //메뉴 내용  -->
+      </div>
+
+      <!--  메뉴 버튼  -->
 
     </div>
-    </section>
+  </section>
 
-<script>
-$(document).ready(function() {
+  <section>
+    <div class="main-body">
+      <!--
+            <div class="diary-pet-info">
+   class="btn btn-default"
+            </div>
+-->
+      <div class="addSce">
+        <button type="button" id="my-today-button">Today</button>
+        <a role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
+        <a role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
+        <br>
+        <br>
+      </div>
 
-    $('.menu-has-sub').click(function(e) {
+      <button type="button">222</button>
+      <div id="calendar"></div>
+
+    </div>
+  </section>
+  <footer>
+    <p>
+      &copy;
+    </p>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+
+      $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
-    });
-      
-    function renderCalendar() {
-      $('#calendar').fullCalendar({
-        header: {
-          left: 'prevYear',
-          center: 'prev title next',
-          right: 'nextYear',
-        },
-        theme: false, // false : 태마 적용 안함
-        fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-        weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-        editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-        eventLimit: true, // allow "more" link when too many events
-          
-        events: [{
-          title: '쉬는날',
-          start: '2016-01-09T00:00:00',
-          end: '2016-01-16T00:00:00',
-          color: '#fff000', // yellow
-          description: "쉬는날이다."
-        }, {
-          title: '휴가',
-          start: '2016-01-07T16:00:00',
-          end: '2016-01-15T16:00:00',
-          color: '#ff0000', //red
-          description: "휴가가자"
-        }, {
-          title: '미팅',
-          start: '2016-01-09T16:00:00',
-          end: '2016-01-10T16:00:00',
-          color: '#ff8000', // orange
-          description: "미팅이다"
-        }, {
-          title: '컨퍼런스',
-          start: '2016-01-11T00:00:00',
-          end: '2016-01-13T14:00:00',
-          color: '#0000ff', // blue
-          description: "컨퍼런스다"
-        }, {
-          title: '미팅',
-          start: '2016-01-12T10:30:00',
-          end: '2016-01-16T12:30:00',
-          color: '#ff8000', // orange
-          description: "미팅하는날"
-        }, {
-          title: '생일 파티',
-          start: '2016-01-13T07:00:00',
-          end: '2016-01-13T07:00:00',
-          color: '#0000ff', // blue
-          description: "생일 파티다"
-        }],
-          
-        timeFormat: 'H:mm',
-        eventClick: function(event, jsEvent, view) {
-          if (event.end) {
-            $('#modalTitle').html(event.title);
-            $('#mStart').val(event.start.format().substring(0, 10)); // 2015-12-31
-            $('#mEnd').val(event.end.format().substring(0, 10));
-            $('#mColor').val(event.color);
-            $('#mDes').html(event.description);
-            $('#fullCalModal').modal();
-          } else {
-            $('#modalTitle').html(event.title);
-            $('#mStart').val(event.start.format().substring(0, 10));
-            $('#mEnd').val(event.start.format().substring(0, 10));
-            $('#mColor').val(event.color);
-            $('#mDes').html(event.description);
-            $('#fullCalModal').modal();
-          }
-        }
       });
-    }
-    renderCalendar();
-});
 
-// 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
-$('#my-today-button').click(function() {
-    $('#calendar').fullCalendar('today');
-});
+      function renderCalendar() {
+        $('#calendar').fullCalendar({
+          header: {
+            left: 'prevYear',
+            center: 'prev title next',
+            right: 'nextYear',
+          },
+          theme: false, // false : 태마 적용 안함
+          fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
+          weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
+          editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
+          eventLimit: true, // allow "more" link when too many events
 
-</script>
+          events: [{
+            title: '쉬는날',
+            start: '2016-01-09T00:00:00',
+            end: '2016-01-16T00:00:00',
+            color: '#fff000', // yellow
+            description: "쉬는날이다."
+          }, {
+            title: '휴가',
+            start: '2016-01-07T16:00:00',
+            end: '2016-01-15T16:00:00',
+            color: '#ff0000', //red
+            description: "휴가가자"
+          }, {
+            title: '미팅',
+            start: '2016-01-09T16:00:00',
+            end: '2016-01-10T16:00:00',
+            color: '#ff8000', // orange
+            description: "미팅이다"
+          }, {
+            title: '컨퍼런스',
+            start: '2016-01-11T00:00:00',
+            end: '2016-01-13T14:00:00',
+            color: '#0000ff', // blue
+            description: "컨퍼런스다"
+          }, {
+            title: '미팅',
+            start: '2016-01-12T10:30:00',
+            end: '2016-01-16T12:30:00',
+            color: '#ff8000', // orange
+            description: "미팅하는날"
+          }, {
+            title: '생일 파티',
+            start: '2016-01-13T07:00:00',
+            end: '2016-01-13T07:00:00',
+            color: '#0000ff', // blue
+            description: "생일 파티다"
+          }],
+
+          timeFormat: 'H:mm',
+          eventClick: function(event, jsEvent, view) {
+            if (event.end) {
+              $('#modalTitle').html(event.title);
+              $('#mStart').val(event.start.format().substring(0, 10)); // 2015-12-31
+              $('#mEnd').val(event.end.format().substring(0, 10));
+              $('#mColor').val(event.color);
+              $('#mDes').html(event.description);
+              $('#fullCalModal').modal();
+            } else {
+              $('#modalTitle').html(event.title);
+              $('#mStart').val(event.start.format().substring(0, 10));
+              $('#mEnd').val(event.start.format().substring(0, 10));
+              $('#mColor').val(event.color);
+              $('#mDes').html(event.description);
+              $('#fullCalModal').modal();
+            }
+          }
+        });
+      }
+      renderCalendar();
+    });
+
+    // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
+    $('#my-today-button').click(function() {
+      $('#calendar').fullCalendar('today');
+    });
+  </script>
 </body>
+
 </html>
