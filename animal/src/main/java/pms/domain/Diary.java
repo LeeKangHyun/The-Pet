@@ -10,11 +10,11 @@ public class Diary  implements Serializable {
   protected int pno;	// 펫 번호
   protected Date startDate;	// 시작일
   protected Date endDate;	// 종료일
-  protected Date nowDate;	// 작성일
-  protected String title;	// 제목
+  protected Date createDate;	// 작성일
   protected String content;	// 내용
-  protected String cateCode;	//카테고리 코드
-  protected int dhide;	// 공개여부
+  protected String title;	// 제목
+  protected String cateCode;	//카테고리 코드	 tab001=자랑하기 tab002=산책코스
+  protected int dhide;	// 공개여부	0=비공개 1=공개
   protected int view;	// 조회수
   protected int like;	// 좋아요수
   
@@ -44,11 +44,11 @@ public class Diary  implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public Date getNowDate() {
-		return nowDate;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setNowDate(Date nowDate) {
-		this.nowDate = nowDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	public String getTitle() {
 		return title;
