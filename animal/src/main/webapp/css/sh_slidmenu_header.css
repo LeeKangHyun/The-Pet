@@ -14,12 +14,19 @@ body {
     width: 100%;
     position: fixed;
     height: 100%;
-    z-index: 1000;
+    z-index: auto;
 }
+
 .header_title {
     background-color: #19d4cb;
-    padding: 12px 50px;
+    padding: 3.5px 50px;
+    z-index: 1000;
 
+}
+
+.header_title a:hover {
+    text-decoration: none;
+    color: #fff;
 }
 
 .header_title a {

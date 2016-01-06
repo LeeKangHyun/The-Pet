@@ -1,5 +1,71 @@
+.main-body {
+    text-align: center;
+    
+}
 .main-body .diary-pet-info {
-/*
     width: 250px;
     height: auto;
-}*/
+}
+
+.main-body.addSce {
+/*    position: absolute;*/
+}
+
+.addSce a {
+    float: left;
+    margin-left: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.addSce a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.addSce button {
+    float: left;
+    margin-left: 10px;
+    top: 6px;
+}
+
+.petName {
+    border: none;
+    width:100px;
+    align-content: flex-start;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.innerTable {
+    vertical-align: top;
+}
+
+.pInfo {
+    margin-left: 0px;
+    float: left;
+}
+
+.mImg {
+    height: 135px;
+    width: 135px;
+}
+
+.close {
+    font-size: 2.0em;
+}
+
+#addBtn {
+    width: 120px;
+    height: 35px;
+    font-size: 15px;
+    float: right;
+}
+
+#calendar {
+/*    margin-left: 300px;*/
+    width: 700px;
+    height: auto;
+    border: 1px solid black;
+    z-index: 599;
+}
