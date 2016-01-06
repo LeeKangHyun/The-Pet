@@ -10,25 +10,12 @@ body {
 /*******************/
 /*     헤더 부분     */
 /*******************/
-<<<<<<< HEAD
-/*
-.menu {
-=======
 /*.menu {
->>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
     width: 100%;
+    position: fixed;
     height: 100%;
     z-index: auto;
-<<<<<<< HEAD
-}
-*/
-
-.header_title, .menu-nav {
-    position: fixed;
-}
-=======
 }*/
->>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
 
 header .header_title {
     width: 100%;
@@ -67,40 +54,19 @@ header .header_title {
     display: none;
 }
 
-<<<<<<< HEAD
-#menuToggle:checked ~ .menu-nav {   /* 체크박스 체크하면 메뉴 왼쪽에서 나옴 */
-    position: absolute;
-    left: 0;
-}
-
-/*
-#menuToggle:checked ~ .main-body {
-    position: absolute;
-    left: 220px;
-}
-*/
-=======
 #menuToggle:checked ~ .menu .menu-nav {   /* 체크박스 체크하면 메뉴 왼쪽에서 나옴 */
     position: fixed;
     left: 0;
 }
 
 
->>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
 
 /******************/
 /*    사이드 메뉴    */
 /******************/
-<<<<<<< HEAD
-
-.menu-nav {
-    position: absolute;
-    width: 220px;
-=======
 .menu .menu-nav {
     width: 220px;
     position: fixed;
->>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
     background-color: #fff;
     min-height:100%;
     top: 44px;
@@ -132,6 +98,27 @@ header .header_title {
 .menu-nav ul li a:hover {  /* 메뉴 마우스 호버 색변함 */
     background-color: #19d4cb;
     color: #f5f5f5;
+}
+
+.menu-nav-ul ul {   /* 서브 메뉴 안보이게 */
+    display: none;
+}
+
+.menu-nav-ul li.tap ul {  /* 서브 메뉴 보이게 스크립트 이용 */
+    display: block;
+}
+
+.menu-has-sub ul li a {     /* 서브 메뉴 제목 부분 */
+    padding-left: 37px;
+    font-size: 15px;
+    font-family: Josefin Sans;
+}
+
+.menu-nav .sub-arrow:after {    /* 서브 메뉴를 가지고있는 메뉴 오른쪽 끝 화살표 */
+    content: '\203A';
+    float: right;
+    margin-right: 20px;
+    transform: rotate(90deg);
 }
 
 
