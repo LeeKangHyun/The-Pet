@@ -169,7 +169,7 @@ CREATE TABLE Message (
   MEM_NUM     INTEGER      NOT NULL COMMENT '보내는이', -- 보내는이
   MEM_NUM2    INTEGER      NOT NULL COMMENT '받는이', -- 받는이
   MSG_CONTENT VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
-  check       BOOLEAN      NOT NULL DEFAULT false COMMENT '조회상태' -- 조회상태
+  CHECKED     BOOLEAN      NOT NULL DEFAULT 0 COMMENT '조회상태' -- 조회상태
 )
 COMMENT '쪽지';
 
@@ -295,11 +295,6 @@ ALTER TABLE Pet
       PET_NUM -- 팻번호
     );
 
--- 팻 유니크 인덱스
-CREATE UNIQUE INDEX UIX_Pet
-  ON Pet ( -- 팻
-  );
-
 ALTER TABLE Pet
   MODIFY COLUMN PET_NUM INTEGER NOT NULL AUTO_INCREMENT COMMENT '팻번호';
 
@@ -313,7 +308,7 @@ CREATE TABLE Schedule (
   SCH_CONTENT VARCHAR(255) NULL     COMMENT '내용', -- 내용
   SCH_TITLE   VARCHAR(50)  NULL     COMMENT '제목', -- 제목
   CATE_CODE   CHAR(6)      NULL     COMMENT '카테고리코드', -- 카테고리코드
-  NOTI_OPEN   INTEGER      NOT NULL COMMENT '공개여부', -- 공개여부
+  NOTI_HIDE   INTEGER      NOT NULL DEFAULT 0 COMMENT '공개여부', -- 공개여부
   NOTI_VIEWS  INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
   NOTI_LIKES  INTEGER      NULL     COMMENT '좋아요' -- 좋아요
 )

@@ -134,35 +134,35 @@ insert into Category(CATE_CODE,CATE_NAME) values('tab001','자랑하기');
 insert into Category(CATE_CODE,CATE_NAME) values('tab002','산책코스');
 
 /* 일정등록 */
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_HIDE)
   values(6,'2016-01-01','2016-01-10','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_HIDE)
   values(5,'2016-01-01','2016-01-10','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_HIDE)
   values(2,'2016-01-01','2016-01-10','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_HIDE)
   values(3,'2016-01-01','2016-01-10','2016-01-10',0);
   
 /* 자랑하기 등록 */
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(4,now(),now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','tab001',0,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(2,now(),now(),'반해버렸어요','너무 이쁜거 있죠?','tab001',1,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(1,now(),now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','tab001',1,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(1,now(),now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','tab001',0,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(3,now(),now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','tab001',1,'2016-01-10');
 
 /* 산책코스 등록 */
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(5,now(),now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','tab002',0,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(3,now(),now(),'반해버렸어요','너무 이쁜거 있죠?','tab002',1,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(3,now(),now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','tab002',1,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(7,now(),now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','tab002',0,'2016-01-10');
-insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN,SCH_CRE)
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,SCH_CRE)
   values(6,now(),now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','tab002',1,'2016-01-10');
