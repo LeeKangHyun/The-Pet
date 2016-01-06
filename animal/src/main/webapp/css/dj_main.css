@@ -11,11 +11,9 @@
     height: 768px;
 }
 
-/*
 div {
     border : 1px solid red;
 }
-*/
 
 .m_boast {
     padding-top: 10px;
@@ -24,7 +22,8 @@ div {
 .m_most {
     width: 300px;
     height: auto;
-    padding-left: 28px;
+    padding-left: 0px;
+    padding-right: 62px;
 }
 .m_most > video {
     width: 300px;
@@ -35,7 +34,12 @@ div {
     list-style: none;
 }
 
-a:hover {
-    color: white;
+table {
+    border: none;
 }
-
+tr {
+    border: none;
+}
+td {
+    border: none;
+}
