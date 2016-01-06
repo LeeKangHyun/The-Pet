@@ -134,14 +134,14 @@ insert into Category(CATE_CODE,CATE_NAME) values('tab001','자랑하기');
 insert into Category(CATE_CODE,CATE_NAME) values('tab002','산책코스');
 
 /* 일정등록 */
-insert into Schedule(PET_NUM,START_DATE,END_DATE,NOTI_OPEN)
-  values(6,'2016-01-01','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,NOTI_OPEN)
-  values(5,'2016-01-01','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,NOTI_OPEN)
-  values(2,'2016-01-01','2016-01-10',0);
-insert into Schedule(PET_NUM,START_DATE,END_DATE,NOTI_OPEN)
-  values(3,'2016-01-01','2016-01-10',0);
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+  values(6,'2016-01-01','2016-01-10','2016-01-10',0);
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+  values(5,'2016-01-01','2016-01-10','2016-01-10',0);
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+  values(2,'2016-01-01','2016-01-10','2016-01-10',0);
+insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,NOTI_OPEN)
+  values(3,'2016-01-01','2016-01-10','2016-01-10',0);
   
 /* 자랑하기 등록 */
 insert into Schedule(PET_NUM,START_DATE,END_DATE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_OPEN)

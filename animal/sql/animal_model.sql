@@ -352,7 +352,7 @@ CREATE TABLE Schedule (
   PET_NUM     INTEGER      NOT NULL COMMENT '팻번호', -- 팻번호
   START_DATE  DATETIME     NOT NULL COMMENT '시작일', -- 시작일
   END_DATE    DATETIME     NOT NULL COMMENT '종료일', -- 종료일
-  SCH_CRE     DATETIME     NULL     COMMENT '작성일', -- 작성일
+  SCH_CRE     DATETIME     NOT NULL     COMMENT '작성일', -- 작성일
   SCH_CONTENT VARCHAR(255) NULL     COMMENT '내용', -- 내용
   SCH_TITLE   VARCHAR(50)  NULL     COMMENT '제목', -- 제목
   CATE_CODE   CHAR(6)      NULL     COMMENT '카테고리코드', -- 카테고리코드
