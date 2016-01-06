@@ -10,22 +10,32 @@ body {
 /*******************/
 /*     헤더 부분     */
 /*******************/
+<<<<<<< HEAD
 /*
 .menu {
+=======
+/*.menu {
+>>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
     width: 100%;
     height: 100%;
     z-index: auto;
+<<<<<<< HEAD
 }
 */
 
 .header_title, .menu-nav {
     position: fixed;
 }
+=======
+}*/
+>>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
 
-.header_title {
+header .header_title {
+    width: 100%;
     background-color: #19d4cb;
     padding: 3.5px 50px;
-    z-index: 1000;
+    z-index: 999;
+    position: fixed;
 
 }
 
@@ -50,13 +60,14 @@ body {
     color: #fff;
     cursor: pointer;
     top: -2px;
-    z-index: 1001;
+    z-index: 1000;
 }
 
 #menuToggle {   /* 메뉴 나오는 버튼 (채크박스 안보이게하기) */
     display: none;
 }
 
+<<<<<<< HEAD
 #menuToggle:checked ~ .menu-nav {   /* 체크박스 체크하면 메뉴 왼쪽에서 나옴 */
     position: absolute;
     left: 0;
@@ -68,20 +79,35 @@ body {
     left: 220px;
 }
 */
+=======
+#menuToggle:checked ~ .menu .menu-nav {   /* 체크박스 체크하면 메뉴 왼쪽에서 나옴 */
+    position: fixed;
+    left: 0;
+}
+
+
+>>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
 
 /******************/
 /*    사이드 메뉴    */
 /******************/
+<<<<<<< HEAD
 
 .menu-nav {
     position: absolute;
     width: 220px;
+=======
+.menu .menu-nav {
+    width: 220px;
+    position: fixed;
+>>>>>>> 5242c8c41066182e6c5c6aa97a31aedeeffa0654
     background-color: #fff;
-    height:100%;
+    min-height:100%;
     top: 44px;
     left: -220px;
     transition: all 300ms ease-out;
     box-shadow: 0px 14px 49px 5px #c3c3c3;
+    z-index: 998;
 }
 
 .menu-nav ul {
@@ -90,7 +116,9 @@ body {
     list-style: none;
 }
 
-.menu-nav ul li {}
+.menu-nav ul li {
+    position:
+}
 
 .menu-nav ul li a {
     display: block;
@@ -107,7 +135,7 @@ body {
 }
 
 
-
+/* 메인 바디 */
 
 .main-body {
     padding-top: 44px;
