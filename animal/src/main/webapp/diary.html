@@ -36,7 +36,6 @@
   </header>
 
   <section>
-    <div class="main">
 
       <!--  메뉴 버튼  -->
       <input type="checkbox" id="menuToggle" />
@@ -65,36 +64,89 @@
         <!--  //메뉴 내용  -->
       </div>
 
-      <!--  메뉴 버튼  -->
-
-    </div>
   </section>
 
   <section>
     <div class="main-body">
-      <!--
-            <div class="diary-pet-info">
-   class="btn btn-default"
-            </div>
--->
-      <div class="addSce">
-        <button type="button" id="my-today-button">Today</button>
-        <a role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
-        <a role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
-        <br>
-        <br>
-      </div>
-
-      <button type="button">222</button>
+      
+        <div id="diary-pet-info">
+            <div class="addSce">
+            <button type="button" id="my-today-button" class="btn btn-default">Today</button>
+            <a class="btn btn-default" id="petadd" role="button" data-toggle="modal" data-target="#AddPet">+ 펫 추가</a>
+            <a class="btn btn-default" id="txtadd" role="button" data-toggle="modal" data-target="#AddBoard">+ 글 추가</a>
+        </div>
+            <table class="innerTable" border="0">
+                <tr>
+                    <td rowspan="2">
+                        <img class="mImg"  src="images/p1.jpeg">
+                    </td>
+                    <td>
+                        <label class="pName">이름 : </label>
+                        <input class='petName' type="text" value="이성경" disabled>
+                    </td>
+                </tr>
+                <tr>
+                <!-- 색상 값 value는 hex 값으로만 적용된다. -->
+                    <td>
+                        <span class="pInfo">태그색 : </span>
+                        <input class="pColor" type="color" value="#ff0000" disabled>
+                    </td>
+                </tr>
+            </table>
+            
+            <table class="innerTable" border="0">
+                <tr>
+                    <td rowspan="2">
+                        <img class="mImg"  src="images/p1.jpeg">
+                    </td>
+                    <td>
+                        <label class="pName">이름 : </label>
+                        <input class='petName' type="text" value="이성경" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- 색상 값 value는 hex 값으로만 적용된다. -->
+                    <td>
+                        <span class="pInfo">태그색 : </span>
+                        <input class="pColor" type="color" value="#ff0000" disabled>
+                    </td>
+                </tr>
+            </table>
+            
+            <table class="innerTable" border="0">
+                <tr>
+                    <td rowspan="2">
+                        <img class="mImg"  src="images/p1.jpeg">
+                    </td>
+                    <td>
+                        <label class="pName">이름 : </label>
+                        <input class='petName' type="text" value="이성경" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- 색상 값 value는 hex 값으로만 적용된다. -->
+                    <td>
+                        <span class="pInfo">태그색 : </span>
+                        <input class="pColor" type="color" value="#ff0000" disabled>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>    
+        
+        
       <div id="calendar"></div>
 
     </div>
   </section>
+    
+<!--
   <footer>
     <p>
       &copy;
     </p>
   </footer>
+-->
 
   <script>
     $(document).ready(function() {
