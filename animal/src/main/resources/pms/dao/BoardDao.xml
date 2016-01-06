@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="java76.pms.dao.BoardDao">
+<mapper namespace="pms.dao.DiaryDao">
 	
   <resultMap type="schedule" id="scheduleMap">
     <id 	column="SCH_NUM" 		property="dno"/>
@@ -19,40 +19,31 @@
 	<result column="NOTI_LIKES" 	property="like"/>	
  </resultMap>
 
-  <select id="eventList" resultMap="boardMap" parameterType="map">
+  <select id="eventList" resultMap="scheduleMap" parameterType="map">
     select * from schedule
   </select>
   
-  <insert id="insert" parameterType="board">
-    insert into board(title,content,pwd,cre_dt,afile) 
-    values(#{title},#{content},#{password},now(),#{attachFile})
+  <insert id="insertText" parameterType="schedule">
+    insert into schedule(pno,startDate,endDate,createDate,content,title,cateCode,dhide) 
+    values(#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{dhide})
   </insert>
   
-  <delete id="delete" parameterType="map">
-    delete from board 
-  	where bno=#{no} and (pwd is null or pwd=#{password})
+  <delete id="delete" parameterType="int">
+    delete from schedule 
+  	where dno=#{dno}
   </delete>
   
-  <update id="update" parameterType="board">
-    update board set 
+  <update id="update" parameterType="schedule">
+    update schedule set 
+      startDate=#{startDate},
+      endDate=#{endDate},
       title=#{title},
-      content=#{content},
-      cre_dt=now(),
-  	  afile=#{attachFile}
-    where bno=#{no} and (pwd is null or pwd=#{password})
+  	  content=#{content}
+  	  dhide=#{dhide}
+    where dno=#{dno}
   </update>
   
-  <select id="selectOne" resultMap="boardMap" parameterType="int">
-    select 
-      bno,
-      title,
-  	  content,
-      views,
-      cre_dt,
-  	  afile 
-    from board
-    where bno=#{no}
-  </select>
+  
 </mapper>
 
 
