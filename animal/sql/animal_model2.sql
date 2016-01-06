@@ -186,7 +186,7 @@ ALTER TABLE Message
 -- 교육
 CREATE TABLE Education (
   EDU_NUM     INTEGER      NOT NULL COMMENT '교육번호', -- 교육번호
-  EDU_VIEWS   INTEGER      NULL     COMMENT '조회수', -- 조회수
+  EDU_VIEWS   INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
   EDU_CRE     DATETIME     NOT NULL COMMENT '작성일', -- 작성일
   EDU_TITLE   VARCHAR(50)  NOT NULL COMMENT '제목', -- 제목
   EDU_CONTENT VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
@@ -310,7 +310,7 @@ CREATE TABLE Schedule (
   CATE_CODE   CHAR(6)      NULL     COMMENT '카테고리코드', -- 카테고리코드
   NOTI_HIDE   INTEGER      NOT NULL DEFAULT 0 COMMENT '공개여부', -- 공개여부
   NOTI_VIEWS  INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  NOTI_LIKES  INTEGER      NULL     COMMENT '좋아요' -- 좋아요
+  NOTI_LIKES  INTEGER      NOT NULL DEFAULT 0 COMMENT '좋아요' -- 좋아요
 )
 COMMENT '다이어리 - 일정';
 
