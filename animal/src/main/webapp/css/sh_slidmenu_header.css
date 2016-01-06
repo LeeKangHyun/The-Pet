@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Righteous);
-@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:600);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
 body {
     font-family: arial;
@@ -25,8 +25,8 @@ header .header_title {
 .header_title a {
     color: #fff;
     line-height: 45px;
-    font-family: Josefin Sans;
-    font-size: 26px;
+    font-family: Nanum Pen Script;
+    font-size: 40px;
     text-decoration: none;
     padding: 9px 15px;
 }
@@ -88,8 +88,8 @@ header .header_title {
     padding: 10px;
     text-decoration: none;
     color: #19d4cb;
-    font-family: Josefin Sans;
-    font-size: 18px;
+    font-family: Nanum Pen Script;
+    font-size: 27px;
 }
 
 .menu-nav ul li a:hover {  /* 메뉴 마우스 호버 색변함 */
