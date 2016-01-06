@@ -23,6 +23,8 @@
   <script src='lib/moment/moment.min.js'></script>
   <script src='lib/fullcalendar/fullcalendar.js'></script>
   <script src="lib/fullcalendar/lang/ko.js"></script>
+    
+  <script src='lib/bootstrap/js/modal.js'></script>
 
   <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
 </head>
@@ -146,6 +148,46 @@
     </p>
   </footer>
 -->
+    
+    <div id="fullCalModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">close</span>
+            </button>
+            <h4 id="modalTitle" class="modal-title"></h4>
+          </div>
+
+          <div class="modal-body">
+            <span>시작일 : </span>
+            <input type="date" id="mStart" class="form-control">
+            <br>
+            <span>종료일 : </span>
+            <input type="date" id="mEnd" class="form-control">
+            <br>
+            <span>태그색 : </span>
+            <input type="color" id="mColor">
+            <br><br>
+            <span>내용 : </span>
+            <br>
+            <textarea id="mDes" class="form-control" rows="5"></textarea>
+            <br>
+            <span>이미지 : </span>
+            <img src="images/p5.jpg" width="100%" height="auto">
+            <br>
+            <input type="file" id="mFile">
+            <input type="hidden" value="p5.jpg">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning">변경</button>
+            <button type="button" class="btn btn-danger">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- 펫 추가 모달 -->
   <div class="modal fade" id="AddPet" role="dialog">
