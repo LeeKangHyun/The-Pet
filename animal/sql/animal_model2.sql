@@ -1,3 +1,111 @@
+-- 쪽지
+ALTER TABLE Message
+  DROP FOREIGN KEY FK_Member_TO_Message; -- 회원 -> 쪽지
+
+-- 쪽지
+ALTER TABLE Message
+  DROP FOREIGN KEY FK_Member_TO_Message2; -- 회원 -> 쪽지2
+
+-- 교육
+ALTER TABLE Education
+  DROP FOREIGN KEY FK_Member_TO_Education; -- 회원 -> 교육
+
+-- 분양
+ALTER TABLE Parcel_Out
+  DROP FOREIGN KEY FK_Member_TO_Parcel_Out; -- 회원 -> 분양
+
+-- 짝짓기
+ALTER TABLE Mating
+  DROP FOREIGN KEY FK_Member_TO_Mating; -- 회원 -> 짝짓기
+
+-- 댓글
+ALTER TABLE Comment
+  DROP FOREIGN KEY FK_Member_TO_Comment; -- 회원 -> 댓글
+
+-- 댓글
+ALTER TABLE Comment
+  DROP FOREIGN KEY FK_Education_TO_Comment; -- 교육 -> 댓글
+
+-- 댓글
+ALTER TABLE Comment
+  DROP FOREIGN KEY FK_Parcel_Out_TO_Comment; -- 분양 -> 댓글
+
+-- 댓글
+ALTER TABLE Comment
+  DROP FOREIGN KEY FK_Mating_TO_Comment; -- 짝짓기 -> 댓글
+
+-- 댓글
+ALTER TABLE Comment
+  DROP FOREIGN KEY FK_Schedule_TO_Comment; -- 다이어리 - 일정 -> 댓글
+
+-- 팻
+ALTER TABLE Pet
+  DROP FOREIGN KEY FK_Member_TO_Pet; -- 회원 -> 팻
+
+-- 다이어리 - 일정
+ALTER TABLE Schedule
+  DROP FOREIGN KEY FK_Pet_TO_Schedule; -- 팻 -> 다이어리 - 일정
+
+-- 다이어리 - 일정
+ALTER TABLE Schedule
+  DROP FOREIGN KEY FK_Category_TO_Schedule; -- 카테고리 -> 다이어리 - 일정
+
+-- 파일
+ALTER TABLE File
+  DROP FOREIGN KEY FK_Parcel_Out_TO_File; -- 분양 -> 파일
+
+-- 파일
+ALTER TABLE File
+  DROP FOREIGN KEY FK_Mating_TO_File; -- 짝짓기 -> 파일
+
+-- 파일
+ALTER TABLE File
+  DROP FOREIGN KEY FK_Education_TO_File; -- 교육 -> 파일
+
+-- 파일
+ALTER TABLE File
+  DROP FOREIGN KEY FK_Schedule_TO_File; -- 다이어리 - 일정 -> 파일
+
+-- 회원
+ALTER TABLE Member
+  DROP PRIMARY KEY; -- 회원 기본키
+
+-- 쪽지
+ALTER TABLE Message
+  DROP PRIMARY KEY; -- 쪽지 기본키
+
+-- 교육
+ALTER TABLE Education
+  DROP PRIMARY KEY; -- 교육 기본키
+
+-- 분양
+ALTER TABLE Parcel_Out
+  DROP PRIMARY KEY; -- 분양 기본키
+
+-- 짝짓기
+ALTER TABLE Mating
+  DROP PRIMARY KEY; -- 짝짓기 기본키
+
+-- 댓글
+ALTER TABLE Comment
+  DROP PRIMARY KEY; -- 댓글 기본키
+
+-- 팻
+ALTER TABLE Pet
+  DROP PRIMARY KEY; -- 팻 기본키
+
+-- 다이어리 - 일정
+ALTER TABLE Schedule
+  DROP PRIMARY KEY; -- 다이어리 - 일정 기본키
+
+-- 파일
+ALTER TABLE File
+  DROP PRIMARY KEY; -- 파일 기본키
+
+-- 카테고리
+ALTER TABLE Category
+  DROP PRIMARY KEY; -- 카테고리 기본키
+
 -- 회원
 DROP TABLE IF EXISTS Member RESTRICT;
 
@@ -13,9 +121,6 @@ DROP TABLE IF EXISTS Parcel_Out RESTRICT;
 -- 짝짓기
 DROP TABLE IF EXISTS Mating RESTRICT;
 
--- 산책코스
-DROP TABLE IF EXISTS TABLE6 RESTRICT;
-
 -- 댓글
 DROP TABLE IF EXISTS Comment RESTRICT;
 
@@ -27,12 +132,6 @@ DROP TABLE IF EXISTS Schedule RESTRICT;
 
 -- 파일
 DROP TABLE IF EXISTS File RESTRICT;
-
--- 예방접종
-DROP TABLE IF EXISTS TABLE12 RESTRICT;
-
--- 테이블코드
-DROP TABLE IF EXISTS TABLE13 RESTRICT;
 
 -- 카테고리
 DROP TABLE IF EXISTS Category RESTRICT;
@@ -70,7 +169,7 @@ CREATE TABLE Message (
   MEM_NUM     INTEGER      NOT NULL COMMENT '보내는이', -- 보내는이
   MEM_NUM2    INTEGER      NOT NULL COMMENT '받는이', -- 받는이
   MSG_CONTENT VARCHAR(255) NOT NULL COMMENT '내용', -- 내용
-  COL         BOOLEAN      NOT NULL DEFAULT false COMMENT '조회상태' -- 조회상태
+  check       BOOLEAN      NOT NULL DEFAULT false COMMENT '조회상태' -- 조회상태
 )
 COMMENT '쪽지';
 
@@ -153,24 +252,6 @@ ALTER TABLE Mating
 
 ALTER TABLE Mating
   MODIFY COLUMN MAT_NUM INTEGER NOT NULL AUTO_INCREMENT COMMENT '짝짓기번호';
-
--- 산책코스
-CREATE TABLE TABLE6 (
-  COL     <데이터 타입 없음> NOT NULL COMMENT '산책번호', -- 산책번호
-  COL2    <데이터 타입 없음> NULL     COMMENT '조회수', -- 조회수
-  COL6    <데이터 타입 없음> NULL     COMMENT '좋아요', -- 좋아요
-  SCH_NUM INTEGER            NULL     COMMENT '일정번호', -- 일정번호
-  COL6    <데이터 타입 없음> NULL     COMMENT '카테고리번호', -- 카테고리번호
-  COL3    <데이터 타입 없음> NULL     COMMENT '카테고리번호2' -- 카테고리번호2
-)
-COMMENT '산책코스';
-
--- 산책코스
-ALTER TABLE TABLE6
-  ADD CONSTRAINT PK_TABLE6 -- 산책코스 기본키
-    PRIMARY KEY (
-      COL -- 산책번호
-    );
 
 -- 댓글
 CREATE TABLE Comment (
@@ -270,35 +351,6 @@ ALTER TABLE File
 ALTER TABLE File
   MODIFY COLUMN FILE_NUM INTEGER NOT NULL AUTO_INCREMENT COMMENT '파일번호';
 
--- 예방접종
-CREATE TABLE TABLE12 (
-  COL  <데이터 타입 없음> NOT NULL COMMENT '예방접종번호', -- 예방접종번호
-  COL2 <데이터 타입 없음> NULL     COMMENT 'D_day', -- D_day
-  COL3 <데이터 타입 없음> NULL     COMMENT '새 컬럼' -- 새 컬럼
-)
-COMMENT '예방접종';
-
--- 예방접종
-ALTER TABLE TABLE12
-  ADD CONSTRAINT PK_TABLE12 -- 예방접종 기본키
-    PRIMARY KEY (
-      COL -- 예방접종번호
-    );
-
--- 테이블코드
-CREATE TABLE TABLE13 (
-  COL  <데이터 타입 없음> NOT NULL COMMENT '테이블코드', -- 테이블코드
-  COL2 <데이터 타입 없음> NULL     COMMENT '테이블명' -- 테이블명
-)
-COMMENT '테이블코드';
-
--- 테이블코드
-ALTER TABLE TABLE13
-  ADD CONSTRAINT PK_TABLE13 -- 테이블코드 기본키
-    PRIMARY KEY (
-      COL -- 테이블코드
-    );
-
 -- 카테고리
 CREATE TABLE Category (
   CATE_CODE CHAR(6)     NOT NULL COMMENT '카테고리코드', -- 카테고리코드
@@ -367,16 +419,6 @@ ALTER TABLE Mating
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
-
--- 산책코스
-ALTER TABLE TABLE6
-  ADD CONSTRAINT FK_Schedule_TO_TABLE6 -- 다이어리 - 일정 -> 산책코스
-    FOREIGN KEY (
-      SCH_NUM -- 일정번호
-    )
-    REFERENCES Schedule ( -- 다이어리 - 일정
-      SCH_NUM -- 일정번호
     );
 
 -- 댓글

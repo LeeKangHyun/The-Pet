@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Slid Menu</title>
+<style type="text/css">
+#back-to-top {
+   width: 50px;
+   height: 50px;  //버튼 렌더링
+   padding: 10px;
+   border-radius: 10px;
+   position: fixed;
+   right: 10%;
+   bottom: 20px;
+   background-color: #CCC;
+   font-size: 12px;
+   color: #fff;
+   text-align: center;
+   text-decoration: none;
+   background-image: url(top.png);
+   background-position-x:center;  // 화상표 이미지 준비하고 div요소 배경에 추가
+   background-position-y:40px;
+   background-repeat:no-repeat;
+ }
+</style>
+
+<script type="text/javascript"> // <![CDATA[
+ $(function() {
+     $('#back-to-top').hide();   // 스크롤 할때만 나오도록 숨김
+     $(window).scroll(function() {
+          if($(this).scrollTop() > 600) {
+              $('#back-to-top').fadeIn();
+          } else {
+              $('#back-to-top').fadeOut();
+          }
+     });
+     // 마우스 오버 시 화살표 움직임
+     $('#back-to-top').hover(    
+     function() {
+        $(this).animate({"background-position-y":"30px"},200);
+     },
+     function() {
+        $(this)animate({"background-position-y":"40px"},200);
+     });
+     //클릭시 페이지 상단으로 이동하도록
+     $('#back-to-top').click(function() {
+        $('body,html').animate({scrollTop:0}, 500);
+        return false;
+     });
+ });
+ // ]]></script>
+
+</head>
+<body>
+
+ <pre>
+ <div id="back-to-top">위로</div>
+ </pre>
+
+
+</body>
+</html>
