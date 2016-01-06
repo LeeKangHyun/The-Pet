@@ -2,6 +2,8 @@
     width:200px;
     position:Relative;
     margin: auto;
+    top: 80px;
+    right: 25%;
 }
 input:focus{
     width:200px;
@@ -13,7 +15,6 @@ input:focus{
     font-size: 12px;
   cursor:auto;
 }
- 
 
 input{
     float:right;
@@ -31,11 +32,13 @@ input{
     background:none;
     font-size:0;
 }
+
 .close span{
 width:3px;
 height:20px;
 border-radius:2px;
 background:#19d4cb;
+opacity: 100%;
 display:inline-block;}
 
 .front{

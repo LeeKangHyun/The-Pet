@@ -1,10 +1,21 @@
+#main-body {
+    position: relative;
+    top: 100px;
+	width: 1024px;
+	margin: 0 auto;    
+}
+
+
+
+
+
 .gallery.box{
   width: 320px;
   height:405px;
-  margin: 0 auto;
+  margin: 10px 10px;
   overflow: hidden;
   border-radius: 5%;
-  border: 5px #19d4cb solid;
+  border: 10px # solid;
 }
 
 .gallery .card{
