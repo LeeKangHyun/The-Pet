@@ -3,18 +3,18 @@ package pms.dao;
 import java.util.List;
 import java.util.Map;
 
-import java76.pms.domain.Board;
+import pms.domain.Diary;
 
 public interface DiaryDao {
-  List<Board> selectList(Map<String,Object> paramMap);
+  List<Diary> eventList();
   
-  int insert(Board board);
+  List<Diary> petList(int mno);
   
-  int delete(Map<String,Object> paramMap);
+  int insert(Diary diary);
   
-  int update(Board board);
-
-  Board selectOne(int no);
+  int delete(int dno);
+  
+  int update(Diary diary);
 }
 
 

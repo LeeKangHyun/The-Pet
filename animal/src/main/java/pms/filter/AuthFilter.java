@@ -8,11 +8,10 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.domain.Student;
+import pms.domain.Member;
 
 //@WebFilter("*.do")
 public class AuthFilter implements Filter {
@@ -26,7 +25,7 @@ public class AuthFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
-		Student loginUser = (Student) request.getSession()
+		Member loginUser = (Member) request.getSession()
 																				 .getAttribute("loginUser");
 		
 		// 서블릿 경로가 /auth/* 가 아닌데 로그인하지 않았다면,

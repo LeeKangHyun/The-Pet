@@ -1,54 +1,40 @@
-package java76.pms.service.support;
+package pms.service.support;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java76.pms.dao.BoardDao;
-import java76.pms.domain.Board;
-import java76.pms.service.BoardService;
+import pms.dao.DiaryDao;
+import pms.domain.Diary;
+import pms.service.DiaryService;
 
 @Service
-public class DefaultDiaryService implements BoardService {
+public class DefaultDiaryService implements DiaryService {
 	
-	@Autowired BoardDao boardDao;
+	@Autowired DiaryDao diaryDao;
 	
-  public List<Board> getBoardList(int pageNo, int pageSize, String keyword, String align) {
-  	HashMap<String,Object> paramMap = new HashMap<>();
-		paramMap.put("startIndex", (pageNo - 1) * pageSize);
-		paramMap.put("length", pageSize);
-		paramMap.put("keyword", keyword);
-		paramMap.put("align", align);
+  public List<Diary> getEventList() {
 		
-		return boardDao.selectList(paramMap);
+		return diaryDao.eventList();
   }
   
-  public void register(Board board) {
-  	boardDao.insert(board);
-  }
-  
-  public void remove(int no, String password) {
-  	HashMap<String,Object> paramMap = new HashMap<>();
-		paramMap.put("no", no);
-		paramMap.put("password", password);
+  public List<Diary> getPetList(int mno) {
 		
-  	boardDao.delete(paramMap);
+		return diaryDao.petList(mno);
   }
   
-  public void change(Board board) {
-  	boardDao.update(board);
+  public void add(Diary diary) {
+  	diaryDao.insert(diary);
+  }
+  
+  public void remove(int dno) {
+		
+  	diaryDao.delete(dno);
+  }
+  
+  public void change(Diary diary) {
+  	diaryDao.update(diary);
   }
 
-  public Board retieve(int no) {
-  	return boardDao.selectOne(no);
-  }
 }
-
-
-
-
-
-
-
