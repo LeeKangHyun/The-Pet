@@ -98,6 +98,14 @@ public class Diary  implements Serializable {
 	public void setLike(int like) {
 		this.like = like;
 	}
+  public Pet getPet() {
+    return pet;
+  }
+  public void setPet(Pet pet) {
+    this.pet = pet;
+  }
+	
+	
 
   
 
