@@ -6,60 +6,49 @@ import java.io.Serializable;
 public class Files implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int fileNo;				// file 번호
-	protected String fileName;		// file 명
-	protected int eduNo;					// file이 올려진 교육 게시물 번호
-	protected int matNo;					// file이 올려진 짝짓기 게시물 번호 
-	protected int poNo;					// file이 올려진 분양 게시물 번호
-	protected int schNo;					// file이 올려진 일정(자랑하기, 산책코스) 게시물 번호
+	protected int fno;				// file 번호
+	protected String fileName;	// file 명
+	protected int eduNo;				// file이 올려진 교육 게시물 번호
+	protected int matNo;				// file이 올려진 짝짓기 게시물 번호 
+	protected int sno;					// file이 올려진 분양 게시물 번호
+	protected int dno;					// file이 올려진 일정(자랑하기, 산책코스) 게시물 번호
 	
 	public Files () {}
 
-	public int getFileNo() {
-		return fileNo;
+	public int getFno() {
+		return fno;
 	}
-
-	public void setFileNo(int fileNo) {
-		this.fileNo = fileNo;
+	public void setFno(int fno) {
+		this.fno = fno;
 	}
-
 	public String getFileName() {
 		return fileName;
 	}
-
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
 	public int getEduNo() {
 		return eduNo;
 	}
-
 	public void setEduNo(int eduNo) {
 		this.eduNo = eduNo;
 	}
-
 	public int getMatNo() {
 		return matNo;
 	}
-
 	public void setMatNo(int matNo) {
 		this.matNo = matNo;
 	}
-
-	public int getPoNo() {
-		return poNo;
+	public int getSno() {
+		return sno;
 	}
-
-	public void setPoNo(int poNo) {
-		this.poNo = poNo;
+	public void setSno(int sno) {
+		this.sno = sno;
 	}
-
-	public int getSchNo() {
-		return schNo;
+	public int getDno() {
+		return dno;
 	}
-
-	public void setSchNo(int schNo) {
-		this.schNo = schNo;
+	public void setDno(int dno) {
+		this.dno = dno;
 	}
 }

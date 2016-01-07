@@ -6,62 +6,50 @@ import java.io.Serializable;
 public class Member implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int memNo; 			 // 회원 번호
-	protected String memName;  // 회원 이름
-	protected String memEmail; // 회원 이메일
+	protected int mno; 			 // 회원 번호
+	protected String mName;  // 회원 이름
+	protected String mEmail; // 회원 이메일
 	protected String password; // 회원 비밀번호
 	protected String tel; 			 // 회원 전화번호
-	protected String memImg;		 // 회원 이미지 정보
+	protected String mImg;		 // 회원 이미지 정보
 	
 	public Member() {}
 
-	public int getMemNo() {
-		return memNo;
+	public int getMno() {
+		return mno;
 	}
-
-	public void setMemNo(int memNo) {
-		this.memNo = memNo;
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
-
-	public String getMemName() {
-		return memName;
+	public String getmName() {
+		return mName;
 	}
-
-	public void setMemName(String memName) {
-		this.memName = memName;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
-
-	public String getMemEmail() {
-		return memEmail;
+	public String getmEmail() {
+		return mEmail;
 	}
-
-	public void setMemEmail(String memEmail) {
-		this.memEmail = memEmail;
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getTel() {
 		return tel;
 	}
-
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-
-	public String getMemImg() {
-		return memImg;
+	public String getmImg() {
+		return mImg;
 	}
-
-	public void setMemImg(String memImg) {
-		this.memImg = memImg;
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
 	}
-	
-	
+		
 }

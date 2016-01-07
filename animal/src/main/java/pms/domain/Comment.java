@@ -6,69 +6,56 @@ import java.io.Serializable;
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int cmtNo;					// 댓글 번호
-	protected int memNo;					// 댓글을 작성한 회원 번호
-	protected int schNo;					// 댓글이 달린 일정 게시물 번호
-	protected int eduNo;					// 댓글이 달린 교육 게시물 번호
-	protected int poNo;					// 댓글이 달린 분양 게시물 번호
-	protected int matNo;					// 댓글이 달린 짝짓기 게시물 번호
-	protected String cmtContent; // 댓글의 내용
+	protected int comNo;					// 댓글 번호
+	protected String comContent; 	// 댓글의 내용
+	protected int mno;						// 회원 번호
+	protected int dno;						// 일정 게시물 번호
+	protected int eduNo;					// 교육 게시물 번호
+	protected int sno;						// 분양 게시물 번호
+	protected int matNo;					// 짝짓기 게시물 번호
 	
 	public Comment () {}
 
-	public int getCmtNo() {
-		return cmtNo;
+	public int getComNo() {
+		return comNo;
 	}
-
-	public void setCmtNo(int cmtNo) {
-		this.cmtNo = cmtNo;
+	public void setComNo(int comNo) {
+		this.comNo = comNo;
 	}
-
-	public int getMemNo() {
-		return memNo;
+	public String getComContent() {
+		return comContent;
 	}
-
-	public void setMemNo(int memNo) {
-		this.memNo = memNo;
+	public void setComContent(String comContent) {
+		this.comContent = comContent;
 	}
-
-	public int getSchNo() {
-		return schNo;
+	public int getMno() {
+		return mno;
 	}
-
-	public void setSchNo(int schNo) {
-		this.schNo = schNo;
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
-
+	public int getDno() {
+		return dno;
+	}
+	public void setDno(int dno) {
+		this.dno = dno;
+	}
 	public int getEduNo() {
 		return eduNo;
 	}
-
 	public void setEduNo(int eduNo) {
 		this.eduNo = eduNo;
 	}
-
-	public int getPoNo() {
-		return poNo;
+	public int getSno() {
+		return sno;
 	}
-
-	public void setPoNo(int poNo) {
-		this.poNo = poNo;
+	public void setSno(int sno) {
+		this.sno = sno;
 	}
-
 	public int getMatNo() {
 		return matNo;
 	}
-
 	public void setMatNo(int matNo) {
 		this.matNo = matNo;
-	}
-
-	public String getCmtContent() {
-		return cmtContent;
-	}
-
-	public void setCmtContent(String cmtContent) {
-		this.cmtContent = cmtContent;
 	}
 }
