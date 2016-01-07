@@ -17,9 +17,17 @@ public class Diary  implements Serializable {
   protected boolean dhide;		// 공개여부	0=공개 1=비공개
   protected int view;					// 조회수    default=0
   protected int like;					// 좋아요수  default=0
+  protected String tagColor;	// 태그색
   
   public Diary() {}
 
+  
+	public String getTagColor() {
+		return tagColor;
+	}
+	public void setTagColor(String tagColor) {
+		this.tagColor = tagColor;
+	}
 	public int getDno() {
 		return dno;
 	}

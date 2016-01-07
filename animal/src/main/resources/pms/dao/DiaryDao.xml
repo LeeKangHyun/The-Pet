@@ -16,19 +16,20 @@
 	<result column="CATE_CODE" 		property="cateCode"/>
 	<result column="NOTI_HIDE" 		property="dhide"/>
 	<result column="NOTI_VIEWS" 	property="view"/>
-	<result column="NOTI_LIKES" 	property="like"/>	
+	<result column="NOTI_LIKES" 	property="like"/>
+	<result column="TAG_COLOR" 		property="tagColor"/>	
  </resultMap>
 
   <select id="eventList" resultMap="diaryMap">
     select 
-  		s1.SCH_NUM, 
-  		s1.START_DATE,
-  		s1.END_DATE,
-  		s1.SCH_TITLE,
-  		s1.SCH_CONTENT,
-  		s1.NOTI_HIDE,
-  		p1.tagColor
-  	from schedule s1 left outer join pet p1 on s1.PET_NUM = p1.PET_NUM
+  		SCH_NUM, 
+  		START_DATE,
+  		END_DATE,
+  		SCH_TITLE,
+  		SCH_CONTENT,
+  		NOTI_HIDE,
+  		tag_Color
+  	from schedule
   </select>
   
   <select id="selectList" resultMap="diaryMap" parameterMap="map">

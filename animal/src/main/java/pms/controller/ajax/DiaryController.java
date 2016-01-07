@@ -52,11 +52,11 @@ public class DiaryController {
 					resultMap.put("title", events.get(i).getTitle());
 					resultMap.put("content", events.get(i).getContent());
 					resultMap.put("hide", events.get(i).isDhide());
-//					resultMap.put("color", events.get(i).);
+					resultMap.put("color", events.get(i).getTagColor());
 					
-					mav.addObject("data", resultMap);
-					mav.setViewName("jsonView");
 				}
+				mav.addObject("data", resultMap);
+				mav.setViewName("jsonView");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
