@@ -22,7 +22,7 @@
 
   <!-- 캘린더 스크립트 -->
   <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script src='lib/jquery/jquery.min.js'></script>
+  <script src='lib/jquery/jquery.js'></script>
   <script src='lib/moment/moment.min.js'></script>
   <script src='lib/fullcalendar/fullcalendar.js'></script>
   <script src="lib/fullcalendar/lang/ko.js"></script>
@@ -173,10 +173,10 @@
           <textarea id="mDes" class="form-control" rows="5"></textarea>
           <br>
           <span>이미지 : </span>
-          <img src="images/p5.jpg" width="100%" height="auto">
+          <img src="images/p5.jpeg" width="100%" height="auto">
           <br>
           <input type="file" id="mFile">
-          <input type="hidden" value="p5.jpg">
+          <input type="hidden" value="p5.jpeg">
         </div>
 
         <div class="modal-footer">
@@ -339,16 +339,17 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-    $.getJson('ajax/.do'), function(resultObj) {
+    $.getJSON('diary/ajax/list.do'),
+      function(resultObj) {
         var sel = $("#combobox");
         for (var pet of resultObj.pets) {
-            $("<select>")
-            .html("<option value='" + pet.pno + "'>" + pet.pName + "</option>")
-            .appentTo(sel);
+          sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+            "</option>")
         }
-    }
+      };
+  </script>
 
-
+  <script>
     $(document).ready(function() {
 
       $('.menu-has-sub').click(function(e) {
