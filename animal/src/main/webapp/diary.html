@@ -7,6 +7,7 @@
   <!--  내가만든 css들  -->
   <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
   <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
+  <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -231,6 +232,13 @@
           <form id='form1' class="form-horizontal">
 
             <div class="form-group">
+                <label class="col-sm-2 control-label">전체공개</label>
+                <div class="col-sm-10">
+                    <input class="check_box" type="checkbox" checked>
+                </div>
+            </div>
+              
+            <div class="form-group">
               <label for="Form" class="col-sm-2 control-label">카테고리</label>
               <div class="col-sm-10">
                 <select id="Form" class="form-control">
@@ -279,12 +287,6 @@
               </div>
             </div>
 
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">체크시 비공개
-              </label>
-            </div>
-
             <div class="pType form-group">
               <label for="ftype" class="col-sm-2 control-label">구분</label>
               <div class="col-sm-10">
@@ -320,7 +322,7 @@
                 <input type='file' id="fFile">
               </div>
             </div>
-
+              
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
@@ -336,122 +338,123 @@
   </div>
   <!-- //게시글 추가 모달 -->
 
-  <script>
-    $(document).ready(function() {
+<script>
+$(document).ready(function() {
 
-      $('.menu-has-sub').click(function(e) {
-        $(this).toggleClass('tap');
-      });
+  $('.menu-has-sub').click(function(e) {
+    $(this).toggleClass('tap');
+  });
 
-      function renderCalendar() {
-        $('#calendar').fullCalendar({
-          header: {
-            left: 'prevYear',
-            center: 'prev title next',
-            right: 'nextYear',
-          },
-          theme: false, // false : 태마 적용 안함
-          fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-          weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-          editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-          eventLimit: true, // allow "more" link when too many events
+  function renderCalendar() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prevYear',
+        center: 'prev title next',
+        right: 'nextYear',
+      },
+      theme: false, // false : 태마 적용 안함
+      fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
+      weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
+      editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
+      eventLimit: true, // allow "more" link when too many events
 
-          events: [{
-            title: '쉬는날',
-            start: '2016-01-09T00:00:00',
-            end: '2016-01-16T00:00:00',
-            color: '#fff000', // yellow
-            description: "쉬는날이다."
-          }, {
-            title: '휴가',
-            start: '2016-01-07T16:00:00',
-            end: '2016-01-15T16:00:00',
-            color: '#ff0000', //red
-            description: "휴가가자"
-          }, {
-            title: '미팅',
-            start: '2016-01-09T16:00:00',
-            end: '2016-01-10T16:00:00',
-            color: '#ff8000', // orange
-            description: "미팅이다"
-          }, {
-            title: '컨퍼런스',
-            start: '2016-01-11T00:00:00',
-            end: '2016-01-13T14:00:00',
-            color: '#0000ff', // blue
-            description: "컨퍼런스다"
-          }, {
-            title: '미팅',
-            start: '2016-01-12T10:30:00',
-            end: '2016-01-16T12:30:00',
-            color: '#ff8000', // orange
-            description: "미팅하는날"
-          }, {
-            title: '생일 파티',
-            start: '2016-01-13T07:00:00',
-            end: '2016-01-13T07:00:00',
-            color: '#0000ff', // blue
-            description: "생일 파티다"
-          }],
+      events: [{
+        title: '쉬는날',
+        start: '2016-01-09T00:00:00',
+        end: '2016-01-16T00:00:00',
+        color: '#fff000', // yellow
+        description: "쉬는날이다."
+      }, {
+        title: '휴가',
+        start: '2016-01-07T16:00:00',
+        end: '2016-01-15T16:00:00',
+        color: '#ff0000', //red
+        description: "휴가가자"
+      }, {
+        title: '미팅',
+        start: '2016-01-09T16:00:00',
+        end: '2016-01-10T16:00:00',
+        color: '#ff8000', // orange
+        description: "미팅이다"
+      }, {
+        title: '컨퍼런스',
+        start: '2016-01-11T00:00:00',
+        end: '2016-01-13T14:00:00',
+        color: '#0000ff', // blue
+        description: "컨퍼런스다"
+      }, {
+        title: '미팅',
+        start: '2016-01-12T10:30:00',
+        end: '2016-01-16T12:30:00',
+        color: '#ff8000', // orange
+        description: "미팅하는날"
+      }, {
+        title: '생일 파티',
+        start: '2016-01-13T07:00:00',
+        end: '2016-01-13T07:00:00',
+        color: '#0000ff', // blue
+        description: "생일 파티다"
+      }],
 
-          timeFormat: 'H:mm',
-          eventClick: function(event, jsEvent, view) {
-            if (event.end) {
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0, 10)); // 2015-12-31
-              $('#mEnd').val(event.end.format().substring(0, 10));
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
-            } else {
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0, 10));
-              $('#mEnd').val(event.start.format().substring(0, 10));
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
-            }
-          }
-        });
+      timeFormat: 'H:mm',
+      eventClick: function(event, jsEvent, view) {
+        if (event.end) {
+          $('#modalTitle').html(event.title);
+          $('#mStart').val(event.start.format().substring(0, 10)); // 2015-12-31
+          $('#mEnd').val(event.end.format().substring(0, 10));
+          $('#mColor').val(event.color);
+          $('#mDes').html(event.description);
+          $('#fullCalModal').modal();
+        } else {
+          $('#modalTitle').html(event.title);
+          $('#mStart').val(event.start.format().substring(0, 10));
+          $('#mEnd').val(event.start.format().substring(0, 10));
+          $('#mColor').val(event.color);
+          $('#mDes').html(event.description);
+          $('#fullCalModal').modal();
+        }
       }
-      renderCalendar();
     });
+  }
+  renderCalendar();
+});
 
-    // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
-    $('#my-today-button').click(function() {
-      $('#calendar').fullCalendar('today');
-    });
-  </script>
+// 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
+$('#my-today-button').click(function() {
+  $('#calendar').fullCalendar('today');
+});
+</script>
 
-  <script>
-    $("select").change(function() {
-      if ($('#Form').val() == "0") { // 산책 코스
-        $('.pDate').css('display', '');
-        $('.pGender').css('display', 'none');
-        $('.pMoney').css('display', 'none');
-        $('.pType').css('display', 'none');
-        $('.pFile').css('display', '');
-      } else if ($('#Form').val() == "1") { // 자랑 해요
-        $('.pDate').css('display', 'none');
-        $('.pGender').css('display', 'none');
-        $('.pMoney').css('display', 'none');
-        $('.pType').css('display', 'none');
-        $('.pFile').css('display', '');
-      } else if ($('#Form').val() == "3") { //분양
-        $('.pDate').css('display', 'none');
-        $('.pGender').css('display', '');
-        $('.pMoney').css('display', '');
-        $('.pType').css('display', '');
-        $('.pFile').css('display', '');
-      } else if ($('#Form').val() == "4") { //짝짓기
-        $('.pDate').css('display', 'none');
-        $('.pGender').css('display', '');
-        $('.pMoney').css('display', '');
-        $('.pType').css('display', '');
-        $('.pFile').css('display', '');
-      }
-    }).change();
-  </script>
+<script>
+$("select").change(function() {
+  if ($('#Form').val() == "0") { // 산책 코스
+    $('.pDate').css('display', '');
+    $('.pGender').css('display', 'none');
+    $('.pMoney').css('display', 'none');
+    $('.pType').css('display', 'none');
+    $('.pFile').css('display', '');
+  } else if ($('#Form').val() == "1") { // 자랑 해요
+    $('.pDate').css('display', 'none');
+    $('.pGender').css('display', 'none');
+    $('.pMoney').css('display', 'none');
+    $('.pType').css('display', 'none');
+    $('.pFile').css('display', '');
+  } else if ($('#Form').val() == "3") { //분양
+    $('.pDate').css('display', 'none');
+    $('.pGender').css('display', '');
+    $('.pMoney').css('display', '');
+    $('.pType').css('display', '');
+    $('.pFile').css('display', '');
+  } else if ($('#Form').val() == "4") { //짝짓기
+    $('.pDate').css('display', 'none');
+    $('.pGender').css('display', '');
+    $('.pMoney').css('display', '');
+    $('.pType').css('display', '');
+    $('.pFile').css('display', '');
+  }
+}).change();
+</script>
+
 </body>
 
 </html>

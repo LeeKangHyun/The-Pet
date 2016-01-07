@@ -1,4 +1,4 @@
-package java76.pms.aspect;
+package pms.aspect;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
   private static Logger log = Logger.getLogger(LogAspect.class);
   
-  @After("execution(* *..service..retrieve*(..))")
+  @After("execution(* *..service..**(..))")
   public void logServiceOperation(JoinPoint joinPoint) {
     log.debug(joinPoint.getTarget().getClass().getName() + "." 
             + joinPoint.getSignature().getName() + "() 호출됨");

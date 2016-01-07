@@ -20,7 +20,15 @@
  </resultMap>
 
   <select id="eventList" resultMap="diaryMap">
-    select * from schedule
+    select 
+  		s1.SCH_NUM, 
+  		s1.START_DATE,
+  		s1.END_DATE,
+  		s1.SCH_TITLE,
+  		s1.SCH_CONTENT,
+  		s1.NOTI_HIDE,
+  		p1.tagColor
+  	from schedule s1 left outer join pet p1 on s1.PET_NUM = p1.PET_NUM
   </select>
   
   <select id="selectList" resultMap="diaryMap" parameterMap="map">
@@ -45,7 +53,7 @@
   		p1.tag_color tagColor,
   		p1.injection injection,
   		p1.medicine medicine 
-  	from member s1 left outer join pet p1 on s1.mno = p1.mno
+  	from member m1 left outer join pet p1 on m1.mno = p1.mno
   	where mno=#{mno}
   </select>
   
