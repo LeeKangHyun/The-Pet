@@ -1,0 +1,162 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+.main-body {
+  width: 1024px;
+  margin: 0 auto;
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+}
+
+.main-body .container {
+    margin: 130px auto;
+    width: 400px;
+    height: 350px;
+    border: 2px solid #7f8084;
+    border-radius: 20px;
+    text-align: center;
+  background-color: #f5f5f5;
+}
+
+.header {
+    height: 30px;
+}
+
+.sign-in {
+  float: left;
+  color: #1a1f25;
+  font-size: 1.6em;
+/*  padding: px;*/
+  margin: 35px 34px;;
+}
+
+.button {
+  text-decoration: none;
+  float: right;
+  color: #7f8084;
+  border: 1px solid #7f8084;
+  margin: 30px 35px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.button:hover {
+  border: 1px solid #1a1f25;
+  color: #1a1f25;
+}
+
+.sub-btn[type="submit"] {
+  background: #19d4cb;
+  border: none;
+  border-radius:8px;
+  width: 80%;
+  height: 40px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.sub-btn:hover {
+    background: #29e4eb;
+}
+
+.group1 { 
+  width: 250px;
+  margin: 100px auto 0 auto;
+  position:relative;
+  margin-bottom:25px; 
+  background-color: #f5f5f;
+}
+
+.group2 { 
+  width: 250px;
+  margin: 40px auto 0 auto;
+  position:relative;
+  margin-bottom:40px; 
+  background-color: #fff;
+}
+
+.iput {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:250px;
+  border:none;
+  border-bottom:1px solid #999;
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.iput:focus {
+    border-bottom: 0px solid #19d4cb;
+    color: #000;
+    outline:none;
+}
+
+/* LABEL ======================================= */
+.lname {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.iput:focus ~ .lname, .iput:valid ~ .lname {
+  top:-20px;
+  font-size:14px;
+  color:#19d4cb;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:250px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#19d4cb; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.iput:focus ~ .bar:before, .iput:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+.iput:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
