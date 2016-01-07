@@ -85,11 +85,12 @@ header .header_title {
 
 .menu-nav ul li a {
     display: block;
-    padding: 10px;
+    margin-bottom: 2px;
+    padding: 6px;
     text-decoration: none;
     color: #19d4cb;
     font-family: Nanum Pen Script;
-    font-size: 27px;
+    font-size: 26px;
 }
 
 .menu-nav ul li a:hover {  /* 메뉴 마우스 호버 색변함 */
