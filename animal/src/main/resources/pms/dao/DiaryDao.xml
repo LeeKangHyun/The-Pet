@@ -24,7 +24,8 @@
   </select>
   
   <select id="petList" resultMap="diaryMap" parameterType="int">
-  	select 
+  	select
+  		p1.pet_num pno,
   		p1.pet_name pName, 
   		p1.pet_type pType,
   		p1.pet_img pImg,

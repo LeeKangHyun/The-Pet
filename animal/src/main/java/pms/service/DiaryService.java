@@ -11,8 +11,8 @@ public interface DiaryService {
   List<Diary> getEventList();
   List<Diary> getPetList(int mno);
   void add(Diary diary);
-  void remove(int no);
-  void change(Diary diary);
+  int remove(int no);
+  int change(Diary diary);
 }
 
 

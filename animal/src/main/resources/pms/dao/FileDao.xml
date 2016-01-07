@@ -5,7 +5,7 @@
 
 <mapper namespace="pms.dao.DiaryDao">
 	
-  <resultMap type="schedule" id="scheduleMap">
+  <resultMap type="diary" id="diaryMap">
     <id 	column="SCH_NUM" 		property="dno"/>
 	<result column="PET_NUM" 		property="pno"/>    
     <result column="START_DATE" 	property="startDate"/>
@@ -19,11 +19,24 @@
 	<result column="NOTI_LIKES" 	property="like"/>	
  </resultMap>
 
-  <select id="eventList" resultMap="scheduleMap" parameterType="map">
+  <select id="eventList" resultMap="diaryMap">
     select * from schedule
   </select>
   
-  <insert id="insertText" parameterType="schedule">
+  <select id="petList" resultMap="diaryMap" parameterType="int">
+  	select
+  		p1.pet_num pno,
+  		p1.pet_name pName, 
+  		p1.pet_type pType,
+  		p1.pet_img pImg,
+  		p1.tag_color tagColor,
+  		p1.injection injection,
+  		p1.medicine medicine 
+  	from member s1 left outer join pet p1 on s1.mno = p1.mno
+  	where mno=#{mno}
+  </select>
+  
+  <insert id="insertText" parameterType="diary">
     insert into schedule(pno,startDate,endDate,createDate,content,title,cateCode,dhide) 
     values(#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{dhide})
   </insert>
@@ -33,7 +46,7 @@
   	where dno=#{dno}
   </delete>
   
-  <update id="update" parameterType="schedule">
+  <update id="update" parameterType="diary">
     update schedule set 
       startDate=#{startDate},
       endDate=#{endDate},

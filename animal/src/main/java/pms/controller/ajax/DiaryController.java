@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
+import pms.domain.Files;
+import pms.domain.Pet;
 import pms.service.DiaryService;
 import pms.util.MultipartHelper;
 
@@ -42,7 +44,8 @@ public class DiaryController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
-			Diary diary, 
+			Diary diary,
+			Files files,
 			MultipartFile file) throws Exception {
 
 		if (file.getSize() > 0) {
@@ -51,39 +54,41 @@ public class DiaryController {
 																  + "/" + newFileName);
 			file.transferTo(attachfile);
 			// 파일 만들어야 쓸수있겠군
-			//board.setAttachFile(newFileName);
+			files.setFileName(newFileName);
 		}
-
+		files.setDno(diary.getDno());
+		diaryService.add(files);
 		diaryService.add(diary);
 
 		return new AjaxResult("success", null);
 	}
 
 	@RequestMapping("detail")
-	public Object detail(int no) throws Exception {
+	public Object detail(int pno) throws Exception {
 
-		Board board = boardDao.selectOne(no);
-		return new AjaxResult("success", board);
+		Pet pet = petService.getPetInfo(pno);
+		return new AjaxResult("success", pet);
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
-			Board board
-			/*, MultipartFile file,*/) throws Exception {
+			Diary diary,
+			Files files,
+			MultipartFile file) throws Exception {
 
-
-		/*if (file.getSize() > 0) {
+		if (file.getSize() > 0) {
 			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																	+ "/" + newFileName);
 			file.transferTo(attachfile);
-			board.setAttachFile(newFileName);
+			// 파일 만들어야 쓸수있겠군
+			files.setFileName(newFileName);
 			
-		}	else if (board.getAttachFile().length() == 0) {
-			board.setAttachFile(null);
-		}*/
+		}	else if (files.getFileName().length() == 0) {
+			files.setFileName(null);
+		}
 
-		if (boardDao.update(board) <= 0) {
+		if (diaryService.change(diary) <= 0 || filesService.change(files) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
 		
@@ -92,14 +97,9 @@ public class DiaryController {
 
 	@RequestMapping("delete")
 	public AjaxResult delete(
-			int no,
-			String password) throws Exception {
+			int dno) throws Exception {
 
-		HashMap<String,Object> paramMap = new HashMap<>();
-		paramMap.put("no", no);
-		paramMap.put("password", password);
-
-		if (boardDao.delete(paramMap) <= 0) {
+		if (diaryService.remove(dno) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
 

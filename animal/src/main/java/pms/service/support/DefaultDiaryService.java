@@ -28,13 +28,13 @@ public class DefaultDiaryService implements DiaryService {
   	diaryDao.insert(diary);
   }
   
-  public void remove(int dno) {
+  public int remove(int dno) {
 		
-  	diaryDao.delete(dno);
+  	return diaryDao.delete(dno);
   }
   
-  public void change(Diary diary) {
-  	diaryDao.update(diary);
+  public int change(Diary diary) {
+  	return diaryDao.update(diary);
   }
 
 }
