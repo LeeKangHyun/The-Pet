@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.MemberDao">
+	
+  <resultMap type="member" id="memberMap">
+    <id 	column="MEM_NUM" 		property="mno"/>
+	<result column="MEM_NAME" 		property="mName"/>    
+    <result column="MEM_EMAIL" 		property="mEmail"/>
+    <result column="MEM_PWD" 		property="password"/>
+	<result column="MEM_TEL" 		property="tel"/>
+	<result column="MEM_IMG" 		property="mImg"/>
+ </resultMap>
+
+  <select id="selectList" resultMap="memberMap">
+    select 
+  		MEM_NUM, 
+  		MEM_NAME,
+  		MEM_EMAIL,
+  		MEM_TEL,
+  		MEM_IMG
+  	from member
+  	order by desc MEM_NUM
+  </select>
+  
+  <insert id="insert" parameterType="member">
+		insert into member(MEM_NAME,MEM_EMAIL,MEM_TEL,MEM_IMG,MEM_PWD)
+		values(#{mName},#{mEmail},#{tel},#{mImg},sha1(#{password}))
+	</insert>
+
+	<delete id="delete" parameterType="string">
+		delete from member where MEM_NUM=#{mno}
+	</delete>
+
+	<update id="update" parameterType="member">
+		update member set
+			MEM_EMAIL=#{mEmail},
+			MEM_NAME=#{mName},
+			MEM_TEL=#{tel},
+			MEM_IMG=#{mImg}
+		where MEM_EMAIL=#{mEmail}
+	</update>
+	
+	<select id="selectOne" resultType="member" parameterType="string">
+		select 
+	  		MEM_NUM, 
+	  		MEM_NAME,
+	  		MEM_EMAIL,
+	  		MEM_TEL,
+	  		MEM_IMG
+		from member
+		where MEM_EMAIL=#{mEmail}
+	</select>
+	
+	<select id="selectOneByEmailPassword" resultType="member" parameterType="map">
+		select 
+	  		MEM_NUM, 
+	  		MEM_NAME,
+	  		MEM_EMAIL,
+	  		MEM_TEL,
+	  		MEM_IMG
+		from member
+		where MEM_EMAIL=#{mEmail} and MEM_PWD=sha1(#{password})
+	</select>
+    
+</mapper>
+
+
+
+
+
+
