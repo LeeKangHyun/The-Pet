@@ -339,14 +339,15 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-    $.getJSON('diary/ajax/list.do'),
+    $.getJSON('diary/ajax/list.do?mno=1',
       function(resultObj) {
         var sel = $("#combobox");
+        console.log(resultObj.pets);
         for (var pet of resultObj.pets) {
           sel.append("<option value='" + pet.pno + "'>" + pet.pName +
             "</option>")
         }
-      }; 
+      }); 
   </script>
 
   <script>

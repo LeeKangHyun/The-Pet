@@ -18,9 +18,10 @@
   <result column="NOTI_VIEWS" property="view"/>
   <result column="NOTI_LIKES" property="like"/>
   <result column="TAG_COLOR" property="tagColor"/>
-  <association column="pet" property="pet" javaType="pet">
+  <association property="pet" javaType="Pet">
     <id column="PET_NUM" property="pno"/>
     <result column="PET_NAME" property="pName"/>
+    <result column="MEM_NUM" property="mno" />
     <result column="PET_TYPE" property="pType"/>
     <result column="PET_IMG" property="pImg"/>
     <result column="TAG_COLOR" property="tagColor"/>
@@ -54,7 +55,7 @@
     limit #{startIndex}, #{length}
   </select>
 
-  <select id="petList" resultMap="diaryMap">
+  <select id="petList" resultMap="diaryMap" parameterType="int">
   	select
   		p1.pet_num as PET_NUM,
   		p1.pet_name as PET_NAME,
@@ -64,7 +65,7 @@
   		p1.injection as INJECTION,
   		p1.medicine as MEDICINE
   	from member m1 left outer join pet p1 on m1.mem_num = p1.mem_num
-  	where p1.mem_num=1
+  	where p1.mem_num={value}
   </select>
 
   <insert id="insertText" parameterType="diary">

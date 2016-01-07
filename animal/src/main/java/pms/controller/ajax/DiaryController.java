@@ -63,8 +63,8 @@ public class DiaryController {
 		}
 //		resultMap.put("events", events);
 		
-//		return resultMap;
-		return mav;
+		return resultMap;
+		//return mav;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)

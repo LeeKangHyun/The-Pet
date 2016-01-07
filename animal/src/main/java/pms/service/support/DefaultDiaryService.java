@@ -32,7 +32,7 @@ public class DefaultDiaryService implements DiaryService {
   
   public List<Diary> getPetList(int mno) {
 		
-		return diaryDao.petList(mno);
+		return diaryDao.petList(1);
   }
   
   public void add(Diary diary) {

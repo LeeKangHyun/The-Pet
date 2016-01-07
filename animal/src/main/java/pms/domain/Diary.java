@@ -102,6 +102,7 @@ public class Diary  implements Serializable {
     return pet;
   }
   public void setPet(Pet pet) {
+    System.out.println(pet);
     this.pet = pet;
   }
 	
