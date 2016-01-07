@@ -17,6 +17,7 @@ import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Pet;
 import pms.service.DiaryService;
+import pms.service.FilesService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.DiaryController")
@@ -25,6 +26,7 @@ public class DiaryController {
 	public static final String SAVED_DIR = "/files";
 	
 	@Autowired DiaryService diaryService;
+	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")
@@ -38,7 +40,7 @@ public class DiaryController {
 		resultMap.put("status", "success");
 		resultMap.put("pets", pets);
 		resultMap.put("events", events);
-
+		
 		return resultMap;
 	}
 	
@@ -57,7 +59,8 @@ public class DiaryController {
 			files.setFileName(newFileName);
 		}
 		files.setDno(diary.getDno());
-		diaryService.add(files);
+		
+		filesService.add(files);
 		diaryService.add(diary);
 
 		return new AjaxResult("success", null);
@@ -102,7 +105,7 @@ public class DiaryController {
 		if (diaryService.remove(dno) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
-
+		filesService.removeDairyFile(dno);
 		return new AjaxResult("success", null);
 	}
 

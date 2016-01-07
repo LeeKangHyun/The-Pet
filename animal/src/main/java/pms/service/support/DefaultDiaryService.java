@@ -1,10 +1,12 @@
 package pms.service.support;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java76.pms.domain.Board;
 import pms.dao.DiaryDao;
 import pms.domain.Diary;
 import pms.service.DiaryService;
@@ -13,6 +15,16 @@ import pms.service.DiaryService;
 public class DefaultDiaryService implements DiaryService {
 	
 	@Autowired DiaryDao diaryDao;
+	
+	public List<Diary> getBoardList(int pageNo, int pageSize, String keyword, String align) {
+  	HashMap<String,Object> paramMap = new HashMap<>();
+		paramMap.put("startIndex", (pageNo - 1) * pageSize);
+		paramMap.put("length", pageSize);
+		paramMap.put("keyword", keyword);
+		paramMap.put("align", align);
+		
+		return diaryDao.selectList(paramMap);
+  }
 	
   public List<Diary> getEventList() {
 		

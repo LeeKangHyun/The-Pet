@@ -10,6 +10,8 @@ public interface DiaryService {
 	
   List<Diary> getEventList();
   List<Diary> getPetList(int mno);
+  List<Diary> getBoardList(
+  		int pageNo, int pageSize, String keyword, String align);
   void add(Diary diary);
   int remove(int no);
   int change(Diary diary);

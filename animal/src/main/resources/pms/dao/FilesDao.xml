@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.FilesDao">
+	
+  <resultMap type="files" id="filesMap">
+    <id 	column="FILE_NUM" 		property="fno"/>
+	<result column="FILE_NAME" 		property="fileName"/>
+	<result column="EDU_NUM" 		property="eduNo"/>
+	<result column="MAT_NUM" 		property="matNo"/>
+	<result column="S_NUM" 			property="sno"/>	
+	<result column="SCH_NUM" 		property="dno"/>
+ </resultMap>
+
+  <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
+  	select * 
+  	from files
+  	where dno=#{dno}
+  </select>
+  
+  <select id="EduFileList" resultMap="filesMap" parameterType="int">
+  	select * 
+  	from files
+  	where eduNo=#{eduNo}
+  </select>
+  
+  <select id="MatFileList" resultMap="filesMap" parameterType="int">
+  	select * 
+  	from files
+  	where matNo=#{matNo}
+  </select>
+  
+  <select id="SaleFileList" resultMap="filesMap" parameterType="int">
+  	select * 
+  	from files
+  	where sno=#{sno}
+  </select>
+  
+  <insert id="insert" parameterType="files">
+    insert into files(fileName,eduNo,matNo,sno,dno) 
+    values(#{fileName},#{eduNo},#{matNo},#{sno},#{dno})
+  </insert>
+  
+  <delete id="deleteDairyFile" parameterType="int">
+    delete from files 
+  	where dno=#{dno}
+  </delete>
+  
+  <delete id="deleteEduFile" parameterType="int">
+    delete from files 
+  	where eduNo=#{eduNo}
+  </delete>
+  
+  <delete id="deleteMatFile" parameterType="int">
+    delete from files 
+  	where matNo=#{matNo}
+  </delete>
+  
+  <delete id="deleteSaleFile" parameterType="int">
+    delete from files 
+  	where sno=#{sno}
+  </delete>
+  
+  <update id="update" parameterType="files">
+    update files set 
+      fileName=#{fileName}
+    where fno=#{fno}
+  </update>
+  
+  
+</mapper>
+
+
+
+
+
+

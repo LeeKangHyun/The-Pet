@@ -23,6 +23,19 @@
     select * from schedule
   </select>
   
+  <select id="selectList" resultMap="diaryMap" parameterMap="map">
+    select
+  		dno, pno, createDate, title, content, cateCode, view, like 
+  	from schedule 
+  	where cateCode=#{cateCode} and dhide='true'
+  	order by dno
+    <choose>
+      <when test="align == 'desc'">desc</when>
+      <otherwise>desc</otherwise>
+    </choose>
+    limit #{startIndex}, #{length}
+  </select>
+  
   <select id="petList" resultMap="diaryMap" parameterType="int">
   	select
   		p1.pet_num pno,
