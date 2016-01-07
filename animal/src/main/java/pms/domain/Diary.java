@@ -18,10 +18,11 @@ public class Diary  implements Serializable {
   protected int view;					// 조회수    default=0
   protected int like;					// 좋아요수  default=0
   protected String tagColor;	// 태그색
-  
+  protected Pet pet;  // 펫 객체 가지고 있을것.
+
   public Diary() {}
 
-  
+
 	public String getTagColor() {
 		return tagColor;
 	}
@@ -76,7 +77,7 @@ public class Diary  implements Serializable {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
-	
+
 	public boolean isDhide() {
 		return dhide;
 	}
@@ -97,6 +98,8 @@ public class Diary  implements Serializable {
 	public void setLike(int like) {
 		this.like = like;
 	}
+
   
-  
+
+
 }
