@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Files implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int fno;				// file 번호
+	protected int fno;					// file 번호
 	protected String fileName;	// file 명
 	protected int eduNo;				// file이 올려진 교육 게시물 번호
 	protected int matNo;				// file이 올려진 짝짓기 게시물 번호 

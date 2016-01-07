@@ -9,11 +9,11 @@ insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD)
   values('관리자4','admin4@test.com','rpdlek');
 
 /* 쪽지 내용 입력 */
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT) values(1,2,'HIHI');
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT) values(2,1,'HELLO');
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT) values(3,2,'GAY');
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT) values(2,4,'YO');
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT) values(4,1,'CSS');
+insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(1,2,'HIHI',true);
+insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(2,1,'HELLO',true);
+insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(3,2,'GAY');
+insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(2,4,'YO');
+insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(4,1,'CSS');
 
 /* 교육 내용 입력 */
 insert into Education(EDU_TITLE,EDU_CONTENT,EDU_DIV)

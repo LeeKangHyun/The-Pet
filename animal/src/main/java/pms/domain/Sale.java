@@ -13,8 +13,9 @@ public class Sale implements Serializable {
 	protected String sTitle;		// 분양 게시물 제목
 	protected String sContent;  // 분양 게시물 내용
 	protected String sSpec;			// 분양할 동물 구분 -> 개, 고양이, 물고기, 새, etc
+															//						   DIV01,DIV02,DIV03,DIV04,DIV05
 	protected String sType;  		// 분양할 동물 종류 -> 포메라이안, 시베리안허스키 등등..
-	protected String sCost;			// 판매금
+	protected int sCost;			// 판매금
 	
 	public Sale () {}
 
@@ -60,10 +61,12 @@ public class Sale implements Serializable {
 	public void setsType(String sType) {
 		this.sType = sType;
 	}
-	public String getsCost() {
+
+	public int getsCost() {
 		return sCost;
 	}
-	public void setsCost(String sCost) {
+
+	public void setsCost(int sCost) {
 		this.sCost = sCost;
 	}
 }

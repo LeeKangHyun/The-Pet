@@ -6,17 +6,17 @@ import java.sql.Date;
 public class Diary  implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  protected int dno;	// 일정번호
-  protected int pno;	// 펫 번호
+  protected int dno;					// 일정번호
+  protected int pno;					// 펫 번호
   protected Date startDate;	// 시작일
-  protected Date endDate;	// 종료일
+  protected Date endDate;		// 종료일
   protected Date createDate;	// 작성일
   protected String content;	// 내용
-  protected String title;	// 제목
+  protected String title;		// 제목
   protected String cateCode;	//카테고리 코드	 tab001=자랑하기 tab002=산책코스
-  protected int dhide;	// 공개여부	0=비공개 1=공개
-  protected int view;	// 조회수
-  protected int like;	// 좋아요수
+  protected boolean dhide;		// 공개여부	0=공개 1=비공개
+  protected int view;				// 조회수    default=0
+  protected int like;				// 좋아요수  default=0
   
   public Diary() {}
 
@@ -68,12 +68,15 @@ public class Diary  implements Serializable {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
-	public int getDhide() {
+	
+	public boolean isDhide() {
 		return dhide;
 	}
-	public void setDhide(int dhide) {
+
+	public void setDhide(boolean dhide) {
 		this.dhide = dhide;
 	}
+
 	public int getView() {
 		return view;
 	}

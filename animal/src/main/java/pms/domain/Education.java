@@ -14,7 +14,7 @@ public class Education implements Serializable {
 	protected String eduTitle;   // 교육 게시물 제목
 	protected String eduContent; // 교육 게시물 내용
 	protected String eduType;     // 교육 게시물 동물 구분 -> 개, 고양이, 물고기, 새, etc
-	
+															 //                 DIV01,DIV02,DIV03,DIV04,DIV05
 	public Education () {}
 
 	public int getEduNo() {
