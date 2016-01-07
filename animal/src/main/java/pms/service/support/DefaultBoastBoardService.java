@@ -1,6 +1,5 @@
 package pms.service.support;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pms.dao.BoastBoardDao;
-import pms.dao.DiaryDao;
 import pms.domain.Diary;
 import pms.service.BoastBoardService;
 
@@ -17,20 +15,15 @@ import pms.service.BoastBoardService;
 public class DefaultBoastBoardService implements BoastBoardService {
 	private static Logger log = Logger.getLogger(DefaultBoastBoardService.class);
  
-	@Autowired DiaryDao diaryDao;
+	@Autowired BoastBoardDao boastboardDao;
 
 	
-	public List<Diary> selectList(int pageNo, int pageSize, 
-      String keyword, String align) {
-	  log.debug("selectList() 호출됨");
+	public List<Diary> selectList() {
 	  
-	  HashMap<String, Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", (pageNo - 1) * pageSize);
-    paramMap.put("length", pageSize);
-    paramMap.put("keyword", keyword);
-    paramMap.put("align", align);
-    /*diaryDao.selectList(paramMap)*/
-    return null;
+	  log.debug("지호가 selectList()를 호출함.........................................");
+	  
+    
+    return boastboardDao.selectList();
 	}
 
 

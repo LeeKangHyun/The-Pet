@@ -8,8 +8,7 @@ import pms.domain.Diary;
 
 public interface BoastBoardService {
 	
-  List<Diary> selectList(int pageNo, int pageSize, 
-      String keyword, String align);
+  List<Diary> selectList();
   
 }
 
