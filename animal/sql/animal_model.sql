@@ -310,7 +310,8 @@ CREATE TABLE Schedule (
   CATE_CODE   CHAR(6)     NULL     COMMENT '카테고리코드', -- 카테고리코드
   NOTI_HIDE   BOOLEAN     NOT NULL DEFAULT 0 COMMENT '공개여부', -- 공개여부
   NOTI_VIEWS  INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  NOTI_LIKES  INTEGER     NOT NULL DEFAULT 0 COMMENT '좋아요' -- 좋아요
+  NOTI_LIKES  INTEGER     NOT NULL DEFAULT 0 COMMENT '좋아요', -- 좋아요
+  TAG_COLOR   CHAR(7)     NOT NULL COMMENT '태그색' -- 태그색
 )
 COMMENT '다이어리 - 일정';
 
