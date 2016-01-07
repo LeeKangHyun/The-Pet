@@ -2,9 +2,11 @@
     width:200px;
     position:Relative;
     margin: auto;
-    top: 80px;
-    right: 25%;
+    top: 15px;
+    right: 40%;
+    margin-bottom: 100px;
 }
+
 input:focus{
     width:200px;
     height:40px;
@@ -18,7 +20,7 @@ input:focus{
 
 input{
     float:right;
-    border:3px solid #19d4cb;
+    border:3px solid #000000;
     outline:none;
     width:40px;
   cursor:pointer;
@@ -27,19 +29,21 @@ input{
     -moz-transition:.2s all ease-in;
     transition:.2s all ease-in;
     height:40px;
-    color:#19d4cb;
+    color:#000000;
     border-radius:40px;
     background:none;
-    font-size:0;
+    font-size:0px;
 }
 
 .close span{
 width:3px;
 height:20px;
 border-radius:2px;
-background:#19d4cb;
+background:#000000;
 opacity: 100%;
-display:inline-block;}
+display:inline-block;
+
+}
 
 .front{
     position:absolute;
@@ -74,7 +78,7 @@ input:focus + div .front{
     transition-delay: .2s;
     -webkit-transform: rotate(45deg);        
     -moz-transform: rotate(45deg);        
-    transform: rotate(45deg);        
+    transform: rotate(45deg);
 }
         
 
