@@ -1,0 +1,31 @@
+package pms.service.support;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import pms.dao.PetDao;
+import pms.domain.Pet;
+import pms.service.PetService;
+
+@Service
+public class DefaultPetService implements PetService {
+	
+	@Autowired PetDao petDao;
+	
+  public Pet getOnePet(int pno) {
+		return petDao.petSelectOne(pno);
+  }
+  
+  public void add(Pet pet) {
+  	petDao.insert(pet);
+  }
+  
+  public int remove(int pno) {
+  	return petDao.delete(pno);
+  }
+  
+  public int change(Pet pet) {
+  	return petDao.update(pet);
+  }
+
+}

@@ -10,7 +10,7 @@ public interface FilesDao {
   List<Files> MatFileList(int matNo);
   List<Files> SaleFileList(int sno);
   
-  int insert(Files files);
+  void insert(Files files);
   
   int deleteDairyFile(int dno);
   int deleteEduFile(int eduNo);

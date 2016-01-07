@@ -18,6 +18,7 @@ import pms.domain.Files;
 import pms.domain.Pet;
 import pms.service.DiaryService;
 import pms.service.FilesService;
+import pms.service.PetService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.DiaryController")
@@ -26,6 +27,7 @@ public class DiaryController {
 	public static final String SAVED_DIR = "/files";
 	
 	@Autowired DiaryService diaryService;
+	@Autowired PetService petService;
 	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
 
@@ -69,7 +71,7 @@ public class DiaryController {
 	@RequestMapping("detail")
 	public Object detail(int pno) throws Exception {
 
-		Pet pet = petService.getPetInfo(pno);
+		Pet pet = petService.getOnePet(pno);
 		return new AjaxResult("success", pet);
 	}
 

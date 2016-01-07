@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java76.pms.domain.Board;
 import pms.dao.DiaryDao;
 import pms.domain.Diary;
 import pms.service.DiaryService;
