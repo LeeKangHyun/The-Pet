@@ -14,11 +14,12 @@
   <link href="css/icon-font.min.css" rel="stylesheet" />
 
   <!-- 대진 메인 css -->
-  <link href="css/dj_main.css" rel="stylesheet"/>
+  <link href="css/dj_main.css" rel="stylesheet" />
   <script src="css/dj_main.js"></script>
 
   <!-- 캘린더 css -->
-  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css'
+  />
 
   <!-- 캘린더 스크립트 -->
   <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -27,47 +28,45 @@
   <!-- 모달 스크립트 -->
   <script src='lib/bootstrap/js/modal.js'></script>
 
+  <!-- 지도 스크립트 -->
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=ture"></script>
+
   <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
 
 
 </head>
 
 <body>
-    <header>
-      <div id="header_title">
-        <a class="headerTitle" href="pet.html">THE PET</a>
-        <div id="user_info">
-  <!--
-          <img src="images/p3.jpeg" id="userImg" />
-          <a class="userName" href="#">설현</a>
-          <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
-  -->
-        </div>
+  <header>
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">THE PET</a>
+      <div id="user_info">
       </div>
-    </header>
+    </div>
+  </header>
 
   <section>
 
-      <!--  메뉴 버튼  -->
-      <input type="checkbox" id="menuToggle" />
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
 
-      <div class="menu">
-        <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
-        <!--  메뉴 내용  -->
+    <div class="menu">
+      <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
 
-        <nav class="menu-nav">
-          <ul class="menu-nav-ul">
-            <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
-            <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-            <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-            <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-            <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
-            <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
-            <li><a href="login.html"><i class="fa fa-lock"></i> 로그인</a></li>
-          </ul>
-        </nav>
-        <!--  //메뉴 내용  -->
-      </div>
+      <nav class="menu-nav">
+        <ul class="menu-nav-ul">
+          <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
+          <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
+          <li><a href="login.html"><i class="fa fa-lock"></i> 로그인</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
 
   </section>
 
@@ -78,121 +77,136 @@
 
       <div class="m_boast">
         <div>
-            <a href="boastBoard.html"><h2><i class="lnr lnr-paw">자랑하기 Top3</i></h2></a>
+          <a href="boastBoard.html">
+            <h2><i class="lnr lnr-paw">자랑하기 Top3</i></h2>
+          </a>
         </div>
-        <table>
-            <tr>
-                <td class="m_most">
-                    <a href="boastBoard.html"><img src="images/h1.jpg" /></a>
-                    <li>title</li>
-                </td>
-                <td class="m_most">
-                    <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
-                    <li>title</li>
-                </td>
-                <td class="m_most">
-                    <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
-                    <li>title</li>
-                </td>
-            </tr>
+        <table id="boastTable">
+          <tr>
+            <td class="m_most">
+              <a href="boastBoard.html">
+                <img src="images/h1.jpg" />
+              </a>
+              <li>title</li>
+            </td>
+            <td class="m_most">
+              <a href="boastBoard.html">
+                <img src="images/h2.jpg" />
+              </a>
+              <li>title</li>
+            </td>
+            <td class="m_most">
+              <a href="boastBoard.html">
+                <img src="images/h2.jpg" />
+              </a>
+              <li>title</li>
+            </td>
+          </tr>
         </table>
-      <div class="m_boast">
-        <div>
-            <a href="#"><h2><i class="lnr lnr-leaf">산책하기 Top3</i></h2></a>
-            <table>
-                <tr>
+
+        <div class="m_boast">
+          <div>
+            <a href="#">
+              <h2><i class="lnr lnr-leaf">산책하기 Top3</i></h2>
+            </a>
+            <table id="walkTable">
+              <tr>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h1.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h2.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h2.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
-            </tr>
+              </tr>
             </table>
+          </div>
+        </div>
+
+        <div style="margin-top:50px">
+          <a href="#">
+            <h2><i class="fa fa-map-marker">Location</i></h2>
+          </a>
+          <div id="map_canvas" style="border:1px solid black; width:500px;height:380px;margin: 50px 0 170px 0;"></div>
         </div>
       </div>
-
-      <div style="margin-top:50px">
-        <a href="#"><h2><i class="fa fa-map-marker">Location</i></h2></a>
-        <div id="map_canvas" style="width:500px;height:380px;margin-top:50px"></div>
-      </div>
-    </div>
   </section>
 
-<!-- video js -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="css/dj_main.js"></script>
-<script>
-  $("select").change(function() {
-    if ($('#Form').val() == "0") { // 산책 코스
-      $('.pDate').css('display', '');
-      $('.pGender').css('display', 'none');
-      $('.pMoney').css('display', 'none');
-      $('.pType').css('display', 'none');
-      $('.pFile').css('display', '');
-    } else if ($('#Form').val() == "1") {  // 자랑 해요
-      $('.pDate').css('display', 'none');
-      $('.pGender').css('display', 'none');
-      $('.pMoney').css('display', 'none');
-      $('.pType').css('display', 'none');
-      $('.pFile').css('display', '');
-    } else if ($('#Form').val() == "3") {  //분양
-      $('.pDate').css('display', 'none');
-      $('.pGender').css('display', '');
-      $('.pMoney').css('display', '');
-      $('.pType').css('display', '');
-      $('.pFile').css('display', '');
-    } else if ($('#Form').val() == "4") { //짝짓기
-      $('.pDate').css('display', 'none');
-      $('.pGender').css('display', '');
-      $('.pMoney').css('display', '');
-      $('.pType').css('display', '');
-      $('.pFile').css('display', '');
-    }
-  }).change();
-</script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=ture"></script>
-<script type="text/javascript">
-    function success(position) {
-        var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-        var myOptions = {
-            zoom: 17,
-            center: latlng,
-            mapTypeControl: false,
-            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+  <!-- 자랑하기, 산책하기 -->
+  <script>
+    $.getJSON('', function(resultObj) {
+      var table = $("#boastTable");
+      for (var boast of resultObj.data) {
+        $("<tr>")
+          .html("<td class='m_most'><a href='boastBoard.html'> " +
+            "<img src='images/" + boast.img + "' /></a><li>title</li></td>"
+          )
+          .appendTo(table);
+      }
+    });
+  </script>
 
-        var marker = new google.maps.Marker({
-            position: latlng,
-            map: map
-        });
+  <script>
+      $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj){
+          var div = $('#user_info');
+          if (resultObj.User != null) {
+              div.append(
+              "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
+              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
+              "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
+              "<i class='fa fa-unlock fa-lg'></i></a>")
+          } else {
+              location.href = "login.html"
+          }
+       });
+  </script>
+
+  <!-- 지도  -->
+  <script type="text/javascript">
+    function success(position) {
+      var latlng = new google.maps.LatLng(position.coords.latitude, position.coords
+        .longitude);
+      var myOptions = {
+        zoom: 17,
+        center: latlng,
+        mapTypeControl: false,
+        navigationControlOptions: {
+          style: google.maps.NavigationControlStyle.SMALL
+        },
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("map_canvas"),
+        myOptions);
+
+      var marker = new google.maps.Marker({
+        position: latlng,
+        map: map
+      });
     }
 
     function error(msg) {
-        var s = document.querySelector('#map_canvas');
-        s.innerHTML = typeof msg == 'string'?msg:"failed";
-        s.className = 'fail';
+      var s = document.querySelector('#map_canvas');
+      s.innerHTML = typeof msg == 'string' ? msg : "failed";
+      s.className = 'fail';
     }
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success);
+      navigator.geolocation.getCurrentPosition(success);
     } else {
-        error('not supported');
+      error('not supported');
     }
-</script>
+  </script>
 </body>
 
 </html>
