@@ -42,8 +42,8 @@ public class DiaryController {
 		 
 		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
-		List<Diary> events = diaryService.getEventList();
-
+		List<Diary> events = diaryService.getEventList();	
+		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("pets", pets);

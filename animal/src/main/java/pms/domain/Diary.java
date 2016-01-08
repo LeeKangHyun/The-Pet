@@ -11,14 +11,13 @@ public class Diary  implements Serializable {
   protected Date startDate;   // 시작일
   protected Date endDate;     // 종료일
   protected Date createDate;  // 작성일
-  protected String content; // 내용
-  protected String title;   // 제목
+  protected String content; 	// 내용
+  protected String title;   	// 제목
   protected String cateCode;  //카테고리 코드 ILJUNG=일정 JARANG=자랑하기 SANCHE=산책코스
   protected boolean dhide;    // 공개여부 0=공개 1=비공개
   protected int view;         // 조회수    default=0
   protected int like;         // 좋아요수  default=0
   protected String tagColor;  // 태그색
-  protected Pet pet;  // 펫 객체 가지고 있을것.
 
   public Diary() {}
 
@@ -98,17 +97,5 @@ public class Diary  implements Serializable {
   public void setLike(int like) {
     this.like = like;
   }
-  public Pet getPet() {
-    return pet;
-  }
-  public void setPet(Pet pet) {
-    System.out.println(pet);
-    this.pet = pet;
-  }
-  
-  
-
-  
-
 
 }

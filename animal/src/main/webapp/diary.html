@@ -280,7 +280,7 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-      $.getJSON('diary/ajax/list.do?mno=0',
+      $.getJSON('diary/ajax/list.do?mno=1',
         function(resultObj){
           var div = $('#user_info');
           if (resultObj.User != null) {
@@ -297,7 +297,7 @@
     
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
-    $.getJSON('diary/ajax/list.do?mno=0',
+    $.getJSON('diary/ajax/list.do?mno=1',
         function(resultObj){
 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
@@ -312,7 +312,7 @@
                   "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +                   pet.tagColor + "' disabled></td></tr>" +
                   "</table>")
             }
-        })
+        });
 
     });
   </script>
@@ -329,7 +329,7 @@
               sel.append("<option value='" + pet.pno + "'>" + pet.pName +
                 "</option>")
             }
-        })
+        });
     });
   </script>
 
@@ -353,44 +353,13 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events: [{
-            title: '쉬는날',
-            start: '2016-01-09T00:00:00',
-            end: '2016-01-16T00:00:00',
-            color: '#fff000', // yellow
-            description: "쉬는날이다."
-          }, {
-            title: '휴가',
-            start: '2016-01-07T16:00:00',
-            end: '2016-01-15T16:00:00',
-            color: '#ff0000', //red
-            description: "휴가가자"
-          }, {
-            title: '미팅',
-            start: '2016-01-09T16:00:00',
-            end: '2016-01-10T16:00:00',
-            color: '#ff8000', // orange
-            description: "미팅이다"
-          }, {
-            title: '컨퍼런스',
-            start: '2016-01-11T00:00:00',
-            end: '2016-01-13T14:00:00',
-            color: '#0000ff', // blue
-            description: "컨퍼런스다"
-          }, {
-            title: '미팅',
-            start: '2016-01-12T10:30:00',
-            end: '2016-01-16T12:30:00',
-            color: '#ff8000', // orange
-            description: "미팅하는날"
-          }, {
-            title: '생일 파티',
-            start: '2016-01-13T07:00:00',
-            end: '2016-01-13T07:00:00',
-            color: '#0000ff', // blue
-            description: "생일 파티다"
-          }],
-
+          events:
+          
+              function(resultObj){
+                    console.log(resultObj.events)
+              }
+          
+          ,
           timeFormat: 'H:mm',
           eventClick: function(event, jsEvent, view) {
             if (event.end) {
