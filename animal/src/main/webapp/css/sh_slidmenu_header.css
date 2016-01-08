@@ -5,22 +5,56 @@
 /*     헤더 부분     */
 /*******************/
 
-header .header_title {
+header {
+    position: fixed;
     width: 100%;
+    height: 44px;
     background-color: #19d4cb;
     padding: 0px 30px;
-    z-index: 999;
-    position: fixed;
 
 }
 
-.header_title a {
+#header_title {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.headerTitle {
     color: #fff;
     line-height: 45px;
     font-family: Nanum Pen Script;
     font-size: 40px;
     text-decoration: none;
     padding: 9px 15px;
+}
+
+#user_info {
+    position: relative;
+    top: 2px;
+    float: right;
+}
+
+#userImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.userName {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 6px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    border: 1px solid #fff;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+.logout {
+    text-decoration: none;
+    margin-left: 10px;
+    color: #fff;
 }
 
 .header_title a:hover {
@@ -115,5 +149,7 @@ header .header_title {
 /* 메인 바디 */
 
 .main-body {
+    width: 1024px;
+    margin: 0 auto;
     padding-top: 44px;
 }

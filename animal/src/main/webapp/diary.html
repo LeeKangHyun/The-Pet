@@ -35,8 +35,15 @@
 
 <body>
   <header>
-    <div class="header_title">
-      <a href="pet.html">THE PET</a>
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">THE PET</a>
+      <div id="user_info">
+<!--
+        <img src="images/p3.jpeg" id="userImg" />
+        <a class="userName" href="#">설현</a>
+        <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
+-->
+      </div>
     </div>
   </header>
 
@@ -272,15 +279,31 @@
   </div>
   <!-- //게시글 추가 모달 -->
 
+  <script>
+      $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj){
+          var div = $('#user_info');
+          if (resultObj.User != null) {
+              div.append(
+              "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
+              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
+              "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
+              "<i class='fa fa-unlock fa-lg'></i></a>")
+          } else {
+              location.href = "login.html"
+          }
+       });
+  </script>
+    
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        
+
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var table = $('#diary-pet-info');
-           
+
             for (var pet of resultObj.pets) {
               table.append(
                   "<table class='innerTable' border='0'>" +
@@ -289,8 +312,8 @@
                   "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +                   pet.tagColor + "' disabled></td></tr>" +
                   "</table>")
             }
-        });
-        
+        })
+
     });
   </script>
 
@@ -298,7 +321,7 @@
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        
+
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -306,10 +329,10 @@
               sel.append("<option value='" + pet.pno + "'>" + pet.pName +
                 "</option>")
             }
-        });
+        })
     });
   </script>
-    
+
   <script>
     $(document).ready(function() {
 
