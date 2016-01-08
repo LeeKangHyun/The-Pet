@@ -272,32 +272,33 @@
   </div>
   <!-- //게시글 추가 모달 -->
 
+  <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        console.log(resultObj.User.mno);
         
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
-      function(resultObj) {
-        var table = $('#diary-pet-info');
-        console.log(resultObj.pets);
-        for (var pet of resultObj.pets) {
-          table
-            .append("<table class='innerTable' border='0'>" +
-              "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
-              "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" + pet.pName+ "' disabled></td></tr>" +
-              "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" + pet.tagColor + "' disabled></td></tr>" +
-              "</table>")
-        }
-      });
+          function(resultObj) {
+            var table = $('#diary-pet-info');
+           
+            for (var pet of resultObj.pets) {
+              table.append(
+                  "<table class='innerTable' border='0'>" +
+                  "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
+                  "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +                       pet.pName+ "' disabled></td></tr>" +
+                  "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +                   pet.tagColor + "' disabled></td></tr>" +
+                  "</table>")
+            }
+        });
         
     });
   </script>
 
+<!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        console.log(resultObj.User.mno);
+        
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -308,24 +309,6 @@
         });
     });
   </script>
-
-<!--
-  <script>
-    $.getJSON('diary/ajax/list.do?mno=1',
-      function(resultObj) {
-        var table = $('#diary-pet-info');
-        console.log(resultObj.pets);
-        for (var pet of resultObj.pets) {
-          table
-            .append("<table class='innerTable' border='0'>" +
-              "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
-              "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" + pet.pName+ "' disabled></td></tr>" +
-              "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" + pet.tagColor + "' disabled></td></tr>" +
-              "</table>")
-        }
-      });
-  </script>
--->
     
   <script>
     $(document).ready(function() {
