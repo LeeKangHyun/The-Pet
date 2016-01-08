@@ -39,7 +39,7 @@ public class DiaryController {
 			Member member,
 			HttpSession session
 			) throws Exception {
-		
+		 
 		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
 		List<Diary> events = diaryService.getEventList();
