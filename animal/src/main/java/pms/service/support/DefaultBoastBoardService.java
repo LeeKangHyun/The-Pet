@@ -19,10 +19,6 @@ public class DefaultBoastBoardService implements BoastBoardService {
 
 	
 	public List<Diary> selectList() {
-	  
-	  log.debug("지호가 selectList()를 호출함.........................................");
-	  
-    
     return boastboardDao.selectList();
 	}
 
