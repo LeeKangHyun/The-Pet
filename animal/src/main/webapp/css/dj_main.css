@@ -1,10 +1,11 @@
 .m_content {
-    position: relative;
-    top: 47px;
+    position: inherit;
+    padding-top: 47px;
     margin: 0 auto;
     width: 1024px;
     text-align: center;
     overflow: hidden;
+    z-index: 500;
 }
 
 .m_img {

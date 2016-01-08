@@ -37,13 +37,13 @@
 </head>
 
 <body>
-    <header>
-      <div id="header_title">
-        <a class="headerTitle" href="pet.html">THE PET</a>
-        <div id="user_info">
-        </div>
+  <header>
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">THE PET</a>
+      <div id="user_info">
       </div>
-    </header>
+    </div>
+  </header>
 
   <section>
 
@@ -112,19 +112,22 @@
             <table id="walkTable">
               <tr>
                 <td class="m_most">
-                  <video controls="controls" width="300" class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4" />
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h1.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
                 <td class="m_most">
-                  <video controls="controls" width="300" class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4" />
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h2.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
                 <td class="m_most">
-                  <video controls="controls" width="300" class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4" />
-                    <li>title</li>
+                  <a href="boastBoard.html">
+                    <img src="images/h2.jpg" />
+                  </a>
+                  <li>title</li>
                 </td>
               </tr>
             </table>
@@ -140,17 +143,18 @@
       </div>
   </section>
 
-<!-- 자랑하기, 산책하기 -->
+  <!-- 자랑하기, 산책하기 -->
   <script>
-  $.getJSON('', function(resultObj) {
+    $.getJSON('', function(resultObj) {
       var table = $("#boastTable");
       for (var boast of resultObj.data) {
-          $("<tr>")
+        $("<tr>")
           .html("<td class='m_most'><a href='boastBoard.html'> " +
-          "<img src='images/" + boast.img + "' /></a><li>title</li></td>")
+            "<img src='images/" + boast.img + "' /></a><li>title</li></td>"
+          )
           .appendTo(table);
       }
-  });
+    });
   </script>
 
   <!-- 지도  -->
