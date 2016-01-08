@@ -16,8 +16,7 @@ public class Education implements Serializable {
 	protected String eduType;     // 교육 게시물 동물 구분 -> 개, 고양이, 물고기, 새, etc
 															 //                 DIV01,DIV02,DIV03,DIV04,DIV05
 	protected String attachFile;	// 컬럼명 = fileName
-	protected Member member;				// Member 테이블의 회원번호 참조
-	protected Files files;					// Files 테이블의 file이름 참조
+	
 	public String getAttachFile() {
 		return attachFile;
 	}
