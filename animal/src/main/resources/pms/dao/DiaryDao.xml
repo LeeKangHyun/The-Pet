@@ -8,6 +8,7 @@
 <resultMap type="diary" id="diaryMap">
   <id column="SCH_NUM" property="dno"/>
   <result column="PET_NUM" property="pno"/>
+  <result column="MEM_NUM" property="mno"/>  
   <result column="START_DATE" property="startDate"/>
   <result column="END_DATE" property="endDate"/>
   <result column="SCH_CRE" property="createDate"/>
@@ -20,7 +21,7 @@
   <result column="TAG_COLOR" property="tagColor"/>
 </resultMap>
 
-  <select id="eventList" resultMap="diaryMap">
+  <select id="eventList" resultMap="diaryMap" parameterType="int">
     select
   		SCH_NUM,
   		START_DATE,
@@ -30,6 +31,7 @@
   		NOTI_HIDE,
   		tag_Color
   	from schedule
+  	where MEM_NUM=#{mno}
   </select>
 
   <insert id="insertText" parameterType="diary">

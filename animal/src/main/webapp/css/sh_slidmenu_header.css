@@ -27,6 +27,11 @@ header {
     padding: 9px 15px;
 }
 
+.headerTitle:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 #user_info {
     position: relative;
     top: 2px;
@@ -50,10 +55,20 @@ header {
     border-radius: 10px;
 }
 
+.userName:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 .logout {
     text-decoration: none;
     margin-left: 10px;
     color: #fff;
+}
+
+.logout:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 .header_title a:hover {

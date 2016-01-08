@@ -338,12 +338,24 @@
   </script>
 
   <script>
+    var jsn;
     $(document).ready(function() {
 
+        
       $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
       });
 
+      $.getJSON('diary/ajax/list.do?mno=0',
+            function(resultObj){
+
+            $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
+              function(resultObj) {
+                console.log(resultObj.events);
+                jsn = resultObj.events;
+            })
+        })
+      
       function renderCalendar() {
         $('#calendar').fullCalendar({
           header: {
@@ -357,8 +369,8 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events: []
-
+          events: 
+            jsn
           ,
 
           timeFormat: 'H:mm',

@@ -46,7 +46,7 @@ public class DiaryController {
 		 
 		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
-		List<Diary> events = diaryService.getEventList();	
+		List<Diary> events = diaryService.getEventList(mno);	
 		
 		List dummyDate = new ArrayList();
 		Map<String, Object> m;

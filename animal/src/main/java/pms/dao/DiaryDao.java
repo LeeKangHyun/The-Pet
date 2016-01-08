@@ -6,7 +6,7 @@ import java.util.Map;
 import pms.domain.Diary;
 
 public interface DiaryDao {
-  List<Diary> eventList();
+  List<Diary> eventList(int mno);
   
   List<Diary> selectList(Map<String,Object> paramMap);
   

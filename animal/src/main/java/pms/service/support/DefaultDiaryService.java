@@ -25,8 +25,8 @@ public class DefaultDiaryService implements DiaryService {
 		return diaryDao.selectList(paramMap);
   }
 	
-  public List<Diary> getEventList() {
-		return diaryDao.eventList();
+  public List<Diary> getEventList(int mno) {
+		return diaryDao.eventList(mno);
   }
   
   public void add(Diary diary) {
