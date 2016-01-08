@@ -92,7 +92,7 @@
           <label class="lname">PASSWORD</label>
         </div>
           
-        <input type="checkbox" name="saveEmail">
+        <input type="checkbox" name="saveEmail" id="saveEmail">
           
         <input type="button" id="subBtn" value="Sign in" />
 
@@ -122,9 +122,13 @@
   </section>
 <script>
 $('#subBtn').click(function(event) {
-	$.post(contextRoot + 'auth/ajax/login.do', {
+      console.log($('#mEmail').val()),
+      console.log($('#password').val()),
+      console.log($('#saveEmail').val()),
+	$.post('auth/ajax/login.do', {
 		mEmail: $('#mEmail').val(),
-	  password: $('#password').val()
+	  password: $('#password').val(),
+    saveEmail: $('#saveEmail').val()
 
 	}, function(resultObj) {
 		var ajaxResult = resultObj.ajaxResult;
@@ -133,6 +137,7 @@ $('#subBtn').click(function(event) {
         location.href = "diary.html"
     } else {
       alert("게시물 등록에 실패했습니다.")
+      
     }
 	}, 'json');
 });

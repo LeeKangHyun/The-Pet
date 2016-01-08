@@ -43,7 +43,7 @@ public class AuthController {
       emailCookie.setMaxAge(0); // 웹브라우저에게 email 쿠키 삭제를 명령한다.
     }
     response.addCookie(emailCookie);
-
+    System.out.println(mEmail + " ////// " + password);
     Member member = memberService.login(mEmail, password);
 
     if (member == null) { // 로그인 실패!

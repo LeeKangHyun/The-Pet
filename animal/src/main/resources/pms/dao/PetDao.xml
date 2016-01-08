@@ -29,7 +29,7 @@
   	where p1.mem_num=1
   </select>
  
-  <select id="petSelectOne" resultType="pet" parameterType="int">
+  <select id="petSelectOne" resultMap="petMap" parameterType="int">
     select * from pet where pno=#{pno}
   </select>
   

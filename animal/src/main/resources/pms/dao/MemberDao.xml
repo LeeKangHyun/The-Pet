@@ -43,7 +43,7 @@
 		where MEM_EMAIL=#{mEmail}
 	</update>
 	
-	<select id="selectOne" resultType="member" parameterType="string">
+	<select id="selectOne" resultMap="memberMap" parameterType="string">
 		select 
 	  		MEM_NUM, 
 	  		MEM_NAME,
@@ -54,7 +54,7 @@
 		where MEM_EMAIL=#{mEmail}
 	</select>
 	
-	<select id="selectOneByEmailPassword" resultType="member" parameterType="map">
+	<select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
 		select 
 	  		MEM_NUM, 
 	  		MEM_NAME,
@@ -66,9 +66,6 @@
 	</select>
     
 </mapper>
-
-
-
 
 
 

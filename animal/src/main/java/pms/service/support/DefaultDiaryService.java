@@ -26,7 +26,6 @@ public class DefaultDiaryService implements DiaryService {
   }
 	
   public List<Diary> getEventList() {
-		
 		return diaryDao.eventList();
   }
   
