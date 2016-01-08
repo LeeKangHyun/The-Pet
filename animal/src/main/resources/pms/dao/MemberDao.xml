@@ -62,7 +62,7 @@
 	  		MEM_TEL,
 	  		MEM_IMG
 		from member
-		where MEM_EMAIL=#{mEmail} and MEM_PWD=sha1(#{password})
+		where MEM_EMAIL=#{mEmail} and MEM_PWD=#{password}
 	</select>
     
 </mapper>

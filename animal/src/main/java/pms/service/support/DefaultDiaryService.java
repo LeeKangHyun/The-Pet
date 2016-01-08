@@ -30,11 +30,6 @@ public class DefaultDiaryService implements DiaryService {
 		return diaryDao.eventList();
   }
   
-  public List<Diary> getPetList(int mno) {
-		
-		return diaryDao.petList(1);
-  }
-  
   public void add(Diary diary) {
   	diaryDao.insert(diary);
   }

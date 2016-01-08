@@ -48,7 +48,7 @@
   color: #1a1f25;
 }
 
-.sub-btn[type="submit"] {
+#subBtn[type="button"] {
   background: #19d4cb;
   border: none;
   border-radius:8px;
@@ -60,7 +60,7 @@
   cursor: pointer;
 }
 
-.sub-btn:hover {
+#subBtn:hover {
     background: #29e4eb;
 }
 

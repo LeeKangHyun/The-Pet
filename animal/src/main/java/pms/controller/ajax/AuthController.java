@@ -52,6 +52,7 @@ public class AuthController {
     }
 
     session.setAttribute("loginUser", member);
+    System.out.println(member.getmName());
     return new AjaxResult("success", null);
   }
   

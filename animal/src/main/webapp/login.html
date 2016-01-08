@@ -79,20 +79,22 @@
       <form>
 
         <div class="group1">      
-          <input class="iput" type="text" required>
+          <input name="mEmail" id="mEmail" class="iput" type="text" required>
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label class="lname">Name</label>
+          <label class="lname">EMAIL</label>
         </div>
 
         <div class="group2">      
-          <input class="iput" type="password" required>
+          <input name="password" id="password" class="iput" type="password" required>
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label class="lname">Email</label>
+          <label class="lname">PASSWORD</label>
         </div>
-
-        <input class="sub-btn" type="submit" value="Sign in" />
+          
+        <input type="checkbox" name="saveEmail">
+          
+        <input type="button" id="subBtn" value="Sign in" />
 
       </form>
 
@@ -118,14 +120,23 @@
         
     </div>
   </section>
+<script>
+$('#subBtn').click(function(event) {
+	$.post(contextRoot + 'auth/ajax/login.do', {
+		mEmail: $('#mEmail').val(),
+	  password: $('#password').val()
 
-  <!--
-  <footer>
-    <p>
-      &copy;
-    </p>
-  </footer>
--->
+	}, function(resultObj) {
+		var ajaxResult = resultObj.ajaxResult;
+		if (ajaxResult.status == "success") {
+        alert("게시물 등록에 성공했습니다.")
+        location.href = "diary.html"
+    } else {
+      alert("게시물 등록에 실패했습니다.")
+    }
+	}, 'json');
+});
+</script>
 
 </body>
 

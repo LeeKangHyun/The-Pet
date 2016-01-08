@@ -10,8 +10,6 @@ public interface DiaryDao {
   
   List<Diary> selectList(Map<String,Object> paramMap);
   
-  List<Diary> petList(int mno);
-  
   int insert(Diary diary);
   
   int delete(int dno);

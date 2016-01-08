@@ -1,5 +1,7 @@
 package pms.service.support;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,10 @@ import pms.service.PetService;
 public class DefaultPetService implements PetService {
 	
 	@Autowired PetDao petDao;
+	
+	public List<Pet> getPetList(int mno) {	
+		return petDao.petList(mno);
+  }
 	
   public Pet getOnePet(int pno) {
 		return petDao.petSelectOne(pno);

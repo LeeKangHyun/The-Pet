@@ -16,6 +16,19 @@
 	<result column="MEDICINE" 		property="medicine"/>	
  </resultMap>
 
+ <select id="petList" resultMap="petMap" parameterType="int">
+  	select
+  		p1.pet_num as pno,
+  		p1.pet_name as pName,
+  		p1.pet_type as pType,
+  		p1.pet_img as pImg,
+  		p1.tag_color as tagColor,
+  		p1.injection as injection,
+  		p1.medicine as medicine
+  	from pet p1 left outer join member m1 on p1.mem_num = m1.mem_num
+  	where p1.mem_num=1
+  </select>
+ 
   <select id="petSelectOne" resultType="pet" parameterType="int">
     select * from pet where pno=#{pno}
   </select>

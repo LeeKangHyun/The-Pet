@@ -35,7 +35,7 @@ public class DiaryController {
 	public Object list(
 			int mno) throws Exception {
 
-		List<Diary> pets = diaryService.getPetList(mno);
+		List<Pet> pets = petService.getPetList(mno);
 		List<Diary> events = diaryService.getEventList();
 
 		HashMap<String,Object> resultMap = new HashMap<>();
