@@ -157,6 +157,22 @@
     });
   </script>
 
+  <script>
+      $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj){
+          var div = $('#user_info');
+          if (resultObj.User != null) {
+              div.append(
+              "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
+              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
+              "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
+              "<i class='fa fa-unlock fa-lg'></i></a>")
+          } else {
+              location.href = "login.html"
+          }
+       });
+  </script>
+
   <!-- 지도  -->
   <script type="text/javascript">
     function success(position) {
