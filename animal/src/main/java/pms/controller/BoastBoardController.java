@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.domain.Diary;
 import pms.service.BoastBoardService;
@@ -20,19 +19,17 @@ import pms.service.support.DefaultBoastBoardService;
 @RequestMapping("/BoastBoard/*")
 public class BoastBoardController { 
   private static Logger log = Logger.getLogger(DefaultBoastBoardService.class);
-	//public static final String SAVED_DIR = "/attachfile";
-	
-	@Autowired BoastBoardService boastboardService;
-	@Autowired ServletContext servletContext;
+  //public static final String SAVED_DIR = "/attachfile";
 
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String list(Model model) throws Exception {
-	  List<Diary> boastboards = boastboardService.selectList();
-		model.addAttribute("boastboards", boastboards);
-		
-		System.out.println(boastboards.size()); 
+  @Autowired BoastBoardService boastboardService;
+  @Autowired ServletContext servletContext;
 
-		return "BoastBoard/boastBoard";
-	}
-	
+  @RequestMapping(value="list", method=RequestMethod.GET)
+  public String list(Model model) throws Exception {
+    List<Diary> boastboards = boastboardService.selectList();
+    model.addAttribute("boastboards", boastboards);
+
+    return "BoastBoard/boastBoard";
+  }
+
 }
