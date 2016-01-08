@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.EducationDao">
+
+<resultMap type="education" id="educationMap">
+  <id column="EDU_NUM" property="eduNo" />
+  <result column="EDU_VIEWS" property="eduViews" />
+  <result column="EDU_CRE" property="eduCreateDate" />
+  <result column="EDU_TITLE" property="eduTitle" />
+  <result column="EDU_CONTENT" property="eduContent" />
+  <result column="EDU_TYPE" property="eduType" />
+  <association property="member" javaType="Member">
+    <id column="MEM_NUM" property="mno" />  
+    <result column="MEM_NAME" property="mName" />
+    <result column="MEM_EMAIL" property="mEmail" />
+    <result column="MEM_PWD" property="password" />
+    <result column="MEM_TEL" property="tel" />
+    <result column="MEM_IMG" property="mImg" />
+  </association>
+  <association property="files" javaType="Files">
+    <id column="FILE_NUM" property="fno" />
+    <result column="FILE_NAME" property="fileName" />
+    <result column="EDU_NUM" property="eduNo" />
+  </association>
+</resultMap>
+
+<select id="selectList" resultMap="educationMap" parameterMap="map">
+  select
+    eduNo, mno, eduViews, eduCreateDate, eduTitle, eduContent, eduType
+</select>
+
+</mapper>
