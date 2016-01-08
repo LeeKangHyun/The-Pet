@@ -18,6 +18,16 @@
   <result column="NOTI_VIEWS" property="view"/>
   <result column="NOTI_LIKES" property="like"/>
   <result column="TAG_COLOR" property="tagColor"/>
+  <association property="pet" javaType="Pet">
+    <id column="PET_NUM" property="pno"/>
+    <result column="PET_NAME" property="pName"/>
+    <result column="MEM_NUM" property="mno" />
+    <result column="PET_TYPE" property="pType"/>
+    <result column="PET_IMG" property="pImg"/>
+    <result column="TAG_COLOR" property="tagColor"/>
+    <result column="INJECTION" property="injection"/>
+    <result column="MEDICINE" property="medicine"/>
+  </association>
 </resultMap>
 
   <select id="eventList" resultMap="diaryMap">

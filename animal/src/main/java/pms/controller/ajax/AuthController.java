@@ -60,7 +60,7 @@ public class AuthController {
   public String logout(HttpSession session) {
     
     session.invalidate();
-    return "redirect:../../login.html";
+    return "login.html";
   }
 }
 

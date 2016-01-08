@@ -1,11 +1,8 @@
 package pms.controller.ajax;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -15,10 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
@@ -49,30 +42,12 @@ public class DiaryController {
 		 
 		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
-		List<Diary> events = diaryService.getEventList();	
-		
-		List dummyDate = new ArrayList();
-		Map<String, Object> m;
-		for (Diary d: events) {
-			m = new HashMap<String, Object>();
-			m.put("no", d.getDno());
-			m.put("start", d.getStartDate());
-			m.put("end", d.getEndDate());
-			m.put("title", d.getTitle());
-			m.put("description", d.getContent());
-			m.put("hide", d.isDhide());
-			m.put("color", d.getTagColor());
-			dummyDate.add(m);
-		}
-		
-		ObjectMapper om = new ObjectMapper();
-		
-		System.out.println(dummyDate);
-		
+		List<Diary> events = diaryService.getEventList();
+
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("pets", pets);
-		resultMap.put("events", dummyDate);
+		resultMap.put("events", events);
 		resultMap.put("User", member);
 		
 		return resultMap;
