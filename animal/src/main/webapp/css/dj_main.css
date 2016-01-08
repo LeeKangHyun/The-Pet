@@ -1,22 +1,16 @@
 .m_content {
-    margin-left: 220px;
-    margin-top: 43px;
-    float: left;
+    position: relative;
+    top: 47px;
+    margin: 0 auto;
     width: 1024px;
-    height: 768;
+    text-align: center;
     overflow: hidden;
 }
 
 .m_img {
     width: 1024px;
-    height: 768px;
+    height: auto;
 }
-
-/*
-div {
-    border : 1px solid red;
-}
-*/
 
 .m_boast {
     padding-top: 10px;
