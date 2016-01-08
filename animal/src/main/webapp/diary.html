@@ -273,19 +273,45 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-    $.getJSON('diary/ajax/list.do?mno=4',
+    $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj){
+        console.log(resultObj.User.mno);
+        
+        $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
       function(resultObj) {
-        var sel = $("#combobox");
-        console.log(resultObj.pets.data);
+        var table = $('#diary-pet-info');
+        console.log(resultObj.pets);
         for (var pet of resultObj.pets) {
-          sel.append("<option value='" + pet.pno + "'>" + pet.pName +
-            "</option>")
+          table
+            .append("<table class='innerTable' border='0'>" +
+              "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
+              "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" + pet.pName+ "' disabled></td></tr>" +
+              "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" + pet.tagColor + "' disabled></td></tr>" +
+              "</table>")
         }
       });
+        
+    });
   </script>
 
   <script>
-    $.getJSON('diary/ajax/list.do?mno=4',
+    $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj){
+        console.log(resultObj.User.mno);
+        $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
+          function(resultObj) {
+            var sel = $("#combobox");
+            for (var pet of resultObj.pets) {
+              sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+                "</option>")
+            }
+        });
+    });
+  </script>
+
+<!--
+  <script>
+    $.getJSON('diary/ajax/list.do?mno=1',
       function(resultObj) {
         var table = $('#diary-pet-info');
         console.log(resultObj.pets);
@@ -299,7 +325,8 @@
         }
       });
   </script>
-
+-->
+    
   <script>
     $(document).ready(function() {
 

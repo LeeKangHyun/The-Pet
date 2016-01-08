@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
 import pms.domain.Files;
+import pms.domain.Member;
 import pms.domain.Pet;
 import pms.service.DiaryService;
 import pms.service.FilesService;
@@ -33,37 +35,22 @@ public class DiaryController {
 
 	@RequestMapping("list")
 	public Object list(
-			int mno) throws Exception {
-
+			int mno,
+			Member member,
+			HttpSession session
+			) throws Exception {
+		
+		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
 		List<Diary> events = diaryService.getEventList();
 
 		HashMap<String,Object> resultMap = new HashMap<>();
-//		ModelAndView mav = new ModelAndView();
 		resultMap.put("status", "success");
 		resultMap.put("pets", pets);
-//		try {
-//			if(events!=null) {
-//				for (int i=0; i<=events.size(); i++) {
-//					resultMap.put("id", events.get(i).getDno());
-//					resultMap.put("start", events.get(i).getStartDate());
-//					resultMap.put("end", events.get(i).getEndDate());
-//					resultMap.put("title", events.get(i).getTitle());
-//					resultMap.put("content", events.get(i).getContent());
-//					resultMap.put("hide", events.get(i).isDhide());
-//					resultMap.put("color", events.get(i).getTagColor());
-//					
-//				}
-//				mav.addObject("data", resultMap);
-//				mav.setViewName("jsonView");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		resultMap.put("events", events);
+		resultMap.put("User", member);
 		
 		return resultMap;
-		//return mav;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
