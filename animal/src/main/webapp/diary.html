@@ -37,7 +37,7 @@
   <header>
     <div id="header_title">
       <a class="headerTitle" href="pet.html">THE PET</a>
-      <div class="user_info">
+      <div id="user_info">
 <!--
         <img src="images/p3.jpeg" id="userImg" />
         <a class="userName" href="#">설현</a>
@@ -294,16 +294,16 @@
           }
        });
   </script>
-    
+
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        
+
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var table = $('#diary-pet-info');
-           
+
             for (var pet of resultObj.pets) {
               table.append(
                 "<table class='innerTable' border='0'>" +
@@ -317,7 +317,7 @@
 
             }
         });
-        
+
     });
   </script>
 
@@ -325,7 +325,7 @@
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-        
+
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -336,7 +336,7 @@
         });
     });
   </script>
-    
+
   <script>
     $(document).ready(function() {
 
@@ -358,7 +358,7 @@
           eventLimit: true, // allow "more" link when too many events
 
           events: []
-          
+
           ,
 
           timeFormat: 'H:mm',
