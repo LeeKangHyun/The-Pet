@@ -38,7 +38,7 @@
     <div id="header_title">
       <a class="headerTitle" href="pet.html">THE PET</a>
       <div id="user_info">
-<!--
+        <!--
         <img src="images/p3.jpeg" id="userImg" />
         <a class="userName" href="#">설현</a>
         <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
@@ -293,32 +293,33 @@
           }
        }
   </script>
-    
+
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
-        function(resultObj){
 
+        function(resultObj){
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var table = $('#diary-pet-info');
 
             for (var pet of resultObj.pets) {
               table.append(
-                  "<table class='innerTable' border='0'>" +
-                  "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
-                  "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +                       pet.pName+ "' disabled></td></tr>" +
-                  "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +                   pet.tagColor + "' disabled></td></tr>" +
-                  "</table>")
+                "<table class='innerTable' border='0'>" +
+                "<tr><td rowspan='2'><img class='mImg' src='images/" +
+                pet.pImg + "'></td>" +
+                "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
+                pet.pName + "' disabled></td></tr>" +
+                "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
+                pet.tagColor + "' disabled></td></tr>" +
+                "</table>")
             }
-        });
-
+          });
     }
   </script>
 
-<!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
+  <!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
   <script>
         function(resultObj){
-
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -350,13 +351,8 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events:
-          
-              function(resultObj){
-                    console.log(resultObj.events)
-              }
-          
-          ,
+          events: {
+          },
           timeFormat: 'H:mm',
           eventClick: function(event, jsEvent, view) {
             if (event.end) {
