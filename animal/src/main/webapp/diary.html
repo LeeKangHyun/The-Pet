@@ -37,13 +37,13 @@
   <header>
     <div id="header_title">
       <a class="headerTitle" href="pet.html">THE PET</a>
-<!--
       <div class="user_info">
+<!--
         <img src="images/p3.jpeg" id="userImg" />
         <a class="userName" href="#">설현</a>
         <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
-      </div>
 -->
+      </div>
     </div>
   </header>
 
@@ -278,18 +278,17 @@
     </div>
   </div>
   <!-- //게시글 추가 모달 -->
-
+  <!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
   <script>
       $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
-          var div = $('#header_title');
+          var div = $('#user_info');
           if (resultObj.User != null) {
               div.append(
-              "<div class='user_info'>" +
               "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
-              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>"
-              "<a class='logout' href='login.html'><i class='fa fa-unlock fa-lg'></i></a>"
-              "</div>")
+              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
+              "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
+              "<i class='fa fa-unlock fa-lg'></i></a>")
           } else {
               location.href = "login.html"
           }
@@ -307,13 +306,17 @@
            
             for (var pet of resultObj.pets) {
               table.append(
-                  "<table class='innerTable' border='0'>" +
-                  "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
-                  "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +                       pet.pName+ "' disabled></td></tr>" +
-                  "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +                   pet.tagColor + "' disabled></td></tr>" +
-                  "</table>")
+                "<table class='innerTable' border='0'>" +
+                "<tr><td rowspan='2'><img class='mImg' src='images/" +
+                pet.pImg + "'></td>" +
+                "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
+                pet.pName + "' disabled></td></tr>" +
+                "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
+                pet.tagColor + "' disabled></td></tr>" +
+                "</table>")
+
             }
-        })
+        });
         
     });
   </script>
@@ -330,7 +333,7 @@
               sel.append("<option value='" + pet.pno + "'>" + pet.pName +
                 "</option>")
             }
-        })
+        });
     });
   </script>
     
@@ -354,43 +357,9 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events: [{
-            title: '쉬는날',
-            start: '2016-01-09T00:00:00',
-            end: '2016-01-16T00:00:00',
-            color: '#fff000', // yellow
-            description: "쉬는날이다."
-          }, {
-            title: '휴가',
-            start: '2016-01-07T16:00:00',
-            end: '2016-01-15T16:00:00',
-            color: '#ff0000', //red
-            description: "휴가가자"
-          }, {
-            title: '미팅',
-            start: '2016-01-09T16:00:00',
-            end: '2016-01-10T16:00:00',
-            color: '#ff8000', // orange
-            description: "미팅이다"
-          }, {
-            title: '컨퍼런스',
-            start: '2016-01-11T00:00:00',
-            end: '2016-01-13T14:00:00',
-            color: '#0000ff', // blue
-            description: "컨퍼런스다"
-          }, {
-            title: '미팅',
-            start: '2016-01-12T10:30:00',
-            end: '2016-01-16T12:30:00',
-            color: '#ff8000', // orange
-            description: "미팅하는날"
-          }, {
-            title: '생일 파티',
-            start: '2016-01-13T07:00:00',
-            end: '2016-01-13T07:00:00',
-            color: '#0000ff', // blue
-            description: "생일 파티다"
-          }],
+          events: []
+          
+          ,
 
           timeFormat: 'H:mm',
           eventClick: function(event, jsEvent, view) {
