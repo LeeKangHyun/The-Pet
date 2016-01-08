@@ -73,78 +73,12 @@
           <a class="btn btn-default" id="petadd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
           <a class="btn btn-default" id="txtadd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
         </div>
-        <table class="innerTable" border="0">
-          <tr>
-            <td rowspan="2">
-              <img class="mImg" src="images/p1.jpeg">
-            </td>
-            <td>
-              <label class="pName">이름 : </label>
-              <input class='petName' type="text" value="이성경" disabled>
-            </td>
-          </tr>
-          <tr>
-            <!-- 색상 값 value는 hex 값으로만 적용된다. -->
-            <td>
-              <span class="pInfo">태그색 : </span>
-              <input class="pColor" type="color" value="#ff0000" disabled>
-            </td>
-          </tr>
-        </table>
-
-        <table class="innerTable" border="0">
-          <tr>
-            <td rowspan="2">
-              <img class="mImg" src="images/p1.jpeg">
-            </td>
-            <td>
-              <label class="pName">이름 : </label>
-              <input class='petName' type="text" value="이성경" disabled>
-            </td>
-          </tr>
-          <tr>
-            <!-- 색상 값 value는 hex 값으로만 적용된다. -->
-            <td>
-              <span class="pInfo">태그색 : </span>
-              <input class="pColor" type="color" value="#ff0000" disabled>
-            </td>
-          </tr>
-        </table>
-
-        <table class="innerTable" border="0">
-          <tr>
-            <td rowspan="2">
-              <img class="mImg" src="images/p1.jpeg">
-            </td>
-            <td>
-              <label class="pName">이름 : </label>
-              <input class='petName' type="text" value="이성경" disabled>
-            </td>
-          </tr>
-          <tr>
-            <!-- 색상 값 value는 hex 값으로만 적용된다. -->
-            <td>
-              <span class="pInfo">태그색 : </span>
-              <input class="pColor" type="color" value="#ff0000" disabled>
-            </td>
-          </tr>
-        </table>
-
       </div>
-
 
       <div id="calendar"></div>
 
     </div>
   </section>
-
-  <!--
-  <footer>
-    <p>
-      &copy;
-    </p>
-  </footer>
--->
 
   <div id="fullCalModal" class="modal fade">
     <div class="modal-dialog">
@@ -339,14 +273,31 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-    $.getJSON('diary/ajax/list.do?mno=1',
+    $.getJSON('diary/ajax/list.do?mno=4',
       function(resultObj) {
         var sel = $("#combobox");
+        console.log(resultObj.pets.data);
+        for (var pet of resultObj.pets) {
+          sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+            "</option>")
+        }
+      });
+  </script>
+
+  <script>
+    $.getJSON('diary/ajax/list.do?mno=4',
+      function(resultObj) {
+        var table = $('#diary-pet-info');
         console.log(resultObj.pets);
         for (var pet of resultObj.pets) {
-          sel.append("<option value='" + pet.PET_NUM + "'>" + pet.PET_NAME + "</option>")
+          table
+            .append("<table class='innerTable' border='0'>" +
+              "<tr><td rowspan='2'><img class='mImg' src='images/" + pet.pImg + "'></td>" +
+              "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" + pet.pName+ "' disabled></td></tr>" +
+              "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" + pet.tagColor + "' disabled></td></tr>" +
+              "</table>")
         }
-      }); 
+      });
   </script>
 
   <script>

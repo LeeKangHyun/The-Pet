@@ -26,7 +26,7 @@
   		p1.injection as injection,
   		p1.medicine as medicine
   	from pet p1 left outer join member m1 on p1.mem_num = m1.mem_num
-  	where p1.mem_num=1
+  	where p1.mem_num=#{value}
   </select>
  
   <select id="petSelectOne" resultMap="petMap" parameterType="int">
