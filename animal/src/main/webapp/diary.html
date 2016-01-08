@@ -280,7 +280,6 @@
   <!-- //게시글 추가 모달 -->
 
   <script>
-      $.getJSON('diary/ajax/list.do?mno=1',
         function(resultObj){
           var div = $('#user_info');
           if (resultObj.User != null) {
@@ -292,12 +291,11 @@
           } else {
               location.href = "login.html"
           }
-       });
+       }
   </script>
     
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
-    $.getJSON('diary/ajax/list.do?mno=1',
         function(resultObj){
 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
@@ -314,12 +312,11 @@
             }
         });
 
-    });
+    }
   </script>
 
 <!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
   <script>
-    $.getJSON('diary/ajax/list.do?mno=0',
         function(resultObj){
 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
@@ -330,7 +327,7 @@
                 "</option>")
             }
         });
-    });
+    }
   </script>
 
   <script>
