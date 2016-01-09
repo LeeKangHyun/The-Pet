@@ -1,11 +1,4 @@
-{
-    "commonVO": {
-        "pageSize": "15",
-        "page": "1",
-        "totalPage": "0",
-        "totalCnt": "0"
-    },
-    "jsonTxt": {
+[{
     "allDay": "true",
     "editable": "false",
     "end": "2016-01-25",
@@ -13,5 +6,4 @@
     "start": "2016-01-21",
     "title": "test2",
     "color": "#000"
-  }
-}
+}]

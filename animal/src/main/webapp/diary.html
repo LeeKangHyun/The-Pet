@@ -38,7 +38,7 @@
     <div id="header_title">
       <a class="headerTitle" href="pet.html">THE PET</a>
       <div id="user_info">
-<!--
+        <!--
         <img src="images/p3.jpeg" id="userImg" />
         <a class="userName" href="#">설현</a>
         <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
@@ -114,7 +114,7 @@
           <textarea id="mDes" class="form-control" rows="5"></textarea>
           <br>
           <span>이미지 : </span>
-          <img src="images/p5.jpeg" width="100%" height="auto">
+          <img src="" width="100%" height="auto">
           <br>
           <input type="file" id="mFile">
           <input type="hidden" value="p5.jpeg">
@@ -280,25 +280,25 @@
   <!-- //게시글 추가 모달 -->
   <!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
   <script>
-      $.getJSON('diary/ajax/list.do?mno=0',
-        function(resultObj){
-          var div = $('#user_info');
-          if (resultObj.User != null) {
-              div.append(
-              "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
-              "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
-              "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
-              "<i class='fa fa-unlock fa-lg'></i></a>")
-          } else {
-              location.href = "login.html"
-          }
-       });
+    $.getJSON('diary/ajax/list.do?mno=0',
+      function(resultObj) {
+        var div = $('#user_info');
+        if (resultObj.User != null) {
+          div.append(
+            "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
+            "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
+            "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
+            "<i class='fa fa-unlock fa-lg'></i></a>")
+        } else {
+          location.href = "login.html"
+        }
+      });
   </script>
 
   <!-- 로그인한 회원의 펫 보여주는것 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
-        function(resultObj){
+      function(resultObj) {
 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
@@ -316,15 +316,15 @@
                 "</table>")
 
             }
-        });
+          });
 
-    });
+      });
   </script>
 
-<!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
+  <!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
-        function(resultObj){
+      function(resultObj) {
 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
@@ -333,29 +333,29 @@
               sel.append("<option value='" + pet.pno + "'>" + pet.pName +
                 "</option>")
             }
-        });
-    });
+          });
+      });
   </script>
 
   <script>
     var jsn;
     $(document).ready(function() {
 
-        
+
       $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
       });
 
       $.getJSON('diary/ajax/list.do?mno=0',
-            function(resultObj){
+        function(resultObj) {
 
-            $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
-              function(resultObj) {
-                console.log(resultObj.events);
-                jsn = resultObj.events;
+          $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
+            function(resultObj) {
+              var ev = resultObj.events[0];
             })
-        })
-      
+
+        });
+
       function renderCalendar() {
         $('#calendar').fullCalendar({
           header: {
@@ -369,11 +369,10 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events: 
-            jsn
-          ,
+          events: 'cal.json',
 
           timeFormat: 'H:mm',
+
           eventClick: function(event, jsEvent, view) {
             if (event.end) {
               $('#modalTitle').html(event.title);
