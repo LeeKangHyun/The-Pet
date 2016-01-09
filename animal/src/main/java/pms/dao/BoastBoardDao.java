@@ -5,7 +5,10 @@ import java.util.List;
 import pms.domain.Diary;
 
 public interface BoastBoardDao {
+  
   List<Diary> selectList();
+  
+  Diary selectOne(int dno);
   
 }
 

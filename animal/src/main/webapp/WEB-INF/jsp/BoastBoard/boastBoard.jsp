@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Slid Menu</title>
+<title>자랑하기</title>
 <!--  내가만든 css들  -->
 <link href="../css/sh_slidmenu_header.css" type="text/css"
 	rel="stylesheet" />
@@ -83,12 +83,12 @@
 									<img alt="" src="../images/h1.jpg" width="325px;"
 										height="410px;" />
 								</div>
-								<a href="#" class="overlay"> </a> <a href="#"> <i
+								<a href="" class="overlay"> </a> <a href="#"> <i
 									class="fa fa-camera-retro"></i>
 								</a> <a class="thumb" href="#"></a>
 								<div class="info">
 									<h2>
-										<a href="#">사진 테스트 중, 어떤가요??? </a>
+										<a href="#3">사진 테스트 중, 어떤가요??? </a>
 									</h2>
 									<div class="foot">
 										<i class="line"></i> <span class="date">2016.01.06</span>
@@ -178,7 +178,7 @@
 											<img alt="" src="../images/${boastboard.fileName}" width="325px;"
 												height="410px;" />
 										</div>
-										<a href="#" class="overlay"> </a> <a href="#"> <i
+										<a href="detail.do?dno=${boastboard.dno}" class="overlay"> </a> <a href="#"> <i
 											class="fa fa-camera-retro"></i>
 										</a> <a class="thumb" href="#"></a>
 										<div class="infosub">

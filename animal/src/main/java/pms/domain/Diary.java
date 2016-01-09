@@ -18,6 +18,7 @@ public class Diary  implements Serializable {
   protected int view;         // 조회수    default=0
   protected int like;         // 좋아요수  default=0
   protected String tagColor;  // 태그색
+  protected String filename; //파일이름 (자랑하기 게시판 사용 by.JH)
 
   public Diary() {}
 

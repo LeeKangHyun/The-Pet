@@ -22,13 +22,10 @@
   
   <select id="selectList" resultMap="diaryMap">
     select
-      sc.SCH_NUM, 
-      sc.PET_NUM, 
+      sc.SCH_NUM,
       sc.SCH_CRE, 
       sc.SCH_TITLE, 
-      sc.SCH_CONTENT, 
       sc.CATE_CODE,
-      sc.NOTI_VIEWS, 
       sc.NOTI_LIKES,
       fi.FILE_NAME
     from schedule sc 
@@ -36,10 +33,20 @@
     where CATE_CODE='JARANG' and NOTI_HIDE=1
   </select>
   
+  
+    <select id="selectOne" resultMap="diaryMap" parameterType="int">
+    select
+      sc.SCH_NUM,
+      sc.SCH_CRE, 
+      sc.SCH_TITLE,
+      sc.SCH_CONTENT,
+      sc.CATE_CODE,
+      sc.NOTI_LIKES,
+      sc.NOTI_VIEWS,
+      fi.FILE_NAME
+    from schedule sc
+    left outer join file fi on sc.SCH_NUM = fi.SCH_NUM
+    where sc.CATE_CODE='JARANG' and sc.NOTI_HIDE=1 and sc.SCH_NUM = #{dno}
+  </select>
+  
 </mapper>
-
-
-
-
-
-

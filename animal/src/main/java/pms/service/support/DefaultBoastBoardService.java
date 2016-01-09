@@ -13,19 +13,18 @@ import pms.service.BoastBoardService;
 
 @Service
 public class DefaultBoastBoardService implements BoastBoardService {
-	private static Logger log = Logger.getLogger(DefaultBoastBoardService.class);
+  private static Logger log = Logger.getLogger(DefaultBoastBoardService.class);
  
-	@Autowired BoastBoardDao boastboardDao;
+  @Autowired BoastBoardDao boastboardDao;
 
-	
-	public List<Diary> selectList() {
+  
+  public List<Diary> selectList() {
     return boastboardDao.selectList();
-	}
-
-
-
-
-
+  }
+  
+  public Diary selectOne(int dno) {
+    return boastboardDao.selectOne(dno);
+  }
 
 }
 
