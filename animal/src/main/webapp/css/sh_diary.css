@@ -111,3 +111,8 @@
     background-color: #fff;
 /*    border: 1px solid black;*/
 }
+
+.box {
+    margin-left: 100px;
+    width: 400px;
+}

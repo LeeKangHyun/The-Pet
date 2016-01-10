@@ -15,7 +15,7 @@ public class DefaultMemberService implements MemberService {
 	
 	@Autowired MemberDao memberDao;
 	
-	public List<Member> getStudentList() {
+	public List<Member> getMemberList() {
 		return memberDao.selectList();
   }
 

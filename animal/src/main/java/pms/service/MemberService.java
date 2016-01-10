@@ -8,7 +8,7 @@ import pms.domain.Member;
 
 public interface MemberService {
 	
-	List<Member> getStudentList();
+	List<Member> getMemberList();
   void register(Member member);
   int remove(String mEmail);
   int change(Member member);
