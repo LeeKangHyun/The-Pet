@@ -14,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
 import pms.domain.Member;
-import pms.service.FilesService;
 import pms.service.MemberService;
-import pms.service.PetService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.MemeberController")
@@ -25,8 +23,6 @@ public class MemberController {
 	public static final String SAVED_DIR = "/files";
 	
 	@Autowired MemberService memberService;
-	@Autowired PetService petService;
-	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
 
 	@RequestMapping("list")

@@ -46,7 +46,7 @@
   color: #1a1f25;
 }
 
-#subBtn[type="button"] {
+#loginBtn[type="button"] {
   background: #19d4cb;
   border: none;
   border-radius:8px;
@@ -60,7 +60,7 @@
     bottom: 35px;
 }
 
-#subBtn:hover {
+#loginBtn:hover {
     background: #29e4eb;
 }
 

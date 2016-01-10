@@ -25,7 +25,9 @@
       })
       (document,window,0);
   </script>
-  <script src="/js/jquery.form.js"></script>
+    
+<!--  <script src="js/jquery.cookie.js"></script>-->
+  
   <!-- 캘린더 스크립트 -->
   <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
   <script src='lib/jquery/jquery.min.js'></script>
@@ -34,6 +36,7 @@
   <!--[if IE]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+    
 </head>
 <body>
 <!--<body style="background-color:black;">-->
@@ -88,14 +91,14 @@
       <form>
 
         <div class="group1">      
-          <input name="lmEmail" id="lmEmail" class="iput" type="text" required>
+          <input name="mEmail" id="lmEmail" class="iput" type="text" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label class="lname">EMAIL</label>
         </div>
 
         <div class="group2">      
-          <input name="lpassword" id="lpassword" class="iput" type="password" required>
+          <input name="password" id="lpassword" class="iput" type="password" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label class="lname">PASSWORD</label>
@@ -104,15 +107,15 @@
         <div class="saveEmail">Remember me</div>
           
         <div class="switch">
-            <input type="checkbox" name="lsaveEmail" id="saveEmail">
-            <label>
+            <input type="checkbox" name="saveEmail" id="lsaveEmail">
+            <label for="saveEmail">
                 <span class="fa fa-check"></span>
                 <span class="fa fa-times"></span>
                 <div></div>
             </label>
         </div>
           
-        <input type="button" id="subBtn" value="로그인" />
+        <input type="button" id="loginBtn" value="로그인" />
 
       </form>
 
@@ -155,7 +158,7 @@
 
 <div class="modal-body">
 
-    <form id="ajaxform" action="member/ajax/add.do" method="post" enctype="multipart/form-data">
+    <form action="member/ajax/add.do" method="post" enctype="multipart/form-data">
       <div class="panel panel-default">
 
         <div class="panel-body">
@@ -188,8 +191,8 @@
           </div>
             
           <div class="box">
-					  <input type="file" name="mImg" id="mImg" class="inputfile inputfile-1" />
-					  <label for="mImg">
+					  <input type="file" name="mImg" id="file-1" class="inputfile inputfile-1" />
+					  <label for="file-1">
 						  <i class="fa fa-upload"></i>
 				      <span>프로필 이미지 추가</span>
 					  </label>
@@ -213,49 +216,27 @@
     
 <!-- 파일 업로드 파일 이름뜨는부분 -->
 <script src="js/sh_custom-file-input.js"></script>
-    
+
 <!--  로그인 스크립트  -->
 <script>
-$('#subBtn').click(function(event) {
+$('#loginBtn').click(function(event) {
 	$.post('auth/ajax/login.do', {
 		mEmail: $('#lmEmail').val(),
 	  password: $('#lpassword').val(),
     saveEmail: $('#lsaveEmail').val()
- 
+
 	}, function(resultObj) {
-		var ajaxResult = resultObj.ajaxResult;
+    var ajaxResult = resultObj.ajaxResult;
 		if (ajaxResult.status == "success") {
         alert("로그인에 성공했습니다.")
         location.href = "diary.html"
     } else {
       alert("로그인에 실패했습니다.")
-      
     }
 	}, 'json');
 });
 </script>
     
-<!--  회원가입 버튼  -->
-<script>
-$(function(){
-    //폼전송
-    $('#ajaxform').ajaxForm({
-        //보내기전 validation check가 필요할경우
-        beforeSubmit: function (data, frm, opt) {
-            alert("전송전!!");
-            return true;
-        },
-        //submit이후의 처리
-        success: function(responseText, statusText){
-            alert("전송성공!!");
-        },
-        //ajax error
-        error: function(){
-            alert("에러발생!!");
-        }                               
-    });
-});
-</script>
     
 <!--  비밀번호 확인  -->
 <script>   
