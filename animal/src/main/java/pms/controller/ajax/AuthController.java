@@ -20,11 +20,6 @@ public class AuthController {
 	
   @Autowired MemberService memberService;
   @Autowired ServletContext servletContext;
-
-  @RequestMapping(value="login", method=RequestMethod.GET)
-  public String loginform() {
-  	return "login.html";
-  }
   
   @RequestMapping(value="login", method=RequestMethod.POST)
   public AjaxResult login(

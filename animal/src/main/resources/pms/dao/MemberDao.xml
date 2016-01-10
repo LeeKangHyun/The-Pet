@@ -27,7 +27,7 @@
 	
 	<insert id="insert" parameterType="member">
 		insert into member(MEM_NAME,MEM_EMAIL,MEM_TEL,MEM_IMG,MEM_PWD)
-		values(#{mName},#{mEmail},#{tel},#{mImg},sha1(#{password}))
+		values(#{mName},#{mEmail},#{tel},#{mImg},#{password})
 	</insert>
 	
 	<delete id="delete" parameterType="int">

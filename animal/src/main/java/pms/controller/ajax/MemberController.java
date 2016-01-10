@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,16 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
-import pms.domain.Diary;
-import pms.domain.Files;
 import pms.domain.Member;
-import pms.domain.Pet;
 import pms.service.FilesService;
 import pms.service.MemberService;
 import pms.service.PetService;
 import pms.util.MultipartHelper;
 
-@Controller("ajax.DiaryController")
+@Controller("ajax.MemeberController")
 @RequestMapping("/member/ajax/*")
 public class MemberController { 
 	public static final String SAVED_DIR = "/files";

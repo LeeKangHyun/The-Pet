@@ -13,7 +13,6 @@ public class Member implements Serializable {
 	protected String tel; 			 // 회원 전화번호
 	protected String mImg;		 // 회원 이미지 정보
 	
-	protected Education education; // 교육 테이블 참조.
 	public Member() {}
 
 	public int getMno() {
