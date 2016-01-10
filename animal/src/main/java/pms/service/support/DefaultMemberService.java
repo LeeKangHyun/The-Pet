@@ -23,16 +23,16 @@ public class DefaultMemberService implements MemberService {
   	memberDao.insert(member);
   }
 
-  public int remove(String mEmail) {
-  	return memberDao.delete(mEmail);
+  public int remove(int mno) {
+  	return memberDao.delete(mno);
   }
   
   public int change(Member member) {
   	return memberDao.update(member);
   }
 
-  public Member oneMember(String mEmail) {
-  	return memberDao.selectOne(mEmail);
+  public Member oneMember(int mno) {
+  	return memberDao.selectOne(mno);
   }
 
   public Member login(String mEmail, String password) {

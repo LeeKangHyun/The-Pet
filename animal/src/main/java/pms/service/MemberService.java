@@ -10,9 +10,9 @@ public interface MemberService {
 	
 	List<Member> getMemberList();
   void register(Member member);
-  int remove(String mEmail);
+  int remove(int mno);
   int change(Member member);
-  Member oneMember(String mEmail);
+  Member oneMember(int mno);
   Member login(String mEmail, String password);
 
 }

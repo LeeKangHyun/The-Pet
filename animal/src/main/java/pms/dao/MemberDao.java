@@ -10,11 +10,11 @@ public interface MemberDao {
 
   int insert(Member member);
 
-  int delete(String mEmail);
+  int delete(int mno);
   
   int update(Member member);
 
-  Member selectOne(String mEmail);
+  Member selectOne(int mno);
 
   Member selectOneByEmailPassword(Map<String,Object> paramMap);
 }

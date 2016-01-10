@@ -47,24 +47,7 @@ public class MemberController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
-			Member member) throws Exception {
-
-		memberService.register(member);
-
-		return new AjaxResult("success", null);
-	}
-
-	@RequestMapping("detail")
-	public Object detail(int pno) throws Exception {
-
-		Pet pet = petService.getOnePet(pno);
-		return new AjaxResult("success", pet);
-	}
-
-	@RequestMapping(value="update", method=RequestMethod.POST)
-	public AjaxResult update(
-			Diary diary,
-			Files files,
+			Member member,
 			MultipartFile file) throws Exception {
 
 		if (file.getSize() > 0) {
@@ -72,14 +55,35 @@ public class MemberController {
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
 																	+ "/" + newFileName);
 			file.transferTo(attachfile);
-			// 파일 만들어야 쓸수있겠군
-			files.setFileName(newFileName);
-			
-		}	else if (files.getFileName().length() == 0) {
-			files.setFileName(null);
+			member.setmImg(newFileName);
 		}
+		memberService.register(member);
+		return new AjaxResult("success", null);
+	}
 
-		if (diaryService.change(diary) <= 0 || filesService.change(files) <= 0) {
+	@RequestMapping("detail")
+	public Object detail(int mno) throws Exception {
+
+		Member member = memberService.oneMember(mno);
+		return new AjaxResult("success", member);
+	}
+
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public AjaxResult update(
+			Member member,
+			MultipartFile file) throws Exception {
+
+		if (file.getSize() > 0) {
+			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+																	+ "/" + newFileName);
+			file.transferTo(attachfile);
+			member.setmImg(newFileName);
+		}	else if (member.getmImg().length() == 0) {
+			member.setmImg(null);
+		}
+		
+		if (memberService.change(member) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
 		
@@ -88,12 +92,11 @@ public class MemberController {
 
 	@RequestMapping("delete")
 	public AjaxResult delete(
-			int dno) throws Exception {
+			int mno) throws Exception {
 
-		if (diaryService.remove(dno) <= 0) {
+		if (memberService.remove(mno) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
-		filesService.removeDairyFile(dno);
 		return new AjaxResult("success", null);
 	}
 
