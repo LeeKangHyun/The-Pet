@@ -25,58 +25,9 @@
   <div id="calendar" style="width: 1024px; margin: 0 auto;"></div>
 
   <script>
-    // $(document).ready(function() {
-    //   displayLoading(true);
-    //   $.ajax({
-    //
-    //     type: "POST",
-    //     url: "./cal.json",
-    //     dataType: "json",
-    //     contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-    //     error: function(request, status, error) {
-    //       alert("code:" + request.status + "\r\nmessage: " + request.responseText);
-    //     },
-    //     success: function(data) {
-    //       setCalendar(data.data);
-    //       displayLoading(false);
-    //     }
-    //   });
-    // });
-    //
-    // function setCalendar(data) {
-    //   var data = new Date();
-    //   var d = date.getDate();
-    //   var m = date.getMonth();
-    //   var y = date.getFullYear();
-    //   var jsonData = JSON.stringfy(data).replace(/\"/gi, "");
-    //
-    //   $('#calendar').fullCalendar({
-    //     header: {
-    //       left: 'prevYear',
-    //       center: 'prev title next',
-    //       right: 'nextYear',
-    //     },
-    //     theme: false, // false : 태마 적용 안함
-    //     fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-    //     weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-    //     editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-    //     eventLimit: true, // allow "more" link when too many events
-    //     timeFormat: 'H:mm'
-    //   });
-    //
-    // });
     $(document).ready(function() {
       $('#calendar').fullCalendar({
-        events: function(start, end, callback) {
-          $.ajax({
-            url: '/cal.json',
-            dataType: 'json',
-            success: function(data, text, request) {
-              var events = eval(data.jsonTxt);
-              callback(events);
-            }
-          });
-        }
+        events: 'cal.json'
       });
     });
   </script>
