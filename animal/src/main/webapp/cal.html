@@ -55,22 +55,12 @@
             url: 'diary/ajax/events.do',
             dataType: 'json',
             data: {
-              mno: "1"
+              mno: "2"
             },
             type: "get",
             success: function(doc) {
-              var events = [];
-              var dos = $(doc).find('events');
-              console.log(dos);
-              $(doc).find('events').each(function() {
-                events.push({
-                  title: $(this).attr('title'),
-                  start: $(this).attr('start'),
-                  end: $(this).attr('end'),
-                  color: $(this).attr('color')
-                });
-              });
-              callback(events);
+              var event = eval(doc.events);
+              callback(event);
             }
           });
         }
