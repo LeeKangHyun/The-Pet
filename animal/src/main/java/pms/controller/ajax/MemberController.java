@@ -37,18 +37,31 @@ public class MemberController {
 		return resultMap;
 	}
 	
+	@RequestMapping("checkEmail")
+	public Object checkEmail(String mEmail) throws Exception {
+
+		Member member = memberService.checkEmail(mEmail);
+		System.out.println(member);
+		if (member == null) {
+			return new AjaxResult("failure", null);
+		} 
+		return new AjaxResult("success", member);
+	}
+	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
-			Member member,
-			MultipartFile file) throws Exception {
+			Member member
+//			,
+//			MultipartFile file
+			) throws Exception {
 
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																	+ "/" + newFileName);
-			file.transferTo(attachfile);
-			member.setmImg(newFileName);
-		}
+//		if (file.getSize() > 0) {
+//			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+//			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+//																	+ "/" + newFileName);
+//			file.transferTo(attachfile);
+//			member.setmImg(newFileName);
+//		}
 		memberService.register(member);
 		return new AjaxResult("success", null);
 	}

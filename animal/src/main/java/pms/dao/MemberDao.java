@@ -14,6 +14,8 @@ public interface MemberDao {
   
   int update(Member member);
 
+  Member selectEmail(String mEmail);
+  
   Member selectOne(int mno);
 
   Member selectOneByEmailPassword(Map<String,Object> paramMap);

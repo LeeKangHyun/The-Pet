@@ -60,6 +60,20 @@
     bottom: 35px;
 }
 
+#joinBtn[disabled] {
+  background: #000;
+  border: none;
+  border-radius:8px;
+  width: 80%;
+  height: 40px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+    position: relative;
+    bottom: 35px;
+}
+
 #loginBtn:hover {
     background: #29e4eb;
 }

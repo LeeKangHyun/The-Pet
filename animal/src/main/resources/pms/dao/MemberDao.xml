@@ -54,6 +54,13 @@
 		where MEM_NUM=#{mno}
 	</select>
 	
+	<select id="selectEmail" resultMap="memberMap" parameterType="string">
+		select 
+	  		MEM_EMAIL
+		from member
+		where MEM_EMAIL=#{mEmail}
+	</select>
+	
 	<select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
 		select 
 	  		MEM_NUM, 
