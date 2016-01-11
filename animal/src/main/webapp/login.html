@@ -166,38 +166,31 @@
               <div class="panel-body">
                 <div id="emailForm" class="form-group has-feedback">
                   <label for="mEmail">이메일</label>
-                  <input type="email" id="mEmail" name="mEmail" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                  title="이메일 형식에 맞춰주세요" placeholder="이메일을 입력해주세요" autofocus="true"
-                  required>
+                  <input type="email" id="mEmail" name="mEmail" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="이메일 형식에 맞춰주세요" placeholder="이메일을 입력해주세요" autofocus="true" required>
                   <input type="button" id="checkEmail" value="중복확인">
                 </div>
 
                 <hr>
                 <div id="rpasswordForm" class="form-group has-feedback">
                   <label for="password">비밀번호</label>
-                  <input type="password" class="form-control" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*-_=+]).{3,20}"
-                  title="숫자, 영문 대/소문자, 특수문자 각 한자이상 필수 최대8~20자" placeholder="비밀번호를 입력하세요."
-                  required>
+                  <input type="password" class="form-control" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*-_=+]).{3,20}" title="숫자, 영문 대/소문자, 특수문자 각 한자이상 필수 최대8~20자" placeholder="비밀번호를 입력하세요." required>
                 </div>
 
                 <div id="password2Form" class="form-group has-feedback">
                   <label for="password2">비밀번호 재입력</label>
-                  <input type="password" class="form-control" id="password2" name="password2" placeholder="비밀번호를 재입력하세요."
-                  onchange="checkPW();" required>
+                  <input type="password" class="form-control" id="password2" name="password2" placeholder="비밀번호를 재입력하세요." onchange="checkPW();" required>
                   <div class="control-label" id="password2Msg" style="display: none;"></div>
                 </div>
 
                 <hr>
                 <div id="playerNameForm" class="form-group has-feedback">
                   <label for="playerName">이름</label>
-                  <input type="text" class="form-control" id="mName" name="mName" maxlength="20" autofocus="true"
-                  placeholder="이름을 입력하세요." required>
+                  <input type="text" class="form-control" id="mName" name="mName" maxlength="20" autofocus="true" placeholder="이름을 입력하세요." required>
                 </div>
 
                 <div id="phoneForm" class="form-group has-feedback">
                   <label for="tel">휴대전화번호</label>
-                  <input type="text" class="form-control" id="tel" name="tel" placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678"
-                  required>
+                  <input type="text" class="form-control" id="tel" name="tel" placeholder="휴대전화번호를 입력해주세요 (예) 010-1234-5678" required>
                 </div>
 
                 <div class="box">
@@ -210,8 +203,7 @@
 
                 <hr>
                 <div class="form-group">
-                  <input type="submit" id="joinBtn" value="가입하기"
-                  disabled>
+                  <input type="submit" id="joinBtn" value="가입하기" disabled>
                   <!-- 가입</button>-->
                 </div>
               </div>
