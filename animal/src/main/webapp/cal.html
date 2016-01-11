@@ -24,22 +24,56 @@
 <body>
   <div id="calendar" style="width: 512px; margin: 50px auto;"></div>
 
-  <script>
-    var aj = $.ajax({
+
+  <!-- <script>
+    $.ajax({
       url: 'diary/ajax/events.do',
       dataType: 'json',
       data: {
         mno: "1"
       },
-      type: "get"
+      type: "get",
+      success: function(doc) {
+        var eve = [];
+        $(doc).find('events').each(function() {
+          events.push({
+            title: $(this).attr('title'),
+            start: $(this).attr('start'),
+            end: $(this).attr('end'),
+            color: $(this).attr('color')
+          });
+        });
+        callback(events);
+      }
     });
-
-    console.log(aj);
-  </script>
+  </script> -->
   <script>
     $(document).ready(function() {
       $('#calendar').fullCalendar({
-        // events:
+        events: function(start, end, timezone, callback) {
+          $.ajax({
+            url: 'diary/ajax/events.do',
+            dataType: 'json',
+            data: {
+              mno: "1"
+            },
+            type: "get",
+            success: function(doc) {
+              var events = [];
+              var dos = $(doc).find('events');
+              console.log(dos);
+              $(doc).find('events').each(function() {
+                events.push({
+                  title: $(this).attr('title'),
+                  start: $(this).attr('start'),
+                  end: $(this).attr('end'),
+                  color: $(this).attr('color')
+                });
+              });
+              callback(events);
+            }
+          });
+        }
       });
 
     });
