@@ -49,7 +49,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public AjaxResult add(
+	public Object add(
 			Member member
 //			,
 //			MultipartFile file
@@ -63,7 +63,7 @@ public class MemberController {
 //			member.setmImg(newFileName);
 //		}
 		memberService.register(member);
-		return new AjaxResult("success", null);
+		return "redirect:../../login.html";
 	}
 
 	@RequestMapping("detail")

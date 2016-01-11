@@ -133,7 +133,7 @@ public class DiaryController {
 		}
 
 		if (diaryService.add(diary) <= 0) {
-			return new AjaxResult("failure", null);
+			
 		} 
 		return new AjaxResult("success", null);
 	}
