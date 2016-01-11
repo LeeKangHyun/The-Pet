@@ -22,31 +22,8 @@
 </head>
 
 <body>
-  <div id="calendar" style="width: 512px; margin: 50px auto;"></div>
+  <div id="calendar" style="width: 1024px; margin: 50px auto;"></div>
 
-
-  <!-- <script>
-    $.ajax({
-      url: 'diary/ajax/events.do',
-      dataType: 'json',
-      data: {
-        mno: "1"
-      },
-      type: "get",
-      success: function(doc) {
-        var eve = [];
-        $(doc).find('events').each(function() {
-          events.push({
-            title: $(this).attr('title'),
-            start: $(this).attr('start'),
-            end: $(this).attr('end'),
-            color: $(this).attr('color')
-          });
-        });
-        callback(events);
-      }
-    });
-  </script> -->
   <script>
     $(document).ready(function() {
       $('#calendar').fullCalendar({
