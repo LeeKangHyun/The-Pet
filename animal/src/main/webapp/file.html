@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="file" name="file" id="fileLoader" />
+  <input type="button" id="fileSubmit" value="Upload" />
+
+  <script>
+    var files = [];
+    $(document)
+      .on(
+        "change",
+        "#fileLoader",
+        function(event) {
+          files = event.target.files;
+        })
+
+    $(document)
+      .on(
+        "click",
+        "#fileSubmit",
+        function() {
+          processUpload();
+        })
+
+    function processUpload() {
+      var oMyForm = new FormData();
+      oMyForm.append("file", files[0]);
+      $
+        .ajax({
+          dataType: 'json',
+          url: "the url",
+          data: oMyForm,
+          type: "POST",
+          enctype: 'multipart/form-data',
+          processData: false,
+          contentType: false,
+          success: function(result) {
+            //...;
+          },
+          error: function(result) {
+            //...;
+          }
+        });
+    }
+  </script>
+</body>
+
+</html>
