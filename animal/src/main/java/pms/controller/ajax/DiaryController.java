@@ -78,6 +78,8 @@ public class DiaryController {
 		
 		ObjectMapper om = new ObjectMapper();
 
+		System.out.println(dummyDate);
+		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("events", dummyDate);
@@ -87,23 +89,27 @@ public class DiaryController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
-			Diary diary,
-			Files files,
-			MultipartFile file) throws Exception {
+			Diary diary
+//			,Files files,
+//			MultipartFile file
+			) throws Exception {
 
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																  + "/" + newFileName);
-			file.transferTo(attachfile);
-			// 파일 만들어야 쓸수있겠군
-			files.setFileName(newFileName);
-		}
-		files.setDno(diary.getDno());
+//		if (file.getSize() > 0) {
+//			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+//			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+//																  + "/" + newFileName);
+//			file.transferTo(attachfile);
+//			// 파일 만들어야 쓸수있겠군
+//			files.setFileName(newFileName);
+//		}
+//		files.setDno(diary.getDno());
+//		
+//		filesService.add(files);
 		
-		filesService.add(files);
-		diaryService.add(diary);
 
+		if (diaryService.add(diary) <= 0) {
+			return new AjaxResult("failure", null);
+		} 
 		return new AjaxResult("success", null);
 	}
 

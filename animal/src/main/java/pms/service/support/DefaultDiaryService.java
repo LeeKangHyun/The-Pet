@@ -29,8 +29,8 @@ public class DefaultDiaryService implements DiaryService {
 		return diaryDao.eventList(mno);
   }
   
-  public void add(Diary diary) {
-  	diaryDao.insert(diary);
+  public int add(Diary diary) {
+  	return diaryDao.insert(diary);
   }
   
   public int remove(int dno) {

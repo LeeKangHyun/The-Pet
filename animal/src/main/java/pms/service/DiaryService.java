@@ -11,7 +11,7 @@ public interface DiaryService {
   List<Diary> getEventList(int mno);
   List<Diary> getBoardList(
   		int pageNo, int pageSize, String keyword, String align);
-  void add(Diary diary);
+  int add(Diary diary);
   int remove(int dno);
   int change(Diary diary);
 }

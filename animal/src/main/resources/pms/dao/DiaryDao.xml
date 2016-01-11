@@ -29,29 +29,29 @@
   		SCH_TITLE,
   		SCH_CONTENT,
   		NOTI_HIDE,
-  		tag_Color
+  		TAG_COLOR
   	from schedule
   	where MEM_NUM=#{mno}
   </select>
 
   <insert id="insertText" parameterType="diary">
-    insert into schedule(pno,startDate,endDate,createDate,content,title,cateCode,dhide)
-    values(#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{dhide})
+    insert into schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE)
+    values(#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide})
   </insert>
 
   <delete id="delete" parameterType="int">
     delete from schedule
-  	where dno=#{dno}
+  	where SCH_NUM=#{dno}
   </delete>
 
   <update id="update" parameterType="diary">
     update schedule set
-      startDate=#{startDate},
-      endDate=#{endDate},
-      title=#{title},
-  	  content=#{content}
-  	  dhide=#{dhide}
-    where dno=#{dno}
+      START_DATE=#{startDate},
+      END_DATE=#{endDate},
+      SCH_TITLE=#{title},
+  	  SCH_CONTENT=#{content},
+  	  NOTI_HIDE=#{dhide}
+    where SCH_NUM=#{dno}
   </update>
 
 
