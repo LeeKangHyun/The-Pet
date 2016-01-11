@@ -46,6 +46,20 @@ public class DiaryController {
 		 
 		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
+		
+		HashMap<String,Object> resultMap = new HashMap<>();
+		resultMap.put("status", "success");
+		resultMap.put("pets", pets);
+		resultMap.put("User", member);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("events")
+	public Object events(
+			int mno
+			) throws Exception {
+		 
 		List<Diary> events = diaryService.getEventList(mno);	
 		
 		List dummyDate = new ArrayList();
@@ -63,17 +77,11 @@ public class DiaryController {
 		}
 		
 		ObjectMapper om = new ObjectMapper();
-		
-		System.out.println(dummyDate);
-		
-
 
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
-		resultMap.put("pets", pets);
 		resultMap.put("events", dummyDate);
-		resultMap.put("User", member);
-		
+
 		return resultMap;
 	}
 	
