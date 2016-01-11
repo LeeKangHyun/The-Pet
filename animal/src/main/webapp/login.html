@@ -266,6 +266,7 @@ $('#joinBtn').click(function(event) {
 <!--  로그인 스크립트  -->
 <script>
 $('#loginBtn').click(function(event) {
+  if ($('#lsaveEmail'))
 	$.post('auth/ajax/login.do', {
 		mEmail: $('#lmEmail').val(),
 	  password: $('#lpassword').val(),

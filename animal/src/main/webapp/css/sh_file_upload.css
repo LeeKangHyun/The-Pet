@@ -1,3 +1,9 @@
+
+.inputfile {
+    overflow: hidden;
+    width: 0.1px;
+}
+
 .js .inputfile {
     width: 0.1px;
     height: 0.1px;
@@ -21,7 +27,7 @@
     /* 10px 20px */
     position: relative;
     bottom: 27px;
-    margin-bottom: -28px;
+    margin-bottom: -30px;
 }
 
 .no-js .inputfile + label {

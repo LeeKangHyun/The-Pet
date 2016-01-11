@@ -46,11 +46,18 @@
   color: #1a1f25;
 }
 
-#loginBtn[type="button"] {
+#joinBtn {
+    margin-top: 33px;
+    margin-bottom: -47px;
+/*    margin-left: 50px;*/
+    width: 100%;
+}
+
+#joinBtn[type="submit"] {
   background: #19d4cb;
   border: none;
   border-radius:8px;
-  width: 80%;
+/*  width: 100%;*/
   height: 40px;
   color: #fff;
   text-align: center;
@@ -61,10 +68,10 @@
 }
 
 #joinBtn[disabled] {
-  background: #000;
+  background: #19d0c0;
   border: none;
   border-radius:8px;
-  width: 80%;
+/*  width: 100%;*/
   height: 40px;
   color: #fff;
   text-align: center;
