@@ -25,19 +25,24 @@
   <div id="calendar" style="width: 512px; margin: 50px auto;"></div>
 
   <script>
+    var aj = $.ajax({
+      url: 'diary/ajax/events.do',
+      dataType: 'json',
+      data: {
+        mno: "1"
+      },
+      type: "get"
+    });
+
+    console.log(aj);
+  </script>
+  <script>
     $(document).ready(function() {
-          $('#calendar').fullCalendar({
-            events: function(start, end, callback) {
-              $.ajax({
-                url: 'diary/ajax/list.do',
-                dataType: 'json',
-                data: {
-                  mno: "1"
-                },
-                type: "get"
-              });
-            }
-          });
+      $('#calendar').fullCalendar({
+        // events:
+      });
+
+    });
   </script>
 
 </body>
