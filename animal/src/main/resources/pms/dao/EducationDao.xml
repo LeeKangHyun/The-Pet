@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="pms.dao.EducationDao">
+  <resultMap type="education" id="educationMap">
+    <id column="EDU_NUM" property="eduNo" />
+    <result column="MEM_NUM" property="mno" />
+    <result column="EDU_VIEWS" property="eduViews" />
+    <result column="EDU_CRE" property="eduCreateDate" />
+    <result column="CRE_TITLE" property="eduTitle" />
+    <result column="EDU_CONTENT" property="eduContent" />
+    <result column="EDU_TYPE" property="eduType" />  
+  </resultMap>
+  
+  <select id="selectList" resultMap="educationMap" parameterType="map">
+    select
+      edu.EDU_NUM,
+      edu.EDU_TITLE as eduTitle,
+      edu.EDU_TYPE as eduType,
+      edu.EDU_CRE as eduCreateDate,
+      f.FILE_NUM
+    from Education edu
+      left outer join Files f on edu.EDU_NUM = f.EDU_NUM
+  </select>
+  
+  
+</mapper>
