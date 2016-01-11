@@ -307,8 +307,8 @@ CREATE TABLE Schedule (
   SCH_NUM     INTEGER     NOT NULL COMMENT '일정번호', -- 일정번호
   PET_NUM     INTEGER     NOT NULL COMMENT '팻번호', -- 팻번호
   MEM_NUM     INTEGER     NOT NULL COMMENT '회원번호', -- 회원번호
-  START_DATE  VARCHAR(30) NULL     COMMENT '시작일', -- 시작일
-  END_DATE    VARCHAR(30) NULL     COMMENT '종료일', -- 종료일
+  START_DATE  VARCHAR(30) NOT NULL COMMENT '시작일', -- 시작일
+  END_DATE    VARCHAR(30) NOT NULL COMMENT '종료일', -- 종료일
   SCH_CRE     DATETIME    NOT NULL COMMENT '작성일', -- 작성일
   SCH_CONTENT TEXT        NULL     COMMENT '내용', -- 내용
   SCH_TITLE   VARCHAR(50) NULL     COMMENT '제목', -- 제목
