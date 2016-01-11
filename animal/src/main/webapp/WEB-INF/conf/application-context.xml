@@ -72,6 +72,10 @@
   
   <!-- AOP 애노테이션 처리자 등록 -->
   <aop:aspectj-autoproxy/>
+  
+  <!-- 파일 업로드 추가.. -->
+  <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans>
 
 
