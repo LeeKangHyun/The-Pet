@@ -337,14 +337,7 @@
             }
           });
 
-      });
-  </script>
-
-  <!-- 새글 입력시 자신의 펫 선택부분 자동 생성 -->
-  <script>
-    $.getJSON('diary/ajax/list.do?mno=0',
-      function(resultObj) {
-
+ 
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -357,7 +350,7 @@
   </script>
 
   <script>
-    var jsn;
+
     $(document).ready(function() {
 
 
@@ -365,16 +358,7 @@
         $(this).toggleClass('tap');
       });
 
-      $.getJSON('diary/ajax/list.do?mno=0',
-        function(resultObj) {
-
-          $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
-            function(resultObj) {
-              var ev = resultObj.events[0];
-            })
-
-        });
-
+     
       function renderCalendar() {
         $('#calendar').fullCalendar({
           header: {

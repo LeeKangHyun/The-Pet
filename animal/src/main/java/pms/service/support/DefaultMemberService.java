@@ -31,6 +31,10 @@ public class DefaultMemberService implements MemberService {
   	return memberDao.update(member);
   }
 
+  public Member checkEmail(String mEmail) {
+  	return memberDao.selectEmail(mEmail);
+  }
+  
   public Member oneMember(int mno) {
   	return memberDao.selectOne(mno);
   }
