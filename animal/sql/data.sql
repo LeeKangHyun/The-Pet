@@ -120,20 +120,20 @@ insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_C
   
 /* 자랑하기 등록 */
 insert into 
-  Schedule(PET_NUM,MEM_NUM,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(4,3,now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+  values(4,3,'2016-01-01','2016-01-10',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(2,1,now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+  values(2,1,'2016-01-01','2016-01-10',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(1,1,now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+  values(1,1,'2016-01-01','2016-01-10',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(1,1,now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+  values(1,1,'2016-01-01','2016-01-10',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(3,2,now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+  values(3,2,'2016-01-01','2016-01-10',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122');
 
 /* 산책코스 등록 */
 insert into 

@@ -1,7 +1,9 @@
 package pms.controller.ajax;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,9 +90,12 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public AjaxResult add(
-			Diary diary
-//			,Files files,
+	public Object add(
+			Diary diary,
+//			Files files,
+			Member member,
+			HttpSession session
+
 //			MultipartFile file
 			) throws Exception {
 
@@ -106,6 +111,26 @@ public class DiaryController {
 //		
 //		filesService.add(files);
 		
+//		for (String f : files.getFileName()) {
+//			System.out.println(f);
+//		}
+//		
+		member = (Member) session.getAttribute("loginUser");
+		diary.setMno(member.getMno());
+		
+		Pet pet = petService.getOnePet(diary.getPno());
+		diary.setTagColor(pet.getTagColor());
+		
+		System.out.println(diary.isDhide());
+		System.out.println(diary.getStartDate());
+		if (diary.getStartDate().equals("")) {
+			Date d = new Date();
+      SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
+      System.out.println("현재날짜 : "+ now.format(d));
+			
+			diary.setStartDate(now.format(d));
+			diary.setEndDate(now.format(d));
+		}
 
 		if (diaryService.add(diary) <= 0) {
 			return new AjaxResult("failure", null);
@@ -132,7 +157,7 @@ public class DiaryController {
 																	+ "/" + newFileName);
 			file.transferTo(attachfile);
 			// 파일 만들어야 쓸수있겠군
-			files.setFileName(newFileName);
+//			files.setFileName(fileName);(newFileName);
 			
 		}	else if (files.getFileName().length() == 0) {
 			files.setFileName(null);

@@ -17,56 +17,56 @@
   <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
   	select * 
   	from files
-  	where dno=#{dno}
+  	where SCH_NUM=#{dno}
   </select>
   
   <select id="EduFileList" resultMap="filesMap" parameterType="int">
   	select * 
   	from files
-  	where eduNo=#{eduNo}
+  	where EDU_NUM=#{eduNo}
   </select>
   
   <select id="MatFileList" resultMap="filesMap" parameterType="int">
   	select * 
   	from files
-  	where matNo=#{matNo}
+  	where MAT_NUM=#{matNo}
   </select>
   
   <select id="SaleFileList" resultMap="filesMap" parameterType="int">
   	select * 
   	from files
-  	where sno=#{sno}
+  	where S_NUM=#{sno}
   </select>
   
   <insert id="insert" parameterType="files">
-    insert into files(fileName,eduNo,matNo,sno,dno) 
+    insert into files(FILE_NAME,EDU_NUM,MAT_NUM,S_NUM,SCH_NUM) 
     values(#{fileName},#{eduNo},#{matNo},#{sno},#{dno})
   </insert>
   
   <delete id="deleteDairyFile" parameterType="int">
     delete from files 
-  	where dno=#{dno}
+  	where SCH_NUM=#{dno}
   </delete>
   
   <delete id="deleteEduFile" parameterType="int">
     delete from files 
-  	where eduNo=#{eduNo}
+  	where EDU_NUM=#{eduNo}
   </delete>
   
   <delete id="deleteMatFile" parameterType="int">
     delete from files 
-  	where matNo=#{matNo}
+  	where MAT_NUM=#{matNo}
   </delete>
   
   <delete id="deleteSaleFile" parameterType="int">
     delete from files 
-  	where sno=#{sno}
+  	where S_NUM=#{sno}
   </delete>
   
   <update id="update" parameterType="files">
     update files set 
-      fileName=#{fileName}
-    where fno=#{fno}
+      FILE_NAME=#{fileName}
+    where FILE_NUM=#{fno}
   </update>
   
   

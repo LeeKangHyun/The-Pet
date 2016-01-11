@@ -30,28 +30,28 @@
   </select>
  
   <select id="petSelectOne" resultMap="petMap" parameterType="int">
-    select * from pet where pno=#{pno}
+    select * from pet where PET_NUM=#{pno}
   </select>
   
   <insert id="insert" parameterType="pet">
-    insert into pet(mno,pName,pType,pImg,tagColor,injection,medicine) 
+    insert into pet(MEM_NUM,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
     values(#{mno},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
   </insert>
   
   <delete id="delete" parameterType="int">
     delete from pet 
-  	where dno=#{pno}
+  	where PET_NUM=#{pno}
   </delete>
   
   <update id="update" parameterType="diary">
     update pet set 
-      pName=#{pName},
-      pType=#{pType},
-      pImg=#{pImg},
-  	  tagColor=#{tagColor}
-  	  injection=#{injection}
-  	  medicine=#{medicine}
-    where pno=#{pno}
+      PET_NAME=#{pName},
+      PET_TYPE=#{pType},
+      PET_IMG=#{pImg},
+  	  TAG_COLOR=#{tagColor}
+  	  INJECTION=#{injection}
+  	  MEDICINE=#{medicine}
+    where PET_NUM=#{pno}
   </update>
   
   

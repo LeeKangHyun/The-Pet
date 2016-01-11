@@ -8,8 +8,9 @@ public class Diary  implements Serializable {
 
   protected int dno;          // 일정번호
   protected int pno;          // 펫 번호
-  protected Date startDate;   // 시작일
-  protected Date endDate;     // 종료일
+  protected int mno;					// 회원 번호
+  protected String startDate;   // 시작일
+  protected String endDate;     // 종료일
   protected Date createDate;  // 작성일
   protected String content; 	// 내용
   protected String title;   	// 제목
@@ -40,18 +41,6 @@ public class Diary  implements Serializable {
   }
   public void setPno(int pno) {
     this.pno = pno;
-  }
-  public Date getStartDate() {
-    return startDate;
-  }
-  public void setStartDate(Date startDate) {
-    this.startDate = startDate;
-  }
-  public Date getEndDate() {
-    return endDate;
-  }
-  public void setEndDate(Date endDate) {
-    this.endDate = endDate;
   }
   public Date getCreateDate() {
     return createDate;
@@ -98,5 +87,28 @@ public class Diary  implements Serializable {
   public void setLike(int like) {
     this.like = like;
   }
-
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 }

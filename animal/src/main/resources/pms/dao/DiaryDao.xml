@@ -34,9 +34,9 @@
   	where MEM_NUM=#{mno}
   </select>
 
-  <insert id="insertText" parameterType="diary">
-    insert into schedule(PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE)
-    values(#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide})
+  <insert id="insert" parameterType="diary">
+    insert into schedule(MEM_NUM,PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE,TAG_COLOR)
+    values(#{mno},#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide},#{tagColor})
   </insert>
 
   <delete id="delete" parameterType="int">
