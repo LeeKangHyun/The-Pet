@@ -177,10 +177,10 @@
         <div class="modal-body">
 
           <form id='form1' class="form-horizontal">
-              
+
               <div class="form-group">
                   <label class="col-sm-2 control-label">전체공개</label>
-          
+
                   <div class="switch">
                       <input type="checkbox" name="saveEmail" id="lsaveEmail" checked>
                       <label for="saveEmail">
@@ -190,7 +190,7 @@
                       </label>
                   </div>
               </div>
-            
+
 
             <div class="form-group">
               <label for="Form" class="col-sm-2 control-label">카테고리</label>
@@ -270,7 +270,7 @@
               </div>
             </div>
 
-              
+
             <div class="box">
                 <input type="file" name="mImg[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
                 <label for="file-1">
@@ -293,10 +293,10 @@
     </div>
   </div>
   <!-- //게시글 추가 모달 -->
-    
+
   <!-- 파일 업로드 파일 이름뜨는부분 -->
   <script src="js/sh_custom-file-input.js"></script>
-    
+
   <!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
   <script>
     $.getJSON('diary/ajax/list.do?mno=0',
@@ -337,7 +337,7 @@
             }
           });
 
- 
+
         $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
           function(resultObj) {
             var sel = $("#combobox");
@@ -358,7 +358,7 @@
         $(this).toggleClass('tap');
       });
 
-     
+
       function renderCalendar() {
         $('#calendar').fullCalendar({
           header: {
@@ -372,7 +372,20 @@
           editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
           eventLimit: true, // allow "more" link when too many events
 
-          events: 'cal.json',
+          events: function(start, end, timezone, callback) {
+            $.ajax({
+              url: 'diary/ajax/events.do',
+              dataType: 'json',
+              data: {
+                mno: "2"
+              },
+              type: "get",
+              success: function(doc) {
+                var event = eval(doc.events);
+                callback(event);
+              }
+            });
+          },
 
           timeFormat: 'H:mm',
 
