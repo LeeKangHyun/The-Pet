@@ -20,7 +20,8 @@
     "moment": "2.10.6",
     "jquery-uploadfile": "~4.0.2",
     "font-awesome": "~4.5.0",
-    "jquery-form": "~3.46.0"
+    "jquery-form": "~3.46.0",
+    "blueimp-file-upload": "jquery-file-upload#~9.11.2"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -31,7 +32,8 @@
       "moment": "bower_components/moment/min/**",
       "jquery-uploadfile": "bower_components/jquery-uploadfile/**",
       "font-awesome": "bower_components/font-awesome/**",
-      "jquery-form": "bower_components/jquery-form/**"
+      "jquery-form": "bower_components/jquery-form/**",
+      "blueimp-file-upload": "bower_components/blueimp-file-upload/**"
     }
   }
 }
