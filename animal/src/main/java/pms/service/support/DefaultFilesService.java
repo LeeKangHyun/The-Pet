@@ -30,6 +30,13 @@ public class DefaultFilesService implements FilesService {
   public void add(Files files) {
   	filesDao.insert(files);
   }
+  ///////////////////////////////////////////
+  public void fadd(Files files) {
+    filesDao.fadd(files);
+  }
+  ///////////////////////////////////////////
+  
+  
   public int removeDairyFile(int dno) {
   	return filesDao.deleteDairyFile(dno);
   }

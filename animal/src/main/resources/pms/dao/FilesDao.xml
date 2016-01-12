@@ -70,6 +70,13 @@
     where FILE_NUM=#{fno}
   </update>
   
+  <!--                                           -->
+  <insert id="fadd" parameterType="files">
+    insert into fi(fname)
+    values(#{fName})
+  </insert>
+  <!--                                           -->
+  
   
 </mapper>
 

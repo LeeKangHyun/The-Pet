@@ -32,9 +32,9 @@ public class FileController {
         + "/" + fileName);
 
     file.transferTo(attachFile);
-//    files.setfName(fileName);
-//
-//    fileService.insert(files);
+    files.setfName(fileName);
+
+    fileService.fadd(files);
 
     return "redirect:file.html";
   }

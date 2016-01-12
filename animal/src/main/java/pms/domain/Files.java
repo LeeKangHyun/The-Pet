@@ -13,6 +13,8 @@ public class Files implements Serializable {
 	protected int sno;					// file이 올려진 분양 게시물 번호
 	protected int dno;					// file이 올려진 일정(자랑하기, 산책코스) 게시물 번호
 	
+	protected String fName;
+	
 	public Files () {}
 
 	public int getFno() {
@@ -51,6 +53,18 @@ public class Files implements Serializable {
 	public void setDno(int dno) {
 		this.dno = dno;
 	}
+
+	///////////////////////////////////////////
+  public String getfName() {
+    return fName;
+  }
+
+  public void setfName(String fName) {
+    this.fName = fName;
+  }
+  ///////////////////////////////////////////
+	
+	
 	
 	
 }

@@ -11,15 +11,15 @@
 
 <body>
   <input id="avatar" type="file" name="avatar" />
-  <button id="upload" value="Upload">submit</button>
+  <button id="upload" class="btn btn-primary">submit</button>
 
   <script>
       $(document).on("click", "#upload", function() {
         var file_data = $("#avatar").prop("files")[0];
-        console.log(file_data);// Getting the properties of file from file field
+        var file_name = file_data.name;// Getting the properties of file from file field
         var form_data = new FormData(); // Creating object of FormData class
         form_data.append("file", file_data) // Appending parameter named file with properties of file_field to form_data
-        form_data.append("user_id", 123) // Adding extra parameters to form_data
+        form_data.append("fName", file_name) // Adding extra parameters to form_data
         $.ajax({
           url : "file/ajax/upload.do",
           dataType : 'script',

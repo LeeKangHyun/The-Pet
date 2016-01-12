@@ -15,6 +15,10 @@ public interface FilesService {
   
   void add(Files files);
   
+  ////////////////////////////////////
+  void fadd(Files files);
+  ////////////////////////////////////
+  
   int removeDairyFile(int dno);
   int removeEduFile(int eduNo);
   int removeMatFile(int matNo);

@@ -12,6 +12,10 @@ public interface FilesDao {
   
   void insert(Files files);
   
+  //////////////////////////////////
+  void fadd(Files files);
+  //////////////////////////////////
+  
   
   int deleteDairyFile(int dno);
   int deleteEduFile(int eduNo);
