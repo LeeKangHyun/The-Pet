@@ -23,7 +23,21 @@
       f.FILE_NUM
     from Education edu
       left outer join Files f on edu.EDU_NUM = f.EDU_NUM
+    order by
+    <choose>
+      <otherwise>EDU_CRE </otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'asc'">asc</when>
+      <otherwise>desc</otherwise>
+    </choose>
   </select>
+    
+  <update id="addViews" parameterType="int">
+    update Education set
+      EDU_VIEWS = EDU_VIEWS + 1
+    where EDU_NUM=#{eduNo}
+  </update>
   
   
 </mapper>

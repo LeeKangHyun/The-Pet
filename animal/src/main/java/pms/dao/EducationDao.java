@@ -14,5 +14,7 @@ public interface EducationDao {
 	
 	int update(Education education);
 	
+  int addViews(int eduNo);
+    
 	Education selectOne(int eduNo);
 }
