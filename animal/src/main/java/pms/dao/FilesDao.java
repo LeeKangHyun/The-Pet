@@ -11,6 +11,9 @@ public interface FilesDao {
   List<Files> SaleFileList(int sno);
   
   void insert(Files files);
+  ///////////////////////////////////
+  void finsert(Files files);
+  ///////////////////////////////////
   
   int deleteDairyFile(int dno);
   int deleteEduFile(int eduNo);

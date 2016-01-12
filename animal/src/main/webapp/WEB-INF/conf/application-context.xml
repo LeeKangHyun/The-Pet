@@ -75,7 +75,7 @@
   
   <!-- 파일 업로드 추가.. -->
   <bean id="multipartResolver"
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+   class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans>
 
 

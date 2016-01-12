@@ -12,6 +12,7 @@
 	<result column="MAT_NUM" 		property="matNo"/>
 	<result column="S_NUM" 			property="sno"/>	
 	<result column="SCH_NUM" 		property="dno"/>
+  <result column="fname" property="fName"/>
  </resultMap>
 
   <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
@@ -69,6 +70,12 @@
     where FILE_NUM=#{fno}
   </update>
   
+  <!--                                     -->
+  <insert id="finsert" parameterType="files">
+    insert into fi(fname)
+    values(#{fName})
+  </insert>
+  <!--                                     -->
   
 </mapper>
 

@@ -2,52 +2,52 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <script src="lib/jquery/jquery.js" type="text/javascript"></script>
+<meta charset="UTF-8">
+<title>멀티파일....</title>
+<script src="lib/jquery/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery-form/jquery.form.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <input type="file" name="loader1" id="loader1" />
+  <input multiple type="file" name="fName" id="fName" />
   <input type="button" id="subbutton" value="Upload" />
 
   <script>
-    $(document).ready(function() {
-      $("#subbutton").click(function() {
-        processFileUpload();
-      });
+      $(document).ready(function() {
+        $("#subbutton").click(function() {
+          processFileUpload();
+        });
 
-      $("#loader1").on('change', prepareLoad);
-      var files;
+        $("#fName").on('change', prepareLoad);
+        var files;
+        function prepareLoad(event) {
+          console.log('event fired : ' + event.target.files[0].name);
+          files = event.target.files;
+        }
+        function processFileUpload() {
+          console.log("fileupload clicked");
+          var oMyForm = new FormData();
+          oMyForm.append("fName", files[0].name);
 
-      function prepareLoad(event) {
-        console.log('event fired: ' + event.target.files[0].name);
-        files = event.target.files;
-      }
-
-      function processFileUpload() {
-        console.log("fileupload clicked");
-        var oMyForm = new FormData();
-        oMyForm.append("file", files[0]);
-        $
-          .ajax({
-            dataType: 'json',
-            url: "file/ajax/uploadMyFile.do",
-            data: oMyForm,
-            type: "POST",
-            enctype: 'multipart/form-data',
-            processData: false,
-            contentType: false,
-            success: function(result) {
+          console.log(oMyForm);
+          $.ajax({
+            dataType : 'json',
+            url : "file/ajax/upload.do",
+            data : oMyForm,
+            type : "POST",
+            enctype : 'multipart/form-data',
+            processData : false,
+            contentType : false,
+            success : function(result) {
               alert('success' + JSON.stringify(result));
             },
-            error: function(result) {
+            error : function(result) {
               alert('error' + JSON.stringify(result));
             }
           });
-      }
-    });
-  </script>
+        }
+      });
+    </script>
 </body>
 
 </html>

@@ -19,7 +19,8 @@
     "fullcalendar": "2.5.0",
     "moment": "2.10.6",
     "jquery-uploadfile": "~4.0.2",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "jquery-form": "~3.46.0"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -29,7 +30,8 @@
       "fullcalendar": "bower_components/fullcalendar/dist/**",
       "moment": "bower_components/moment/min/**",
       "jquery-uploadfile": "bower_components/jquery-uploadfile/**",
-      "font-awesome": "bower_components/font-awesome/**"
+      "font-awesome": "bower_components/font-awesome/**",
+      "jquery-form": "bower_components/jquery-form/**"
     }
   }
 }
