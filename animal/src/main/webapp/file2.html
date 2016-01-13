@@ -4,43 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <title>멀티파일....</title>
-  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-
-  <script src="lib/jquery/jquery.min.js"></script>
 </head>
 
 <body>
-  <input multiple id="avatar" type="file" name="avatar" />
-  <button id="upload" class="btn btn-primary">submit</button>
+  <!-- Change the target of the form to the hidden iframe -->
+  <form id="avatar_form" action="file/ajax/add.do" method="post" enctype="multipart/form-data"
+  target="uploader_iframe">
+    <input id="avatar" type="file" name="avatar" size="30" />
+  </form>
+
+  <!-- Hidden iframe which will interact with the server, do not forget to give both name and id values same -->
+  <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
+
+  <!-- Just added to show the preview when the image is uploaded. -->
+  <img id="preview" src="preview.png" />
 
   <script>
-    $(document).on("change", prepareLoad);
-
-    function prepareLoad(event) {
-      for (var i = 0; i < event.target.files.length; i++) {
-        console.log(event.target.files[i].name);
-      }
-    }
-
-    $(document).on("click", "#upload", function() {
-      for (var i = 0; i < $("#avatar").prop("files").length; i++) {
-        console.log($("#avatar").prop("files")[i]);
-      }
-
-      var file_data = $("#avatar").prop("files")[0];
-      var file_name = file_data.name;
-      var form_data = new FormData();
-      form_data.append("file", file_data)
-      form_data.append("fName", file_name)
-      $.ajax({
-        url: "file/ajax/upload.do",
-        dataType: 'script',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post'
-      })
+    $(function() {
+      $("#avatar").change(function() {
+        $("#avatar_form").submit(); // Submits the form on change event, you consider this code as the start point of your request (to show loader)
+        $("#uploader_iframe").unbind().load(function() { // This block of code will execute when the response is sent from the server.
+          result = JSON.parse($(this).contents().text()); // Content of the iframe will be the response sent from the server. Parse the response as the JSON object
+          $("#preview").attr("src", result.response.avatar_url);
+        });
+      });
     });
   </script>
 
