@@ -9,6 +9,9 @@ public interface EducationService {
 	List<Education> getEducationList(int pageNo, int pageSize,
 			String keyword, String align);
 	
+	List<Education> getEducationCate(int pageNo, int pageSize,
+			String keyword, String align, String key);
+	
 	Education getOneEducation(int eduNo);
 	
 	void add(Education education);
