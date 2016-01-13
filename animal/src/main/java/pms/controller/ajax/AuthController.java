@@ -1,8 +1,6 @@
 package pms.controller.ajax;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +23,11 @@ public class AuthController {
   public AjaxResult login(
       String mEmail,
       String password,
-      String saveEmail,
-      HttpServletResponse response,
       HttpSession session) {
   	
   	System.out.println(mEmail);
   	System.out.println(password);
-  	System.out.println(saveEmail);
     
-  	Cookie emailCookie = null;
-    if (saveEmail != null) { // 이메일 저장을 체크했으면,
-      emailCookie = new Cookie("mEmail", mEmail);
-      emailCookie.setMaxAge(60 * 60 * 24 * 15);
-    } else {
-      emailCookie = new Cookie("mEmail", "");
-      emailCookie.setMaxAge(0); // 웹브라우저에게 email 쿠키 삭제를 명령한다.
-    }
-    response.addCookie(emailCookie);
     
     Member member = memberService.login(mEmail, password);
 
@@ -51,7 +37,7 @@ public class AuthController {
     }
 
     session.setAttribute("loginUser", member);
-    return new AjaxResult("success", emailCookie);
+    return new AjaxResult("success", member);
   }
   
   @RequestMapping("logout")
