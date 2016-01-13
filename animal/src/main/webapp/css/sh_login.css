@@ -1,12 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
-.main-body {
-  width: 1024px;
-  margin: 0 auto;
-  font-family: 'Roboto', sans-serif;
-}
 
-.main-body .container {
+#main-body .container {
     margin: 130px auto;
     width: 400px;
     height: 350px;

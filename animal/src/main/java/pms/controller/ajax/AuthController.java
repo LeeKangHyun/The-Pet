@@ -24,6 +24,9 @@ public class AuthController {
       String password) {
  
     Member member = memberService.login(mEmail, password);
+    if (member == null) {
+    	return new AjaxResult("failure", null);
+    }
     return new AjaxResult("success", member);
   }
 }

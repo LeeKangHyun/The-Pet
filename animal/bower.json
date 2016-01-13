@@ -26,7 +26,8 @@
     "blueimp-load-image": "blueimp-load-image#~2.1.0",
     "blueimp-tmpl": "blueimp-tmpl#~3.1.0",
     "jquery.cookie": "~1.4.1",
-    "jquery-session-plugin": "~0.0.1"
+    "jquery-session-plugin": "~0.0.1",
+    "less": "~2.5.3"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -43,7 +44,8 @@
       "blueimp-load-image": "bower_components/blueimp-load-image/**",
       "blueimp-tmpl": "bower_components/blueimp-tmpl/**",
       "jquery.cookie": "bower_components/jquery.cookie/jquery.cookie.js",
-      "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js"
+      "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js",
+      "less": "bower_components/less/dist/**"
     }
   }
 }
