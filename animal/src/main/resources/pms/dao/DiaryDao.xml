@@ -24,6 +24,7 @@
   <select id="eventList" resultMap="diaryMap" parameterType="int">
     select
   		SCH_NUM,
+  		PET_NUM,
   		START_DATE,
   		END_DATE,
   		SCH_TITLE,
@@ -33,7 +34,43 @@
   	from schedule
   	where MEM_NUM=#{mno}
   </select>
-
+	
+  <select id="cateList" resultMap="diaryMap" parameterType="map">
+  	select
+  		SCH_NUM,
+  		MEM_NUM,
+  		START_DATE,
+  		END_DATE,
+  		SCH_CRE,
+  		SCH_TITLE,
+  		SCH_CONTENT,
+  		NOTI_VIEWS,
+  		NOTI_LIKES
+  	from schedule
+  	where NOTI_HIDE=1 and CATE_CODE=#{cateCode}
+  	order by
+    SCH_CRE
+    <choose>
+      <when test="align == 'desc'">desc</when>
+      <otherwise>asc</otherwise>
+    </choose>
+  </select>
+  
+  <select id="selectOne" resultMap="diaryMap" parameterType="int">
+  	select
+  		SCH_NUM,
+  		MEM_NUM,
+  		START_DATE,
+  		END_DATE,
+  		SCH_CRE,
+  		SCH_TITLE,
+  		SCH_CONTENT,
+  		NOTI_VIEWS,
+  		NOTI_LIKES
+  	from schedule
+  	where SCH_NUM=#{dno}
+  </select>
+  
   <insert id="insert" parameterType="diary">
     insert into schedule(MEM_NUM,PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE,TAG_COLOR)
     values(#{mno},#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide},#{tagColor})

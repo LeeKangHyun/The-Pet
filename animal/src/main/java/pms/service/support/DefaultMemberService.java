@@ -19,8 +19,8 @@ public class DefaultMemberService implements MemberService {
 		return memberDao.selectList();
   }
 
-  public void register(Member member) {
-  	memberDao.insert(member);
+  public int register(Member member) {
+  	return memberDao.insert(member);
   }
 
   public int remove(int mno) {

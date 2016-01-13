@@ -345,75 +345,71 @@ $('#addBtn').click(function(event) {
       });
   </script>
 
-  <script>
+<script>
+$(document).ready(function() {
 
-    $(document).ready(function() {
-
-      $('.menu-has-sub').click(function(e) {
+    $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
-      });
+    });
 
-      $.getJSON('diary/ajax/list.do?mno=0',
-      function(resultObj) {
-          
-      function renderCalendar() {
-        $('#calendar').fullCalendar({
-          header: {
-            left: 'prevYear',
-            center: 'prev title next',
-            right: 'nextYear',
-          },
-          theme: false, // false : 태마 적용 안함
-          fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-          weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-          editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-          eventLimit: true, // allow "more" link when too many events
+    $.getJSON('diary/ajax/list.do?mno=0',
+        function(resultObj) {
 
-          events: function(start, end, timezone, callback) {
-            $.ajax({
-              url: 'diary/ajax/events.do',
-              dataType: 'json',
-              data: {
-                mno: resultObj.User.mno
-              },
-              type: "get",
-              success: function(doc) {
-                var event = eval(doc.events);
-                callback(event);
-              }
-            });
-          },
-
-          timeFormat: 'H:mm',
-
-          eventClick: function(event, jsEvent, view) {
-            if (event.end) {
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
-              $('#mEnd').val(event.end.format().substring(0,10));
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
-            } else {
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0,10));
-              $('#mEnd').val(event.end.format().substring(0,10));
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
+            function renderCalendar() {
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prevYear',
+                        center: 'prev title next',
+                        right: 'nextYear',
+                    },
+                    theme: false, // false : 태마 적용 안함
+                    fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
+                    weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
+                    editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
+                    eventLimit: true, // allow "more" link when too many events
+                    events: function(start, end, timezone, callback) {
+                        $.ajax({
+                            url: 'diary/ajax/events.do',
+                            dataType: 'json',
+                            data: {
+                                mno: resultObj.User.mno
+                            },
+                            type: "get",
+                            success: function(doc) {
+                                var event = eval(doc.events);
+                                callback(event);
+                            }
+                        });
+                    },
+                    timeFormat: 'H:mm',
+                    eventClick: function(event, jsEvent, view) {
+                        if (event.end) {
+                            $('#modalTitle').html(event.title);
+                            $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+                            $('#mEnd').val(event.end.format().substring(0,10));
+                            $('#mColor').val(event.color);
+                            $('#mDes').html(event.description);
+                            $('#fullCalModal').modal();
+                        } else {
+                            $('#modalTitle').html(event.title);
+                            $('#mStart').val(event.start.format().substring(0,10));
+                            $('#mEnd').val(event.end.format().substring(0,10));
+                            $('#mColor').val(event.color);
+                            $('#mDes').html(event.description);
+                            $('#fullCalModal').modal();
+                        }
+                    }
+                });
             }
-          }
-        });
-      }
-      renderCalendar();
-      })
+        renderCalendar();
+        })
     });
 
     // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
     $('#my-today-button').click(function() {
-      $('#calendar').fullCalendar('today');
-    });
-  </script>
+    $('#calendar').fullCalendar('today');
+});
+</script>
 
   <script>
     $("select").change(function() {

@@ -41,7 +41,7 @@ public class MemberController {
 	public Object checkEmail(String mEmail) throws Exception {
 
 		Member member = memberService.checkEmail(mEmail);
-		System.out.println(member);
+		
 		if (member == null) {
 			return new AjaxResult("failure", null);
 		} 
@@ -50,20 +50,21 @@ public class MemberController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(
-			Member member
-//			,
-//			MultipartFile file
-			) throws Exception {
+			Member member,
+			MultipartFile file) throws Exception {
 
-//		if (file.getSize() > 0) {
-//			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-//			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-//																	+ "/" + newFileName);
-//			file.transferTo(attachfile);
-//			member.setmImg(newFileName);
-//		}
+		member.setmImg("default.jpg");
+		if (file != null) {	
+		 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+																+ "/" + newFileName);
+			file.transferTo(attachfile);
+			member.setmImg(newFileName);
+		}
+		
 		memberService.register(member);
-		return "redirect:../../login.html";
+		
+		return new AjaxResult("success", null);
 	}
 
 	@RequestMapping("detail")
