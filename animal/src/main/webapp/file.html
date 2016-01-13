@@ -10,11 +10,15 @@
 </head>
 
 <body>
-  <input id="avatar" type="file" name="avatar" />
+  <input multiple id="avatar" type="file" name="avatar" />
   <button id="upload" class="btn btn-primary">submit</button>
 
   <script>
       $(document).on("click", "#upload", function() {
+          for (var i = 0; i < $("#avatar").prop("files").length; i++) {
+              console.log($("#avatar").prop("files")[i]);
+          }
+
         var file_data = $("#avatar").prop("files")[0];
         var file_name = file_data.name;// Getting the properties of file from file field
         var form_data = new FormData(); // Creating object of FormData class
