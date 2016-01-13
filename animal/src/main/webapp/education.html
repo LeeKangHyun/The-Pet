@@ -1,249 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>게시판-목록</title>
-  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="css/dj_main.css">
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ThreeSixty Bootstrap Template">
-  <meta name="author" content="Fabian Bentz Webdesign">
-    
-  <!--  내가만든 css들  -->
-  <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
-  <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Slid Menu</title>
 
-  <!--  폰트아이콘 링크  -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="css/icon-font.min.css" rel="stylesheet" />
-    
-  <link href="css/custom.css" rel="stylesheet">
-    
-    <!-- standart theme css -->
-  <link rel="stylesheet" id="theme" href="css/theme1.css" type="text/css" />
-    
-    <!-- Font Awesome Icons css -->
-  <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
-    
-    <!-- BxSlider and Sequence Slider css -->
-  <link rel="stylesheet" media="screen" href="css/sequence-slider.css" />
-    
-  <!-- 캘린더 css -->
-  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!--  내가만든 css들  -->
+<link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
+<link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
 
-  <!-- 캘린더 스크립트 -->
-  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script src='lib/jquery/jquery.min.js'></script>
+<!--  폰트아이콘 링크  -->
+<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="css/icon-font.min.css" rel="stylesheet" />
 
-  <!-- 모달 스크립트 -->
-  <script src='lib/bootstrap/js/modal.js'></script>
+<!-- 대진 메인 css -->
+<link href="css/dj_main.css" rel="stylesheet" />
+<script src="css/dj_main.js"></script>
+
+<!-- 캘린더 css -->
+<link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
+  type='text/css' />
+
+<!-- 캘린더 스크립트 -->
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src='lib/jquery/jquery.min.js'></script>
+
+<!-- 모달 스크립트 -->
+<script src='lib/bootstrap/js/modal.js'></script>
+</script>
+
+
+
 </head>
+
 <body>
   <header>
-    <div class="header_title">
-      <a href="pet.html">THE PET</a>
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">THE PET</a>
+      <div id="user_info"></div>
     </div>
   </header>
-    
+
   <section>
 
-      <!--  메뉴 버튼  -->
-      <input type="checkbox" id="menuToggle" />
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
 
-      <div class="menu">
-        <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
-        <!--  메뉴 내용  -->
+    <div class="menu">
+      <label for="menuToggle" class="menu-icon"><i
+        class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
 
-        <nav class="menu-nav">
-          <ul class="menu-nav-ul">
-            <li><a href="education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
-            <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-            <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-            <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-            <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
-            <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
-          </ul>
-        </nav>
-        <!--  //메뉴 내용  -->
-      </div>
-
+      <nav class="menu-nav">
+        <ul class="menu-nav-ul">
+          <li><a href="education.html"><i class="lnr lnr-pencil"></i>
+              교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i>
+              자랑해요</a></li>
+          <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
   </section>
-<!--<div class="container">        -->
 
-<section>
-
-
-
-
-
-<div id="portfolio" class="m_content">
-  <div class="container" style="margin-left:0px;">
-        <div class="col-lg-12 col-md-12 col-xs-12" style="margin-left: -30px">
-         <h1 style="text-align: left"><i class="lnr lnr-pencil"></i> 교육</h1>
+  <section>
+    <div class="m_content">
+      <div class="container" style="margin-left: 0px;">
+        <div style="margin-left:-15px;">
+          <h1 style="text-align: left">
+            <i class="lnr lnr-pencil"></i> 교육
+          </h1>
         </div>
       </div>
-      <table id="listTable" class="table table-hover">
-  <thead>
-    <tr>
-      <th style="text-align: center;">제목</th>
-      <th style="text-align: center;">조회수</th>
-      <th style="text-align: center;">등록일</th>
-      <th style="text-align: center;">구분</th>
-    </tr>
-  </thead>
-</table>
-                 
-    
-    
-    
-    <div class="filter-list" style="margin-left:-20px;">
-                 
-        <ul class="nav nav-pills">
-                  
-            <li><a class="filter" data-filter="all">All</a></li>
-               
-            <li><a class="filter" data-filter="cat_1">개</a></li>
-             
-            <li><a class="filter" data-filter="cat_2">고양이</a></li>
-             
-            <li><a class="filter" data-filter="cat_3">새</a></li>
-            
-            <li><a class="filter" data-filter="cat_4">물고기</a></li>
-             
-            <li><a class="filter" data-filter="cat_5">ETC</a></li>
-          
-        </ul>
       
+      <div style="text-align:left;">
+       <button>강아지</button>
+       <button>고양이</button>
+       <button>물고기</button>
+       <button>새</button>
+       <button>ETC</button>      
+      </div>
+      
+      <table id="listTable" class="table table-hover">
+        <thead>
+          <tr>
+            <th style="text-align: center;">제목</th>
+            <th style="text-align: center;">조회수</th>
+            <th style="text-align: center;">등록일</th>
+            <th style="text-align: center;">구분</th>
+          </tr>
+        </thead>
+      </table>
     </div>
-                    
-  
-    <div id="Grid" class="row gallery">  
-        
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">
-                            <img class="img-responsive" src="images/h1.jpg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-                        
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_2 all">
-                   <div class="image">
-                        <div class="overlay">
-                     <img class="img-responsive" src="images/설현00007.jpeg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_3 all">
-                   <div class="image">
-                        <div class="overlay">                           
-                     <img class="img-responsive" src="images/설현00022.jpeg" alt="" />
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">
-                     <video controls class="img-responsive" src="files/aoa.mp4" alt="" />           
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_2 all">
-                   <div class="image">
-                        <div class="overlay">                          
-                     <img class="img-responsive" src="images/설현00023.jpeg" alt="" />
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">                           
-                     <img class="img-responsive" src="images/설현00004.jpeg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">
-                     <img class="img-responsive" src="images/h4.jpg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_3 all">
-                   <div class="image">
-                        <div class="overlay">                           
-                     <img class="img-responsive" src="images/h4.jpg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">                           
-                     <img class="img-responsive" src="images/h2.jpg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_1 all">
-                   <div class="image">
-                        <div class="overlay">
-                        
-                           
-                     <img class="img-responsive" src="images/p2.jpeg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_3 all">
-                   <div class="image">
-                        <div class="overlay">
-                        
-                     <img class="img-responsive" src="images/설현00009.jpeg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-sm-12 images mix cat_2 all">
-                   <div class="image">
-                        <div class="overlay">
-                           
-                     <img class="img-responsive" src="images/설현00009.jpeg" alt="" />
-                     
-                         </div>
-                    </div>
-              </div>
-                                      
-           </div>
-  </div>
-  
-</div>
-</section>
+  </section>
 
-<script type="text/javascript" src="lib/jquery/jquery.js"></script>
-<script>
+  <script type="text/javascript" src="lib/jquery/jquery.js"></script>
+  <script>
 
 $.getJSON('education/ajax/list.do', function(resultObj) {
   var table = $("#listTable");
   for (var education of resultObj.data) {
-    $("</tr><tr>")
-      .html("<td><a class='detailLnk' href='edu_form.html' eduTitle='" 
-                + education.eduTitle + "'>" + education.eduTitle + 
+    $("<tr>")
+      .html("<td><a class='detailLnk' href='#' eduNo='" 
+                + education.eduNo + "'>" + education.eduTitle + 
             "</a></td><td>" + education.eduViews +
             "</td><td>" + education.eduCreateDate + "</td>"
             + "<td>" + education.eduType + "</td>")
@@ -259,48 +121,12 @@ $('#newBtn').click(function(event){
   location.href = "form.html?no=-1";
 });
 
+//게시물 제목을 클릭했을 때 호출될 함수
+function clickDetailLnk(event) {
+  event.preventDefault(); 
+  location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+}
+
 </script>
-<script>
-    
-
-    
-    
-</script>
-
-<!-- BOOTSTRAP JAVASCRIPT -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="./js/bootstrap.min.js"></script>
-
-<!-- CUSTOM JAVASCRIPT -->
-<!-- Custom Functions -->
-<script type="text/javascript" src="./js/functions.js"></script> 
-
-<!-- Portfolio with mixitup filter and prettyphoto -->
-<script type="text/javascript" src="./js/jquery.mixitup.min.js"></script>
-
-<!-- BxSlider -->
-<!--<script type="text/javascript" src="./js/jquery.bxslider.min.js"></script>-->
-
-<!-- Sequence Slider -->
-<script type="text/javascript" src="./js/jquery.sequence-min.js"></script>
-
-<!-- Parallax Background -->
-
-<script type="text/javascript" src="./js/jquery.inview.js"></script>
-
-<!-- Smooth Scrolling -->
-<script type="text/javascript" src="./js/smoothscroll.js"></script>
-
-<!-- Sticky Navigation --> 
-<script type="text/javascript" src="./js/jquery.sticky.js"></script>
-
-<!-- Style Switcher --> 
-<script type="text/javascript" src="./js/jquery.style-switcher.js"></script>
-
-<!-- Clients Slider -->
-<script type="text/javascript" src="./js/jquery.flexisel.js"></script>
-
-<!-- Retina JS -->
-<script type="text/javascript" src="./js/retina-1.1.0.min.js"></script>
 </body>
 </html>

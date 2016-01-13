@@ -16,10 +16,11 @@
   
   <select id="selectList" resultMap="educationMap" parameterType="map">
     select
-      edu.EDU_NUM,
+      edu.EDU_NUM as eduNo,
       edu.EDU_TITLE as eduTitle,
       edu.EDU_TYPE as eduType,
       edu.EDU_CRE as eduCreateDate,
+      edu.EDU_VIEWS as eduViews,
       f.FILE_NUM
     from Education edu
       left outer join Files f on edu.EDU_NUM = f.EDU_NUM
@@ -36,8 +37,23 @@
   <update id="addViews" parameterType="int">
     update Education set
       EDU_VIEWS = EDU_VIEWS + 1
-    where EDU_NUM=#{eduNo}
+    where EDU_NUM=#{value}
   </update>
   
+  <select id="selectOne" resultMap="educationMap" parameterType="int">
+    select
+      edu.EDU_NUM as eduNo,
+      edu.EDU_TITLE as eduTitle,
+      edu.EDU_CONTENT as eduContent,
+      edu.EDU_CRE as eduCreateDate,
+      edu.EDU_VIEWS as eduViews,
+      f.FILE_NUM as fNo,
+      f.FILE_NAME as fName,
+      c.CMT_CONTENT as cContent
+    from Education edu
+      left outer join Files f on edu.EDU_NUM = f.EDU_NUM
+      left outer join Comment c on f.EDU_NUM = c.EDU_NUM
+    where edu.EDU_NUM = #{value}
+  </select>
   
 </mapper>

@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <Content-Type text/css/>
   <title>Slid Menu</title>
+  
   <!--  내가만든 css들  -->
   <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
-  <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
+  <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -26,16 +26,18 @@
 
   <!-- 모달 스크립트 -->
   <script src='lib/bootstrap/js/modal.js'></script>
-
-  <!--  메뉴버튼 클릭시 메뉴가 나오고 들어가고 할때 쓰는 스크립트  -->
+  </script>
+  
 
 
 </head>
 
 <body>
   <header>
-    <div class="header_title">
-      <a href="pet.html">THE PET</a>
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">THE PET</a>
+      <div id="user_info">
+      </div>
     </div>
   </header>
 
@@ -92,36 +94,27 @@
         <div>
             <a href="#"><h2><i class="lnr lnr-leaf">산책하기 Top3</i></h2></a>
             <table>
-                <tr>
+            <tr>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    </video>
+                    <a href="boastBoard.html"><img src="images/h1.jpg" /></a>
                     <li>title</li>
                 </td>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    </video>
+                    <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
                     <li>title</li>
                 </td>
                 <td class="m_most">
-                    <video controls="controls" width="300"
-                        class="video-js vjs-default-skin" data-setup="{}">
-                    <source src="files/aoa.mp4" type="video/mp4"/>
-                    </video>
+                    <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
                     <li>title</li>
                 </td>
             </tr>
-            </table>
+        </table>
         </div>
       </div>
 
       <div style="margin-top:50px">
         <a href="#"><h2><i class="fa fa-map-marker">Location</i></h2></a>
-        <div id="map_canvas" style="width:500px;height:380px;margin-top:50px"></div>
+        <div id="map_canvas" style="width:500px;height:380px;margin:50px 0 170px 0;"></div>
       </div>
     </div>
   </section>

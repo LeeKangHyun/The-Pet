@@ -51,6 +51,7 @@ public class DefaultEducationService implements EducationService {
 	
 	@Override
 	public Education getOneEducation(int eduNo) {
+		educationDao.addViews(eduNo);
 		return educationDao.selectOne(eduNo);
 	}
 }
