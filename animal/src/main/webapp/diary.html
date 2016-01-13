@@ -214,14 +214,14 @@
             <div class="pDate form-group">
                 <label class="col-sm-2 control-label">시작일</label>
                 <div class="col-sm-10">
-                    <input type="datetime-local" name="startDate" id="startDate" class="form-control" required>
+                    <input type="date" name="startDate" id="startDate" class="form-control" required>
                 </div>
             </div>
 
             <div class="pDate form-group">
                 <label class="col-sm-2 control-label">종료일</label>
                 <div class="col-sm-10">
-                    <input type="datetime-local" name="endDate" id="endDate" class="form-control">
+                    <input type="date" name="endDate" id="endDate" class="form-control">
                 </div>
             </div>
 
@@ -389,15 +389,15 @@ $('#addBtn').click(function(event) {
           eventClick: function(event, jsEvent, view) {
             if (event.end) {
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format()); // 2015-12-31
-              $('#mEnd').val(event.end.format());
+              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+              $('#mEnd').val(event.end.format().substring(0,10));
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();
             } else {
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format());
-              $('#mEnd').val(event.end.format());
+              $('#mStart').val(event.start.format().substring(0,10));
+              $('#mEnd').val(event.end.format().substring(0,10));
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();

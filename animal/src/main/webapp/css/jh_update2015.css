@@ -46,10 +46,10 @@
 .overflow-auto{ overflow: auto !important; }
 
 /* -------------------------------------------- COLORS & BACKGROUND -------------------------------------------- */
-body.home #welcome-loading, #welcome-discover .bt-line:before, #open-all-projects .open-bar{ background-color: #19d4cb; }
-#welcome-discover .bt-line{ background-color: #19d4cb; }
+body.home #welcome-loading, #welcome-discover .bt-line:before, #open-all-projects .open-bar{ background-color: #c0dfdd; }
+#welcome-discover .bt-line{ background-color: #c0dfdd; }
 #welcome-discover .bt-line:before{ background-color: #19d4cb; }
-#about > .row:last-child:before{ background-color: #19d4cb; }
+#about > .row:last-child:before{ background-color: black; }
 #fp-nav ul li a span, .fp-slidesNav ul li a span{ background-color: #999999 !important; }
 body.home, .home-cadre, .menu-overlay{ background-color: #F4F4F4; }
 .fullpage-content{ background-color: #FFFFFF; }

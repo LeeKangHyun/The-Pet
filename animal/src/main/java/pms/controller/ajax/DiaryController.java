@@ -135,7 +135,7 @@ public class DiaryController {
 		if (diaryService.add(diary) <= 0) {
 			
 		} 
-		return new AjaxResult("success", null);
+		return "redirect:../../diary.html";
 	}
 
 	@RequestMapping("detail")
