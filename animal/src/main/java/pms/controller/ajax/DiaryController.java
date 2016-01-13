@@ -41,19 +41,15 @@ public class DiaryController {
 
 	@RequestMapping("list")
 	public Object list(
-			int mno,
-			Member member,
-			HttpSession session
+			int mno
 			) throws Exception {
 		 
-		member = (Member) session.getAttribute("loginUser");
 		List<Pet> pets = petService.getPetList(mno);
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("pets", pets);
-		resultMap.put("User", member);
-		
+
 		return resultMap;
 	}
 	

@@ -1,423 +1,403 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <title>Slid Menu</title>
-  <!--  내가만든 css들  -->
-  <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
-  <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
-  <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <title>Slid Menu</title>
+    <!--  내가만든 css들  -->
+    <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
+    <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
+    <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
 
-  <!--  폰트아이콘 링크  -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="css/icon-font.min.css" rel="stylesheet" />
+    <!--  폰트아이콘 링크  -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/icon-font.min.css" rel="stylesheet" />
 
-  <!-- 캘린더 css -->
-  <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
-  <link href='lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' tpye='text/css' media='print' />
-  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- 캘린더 css -->
+    <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
+    <link href='lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' tpye='text/css' media='print' />
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-  <!-- 캘린더 스크립트 -->
-  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script src='lib/jquery/jquery.js'></script>
-  <script src='lib/moment/moment.min.js'></script>
-  <script src='lib/fullcalendar/fullcalendar.js'></script>
-  <script src="lib/fullcalendar/lang/ko.js"></script>
+    <!-- 캘린더 스크립트 -->
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src='lib/jquery/jquery.js'></script>
+    <script src='lib/moment/moment.min.js'></script>
+    <script src='lib/fullcalendar/fullcalendar.js'></script>
+    <script src="lib/fullcalendar/lang/ko.js"></script>
 
-  <!-- 모달 스크립트 -->
-  <script src='lib/bootstrap/js/modal.js'></script>
+    <!-- 모달 스크립트 -->
+    <script src='lib/bootstrap/js/modal.js'></script>
 
-  <!--  파일 업로드  -->
-  <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
-  <script>
-      (function(e,t,n){
-          var r=e.querySelectorAll("html")[0];
-          r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
-      })
-      (document,window,0);
-  </script>
+    <!--  파일 업로드  -->
+    <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
+    <script>
+    (function(e,t,n){
+        var r=e.querySelectorAll("html")[0];
+        r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
+    })
+    (document,window,0);
+    </script>
+
+    <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <header>
+<header>
     <div id="header_title">
-      <a class="headerTitle" href="pet.html">THE PET</a>
-      <div id="user_info">
+        <a class="headerTitle" href="pet.html">THE PET</a>
+        <div id="user_info">
         <!--
         <img src="images/p3.jpeg" id="userImg" />
         <a class="userName" href="#">설현</a>
         <a class="logout" href="login.html"><i class="fa fa-unlock fa-lg"></i></a>
--->
-      </div>
+        -->
+        </div>
     </div>
-  </header>
+</header>
 
-  <section>
+<section>
 
     <!--  메뉴 버튼  -->
     <input type="checkbox" id="menuToggle" />
 
     <div class="menu">
-      <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
-      <!--  메뉴 내용  -->
+        <label for="menuToggle" class="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+        <!--  메뉴 내용  -->
 
-      <nav class="menu-nav">
-        <ul class="menu-nav-ul">
-          <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-          <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
-          <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
-        </ul>
-      </nav>
-      <!--  //메뉴 내용  -->
+        <nav class="menu-nav">
+            <ul class="menu-nav-ul">
+                <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
+                <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+                <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+                <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+                <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
+                <li><a href="diary.html"><i class="lnr lnr-book"></i> 다이어리</a></li>
+            </ul>
+        </nav>
+    <!--  //메뉴 내용  -->
     </div>
 
-  </section>
+</section>
 
-  <section>
+<section>
     <div class="main-body">
 
-      <div id="diary-pet-info">
-        <div class="addSce">
-          <button type="button" id="my-today-button" class="btn btn-default">Today</button>
-          <a class="btn btn-default" id="petadd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
-          <a class="btn btn-default" id="txtadd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
+        <div id="diary-pet-info">
+            <div class="addSce">
+                <button type="button" id="my-today-button" class="btn btn-default">Today</button>
+                <a class="btn btn-default" id="petadd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
+                <a class="btn btn-default" id="txtadd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
+            </div>
         </div>
-      </div>
 
-      <div id="calendar"></div>
+        <div id="calendar"></div>
 
     </div>
-  </section>
+</section>
 
-  <div id="fullCalModal" class="modal fade">
+<div id="fullCalModal" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">close</span>
-          </button>
-          <h4 id="modalTitle" class="modal-title"></h4>
-        </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">close</span>
+                </button>
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
 
-        <div class="modal-body">
-          <span>시작일 : </span>
-          <input type="date" id="mStart" class="form-control">
-          <br>
-          <span>종료일 : </span>
-          <input type="date" id="mEnd" class="form-control">
-          <br>
-          <span>태그색 : </span>
-          <input type="color" id="mColor">
-          <br>
-          <br>
-          <span>내용 : </span>
-          <br>
-          <textarea id="mDes" class="form-control" rows="5"></textarea>
-          <br>
-          <span>이미지 : </span>
-          <img src="" width="100%" height="auto">
-          <br>
-          <input type="file" id="mFile">
-          <input type="hidden" value="p5.jpeg">
-        </div>
+            <div class="modal-body">
+                <span>시작일 : </span>
+                <input type="date" id="mStart" class="form-control">
+                <br>
+                
+                <span>종료일 : </span>
+                <input type="date" id="mEnd" class="form-control">
+                <br>
+                
+                <span>태그색 : </span>
+                <input type="color" id="mColor">
+                <br>
+                <br>
+                
+                <span>내용 : </span>
+                <br>
+                
+                <textarea id="mDes" class="form-control" rows="5"></textarea>
+                <br>
+                
+                <span>이미지 : </span>
+                <img src="" width="100%" height="auto">
+                <br>
+                
+                <input type="file" id="mFile">
+                <input type="hidden" value="p5.jpeg">
+            </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning">변경</button>
-          <button type="button" class="btn btn-danger">삭제</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning">변경</button>
+                <button type="button" class="btn btn-danger">삭제</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <!-- 펫 추가 모달 -->
-  <div class="modal fade" id="AddPet" role="dialog">
+<!-- 펫 추가 모달 -->
+<div class="modal fade" id="AddPet" role="dialog">
     <div class="modal-dialog">
-      <div class="modal-content">
+        <div class="modal-content">
 
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h3 class="modal-title" id="lineModalLabel">펫 추가</h3>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h3 class="modal-title" id="lineModalLabel">펫 추가</h3>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <p>
+                        hello
+                    </p>
+                </div>
+            </div>
+
         </div>
-
-        <div class="modal-body">
-          <div>
-            <p>
-              hello
-            </p>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
-  <!-- //펫 추가 모달 -->
+</div>
+<!-- //펫 추가 모달 -->
 
-  <!-- 게시글 추가 모달 -->
-  <div class="modal fade" id="AddBoard" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<!-- 게시글 추가 모달 -->
+<div class="modal fade" id="AddBoard" role="dialog">
     <div class="modal-dialog">
-      <div class="modal-content">
+        <div class="modal-content">
 
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <h3 class="modal-title" id="lineModalLabel">글 추가</h3>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h3 class="modal-title" id="lineModalLabel">글 추가</h3>
+            </div>
+
+            <div class="modal-body">
+
+                <form action="diary/ajax/add.do" method="post" class="form-horizontal" novalidate>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">전체공개</label>
+                        <div class="switch">
+                            <input type="checkbox" name="dhide" id="dhide" checked>
+                            <label for="dhide">
+                                <span class="fa fa-check"></span>
+                                <span class="fa fa-times"></span>
+                                <div></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
+                        <div class="col-sm-10">
+                            <select id="cateCode" name="cateCode" class="form-control">
+                                <option value="SANCHE" selected="selected">산책코스</option>
+                                <option value="JARANG">자랑해요</option>
+                                <option value="ILJUNG">펫 일정</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pno" class="col-sm-2 control-label">펫 선택</label>
+                        <div class="col-sm-10">
+                            <select id="pno" name="pno" class="form-control" required>
+                                <option value="">==펫 선택==</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="pDate form-group">
+                        <label class="col-sm-2 control-label">시작일</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="startDate" id="startDate" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="pDate form-group">
+                        <label class="col-sm-2 control-label">종료일</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="endDate" id="endDate" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ftitle" class="col-sm-2 control-label">제목</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" class="form-control" id="title" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fcontent" class="col-sm-2 control-label">내용</label>
+                        <div class="col-sm-10">
+                            <textarea id="fContent" name="content" class="form-control" rows='10' cols='60' required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <input type="file" name="fileName[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
+                        <label for="file-1">
+                            <i class="fa fa-upload"></i>
+                            <span>이미지 추가</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id='addBtn' type='submit' class="newForm btn btn-primary btn-xs">등록</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
-
-        <div class="modal-body">
-
-          <form action="diary/ajax/add.do" method="post" class="form-horizontal" novalidate>
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">전체공개</label>
-
-                <div class="switch">
-                    <input type="checkbox" name="dhide" id="dhide" checked>
-                    <label for="dhide">
-                        <span class="fa fa-check"></span>
-                        <span class="fa fa-times"></span>
-                        <div></div>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
-                    <div class="col-sm-10">
-                    <select id="cateCode" name="cateCode" class="form-control">
-                        <option value="SANCHE" selected="selected">산책코스</option>
-                        <option value="JARANG">자랑해요</option>
-                        <option value="ILJUNG">펫 일정</option>
-                        
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="pno" class="col-sm-2 control-label">펫 선택</label>
-                <div class="col-sm-10">
-                    <select id="pno" name="pno" class="form-control" required>
-                        <option value="">==펫 선택==</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="pDate form-group">
-                <label class="col-sm-2 control-label">시작일</label>
-                <div class="col-sm-10">
-                    <input type="date" name="startDate" id="startDate" class="form-control" required>
-                </div>
-            </div>
-
-            <div class="pDate form-group">
-                <label class="col-sm-2 control-label">종료일</label>
-                <div class="col-sm-10">
-                    <input type="date" name="endDate" id="endDate" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="ftitle" class="col-sm-2 control-label">제목</label>
-                <div class="col-sm-10">
-                    <input type="text" name="title" class="form-control" id="title" placeholder="제목" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="fcontent" class="col-sm-2 control-label">내용</label>
-                <div class="col-sm-10">
-                    <textarea id="fContent" name="content" class="form-control" rows='10' cols='60' required></textarea>
-                </div>
-            </div>
-
-            <div class="box">
-                <input type="file" name="fileName[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
-                <label for="file-1">
-                    <i class="fa fa-upload"></i>
-                    <span>이미지 추가</span>
-                </label>
-				    </div>
-
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button id='addBtn' type='submit' class="newForm btn btn-primary btn-xs">등록</button>
-                </div>
-            </div>
-
-          </form>
-
-        </div>
-
-      </div>
     </div>
-  </div>
-  <!-- //게시글 추가 모달 -->
+</div>
+<!-- //게시글 추가 모달 -->
     
-  <!--  회원가입 스크립트  -->
-<!--
-  
+<!-- 파일 업로드 파일 이름뜨는부분 -->
+<script src="js/sh_custom-file-input.js"></script>
+
+<!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
 <script>
-$('#addBtn').click(function(event) {
-    $.post('diary/ajax/add.do', {
-        pno: $('#pno').val(),
-        title: $('#title').val(),
-        content: $('#fContent').val(),
-        startDate: $('#startDate').val(),
-        endDate: $('#endDate').val(),
-        cateCode: $('#cateCode').val(),
-        dhide: $('#dhide').val(),
-    }, function(resultObj) {
-        var ajaxResult = resultObj.ajaxResult;
-        if (ajaxResult.status == "success") {
-            alert("등록 성공했습니다.")
-        } else {
-            alert("등록 실패했습니다.")
-        }
-    }, 'json');
+$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
+function(resultObj) {
+    var div = $('#user_info');
+    if ($.session.get('mno') == undefined) {
+        location.href = "login.html"
+    } else {
+        div.append(
+            "<img src='images/" + $.session.get('mimg') + "' id='userImg' />" +
+            "<a class='userName' href='#'>" + $.session.get('mname') + "</a>" +
+            "<a type='button' id='outBtn' class='logout'>" +
+            "<i class='fa fa-unlock fa-lg'></i></a>")
+    }
 });
 </script>
--->
 
-    
-  <!-- 파일 업로드 파일 이름뜨는부분 -->
-  <script src="js/sh_custom-file-input.js"></script>
+<!-- 로그아웃 -->
+<script>
+$(document).on("click", "#outBtn", function() {
+    $.session.clear();
+    location.href = "login.html"
+});
+</script>
 
-  <!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
-  <script>
-    $.getJSON('diary/ajax/list.do?mno=0',
-      function(resultObj) {
-        var div = $('#user_info');
-        if (resultObj.User != null) {
-          div.append(
-            "<img src='images/" + resultObj.User.mImg + "' id='userImg' />" +
-            "<a class='userName' href='#'>" + resultObj.User.mName + "</a>" +
-            "<a href='auth/ajax/logout.do' id='outBtn' class='logout'>" +
-            "<i class='fa fa-unlock fa-lg'></i></a>")
-        } else {
-          location.href = "login.html"
-        }
-      });
-  </script>
+<!-- 로그인한 회원의 펫 보여주는것 -->
+<script>
+$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
+function(resultObj) {
+    var table = $('#diary-pet-info');
 
-  <!-- 로그인한 회원의 펫 보여주는것 -->
-  <script>
-    $.getJSON('diary/ajax/list.do?mno=0',
-      function(resultObj) {
+    for (var pet of resultObj.pets) {
+        table.append(
+            "<table class='innerTable' border='0'>" +
+            "<tr><td rowspan='2'><img class='mImg' src='images/" +
+            pet.pImg + "'></td>" +
+            "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
+            pet.pName + "' disabled></td></tr>" +
+            "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
+            pet.tagColor + "' disabled></td></tr>" +
+            "</table>")
+    }
+});
 
-        $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
-          function(resultObj) {
-            var table = $('#diary-pet-info');
+var s = $("#startDate").val();
+var startDate = moment(s).toDate();
 
-            for (var pet of resultObj.pets) {
-              table.append(
-                "<table class='innerTable' border='0'>" +
-                "<tr><td rowspan='2'><img class='mImg' src='images/" +
-                pet.pImg + "'></td>" +
-                "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
-                pet.pName + "' disabled></td></tr>" +
-                "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
-                pet.tagColor + "' disabled></td></tr>" +
-                "</table>")
+$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
+function(resultObj) {
+    var sel = $("#pno");
+    for (var pet of resultObj.pets) {
+        sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+        "</option>")
+    }
+});
+</script>
 
-            }
-          });
-
-        var s = $("#startDate").val();
-        var startDate = moment(s).toDate();
-        
-        $.getJSON('diary/ajax/list.do?mno=' + resultObj.User.mno,
-          function(resultObj) {
-            var sel = $("#pno");
-            for (var pet of resultObj.pets) {
-              sel.append("<option value='" + pet.pno + "'>" + pet.pName +
-                "</option>")
-            }
-          });
-      });
-  </script>
-
+<!-- 캘린더 스크립트 -->
 <script>
 $(document).ready(function() {
-
+    console.log($.session.get('mno'))
     $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
     });
 
-    $.getJSON('diary/ajax/list.do?mno=0',
-        function(resultObj) {
-
-            function renderCalendar() {
-                $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prevYear',
-                        center: 'prev title next',
-                        right: 'nextYear',
+    function renderCalendar() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prevYear',
+                center: 'prev title next',
+                right: 'nextYear',
+            },
+            theme: false, // false : 태마 적용 안함
+            fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
+            weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
+            editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
+            eventLimit: true, // allow "more" link when too many events
+            events: function(start, end, timezone, callback) {
+                $.ajax({
+                    url: 'diary/ajax/events.do',
+                    dataType: 'json',
+                    data: {
+                        mno: $.session.get('mno')
                     },
-                    theme: false, // false : 태마 적용 안함
-                    fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-                    weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-                    editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-                    eventLimit: true, // allow "more" link when too many events
-                    events: function(start, end, timezone, callback) {
-                        $.ajax({
-                            url: 'diary/ajax/events.do',
-                            dataType: 'json',
-                            data: {
-                                mno: resultObj.User.mno
-                            },
-                            type: "get",
-                            success: function(doc) {
-                                var event = eval(doc.events);
-                                callback(event);
-                            }
-                        });
-                    },
-                    timeFormat: 'H:mm',
-                    eventClick: function(event, jsEvent, view) {
-                        if (event.end) {
-                            $('#modalTitle').html(event.title);
-                            $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
-                            $('#mEnd').val(event.end.format().substring(0,10));
-                            $('#mColor').val(event.color);
-                            $('#mDes').html(event.description);
-                            $('#fullCalModal').modal();
-                        } else {
-                            $('#modalTitle').html(event.title);
-                            $('#mStart').val(event.start.format().substring(0,10));
-                            $('#mEnd').val(event.end.format().substring(0,10));
-                            $('#mColor').val(event.color);
-                            $('#mDes').html(event.description);
-                            $('#fullCalModal').modal();
-                        }
+                    type: "get",
+                    success: function(doc) {
+                        var event = eval(doc.events);
+                        callback(event);
                     }
                 });
+            },
+            timeFormat: 'H:mm',
+            eventClick: function(event, jsEvent, view) {
+                if (event.end) {
+                    $('#modalTitle').html(event.title);
+                    $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+                    $('#mEnd').val(event.end.format().substring(0,10));
+                    $('#mColor').val(event.color);
+                    $('#mDes').html(event.description);
+                    $('#fullCalModal').modal();
+                } else {
+                    $('#modalTitle').html(event.title);
+                    $('#mStart').val(event.start.format().substring(0,10));
+                    $('#mEnd').val(event.end.format().substring(0,10));
+                    $('#mColor').val(event.color);
+                    $('#mDes').html(event.description);
+                    $('#fullCalModal').modal();
+                }
             }
-        renderCalendar();
-        })
-    });
+        });
+    }
+    renderCalendar();
+});
 
-    // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
-    $('#my-today-button').click(function() {
+// 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
+$('#my-today-button').click(function() {
     $('#calendar').fullCalendar('today');
 });
 </script>
 
-  <script>
-    $("select").change(function() {
-      if ($('#cateCode').val() == "JARANG") { // 자랑 해요
+<!-- 글쓰기 카테고리 선택 부분 -->
+<script>
+$("select").change(function() {
+    if ($('#cateCode').val() == "JARANG") { // 자랑 해요
         $('.pDate').css('display', 'none');
-      }
-    }).change();
-  </script>
+    }
+}).change();
+</script>
 
 </body>
 
