@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>자랑하기 상세보기</title>
+
+<!-- 상세보고 클릭 시 메인 홈 효과를 위한 js,css 들 -->
+<link rel="stylesheet" type="text/css" href="../css/jh_update2015.css" />
+<link rel="stylesheet" href="../css/jh_transitions.css" media="all"
+	type="text/css" />
+    
+<script type="text/javascript" src="../js/jh_jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="../js/jh_fade-effect-main.js"></script>
+
+<link rel="stylesheet" href="../css/jh_bootstrap.min.css">
+<link rel="stylesheet" href="../css/jh_main.css" media="all" type="text/css" />
+<link rel="stylesheet" href="../css/jh_detail.css" media="all" type="text/css" />
+    
+    
+<!-- font 참조할라고 가져온 css -->
+<link href="../css/jh_pictures.css" type="text/css" rel="stylesheet">
+<link href="../lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
+    
+<!-- 사진 슬라이드 js, css -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/jh_CSSreset.min.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="../css/jh_als_demo.css" />
+		<script type="text/javascript" src="../js/jh_jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="../js/jh_jquery.als-1.7.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() 
+			{
+				$("#lista1").als({
+					visible_items: 4,
+					scrolling_items: 2,
+					orientation: "horizontal",
+					circular: "no",
+					autoscroll: "no",
+					interval: 5000,
+					speed: 500,
+					easing: "linear",
+					direction: "right",
+					start_from: 0
+				});
+	
+			});
+		</script>
+    <!-- 여기까지 -->
+	
+<script type="text/javascript">
+function doshow(imgSrc) {
+    document.getElementById("bigimg").src = imgSrc;
+}
+  </script>
+    
+<script>
+$(document).ready(function() {
+    var h = $(this).width();
+
+    $(".left").hover(function(){
+        $(".box").stop().animate({ scrollLeft: 0 }, 2000, "swing");
+    })
+
+    $(".right").hover(function(){
+        $(".box").stop().animate({ scrollLeft: h+2000 }, 10000, "swing");
+    })
+
+});    
+</script>
+    
+
+</head>
+<body class="home blog ajax-zilla-likes" style="overflow: hidden;">
+<div id="welcome-loading">
+</div>
+    
+<div id="opening">
+    
+<div id="left">
+
+<div id="left_top">
+    
+    <img alt="클릭하시면 이미지가 보입니다." 
+         src="" id="bigimg" height="485px;" style="font-size:30px;"/>
+    
+
+</div>
+    
+    
+    
+    		
+			<div id="lista1" class="als-container">
+                <span class="als-prev"><img src="../images/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+				<div class="als-viewport">
+					<ul class="als-wrapper">
+						<li class="als-item"><img src="../images/h1.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h2.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h3.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h4.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h5.jpeg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h6.png" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h7.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h8.png" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+                        <li class="als-item"><img src="../images/h9.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+						
+					</ul>
+				</div>
+				<span class="als-next"><img src="../images/thin_right_arrow_333.png" alt="next" title="next" /></span>
+			</div>
+    
+    
+    
+    
+<div id="left_bottom">
+<span id="left_bottom_title">Title</span>
+<span id="content_jh" style="margin-right:250px;">제목입니다.</span>
+
+<span id="content_jh">2016.01.11</span>
+    <div id="division"></div>
+    
+<span id="left_bottom_writer">Writer</span>
+<span id="content_jh" style="margin-right:270px;">이강훈이</span>
+    
+<i class="fa fa-eye" style="font-size:25px;"></i>
+<span id="content_jh" style="margin-right:20px;">7</span>
+    
+<i class="fa fa-thumbs-o-up" style="font-size:25px;"></i>
+<span id="content_jh">2</span>
+    
+    <div id="division"></div>
+    
+<div id="left_bottom_contentbox">
+<pre id="content_jh">fdf
+dfdff
+dfdf
+dfdfd
+dfdfd
+dfdfd
+dfdfdf
+dfdf
+</pre>
+    
+    
+    
+</div>
+    
+<div id=about-close>
+<!-- Indicates a successful or positive action -->
+<button type="button" class="btn-close">Close</button>
+</div>    
+    
+</div>
+    
+    
+    
+    
+    
+    <!-- 댓글 -->
+            <div id="comment">
+                
+                <div id="comment-span-block"><span id="comment-span1">댓글 </span>
+                    <span id="comment-span2">6</span></div>
+                <div id="comment-window">
+                <textarea id="comment-textarea" rows="5px;" cols="75px;"></textarea>
+                </div>
+                
+                <div id="comment-reg-block">
+                    <button type="button" id="comment-reg">등록</button>
+                </div>
+            
+            <div class="comment">
+                <img class="commentimg" src="../images/h4.jpg">
+                <div class="commentname">
+                    현아
+                </div>
+                <div class="commentcontent">
+                    <div>
+                    나는 현아다
+                    </div>
+                    <img class="commentinimg" src="../images/h1.jpg">
+                </div>
+            </div>
+                        
+        </div>
+    <!-- 댓글 끝 -->
+    
+    
+    
+</div>
+</div>
+
+
+    
+
+
+
+</body>
+</html>
