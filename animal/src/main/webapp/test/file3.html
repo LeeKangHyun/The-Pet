@@ -13,19 +13,20 @@
 
 <body>
   <div id="fileuploader">Upload</div>
-  
+
   <script>
       $(document).ready(function() {
-        console.log(event);
         $("#fileuploader").uploadFile({
+          autosubmit: false,
           url : "../file/ajax/upload.do",
           multiple: true,
           dragDrop: true,          
-          fileName : "myfile",
+          fileName : "file",
           returnType: "json",
           enctype: "multipart/form-data",
           formData: {
-            "file" : "111"
+            file: "files",
+            fName: "files.name"
           }
         });
       });
