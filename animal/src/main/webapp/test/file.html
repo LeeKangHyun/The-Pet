@@ -2,31 +2,56 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <title>파일</title>
+<meta charset="UTF-8">
+<title>멀티파일....</title>
+<link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
 
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/multifile/jQuery.MultiFile.min.js"></script>
-
+<script src="../lib/jquery/jquery.min.js"></script>
 </head>
 
 <body>
-  <form method="post" enctype="multipart/form-data" id="multifile" class="multifile">
-    <input multiple type="file" id="mFile" class="with-preview" name="uploadedFile[]"/>
-
-    <div id="mFile-list" style="border:2px solid #c9c9c9;min-height:50px;width:70%;"></div>
-
-  </form>
+  <input multiple id="avatar" type="file" name="avatar" />
+  <button id="upload" class="btn btn-primary">submit</button>
+  <div id="preview"></div>
 
   <script>
-    $(function() {
-      $('#mFile').MultiFile({
-        accept: 'gif|jpg|jpeg',
-        max: 5,
-        list: '#mFile-list'
+      $(document).on("change", prepareLoad);
+
+      function prepareLoad(event) {
+        console.log(event);
+        for (var i = 0; i < event.target.files.length; i++) {
+          console.log(event.target.files[i].name);
+        }
+      }
+
+      $(document).on("click", "#upload", function() {
+        for (var i = 0; i < $("#avatar").prop("files").length; i++) {
+          console.log($("#avatar").prop("files")[i]);
+
+          var file_data = $("#avatar").prop("files")[i];
+          var file_name = file_data.name;
+          var form_data = new FormData();
+          form_data.append("file", file_data)
+          form_data.append("fName", file_name)
+
+          console.log(form_data);
+          $.ajax({
+            url : "../file/ajax/upload.do",
+            dataType : 'json',
+            cache : false,
+            contentType : false,
+            processData : false,
+            data : form_data,
+            type : 'post',
+            success : function(resultObj) {
+              console.log(resultObj);
+              $("div").append('<img src="../files/' + resultObj.files.fName + '">')
+            }
+          })
+        }
       });
-    });
-  </script>
+    </script>
+
 </body>
 
 </html>

@@ -10,9 +10,8 @@
 </head>
 
 <body>
-  <input multiple id="avatar" type="file" name="avatar" />
+  <input multiple id="avatar" type="file" name="avatar[]"/>
   <button id="upload" class="btn btn-primary">submit</button>
-  <br>
   <div id="preview">
   </div>
 
@@ -20,6 +19,7 @@
     $(document).on("change", prepareLoad);
 
     function prepareLoad(event) {
+      console.log(event);
       for (var i = 0; i < event.target.files.length; i++) {
         console.log(event.target.files[i].name);
       }
@@ -32,9 +32,11 @@
 
       var file_data = $("#avatar").prop("files")[0];
       var file_name = file_data.name;
+      console.log(file_name + ' ' + file_data);
       var form_data = new FormData();
       form_data.append("file", file_data)
       form_data.append("fName", file_name)
+      
       
       $.ajax({
         url: "file/ajax/upload.do",

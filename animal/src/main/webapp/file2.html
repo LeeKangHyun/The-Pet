@@ -4,31 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <title>멀티파일....</title>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+
+  <script src="lib/multifile/jquery.MetaData.js"></script>
+  <script src="lib/multifile/jquery.MultiFile.js"></script>
+  <script src="lib/jquery-form/jquery.form.js"></script>
 </head>
 
 <body>
-  <!-- Change the target of the form to the hidden iframe -->
-  <form id="avatar_form" action="file/ajax/add.do" method="post" enctype="multipart/form-data"
-  target="uploader_iframe">
-    <input id="avatar" type="file" name="avatar" size="30" />
-  </form>
-
-  <!-- Hidden iframe which will interact with the server, do not forget to give both name and id values same -->
-  <iframe id="uploader_iframe" name="uploader_iframe" style="display: none;"></iframe>
-
-  <!-- Just added to show the preview when the image is uploaded. -->
-  <img id="preview" src="preview.png" />
+  <input type="file" id="avatar" name="avatar" data-maxfile="4096" multiple />
+  <button id="upload" class="btn btn-danger">Upload</button>
 
   <script>
-    $(function() {
-      $("#avatar").change(function() {
-        $("#avatar_form").submit(); // Submits the form on change event, you consider this code as the start point of your request (to show loader)
-        $("#uploader_iframe").unbind().load(function() { // This block of code will execute when the response is sent from the server.
-          result = JSON.parse($(this).contents().text()); // Content of the iframe will be the response sent from the server. Parse the response as the JSON object
-          $("#preview").attr("src", result.response.avatar_url);
-        });
-      });
+    $('#avatar').MultiFile({
+      max: 10,
+      accept: "gif|jpeg|jpg|png|bmp"
     });
+
+    $(document).on("change", prepareLoad);
+
+    function prepareLoad(event) {
+      console.log(event);
+      console.log($("#avatar"));
+    }
+
+    $(document).on("click", "#upload", function(event) {
+        console.log(event);
+      for (var i = 0; i < event.target.files.length; i++) {
+        console.log(event.target.files[i].name);
+      }
+
+      var file_data = $("#avatar").prop("files")[0];
+      var file_name = file_data.name;
+      var form_data = new FormData();
+      form_data.append("file", file_data)
+      form_data.append("fName", file_name)
+
+      $.ajax({
+        url: "file/ajax/upload.do",
+        dataType: "json",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post'
+      })
+    })
   </script>
 
 </body>

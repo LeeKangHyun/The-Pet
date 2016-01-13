@@ -18,14 +18,10 @@
     "jquery": "1.11.3",
     "fullcalendar": "2.5.0",
     "moment": "2.10.6",
-    "jquery-uploadfile": "~4.0.2",
     "font-awesome": "~4.5.0",
     "jquery-form": "~3.46.0",
-    "blueimp-file-upload": "jquery-file-upload#~9.11.2",
-    "blueimp-canvas-to-blob": "blueimp-canvas-to-blob#~3.1.0",
-    "blueimp-load-image": "blueimp-load-image#~2.1.0",
-    "blueimp-tmpl": "blueimp-tmpl#~3.1.0",
-    "jquery.cookie": "~1.4.1"
+    "jquery.cookie": "~1.4.1",
+    "multifile": "~2.2.0"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -34,14 +30,10 @@
       "jquery": "bower_components/jquery/dist/**",
       "fullcalendar": "bower_components/fullcalendar/dist/**",
       "moment": "bower_components/moment/min/**",
-      "jquery-uploadfile": "bower_components/jquery-uploadfile/**",
       "font-awesome": "bower_components/font-awesome/**",
       "jquery-form": "bower_components/jquery-form/**",
-      "blueimp-file-upload": "bower_components/blueimp-file-upload/**",
-      "blueimp-canvas-to-blob": "bower_components/blueimp-canvas-to-blob/**",
-      "blueimp-load-image": "bower_components/blueimp-load-image/**",
-      "blueimp-tmpl": "bower_components/blueimp-tmpl/**",
-      "jquery.cookie": "bower_components/jquery.cookie/**"
+      "jquery.cookie": "bower_components/jquery.cookie/**",
+      "multifile": "bower_components/multifile/**"
     }
   }
 }
