@@ -18,16 +18,12 @@
     "jquery": "1.11.3",
     "fullcalendar": "2.5.0",
     "moment": "2.10.6",
-    "jquery-uploadfile": "~4.0.2",
     "font-awesome": "~4.5.0",
     "jquery-form": "~3.46.0",
-    "blueimp-file-upload": "jquery-file-upload#~9.11.2",
-    "blueimp-canvas-to-blob": "blueimp-canvas-to-blob#~3.1.0",
-    "blueimp-load-image": "blueimp-load-image#~2.1.0",
-    "blueimp-tmpl": "blueimp-tmpl#~3.1.0",
     "jquery.cookie": "~1.4.1",
-    "jquery-session-plugin": "~0.0.1",
-    "less": "~2.5.3"
+    "less": "~2.5.3",
+    "multifile": "~2.2.0",
+    "jquery-session-plugin": "~0.0.1"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -36,7 +32,6 @@
       "jquery": "bower_components/jquery/dist/**",
       "fullcalendar": "bower_components/fullcalendar/dist/**",
       "moment": "bower_components/moment/min/**",
-      "jquery-uploadfile": "bower_components/jquery-uploadfile/**",
       "font-awesome": "bower_components/font-awesome/**",
       "jquery-form": "bower_components/jquery-form/**",
       "blueimp-file-upload": "bower_components/blueimp-file-upload/**",
@@ -45,7 +40,9 @@
       "blueimp-tmpl": "bower_components/blueimp-tmpl/**",
       "jquery.cookie": "bower_components/jquery.cookie/jquery.cookie.js",
       "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js",
-      "less": "bower_components/less/dist/**"
+      "less": "bower_components/less/dist/**",
+      "jquery.cookie": "bower_components/jquery.cookie/**",
+      "multifile": "bower_components/multifile/**"
     }
   }
 }

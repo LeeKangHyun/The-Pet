@@ -2,32 +2,35 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <title>파일</title>
-  <link href="../lib/jquery-uploadfile/css/uploadfile.css" rel="stylesheet">
-  
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/jquery-uploadfile/js/jquery.uploadfile.min.js"></script>
+<meta charset="UTF-8">
+<title>멀티파일....</title>
+<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css"
+  rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+  src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
 </head>
 
 <body>
-  <div id="mFile">Upload</div>
+  <div id="fileuploader">Upload</div>
 
   <script>
-    $(document).ready(function() {
-      var uploadObj = $("#mFile").uploadFile({
-        url: "#",
-        multiple: true,
-        dragDrop: true,
-        autoSubmit: false,
-        showFileSize: false,
-        showPreview: false,
-        previewHeight: 480,
-        fileName: "myfile"
+      $(document).ready(function() {
+        $("#fileuploader").uploadFile({
+          autosubmit: false,
+          url : "../file/ajax/upload.do",
+          multiple: true,
+          dragDrop: true,          
+          fileName : "file",
+          returnType: "json",
+          enctype: "multipart/form-data",
+          formData: {
+            file: "files",
+            fName: "files.name"
+          }
+        });
       });
-    });
-  </script>
-
+    </script>
 </body>
 
 </html>
