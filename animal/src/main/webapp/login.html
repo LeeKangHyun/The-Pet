@@ -27,9 +27,8 @@
   </script>
 
   <!-- 캘린더 스크립트 -->
-  <script src="lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
   <script src='lib/jquery/jquery.min.js' type="text/javascript"></script>
-  <script src='lib/bootstrap/js/modal.js' type="text/javascript"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
 
   <script src="lib/jquery.cookie/jquery.cookie.js" type="text/javascript"></script>
   <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
@@ -248,7 +247,7 @@ function check(id) {
 
   <!-- 회원가입 구간 -->
 
-  <div class="modal fade" id="registerModal" role="dialog">
+  <div class="modal fade" id="registerModal" role="dialog" data-keyboard="true">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -339,13 +338,11 @@ function check(id) {
   <!--  중복확인 스크립트  -->
 <script>
 $(document).ready(function() {
-    
     var login_email = $.cookie("saved");
     if (login_email != undefined) {
         $('#lmEmail').val(login_email);
         $('#lsaveEmail').prop("checked", true);
     }
-    
     
     $('#loginBtn').click(function(event) {
         if ($('#lmEmail').val() == "") {
@@ -388,6 +385,30 @@ $(document).ready(function() {
             }
         }, 'json');
     });
+    
+    $('#registerModal').on('hide.bs.modal', function (e) {
+        $(':text:not([id=lmEmail])').val('');
+        $(':password').val('');
+        $(':file').val('');
+
+        $('#mEmailForm').removeClass("has-success");
+        $('#passwordForm').removeClass("has-success");
+        $('#password2Form').removeClass("has-success");
+        $('#mNameForm').removeClass("has-success");
+        $('#telForm').removeClass("has-success");
+
+        $('#mEmailForm').removeClass("has-error");
+        $('#passwordForm').removeClass("has-error");
+        $('#password2Form').removeClass("has-error");
+        $('#mNameForm').removeClass("has-error");
+        $('#telForm').removeClass("has-error");
+        
+        $('#mEmailMsg').html("");
+        $('#passwordMsg').html("");
+        $('#password2Msg').html("");
+        $('#mNameMsg').html("");
+        $('#telMsg').html("");
+    })
     
     $('#joinBtn').click(function(event) {
         if ($('#mEmail').val() == "" || 
@@ -459,21 +480,6 @@ $(document).ready(function() {
                     form_data.append("password", $('#password').val())
                     form_data.append("mName", $('#mName').val())
                     form_data.append("tel", $('#tel').val())
-                    $(':text:not([id=lmEmail])').val('');
-                    $(':password').val('');
-                    $(':file').val('');
-                
-                    $('#mEmailForm').removeClass("has-success");
-                    $('#passwordForm').removeClass("has-success");
-                    $('#password2Form').removeClass("has-success");
-                    $('#mNameForm').removeClass("has-success");
-                    $('#telForm').removeClass("has-success");
-
-                    $('#mEmailMsg').html("");
-                    $('#passwordMsg').html("");
-                    $('#password2Msg').html("");
-                    $('#mNameMsg').html("");
-                    $('#telMsg').html("");
 
                     $.ajax({
                         url : "member/ajax/add.do",
@@ -492,15 +498,6 @@ $(document).ready(function() {
         }
     });
 })
-</script>
-<script>
-
-    
-</script>
-
-<!--  로그인 스크립트  -->
-<script>
-
 </script>
 
 </body>

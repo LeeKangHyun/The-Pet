@@ -60,28 +60,28 @@ public class DiaryController {
 		 
 		List<Diary> events = diaryService.getEventList(mno);	
 		
-		List dummyDate = new ArrayList();
-		Map<String, Object> m;
-		for (Diary d: events) {
-			m = new HashMap<String, Object>();
-			m.put("no", d.getDno());
-			m.put("start", d.getStartDate());
-			m.put("end", d.getEndDate());
-			m.put("title", d.getTitle());
-			m.put("description", d.getContent());
-			m.put("hide", d.isDhide());
-			m.put("color", d.getTagColor());
-			dummyDate.add(m);
-		}
-		
-		ObjectMapper om = new ObjectMapper();
+//		List dummyDate = new ArrayList();
+//		Map<String, Object> m;
+//		for (Diary d: events) {
+//			m = new HashMap<String, Object>();
+//			m.put("no", d.getDno());
+//			m.put("start", d.getStartDate());
+//			m.put("end", d.getEndDate());
+//			m.put("title", d.getTitle());
+//			m.put("description", d.getContent());
+//			m.put("hide", d.isDhide());
+//			m.put("color", d.getTagColor());
+//			dummyDate.add(m);
+//		}
+//		
+//		ObjectMapper om = new ObjectMapper();
 
-		System.out.println(dummyDate);
+//		System.out.println(dummyDate);
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
-		resultMap.put("events", dummyDate);
-
+//		resultMap.put("events", dummyDate);
+		resultMap.put("events", events);
 		return resultMap;
 	}
 	

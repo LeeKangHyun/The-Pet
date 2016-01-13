@@ -18,8 +18,8 @@
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
     <!-- 캘린더 스크립트 -->
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src='lib/jquery/jquery.js'></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src='lib/moment/moment.min.js'></script>
     <script src='lib/fullcalendar/fullcalendar.js'></script>
     <script src="lib/fullcalendar/lang/ko.js"></script>
@@ -270,37 +270,12 @@
 <!-- 파일 업로드 파일 이름뜨는부분 -->
 <script src="js/sh_custom-file-input.js"></script>
 
-<!-- 로그인 회원 정보출력 세션없으면 로그인페이지로 -->
-<script>
-$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
-function(resultObj) {
-    var div = $('#user_info');
-    if ($.session.get('mno') == undefined) {
-        location.href = "login.html"
-    } else {
-        div.append(
-            "<img src='images/" + $.session.get('mimg') + "' id='userImg' />" +
-            "<a class='userName' href='#'>" + $.session.get('mname') + "</a>" +
-            "<a type='button' id='outBtn' class='logout'>" +
-            "<i class='fa fa-unlock fa-lg'></i></a>")
-    }
-});
-</script>
-
-<!-- 로그아웃 -->
-<script>
-$(document).on("click", "#outBtn", function() {
-    $.session.clear();
-    location.href = "login.html"
-});
-</script>
-
 <!-- 로그인한 회원의 펫 보여주는것 -->
+<!--
 <script>
 $.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
 function(resultObj) {
     var table = $('#diary-pet-info');
-
     for (var pet of resultObj.pets) {
         table.append(
             "<table class='innerTable' border='0'>" +
@@ -312,13 +287,7 @@ function(resultObj) {
             pet.tagColor + "' disabled></td></tr>" +
             "</table>")
     }
-});
 
-var s = $("#startDate").val();
-var startDate = moment(s).toDate();
-
-$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
-function(resultObj) {
     var sel = $("#pno");
     for (var pet of resultObj.pets) {
         sel.append("<option value='" + pet.pno + "'>" + pet.pName +
@@ -326,15 +295,34 @@ function(resultObj) {
     }
 });
 </script>
+-->
 
 <!-- 캘린더 스크립트 -->
 <script>
 $(document).ready(function() {
-    console.log($.session.get('mno'))
+//    로그인 회원 정보출력 세션없으면 로그인페이지로
+    var div = $('#user_info');
+    if ($.session.get('mno') != undefined) {
+        div.append(
+            "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+            "<a class='userName' href='#'>" + $.session.get('mname') + "</a>" +
+            "<a type='button' id='outBtn' class='logout'>" +
+            "<i class='fa fa-unlock fa-lg'></i></a>")
+    } else {
+        location.href = "login.html"
+    }
+    
+//    로그아웃
+    $(document).on("click", "#outBtn", function() {
+        $.session.clear();
+        location.href = "login.html"
+    });
+    
+//    서브메뉴에 사용
     $('.menu-has-sub').click(function(e) {
         $(this).toggleClass('tap');
     });
-
+//    켈린더 출력
     function renderCalendar() {
         $('#calendar').fullCalendar({
             header: {
@@ -383,15 +371,41 @@ $(document).ready(function() {
     }
     renderCalendar();
 });
+    
+var no = $.session.get('mno');
+if (no == undefined) {
+    no = 0;
+}
+    
+// 로그인한 회원의 펫 보여주는것
+$.getJSON('diary/ajax/list.do?mno=' + no,
+function(resultObj) {
+    var table = $('#diary-pet-info');
+    for (var pet of resultObj.pets) {
+        table.append(
+            "<table class='innerTable' border='0'>" +
+            "<tr><td rowspan='2'><img class='mImg' src='images/" +
+            pet.pImg + "'></td>" +
+            "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
+            pet.pName + "' disabled></td></tr>" +
+            "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
+            pet.tagColor + "' disabled></td></tr>" +
+            "</table>")
+    }
+
+    var sel = $("#pno");
+    for (var pet of resultObj.pets) {
+        sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+        "</option>")
+    }
+});
 
 // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
 $('#my-today-button').click(function() {
     $('#calendar').fullCalendar('today');
 });
-</script>
 
-<!-- 글쓰기 카테고리 선택 부분 -->
-<script>
+// 글쓰기 카테고리 선택 부분
 $("select").change(function() {
     if ($('#cateCode').val() == "JARANG") { // 자랑 해요
         $('.pDate').css('display', 'none');
