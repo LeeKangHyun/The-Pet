@@ -8,7 +8,9 @@ import pms.domain.Diary;
 public interface DiaryDao {
   List<Diary> eventList(int mno);
   
-  List<Diary> selectList(Map<String,Object> paramMap);
+  List<Diary> cateList(Map<String,Object> paramMap);
+  
+  Diary selectOne(int dno);
   
   int insert(Diary diary);
   

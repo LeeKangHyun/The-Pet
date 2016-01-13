@@ -7,12 +7,12 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.dao.EducationDao;
 import pms.dao.FilesDao;
+import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
 import pms.service.EducationService;
@@ -78,14 +78,13 @@ public class EductionController {
 //		
 //	
 	@RequestMapping("detail")
-	public Object detail(int eduNo, Model model) throws Exception {
+	public Object detail(int eduNo) throws Exception {
+		System.out.println(eduNo);
         
     educationDao.addViews(eduNo);
-        
-		Education education = educationService.getOneEducation(eduNo);
-		model.addAttribute("education", education);
+		Education education = educationDao.selectOne(eduNo);
 		
-		return "education/EducationDetail";
+		return new AjaxResult("success", education);
 	}
 	
 //	@RequestMapping(value="update", method=RequestMethod.POST)

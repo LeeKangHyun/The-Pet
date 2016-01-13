@@ -20,17 +20,17 @@
           }
 
         var file_data = $("#avatar").prop("files")[0];
-        var file_name = file_data.name;// Getting the properties of file from file field
-        var form_data = new FormData(); // Creating object of FormData class
-        form_data.append("file", file_data) // Appending parameter named file with properties of file_field to form_data
-        form_data.append("fName", file_name) // Adding extra parameters to form_data
+        var file_name = file_data.name;
+        var form_data = new FormData();
+        form_data.append("file", file_data)
+        form_data.append("fName", file_name)
         $.ajax({
           url : "file/ajax/upload.do",
           dataType : 'script',
           cache : false,
           contentType : false,
           processData : false,
-          data : form_data, // Setting the data attribute of ajax with file_data
+          data : form_data,
           type : 'post'
         })
       })
