@@ -40,8 +40,8 @@
   </select>
   
   <insert id="insert" parameterType="files">
-    insert into files(FILE_NAME,EDU_NUM,MAT_NUM,S_NUM,SCH_NUM) 
-    values(#{fileName},#{eduNo},#{matNo},#{sno},#{dno})
+    insert into files(FILE_NAME,SCH_NUM) 
+    values(#{fileName},#{dno})
   </insert>
   
   <delete id="deleteDairyFile" parameterType="int">
