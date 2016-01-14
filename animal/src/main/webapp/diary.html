@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Slid Menu</title>
-    <!--  내가만든 css들  -->
-    <link href="css/sh_diary.css" type="text/css" rel="stylesheet" />
-    <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />
+    <!--  내가만든 less들  -->
+    <link href="css/sh_diary.less" type="style.less" rel="stylesheet/less" />
     <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
 
     <!--  폰트아이콘 링크  -->
@@ -64,12 +63,46 @@
 </header>
 
 <section id="main-body">
-    
+
     <div id="diary-pet-info">
-        <div class="addSce">
-            <button type="button" id="my-today-button" class="btn btn-default">Today</button>
-            <a class="btn btn-default" id="petadd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
-            <a class="btn btn-default" id="txtadd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
+      <div class="addSce">
+        <button type="button" id="my-today-button" class="btn btn-default">Today</button>
+        <a class="btn btn-default" id="petAdd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
+        <a class="btn btn-default" id="scheduleAdd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
+      </div>
+        
+        <div id="myPets">
+            
+            <div class='myPet'>
+                <img class='mImg' src='images/p1.jpeg'>
+
+                <input class='petName' type='text' value='name' disabled>
+                <label class='pName'>이름 : </label>
+
+                <input class='pColor' type='color' value='#ff0000' disabled>
+                <label class='pInfo'>태그색 : </label>
+            </div>
+            
+            <div class='myPet'>
+                <img class='mImg' src='images/p1.jpeg'>
+
+                <input class='petName' type='text' value='name' disabled>
+                <label class='pName'>이름 : </label>
+
+                <input class='pColor' type='color' value='#ff0000' disabled>
+                <label class='pInfo'>태그색 : </label>
+            </div>
+            
+            <div class='myPet'>
+                <img class='mImg' src='images/p1.jpeg'>
+
+                <input class='petName' type='text' value='name' disabled>
+                <label class='pName'>이름 : </label>
+
+                <input class='pColor' type='color' value='#ff0000' disabled>
+                <label class='pInfo'>태그색 : </label>
+            </div>
+            
         </div>
     </div>
 
@@ -92,26 +125,26 @@
                 <span>시작일 : </span>
                 <input type="date" id="mStart" class="form-control">
                 <br>
-                
+
                 <span>종료일 : </span>
                 <input type="date" id="mEnd" class="form-control">
                 <br>
-                
+
                 <span>태그색 : </span>
                 <input type="color" id="mColor">
                 <br>
                 <br>
-                
+
                 <span>내용 : </span>
                 <br>
-                
+
                 <textarea id="mDes" class="form-control" rows="5"></textarea>
                 <br>
-                
+
                 <span>이미지 : </span>
                 <img src="" width="100%" height="auto">
                 <br>
-                
+
                 <input type="file" id="mFile">
                 <input type="hidden" value="p5.jpeg">
             </div>
@@ -249,34 +282,9 @@
     </div>
 </div>
 <!-- //게시글 추가 모달 -->
-    
+
 <!-- 파일 업로드 파일 이름뜨는부분 -->
 <script src="js/sh_custom-file-input.js"></script>
-
-<!-- 로그인한 회원의 펫 보여주는것 -->
-<script>
-$.getJSON('diary/ajax/list.do?mno=' + $.session.get('mno'),
-function(resultObj) {
-    var table = $('#diary-pet-info');
-    for (var pet of resultObj.pets) {
-        table.append(
-            "<table class='innerTable' border='0'>" +
-            "<tr><td rowspan='2'><img class='mImg' src='images/" +
-            pet.pImg + "'></td>" +
-            "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
-            pet.pName + "' disabled></td></tr>" +
-            "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
-            pet.tagColor + "' disabled></td></tr>" +
-            "</table>")
-    }
-
-    var sel = $("#pno");
-    for (var pet of resultObj.pets) {
-        sel.append("<option value='" + pet.pno + "'>" + pet.pName +
-        "</option>")
-    }
-});
-</script>
 
 <!-- 캘린더 스크립트 -->
 <script>
@@ -290,15 +298,15 @@ $(document).ready(function() {
             "<a role='button' id='outBtn' class='logout'>" +
             "<i class='fa fa-unlock fa-lg'></i></a>")
     } else {
-        location.href = "login.html"
+//        location.href = "login.html"
     }
-    
+
 //    로그아웃
     $(document).on("click", "#outBtn", function() {
         $.session.clear();
         location.href = "login.html"
     });
-    
+
 //    켈린더 출력
     function renderCalendar() {
         $('#calendar').fullCalendar({
@@ -348,12 +356,12 @@ $(document).ready(function() {
     }
     renderCalendar();
 });
-    
+
 var no = $.session.get('mno');
 if (no == undefined) {
     no = 0;
 }
-    
+
 // 로그인한 회원의 펫 보여주는것
 $.getJSON('diary/ajax/list.do?mno=' + no,
 function(resultObj) {

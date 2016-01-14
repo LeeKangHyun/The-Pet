@@ -24,21 +24,6 @@
     text-decoration: none;
 }
 
-/*
-.addSce a:hover {
-    text-decoration: none;
-    color: #000;
-}
-*/
-
-/*
-.addSce button {
-    float: right;
-    margin-left: 25px;
-    top: 6px;
-}
-*/
-
 .addSce #my-today-button {
     float: right;
 }
