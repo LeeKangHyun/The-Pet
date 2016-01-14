@@ -8,6 +8,8 @@ public interface BoastBoardDao {
   
   List<Diary> selectList();
   
+  List<Diary> rankList();
+  
   Diary selectOne(int dno);
   
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.BoastBoardDao">
+  
+  <resultMap type="diary" id="diaryMap">
+    <id   column="SCH_NUM"    property="dno"/>
+  <result column="PET_NUM"    property="pno"/>    
+    <result column="START_DATE"   property="startDate"/>
+    <result column="END_DATE"     property="endDate"/>
+  <result column="SCH_CRE"    property="createDate"/>
+  <result column="SCH_CONTENT"  property="content"/>
+  <result column="SCH_TITLE"    property="title"/>
+  <result column="CATE_CODE"    property="cateCode"/>
+  <result column="NOTI_HIDE"    property="dhide"/>
+  <result column="NOTI_VIEWS"   property="view"/>
+  <result column="NOTI_LIKES"   property="like"/>
+  <result column="FILE_NAME"   property="fileName"/>
+  <result column="MEM_NAME"   property="member"/> 
+ </resultMap>
+  
+  <select id="selectList" resultMap="diaryMap">
+    select
+      sc.SCH_NUM,
+      sc.SCH_CRE, 
+      sc.SCH_TITLE, 
+      sc.CATE_CODE,
+      sc.NOTI_LIKES,
+      sc.NOTI_VIEWS,
+      fi.FILE_NAME
+    from schedule sc 
+    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
+    where CATE_CODE='JARANG' and NOTI_HIDE=0
+  </select>
+  
+  <select id="rankList" resultMap="diaryMap">
+  select 
+      sc.SCH_NUM,
+      sc.SCH_CRE, 
+      sc.SCH_TITLE, 
+      sc.CATE_CODE,
+      sc.NOTI_LIKES,
+      sc.NOTI_VIEWS,
+      fi.FILE_NAME,
+      (select count(*) + 1 from schedule where NOTI_LIKES > sc.NOTI_LIKES) AS rank 
+     from schedule as sc  
+     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
+     where CATE_CODE='JARANG' and NOTI_HIDE=0  
+     order by rank asc
+  </select>
+  
+    <select id="selectOne" resultMap="diaryMap" parameterType="int">
+    select
+      sc.SCH_NUM,
+      sc.SCH_CRE, 
+      sc.SCH_TITLE,
+      sc.SCH_CONTENT,
+      sc.CATE_CODE,
+      sc.NOTI_LIKES,
+      sc.NOTI_VIEWS,
+      fi.FILE_NAME,
+      me.MEM_name
+    from schedule sc
+    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
+    left outer join pet pe on sc.PET_NUM = pe.PET_NUM
+    left outer join member me on sc.PET_NUM = me.MEM_NUM
+    where sc.CATE_CODE='JARANG' and sc.NOTI_HIDE=1 and sc.SCH_NUM = #{dno}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
