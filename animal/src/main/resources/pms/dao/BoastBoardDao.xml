@@ -17,7 +17,7 @@
   <result column="NOTI_HIDE"    property="dhide"/>
   <result column="NOTI_VIEWS"   property="view"/>
   <result column="NOTI_LIKES"   property="like"/>
-  <result column="FILE_NAME"   property="fileName"/>
+  <result column="FILE_NAME"   property="filename"/>
   <result column="MEM_NAME"   property="member"/> 
  </resultMap>
   

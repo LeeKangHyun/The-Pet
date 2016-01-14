@@ -143,7 +143,5 @@ public class Diary  implements Serializable {
   public void setMember(String member) {
     this.member = member;
   }
-
-  
   
 }
