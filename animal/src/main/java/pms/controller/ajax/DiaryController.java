@@ -86,14 +86,14 @@ public class DiaryController {
 			diary.setEndDate(now.format(d));
 		}
 
+		diaryService.add(diary);
+		
 		List<Diary> events = diaryService.getEventList(mno);
 		int lastDno = 0;
 		for (Diary d : events) {
 			lastDno = d.getDno();
 		}
-		
-		diaryService.add(diary);
-		
+
 		return new AjaxResult("success", lastDno);
 	}
 

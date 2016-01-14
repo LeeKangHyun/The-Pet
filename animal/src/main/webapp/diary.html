@@ -288,7 +288,8 @@
                     </div>
 
                     <div class="box">
-                        <input type="file" name="fileName[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
+                        <input multiple id="file-1" type="file" name="fileName" />
+<!--                        <input type="file" name="fileName" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />-->
                         <label for="file-1">
                             <i class="fa fa-upload"></i>
                             <span>이미지 추가</span>
@@ -459,8 +460,8 @@ $(document).on("click", "#addPetBtn", function() {
     }
 });
     
-// 펫 추가
-$(document).on("click", "#addPetBtn", function() {
+// 다이어리 추가
+$(document).on("click", "#addBtn", function(event) {
     if ($('#pno').val() == "" ||
         $('#title').val() == "" ||
         $('#fContent').val() == "" ||
@@ -468,7 +469,7 @@ $(document).on("click", "#addPetBtn", function() {
         alert("모두 입력해주세요")
         return false;
     } else {
-
+        console.log(event)
         var form_data = new FormData();
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", $('#dhide').val())
@@ -478,7 +479,6 @@ $(document).on("click", "#addPetBtn", function() {
         form_data.append("endDate", $('#endDate').val())
         form_data.append("title", $('#title').val())
         form_data.append("content", $('#fContent').val())
-
         $.ajax({
             url : "diary/ajax/add.do",
             dataType : 'json',
@@ -492,6 +492,8 @@ $(document).on("click", "#addPetBtn", function() {
                 alert("다이어리가 추가되었습니다.")
             
                 var lastDno = re.ajaxResult.data;
+                console.log(lastDno)
+                console.log($("#file-1"))
                 for (var i = 0; i < $("#file-1").prop("files").length; i++) {
                     var file_data = $("#file-1").prop("files")[i];
                     var file_name = file_data.name;
@@ -499,7 +501,7 @@ $(document).on("click", "#addPetBtn", function() {
                     form_data.append("file", file_data)
                     form_data.append("fName", file_name)
                     form_data.append("dno", lastDno)
-                    
+                    alert("ajax들어간다~")
                     $.ajax({
                         url : "files/ajax/upload.do",
                         dataType : 'json',
