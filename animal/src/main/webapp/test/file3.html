@@ -4,8 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>멀티파일....</title>
+<link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css"
   rel="stylesheet">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script
   src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
@@ -13,14 +15,15 @@
 
 <body>
   <div id="fileuploader">Upload</div>
+  <button id="addbtn" class="btn btn-primary">submit</button>
 
   <script>
       $(document).ready(function() {
-        $("#fileuploader").uploadFile({
-          autosubmit: false,
+        var uploadObj = $("#fileuploader").uploadFile({
           url : "../file/ajax/upload.do",
+          autoSubmit: false,
           multiple: true,
-          dragDrop: true,          
+          dragDrop: true,
           fileName : "file",
           returnType: "json",
           enctype: "multipart/form-data",
@@ -29,6 +32,10 @@
             fName: "files.name"
           }
         });
+
+        $("#addbtn").click(function() {
+            uploadObj.startUpload();
+        })
       });
     </script>
 </body>

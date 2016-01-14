@@ -38,6 +38,7 @@
           $.ajax({
             url : "../file/ajax/upload.do",
             dataType : 'json',
+            encType: 'multipart/form-data',
             cache : false,
             contentType : false,
             processData : false,
