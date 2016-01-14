@@ -14,7 +14,6 @@
 
 <!-- 대진 메인 css -->
 <link href="css/dj_main.css" rel="stylesheet" />
-<script src="css/dj_main.js"></script>
 
 <!-- 캘린더 css -->
 <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
@@ -77,11 +76,12 @@
       </div>
       
       <div style="text-align:left;">
-       <button>강아지</button>
-       <button>고양이</button>
-       <button>물고기</button>
-       <button>새</button>
-       <button>ETC</button>      
+       <button id="all">All</button>
+       <a href="education.html?key=DIV01">강아지</a>
+       <button id="div02">고양이</button>
+       <button id="div03">물고기</button>
+       <button id="div04">새</button>
+       <button id="div05">ETC</button>      
       </div>
       
       <table id="listTable" class="table table-hover">
@@ -99,26 +99,56 @@
 
   <script type="text/javascript" src="lib/jquery/jquery.js"></script>
   <script>
-
-$.getJSON('education/ajax/list.do', function(resultObj) {
-  var table = $("#listTable");
-  for (var education of resultObj.data) {
-    $("<tr>")
-      .html("<td><a class='detailLnk' href='#' eduNo='" 
-                + education.eduNo + "'>" + education.eduTitle + 
-            "</a></td><td>" + education.eduViews +
-            "</td><td>" + education.eduCreateDate + "</td>"
-            + "<td>" + education.eduType + "</td>")
-      .appendTo(table);
-    console.log(education.eduTitle);
+  
+  var key = location.href.split('?')[1].split('=')[1];
+  
+  switch (key) {
+  case 'all' : 
+    $.getJSON('education/ajax/list.do', function(resultObj) {
+      var table = $("#listTable");
+      for (var education of resultObj.data) {
+        $("<tr>")
+          .html("<td><a class='detailLnk' href='#' eduNo='" 
+                    + education.eduNo + "'>" + education.eduTitle + 
+                "</a></td><td>" + education.eduViews +
+                "</td><td>" + education.eduCreateDate + "</td>"
+                + "<td>" + education.eduType + "</td>")
+          .appendTo(table);
+        console.log(education.eduTitle);
+      }
+      // 제목 링크에 클릭 이벤트 리스너를 등록한다.
+      $("a.detailLnk").click(clickDetailLnk);
+    });
+    console.log(key); break;
+  case 'DIV01' :
+    $.getJSON('education/ajax/cate.do', function(resultObj) {
+        var table = $("#listTable");
+        for (var education of resultObj.data) {
+          $("<tr>")
+            .html("<td><a class='detailLnk' href='#' eduNo='" 
+                      + education.eduNo + "'>" + education.eduTitle + 
+                  "</a></td><td>" + education.eduViews +
+                  "</td><td>" + education.eduCreateDate + "</td>"
+                  + "<td>" + education.eduType + "</td>")
+            .appendTo(table);
+          console.log(education.eduTitle);
+        }
+        // 제목 링크에 클릭 이벤트 리스너를 등록한다.
+        $("a.detailLnk").click(clickDetailLnk);
+      });
+    console.log(key); break;
+  case 'DIV02' :
+    console.log(key); break;
+  defalut :
+    console.log(key); break;
   }
-  // 제목 링크에 클릭 이벤트 리스너를 등록한다.
-  $("a.detailLnk").click(clickDetailLnk);
-});
-
 
 $('#newBtn').click(function(event){
   location.href = "form.html?no=-1";
+});
+
+$('#all').click(function(event) {
+  location.href = "education.html?key=all";
 });
 
 //게시물 제목을 클릭했을 때 호출될 함수
@@ -127,6 +157,10 @@ function clickDetailLnk(event) {
   location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
 }
 
+function clickDivLnk(event) {
+  event.preventDefault();
+  location.href = "education.html?key=" + $(event.target).attr("eduType");
+}
 </script>
 </body>
 </html>
