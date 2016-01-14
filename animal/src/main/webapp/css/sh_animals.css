@@ -47,10 +47,10 @@
     border-bottom-right-radius: 50%;
     float: left;
     margin: 180px 0 0 0;
-    border: 40px solid #f9f6f5;
+    border: 40px solid #eee5e3;
     text-align: center;
     position: relative;
-/*    top: -300px;*/
+    top: -113px;
 }
 
 .dog_ear {
@@ -88,8 +88,8 @@
 }
 
 .dog_eye {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 15px;
   background-color: #fff;
   display: inline-block;
   border-radius: 100%;
@@ -121,7 +121,7 @@
   border-bottom-left-radius: 70%;
   border-bottom-right-radius: 70%;
   position: relative;
-  bottom: 140px;
+  bottom: 130px;
 }
 
 .dog_nose:after {
@@ -130,15 +130,15 @@
   height: 30px;
   background-color: #212121;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  left: -1px;
+  right: 0px;
+  top: -3px;
   margin: auto;
 }
 
 .dog_mouth {
   animation: dog_mouth 1s infinite alternate;
-  width: 70px;
+  width: 60px;
   height: 40px;
   border-bottom: 10px solid #dccac5;
   background-color: #5c0e0e;
@@ -149,7 +149,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 120px;
+  top: 116px;
   margin: auto;
 }
 
@@ -167,12 +167,12 @@
 }
 
 .dog_mouth_2 {
-    width: 100px;
-    height: 90px;
+    width: 90px;
+    height: 85px;
     background-color: #dccac5;
     border-radius: 100%;
     position: relative;
-    left: 25px;
+    left: 30px;
     bottom: 55px;
 }
 
@@ -208,12 +208,12 @@
 
 .cat {
   margin: 50px 0 0 460px;
-  border: 40px solid #fafafa;
+  border: 40px solid #f2d0ab;
   width: 245px;
   height: 250px;
   background-color: #f5f4f3;
-  border-top-right-radius: 80%;
-  border-top-left-radius: 80%;
+  border-top-right-radius: 95%;
+  border-top-left-radius: 95%;
   border-bottom-left-radius: 105%;
   border-bottom-right-radius: 105%;
   float: right;
@@ -236,8 +236,8 @@
   transform: rotate(45deg);
   transform-origin: left center;
 /*  background-color: #f9cce3;*/
-  border-top: 8px solid #8e8e8e;
-  border-left: 5px solid #8e8e8e;
+  border-top: 8px solid #E6A257;
+  border-left: 5px solid #E6A257;
 /*  border-right: 8px solid #8e8e8e;*/
   border-top-right-radius: 150px;
   border-bottom-right-radius: 30px;
@@ -251,9 +251,9 @@
   transform: rotate(-45deg);
   transform-origin: right center;
 /*    background-color: #f9cce3;*/
-  border-top: 8px solid #8e8e8e;
+  border-top: 8px solid #E6A257;
 /*  border-left: 8px solid #8e8e8e;*/
-  border-right: 5px solid #8e8e8e;
+  border-right: 5px solid #E6A257;
   border-top-left-radius: 150px;
   border-bottom-left-radius: 30px;
   border-top-right-radius: 60px;
@@ -262,9 +262,9 @@
 
 .cat_eye_right{
   transform: rotate(0deg);
-  width: 85px;
+  width: 100px;
   height: 90px;
-  background-color: #8e8e8e;
+  background-color: #E6A257;
   border-top-left-radius: 75%;
   border-bottom-right-radius: 80%;
   position: relative;
@@ -276,7 +276,7 @@
   transform: rotate(0deg);
   width: 85px;
   height: 90px;
-  background-color: #8e8e8e;
+/*  background-color: #E6A257;*/
   border-top-right-radius: 75%;
   border-bottom-left-radius: 90%;
   position: relative;
