@@ -62,6 +62,7 @@
 .inputfile-1 + label {
     color: #f1e5e6;
     background-color: #d3394c;
+    border-radius: 4px;
 }
 
 .inputfile-1:focus + label,

@@ -13,7 +13,9 @@ public class Files implements Serializable {
 	protected int sno;					// file이 올려진 분양 게시물 번호
 	protected int dno;					// file이 올려진 일정(자랑하기, 산책코스) 게시물 번호
 	
+	///////////////////////////
 	protected String fName;
+	///////////////////////////
 	
 	public Files () {}
 

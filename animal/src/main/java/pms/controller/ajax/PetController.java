@@ -45,31 +45,22 @@ public class PetController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(Pet pet,
-//			Files files,
-			  int mno
-//			MultipartFile file
+			  MultipartFile file
 			) throws Exception {
-
-//		if (file.getSize() > 0) {
-//			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-//			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-//																  + "/" + newFileName);
-//			file.transferTo(attachfile);
-//			// 파일 만들어야 쓸수있겠군
-//			files.setFileName(newFileName);
-//		}
-//		files.setDno(diary.getDno());
-//		
-//		filesService.add(files);
 		
-//		for (String f : files.getFileName()) {
-//			System.out.println(f);
-//		}
-//		
+		pet.setpImg("default.jpg");
+		if (file != null) {	
+		 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+																+ "/" + newFileName);
+			file.transferTo(attachfile);
+			pet.setpImg(newFileName);
+		}
 
 		petService.addPet(pet);
-			
-		return "redirect:../../diary.html";
+		List<Pet> pets = petService.getPetList(pet.getMno());
+		
+		return new AjaxResult("success", pets);
 	}
 
 	@RequestMapping("detail")

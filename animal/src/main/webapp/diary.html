@@ -141,47 +141,53 @@
 
             <div class="modal-body">
                 
-                <form action="pet/ajax/add.do" method="post">
-                    <input type="hidden" name="mno" class="myMno">
+                <form>
+                    <input type="hidden" name="mno" id="myMno1">
                     
                     <div class="form-group">
-                        <label for="pName" class="col-sm-2 control-label">펫 이름</label>
-                        <div class="col-sm-10">
+                        <label for="pName" class="col-sm-3 control-label">펫 이름</label>
+                        <div class="col-sm-9">
                             <input type="text" name="pName" class="form-control" id="pName" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="pType" class="col-sm-2 control-label">펫 종류</label>
-                        <div class="col-sm-10">
+                        <label for="pType" class="col-sm-3 control-label">펫 종류</label>
+                        <div class="col-sm-9">
                             <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pType" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="tagColor" class="col-sm-2 control-label">태그 색</label>
-                        <div class="col-sm-10">
-                            <input type="color" name="tagColor" class="form-control" id="tagColor" required>
+                        <label for="tagColor" class="col-sm-3 control-label">태그 색</label>
+                        <div class="col-sm-2">
+                            <input type="color" name="tagColor" id="tagColor" value="#ff0000" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="injection" class="col-sm-2 control-label">예방 접종 차수</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="injection" class="form-control" id="injection" required>
+                        <label for="injection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
+                        <div class="col-sm-9">
+                            <select id="injection" name="injection" class="form-control">
+                                <option value="1차" selected="selected">1차</option>
+                                <option value="2차">2차</option>
+                                <option value="3차">3차</option>
+                                <option value="4차">4차</option>
+                                <option value="5차">5차</option>
+                            </select>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="medicine" class="col-sm-2 control-label">심장 사상충 약 복용일</label>
-                        <div class="col-sm-10">
+                        <label for="medicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
+                        <div class="col-sm-9">
                             <input type="text" name="medicine" class="form-control" id="medicine" required>
                         </div>
                     </div>
                     
                     <div class="box">
-                        <input type="file" name="pImg" id="file-1" class="inputfile inputfile-1" />
-                        <label for="file-1">
+                        <input type="file" name="pImg" id="file" class="inputfile inputfile-1" />
+                        <label for="file">
                             <i class="fa fa-upload"></i>
                             <span>펫 이미지</span>
                         </label>
@@ -189,7 +195,7 @@
                     
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button id='addBtn' type='submit' class="newForm btn btn-primary btn-xs">등록</button>
+                            <button id='addPetBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
                         </div>
                     </div>
                     
@@ -217,8 +223,10 @@
 
             <div class="modal-body">
 
-                <form action="diary/ajax/add.do" method="post" class="form-horizontal" novalidate>
-                    <input type="hidden" name="mno"  class="myMno">
+                <form>
+<!--                    novalidate-->
+                    <input type="hidden" name="mno"  id="myMno2">
+                    
                     <div class="form-group">
                         <label class="col-sm-2 control-label">전체공개</label>
                         <div class="switch">
@@ -289,7 +297,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button id='addBtn' type='submit' class="newForm btn btn-primary btn-xs">등록</button>
+                            <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
                         </div>
                     </div>
 
@@ -319,7 +327,7 @@ $(document).ready(function() {
     } else {
 //        location.href = "login.html"
     }
-
+    
 //    로그아웃
     $(document).on("click", "#outBtn", function() {
         $.session.clear();
@@ -376,11 +384,164 @@ $(document).ready(function() {
     renderCalendar();
 });
 
+// 모달에 mno셋팅
 var no = $.session.get('mno');
-$('.myMno').val(no);
+console.log(no);
+$('#myMno1').val(no);
+$('#myMno2').val(no);
 if (no == undefined) {
     no = 0;
 }
+
+// 펫 추가
+$(document).on("click", "#addPetBtn", function() {
+    if ($('#pName').val() == "" ||
+        $('#pType').val() == "" ||
+        $('#medicine').val() == "") {
+        alert("펫의 정보를 입력해주세요")
+        return false;
+    } else {
+        var file_data = $("#file").prop("files")[0];
+        var file;
+
+        if (file_data != null) {   
+            file = "no";
+            var file_name = file_data.name;
+        }
+
+        var form_data = new FormData();
+        form_data.append("file", file_data)
+
+        if (file != "no") {
+            form_data.append("fName", file_name)
+        }
+        form_data.append("fName", "default.jpg")
+
+        form_data.append("mno", $('#myMno1').val())
+        form_data.append("pName", $('#pName').val())
+        form_data.append("pType", $('#pType').val())
+        form_data.append("tagColor", $('#tagColor').val())
+        form_data.append("injection", $('#injection').val())
+        form_data.append("medicine", $('#medicine').val())
+
+        $.ajax({
+            url : "pet/ajax/add.do",
+            dataType : 'json',
+            cache : false,
+            contentType : false,
+            processData : false,
+            data : form_data,
+            type : 'post',
+            success : function(re) {
+                $('#AddPet').modal('hide')
+                alert("펫이 추가되었습니다.")
+                $("#myPets").html("");
+                $("#pno").html("");
+                var showpet = $('#myPets');
+                var sel = $("#pno");
+                var ajaxResult = re.ajaxResult;
+
+                for (var pet of ajaxResult.data) {
+                    showpet.append(
+                        "<div class='myPet'>" +
+                            "<img class='mImg' src='files/" + pet.pImg + "'>" +
+                            "<input class='petName' type='text' value='" + pet.pName + "' disabled>" +
+                            "<label class='pName'>이름 : </label>" +
+                            "<input class='pColor' type='color' value='" + pet.tagColor + "' disabled>" +
+                            "<label class='pInfo'>태그색 : </label>" +
+                        "</div>")
+
+                    sel.append(
+                        "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+                }
+            }
+        })
+    }
+});
+    
+// 펫 추가
+$(document).on("click", "#addPetBtn", function() {
+    if ($('#pno').val() == "" ||
+        $('#title').val() == "" ||
+        $('#fContent').val() == "" ||
+        $('#file-1').val() == "") {
+        alert("모두 입력해주세요")
+        return false;
+    } else {
+
+        var form_data = new FormData();
+        form_data.append("mno", $('#myMno2').val())
+        form_data.append("dhide", $('#dhide').val())
+        form_data.append("cateCode", $('#cateCode').val())
+        form_data.append("pno", $('#pno').val())
+        form_data.append("startDate", $('#startDate').val())
+        form_data.append("endDate", $('#endDate').val())
+        form_data.append("title", $('#title').val())
+        form_data.append("content", $('#fContent').val())
+
+        $.ajax({
+            url : "diary/ajax/add.do",
+            dataType : 'json',
+            cache : false,
+            contentType : false,
+            processData : false,
+            data : form_data,
+            type : 'post',
+            success : function(re) {
+                $('#AddBoard').modal('hide')
+                alert("다이어리가 추가되었습니다.")
+            
+                var lastDno = re.ajaxResult.data;
+                for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                    var file_data = $("#file-1").prop("files")[i];
+                    var file_name = file_data.name;
+                    var form_data = new FormData();
+                    form_data.append("file", file_data)
+                    form_data.append("fName", file_name)
+                    form_data.append("dno", lastDno)
+                    
+                    $.ajax({
+                        url : "files/ajax/upload.do",
+                        dataType : 'json',
+                        cache : false,
+                        contentType : false,
+                        processData : false,
+                        data : form_data,
+                        type : 'post',
+                        success : function(resultObj) {    
+                            console.log(file_name)
+                            location.href="diary.html"
+                        }
+                    })
+                }
+            }
+        })
+    }
+});
+
+// 펫추가 모달 닫으면 입력 초기화
+$('#AddPet').on('hide.bs.modal', function (e) {
+    $('#pName').val('');
+    $('#pType').val('');
+    $('#tagColor').val('#ff0000');
+    $('#injection').val('1차');
+    $('#medicine').val('');
+    $('#pImg').val('');
+    $('#file').val('');
+})
+
+// 새일정추가 모달 닫으면 입력 초기화
+$('#AddBoard').on('hide.bs.modal', function (e) {
+    $('#dhide').prop("checked", true);
+    $('#cateCode').val('SANCHE');
+    $('.pDate').css('display', '');
+    $('#pno').val('');
+    $('#startDate').val('');
+    $('#endDate').val('');
+    $('#title').val('');
+    $('#fContent').val('');
+    $('#file-1').val('');
+})
 
 // 로그인한 회원의 펫 보여주는것
 $.getJSON('pet/ajax/list.do?mno=' + no,
@@ -413,6 +574,8 @@ $('#my-today-button').click(function() {
 $("select").change(function() {
     if ($('#cateCode').val() == "JARANG") { // 자랑 해요
         $('.pDate').css('display', 'none');
+    } else if ($('#cateCode').val() == "SANCHE") {
+        $('.pDate').css('display', '');
     }
 }).change();
 </script>
