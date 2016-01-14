@@ -23,6 +23,7 @@
     <script src='lib/fullcalendar/fullcalendar.js'></script>
     <script src="lib/fullcalendar/lang/ko.js"></script>
     <script src="lib/less/less.js" type="text/javascript"></script>
+    
     <!--  파일 업로드  -->
     <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
     <script>
@@ -65,45 +66,13 @@
 <section id="main-body">
 
     <div id="diary-pet-info">
-      <div class="addSce">
-        <button type="button" id="my-today-button" class="btn btn-default">Today</button>
-        <a class="btn btn-default" id="petAdd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
-        <a class="btn btn-default" id="scheduleAdd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
-      </div>
-        
-        <div id="myPets">
-            
-            <div class='myPet'>
-                <img class='mImg' src='images/p1.jpeg'>
-
-                <input class='petName' type='text' value='name' disabled>
-                <label class='pName'>이름 : </label>
-
-                <input class='pColor' type='color' value='#ff0000' disabled>
-                <label class='pInfo'>태그색 : </label>
-            </div>
-            
-            <div class='myPet'>
-                <img class='mImg' src='images/p1.jpeg'>
-
-                <input class='petName' type='text' value='name' disabled>
-                <label class='pName'>이름 : </label>
-
-                <input class='pColor' type='color' value='#ff0000' disabled>
-                <label class='pInfo'>태그색 : </label>
-            </div>
-            
-            <div class='myPet'>
-                <img class='mImg' src='images/p1.jpeg'>
-
-                <input class='petName' type='text' value='name' disabled>
-                <label class='pName'>이름 : </label>
-
-                <input class='pColor' type='color' value='#ff0000' disabled>
-                <label class='pInfo'>태그색 : </label>
-            </div>
-            
+        <div class="addSce">
+            <button type="button" id="my-today-button" class="btn btn-default">Today</button>
+            <a class="btn btn-default" id="petAdd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
+            <a class="btn btn-default" id="scheduleAdd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
         </div>
+        
+        <div id="myPets"></div>
     </div>
 
     <div id="calendar"></div>
@@ -171,11 +140,55 @@
             </div>
 
             <div class="modal-body">
-                <div>
-                    <p>
-                        hello
-                    </p>
-                </div>
+                
+                <form action="pet/ajax/add.do" method="post">
+                    <input type="hidden" name="mno" class="myMno">
+                    
+                    <div class="form-group">
+                        <label for="pName" class="col-sm-2 control-label">펫 이름</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="pName" class="form-control" id="pName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pName" class="col-sm-2 control-label">펫 종류</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pName" class="col-sm-2 control-label">태그 색</label>
+                        <div class="col-sm-10">
+                            <input type="color" name="tagColor" class="form-control" id="pName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pName" class="col-sm-2 control-label">예방 접종 차수</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="injection" class="form-control" id="pName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pName" class="col-sm-2 control-label">심장 사상충 약 복용일</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="medicine" class="form-control" id="pName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="box">
+                        <input type="file" name="pImg" id="file-1" class="inputfile inputfile-1" />
+                        <label for="file-1">
+                            <i class="fa fa-upload"></i>
+                            <span>펫 이미지</span>
+                        </label>
+                    </div>
+                    
+                </form>
+                
             </div>
 
         </div>
@@ -199,7 +212,7 @@
             <div class="modal-body">
 
                 <form action="diary/ajax/add.do" method="post" class="form-horizontal" novalidate>
-
+                    <input type="hidden" name="mno"  class="myMno">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">전체공개</label>
                         <div class="switch">
@@ -358,24 +371,24 @@ $(document).ready(function() {
 });
 
 var no = $.session.get('mno');
+$('.myMno').val(no);
 if (no == undefined) {
     no = 0;
 }
 
 // 로그인한 회원의 펫 보여주는것
-$.getJSON('diary/ajax/list.do?mno=' + no,
+$.getJSON('pet/ajax/list.do?mno=' + no,
 function(resultObj) {
-    var table = $('#diary-pet-info');
+    var showpet = $('#myPets');
     for (var pet of resultObj.pets) {
-        table.append(
-            "<table class='innerTable' border='0'>" +
-            "<tr><td rowspan='2'><img class='mImg' src='images/" +
-            pet.pImg + "'></td>" +
-            "<td><label class='pName'>이름 : </label><input class='petName' type='text' value='" +
-            pet.pName + "' disabled></td></tr>" +
-            "<tr><td><span class='pInfo'>태그색 : </span><input class='pColor' type='color' value='" +
-            pet.tagColor + "' disabled></td></tr>" +
-            "</table>")
+        showpet.append(
+            "<div class='myPet'>" +
+                "<img class='mImg' src='files/" + pet.pImg + "'>" +
+                "<input class='petName' type='text' value='" + pet.pName + "' disabled>" +
+                "<label class='pName'>이름 : </label>" +
+                "<input class='pColor' type='color' value='" + pet.tagColor + "' disabled>" +
+                "<label class='pInfo'>태그색 : </label>" +
+            "</div>")
     }
 
     var sel = $("#pno");

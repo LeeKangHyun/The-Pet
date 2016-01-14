@@ -12,7 +12,7 @@ public interface PetService {
 	
   Pet getOnePet(int pno);
   
-  void add(Pet pet);
+  void addPet(Pet pet);
   
   int remove(int pno);
   

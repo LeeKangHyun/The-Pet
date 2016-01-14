@@ -1,12 +1,8 @@
 package pms.controller.ajax;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -15,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
@@ -27,54 +21,32 @@ import pms.service.FilesService;
 import pms.service.PetService;
 import pms.util.MultipartHelper;
 
-@Controller("ajax.DiaryController")
-@RequestMapping("/diary/ajax/*")
-public class DiaryController { 
+@Controller("ajax.PetController")
+@RequestMapping("/pet/ajax/*")
+public class PetController { 
 	public static final String SAVED_DIR = "/files";
 	
 	@Autowired DiaryService diaryService;
 	@Autowired PetService petService;
 	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
-	
-	@RequestMapping("events")
-	public Object events(
-			int mno
-			) throws Exception {
-		 
-		List<Diary> events = diaryService.getEventList(mno);	
-		
-		List dummyDate = new ArrayList();
-		Map<String, Object> m;
-		for (Diary d: events) {
-			m = new HashMap<String, Object>();
-			m.put("no", d.getDno());
-			m.put("start", d.getStartDate());
-			m.put("end", d.getEndDate());
-			m.put("title", d.getTitle());
-  		m.put("description", d.getContent());
-			m.put("hide", d.isDhide());
-			m.put("color", d.getTagColor());
-			dummyDate.add(m);
-		}
-		
-		ObjectMapper om = new ObjectMapper();
 
-		System.out.println(dummyDate);
+	@RequestMapping("list")
+	public Object list(int mno) throws Exception {
+		 
+		List<Pet> pets = petService.getPetList(mno);
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
-		resultMap.put("events", dummyDate);
-//		resultMap.put("events", events);
+		resultMap.put("pets", pets);
+
 		return resultMap;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public Object add(
-			Diary diary,
+	public Object add(Pet pet,
 //			Files files,
-			int mno
-
+			  int mno
 //			MultipartFile file
 			) throws Exception {
 
@@ -94,25 +66,17 @@ public class DiaryController {
 //			System.out.println(f);
 //		}
 //		
-		
-		diary.setMno(mno);
-		
-		Pet pet = petService.getOnePet(diary.getPno());
-		diary.setTagColor(pet.getTagColor());
-		
-		if (diary.getStartDate().equals("")) {
-			Date d = new Date();
-      SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
-      System.out.println("현재날짜 : "+ now.format(d));
-			
-			diary.setStartDate(now.format(d));
-			diary.setEndDate(now.format(d));
-		}
 
-		if (diaryService.add(diary) <= 0) {
+		petService.addPet(pet);
 			
-		} 
 		return "redirect:../../diary.html";
+	}
+
+	@RequestMapping("detail")
+	public Object detail(int pno) throws Exception {
+
+		Pet pet = petService.getOnePet(pno);
+		return new AjaxResult("success", pet);
 	}
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
