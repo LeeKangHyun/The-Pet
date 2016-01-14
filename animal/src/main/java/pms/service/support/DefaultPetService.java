@@ -22,7 +22,7 @@ public class DefaultPetService implements PetService {
 		return petDao.petSelectOne(pno);
   }
   
-  public void add(Pet pet) {
+  public void addPet(Pet pet) {
   	petDao.insert(pet);
   }
   
