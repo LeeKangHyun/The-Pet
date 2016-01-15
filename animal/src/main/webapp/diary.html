@@ -83,6 +83,7 @@
 
   </section>
 
+<!--  캘린더 일정 클릭후 나오는 모달  -->
   <div id="fullCalModal" class="modal fade" data-keyboard="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -370,17 +371,23 @@
           },
           timeFormat: 'H:mm',
           eventClick: function(event, jsEvent, view) {
+            var frontEnd;
+            var backEnd;
+            var fullEnd;
             if (event.end) {
+                frontEnd = event.end.format().substring(0,8);
+                backEnd = Number(event.end.format().substring(8,10)) - 1;
+                fullEnd = frontEnd + backEnd;
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0, 10)); // 2015-12-31
-              $('#mEnd').val(event.end.format().substring(0, 10));
+              $('#mStart').val(event.start.format()); // 2015-12-31
+              $('#mEnd').val(fullEnd);
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();
             } else {
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0, 10));
-              $('#mEnd').val(event.end.format().substring(0, 10));
+              $('#mStart').val(event.start.format());
+              $('#mEnd').val(event.start.format());
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();

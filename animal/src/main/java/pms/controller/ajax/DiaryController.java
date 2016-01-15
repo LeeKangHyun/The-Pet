@@ -46,11 +46,20 @@ public class DiaryController {
 		
 		List dummyDate = new ArrayList();
 		Map<String, Object> m;
+		
+		String frontEnd = "";
+		int backEnd = 0;
+		String fullEnd = "";
 		for (Diary d: events) {
+			
+			frontEnd = d.getEndDate().substring(0, 8);
+			backEnd = Integer.parseInt(d.getEndDate().substring(8, 10)) + 1;
+			fullEnd = frontEnd + backEnd;
+			
 			m = new HashMap<String, Object>();
 			m.put("no", d.getDno());
 			m.put("start", d.getStartDate());
-			m.put("end", d.getEndDate());
+			m.put("end", fullEnd);
 			m.put("title", d.getTitle());
   		m.put("description", d.getContent());
 			m.put("hide", d.isDhide());
