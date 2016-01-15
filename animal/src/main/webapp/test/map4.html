@@ -9,18 +9,25 @@
 </head>
 
 <body>
-  <div>
-    <div id="map" style="float: left; width: 480px; height: 480px;"></div>
-    <div>
-      <input id="pet" type="button" class="btn btn-primary" value="동물병원">
-      <input id="pet" type="button" class="btn btn-primary" value="애견용품">
-      <input id="pet" type="button" class="btn btn-primary" value="애견카페">
-    </div>
-    <div id="p-list" style="float: left; width: 300px;">
-      <ul></ul>
-    </div>
-  </div>
+  <section>
 
+    <input type="text" id="find">
+    <input type="button" id="finder" value="찾기" class="btn btn-default">
+  </section>
+
+  <section>
+    <div>
+      <div id="map" style="float: left; width: 480px; height: 480px;"></div>
+      <div>
+        <input id="pet" type="button" class="btn btn-primary" value="동물병원">
+        <input id="pet" type="button" class="btn btn-primary" value="애견용품">
+        <input id="pet" type="button" class="btn btn-primary" value="애견카페">
+      </div>
+      <div id="p-list" style="float: left; width: 300px;">
+        <ul></ul>
+      </div>
+    </div>
+  </section>
 
 
   <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
