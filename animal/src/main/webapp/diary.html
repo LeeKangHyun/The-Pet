@@ -160,7 +160,20 @@
             </div>
 
             <div class="form-group">
-              <label for="pType" class="col-sm-3 control-label">펫 종류</label>
+              <label for="cateCode" class="col-sm-3 control-label">구분</label>
+              <div class="col-sm-9">
+                <select id="pdSpec" name="pSPEC" class="form-control">
+                  <option value="DOG" selected="selected">강아지</option>
+                  <option value="CAT">고양이</option>
+                  <option value="FISH">물고기</option>
+                  <option value="BIRD">새</option>
+                  <option value="ETC">ETC..</option>
+                </select>
+              </div>
+            </div>
+              
+            <div class="form-group">
+              <label for="pdType" class="col-sm-3 control-label">펫 종류</label>
               <div class="col-sm-9">
                 <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pdType"
                 required>
@@ -168,14 +181,14 @@
             </div>
 
             <div class="form-group">
-              <label for="tagColor" class="col-sm-3 control-label">태그 색</label>
+              <label for="dtagColor" class="col-sm-3 control-label">태그 색</label>
               <div class="col-sm-2">
                 <input type="color" name="tagColor" id="dtagColor" value="#ff0000" required>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="injection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
+              <label for="dinjection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
               <div class="col-sm-9">
                 <select id="dinjection" name="injection" class="form-control">
                   <option value="1차" selected="selected">1차</option>
@@ -188,16 +201,16 @@
             </div>
 
             <div class="form-group">
-              <label for="medicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
+              <label for="dmedicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
               <div class="col-sm-9">
                 <input type="text" name="medicine" class="form-control" id="dmedicine" required>
               </div>
             </div>
               
             <div class="form-group">
-              <label for="medicine" class="col-sm-3 control-label">펫 이미지</label>
+              <label for="image" class="col-sm-3 control-label">펫 이미지</label>
               <div class="col-sm-9" id="oimg">
-                <img src='' class='pdimg'>
+                <img src='' class='pdimg' id="image">
               </div>
             </div>
               
@@ -252,6 +265,19 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="cateCode" class="col-sm-3 control-label">구분</label>
+              <div class="col-sm-9">
+                <select id="pSPEC" name="pSPEC" class="form-control">
+                  <option value="DOG" selected="selected">강아지</option>
+                  <option value="CAT">고양이</option>
+                  <option value="FISH">물고기</option>
+                  <option value="BIRD">새</option>
+                  <option value="ETC">ETC..</option>
+                </select>
+              </div>
+            </div>
+              
             <div class="form-group">
               <label for="pType" class="col-sm-3 control-label">펫 종류</label>
               <div class="col-sm-9">
@@ -530,6 +556,7 @@
 
         form_data.append("mno", $('#myMno1').val())
         form_data.append("pName", $('#pName').val())
+        form_data.append("pSpec", $('#pSpec').val())
         form_data.append("pType", $('#pType').val())
         form_data.append("tagColor", $('#tagColor').val())
         form_data.append("injection", $('#injection').val())
@@ -721,6 +748,7 @@
             $('#myPno').val(petinfo.pno);
             $('#pdName').val(petinfo.pName);
             $('#pdType').val(petinfo.pType);
+            $('#pdSpec').val(petinfo.pSpec);
             $('#dtagColor').val(petinfo.tagColor);
             $('#dinjection').val(petinfo.injection);
             $('#dmedicine').val(petinfo.medicine);
