@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.CommentDao">
+	
+  <resultMap type="comment" id="commentMap">
+    <id 	column="CMT_NUM" 		property="comNo"/>
+	<result column="CMT_CONTENT" 	property="comment"/>
+	<result column="MEM_NUM" 		property="mno"/>
+	<result column="SCH_NUM" 		property="dno"/>
+	<result column="EDU_NUM" 		property="eduNo"/>	
+	<result column="S_NUM"			property="stoNo"/>
+  	<result column="MAT_NUM"		property="matNo"/>
+ </resultMap>
+
+  <select id="DiaryCommentList" resultMap="commentMap" parameterType="int">
+  	select * 
+  	from comment
+  	where SCH_NUM=#{dno}
+  </select>
+  
+  <select id="EduCommentList" resultMap="commentMap" parameterType="int">
+  	select * 
+  	from comment
+  	where EDU_NUM=#{eduNo}
+  </select>
+  
+  <select id="MatCommentList" resultMap="commentMap" parameterType="int">
+  	select * 
+  	from comment
+  	where MAT_NUM=#{matNo}
+  </select>
+  
+  <select id="SaleCommentList" resultMap="commentMap" parameterType="int">
+  	select * 
+  	from comment
+  	where S_NUM=#{sno}
+  </select>
+  
+  <!--       insert 수정해야함       -->
+  <insert id="insert" parameterType="comment">
+    insert into comment(FILE_NAME,SCH_NUM) 
+    values(#{fileName},#{dno})
+  </insert>
+  
+  <delete id="deleteComment" parameterType="int">
+    delete from comment 
+  	where SCH_NUM=#{dno}
+  </delete>
+  
+  <!--       update 수정해야함       -->
+  <update id="update" parameterType="comment">
+    update comment set 
+      FILE_NAME=#{fileName}
+    where FILE_NUM=#{fno}
+  </update>
+  
+</mapper>
+
+
+
+
+
+

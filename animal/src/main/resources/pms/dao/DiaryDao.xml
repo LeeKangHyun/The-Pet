@@ -19,6 +19,7 @@
   <result column="NOTI_VIEWS" property="view"/>
   <result column="NOTI_LIKES" property="like"/>
   <result column="TAG_COLOR" property="tagColor"/>
+  <result column="PET_SPEC" property="pSpec"/>  
 </resultMap>
 
   <select id="eventList" resultMap="diaryMap" parameterType="int">
@@ -72,8 +73,8 @@
   </select>
   
   <insert id="insert" parameterType="diary">
-    insert into schedule(MEM_NUM,PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-    values(#{mno},#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide},#{tagColor})
+    insert into schedule(MEM_NUM,PET_NUM,START_DATE,END_DATE,SCH_CRE,SCH_CONTENT,SCH_TITLE,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+    values(#{mno},#{pno},#{startDate},#{endDate},now(),#{content},#{title},#{cateCode},#{dhide},#{tagColor},#{pSpec})
   </insert>
 
   <delete id="delete" parameterType="int">

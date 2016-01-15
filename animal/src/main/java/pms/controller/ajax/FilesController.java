@@ -49,16 +49,15 @@ public class FilesController {
 	}
 	
 	@RequestMapping("list")
-	public Object list(int mno) throws Exception {
+	public Object list(int dno) throws Exception {
 		 
-		List<Pet> pets = petService.getPetList(mno);
-		
-		HashMap<String,Object> resultMap = new HashMap<>();
-		resultMap.put("status", "success");
-		resultMap.put("pets", pets);
+		List<Files> files = filesService.getDiaryFile(dno);
 
-		return resultMap;
+		return new AjaxResult("success", files);
 	}
+	
+	
+	/////// 아직 위까지만 사용
 	
 	@RequestMapping("detail")
 	public Object detail(int pno) throws Exception {

@@ -6,8 +6,7 @@
   <title>Slid Menu</title>
   <!--  내가만든 less들  -->
   <link href="css/sh_diary.less" type="style.less" rel="stylesheet/less" />
-  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less"
-  />
+  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -96,35 +95,55 @@
         </div>
 
         <div class="modal-body">
-          
-          <input type="hidden" id="sdno">
-          
-            
-          <span>시작일 : </span>
-          <input type="date" id="mStart" class="form-control">
-          <br>
 
-          <span>종료일 : </span>
-          <input type="date" id="mEnd" class="form-control">
-          <br>
+            <input type="hidden" id="sdno">
 
-          <span>태그색 : </span>
-          <input type="color" id="mColor">
-          <br>
-          <br>
+            <div class="pDate form-group">
+                <label class="col-sm-2 control-label">시작일</label>
+                <div class="col-sm-10">
+                    <input type="date" id="mStart" class="form-control">
+                </div>
+            </div>
 
-          <span>내용 : </span>
-          <br>
+            <div class="pDate form-group">
+                <label class="col-sm-2 control-label">종료일</label>
+                <div class="col-sm-10">
+                    <input type="date" id="mEnd" class="form-control">
+                </div>
+            </div>
 
-          <textarea id="mDes" class="form-control" rows="5"></textarea>
-          <br>
+            <div class="form-group">
+                <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
+                <div class="col-sm-2">
+                    <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
+                </div>
+                <div class="col-sm-8"><input type="text" style="border:none;"></div>
+            </div>
 
-          <span>이미지 : </span>
-          <img src="" width="100%" height="auto">
-          <br>
+            <div class="form-group">
+                <label for="fcontent" class="col-sm-2 control-label">내용</label>
+                <div class="col-sm-10">
+                    <textarea id="mDes" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
 
-          <input type="file" id="mFile">
-          <input type="hidden" value="p5.jpeg">
+            <div id="imgContainer">
+                <div id="mainImg">
+                    <img src="" class="fstImage" id="mainImage">
+                </div>
+
+                <div id="scrollImg"></div>
+            </div>
+
+            <div class="box">
+                <input type="file" name="fileName" id="mFile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
+                multiple />
+                <label for="mFile">
+                    <i class="fa fa-upload"></i>
+                    <span>이미지 추가</span>
+                </label>
+            </div>
+
         </div>
 
         <div class="modal-footer">
@@ -148,7 +167,7 @@
         </div>
 
         <div class="modal-body">
-          
+
           <form>
             <input type="hidden" name="pno" id="myPno">
 
@@ -171,7 +190,7 @@
                 </select>
               </div>
             </div>
-              
+
             <div class="form-group">
               <label for="pdType" class="col-sm-3 control-label">펫 종류</label>
               <div class="col-sm-9">
@@ -206,14 +225,14 @@
                 <input type="text" name="medicine" class="form-control" id="dmedicine" required>
               </div>
             </div>
-              
+
             <div class="form-group">
               <label for="image" class="col-sm-3 control-label">펫 이미지</label>
               <div class="col-sm-9" id="oimg">
                 <img src='' class='pdimg' id="image">
               </div>
             </div>
-              
+
             <div class="box">
               <input type="file" name="pImg" id="dfile" class="inputfile inputfile-1" />
               <label for="dfile">
@@ -221,25 +240,22 @@
                 <span>펫 이미지 등록</span>
               </label>
             </div>
+            <br>
 
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button id='addPetBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
-              </div>
+
+            <div class="modal-footer">
+              <button type="button" id="editPet" class="btn btn-warning">변경</button>
+              <button type="button" id="delPet" class="btn btn-danger">삭제</button>
             </div>
 
           </form>
-            
+
         </div>
 
-        <div class="modal-footer">
-          <button type="button" id="editPet" class="btn btn-warning">변경</button>
-          <button type="button" id="delPet" class="btn btn-danger">삭제</button>
-        </div>
       </div>
     </div>
   </div>
-    
+
   <!-- 펫 추가 모달 -->
   <div class="modal fade" id="AddPet" role="dialog" data-keyboard="true">
     <div class="modal-dialog">
@@ -266,9 +282,9 @@
             </div>
 
             <div class="form-group">
-              <label for="cateCode" class="col-sm-3 control-label">구분</label>
+              <label for="pSpec" class="col-sm-3 control-label">구분</label>
               <div class="col-sm-9">
-                <select id="pSPEC" name="pSPEC" class="form-control">
+                <select id="pSpec" name="pSpec" class="form-control">
                   <option value="DOG" selected="selected">강아지</option>
                   <option value="CAT">고양이</option>
                   <option value="FISH">물고기</option>
@@ -277,7 +293,7 @@
                 </select>
               </div>
             </div>
-              
+
             <div class="form-group">
               <label for="pType" class="col-sm-3 control-label">펫 종류</label>
               <div class="col-sm-9">
@@ -358,8 +374,8 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">전체공개</label>
               <div class="switch">
-                <input type="checkbox" name="dhide" id="dhide" checked>
-                <label for="dhide">
+                <input type="checkbox" name="dmhide" id="dmhide">
+                <label for="dmhide">
                   <span class="fa fa-check"></span>
                   <span class="fa fa-times"></span>
                   <div></div>
@@ -507,6 +523,28 @@
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();
+                
+              var form_data = new FormData();
+              form_data.append("dno", event.no)
+              $.ajax({
+                  url: "files/ajax/list.do",
+                  dataType: 'json',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: form_data,
+                  type: 'post',
+                  success: function(re) {
+                    var img = $("#scrollImg");
+                    var ajaxResult = re.ajaxResult;
+                    
+                    for (var file of ajaxResult.data) {
+                      img.append("<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                    }
+                    
+                  }
+               })
+
             } else {
               $('#sdno').val(event.no);
               $('#modalTitle').html(event.title);
@@ -515,6 +553,27 @@
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();
+                
+              var form_data = new FormData();
+              form_data.append("dno", event.no)
+              $.ajax({
+                  url: "files/ajax/list.do",
+                  dataType: 'json',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: form_data,
+                  type: 'post',
+                  success: function(re) {
+                    var img = $("#scrollImg");
+                    var ajaxResult = re.ajaxResult;
+                      
+                    for (var file of ajaxResult.data) {
+                      img.append("<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                    }
+                  }
+               })
+              
             }
           }
         });
@@ -604,7 +663,7 @@
 
     // 펫 삭제
     $(document).on("click", "#delPet", function() {
-      
+
         var form_data = new FormData();
         form_data.append("pno", $('#myPno').val())
 
@@ -619,12 +678,12 @@
           success: function(re) {
             alert("펫이 삭제되었습니다.")
 //            $('#fullCalModal').modal('hide')
-            location.href="diary.html" 
-            
+            location.href="diary.html"
+
           }
         })
       });
-    
+
     // 다이어리 추가
     $(document).on("click", "#addBtn", function(event) {
       if ($('#pno').val() == "" ||
@@ -635,8 +694,16 @@
         return false;
       } else {
         var form_data = new FormData();
+        var x = document.getElementById("dmhide").checked;
+        var q;
+        if (x) {
+            q = 1;
+        } else {
+            q = 0;
+        }
+        console.log(q)
         form_data.append("mno", $('#myMno2').val())
-        form_data.append("dhide", $('#dhide').val())
+        form_data.append("dhide", q)
         form_data.append("cateCode", $('#cateCode').val())
         form_data.append("pno", $('#pno').val())
         form_data.append("startDate", $('#startDate').val())
@@ -683,7 +750,7 @@
 
     // 다이어리 삭제
     $(document).on("click", "#delSchedule", function() {
-      
+
         var form_data = new FormData();
         form_data.append("dno", $('#sdno').val())
 
@@ -698,8 +765,8 @@
           success: function(re) {
             alert("게시글이 삭제되었습니다.")
 //            $('#fullCalModal').modal('hide')
-            location.href="diary.html" 
-            
+            location.href="diary.html"
+
           }
         })
       });
@@ -711,7 +778,7 @@
       $('#tagColor').val('#ff0000');
       $('#injection').val('1차');
       $('#medicine').val('');
-//      $('#pImg').val('');
+      $('#pImg').val('');
       $('#file').val('');
     })
 
@@ -726,6 +793,12 @@
       $('#title').val('');
       $('#fContent').val('');
       $('#file-1').val('');
+    })
+    
+    $('#fullCalModal').on('hide.bs.modal', function(e) {
+      $('#mainImage').attr('src', '');
+      $('#scrollImg').empty();
+      $('#mFile').val('');
     })
 
     // 펫 디테일
@@ -752,17 +825,17 @@
             $('#dtagColor').val(petinfo.tagColor);
             $('#dinjection').val(petinfo.injection);
             $('#dmedicine').val(petinfo.medicine);
-            $('.pdimg').attr('src', 'files/' + petinfo.pImg);   
+            $('.pdimg').attr('src', 'files/' + petinfo.pImg);
           }
         })
     }
-    
+
     // 로그인한 회원의 펫 보여주는것
     $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
         var showpet = $('#myPets');
         for (var pet of resultObj.pets) {
           showpet.append(
-            "<a class='petdetailBtn' id='" + pet.pno + 
+            "<a class='petdetailBtn' id='" + pet.pno +
                 "' onclick='detail(this.id);'" +
                 "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
                 "<div class='myPet'>" +
@@ -799,6 +872,9 @@
       }
     }).change();
 
+    function doshow(imgSrc) {
+        document.getElementById("mainImage").src = imgSrc;
+    }
   </script>
 
 </body>
