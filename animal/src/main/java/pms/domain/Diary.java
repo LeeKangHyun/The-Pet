@@ -25,101 +25,132 @@ public class Diary  implements Serializable {
   
   public Diary() {}
 
-  
-  public String getpSpec() {
-		return pSpec;
-	}
-	public void setpSpec(String pSpec) {
-		this.pSpec = pSpec;
-	}
-	public int getDno() {
+  public int getDno() {
     return dno;
   }
+
   public void setDno(int dno) {
     this.dno = dno;
   }
+
   public int getPno() {
     return pno;
   }
+
   public void setPno(int pno) {
     this.pno = pno;
   }
+
   public int getMno() {
     return mno;
   }
+
   public void setMno(int mno) {
     this.mno = mno;
   }
+
   public String getStartDate() {
     return startDate;
   }
+
   public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
+
   public String getEndDate() {
     return endDate;
   }
+
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
+
   public Date getCreateDate() {
     return createDate;
   }
+
   public void setCreateDate(Date createDate) {
     this.createDate = createDate;
   }
+
   public String getContent() {
     return content;
   }
+
   public void setContent(String content) {
     this.content = content;
   }
+
   public String getTitle() {
     return title;
   }
+
   public void setTitle(String title) {
     this.title = title;
   }
+
   public String getCateCode() {
     return cateCode;
   }
+
   public void setCateCode(String cateCode) {
     this.cateCode = cateCode;
   }
+
   public boolean isDhide() {
     return dhide;
   }
+
   public void setDhide(boolean dhide) {
     this.dhide = dhide;
   }
+
   public int getView() {
     return view;
   }
+
   public void setView(int view) {
     this.view = view;
   }
+
   public int getLike() {
     return like;
   }
+
   public void setLike(int like) {
     this.like = like;
   }
+
   public String getTagColor() {
     return tagColor;
   }
+
   public void setTagColor(String tagColor) {
     this.tagColor = tagColor;
   }
+
   public String getFilename() {
     return filename;
   }
+
   public void setFilename(String filename) {
     this.filename = filename;
   }
+
   public String getMember() {
     return member;
   }
+
   public void setMember(String member) {
     this.member = member;
   }
+
+  public String getpSpec() {
+    return pSpec;
+  }
+
+  public void setpSpec(String pSpec) {
+    this.pSpec = pSpec;
+  }
+  
 }

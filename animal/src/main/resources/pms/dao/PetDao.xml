@@ -45,14 +45,14 @@
   	where PET_NUM=#{pno}
   </delete>
   
-  <update id="update" parameterType="diary">
+  <update id="update" parameterType="pet">
     update pet set 
       PET_NAME=#{pName},
   	  PET_SPEC=#{pSpec},
       PET_TYPE=#{pType},
       PET_IMG=#{pImg},
-  	  TAG_COLOR=#{tagColor}
-  	  INJECTION=#{injection}
+  	  TAG_COLOR=#{tagColor},
+  	  INJECTION=#{injection},
   	  MEDICINE=#{medicine}
     where PET_NUM=#{pno}
   </update>

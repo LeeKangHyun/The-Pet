@@ -18,7 +18,8 @@
   <result column="NOTI_VIEWS"   property="view"/>
   <result column="NOTI_LIKES"   property="like"/>
   <result column="FILE_NAME"   property="filename"/>
-  <result column="MEM_NAME"   property="member"/> 
+  <result column="MEM_NAME"   property="member"/>
+  <result column="PET_SPEC"   property="pSpec"/> 
  </resultMap>
   
   <select id="selectList" resultMap="diaryMap">
@@ -29,7 +30,8 @@
       sc.CATE_CODE,
       sc.NOTI_LIKES,
       sc.NOTI_VIEWS,
-      fi.FILE_NAME
+      fi.FILE_NAME,
+      sc.PET_SPEC
     from schedule sc 
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
     where CATE_CODE='JARANG' and NOTI_HIDE=0

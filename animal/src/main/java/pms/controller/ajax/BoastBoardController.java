@@ -36,6 +36,7 @@ public class BoastBoardController {
     resultMap.put("data", boastboards);
     
     log.debug("Controller/selectList()....호출");
+    log.debug(boastboards.get(0).getpSpec());
 
     return resultMap;
   }
