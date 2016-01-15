@@ -9,8 +9,6 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
         
 		var check1 = resultObj.data[i].filename.split(".");
         check1 = check1.slice(1,2);
-        alert(check1);
-		
         if(check1 == "jpg" ||
            check1 == "jpeg" ||
            check1 == "png" ||
@@ -80,8 +78,6 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
         
         var check2 = resultObj.data[i+1].filename.split(".");
         check2 = check2.slice(1,2);
-        alert(check2);
-		
         if(check2 == "jpg" ||
            check2 == "jpeg" ||
            check2 == "png" ||
@@ -150,8 +146,6 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
         
         var check3 = resultObj.data[i+2].filename.split(".");
         check3 = check3.slice(1,2);
-        alert(check3);
-		
         if(check3 == "jpg" ||
            check3 == "jpeg" ||
            check3 == "png" ||
@@ -219,8 +213,6 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
         
         var check4 = resultObj.data[i+3].filename.split(".");
         check4 = check4.slice(1,2);
-        alert(check4);
-		
         if(check4 == "jpg" ||
            check4 == "jpeg" ||
            check4 == "png" ||
@@ -296,8 +288,6 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 	
     var topcheck1 = resultObj.data[0].filename.split(".");
     topcheck1 = topcheck1.slice(1,2);
-    alert(topcheck1);
-		
     if(topcheck1 == "jpg" ||
         topcheck1 == "jpeg" ||
         topcheck1 == "png" ||
@@ -355,8 +345,6 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
         
     var topcheck2 = resultObj.data[1].filename.split(".");
     topcheck2 = topcheck2.slice(1,2);
-    alert(topcheck2);
-		
     if(topcheck2 == "jpg" ||
         topcheck2 == "jpeg" ||
         topcheck2 == "png" ||
@@ -414,9 +402,6 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 	
         var topcheck3 = resultObj.data[1].filename.split(".");
     topcheck3 = topcheck3.slice(1,2);
-    alert(topcheck3);
-
-    
     if(topcheck3 == "jpg" ||
         topcheck3 == "jpeg" ||
         topcheck3 == "png" ||
