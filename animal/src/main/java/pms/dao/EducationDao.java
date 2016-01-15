@@ -8,8 +8,6 @@ import pms.domain.Education;
 public interface EducationDao {
 	List<Education> selectList(Map<String,Object> paramMap);
 	
-	List<Education> selectCate(Map<String,Object> paramMap);
-	
 	int insert(Education education);
 	
 	int delete(Map<String,Object> paramMap);

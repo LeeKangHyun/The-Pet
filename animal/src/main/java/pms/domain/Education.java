@@ -13,7 +13,7 @@ public class Education implements Serializable {
 	protected Date  eduCreateDate;    // 교육 게시물 작성날짜
 	protected String eduTitle;   // 교육 게시물 제목
 	protected String eduContent; // 교육 게시물 내용
-	protected String eduType;     // 교육 게시물 동물 구분 -> 개, 고양이, 물고기, 새, etc
+	protected String eduSpec;     // 교육 게시물 동물 구분 -> 개, 고양이, 물고기, 새, etc
 															 //                 DIV01,DIV02,DIV03,DIV04,DIV05
 	protected String attachFile;	// 컬럼명 = fileName
 	public String getAttachFile() {
@@ -62,11 +62,14 @@ public class Education implements Serializable {
 	public void setEduContent(String eduContent) {
 		this.eduContent = eduContent;
 	}
-	public String getEduType() {
-		return eduType;
+
+	public String getEduSpec() {
+		return eduSpec;
 	}
-	public void setEduType(String eduType) {
-		this.eduType = eduType;
+
+	public void setEduSpec(String eduSpec) {
+		this.eduSpec = eduSpec;
 	}
+
 
 }

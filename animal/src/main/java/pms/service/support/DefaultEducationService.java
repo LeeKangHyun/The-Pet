@@ -31,23 +31,6 @@ public class DefaultEducationService implements EducationService {
 	}
 	
 	@Override
-	public List<Education> getEducationCate(
-			int pageNo, 
-			int pageSize, 
-			String keyword, 
-			String align, 
-			String key) {
-		HashMap<String, Object> paramMap = new HashMap<>();
-		paramMap.put("startIndex", (pageNo - 1) * pageSize);
-		paramMap.put("length", pageSize);
-    paramMap.put("keyword", keyword);
-    paramMap.put("align", align);
-    paramMap.put("key", key);
-    
-    return educationDao.selectCate(paramMap);
-	}
-	
-	@Override
 	public void add(Education education) {
 		educationDao.insert(education);
 	}
