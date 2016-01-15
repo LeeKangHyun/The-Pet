@@ -22,6 +22,7 @@ import pms.domain.AjaxResult;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Pet;
+import pms.service.CommentService;
 import pms.service.DiaryService;
 import pms.service.FilesService;
 import pms.service.PetService;
@@ -35,6 +36,7 @@ public class DiaryController {
 	@Autowired DiaryService diaryService;
 	@Autowired PetService petService;
 	@Autowired FilesService filesService;
+	@Autowired CommentService commentService;
 	@Autowired ServletContext servletContext;
 	
 	@RequestMapping("events")
@@ -107,7 +109,8 @@ public class DiaryController {
 	@RequestMapping("delete")
 	public AjaxResult delete(
 			int dno) throws Exception {
-
+		
+		commentService.removeComment(dno);
 		filesService.removeDairyFile(dno);
 		diaryService.remove(dno);
 		 
