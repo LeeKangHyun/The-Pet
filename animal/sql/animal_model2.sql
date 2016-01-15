@@ -44,10 +44,6 @@ ALTER TABLE Pet
 
 -- 다이어리 - 일정
 ALTER TABLE Schedule
-  DROP FOREIGN KEY FK_Pet_TO_Schedule; -- 팻 -> 다이어리 - 일정
-
--- 다이어리 - 일정
-ALTER TABLE Schedule
   DROP FOREIGN KEY FK_Category_TO_Schedule; -- 카테고리 -> 다이어리 - 일정
 
 -- 다이어리 - 일정
@@ -318,7 +314,7 @@ CREATE TABLE Schedule (
   NOTI_VIEWS  INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
   NOTI_LIKES  INTEGER     NOT NULL DEFAULT 0 COMMENT '좋아요', -- 좋아요
   TAG_COLOR   CHAR(7)     NOT NULL COMMENT '태그색', -- 태그색
-  PET_SPEC    char(5)     NULL     COMMENT '새 컬럼' -- 새 컬럼
+  PET_SPEC    char(5)     NOT NULL COMMENT '새 컬럼' -- 새 컬럼
 )
 COMMENT '다이어리 - 일정';
 
@@ -481,16 +477,6 @@ ALTER TABLE Pet
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
-
--- 다이어리 - 일정
-ALTER TABLE Schedule
-  ADD CONSTRAINT FK_Pet_TO_Schedule -- 팻 -> 다이어리 - 일정
-    FOREIGN KEY (
-      PET_NUM -- 팻번호
-    )
-    REFERENCES Pet ( -- 팻
-      PET_NUM -- 팻번호
     );
 
 -- 다이어리 - 일정

@@ -16,42 +16,42 @@ insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(2,4,'YO',true);
 insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED) values(4,1,'CSS',false);
 
 /* 교육 내용 입력 */
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('포메라이안 교육','교육이다아아앙1','DIV01',now(),1);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('냐옹이 교육','교육이다아아앙2','DIV02','2015-01-01',1);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('송사리 교육','교육이다아아앙3','DIV03',now(),2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('상어 교육','교육이다아아앙4','DIV03','2016-01-01',3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('앵무새 교육','교육이다아아앙5','DIV04','2015-12-30',2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('악어 교육','교육이다아아앙6','DIV05',now(),3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('타조 교육','교육이다아아앙7','DIV04',now(),4);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('시베리안 허스키 교육','교육이다아아앙8','DIV01','2015-12-01',3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('페르시안 교육','교육이다아아앙9','DIV02','2015-03-27',2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_TYPE,EDU_CRE,MEM_NUM)
+insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
   values('터키 앙고라 교육','교육이다아아앙10','DIV02','2016-01-05',3);
 
 /* 내 펫 추가하기 */
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('1','강현찡','포메라이안','#FF1122');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('1','상훈찡','시베리안허스키','#FF0000');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('2','지호찡','자라','#FF1234');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('3','대진꽁','거북이','#FF1122');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('3','냥냥이','크로크다일','#FF0000');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('4','갓쥐','이구아나','#FF1211');
-insert into Pet(MEM_NUM,PET_NAME,PET_TYPE,TAG_COLOR)
-  values('4','야꽐라','코알라','#123421');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('1','강현찡','DIV01','포메라이안','#FF1122');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('1','상훈찡','DIV01','시베리안허스키','#FF0000');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('2','지호찡','DIV05','자라','#FF1234');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('3','대진꽁','DIV04','앵무새','#FF1122');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('3','냥냥이','DIV02','페르시안','#FF0000');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('4','갓쥐','DIV03','상어','#FF1211');
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
+  values('4','야꽐라','DIV05','코알라','#123421');
 
   
 /* 짝짓기 내용 추가 */
@@ -108,50 +108,50 @@ insert into Category(CATE_CODE,CATE_NAME) values('JARANG','자랑하기');
 insert into Category(CATE_CODE,CATE_NAME) values('SANCHE','산책코스');
 
 /* 일정등록 */
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR)
-  values(6,4,'2016-01-01','2016-01-10','2016-01-10','주사맞자~','1차예방접종','ILJUNG','#988752');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR)
-  values(5,3,'2016-01-01','2016-01-10','2016-01-10','예방접종','3차예방접종','ILJUNG','#120982');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR)
-  values(2,1,'2016-01-01','2016-01-10','2016-01-10','검진받기','종합 검진 받기','ILJUNG','#123456');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR)
-  values(3,2,'2016-01-01','2016-01-10','2016-01-10','약 받기','약받으러 병원으로','ILJUNG','#001122');
+insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
+  values(6,4,'2016-01-01','2016-01-10','2016-01-10','주사맞자~','1차예방접종','ILJUNG','#988752','DIV03');
+insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
+  values(5,3,'2016-01-01','2016-01-10','2016-01-10','예방접종','3차예방접종','ILJUNG','#120982','DIV02');
+insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
+  values(2,1,'2016-01-01','2016-01-10','2016-01-10','검진받기','종합 검진 받기','ILJUNG','#123456','DIV01');
+insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
+  values(3,2,'2016-01-01','2016-01-10','2016-01-10','약 받기','약받으러 병원으로','ILJUNG','#001122','DIV05');
 
   
 /* 자랑하기 등록 */
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(4,3,'2016-01-25','2016-02-25',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(4,3,'2016-01-25','2016-02-25',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098','DIV04');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(2,1,'2016-01-25','2016-01-25',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(2,1,'2016-01-25','2016-01-25',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456','DIV01');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(1,1,'2016-01-20','2016-01-20',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(1,1,'2016-01-20','2016-01-20',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000','DIV01');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(1,1,'2016-01-28','2016-01-28',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(1,1,'2016-01-28','2016-01-28',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000','DIV01');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(3,2,'2016-01-29','2016-01-29',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(3,2,'2016-01-29','2016-01-29',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122','DIV05');
 
 
 /* 산책코스 등록 */
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(5,3,'2016-01-20','2016-01-20',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',false,'#120982');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(5,3,'2016-01-20','2016-01-20',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',false,'#120982','DIV02');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(3,2,'2016-01-19','2016-01-19',now(),'반해버렸어요','너무 이쁜거 있죠?','SANCHE',true,'#001122');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(3,2,'2016-01-19','2016-01-19',now(),'반해버렸어요','너무 이쁜거 있죠?','SANCHE',true,'#001122','DIV05');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(3,2,'2016-01-09','2016-01-09',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','SANCHE',false,'#001122');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(3,2,'2016-01-09','2016-01-09',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','SANCHE',false,'#001122','DIV05');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(7,4,'2016-01-11','2016-01-11',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','SANCHE',false,'#572985');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(7,4,'2016-01-11','2016-01-11',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','SANCHE',false,'#572985','DIV05');
 insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR)
-  values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752');
+  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
+  values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752','DIV03');
   
 /* Comment */
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) values('너무 이뻐요~',1,2);
