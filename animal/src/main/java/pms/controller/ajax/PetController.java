@@ -45,8 +45,7 @@ public class PetController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(Pet pet,
-			  MultipartFile file
-			) throws Exception {
+			  MultipartFile file) throws Exception {
 		
 		pet.setpImg("default.jpg");
 		if (file != null) {	
@@ -85,27 +84,25 @@ public class PetController {
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
-			Diary diary,
-			Files files,
+			Pet pet,
+			String oriImg,
 			MultipartFile file) throws Exception {
-
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+	  System.out.println(pet.getpImg());
+		if (file != null) {	
+		 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																	+ "/" + newFileName);
+																+ "/" + newFileName);
 			file.transferTo(attachfile);
-			// 파일 만들어야 쓸수있겠군
-//			files.setFileName(fileName);(newFileName);
-			
-		}	else if (files.getFileName().length() == 0) {
-			files.setFileName(null);
-		}
-
-		if (diaryService.change(diary) <= 0 || filesService.change(files) <= 0) {
+			pet.setpImg(newFileName);
+		}	else if (pet.getpImg().equals("default.jpg")) {
+			pet.setpImg("default.jpg");
+		} 
+		System.out.println(pet.getpImg());
+		if (petService.change(pet) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
-		
-		return new AjaxResult("success", null);
+		List<Pet> pets = petService.getPetList(pet.getMno());
+		return new AjaxResult("success", pets);
 	}
 
 	
