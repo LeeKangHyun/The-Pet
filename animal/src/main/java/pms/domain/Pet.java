@@ -9,6 +9,7 @@ public class Pet implements Serializable {
 	protected int pno; 					// 펫 번호
 	protected int mno; 					// 회원 번호
 	protected String pName; 		// 펫 이름
+	protected String pSpec;
 	protected String pType; 		// 펫 종 -> 포메라이안, 시베리안 허스키 등등..
 	protected String pImg; 			// 펫 이미지
 	protected String tagColor; 	// 태그 색 ex)#010203 형식으로 
@@ -17,6 +18,12 @@ public class Pet implements Serializable {
 	
 	public Pet() {}
 
+	public String getpSpec() {
+		return pSpec;
+	}
+	public void setpSpec(String pSpec) {
+		this.pSpec = pSpec;
+	}
 	public int getPno() {
 		return pno;
 	}

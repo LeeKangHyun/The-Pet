@@ -9,6 +9,7 @@
     <id 	column="PET_NUM" 		property="pno"/>
 	<result column="MEM_NUM" 		property="mno"/>    
     <result column="PET_NAME" 		property="pName"/>
+	<result column="PET_SPEC" 		property="pSpec"/>    
     <result column="PET_TYPE" 		property="pType"/>
 	<result column="PET_IMG" 		property="pImg"/>
 	<result column="TAG_COLOR" 		property="tagColor"/>
@@ -20,6 +21,7 @@
   	select
   		p1.pet_num as pno,
   		p1.pet_name as pName,
+ 		p1.pet_spec as pSpec,
   		p1.pet_type as pType,
   		p1.pet_img as pImg,
   		p1.tag_color as tagColor,
@@ -34,8 +36,8 @@
   </select>
   
   <insert id="insert" parameterType="pet">
-    insert into pet(MEM_NUM,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
-    values(#{mno},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
+    insert into pet(MEM_NUM,PET_SPEC,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
+    values(#{mno},#{pSpec},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
   </insert>
   
   <delete id="delete" parameterType="int">
@@ -46,6 +48,7 @@
   <update id="update" parameterType="diary">
     update pet set 
       PET_NAME=#{pName},
+  	  PET_SPEC=#{pSpec},
       PET_TYPE=#{pType},
       PET_IMG=#{pImg},
   	  TAG_COLOR=#{tagColor}

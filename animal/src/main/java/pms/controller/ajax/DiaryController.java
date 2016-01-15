@@ -84,6 +84,7 @@ public class DiaryController {
 
 		Pet pet = petService.getOnePet(diary.getPno());
 		diary.setTagColor(pet.getTagColor());
+		diary.setpSpec(pet.getpSpec());
 		
 		if (diary.getStartDate().equals("")) {
 			Date d = new Date();
@@ -103,8 +104,6 @@ public class DiaryController {
 		return new AjaxResult("success", lastDno);
 	}
 
-	/////////// 위까진 성공
-	
 	@RequestMapping("delete")
 	public AjaxResult delete(
 			int dno) throws Exception {
@@ -114,6 +113,8 @@ public class DiaryController {
 		 
 		return new AjaxResult("success", null);
 	}
+	
+	/////////// 위까진 성공
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(

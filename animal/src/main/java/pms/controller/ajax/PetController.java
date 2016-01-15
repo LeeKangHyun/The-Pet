@@ -81,7 +81,7 @@ public class PetController {
 		return new AjaxResult("success", null);
 	}
 	
-	
+	////////위까지 완성
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
