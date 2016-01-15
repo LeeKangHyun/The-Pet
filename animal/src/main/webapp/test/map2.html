@@ -17,7 +17,7 @@
   <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
       mapOption = {
-        center: new daum.maps.LatLng(), // 지도의 중심좌표
+        center: new daum.maps.LatLng(locPosition), // 지도의 중심좌표
         level: 3, // 지도의 확대 레벨,
         disableDoubleClickZoom: true
       };
@@ -34,7 +34,7 @@
         var locPosition = new daum.maps.LatLng(lat, lon) // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
         // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition);
+        //displayMarker(locPosition);
 
       });
 
@@ -49,23 +49,47 @@
     var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
     // 지도 타입 변경 컨트롤을 생성한다
-    var mapTypeControl = new daum.maps.MapTypeControl();
+    //var mapTypeControl = new daum.maps.MapTypeControl();
 
     // 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
-    map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+    //map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+
+    // 키워드 검색
+    var places = new daum.maps.services.Places();
+    places.keywordSearch({
+      keyword: '동물병원',
+      callback: callback,
+      location: locPosition,
+      radius: 1000
+    });
+
+    var callback = function(status, data) {
+      if (status == daum.maps.services.Status.OK) {
+        console.log(data)
+      }
+    }
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-    function displayMarker(locPosition, message) {
+    // function displayMarker(place) {
+    //   // 마커를 생성하고 지도에 표시합니다
+    //   var marker = new daum.maps.Marker({
+    //     map: map,
+    //     position: new daum.maps.LatLng(place.latitude, place.longitude)
+    //   });
+    //
+    //   // 마커에 클릭이벤트를 등록합니다
+    //   daum.maps.event.addListener(marker, 'click', function() {
+    //     // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+    //     infowindow.setContent('<div style="padding:5px;font-size:12px;">' +
+    //       place.title + '</div>');
+    //     infowindow.open(map, marker);
+    //   });
+    // }
 
-      // 마커를 생성합니다
-      var marker = new daum.maps.Marker({
-        map: map,
-        position: locPosition
-      });
+    // 지도 중심좌표를 접속위치로 변경합니다
+    //map.setCenter(locPosition);
 
-      // 지도 중심좌표를 접속위치로 변경합니다
-      map.setCenter(locPosition);
-    }
   </script>
 
 </body>
