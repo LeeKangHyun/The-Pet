@@ -68,21 +68,18 @@ public class DiaryController {
 		}
 		
 		ObjectMapper om = new ObjectMapper();
-
-		System.out.println(dummyDate);
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("events", dummyDate);
-//		resultMap.put("events", events);
+		
 		return resultMap;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(
 			Diary diary,
-			int mno,
-			MultipartFile file
+			int mno
 			) throws Exception {
 
 		Pet pet = petService.getOnePet(diary.getPno());
@@ -106,6 +103,18 @@ public class DiaryController {
 		return new AjaxResult("success", lastDno);
 	}
 
+	/////////// 위까진 성공
+	
+	@RequestMapping("delete")
+	public AjaxResult delete(
+			int dno) throws Exception {
+
+		filesService.removeDairyFile(dno);
+		diaryService.remove(dno);
+		 
+		return new AjaxResult("success", null);
+	}
+	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
 			Diary diary,
@@ -131,16 +140,7 @@ public class DiaryController {
 		return new AjaxResult("success", null);
 	}
 
-	@RequestMapping("delete")
-	public AjaxResult delete(
-			int dno) throws Exception {
 
-		if (diaryService.remove(dno) <= 0) {
-			return new AjaxResult("failure", null);
-		} 
-		filesService.removeDairyFile(dno);
-		return new AjaxResult("success", null);
-	}
 
 
 	/*private String replace(String checkIndex) {

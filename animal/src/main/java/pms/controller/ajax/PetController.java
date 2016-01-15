@@ -69,6 +69,19 @@ public class PetController {
 		Pet pet = petService.getOnePet(pno);
 		return new AjaxResult("success", pet);
 	}
+	
+	@RequestMapping("delete")
+	public AjaxResult delete(
+			int pno) throws Exception {
+
+		if (petService.remove(pno) <= 0) {
+			return new AjaxResult("failure", null);
+		} 
+
+		return new AjaxResult("success", null);
+	}
+	
+	
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
@@ -95,16 +108,7 @@ public class PetController {
 		return new AjaxResult("success", null);
 	}
 
-	@RequestMapping("delete")
-	public AjaxResult delete(
-			int dno) throws Exception {
-
-		if (diaryService.remove(dno) <= 0) {
-			return new AjaxResult("failure", null);
-		} 
-		filesService.removeDairyFile(dno);
-		return new AjaxResult("success", null);
-	}
+	
 
 
 	/*private String replace(String checkIndex) {

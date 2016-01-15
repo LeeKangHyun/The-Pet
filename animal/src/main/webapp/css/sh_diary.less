@@ -1,5 +1,6 @@
 @addWidth: 80px;
 @addMargin: 15px;
+@petColor: #000000;
 .pull-left {
   float: left !important;
 }
@@ -123,6 +124,11 @@
     font-size: 15px;
     float: right;
 }
+.pdimg {
+    max-width: 400px;
+//    .center-block();
+}
+
 
 
 #main-body {
@@ -154,43 +160,51 @@
         #myPets {
             max-height: 520px;
             overflow-y: scroll;
-            .myPet {
-                width: 300px;
-                height: 120px;
-                background-color: #f2f2f2;
-                margin-bottom: 10px;
-                .mImg {
-                    .pull-left();
-                    width: 90px;
-                    height: 90px;
-                    margin-top: 15px;
-                    margin-left: 15px;
-                    border-radius: 50%;
-                }
-                .pName {
-                    .pull-right();
-                    margin-top: 28px;
-                }
-                .petName {
-                    .pull-right();
-                    width: 130px;
-                    text-align: left;
+                .myPet {
+                    width: 300px;
+                    height: 120px;
                     background-color: #f2f2f2;
-                    border: none;
-                    margin-top: 24px;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                }
-                .pInfo {
-                    .pull-right();
-                    margin-top: 18px;
-                }
-                .pColor {
-                    .pull-right();
-                    margin-top: 16px;
-                    margin-left: 10px;
-                    margin-right: 84px;
-                }
+                    margin-bottom: 10px;
+                    .mImg {
+                        .pull-left();
+                        width: 90px;
+                        height: 90px;
+                        margin-top: 15px;
+                        margin-left: 15px;
+                        border-radius: 50%;
+                    }
+                    .pName {
+                        .pull-right();
+                        color: @petColor;
+                        margin-top: 28px;
+                    }
+                    .petName {
+                        .pull-right();
+                        color: @petColor;
+                        width: 130px;
+                        text-align: left;
+                        background-color: #f2f2f2;
+                        border: none;
+                        margin-top: 24px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                    }
+                    .petDelBtn {
+                        .pull-right();
+                        color: @petColor;
+                    }
+                    .pInfo {
+                        .pull-right();
+                        color: @petColor;
+                        margin-top: 18px;
+                    }
+                    .pColor {
+                        .pull-right();
+                        margin-top: 16px;
+                        margin-left: 10px;
+                        margin-right: 84px;
+                    }
+                
             }
         }
         
@@ -206,12 +220,27 @@
 #AddPet {
     .modal-dialog {
         .modal-content {
-            height: 450px;
             width: 650px;
             .modal-body {
                 .form-group {
                     .clearfix();
 //                    margin-bottom: 15px;
+                }
+                .box {
+                    margin-left: 170px;
+                }
+            }
+        }
+    }
+}
+
+#petDetailModal {
+    .modal-dialog {
+        .modal-content {
+            width: 650px;
+            .modal-body {
+                .form-group {
+                    .clearfix();
                 }
                 .box {
                     margin-left: 170px;

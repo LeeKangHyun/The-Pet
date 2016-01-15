@@ -5,31 +5,31 @@
   <meta charset="utf-8">
   <title>Slid Menu</title>
   <!--  내가만든 less들  -->
-  <link href="css/sh_diary.less" type="style.less" rel="stylesheet/less" />
-  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less"
+  <link href="../css/sh_diary.less" type="style.less" rel="stylesheet/less" />
+  <link href="../css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less"
   />
 
   <!--  폰트아이콘 링크  -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="css/icon-font.min.css" rel="stylesheet" />
+  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="../css/icon-font.min.css" rel="stylesheet" />
 
   <!-- 캘린더 css -->
-  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css'
+  <link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css'
   />
-  <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
-  <link href='lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' tpye='text/css'
+  <link href='../lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
+  <link href='../lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' tpye='text/css'
   media='print' />
 
   <!-- 캘린더 스크립트 -->
-  <script src='lib/jquery/jquery.js'></script>
-  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script src='lib/moment/moment.min.js'></script>
-  <script src='lib/fullcalendar/fullcalendar.js'></script>
-  <script src="lib/fullcalendar/lang/ko.js"></script>
-  <script src="lib/less/less.js" type="text/javascript"></script>
+  <script src='../lib/jquery/jquery.js'></script>
+  <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src='../lib/moment/moment.min.js'></script>
+  <script src='../lib/fullcalendar/fullcalendar.js'></script>
+  <script src="../lib/fullcalendar/lang/ko.js"></script>
+  <script src="../lib/less/less.js" type="text/javascript"></script>
 
   <!--  파일 업로드  -->
-  <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
+  <link href="../css/sh_file_upload.css" rel="stylesheet" type="text/css" />
   <script>
     (function(e, t, n) {
       var r = e.querySelectorAll("html")[0];
@@ -38,7 +38,7 @@
     (document, window, 0);
   </script>
 
-  <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+  <script src="../lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -76,7 +76,17 @@
         <a class="btn btn-default" id="scheduleAdd" role="button" data-toggle="modal" data-target="#AddBoard">New</a>
       </div>
 
-      <div id="myPets"></div>
+      <div id="myPets">
+        <a class='petdetailBtn' role='button' data-toggle='modal' data-target='#petDetailModal'>
+                <div class='myPet'>
+                    <img class='mImg' src='../images/p4.jpeg'>
+                    <input class='petName' type='text' value='pet.pName' disabled>
+                    <label class='pName'>이름 : </label>
+                    <input class='pColor' type='color' value='#ff0000' disabled>
+                    <label class='pInfo'>태그색 : </label>
+                </div>
+            </a>  
+      </div>
     </div>
 
     <div id="calendar"></div>
@@ -144,25 +154,25 @@
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">close</span>
           </button>
-          <h3 id="modalTitle" class="modal-title">나의 펫 정보</h3>
+          <h3 id="modalTitle" class="modal-title"></h3>
         </div>
 
         <div class="modal-body">
           
           <form>
-            <input type="hidden" name="pno" id="myPno">
+            <input type="hidden" name="mno" id="myMno2">
 
             <div class="form-group">
               <label for="pName" class="col-sm-3 control-label">펫 이름</label>
               <div class="col-sm-9">
-                <input type="text" name="pName" class="form-control" id="pdName" required>
+                <input type="text" name="pName" class="form-control" id="pName" required>
               </div>
             </div>
 
             <div class="form-group">
               <label for="pType" class="col-sm-3 control-label">펫 종류</label>
               <div class="col-sm-9">
-                <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pdType"
+                <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pType"
                 required>
               </div>
             </div>
@@ -170,14 +180,14 @@
             <div class="form-group">
               <label for="tagColor" class="col-sm-3 control-label">태그 색</label>
               <div class="col-sm-2">
-                <input type="color" name="tagColor" id="dtagColor" value="#ff0000" required>
+                <input type="color" name="tagColor" id="tagColor" value="#ff0000" required>
               </div>
             </div>
 
             <div class="form-group">
               <label for="injection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
               <div class="col-sm-9">
-                <select id="dinjection" name="injection" class="form-control">
+                <select id="injection" name="injection" class="form-control">
                   <option value="1차" selected="selected">1차</option>
                   <option value="2차">2차</option>
                   <option value="3차">3차</option>
@@ -190,22 +200,15 @@
             <div class="form-group">
               <label for="medicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
               <div class="col-sm-9">
-                <input type="text" name="medicine" class="form-control" id="dmedicine" required>
+                <input type="text" name="medicine" class="form-control" id="medicine" required>
               </div>
             </div>
-              
-            <div class="form-group">
-              <label for="medicine" class="col-sm-3 control-label">펫 이미지</label>
-              <div class="col-sm-9" id="oimg">
-                <img src='' class='pdimg'>
-              </div>
-            </div>
-              
+
             <div class="box">
-              <input type="file" name="pImg" id="dfile" class="inputfile inputfile-1" />
-              <label for="dfile">
+              <input type="file" name="pImg" id="file" class="inputfile inputfile-1" />
+              <label for="file">
                 <i class="fa fa-upload"></i>
-                <span>펫 이미지 등록</span>
+                <span>펫 이미지</span>
               </label>
             </div>
 
@@ -220,8 +223,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="editPet" class="btn btn-warning">변경</button>
-          <button type="button" id="delPet" class="btn btn-danger">삭제</button>
+          <button type="button" id="editSchedule" class="btn btn-warning">변경</button>
+          <button type="button" id="delSchedule" class="btn btn-danger">삭제</button>
         </div>
       </div>
     </div>
@@ -291,7 +294,7 @@
               <input type="file" name="pImg" id="file" class="inputfile inputfile-1" />
               <label for="file">
                 <i class="fa fa-upload"></i>
-                <span>펫 이미지 등록</span>
+                <span>펫 이미지</span>
               </label>
             </div>
 
@@ -494,7 +497,7 @@
         });
       }
       renderCalendar();
-   });
+   
 
     // 세션값 받아서 모달에 mno셋팅
     var no = $.session.get('mno');
@@ -556,7 +559,6 @@
               showpet.append(
                 "<a role='button' data-toggle='modal' data-target='#petDetailModal'>" +
                   "<div class='myPet'>" +
-                    "<input type='hidden' class='pno'>" +
                     "<img class='mImg' src='files/" + pet.pImg + "'>" +
                     "<input class='petName' type='text' value='" + pet.pName +
                     "' disabled>" +
@@ -575,29 +577,6 @@
       }
     });
 
-    // 펫 삭제
-    $(document).on("click", "#delPet", function() {
-      
-        var form_data = new FormData();
-        form_data.append("pno", $('#myPno').val())
-
-        $.ajax({
-          url: "pet/ajax/delete.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            alert("펫이 삭제되었습니다.")
-//            $('#fullCalModal').modal('hide')
-            location.href="diary.html" 
-            
-          }
-        })
-      });
-    
     // 다이어리 추가
     $(document).on("click", "#addBtn", function(event) {
       if ($('#pno').val() == "" ||
@@ -653,7 +632,7 @@
         })
       }
     });
-
+      
     // 다이어리 삭제
     $(document).on("click", "#delSchedule", function() {
       
@@ -684,7 +663,7 @@
       $('#tagColor').val('#ff0000');
       $('#injection').val('1차');
       $('#medicine').val('');
-//      $('#pImg').val('');
+      $('#pImg').val('');
       $('#file').val('');
     })
 
@@ -701,48 +680,21 @@
       $('#file-1').val('');
     })
 
-    // 펫 디테일
-    function detail(id) {
-        console.log(id)
-        var form_data = new FormData();
-        form_data.append("pno", id)
-
-        $.ajax({
-          url: "pet/ajax/detail.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            var oimg = $('#oimg')
-            var petinfo = re.ajaxResult.data;
-            $('#myPno').val(petinfo.pno);
-            $('#pdName').val(petinfo.pName);
-            $('#pdType').val(petinfo.pType);
-            $('#dtagColor').val(petinfo.tagColor);
-            $('#dinjection').val(petinfo.injection);
-            $('#dmedicine').val(petinfo.medicine);
-            $('.pdimg').attr('src', 'files/' + petinfo.pImg);   
-          }
-        })
-    }
-    
     // 로그인한 회원의 펫 보여주는것
     $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
         var showpet = $('#myPets');
         for (var pet of resultObj.pets) {
           showpet.append(
-            "<a class='petdetailBtn' id='" + pet.pno + 
-                "' onclick='detail(this.id);'" +
-                "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+            "<a class='petdetailBtn' role='button' data-toggle='modal' data-target='#petDetailModal'>" +
                 "<div class='myPet'>" +
-                    "<input type='hidden' class='pno'>" +
                     "<img class='mImg' src='files/" + pet.pImg + "'>" +
                     "<input class='petName' type='text' value='" + pet.pName +
                     "' disabled>" +
                     "<label class='pName'>이름 : </label>" +
+                    "<br>" +
+                    "<a role='btton' id='petDelBtn' class='petDelBtn'>" +
+                        "<i class='fa fa-times'></i>" + 
+                    "</a>" + 
                     "<input class='pColor' type='color' value='" + pet.tagColor +
                     "' disabled>" +
                     "<label class='pInfo'>태그색 : </label>" +
@@ -770,7 +722,7 @@
         $('.pDate').css('display', '');
       }
     }).change();
-
+});
   </script>
 
 </body>
