@@ -14,7 +14,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
            check1 == "png" ||
            check1 == "gif" ||
            check1 == "bmp") { 
-		$("<div class='boxsub1 gallery'>")
+		$("<div class='boxsub1 gallery mix category-1'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -83,7 +83,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
            check2 == "png" ||
            check2 == "gif" ||
            check2 == "bmp") { 
-		$("<div class='boxsub2 gallery'>")
+		$("<div class='boxsub1 gallery mix category-2'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -109,7 +109,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
                check2 == "mp4" ||
                check2 == "mkv" ||
                check2 == "wav") {
-            $("<div class='boxsub2 gallery'>")
+            $("<div class='boxsub1 gallery'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -151,7 +151,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
            check3 == "png" ||
            check3 == "gif" ||
            check3 == "bmp") { 
-		$("<div class='boxsub3 gallery'>")
+		$("<div class='boxsub1 gallery mix category-2'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -177,7 +177,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
                check3 == "mp4" ||
                check3 == "mkv" ||
                check3 == "wav") {
-            $("<div class='boxsub3 gallery'>")
+            $("<div class='boxsub1 gallery'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -218,7 +218,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
            check4 == "png" ||
            check4 == "gif" ||
            check4 == "bmp") { 
-		$("<div class='boxsub4 gallery'>")
+		$("<div class='boxsub1 gallery mix category-1'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
@@ -244,7 +244,7 @@ $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
                check4 == "mp4" ||
                check4 == "mkv" ||
                check4 == "wav"){ 
-		$("<div class='boxsub4 gallery'>")
+		$("<div class='boxsub1 gallery'>")
 		.html(
 				"<div class='card'>"+
 				"<div class='background'>"+
