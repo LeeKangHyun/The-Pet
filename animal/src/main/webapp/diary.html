@@ -463,9 +463,17 @@
   <!-- 캘린더 스크립트 -->
 <script>
     $(document).ready(function() {
+        
       //    로그인 회원 정보출력 세션없으면 로그인페이지로
+      var no = $.session.get('mno');
+      if (no == undefined) {
+        no = 0;
+      }
+      $('#myMno1').val(no);
+      $('#myMno2').val(no);
+        
       var div = $('#user_info');
-      if ($.session.get('mno') != undefined) {
+      if (no != 0) {
         div.append(
           "<img src='files/" + $.session.get('mimg') +
           "' id='userImg' />" +
@@ -581,7 +589,7 @@
         });
       }
       renderCalendar();
-   });
+   
 
     // 세션값 받아서 모달에 mno셋팅
     var no = $.session.get('mno');
@@ -629,7 +637,7 @@
           type: 'post',
           success: function(re) {
             $('#petDetailModal').modal('hide')
-            alert("펫이 변경되었습니다.")
+            alert("펫의 정보가 변경되었습니다.")
             $("#myPets").html("");
             $("#pno").html("");
             var showpet = $('#myPets');
@@ -946,6 +954,7 @@
     function doshow(imgSrc) {
         document.getElementById("mainImage").src = imgSrc;
     }
+});
   </script>
 
 </body>
