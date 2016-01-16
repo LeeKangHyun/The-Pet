@@ -67,6 +67,18 @@
       })
     });
 
+    $(document).on("click", "#finder", function(event) {
+        console.log(event)
+        console.log($("#find").val())
+      ps.keywordSearch({
+        keyword: $("#find").val(),
+        callback: placesSearchCB,
+        radius: 2000,
+        location: new daum.maps.LatLng(37.49328538950387,
+          127.0257233236366)
+      })
+    });
+
 
     // navigator.geolocation.getCurrentPosition(function(position) {
     //   var lat = position.coords.latitude, // 위도
