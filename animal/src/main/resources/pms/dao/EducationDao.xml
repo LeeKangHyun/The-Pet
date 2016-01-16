@@ -18,36 +18,13 @@
     select
       edu.EDU_NUM as eduNo,
       edu.EDU_TITLE as eduTitle,
-      edu.EDU_TYPE as eduType,
+      edu.EDU_SPEC as eduSpec,
       edu.EDU_CRE as eduCreateDate,
       edu.EDU_VIEWS as eduViews,
       f.FILE_NUM as fNo,
       f.FILE_NAME as fName
     from Education edu
       left outer join Files f on edu.EDU_NUM = f.EDU_NUM
-    <!-- where edu.EDU_TYPE=#{value} -->
-    order by
-    <choose>
-      <otherwise>EDU_CRE </otherwise>
-    </choose>
-    <choose>
-      <when test="align == 'asc'">asc</when>
-      <otherwise>desc</otherwise>
-    </choose>
-  </select>
-  
-  <select id="selectCate" resultMap="educationMap" parameterType="map">
-    select
-      edu.EDU_NUM as eduNo,
-      edu.EDU_TITLE as eduTitle,
-      edu.EDU_TYPE as eduType,
-      edu.EDU_CRE as eduCreateDate,
-      edu.EDU_VIEWS as eduViews,
-      f.FILE_NUM as fNo,
-      f.FILE_NAME as fName
-    from Education edu
-      left outer join Files f on edu.EDU_NUM = f.EDU_NUM
-    where edu.EDU_TYPE=#{key}
     order by
     <choose>
       <otherwise>EDU_CRE </otherwise>

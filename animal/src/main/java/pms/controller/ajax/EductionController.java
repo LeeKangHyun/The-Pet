@@ -18,7 +18,7 @@ import pms.domain.Files;
 import pms.service.EducationService;
 
 @Controller("ajax.EducationController")
-@RequestMapping("/education/ajax/*")
+@RequestMapping("/Education/education/ajax/*")
 public class EductionController {
 	public static final String SAVED_DIR = "/files";
 	
@@ -44,30 +44,6 @@ public class EductionController {
         paramMap.put("align", align);
     
 		List<Education> educations = educationDao.selectList(paramMap);
-		
-		HashMap<String,Object> resultMap = new HashMap<>();
-		resultMap.put("status", "success");
-		resultMap.put("data", educations);
-		
-		return resultMap;
-	}
-	
-	@RequestMapping("cate")
-	public Object cate(
-			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="10") int pageSize,
-			@RequestParam(defaultValue="EDU_CRE") String keyword,
-			@RequestParam(defaultValue="desc") String align,
-			@RequestParam(defaultValue="all") String key) throws Exception {
-		
-		HashMap<String,Object> paramMap = new HashMap<>();
-        paramMap.put("startIndex", (pageNo - 1) * pageSize);
-        paramMap.put("length", pageSize);
-        paramMap.put("keyword", keyword);
-        paramMap.put("align", align);
-        paramMap.put("key", key);
-    System.out.println(key);
-		List<Education> educations = educationDao.selectCate(paramMap);
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
