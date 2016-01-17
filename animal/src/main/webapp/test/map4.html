@@ -6,6 +6,7 @@
   <title>키워드로 장소검색하기</title>
   <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
   <script src="../lib/jquery/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -24,8 +25,8 @@
       </div>
       <div id="p-list" style="float: left; width: 300px;">
         <h1>리스트</h1>
-        <ul>
-        </ul>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
       </div>
     </div>
   </section>
@@ -97,6 +98,10 @@
       });
 
       $(document).on("click", "#finder", function(event) {
+        if (!$("#finder").value.replace(/^\s+|\s+$/g, '')) {
+          alert('키워드를 입력해주세요!');
+          return false;
+        }
         ps.keywordSearch({
           keyword: $("#find").val(),
           callback: placesSearchCB,
@@ -111,23 +116,29 @@
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB(status, data, pagination) {
       if (status === daum.maps.services.Status.OK) {
-        console.log(data)
-          // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-          // LatLngBounds 객체에 좌표를 추가합니다
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
         var bounds = new daum.maps.LatLngBounds();
+        // 특정 엘리먼트를 클릭했을 경우 다음 페이지 검색을 시도하는 예제
+
         setMarkers(null);
         $("#p-list ul").html("");
         for (var i = 0; i < data.places.length; i++) {
           displayMarker(data.places[i]);
           bounds.extend(new daum.maps.LatLng(data.places[i].latitude, data.places[
             i].longitude));
-          $("<ul>").html('<li>' + data.places[i].title + '</li>').appendTo(
+          $("<ul>").html('<li>' + data.places[i].title + '<br>' + data.places[i]
+            .address + '</li>').appendTo(
             "#p-list");
         }
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
-      } else {
+      } else if (status === daum.maps.services.Status.ZERO_RESULT) {
         alert("검색 결과가 존재하지 않습니다.")
+        return;
+      } else if (status === daum.maps.services.Status.ERROR) {
+        alert('검색 결과 중 오류가 발생했습니다.');
+        return;
       }
     }
 
