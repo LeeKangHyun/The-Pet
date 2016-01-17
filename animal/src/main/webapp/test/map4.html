@@ -23,7 +23,9 @@
         <input id="pet" type="button" class="btn btn-primary" value="애견카페">
       </div>
       <div id="p-list" style="float: left; width: 300px;">
-        <ul></ul>
+        <h1>리스트</h1>
+        <ul>
+        </ul>
       </div>
     </div>
   </section>
@@ -114,7 +116,7 @@
           // LatLngBounds 객체에 좌표를 추가합니다
         var bounds = new daum.maps.LatLngBounds();
         setMarkers(null);
-        $("#p-list").html("");
+        $("#p-list ul").html("");
         for (var i = 0; i < data.places.length; i++) {
           displayMarker(data.places[i]);
           bounds.extend(new daum.maps.LatLng(data.places[i].latitude, data.places[
@@ -122,10 +124,11 @@
           $("<ul>").html('<li>' + data.places[i].title + '</li>').appendTo(
             "#p-list");
         }
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+      } else {
+        alert("검색 결과가 존재하지 않습니다.")
       }
-
-      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-      map.setBounds(bounds);
     }
 
 
