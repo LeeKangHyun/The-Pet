@@ -71,9 +71,9 @@
         <div>
           <a href="boastBoard.html"><h2><i class="lnr lnr-paw">자랑하기 Top3</i></h2></a>
         </div>
-        <table>
+        <table id="boastTable">
           <tr>
-            <td class="m_most">
+            <!-- <td class="m_most">
               <a href="boastBoard.html"><img src="images/h1.jpg" /></a>
               <li>title</li>
             </td>
@@ -84,7 +84,7 @@
             <td class="m_most">
               <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
               <li>title</li>
-            </td>
+            </td> -->
           </tr>
         </table>
         <div class="m_boast">
@@ -117,8 +117,8 @@
             <div id="menu_wrap" style="float: right;">
               <div class="option">
                 <p>
-                    <input type="text" value="" id="keyword" size="15">
-                    <button type="button" id="finder" class="btn btn-info">검색하기</button>
+                  <input type="text" value="" id="keyword" size="15">
+                  <button type="button" id="finder" class="btn btn-info">검색하기</button>
                 </p>
               </div>
               <div>
@@ -155,11 +155,28 @@
         $.session.clear();
         location.href = "login.html"
       });
+
+      // top3 뽑아내기
+      $.ajax({
+        url: "boastboard/ajax/rank.do",
+        dataType: "json",
+        type: "get",
+        success: function(resultObj) {
+          alert("rank 성공")
+          console.log(resultObj.data)
+          var table = $("#boastTable");
+          for (var data of resultObj.data) {
+            $("#boastTable tr").append(
+              '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
+              data.filename + '" /></a></td>')
+          }
+        }
+      })
     });
   </script>
 
-    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
-    <script src="js/kh_map.js"></script>
+  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
+  <script src="js/kh_map.js"></script>
 
 </body>
 
