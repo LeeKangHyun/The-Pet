@@ -2,69 +2,63 @@
 $.getJSON('../boastboard/ajax/list.do', function(resultObj) {
 	var div = $("#subtable");
 	for(var i = 0; i < resultObj.data.length - 1; i = i + 4 ) {
-
-		
-		
-		
-        
 		var check1 = resultObj.data[i].filename.split(".");
         check1 = check1.slice(1,2);
         if(check1 == "jpg" ||
-           check1 == "jpeg" ||
-           check1 == "png" ||
-           check1 == "gif" ||
-           check1 == "bmp") { 
-		$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-		.html(
-				"<div class='card'>"+
-				"<div class='background'>"+
-				"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
-				"</div>"+
-				"<a href='#' class='overlay'></a> <a href='#'>"+ 
-				"<i class='fa fa-camera-retro'></i>"+
-				"</a> <a class='thumb' href='#'></a>"+
-				"<div class='infosub'>"+
-				"<h2>"+
-				"<a href='#'>"+resultObj.data[i].title+"</a>"+
-				"</h2>"+
-				"<div class='foot'>"+
-				"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
-				"<span id='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
-				" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
-				"</div>"+
-				"</div>"+
-		"</div>")
-		.appendTo(div);
-    } else if (check1 == "aiv" ||
-               check1 == "wmv" ||
-               check1 == "mp4" ||
-               check1 == "mkv" ||
-               check1 == "wav") {
-               $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-		.html(
-				"<div class='card'>"+
-				"<div class='background'>"+
-				"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
-				"</div>"+
-				"<a href='#' class='overlay'></a> <a href='#'>"+ 
-				"<i class='fa fa-youtube-play'></i>"+
-				"</a> <a class='thumb' href='#'></a>"+
-				"<div class='infosub'>"+
-				"<h2>"+
-				"<a href='#'>"+resultObj.data[i].title+"</a>"+
-				"</h2>"+
-				"<div class='foot'>"+
-				"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
-				"<span id='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
-				" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
-				"</div>"+
-				"</div>"+
-		"</div>")
-		.appendTo(div);}
+            check1 == "jpeg" ||
+            check1 == "png" ||
+            check1 == "gif" ||
+            check1 == "bmp") { 
+            $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+            .html(
+                "<div class='card'>"+
+                "<div class='background'>"+
+                "<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+                "</div>"+
+                "<a href='#' class='overlay'></a> <a href='#'>"+ 
+                "<i class='fa fa-camera-retro'></i>"+
+                "</a> <a class='thumb' href='#'></a>"+
+                "<div class='infosub'>"+
+                "<h2>"+
+                "<a href='#'>"+resultObj.data[i].title+"</a>"+
+                "</h2>"+
+                "<div class='foot'>"+
+                "<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+                "<span id='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+                " <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+                "</div>"+
+                "</div>"+
+            "</div>").appendTo(div);
+        } else if (check1 == "avi" ||
+            check1 == "wmv" ||
+            check1 == "mp4" ||
+            check1 == "mkv" ||
+            check1 == "wav") {
+            $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+            .html(
+                "<div class='card'>"+
+                "<div class='background'>"+
+                "<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+                "</div>"+
+                "<a href='#' class='overlay'></a> <a href='#'>"+ 
+                "<i class='fa fa-youtube-play'></i>"+
+                "</a> <a class='thumb' href='#'></a>"+
+                "<div class='infosub'>"+
+                "<h2>"+
+                "<a href='#'>"+resultObj.data[i].title+"</a>"+
+                "</h2>"+
+                "<div class='foot'>"+
+                "<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+                "<span id='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+                " <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+                "</div>"+
+                "</div>"+
+            "</div>").appendTo(div);
+        }
 
-		if(resultObj.data.length - 1 == i) {
-			break;
-		}
+        if(resultObj.data.length - 1 == i) {
+          break;
+        }
 
     
     
