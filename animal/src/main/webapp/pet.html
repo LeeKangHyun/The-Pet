@@ -72,20 +72,7 @@
           <a href="boastBoard.html"><h2><i class="lnr lnr-paw">자랑하기 Top3</i></h2></a>
         </div>
         <table id="boastTable">
-          <tr>
-            <!-- <td class="m_most">
-              <a href="boastBoard.html"><img src="images/h1.jpg" /></a>
-              <li>title</li>
-            </td>
-            <td class="m_most">
-              <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
-              <li>title</li>
-            </td>
-            <td class="m_most">
-              <a href="boastBoard.html"><img src="images/h2.jpg" /></a>
-              <li>title</li>
-            </td> -->
-          </tr>
+          <tr></tr>
         </table>
         <div class="m_boast">
           <div>
@@ -156,6 +143,10 @@
         location.href = "login.html"
       });
 
+      $.get("http://ipinfo.io", function(response) {
+        console.log(response.loc);
+      }, "json");
+
       // top3 뽑아내기
       $.ajax({
         url: "boastboard/ajax/rank.do",
@@ -166,7 +157,8 @@
           for (var data of resultObj.data) {
             $("#boastTable tr").append(
               '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
-              data.filename + '" /></a><li>' + data.title + '</li></td>')
+              data.filename + '" /></a><li>' + data.title +
+              '</li></td>')
           }
         }
       })
