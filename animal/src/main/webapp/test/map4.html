@@ -80,7 +80,11 @@
     //       127.0257233236366)
     //   })
     // });
-
+    $(document).ready(function() {
+        $.get("http://ipinfo.io", function(response) {
+          console.log(response.loc);
+        }, "json");
+    })
 
     navigator.geolocation.getCurrentPosition(function(position) {
       var lat = position.coords.latitude, // 위도
