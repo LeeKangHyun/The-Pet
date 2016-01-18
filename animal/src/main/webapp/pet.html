@@ -162,13 +162,11 @@
         dataType: "json",
         type: "get",
         success: function(resultObj) {
-          alert("rank 성공")
-          console.log(resultObj.data)
           var table = $("#boastTable");
           for (var data of resultObj.data) {
             $("#boastTable tr").append(
               '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
-              data.filename + '" /></a></td>')
+              data.filename + '" /></a><li>' + data.title + '</li></td>')
           }
         }
       })
