@@ -16,7 +16,7 @@ public class Mating implements Serializable {
 	protected String matSpec;				// 애완 동물 구분 코드 -> 개, 고양이, 물고기, 새, etc
 																	//                 DIV01,DIV02,DIV03,DIV04,DIV05
 	protected String matType;	  			// 애완 동물 종류 -> 포메라이안, 시베리안허스키 등등..
-	protected boolean matGender;				// 애완 동물 성별   남: false 여: true
+	protected boolean matGender;				// 애완 동물 성별   남: false 0  	여: true 1
 	protected int matCost;							// 중매금
 	
 	public Mating () {}
