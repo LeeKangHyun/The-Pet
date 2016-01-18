@@ -44,10 +44,9 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch({
-      keyword: keyword,
+      keyword: keyword+"동물병원",
       callback: placesSearchCB,
-      radius: 1000,
-      location: locPosition
+      radius: 1000
     });
   });
 });
@@ -83,7 +82,6 @@ navigator.geolocation.getCurrentPosition(function (position) {
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(status, data, pagination) {
   if (status === daum.maps.services.Status.OK) {
-
     // 정상적으로 검색이 완료됐으면
     // 검색 목록과 마커를 표출합니다
     displayPlaces(data.places);
