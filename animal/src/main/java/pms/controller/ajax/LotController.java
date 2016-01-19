@@ -10,7 +10,7 @@ import pms.domain.Lot;
 import pms.service.LotService;
 
 @Controller("ajax.LotController")
-@RequestMapping("/lot/ajax/*")
+@RequestMapping("lot/ajax/*")
 public class LotController {
   
   @Autowired LotService lotService;
