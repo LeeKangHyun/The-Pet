@@ -1,6 +1,7 @@
 package pms.controller.ajax;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,11 +39,13 @@ public class MatingController {
 		 
 		List<Mating> mating = matingService.getMatingList();
 		List<Files> files = null;
-		HashMap<String,Object> filesMap = new HashMap<>();
+//		HashMap<String,Object> filesMap = new HashMap<>();
+		List<List<Files>> filesMap = new ArrayList<>();
 		int i = 0;
 		for (Mating m : mating) {
 			files = filesService.getMatFile(m.getMatNo());
-			filesMap.put("files"+i, files);
+			filesMap.add(files);
+//			filesMap.put("files" + i, files);
 			i++;
 		}
 			

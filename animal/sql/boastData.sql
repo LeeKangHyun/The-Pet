@@ -50,9 +50,30 @@ insert into Files(FILE_NAME,SCH_NUM) values('h7.jpg','29');
 insert into Files(FILE_NAME,SCH_NUM) values('h8.png','30');
 insert into Files(FILE_NAME,SCH_NUM) values('h9.jpg','31');
 insert into Files(FILE_NAME,SCH_NUM) values('h10.gif','32');
-insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','33');
 
-
+insert into Files(FILE_NAME,Mat_num) values('a8.jpg','1');
+insert into Files(FILE_NAME,Mat_num) values('h2.jpg','2');
+insert into Files(FILE_NAME,Mat_num) values('h3.jpg','3');
+insert into Files(FILE_NAME,Mat_num) values('h4.jpg','4');
+insert into Files(FILE_NAME,Mat_num) values('h7.jpg','5');
+insert into Files(FILE_NAME,Mat_num) values('h9.jpg','6');
+insert into Files(FILE_NAME,Mat_num) values('h9.jpg','7');
+insert into Files(FILE_NAME,Mat_num) values('h9.jpg','8');
+insert into Files(FILE_NAME,Mat_num) values('h7.jpg','9');
+insert into Files(FILE_NAME,Mat_num) values('h7.jpg','10');
+insert into Files(FILE_NAME,Mat_num) values('h3.jpg','11');
+insert into Files(FILE_NAME,Mat_num) values('h2.jpg','1');
+insert into Files(FILE_NAME,Mat_num) values('h3.jpg','1');
+insert into Files(FILE_NAME,Mat_num) values('h4.jpg','1');
+insert into Files(FILE_NAME,Mat_num) values('h7.jpg','1');
+insert into Files(FILE_NAME,Mat_num) values('a1.jpg','2');
+insert into Files(FILE_NAME,Mat_num) values('a2.jpg','2');
+insert into Files(FILE_NAME,Mat_num) values('a3.jpg','3');
+insert into Files(FILE_NAME,Mat_num) values('a4.jpg','3');
+insert into Files(FILE_NAME,Mat_num) values('a5.jpg','4');
+insert into Files(FILE_NAME,Mat_num) values('a6.jpg','5');
+insert into Files(FILE_NAME,Mat_num) values('a7.jpg','4');
+insert into Files(FILE_NAME,Mat_num) values('a8.jpg','4');
 
 
 
