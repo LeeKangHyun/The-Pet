@@ -10,8 +10,8 @@ public interface FilesService {
 	
   List<Files> getDiaryFile(int dno);
   List<Files> getEduFile(int eduNo);
-  List<Files> getMatFile(int eduNo);
-  List<Files> getSaleFile(int eduNo);
+  List<Files> getMatFile(int matNo);
+  List<Files> getSaleFile(int sno);
   
   void add(Files files);
   

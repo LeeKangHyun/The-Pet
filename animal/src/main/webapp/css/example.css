@@ -171,6 +171,12 @@ ul {
     border: 2px solid #a12141;
 }
 
+.commentin:focus {
+    outline-style: solid;
+    outline-width: 0px;
+}
+
+
 .gallery-expander-contents div.comments {
     width: 480px;
     height: 250px;
@@ -209,16 +215,20 @@ ul {
     font-size: 22px;
 }
 
-.gallery-expander-contents .commentcontent {
-    float: left;
-    font-size: 15px;
+.commenttext {
+    margin-left: 60px;
     width: 410px;
-    margin-top: 3px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    border-radius: 0;
-    border-bottom: 1px solid #BCB098;
+    font-size: 15px;
+    border: 0;
+    background-color: rgba(0,0,0,0);
 }
+
+/*
+.gallery-expander-contents .commenttext:focus {
+    outline-style: solid;
+    outline-width: 0px;
+}
+*/
 
 .gallery-expander-contents div.image > img {
     max-width: 480px;

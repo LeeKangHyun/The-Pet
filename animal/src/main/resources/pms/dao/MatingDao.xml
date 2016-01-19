@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.PetDao">
+	
+  <resultMap type="mating" id="matingMap">
+    <id 	column="MAT_NUM" 		property="matNo"/>
+	<result column="MAT_VIEWS" 		property="matViews"/>    
+    <result column="MAT_CRE" 		property="matCreateDate"/>
+	<result column="MAT_TITLE" 		property="matTitle"/>    
+    <result column="MAT_CONTENT" 	property="matContent"/>
+	<result column="MAT_SPEC" 		property="matSpec"/>
+	<result column="MAT_TYPE" 		property="matType"/>
+	<result column="MAT_GEN" 		property="matGender"/>
+	<result column="MAT_COST" 		property="matCost"/>	
+	<result column="MEM_NUM" 		property="mno"/>	
+ </resultMap>
+
+  <select id="matingList" resultMap="matingMap">
+  	select * from mating
+  </select>
+ 
+  <!-- insert need fix -->
+  <insert id="insert" parameterType="mating">
+    insert into mating(MEM_NUM,PET_SPEC,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
+    values(#{mno},#{pSpec},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from mating 
+  	where MAT_NUM=#{matNo}
+  </delete>
+  
+  <update id="update" parameterType="mating">
+    update mating set 
+      MAT_TITLE=#{matTitle},
+  	  MAT_CONTENT=#{matContent},
+      MAT_SPEC=#{matSpec},
+      MAT_TYPE=#{matType},
+  	  MAT_GEN=#{matGender},
+  	  MAT_COST=#{matCost}
+    where MAT_NUM=#{matNo}
+  </update>
+  
+  
+</mapper>
+
+
+
+
+
+
