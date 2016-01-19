@@ -154,17 +154,25 @@ insert into
   values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752','DIV03');
   
 /* Comment */
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) values('너무 이뻐요~',1,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) values('너무 이뻐요~',3,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) values('너무 이뻐요~',4,2);
+insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
+values('너무 이뻐요~',1,2);
+insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
+values('너무 이뻐요~',3,2);
+insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
+values('너무 이뻐요~',4,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
   values('잘 키우고 싶네여 도움이 많이 되요~',1,1);
-insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) values('너무 이뻐요~',2,2);
+insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
+values('너무 이뻐요~',2,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
   values('이런 방법이 있군요~',3,3);
-insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) values('너무 이뻐요~',1,1);
-insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) values('너무 이뻐요~',1,1);
-insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) values('너무 이뻐요~',1,3);
+insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
+values('너무 이뻐요~',1,1);
+insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
+values('너무 이뻐요~',1,1);
+insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
+values('너무 이뻐요~',1,3);
+
 insert into Comment(CMT_CONTENT,MEM_NUM,S_NUM) 
   values('너무 분양 받고 싶어요~~',1,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,S_NUM) 

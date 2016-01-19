@@ -34,15 +34,6 @@ $(function(){
     $('#Container').mixItUp();
 });
 </script>
-
-<link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
-<script>
-(function(e, t, n) {
-    var r = e.querySelectorAll("html")[0];
-    r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
-})
-(document, window, 0);
-</script>
     
 </head>
 
@@ -206,20 +197,32 @@ $(function(){
                     <br><br><br><br><br><br><br>aaa<br><br><br><br><br><br>aaaa<br><br><br>aaa<br><br>a<br>aaaa
                     
                   </div>
+
+                  <div class="input">
+                    <textarea class="commentin" cols="30" rows="2" placeholder="댓글을 입력하세요..."></textarea>
+                    <a role="button">게시</a>
+                  </div>
+                        
+                  <div class="comments">
                     
-                    <div class="comments">
-                        <div class="input">
-                            <input type="file" name="mImg" id="file-1" class="inputfile inputfile-1" />
-                          <label for="file-1">
-                            <i class="fa fa-camera"></i>
-                          </label>
-                            <textarea class="commentin" cols="30" rows="2" placeholder="댓글을 입력하세요..."></textarea>
+                    <div class="comment">
+                        <img class="commentimg" src="images/h1.jpg">
+                        <div class="commentname">
+                            name
                         </div>
-                        
-                        <div class="comment">
+                        <div class="edit">
+                            <a><i class="fa fa-pencil"></i></a>
                         </div>
-                        
+                        <pre class="commentcontent">댓글ddddfdffdf
+                        fdfdffdf
+                        dfdfff
+                        dfffd
+                        fdfdfd
+                        fddf</pre>
                     </div>
+                   
+                  </div>
+                    
                 </div>
               </div>
             </div>
@@ -410,16 +413,6 @@ $(document).ready(function() {
         location.href = "login.html"
     });
     
-    $('.commentin').keypress(function(e){
-      if(e.which == 13){
-           // submit via ajax or
-          console.log($(".commentin"))
-          if ($(".commentin").val != undefined) {  
-              alert('엔터')
-              ('.commentin')
-          } 
-       }
-    });
 });
       
 // 디테일에 쓰임

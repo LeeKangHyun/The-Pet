@@ -132,7 +132,7 @@ ul {
     border-top: 1px solid #BCB098;
     border-bottom: 1px solid #BCB098;
     padding: 10px 0;
-    height: 300px;
+    height: 250px;
     overflow-y: scroll;
     font-size: 14px;
     line-height: 24px;
@@ -141,28 +141,88 @@ ul {
 
 .gallery-expander-contents div.input {
     font-size: 15px;
+    border-bottom: 1px solid #BCB098;
 }
 
 .gallery-expander-contents div.input > textarea {
-    width: 400px;
+    margin: 10px auto;
+    width: 420px;
     height: 40px;
     overflow: visible;
-    border: 0px;
-    resize: vertical;
+    border: 2px solid #d3394c;
+    border-radius: 8px;
+    resize: none;
 }
 
 .gallery-expander-contents div.input > a {
-    font-size: 30px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-weight: 500;
+    color: #d3394c;
+    border: 2px solid #d3394c;
+    border-radius: 8px;
 }
 
-.gallery-expander-contents div.comment {
+.gallery-expander-contents div.input > a:hover {
+    color: #a12141;
+    border: 2px solid #a12141;
+}
+
+.gallery-expander-contents div.comments {
+    width: 480px;
+    height: 250px;
+    overflow: scroll;
     
+}
+
+.gallery-expander-contents .comment {
+    margin-top: 10px;
+}
+
+.gallery-expander-contents .commentimg {
+    float: left;
+    width: 50px;
+    height: 50px;
+}
+
+.gallery-expander-contents .commentname {
+    float: left;
+    font-size: 17px;
+    font-weight: 900;
+    width: 360px;
+    margin-left: 10px;
+}
+
+.gallery-expander-contents .edit {
+    float: left;
+    font-size: 20px;
+    width: 50px;
+    text-decoration: none;
+}
+
+.gallery-expander-contents .fa-close {
+    color: #000;
+    margin-left: 5px;
+    font-size: 22px;
+}
+
+.gallery-expander-contents .commentcontent {
+    float: left;
+    font-size: 15px;
+    width: 410px;
+    margin-top: 3px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 0;
+    border-bottom: 1px solid #BCB098;
 }
 
 .gallery-expander-contents div.image > img {
     max-width: 480px;
     margin: 0 auto;
-/*    display: block;*/
 }
 
 div.item {

@@ -23,7 +23,8 @@
     "jquery.cookie": "~1.4.1",
     "less": "~2.5.3",
     "multifile": "~2.2.0",
-    "jquery-session-plugin": "~0.0.1"
+    "jquery-session-plugin": "~0.0.1",
+    "textarea-autosize": "latest"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -42,7 +43,8 @@
       "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js",
       "less": "bower_components/less/dist/**",
       "jquery.cookie": "bower_components/jquery.cookie/**",
-      "multifile": "bower_components/multifile/**"
+      "multifile": "bower_components/multifile/**",
+      "textarea-autosize": "bower_components/textarea-autosize/dist/**"
     }
   }
 }

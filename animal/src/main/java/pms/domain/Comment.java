@@ -8,6 +8,7 @@ public class Comment implements Serializable {
 	
 	protected int comNo;					// 댓글 번호
 	protected String comContent; 	// 댓글의 내용
+	protected String comImg; 			// 댓글의 이미지
 	protected int mno;						// 회원 번호
 	protected int dno;						// 일정 게시물 번호
 	protected int eduNo;					// 교육 게시물 번호
@@ -16,6 +17,13 @@ public class Comment implements Serializable {
 	
 	public Comment () {}
 
+	
+	public String getComImg() {
+		return comImg;
+	}
+	public void setComImg(String comImg) {
+		this.comImg = comImg;
+	}
 	public int getComNo() {
 		return comNo;
 	}
