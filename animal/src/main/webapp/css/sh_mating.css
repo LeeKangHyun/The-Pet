@@ -125,6 +125,7 @@ div.portfoliocard ul.contact_information li{
 	line-height:23px;
 	font-weight:400;
 	font-size:15px;
+    text-align: center;
 	color:rgba(140,140,140,1);
     text-overflow: ellipsis;
     white-space: nowrap;

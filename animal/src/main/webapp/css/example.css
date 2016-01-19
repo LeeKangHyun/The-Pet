@@ -132,13 +132,56 @@ ul {
     border-top: 1px solid #BCB098;
     border-bottom: 1px solid #BCB098;
     padding: 10px 0;
+    height: 300px;
+    overflow-y: scroll;
     font-size: 14px;
     line-height: 24px;
     color: #797262;
+}
+
+.gallery-expander-contents div.input {
+    font-size: 15px;
+}
+
+.gallery-expander-contents div.input > textarea {
+    width: 400px;
+    height: 40px;
+    overflow: visible;
+    border: 0px;
+    resize: vertical;
+}
+
+.gallery-expander-contents div.input > a {
+    font-size: 30px;
+}
+
+.gallery-expander-contents div.comment {
+    
 }
 
 .gallery-expander-contents div.image > img {
     max-width: 480px;
     margin: 0 auto;
 /*    display: block;*/
+}
+
+div.item {
+    height: 600px;
+    width: 480px;
+    position: relative;
+}
+
+div.item img {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.slideimg {
+    max-width: 480px;
+    
+    padding-right: auto;
+    padding-left: auto;
 }
