@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="pms.dao.PetDao">
+<mapper namespace="pms.dao.MatingDao">
 	
   <resultMap type="mating" id="matingMap">
     <id 	column="MAT_NUM" 		property="matNo"/>

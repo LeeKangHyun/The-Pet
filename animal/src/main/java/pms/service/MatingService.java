@@ -4,8 +4,6 @@ import java.util.List;
 
 import pms.domain.Mating;
 
-
-
 public interface MatingService {
 	
 	List<Mating> getMatingList();

@@ -1,8 +1,6 @@
 package pms.controller.ajax;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
-import pms.domain.Comment;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Mating;
-import pms.domain.Pet;
 import pms.service.CommentService;
 import pms.service.DiaryService;
 import pms.service.FilesService;
