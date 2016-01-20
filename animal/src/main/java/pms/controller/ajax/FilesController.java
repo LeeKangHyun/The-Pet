@@ -56,6 +56,13 @@ public class FilesController {
 		return new AjaxResult("success", files);
 	}
 	
+	@RequestMapping("matlist")
+	public Object matlist(int matNo) throws Exception {
+		 
+		List<Files> files = filesService.getMatFile(matNo);
+
+		return new AjaxResult("success", files);
+	}
 	
 	/////// 아직 위까지만 사용
 	

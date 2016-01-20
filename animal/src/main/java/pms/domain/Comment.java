@@ -7,7 +7,7 @@ public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected int comNo;					// 댓글 번호
-	protected String comContent; 	// 댓글의 내용
+	protected String comComment; 	// 댓글의 내용
 	protected String comImg; 			// 댓글의 이미지
 	protected int mno;						// 회원 번호
 	protected int dno;						// 일정 게시물 번호
@@ -30,11 +30,11 @@ public class Comment implements Serializable {
 	public void setComNo(int comNo) {
 		this.comNo = comNo;
 	}
-	public String getComContent() {
-		return comContent;
+	public String getComComment() {
+		return comComment;
 	}
-	public void setComContent(String comContent) {
-		this.comContent = comContent;
+	public void setComComment(String comComment) {
+		this.comComment = comComment;
 	}
 	public int getMno() {
 		return mno;

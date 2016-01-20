@@ -18,32 +18,48 @@
 	<result column="MEM_NUM" 		property="mno"/>	
  </resultMap>
 
-  <select id="matingList" resultMap="matingMap">
-  	select * from mating
-  </select>
+	<select id="matingList" resultMap="matingMap">
+		select * from mating
+	</select>
  
-  <!-- insert need fix -->
-  <insert id="insert" parameterType="mating">
-    insert into mating(MEM_NUM,PET_SPEC,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
-    values(#{mno},#{pSpec},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
-  </insert>
+	<select id="selectOne" resultMap="matingMap" parameterType="int">
+		select 
+	  		MAT_NUM, 
+	  		MAT_VIEWS,
+	  		MAT_CRE,
+	  		MAT_TITLE,
+	  		MAT_CONTENT,
+			MAT_SPEC,
+			MAT_TYPE,
+			MAT_GEN,
+			MAT_COST,
+			MEM_NUM
+		from mating
+		where MAT_NUM=#{matNo}
+	</select>
   
-  <delete id="delete" parameterType="int">
-    delete from mating 
-  	where MAT_NUM=#{matNo}
-  </delete>
-  
-  <update id="update" parameterType="mating">
-    update mating set 
-      MAT_TITLE=#{matTitle},
-  	  MAT_CONTENT=#{matContent},
-      MAT_SPEC=#{matSpec},
-      MAT_TYPE=#{matType},
-  	  MAT_GEN=#{matGender},
-  	  MAT_COST=#{matCost}
-    where MAT_NUM=#{matNo}
-  </update>
-  
+	<!-- insert need fix -->
+	<insert id="insert" parameterType="mating">
+		insert into mating(MEM_NUM,PET_SPEC,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
+		values(#{mno},#{pSpec},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from mating 
+		where MAT_NUM=#{matNo}
+	</delete>
+	
+	<update id="update" parameterType="mating">
+	update mating set 
+		MAT_TITLE=#{matTitle},
+		MAT_CONTENT=#{matContent},
+		MAT_SPEC=#{matSpec},
+		MAT_TYPE=#{matType},
+		MAT_GEN=#{matGender},
+		MAT_COST=#{matCost}
+	where MAT_NUM=#{matNo}
+	</update>
+
   
 </mapper>
 

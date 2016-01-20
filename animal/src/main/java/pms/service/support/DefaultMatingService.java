@@ -18,6 +18,10 @@ public class DefaultMatingService implements MatingService {
 		return matingDao.matingList();
 	}
   
+	public Mating getMatingOne(int matNo) {
+		return matingDao.selectOne(matNo);
+	}
+	
   public void addPet(Mating mating) {
   	matingDao.insert(mating);
   }

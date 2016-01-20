@@ -17,10 +17,12 @@ import pms.domain.AjaxResult;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Mating;
+import pms.domain.Member;
 import pms.service.CommentService;
 import pms.service.DiaryService;
 import pms.service.FilesService;
 import pms.service.MatingService;
+import pms.service.MemberService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.MatingController")
@@ -31,6 +33,7 @@ public class MatingController {
 	@Autowired DiaryService diaryService;
 	@Autowired MatingService matingService;
 	@Autowired FilesService filesService;
+	@Autowired MemberService memberService;
 	@Autowired CommentService commentService;
 	@Autowired ServletContext servletContext;
 	
@@ -39,27 +42,34 @@ public class MatingController {
 		 
 		List<Mating> mating = matingService.getMatingList();
 		List<Files> files = null;
-//		HashMap<String,Object> filesMap = new HashMap<>();
+		Member member = null;
+
 		List<List<Files>> filesMap = new ArrayList<>();
-		int i = 0;
+		List<Member> memberMap = new ArrayList<>();
+
 		for (Mating m : mating) {
 			files = filesService.getMatFile(m.getMatNo());
+			member = memberService.oneMember(m.getMno());
 			filesMap.add(files);
-//			filesMap.put("files" + i, files);
-			i++;
+			memberMap.add(member);
 		}
 			
-			
-			
-//		List<Comment> comment = commentService.getMatComment();
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("mating", mating);
 		resultMap.put("filesMap", filesMap);
+		resultMap.put("memberMap", memberMap);
 
 		return resultMap;
 	}
-//	
+
+	@RequestMapping("detail")
+	public Object detail(int matNo) throws Exception {
+
+		Mating mating = matingService.getMatingOne(matNo);
+		return new AjaxResult("success", mating);
+	}
+	
 //	@RequestMapping(value="add", method=RequestMethod.POST)
 //	public Object add(
 //			Diary diary,
@@ -126,15 +136,4 @@ public class MatingController {
 		return new AjaxResult("success", null);
 	}
 
-
-
-
-	/*private String replace(String checkIndex) {
-		if ( checkIndex != null ) {
-			checkIndex = checkIndex.replaceAll("<","&lt;");
-			checkIndex = checkIndex.replaceAll(">","&gt;");
-		} 
-		return checkIndex;
-
-	}*/
 }

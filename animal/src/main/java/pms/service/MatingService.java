@@ -8,6 +8,8 @@ public interface MatingService {
 	
 	List<Mating> getMatingList();
   
+	Mating getMatingOne(int matNo);
+	
   void addPet(Mating mating);
   
   int remove(int matNo);

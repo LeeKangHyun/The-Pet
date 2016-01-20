@@ -10,7 +10,7 @@
 <!--  내가만든 css들  -->
 <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
 <link href="css/sh_mating.css" type="text/css" rel="stylesheet">
-<link href="css/example.css" type="text/css" rel="stylesheet" />
+<!--<link href="css/example.css" type="text/css" rel="stylesheet" />-->
 
 <link href="css/CSSreset.min.css" type="text/css"	rel="stylesheet" />
 
@@ -71,28 +71,131 @@ $(function(){
     <!-- 위의 제목 부분 -->
       <span id="boastname"><i class="lnr lnr-store"></i> 분양</span>
     
-      <button class="filter" data-filter="all">All</button>
+      <button id="button" class="filter" data-filter="*">All</button>
       <button class="filter" data-filter=".DOG">DOG</button>
       <button class="filter" data-filter=".CAT">CAT</button>
       <button class="filter" data-filter=".FISH">FISH</button>
       <button class="filter" data-filter=".BIRD">BIRD</button>
       <button class="filter" data-filter=".ETC">ETC</button>
+      <button id="hidden" class="filter" data-filter="*" hidden="">All</button>
         
         <!--  Filter 영역 시작 -->
 
         
     <!-- 사진 게시물 영역 -->
-    <div id="Container" class="container">
-        <ul class="gallery-items">
-
+    <div id='Container' class='container'>
           
+<!--
+        <div class='portfoliocard mix DOG' role='button' data-target='#saleModal' data-toggle='modal' id="a" onclick='detail(this.id);'>
 
-        </ul>
+            <div class='coverphoto'><img src='images/h10.gif'></div>
+
+            <div class='profile_picture'><img src='images/h1.jpg'></div>
+
+            <div class='left_col'>
+                <div class='views'>
+                    <div class='view_count'>1234</div>
+                    VIEW
+                </div>
+            </div>
+
+            <div class='right_col'>
+                <ul class='contact_information'>
+                    <li class='website'>Spec</li>
+                    <li class='website'>Type</li>
+                    <li class='mail'>Cost</li>
+                    <li>................................</li>
+                    <li class='title'>Title</li>
+                    <li class='resume'>CreateDate</li>
+                    <li class='name'>설현</li>
+                </ul>
+            </div>
+        </div>
+-->
+                    
     </div>
 
   </section>
 
   
+<div id='saleModal' class='modal fade' data-keyboard='true'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>
+                    <span aria-hidden='true'>&times;</span>
+                    <span class='sr-only'>close</span>
+                </button>
+                <h3 id='modalTitle' class='title'></h3>
+            </div>
+
+            <div class='modal-body'>
+
+                <form>
+
+                    <div id='carousel-example-generic' class='carousel slide' data-ride='carousel'>
+                        <!-- Indicators -->
+                        <ol class='carousel-indicators' id="dots">
+<!--                            <li data-target='#carousel-example-generic' data-slide-to='0' class='active'></li>-->
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox" id="imgs">
+<!--                            <div class='item active'><img class='slideimg' src='../images/h1.jpg'></div>-->
+                        </div>
+
+                        <!-- Controls -->
+                        <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
+                            <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
+                            <span class='sr-only'>Previous</span>
+                        </a>
+                        <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
+                            <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
+                            <span class='sr-only'>Next</span>
+                        </a>
+                    <!--                <div class='clearfix'></div>-->
+                    </div>
+                    
+                    <div class='contents'>
+
+                        <div class='content' id="mcontent"></div>
+
+                        <div class='input'>
+                            <textarea class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
+                            <a role='button'>게시</a>
+                        </div>
+
+                        <div class='comments'>
+
+                            <div class='comment' id="comComment">
+
+<!--
+                                <img class='commentimg' src=''>
+                                <div class="commentname">comUserName</div>
+                                <a class='commentDel'><i class='fa fa-close'></i></a>
+                                <div class='commenttext'>comComment</div>
+-->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="editPet" class="btn btn-warning">변경</button>
+                <button type="button" id="delPet" class="btn btn-danger">삭제</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+    
+    
   <script>
 $(document).ready(function() {
 //    로그인 회원 정보출력 세션없으면 로그인페이지로
@@ -112,145 +215,153 @@ $(document).ready(function() {
         $.session.clear();
         location.href = "login.html"
     });
-    
 });
-      
-// 로그인한 회원의 펫 보여주는것
+
+// mating 리스트 출력
 $.getJSON('mating/ajax/list.do', function(resultObj) {
-    var showpet = $('.gallery-items');
-    console.log(resultObj)
+    $("#hidden").trigger("click");
+    $("button:first").trigger("click");
+    
+    var show = $('#Container');
     var j = 0;
-    for (var file of resultObj.filesMap){
-        for(var f of file)
-            console.log(f)
-    }
+    var file;
+    var mem;
     for (var mating of resultObj.mating) {
-//        console.log(mating)
-//        j++;
-//        console.log(resultObj.filesMap)
-//        console.log(resultObj.filesMap)
-//        var f = "files" + j
-//        console.log(f)
-//        var fi = resultObj.filesMap;
-//        console.log(fi.files0)
-//        var fil= fi."f";
-//        console.log(fil)
-//        for (var i = 0; i < fi.f.length; i++) {
-//        console.log(files);
-//        console.log(files.0);
-//        showpet.append(
-//    if (resultObj.files[0])
-//    <li class="gallery-item mix DOG">
-//        <div class="gallery-contents">
-//            <div class="thumbnail gallery-trigger">
-//                <div class="portfoliocard">
-//                    <div class="coverphoto">
-//                        <img src="images/h1.jpg"><!-- 배경이미지 -->
-//                    </div>
-//                    <div class="profile_picture">
-//                        <img src="images/h7.jpg"><!-- 프로필 이미지 -->
-//                    </div>
-//                    <div class="left_col">
-//                        <div class="views">
-//                            <div class="view_count">18,541</div>
-//                            VIEW
-//                        </div>
-//                    </div>
-//                    <div class="right_col">
-//                        <h2 class="name">John Doe</h2>
-//                        <ul class="contact_information">
-//                            <li class="title">제목</li>
-//                            <li class="website">종류</li>
-//                            <li class="website">타입</li>
-//                            <li class="mail">가격</li>
-//                            <li class="resume">작성일</li>
-//                        </ul>
-//                    </div>
-//                </div>
-//            </div>
-//
-//        </div>
-//        <div class="gallery-expander">
-//            <div class="gallery-expander-contents">
-//                <div class="gallery-trigger-close close">&times;</div>
-//                    <div class="col">
-//                        <div class="image">
-//
-//                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-//                                <!-- Indicators -->
-//                                <ol class="carousel-indicators">
-//                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-//                                </ol>
-//
-//                                <!-- Wrapper for slides -->
-//                                <div class="carousel-inner" role="listbox">
-//
-//                                    <div class="item active">
-//                                        <img class="slideimg" src="images/h1.jpg">
-//                                    </div>
-//
-//                                </div>
-//
-//                                <!-- Controls -->
-//                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-//                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-//                                    <span class="sr-only">Previous</span>
-//                                </a>
-//                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-//                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-//                                    <span class="sr-only">Next</span>
-//                                </a>
-//                            </div>
-//
-//                        </div>
-//                    </div>
-//
-//                    <div class="col">
-//                    <div class="title">Sub-Title</div>
-//
-//                    <div class="contents">Content
-//                    <br><br><br><br><br><br><br>aaa<br><br><br><br><br><br>aaaa<br><br><br>aaa<br><br>a<br>aaaa
-//
-//                    </div>
-//
-//                    <div class="input">
-//                        <textarea class="commentin" cols="30" rows="2" placeholder="댓글을 입력하세요..."></textarea>
-//                        <a role="button">게시</a>
-//                    </div>
-//
-//                    <div class="comments">
-//
-//                        <div class="comment">
-//                            <img class="commentimg" src="images/h1.jpg">
-//                            <div class="commentname">name</div>
-//
-//                            <div class="edit">
-//                                <a><i class="fa fa-pencil"></i></a>
-//                                <a href="comment/ajax/delete.do?comNo=0"><i class="fa fa-close"></i></a>
-//                            </div>
-//                            <div class="commenttext"></div>
-//
-//                        </div>
-//
-//                    </div>
-//
-//                </div>
-//            </div>
-//        </div>
-//    "</li>")
-//        }
-    }
+        file = resultObj.filesMap[j];
+        mem = resultObj.memberMap[j];
+//        console.log(file[0])
+//        console.log(mem)
+        j++;
+        show.append("<div class='portfoliocard mix DOG' role='button' " +
+                       "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+                       "' onclick='detail(this.id);'>" +
 
+            "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
+
+            "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+
+            "<div class='left_col'>" +
+                "<div class='views'>" +
+                    "<div class='view_count'>" + mating.matViews + "</div>" +
+                    "VIEW" +
+                "</div>" +
+            "</div>" +
+
+            "<div class='right_col'>" +
+                "<ul class='contact_information'>" +
+                    "<li class='website'>" + mating.matSpec + "</li>" +
+                    "<li class='website'>" + mating.matType + "</li>" +
+                    "<li class='mail'>" + mating.matCost + "</li>" +
+                    "<li class='title'>" + mating.matTitle + "</li>" +
+                    "<li class='resume'>" + mating.matCreateDate + "</li>" +
+                    "<li class='name'>" + mem.mName + "</li>" +
+                "</ul>" +
+            "</div>" +
+        "</div>")
+        }       
 });
       
-// 디테일에 쓰임
-(function(global, $){
-    $('.gallery-items').imagelistexpander({
-        prefix: "gallery-"
-    });
-})(this, jQuery)
+// 펫 디테일
+function detail(id) {
+    console.log(id)
+    var form_data = new FormData();
+    form_data.append("matNo", id)
+    console.log("디테일 들어왔쇼")
+    $.ajax({
+        url: "mating/ajax/detail.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+            console.log("성공했쇼 1!")
+            var matinfo = re.ajaxResult.data;
+            $('#modalTitle').val(matinfo.matTitle);
+            $('#mcontent').val(matinfo.matContent);
+            var form_data = new FormData();
+            form_data.append("matNo", id)
+            $.ajax({
+                url: "files/ajax/matlist.do",
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(re) {
+                    console.log("성공했쇼 2!")
+                    var files = re.ajaxResult.data;
+                    var imgs = $('#imgs');
+                    var dots = $('#dots');
+                    var i = 0;
+                    for (var file of files) {
+                        if (i == 0) {
+                            imgs.append(
+                            "<div class='item active'>" +
+                                "<img class='slideimg' src='images/" + file.fileName + "'>" +
+                            "</div>")
+                            dots.append(
+                            "<li data-target='#carousel-example-generic' data-slide-to='" + i +
+                            "' class='active'></li>")
+                        } else {
+                            imgs.append(
+                            "<div class='item'>" +
+                                "<img class='slideimg' src='images/" + file.fileName + "'>" +
+                            "</div>")
+                            dots.append(
+                            "<li data-target='#carousel-example-generic' data-slide-to='" + i +
+                            "'></li>")
+                        }
+                        i++;
+                    }
+                    var form_data = new FormData();
+                    form_data.append("matNo", id)
+                    $.ajax({
+                        url: "comment/ajax/matcomlist.do",
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(re) {
+                            console.log("성공했쇼 3!")
+                            var commen = re.comments;
+                            console.log(commen)
+                            var comdiv = $('#comComment');
+                            var mem;
+                            var j = 0;
+                            for (var com of commen) {
+                                mem = re.memberMap[j];
+                                console.log(mem)
+                                console.log(mem.mImg)
+                                console.log(mem.mName)
+                                console.log(com.comment)
+                                comdiv.append(
+                                "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                                "<div class='commentname'>" + mem.mName + "</div>" +
+                                "<a class='commentDel'><i class='fa fa-close'></i></a>" +
+                                "<div class='commenttext'>" + com.comComment + "</div>")
+                                j++;
+                            }
+                        }
+                    })
+                }
+            })
+        }
+    })
+}
+      
+$('#saleModal').on('hide.bs.modal', function(e) {
+    $('#comComment').empty();
+    $('#dots').empty();
+    $('#imgs').empty();
+    $('#modalTitle').val('');
+    $('#mcontent').val('');
+})
 
-autosize(document.querySelectorAll('.commenttext'));
 </script>
 
 </body>

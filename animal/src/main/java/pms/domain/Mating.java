@@ -8,16 +8,16 @@ public class Mating implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected int matNo;						// 짝짓기 게시물 번호
-	protected int mno;						// 짝짓기 게시물 작성한 회원 번호
-	protected int matViews;  			// 짝짓기 게시물 조회수  default:0
-	protected Date matCreateDate;					// 짝짓기 게시물 작성일
+	protected int mno;							// 짝짓기 게시물 작성한 회원 번호
+	protected int matViews;  				// 짝짓기 게시물 조회수  default:0
+	protected Date matCreateDate;		// 짝짓기 게시물 작성일
 	protected String matTitle;			// 짝짓기 게시물 제목
-	protected String matContent;  // 짝짓기 게시물 내용
-	protected String matSpec;				// 애완 동물 구분 코드 -> 개, 고양이, 물고기, 새, etc
-																	//                 DIV01,DIV02,DIV03,DIV04,DIV05
-	protected String matType;	  			// 애완 동물 종류 -> 포메라이안, 시베리안허스키 등등..
-	protected boolean matGender;				// 애완 동물 성별   남: false 0  	여: true 1
-	protected int matCost;							// 중매금
+	protected String matContent;  	// 짝짓기 게시물 내용
+	protected String matSpec;				// 애완 동물 구분 코드 -> 개, 고양이, 물고기, 새,  etc
+																	//                 	DOG, CAT, FISH, BIRD,ETC
+	protected String matType;	  		// 애완 동물 종류 -> 포메라이안, 시베리안허스키 등등..
+	protected boolean matGender;		// 애완 동물 성별   남: false 0  	여: true 1
+	protected int matCost;					// 중매금
 	
 	public Mating () {}
 
