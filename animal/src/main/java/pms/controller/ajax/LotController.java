@@ -1,5 +1,7 @@
 package pms.controller.ajax;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +23,13 @@ public class LotController {
     lotService.add(lot);
     
     return new AjaxResult("status", null);
+  }
+  
+  @RequestMapping(value="list", method=RequestMethod.GET)
+  public Object list(int mno) throws Exception {
+    
+    List<Lot> lots = lotService.list(mno);
+    
+    return lots;
   }
 }

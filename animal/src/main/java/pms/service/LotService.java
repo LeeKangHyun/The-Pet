@@ -1,7 +1,11 @@
 package pms.service;
 
+import java.util.List;
+
 import pms.domain.Lot;
 
 public interface LotService {
-  void add(Lot lot);
+  int add(Lot lot);
+  
+  List<Lot> list(int mno);
 }

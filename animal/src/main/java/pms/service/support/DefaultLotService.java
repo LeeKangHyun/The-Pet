@@ -1,5 +1,7 @@
 package pms.service.support;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,11 @@ public class DefaultLotService implements LotService {
 
   @Autowired LotDao lotDao;
   
-  public void add(Lot lot) {
-    lotDao.add(lot);
+  public int add(Lot lot) {
+    return lotDao.add(lot);
+  }
+  
+  public List<Lot> list(int mno) {
+    return lotDao.list(mno);
   }
 }

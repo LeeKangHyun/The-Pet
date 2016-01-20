@@ -7,6 +7,8 @@ public class Lot implements Serializable {
   
   protected String lat;
   protected String lng;
+  protected int lno;
+  protected int mno;
   
   public Lot () {}
 
@@ -26,5 +28,22 @@ public class Lot implements Serializable {
     this.lng = lng;
   }
 
+  public int getLno() {
+    return lno;
+  }
+
+  public void setLno(int lno) {
+    this.lno = lno;
+  }
+
+  public int getMno() {
+    return mno;
+  }
+
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+  
+  
   
 }
