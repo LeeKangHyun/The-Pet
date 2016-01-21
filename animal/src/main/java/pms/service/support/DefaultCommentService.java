@@ -31,8 +31,8 @@ public class DefaultCommentService implements CommentService {
   	return commentDao.insert(comment);
   }
 
-  public int removeComment(int sno) {
-  	return commentDao.deleteComment(sno);
+  public int removeComment(int comNo) {
+  	return commentDao.deleteComment(comNo);
   }
   
   public int change(Comment comment) {

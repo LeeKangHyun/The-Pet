@@ -52,7 +52,7 @@
   
   <delete id="deleteComment" parameterType="int">
     delete from comment 
-  	where SCH_NUM=#{dno}
+  	where CMT_NUM=#{comNo}
   </delete>
   
   <!--       update 수정해야함       -->

@@ -13,7 +13,7 @@ public interface CommentService {
   
   int add(Comment comment);
 
-  int removeComment(int sno);
+  int removeComment(int comNo);
   
   int change(Comment comment);
 }

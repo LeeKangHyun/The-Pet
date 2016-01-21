@@ -141,8 +141,12 @@ div.portfoliocard div.view_count {
 
 /* -- 디테일 모달 css -- */
 #saleModal .modal-content, #saleModal .modal-dialog {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 1024px;
-  height: 630px;
+/*  height: 630px;*/
   background-color: #2d335e;
   border-radius: 0;
 }

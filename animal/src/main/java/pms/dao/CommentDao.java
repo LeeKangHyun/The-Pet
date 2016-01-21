@@ -12,7 +12,7 @@ public interface CommentDao {
   
   int insert(Comment comment);
   
-  int deleteComment(int dno);
+  int deleteComment(int comNo);
   
   int update(Comment comment);
 }
