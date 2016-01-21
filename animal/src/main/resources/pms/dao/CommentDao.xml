@@ -12,7 +12,7 @@
 	<result column="MEM_NUM" 		property="mno"/>
 	<result column="SCH_NUM" 		property="dno"/>
 	<result column="EDU_NUM" 		property="eduNo"/>	
-	<result column="S_NUM"			property="stoNo"/>
+	<result column="S_NUM"			property="sno"/>
   	<result column="MAT_NUM"		property="matNo"/>
  </resultMap>
 
@@ -41,8 +41,13 @@
   </select>
   
   <insert id="insert" parameterType="comment">
+    insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,MAT_NUM) 
+    values(#{comComment},#{comImg},#{mno},#{matNo})
+  </insert>
+  
+  <insert id="insert2" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,SCH_NUM,EDU_NUM,S_NUM,MAT_NUM) 
-    values(#{comment},#{comImg},#{mno},#{dno},#{eduNo},#{stoNo},#{matNo})
+    values(#{comComment},#{comImg},#{mno},#{dno},#{eduNo},#{sno},#{matNo})
   </insert>
   
   <delete id="deleteComment" parameterType="int">

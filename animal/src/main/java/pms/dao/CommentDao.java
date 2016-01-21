@@ -10,7 +10,7 @@ public interface CommentDao {
   List<Comment> MatCommentList(int matNo);
   List<Comment> SaleCommentList(int sno);
   
-  void insert(Comment comment);
+  int insert(Comment comment);
   
   int deleteComment(int dno);
   

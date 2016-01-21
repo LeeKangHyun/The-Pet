@@ -39,9 +39,7 @@
   <header id="menu">
     <div id="header_title">
       <a class="headerTitle" href="pet.html">THE PET</a>
-      <div id="user_info">
-
-      </div>
+      <div id="user_info"></div>
     </div>
     <!--  메뉴 버튼  -->
     <input type="checkbox" id="menuToggle" />
@@ -51,10 +49,10 @@
       <!--  메뉴 내용  -->
 
       <nav id="menu-nav">
-        <ul>
-          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+        <ul id="menu-nav-ul">
+          <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href=""><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
         </ul>
@@ -123,26 +121,29 @@
       </div>
   </section>
 
-  <script>
-    $(document).ready(function() {
-      //    로그인 회원 정보출력 세션없으면 로그인페이지로
-      var div = $('#user_info');
-      if ($.session.get('mno') != undefined) {
+<script>
+$(document).ready(function() {
+    //    로그인 회원 정보출력 세션없으면 로그인페이지로
+    var div = $('#user_info');
+    var ul = $('#menu-nav-ul')
+    if ($.session.get('mno') != undefined) {
         div.append(
-          "<img src='files/" + $.session.get('mimg') +
-          "' id='userImg' />" +
-          "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-          "<a role='button' id='outBtn' class='logout'>" +
-          "<i class='fa fa-unlock fa-lg'></i></a>")
-      } else {
+            "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+            "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+            "<a role='button' id='outBtn' class='logout'>" +
+            "<i class='fa fa-unlock fa-lg'></i></a>")
+        
+        ul.append("<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+        
+    } else {
         div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-      }
-
-      //    로그아웃
-      $(document).on("click", "#outBtn", function() {
+    }
+    
+//    로그아웃
+    $(document).on("click", "#outBtn", function() {
         $.session.clear();
         location.href = "login.html"
-      });
+    });
 
       $.get("http://ipinfo.io", function(response) {
         console.log(response.loc);

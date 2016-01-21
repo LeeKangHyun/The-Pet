@@ -9,9 +9,8 @@
 <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 <!--  내가만든 css들  -->
-<link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
-<link href="css/sh_mating.css" type="text/css" rel="stylesheet">
-<!--<link href="css/example.css" type="text/css" rel="stylesheet" />-->
+<link href="css/sh_slidmenu_header_sale.less" type="style.less" rel="stylesheet/less" />
+<link href="css/sh_sale.css" type="text/css" rel="stylesheet">
 
 <link href="css/CSSreset.min.css" type="text/css"	rel="stylesheet" />
 
@@ -55,10 +54,10 @@ $(function(){
       <!--  메뉴 내용  -->
 
       <nav id="menu-nav">
-        <ul>
+        <ul id="menu-nav-ul">
           <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
               자랑해요</a></li>
@@ -118,7 +117,7 @@ $(function(){
 
   </section>
 
-  
+<!--펫 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='true'>
     <div class='modal-dialog'>
         <div class='modal-content'>
@@ -133,7 +132,7 @@ $(function(){
             <div class='modal-body'>
 
                 <form>
-
+                    <input type="hidden" id="mmatno">
                     <div id='carousel-example-generic' class='carousel slide' data-ride='carousel'>
                         <!-- Indicators -->
                         <ol class='carousel-indicators' id="dots">
@@ -154,7 +153,6 @@ $(function(){
                             <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
                             <span class='sr-only'>Next</span>
                         </a>
-                    <!--                <div class='clearfix'></div>-->
                     </div>
                     
                     <div class='contents'>
@@ -162,8 +160,8 @@ $(function(){
                         <div class='content' id="mcontent"></div>
 
                         <div class='input'>
-                            <textarea class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
-                            <a role='button'>게시</a>
+                            <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
+                            <a id="comDelBtn" role='button'>게시</a>
                         </div>
 
                         <div class='comments' id="comComment">
@@ -194,19 +192,41 @@ $(function(){
     </div>
 </div>
     
+<!-- 댓글 삭제 확인 모달 -->
+<div id="checkModal" class="modal fade bs-example-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class='modal-header'>
+        댓글 삭제
+      </div>
+      <div class='modal-body'>
+        이 댓글을 삭제하시겠어요?
+      </div>
+      <div class='modal-footer'>
+        <button type="button" id="closeDel" class="btn btn-default">취소</button>
+        <button type="button" id="delCom" class="btn btn-danger">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
     
   <script>
 $(document).ready(function() {
 //    로그인 회원 정보출력 세션없으면 로그인페이지로
     var div = $('#user_info');
+    var ul = $('#menu-nav-ul')
     if ($.session.get('mno') != undefined) {
         div.append(
             "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
             "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
             "<a role='button' id='outBtn' class='logout'>" +
             "<i class='fa fa-unlock fa-lg'></i></a>")
+        
+        ul.append("<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+        
     } else {
         div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+        
     }
     
 //    로그아웃
@@ -214,6 +234,7 @@ $(document).ready(function() {
         $.session.clear();
         location.href = "login.html"
     });
+  
 });
 
 // mating 리스트 출력
@@ -262,10 +283,8 @@ $.getJSON('mating/ajax/list.do', function(resultObj) {
       
 // 펫 디테일
 function detail(id) {
-    console.log(id)
     var form_data = new FormData();
     form_data.append("matNo", id)
-    console.log("디테일 들어왔쇼")
     $.ajax({
         url: "mating/ajax/detail.do",
         dataType: 'json',
@@ -275,10 +294,10 @@ function detail(id) {
         data: form_data,
         type: 'post',
         success: function(re) {
-            console.log("성공했쇼 1!")
             var matinfo = re.ajaxResult.data;
-            $('#modalTitle').val(matinfo.matTitle);
-            $('#mcontent').val(matinfo.matContent);
+            $('#modalTitle').html(matinfo.matTitle);
+            $('#mcontent').html(matinfo.matContent);
+            $('#mmatno').val(matinfo.matNo);
             var form_data = new FormData();
             form_data.append("matNo", id)
             $.ajax({
@@ -290,7 +309,6 @@ function detail(id) {
                 data: form_data,
                 type: 'post',
                 success: function(re) {
-                    console.log("성공했쇼 2!")
                     var files = re.ajaxResult.data;
                     var imgs = $('#imgs');
                     var dots = $('#dots');
@@ -332,15 +350,11 @@ function detail(id) {
                             var j = 0;
                             for (var com of commen) {
                                 mem = re.memberMap[j];
-                                console.log(mem)
-                                console.log(mem.mImg)
-                                console.log(mem.mName)
-                                console.log(com.comment)
                                 comdiv.append(
                                 "<div class='comment'>" +
                                   "<img class='commentimg' src='files/" + mem.mImg + "'>" +
                                   "<div class='commentname'>" + mem.mName + "</div>" +
-                                  "<a class='commentDel'><i class='fa fa-close'></i></a>" +
+                                  "<a class='commentDel' data-target='#checkModal' data-toggle='modal'><i class='fa fa-close'></i></a>" +
                                   "<div class='commenttext'>" + com.comComment + "</div>" +
                                 "</div>")
                                 j++;
@@ -352,13 +366,73 @@ function detail(id) {
         }
     })
 }
-      
+
+// 펫 디테일 -> 댓글게시 클릭
+$(document).on("click", "#comDelBtn", function() {
+  console.log($('#comcontent').val())
+  if ($('#comcontent').val() == "") {
+    alert("댓글을 입력해 주세요")
+  } else {
+    var form_data = new FormData();
+    form_data.append("matNo", $('#mmatno').val())
+    form_data.append("comComment", $('#comcontent').val())
+    form_data.append("mno", $.session.get('mno'))
+    $.ajax({
+      url: "comment/ajax/add.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        $('#comcontent').val('')
+        var form_data = new FormData();
+        form_data.append("matNo", $('#mmatno').val())
+        $.ajax({
+          url: "comment/ajax/matcomlist.do",
+          dataType: 'json',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+          success: function(re) {
+            $('#comComment').empty();
+            var commen = re.comments;
+            var comdiv = $('#comComment');
+            var mem;
+            var j = 0;
+            for (var com of commen) {
+              mem = re.memberMap[j];
+              comdiv.append(
+              "<div class='comment'>" +
+                "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                "<div class='commentname'>" + mem.mName + "</div>" +
+                "<a class='commentDel' data-target='#checkModal' data-toggle='modal'><i class='fa fa-close'></i></a>" +
+                "<div class='commenttext'>" + com.comComment + "</div>" +
+              "</div>")
+              j++;
+            }
+          }
+        })  
+      }
+    })
+  }
+})
+$(document).on("click", "#delCom", function() {
+  alert("삭제클릭")
+})
+
+
+                    
 $('#saleModal').on('hide.bs.modal', function(e) {
     $('#comComment').empty();
     $('#dots').empty();
     $('#imgs').empty();
     $('#modalTitle').val('');
     $('#mcontent').val('');
+    $('#mmatno').val('');
 })
 
 </script>

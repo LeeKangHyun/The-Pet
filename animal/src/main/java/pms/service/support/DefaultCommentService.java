@@ -27,8 +27,8 @@ public class DefaultCommentService implements CommentService {
 		return commentDao.SaleCommentList(sno);
   }
   
-  public void add(Comment comment) {
-  	commentDao.insert(comment);
+  public int add(Comment comment) {
+  	return commentDao.insert(comment);
   }
 
   public int removeComment(int sno) {

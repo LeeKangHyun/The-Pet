@@ -9,7 +9,9 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import pms.domain.AjaxResult;
 import pms.domain.Comment;
 import pms.domain.Member;
 import pms.service.CommentService;
@@ -44,5 +46,16 @@ public class CommentController {
 		resultMap.put("memberMap", memberMap);
 
 		return resultMap;
+	}
+	
+	@RequestMapping(value="add", method=RequestMethod.POST)
+	public AjaxResult add(
+			Comment comment) throws Exception {
+	
+		if (commentService.add(comment) <= 0) {
+			return new AjaxResult("failure", null);
+		} 
+		
+		return new AjaxResult("success", null);
 	}
 }

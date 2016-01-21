@@ -11,7 +11,7 @@ public interface CommentService {
   List<Comment> getMatComment(int eduNo);
   List<Comment> getSaleComment(int eduNo);
   
-  void add(Comment comment);
+  int add(Comment comment);
 
   int removeComment(int sno);
   
