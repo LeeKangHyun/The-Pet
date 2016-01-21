@@ -21,7 +21,7 @@
 
   <insert id="add" parameterType="lot">
     insert into lot(lat, lng, mno)
-    values(#{lat}, #{lng}, 4)
+    values(#{lat}, #{lng}, 1)
   </insert>
 
 </mapper>
