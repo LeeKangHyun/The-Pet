@@ -3,6 +3,7 @@
 
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="icon/1.ico" type="image/x-icon" />
 <title>Slid Menu</title>
 
 <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -165,18 +166,16 @@ $(function(){
                             <a role='button'>게시</a>
                         </div>
 
-                        <div class='comments'>
-
-                            <div class='comment' id="comComment">
+                        <div class='comments' id="comComment">
 
 <!--
+                            <div class='comment'>
                                 <img class='commentimg' src=''>
                                 <div class="commentname">comUserName</div>
                                 <a class='commentDel'><i class='fa fa-close'></i></a>
                                 <div class='commenttext'>comComment</div>
--->
-
                             </div>
+-->
 
                         </div>
 
@@ -327,9 +326,7 @@ function detail(id) {
                         data: form_data,
                         type: 'post',
                         success: function(re) {
-                            console.log("성공했쇼 3!")
                             var commen = re.comments;
-                            console.log(commen)
                             var comdiv = $('#comComment');
                             var mem;
                             var j = 0;
@@ -340,10 +337,12 @@ function detail(id) {
                                 console.log(mem.mName)
                                 console.log(com.comment)
                                 comdiv.append(
-                                "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                                "<div class='commentname'>" + mem.mName + "</div>" +
-                                "<a class='commentDel'><i class='fa fa-close'></i></a>" +
-                                "<div class='commenttext'>" + com.comComment + "</div>")
+                                "<div class='comment'>" +
+                                  "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                                  "<div class='commentname'>" + mem.mName + "</div>" +
+                                  "<a class='commentDel'><i class='fa fa-close'></i></a>" +
+                                  "<div class='commenttext'>" + com.comComment + "</div>" +
+                                "</div>")
                                 j++;
                             }
                         }

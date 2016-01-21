@@ -219,7 +219,7 @@ div.item img {
 }
 
 .input {
-    font-size: 15px;
+    font-size: 13px;
     border-top: 1px solid #BCB098;
     border-bottom: 1px solid #BCB098;
 }
@@ -264,9 +264,9 @@ div.item img {
 }
 
 .comment {
-    margin-top: 10px;
+    margin-top: 5px;
     min-height: 50px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 .commentimg {
@@ -277,7 +277,7 @@ div.item img {
 
 .commentname {
     float: left;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 900;
     max-width: 360px;
     margin-left: 10px;
@@ -290,16 +290,10 @@ div.item img {
     font-size: 22px;
 }
 
-.fa-pencil {
-    color: #1133ff;
-    margin-left: 5px;
-    font-size: 22px;
-}
-
 .commenttext {
     width: 390px;
     min-height: 40px;
-    font-size: 15px;
+    font-size: 14px;
     word-break: break-all;
     border-bottom: 1px solid #BCB098;
     background-color: rgba(0,0,0,0);
