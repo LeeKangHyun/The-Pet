@@ -67,6 +67,7 @@ public class MatingController {
 	public Object detail(int matNo) throws Exception {
 
 		Mating mating = matingService.getMatingOne(matNo);
+		matingService.addviews(matNo);
 		return new AjaxResult("success", mating);
 	}
 	

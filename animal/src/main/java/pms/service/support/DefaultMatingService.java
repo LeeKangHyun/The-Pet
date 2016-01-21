@@ -34,4 +34,7 @@ public class DefaultMatingService implements MatingService {
   	return matingDao.update(mating);
   }
 
+  public void addviews(int matNo) {
+  	matingDao.updateviews(matNo);
+  }
 }

@@ -60,6 +60,11 @@
 	where MAT_NUM=#{matNo}
 	</update>
 
+	<update id="updateviews" parameterType="int">
+		update mating set 
+			MAT_VIEWS=MAT_VIEWS+1
+		where MAT_NUM=#{matNo} 
+	</update>
   
 </mapper>
 

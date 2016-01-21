@@ -15,6 +15,8 @@ public interface MatingService {
   int remove(int matNo);
   
   int change(Mating mating);
+  
+  void addviews(int matNo);
 }
 
 
