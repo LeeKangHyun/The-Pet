@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>좌표로 주소 띄우기</title>
-
     <style>
         .dot {
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             overflow: hidden;
             float: left;
             width: 12px;
@@ -19,12 +18,11 @@
 </head>
 
 <body>
-
-    <div id="map" style="width: 400px; height:350px; margin: 0 auto;"></div>
-    <div id="m-list">
-        <ol>
-
-        </ol>
+    <div style="width: 1024px; height: auto; margin: 0 auto; border: 1px solid black;">
+        <div id="map" style="border: 1px solid red; width: 400px; height:350px; margin: 0 auto; float: left;"></div>
+        <div id="m-list" style="border: 1px solid blue; float: right; min-width: 55%;">
+            <ol></ol>
+        </div>
     </div>
 
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
@@ -45,7 +43,7 @@
         $.ajax({
             url: "../lot/ajax/list.do",
             data: {
-                mno: "2"
+                mno: "4"
             },
             type: "get",
             dataType: "json",
