@@ -1,5 +1,6 @@
 package pms.service.support;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -18,8 +19,16 @@ public class DefaultBoastBoardService implements BoastBoardService {
 	@Autowired BoastBoardDao boastboardDao;
 
 	
-	public List<Diary> selectList() {
-    return boastboardDao.selectList();
+	public List<Diary> selectList(int pageNo, int pageSize) {
+	  HashMap<String, Object> paramMap = new HashMap<>();
+	  paramMap.put("startIndex", (pageNo - 1) * pageSize);
+	  paramMap.put("length", pageSize);
+	  
+    return boastboardDao.selectList(paramMap);
+	}
+	
+	public double count() {
+	  return boastboardDao.count();
 	}
 	
 	public List<Diary> rankList() {

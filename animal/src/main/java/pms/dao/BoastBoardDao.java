@@ -1,12 +1,15 @@
 package pms.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import pms.domain.Diary;
 
 public interface BoastBoardDao {
   
-  List<Diary> selectList();
+  List<Diary> selectList(Map<String, Object> paramMap);
+  
+  double count();
   
   List<Diary> rankList();
   

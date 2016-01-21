@@ -8,7 +8,9 @@ import pms.domain.Diary;
 
 public interface BoastBoardService {
 	
-  List<Diary> selectList();
+  List<Diary> selectList(int pageNo, int pageSize);
+  
+  double count();
   
   List<Diary> rankList();
   

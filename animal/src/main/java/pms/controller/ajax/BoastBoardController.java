@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.dao.BoastBoardDao;
 import pms.domain.AjaxResult;
@@ -28,18 +29,60 @@ public class BoastBoardController {
   @Autowired ServletContext servletContext;
 
   @RequestMapping(value="list", method=RequestMethod.POST)
-  public Object list() throws Exception {
-    List<Diary> boastboards = boastBoardDao.selectList();
+  public Object list(
+  @RequestParam(defaultValue="1") int pageNo,
+  @RequestParam(defaultValue="16") int pageSize
+  ) throws Exception {
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    
+    log.debug("pageNo = " + pageNo);
+    
+    List<Diary> boastboards = boastBoardDao.selectList(paramMap);
+    double count = boastBoardDao.count();
+    count = Math.ceil(count / pageSize);
+    
+    log.debug(count);
    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
+    resultMap.put("count", count);
     
     log.debug("Controller/selectList()....호출");
-    log.debug(boastboards.get(0).getpSpec());
 
     return resultMap;
   }
+  
+  
+  
+  
+  
+  @RequestMapping(value="count", method=RequestMethod.GET)
+  public Object count(
+  @RequestParam(defaultValue="16") int pageSize
+  ) throws Exception {
+   
+    double count = boastBoardDao.count();
+    count = Math.ceil(count / pageSize);
+    
+   
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("count", count);
+    
+    log.debug("Controller/count()....호출");
+
+    return resultMap;
+  }
+  
+  
+  
+  
+  
+  
   
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {

@@ -35,7 +35,16 @@
     from schedule sc 
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
     where CATE_CODE='JARANG' and NOTI_HIDE=1
+    order by sc.SCH_CRE desc limit #{startIndex}, #{length}
   </select>
+  
+  <select id="count" resultType="double">
+      select
+      count(*) as count
+    from schedule;
+    </select>
+  
+  
   
   <select id="rankList" resultMap="diaryMap">
   select 
@@ -49,7 +58,7 @@
       (select count(*) + 1 from schedule where NOTI_LIKES > sc.NOTI_LIKES) AS rank 
      from schedule as sc  
      left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
-     where CATE_CODE='JARANG' and NOTI_HIDE=1  
+     where CATE_CODE='JARANG' and NOTI_HIDE=1 
      order by rank asc
   </select>
   
