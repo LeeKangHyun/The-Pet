@@ -238,9 +238,10 @@ div.item img {
     position: absolute;
     margin-top: 10px;
     margin-left: 10px;
-    padding: 10px 10px;
+    padding: 10px 10px 10px 10px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 16px;
     color: #d3394c;
     border: 2px solid #d3394c;
     border-radius: 8px;
