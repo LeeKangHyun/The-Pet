@@ -4,7 +4,12 @@
 <head>
     <meta charset="utf-8">
     <title>좌표로 주소 띄우기</title>
+    <script src='../lib/jquery/jquery.min.js'></script>
     <style>
+        body {
+            margin: 0;
+        }
+
         .dot {
             /*border: 1px solid black;*/
             overflow: hidden;
@@ -12,6 +17,10 @@
             width: 12px;
             height: 12px;
             background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
+        }
+
+        #m-list {
+            font-size: 21pt;
         }
     </style>
 
@@ -26,7 +35,6 @@
     </div>
 
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
-    <script src='../lib/jquery/jquery.min.js'></script>
 
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -43,30 +51,32 @@
         $.ajax({
             url: "../lot/ajax/list.do",
             data: {
-                mno: "4"
+                mno: "1"
             },
             type: "get",
             dataType: "json",
             success: function(resultObj) {
                 //console.log(resultObj.lotList)
-                var i = 0;
+                //var i = 0;
                 var bounds = new daum.maps.LatLngBounds();
 
-                for (var lots of resultObj.lotList) {
+                var coord = new daum.maps.LatLng();
+
+                for (var i = 0; i < resultObj.lotList.length;) {
                     // console.log('들어갔다')
                     // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
                     var content = '<h3>' + (i + 1) +
                         '</h3><span class="dot"></span>';
-                    var coord = new daum.maps.LatLng(lots.lat, lots
-                        .lng);
+                    coord = new daum.maps.LatLng(resultObj.lotList[
+                            i].lat, resultObj.lotList[i].lng);
                     console.log(coord)
 
                     var circleOverlay = new daum.maps.CustomOverlay({
                         map: map,
                         content: content,
-                        position: new daum.maps.LatLng(
-                            lots.lat, lots.lng),
-                        zIndex: 1
+                        position: coord,
+                        zIndex: 1,
+                        yAnchor: 1
                     });
 
                     // 리스트 나오기
