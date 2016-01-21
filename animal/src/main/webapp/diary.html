@@ -98,53 +98,53 @@
 
         <div class="modal-body">
 
-            <input type="hidden" id="sdno">
+          <input type="hidden" id="sdno">
 
-            <div class="pDate form-group">
-                <label class="col-sm-2 control-label">시작일</label>
-                <div class="col-sm-10">
-                    <input type="date" id="mStart" class="form-control">
-                </div>
-            </div>
+          <div class="pDate form-group">
+              <label class="col-sm-2 control-label">시작일</label>
+              <div class="col-sm-10">
+                  <input type="date" id="mStart" class="form-control">
+              </div>
+          </div>
 
-            <div class="pDate form-group">
-                <label class="col-sm-2 control-label">종료일</label>
-                <div class="col-sm-10">
-                    <input type="date" id="mEnd" class="form-control">
-                </div>
-            </div>
+          <div class="pDate form-group">
+              <label class="col-sm-2 control-label">종료일</label>
+              <div class="col-sm-10">
+                  <input type="date" id="mEnd" class="form-control">
+              </div>
+          </div>
 
-            <div class="form-group">
-                <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
-                <div class="col-sm-2">
-                    <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
-                </div>
-                <div class="col-sm-8"><input type="text" style="border:none;"></div>
-            </div>
+          <div class="form-group">
+              <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
+              <div class="col-sm-2">
+                  <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
+              </div>
+              <div class="col-sm-8"><input type="text" style="border:none;"></div>
+          </div>
 
-            <div class="form-group">
-                <label for="fcontent" class="col-sm-2 control-label">내용</label>
-                <div class="col-sm-10">
-                    <textarea id="mDes" class="form-control" rows="5"></textarea>
-                </div>
-            </div>
+          <div class="form-group">
+              <label for="fcontent" class="col-sm-2 control-label">내용</label>
+              <div class="col-sm-10">
+                  <textarea id="mDes" class="form-control" rows="5"></textarea>
+              </div>
+          </div>
 
-            <div id="imgContainer">
-                <div id="mainImg">
-                    <img src="" class="fstImage" id="mainImage">
-                </div>
+          <div id="imgContainer">
+              <div id="mainImg">
+                  <img src="" class="fstImage" id="mainImage">
+              </div>
 
-                <div id="scrollImg"></div>
-            </div>
+              <div id="scrollImg"></div>
+          </div>
 
-            <div class="box">
-                <input type="file" name="fileName" id="mFile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-                multiple />
-                <label for="mFile">
-                    <i class="fa fa-upload"></i>
-                    <span>이미지 추가</span>
-                </label>
-            </div>
+          <div class="box">
+              <input type="file" name="fileName" id="mFile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
+              multiple />
+              <label for="mFile">
+                  <i class="fa fa-upload"></i>
+                  <span>이미지 추가</span>
+              </label>
+          </div>
 
         </div>
 
@@ -170,90 +170,86 @@
 
         <div class="modal-body">
 
-          <form>
-            <input type="hidden" name="pno" id="myPno">
-            <input type="hidden" name="mno" id="myMno3">
+          <input type="hidden" name="pno" id="myPno">
+          <input type="hidden" name="mno" id="myMno3">
 
-            <div class="form-group">
-              <label for="pName" class="col-sm-3 control-label">펫 이름</label>
-              <div class="col-sm-9">
-                <input type="text" name="pName" class="form-control" id="pdName" required>
-              </div>
+          <div class="form-group">
+            <label for="pName" class="col-sm-3 control-label">펫 이름</label>
+            <div class="col-sm-9">
+              <input type="text" name="pName" class="form-control" id="pdName" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="cateCode" class="col-sm-3 control-label">구분</label>
-              <div class="col-sm-9">
-                <select id="pdSpec" name="pSPEC" class="form-control">
-                  <option value="DOG" selected="selected">강아지</option>
-                  <option value="CAT">고양이</option>
-                  <option value="FISH">물고기</option>
-                  <option value="BIRD">새</option>
-                  <option value="ETC">ETC..</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="cateCode" class="col-sm-3 control-label">구분</label>
+            <div class="col-sm-9">
+              <select id="pdSpec" name="pSPEC" class="form-control">
+                <option value="DOG" selected="selected">강아지</option>
+                <option value="CAT">고양이</option>
+                <option value="FISH">물고기</option>
+                <option value="BIRD">새</option>
+                <option value="ETC">ETC..</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="pdType" class="col-sm-3 control-label">펫 종류</label>
-              <div class="col-sm-9">
-                <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pdType"
-                required>
-              </div>
+          <div class="form-group">
+            <label for="pdType" class="col-sm-3 control-label">펫 종류</label>
+            <div class="col-sm-9">
+              <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pdType"
+              required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="dtagColor" class="col-sm-3 control-label">태그 색</label>
-              <div class="col-sm-2">
-                <input type="color" name="tagColor" id="dtagColor" value="#ff0000" required>
-              </div>
+          <div class="form-group">
+            <label for="dtagColor" class="col-sm-3 control-label">태그 색</label>
+            <div class="col-sm-2">
+              <input type="color" name="tagColor" id="dtagColor" value="#ff0000" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="dinjection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
-              <div class="col-sm-9">
-                <select id="dinjection" name="injection" class="form-control">
-                  <option value="1차" selected="selected">1차</option>
-                  <option value="2차">2차</option>
-                  <option value="3차">3차</option>
-                  <option value="4차">4차</option>
-                  <option value="5차">5차</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="dinjection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
+            <div class="col-sm-9">
+              <select id="dinjection" name="injection" class="form-control">
+                <option value="1차" selected="selected">1차</option>
+                <option value="2차">2차</option>
+                <option value="3차">3차</option>
+                <option value="4차">4차</option>
+                <option value="5차">5차</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="dmedicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
-              <div class="col-sm-9">
-                <input type="text" name="medicine" class="form-control" id="dmedicine" required>
-              </div>
+          <div class="form-group">
+            <label for="dmedicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
+            <div class="col-sm-9">
+              <input type="text" name="medicine" class="form-control" id="dmedicine" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="image" class="col-sm-3 control-label">펫 이미지</label>
-              <div class="col-sm-9" id="oimg">
-                <img src='' class='pdimg' id="image">
-                <input type="hidden" id="oImage">
-              </div>
+          <div class="form-group">
+            <label for="image" class="col-sm-3 control-label">펫 이미지</label>
+            <div class="col-sm-9" id="oimg">
+              <img src='' class='pdimg' id="image">
+              <input type="hidden" id="oImage">
             </div>
+          </div>
 
-            <div class="box">
-              <input type="file" name="pImg" id="dfile" class="inputfile inputfile-1" />
-              <label for="dfile">
-                <i class="fa fa-upload"></i>
-                <span>펫 이미지 등록</span>
-              </label>
-            </div>
-            <br>
+          <div class="box">
+            <input type="file" name="pImg" id="dfile" class="inputfile inputfile-1" />
+            <label for="dfile">
+              <i class="fa fa-upload"></i>
+              <span>펫 이미지 등록</span>
+            </label>
+          </div>
+          <br>
 
-
-            <div class="modal-footer">
-              <button type="button" id="editPet" class="btn btn-warning">변경</button>
-              <button type="button" id="delPet" class="btn btn-danger">삭제</button>
-            </div>
-
-          </form>
-
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" id="editPet" class="btn btn-warning">변경</button>
+          <button type="button" id="delPet" class="btn btn-danger">삭제</button>
         </div>
 
       </div>
@@ -275,80 +271,77 @@
 
         <div class="modal-body">
 
-          <form>
-            <input type="hidden" name="mno" id="myMno1">
+          <input type="hidden" name="mno" id="myMno1">
 
-            <div class="form-group">
-              <label for="pName" class="col-sm-3 control-label">펫 이름</label>
-              <div class="col-sm-9">
-                <input type="text" name="pName" class="form-control" id="pName" required>
-              </div>
+          <div class="form-group">
+            <label for="pName" class="col-sm-3 control-label">펫 이름</label>
+            <div class="col-sm-9">
+              <input type="text" name="pName" class="form-control" id="pName" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="pSpec" class="col-sm-3 control-label">구분</label>
-              <div class="col-sm-9">
-                <select id="pSpec" name="pSpec" class="form-control">
-                  <option value="DOG" selected="selected">강아지</option>
-                  <option value="CAT">고양이</option>
-                  <option value="FISH">물고기</option>
-                  <option value="BIRD">새</option>
-                  <option value="ETC">ETC..</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="pSpec" class="col-sm-3 control-label">구분</label>
+            <div class="col-sm-9">
+              <select id="pSpec" name="pSpec" class="form-control">
+                <option value="DOG" selected="selected">강아지</option>
+                <option value="CAT">고양이</option>
+                <option value="FISH">물고기</option>
+                <option value="BIRD">새</option>
+                <option value="ETC">ETC..</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="pType" class="col-sm-3 control-label">펫 종류</label>
-              <div class="col-sm-9">
-                <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pType"
-                required>
-              </div>
+          <div class="form-group">
+            <label for="pType" class="col-sm-3 control-label">펫 종류</label>
+            <div class="col-sm-9">
+              <input type="text" name="pType" placeholder="ex) 포메라니안" class="form-control" id="pType"
+              required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="tagColor" class="col-sm-3 control-label">태그 색</label>
-              <div class="col-sm-2">
-                <input type="color" name="tagColor" id="tagColor" value="#ff0000" required>
-              </div>
+          <div class="form-group">
+            <label for="tagColor" class="col-sm-3 control-label">태그 색</label>
+            <div class="col-sm-2">
+              <input type="color" name="tagColor" id="tagColor" value="#ff0000" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="injection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
-              <div class="col-sm-9">
-                <select id="injection" name="injection" class="form-control">
-                  <option value="1차" selected="selected">1차</option>
-                  <option value="2차">2차</option>
-                  <option value="3차">3차</option>
-                  <option value="4차">4차</option>
-                  <option value="5차">5차</option>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="injection" class="col-sm-3 control-label">마지막 예방접종 차수</label>
+            <div class="col-sm-9">
+              <select id="injection" name="injection" class="form-control">
+                <option value="1차" selected="selected">1차</option>
+                <option value="2차">2차</option>
+                <option value="3차">3차</option>
+                <option value="4차">4차</option>
+                <option value="5차">5차</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="medicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
-              <div class="col-sm-9">
-                <input type="text" name="medicine" class="form-control" id="medicine" required>
-              </div>
+          <div class="form-group">
+            <label for="medicine" class="col-sm-3 control-label">심장사상충 약 복용일</label>
+            <div class="col-sm-9">
+              <input type="text" name="medicine" class="form-control" id="medicine" required>
             </div>
+          </div>
 
-            <div class="box">
-              <input type="file" name="pImg" id="file" class="inputfile inputfile-1" />
-              <label for="file">
-                <i class="fa fa-upload"></i>
-                <span>펫 이미지 등록</span>
-              </label>
-            </div>
+          <div class="box">
+            <input type="file" name="pImg" id="file" class="inputfile inputfile-1" />
+            <label for="file">
+              <i class="fa fa-upload"></i>
+              <span>펫 이미지 등록</span>
+            </label>
+          </div>
 
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button id='addPetBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
-              </div>
-            </div>
-
-          </form>
-
+        </div>
+        
+        <div class="modal-footer">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button id='addPetBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
+          </div>
         </div>
 
       </div>
@@ -371,87 +364,83 @@
 
         <div class="modal-body">
 
-          <form>
-            <!--                    novalidate-->
-            <input type="hidden" name="mno" id="myMno2">
+          <input type="hidden" name="mno" id="myMno2">
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label">전체공개</label>
-              <div class="switch">
-                <input type="checkbox" name="dmhide" id="dmhide">
-                <label for="dmhide">
-                  <span class="fa fa-check"></span>
-                  <span class="fa fa-times"></span>
-                  <div></div>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
-              <div class="col-sm-10">
-                <select id="cateCode" name="cateCode" class="form-control">
-                  <option value="SANCHE" selected="selected">산책코스</option>
-                  <option value="JARANG">자랑해요</option>
-                  <option value="ILJUNG">펫 일정</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="pno" class="col-sm-2 control-label">펫 선택</label>
-              <div class="col-sm-10">
-                <select id="pno" name="pno" class="form-control" required>
-                  <option value="">==펫 선택==</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="pDate form-group">
-              <label class="col-sm-2 control-label">시작일</label>
-              <div class="col-sm-10">
-                <input type="date" name="startDate" id="startDate" class="form-control" required>
-              </div>
-            </div>
-
-            <div class="pDate form-group">
-              <label class="col-sm-2 control-label">종료일</label>
-              <div class="col-sm-10">
-                <input type="date" name="endDate" id="endDate" class="form-control">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="ftitle" class="col-sm-2 control-label">제목</label>
-              <div class="col-sm-10">
-                <input type="text" name="title" class="form-control" id="title" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="fcontent" class="col-sm-2 control-label">내용</label>
-              <div class="col-sm-10">
-                <textarea id="fContent" name="content" class="form-control" rows='10' cols='60' required></textarea>
-              </div>
-            </div>
-
-            <div class="box">
-              <input type="file" name="fileName" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-              multiple />
-              <label for="file-1">
-                <i class="fa fa-upload"></i>
-                <span>이미지 추가</span>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">전체공개</label>
+            <div class="switch">
+              <input type="checkbox" name="dmhide" id="dmhide">
+              <label for="dmhide">
+                <span class="fa fa-check"></span>
+                <span class="fa fa-times"></span>
+                <div></div>
               </label>
             </div>
+          </div>
 
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
-              </div>
+          <div class="form-group">
+            <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
+            <div class="col-sm-10">
+              <select id="cateCode" name="cateCode" class="form-control">
+                <option value="SANCHE" selected="selected">산책코스</option>
+                <option value="JARANG">자랑해요</option>
+                <option value="ILJUNG">펫 일정</option>
+              </select>
             </div>
+          </div>
 
-          </form>
+          <div class="form-group">
+            <label for="pno" class="col-sm-2 control-label">펫 선택</label>
+            <div class="col-sm-10">
+              <select id="pno" name="pno" class="form-control" required>
+                <option value="">==펫 선택==</option>
+              </select>
+            </div>
+          </div>
 
+          <div class="pDate form-group">
+            <label class="col-sm-2 control-label">시작일</label>
+            <div class="col-sm-10">
+              <input type="date" name="startDate" id="startDate" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="pDate form-group">
+            <label class="col-sm-2 control-label">종료일</label>
+            <div class="col-sm-10">
+              <input type="date" name="endDate" id="endDate" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ftitle" class="col-sm-2 control-label">제목</label>
+            <div class="col-sm-10">
+              <input type="text" name="title" class="form-control" id="title" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fcontent" class="col-sm-2 control-label">내용</label>
+            <div class="col-sm-10">
+              <textarea id="fContent" name="content" class="form-control" rows='10' cols='60' required></textarea>
+            </div>
+          </div>
+
+          <div class="box">
+            <input type="file" name="fileName" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
+            multiple />
+            <label for="file-1">
+              <i class="fa fa-upload"></i>
+              <span>이미지 추가</span>
+            </label>
+          </div>
+
+        </div>
+        
+        <div class="modal-footer">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
+          </div>
         </div>
 
       </div>
@@ -483,7 +472,7 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
       "<i class='fa fa-unlock fa-lg'></i></a>")
   } else {
-            location.href = "login.html"
+//            location.href = "login.html"
   }
 
   //    로그아웃

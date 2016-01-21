@@ -5,7 +5,7 @@
     margin: 130px auto;
     width: 400px;
     height: 350px;
-    border: 2px solid #7f8084;
+    border: 2px solid #2d335e;
     border-radius: 20px;
     text-align: center;
   background-color: #f5f5f5;
@@ -26,23 +26,25 @@
 .button {
   text-decoration: none;
   float: right;
-  color: #7f8084;
-  border: 1px solid #7f8084;
+  color: #2d335e;
+  border: 2px solid #2d335e;
   margin: 30px 35px;
-  padding: 7px 10px;
+  padding: 5px 8px;
   border-radius: 3px;
-  font-size: 0.8em;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
   background-color: #fff;
 }
 
 .button:hover {
-  border: 1px solid #1a1f25;
-  color: #1a1f25;
+  border: 2px solid #d06a79;
+  color: #d06a79;
+  text-decoration: none;
 }
 
 #loginBtn[type="button"] {
-  background: #19d4cb;
+  background: #2d335e;
   border: none;
   border-radius:8px;
   width: 80%;
@@ -56,7 +58,7 @@
 }
 
 #loginBtn:hover {
-    background: #29e4eb;
+    background: #d06a79;
 }
 
 #joinBtn {
@@ -67,7 +69,7 @@
 }
 
 #joinBtn[type="submit"] {
-  background: #19d4cb;
+  background: #2d335e;
   border: none;
   border-radius:8px;
   height: 40px;
@@ -78,7 +80,7 @@
 }
 
 #joinBtn[disabled] {
-  background: #19d0c0;
+  background: #2d335e;
   border: none;
   border-radius:8px;
   height: 40px;
@@ -89,7 +91,8 @@
 }
 
 #joinBtn:hover {
-    background: #29e4eb;
+    background: #2d335e;
+  text-decoration: none;
 }
 
 
@@ -121,7 +124,7 @@
 }
 
 .iput:focus {
-    border-bottom: 0px solid #19d4cb;
+    border-bottom: 0px solid #2d335e;
     color: #000;
     outline:none;
 }
@@ -144,7 +147,7 @@
 .iput:focus ~ .lname, .iput:valid ~ .lname {
   top:-20px;
   font-size:14px;
-  color:#19d4cb;
+  color:#2d335e;
 }
 
 /* BOTTOM BARS ================================= */
@@ -155,7 +158,7 @@
   width:0;
   bottom:1px; 
   position:absolute;
-  background:#19d4cb; 
+  background:#2d335e; 
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
