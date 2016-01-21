@@ -27,7 +27,7 @@ public class BoastBoardController {
   @Autowired  BoastBoardDao boastBoardDao;
   @Autowired ServletContext servletContext;
 
-  @RequestMapping(value="list", method=RequestMethod.GET)
+  @RequestMapping(value="list", method=RequestMethod.POST)
   public Object list() throws Exception {
     List<Diary> boastboards = boastBoardDao.selectList();
    
