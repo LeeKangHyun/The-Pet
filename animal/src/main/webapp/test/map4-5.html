@@ -3,65 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>선의 거리 계산하기</title>
+    <title>좌표로 주소 띄우기</title>
 
     <style>
         .dot {
+            border: 1px solid black;
             overflow: hidden;
             float: left;
             width: 12px;
             height: 12px;
             background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
-        }
-
-        .dotOverlay {
-            position: relative;
-            bottom: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            border-bottom: 2px solid #ddd;
-            float: left;
-            font-size: 12px;
-            padding: 5px;
-            background: #fff;
-        }
-
-        .dotOverlay:nth-of-type(n) {
-            border: 0;
-            box-shadow: 0px 1px 2px #888;
-        }
-
-        .number {
-            font-weight: bold;
-            color: #ee6152;
-        }
-
-        .dotOverlay:after {
-            content: '';
-            position: absolute;
-            margin-left: -6px;
-            left: 50%;
-            bottom: -8px;
-            width: 11px;
-            height: 8px;
-            background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')
-        }
-
-        .distanceInfo {
-            position: relative;
-            top: 5px;
-            left: 5px;
-            list-style: none;
-            margin: 0;
-        }
-
-        .distanceInfo .label {
-            display: inline-block;
-            width: 50px;
-        }
-
-        .distanceInfo:after {
-            content: none;
         }
     </style>
 
@@ -69,14 +20,14 @@
 
 <body>
 
-    <div id="map" style="width: 1024px; height:350px;"></div>
+    <div id="map" style="width: 400px; height:350px; margin: 0 auto;"></div>
     <div id="m-list">
-        <ul>
+        <ol>
 
-        </ul>
+        </ol>
     </div>
 
-    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77"></script>
+    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
     <script src='../lib/jquery/jquery.min.js'></script>
 
     <script>
@@ -88,20 +39,30 @@
 
         var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new daum.maps.services.Geocoder();
+
         $.ajax({
             url: "../lot/ajax/list.do",
             data: {
-                mno: "4"
+                mno: "2"
             },
             type: "get",
             dataType: "json",
             success: function(resultObj) {
-                console.log(resultObj.lotList)
-                var i = 1;
+                //console.log(resultObj.lotList)
+                var i = 0;
+                var bounds = new daum.maps.LatLngBounds();
+
                 for (var lots of resultObj.lotList) {
+                    // console.log('들어갔다')
                     // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
-                    var content = '<h3>' + i +
+                    var content = '<h3>' + (i + 1) +
                         '</h3><span class="dot"></span>';
+                    var coord = new daum.maps.LatLng(lots.lat, lots
+                        .lng);
+                    console.log(coord)
+
                     var circleOverlay = new daum.maps.CustomOverlay({
                         map: map,
                         content: content,
@@ -109,11 +70,28 @@
                             lots.lat, lots.lng),
                         zIndex: 1
                     });
-                    i = i + 1;
+
+                    // 리스트 나오기
+                    var callback = function(status, result) {
+                        if (status === daum.maps.services.Status
+                            .OK) {
+                            console.log(result)
+                            $("#m-list ol").append("<li>" +
+                                result[0].jibunAddress.name +
+                                "</li>")
+                        }
+                    }
+                    geocoder.coord2detailaddr(coord, callback);
+
                     // 지도에 표시합니다
                     circleOverlay.setMap(map);
-                    $("#m-list").append("<li>" + lots.lat + "</li>")
+
+                    // 중심 좌표
+                    bounds.extend(coord);
+                    i++;
                 }
+
+                map.setBounds(bounds);
             }
         })
     </script>
