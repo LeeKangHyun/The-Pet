@@ -11,12 +11,8 @@
   <!-- 강현 css, js -->
   <link rel="stylesheet" href="css/kh_map.css">
 
-
-
-  <!--  내가만든 css들  -->
-  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less"
-  />
-  <!--  <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />-->
+  <!--  상훈 css  -->
+  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -97,20 +93,20 @@
 
         <div style="margin-top:50px; margin-bottom: 16%;">
           <a href="#"><h2><i class="fa fa-map-marker">Location</i></h2></a>
-          <div class="map_wrap" style="width: 1024px; height: 480px; margin: 0 auto;">
-            <div id="map" style="width: 480px; height: 480px; margin: 0 auto; position:relative; overflow:hidden; float: left"></div>
+          <div class="map_wrap">
+            <div id="map"></div>
 
-            <div id="menu_wrap" style="float: right;">
+            <div id="menu_wrap">
               <div class="option">
                 <p>
-                  <input type="text" value="" id="keyword" size="15">
-                  <button type="button" id="finder" class="btn btn-info">검색하기</button>
+                  <input type="text" value="" id="keyword">
+                  <button type="button" id="finder"><i class="fa fa-search"></i></button>
                 </p>
               </div>
               <div>
-                <input id="pet" type="button" value="동물병원" class="btn btn-link">
-                <input id="pet" type="button" value="애견용품" class="btn btn-link">
-                <input id="pet" type="button" value="애견카페" class="btn btn-link">
+                <input type="button" value="동물병원" class="pet">
+                <input type="button" value="애견용품" class="pet">
+                <input type="button" value="애견카페" class="pet">
               </div>
               <hr>
               <ul id="placesList"></ul>
@@ -145,9 +141,9 @@ $(document).ready(function() {
         location.href = "login.html"
     });
 
-      $.get("http://ipinfo.io", function(response) {
-        console.log(response.loc);
-      }, "json");
+//      $.get("http://ipinfo.io", function(response) {
+//        console.log(response.loc);
+//      }, "json");
 
       // top3 뽑아내기
       $.ajax({

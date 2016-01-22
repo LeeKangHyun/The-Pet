@@ -23,7 +23,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
       lon = position.coords.longitude; // 경도
   var locPosition = new daum.maps.LatLng(lat, lon)
 
-  $(document).on("click", "#pet", function (event) {
+  $(document).on("click", ".pet", function (event) {
     ps.keywordSearch({
       keyword: event.target.value,
       callback: placesSearchCB,

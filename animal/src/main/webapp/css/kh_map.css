@@ -1,8 +1,23 @@
+.map_wrap {
+  height: 480px;
+}
+
 .map_wrap a,
 .map_wrap a:hover,
 .map_wrap a:active {
   color: #000;
   text-decoration: none;
+}
+
+#map {
+  border-left: 2px solid #d06a79;
+  border-right: 2px solid #d06a79;
+  width: 480px; 
+  height: 480px; 
+  margin: 0 auto;
+  position:relative; 
+  overflow:hidden;
+  float: left;
 }
 
 #menu_wrap {
@@ -11,13 +26,17 @@
   margin: 0 auto;
   overflow-y: auto;
   z-index: 1;
+  border-top: 2px solid #d06a79;
+  border-bottom: 2px solid #d06a79;
+  height: 480px;
+  float: right;
 }
 
 #menu_wrap hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 2px solid #5F5F5F;
+  border-top: 2px solid #2d335e;
   margin: 3px 0;
 }
 
@@ -161,4 +180,57 @@
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+
+
+/* 지도 검색창 */
+#keyword {
+  border: 0px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  height: 25px;
+  width: 185px;
+  margin-left: 8px;
+}
+
+#finder {
+  border: 0px;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  background-color: transparent;
+  width: 60px;
+  height: 25px;
+  position: relative;
+  right: 9px;
+  top: 1px;
+}
+
+#keyword:focus, #finder:focus {
+  outline: none;
+}
+
+.pet {
+  outline: none;
+  border: 0px;
+  padding: 5px 15px;
+  text-decoration: none;
+ background-color: #2d335e;
+  color: #fff;
+}
+
+.pet:hover, .pet:before, .pet:after {
+  text-decoration: none; 
+  background-color: #d06a79;
+  color: #fff;
+}
+
+.pet:focus {
+  outline: none;
+}
+
+#placesList {
+  max-height: 351px;
+  overflow-y: scroll;
 }
