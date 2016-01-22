@@ -54,6 +54,16 @@
 
 
 /* 마커 장소 표시 css */
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
 #placesList li {
   list-style: none;
 }
@@ -79,7 +89,7 @@
 }
 
 #placesList .item .info {
-  padding: 10px 0 10px 55px;
+  padding: 10px 0 10px 0px;
 }
 
 #placesList .info .gray {
@@ -231,6 +241,6 @@
 }
 
 #placesList {
-  max-height: 351px;
+  max-height: 335px;
   overflow-y: scroll;
 }
