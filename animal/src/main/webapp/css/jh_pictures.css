@@ -1,9 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
-body {
-  background-color: #FAF6DB;
-}
+
 
 
 #main-body {
@@ -56,7 +54,7 @@ hr {
 button#All{
   display: inline-block;
   padding: .4em .8em;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -70,7 +68,7 @@ button#All{
 button#DOG{
   display: inline-block;
   padding: .4em .8em;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -86,7 +84,7 @@ button#DOG{
 button#CAT{
   display: inline-block;
   padding: .4em .8em;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -102,7 +100,7 @@ button#CAT{
 button#FISH{
   display: inline-block;
   padding: .4em .8em;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -119,7 +117,7 @@ button#FISH{
 button#BIRD{
   display: inline-block;
   padding: .4em .8em;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -136,7 +134,7 @@ button#BIRD{
 button#ETC{
   display: inline-block;
   padding: 6px;
-  background: #E0E0E0;
+  background: #fff;
   width: 50px;
   height: 30px;
   border: 0;
@@ -148,37 +146,37 @@ button#ETC{
 }
 
 button#All.active{
-  background: #68b8c4;
+  background: #d06a79;
 }
 
 button#DOG.active{
-  background: #68b8c4;
+  background: #d06a79;
   background-image: url(../images/dog.png);
   background-size: cover;
 }
 
 button#CAT.active{
-  background: #68b8c4;
+  background: #d06a79;
   background-image: url(../images/cat.png);
   background-size: cover;   
 }
 
 button#FISH.active{
-  background: #68b8c4;
+  background: #d06a79;
   background-image: url(../images/fish.png);
   background-size: cover;
   background-position: center;
 }
 
 button#BIRD.active{
-  background: #68b8c4;
+  background: #d06a79;
   background-image: url(../images/bird.png);
   background-size: 45px 35px;
   background-position: center;
 }
 
 button#ETC.active{
-  background: #68b8c4;
+  background: #d06a79;
 }
 
 button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
@@ -418,4 +416,66 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
      -moz-transition-property: left, right, top;
        -o-transition-property: left, right, top;
           transition-property: left, right, top;
+}
+
+
+/* search form style */
+
+
+.search-form {
+    position:absolute;
+    width:auto;
+    height:auto;
+    right: 0px;
+    top: 555px;
+}
+
+.form-control {
+    position: relative;
+    float: right;
+    text-align: center;
+  width: 80px;
+    height: 25px;
+  appearance: none;
+
+}
+
+.form-control:focus {
+    outline: 0 none;
+    border: 1px #d06a79 solid;
+    box-shadow: 0px 0px 5px 1px #C07C86;
+}
+
+.form-search {
+    position: relative;
+    border-radius: 6px;
+    float: right;
+    width: 215px;
+    height: 25px;
+    margin-left: 10px;
+    border: 1px #D7DBDB solid;
+    padding-right: 30px;
+}
+
+.form-search:focus {
+    outline: 0 none;
+    border: 1px #d06a79 solid;
+    box-shadow: 0px 0px 5px 1px #C07C86;
+}
+
+.form-submit {
+    position: relative;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px;
+    float: right;
+    right: 25px;
+    width: 25px;
+    height: 25px;
+    z-index: 1;
+}
+
+.form-submit:active {
+    font-size: 15px;
+    color: #d06a79;
 }
