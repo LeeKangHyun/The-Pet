@@ -18,8 +18,11 @@
 	<result column="MEM_NUM" 		property="mno"/>	
  </resultMap>
 
-	<select id="matingList" resultMap="matingMap">
-		select * from mating
+	<select id="matingList" resultMap="matingMap" parameterType="int">
+		select * 
+		from mating
+		order by MAT_NUM desc
+	    limit #{startIndex}, 4
 	</select>
  
 	<select id="selectOne" resultMap="matingMap" parameterType="int">

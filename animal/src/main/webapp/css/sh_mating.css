@@ -241,6 +241,7 @@ div.item img {
 
 .input > textarea {
   margin: 10px auto;
+  padding: 7px;
   width: 405px;
   height: 40px;
   overflow: visible;
