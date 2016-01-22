@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
@@ -38,9 +39,9 @@ public class MatingController {
 	@Autowired ServletContext servletContext;
 	
 	@RequestMapping("list")
-	public Object list() throws Exception {
+	public Object list(@RequestParam(defaultValue="1") int pageNo) throws Exception {
 		 
-		List<Mating> mating = matingService.getMatingList();
+		List<Mating> mating = matingService.getMatingList(pageNo);
 		List<Files> files = null;
 		Member member = null;
 
