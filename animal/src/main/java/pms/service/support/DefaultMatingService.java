@@ -23,6 +23,10 @@ public class DefaultMatingService implements MatingService {
 		return matingDao.selectOne(matNo);
 	}
 	
+	public Mating pages() {
+		return matingDao.count();
+	}
+	
   public void addPet(Mating mating) {
   	matingDao.insert(mating);
   }

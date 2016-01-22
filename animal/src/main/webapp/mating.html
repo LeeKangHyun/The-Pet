@@ -115,10 +115,14 @@ $(function(){
 -->
                     
     </div>
+    
+    <div id="more">
+      <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
+    </div>
 
   </section>
 
-<!--펫 디테일 모달-->
+<!--짝짓기 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='true'>
     <div class='modal-dialog'>
         <div class='modal-content'>
@@ -275,7 +279,7 @@ $.getJSON('mating/ajax/list.do', function(resultObj) {
             "<div class='right_col'>" +
                 "<ul class='contact_information'>" +
                     "<li class='website'>" + mating.matSpec + "</li>" +
-                    "<li class='website'>Type : " + mating.matType + "</li>" +
+                    "<li class='website'>" + mating.matType + "</li>" +
                     "<li class='gender'>" + gen + "</li>" +
                     "<li class='mail'>₩ " + mating.matCost + "</li>" +
                     "<li class='title'>" + mating.matTitle + "</li>" +
@@ -548,7 +552,7 @@ $.getJSON('mating/ajax/list.do', function(resultObj) {
       "<div class='right_col'>" +
         "<ul class='contact_information'>" +
           "<li class='website'>" + mating.matSpec + "</li>" +
-          "<li class='website'>Type : " + mating.matType + "</li>" +
+          "<li class='website'>" + mating.matType + "</li>" +
           "<li class='gender'>" + gen + "</li>" +
           "<li class='mail'>₩ " + mating.matCost + "</li>" +
           "<li class='title'>" + mating.matTitle + "</li>" +
@@ -560,6 +564,154 @@ $.getJSON('mating/ajax/list.do', function(resultObj) {
     }
   })
 })
+
+//더보기
+function moree(id) {
+  console.log(id)
+  var page = id.substring(1,2);
+  $.ajax({
+    url: 'mating/ajax/list.do?',
+    data: {
+      pageNo: page
+    },
+    async: false,
+    dataType: 'json',
+    success: function(resultObj) {
+    $("#hidden").trigger("click");
+    $("button:first").trigger("click");
+
+    var show = $('#Container');
+    var j = 0;
+    var file;
+    var mem;
+    var gen;
+    for (var mating of resultObj.mating) {
+      console.log("for문~")
+      file = resultObj.filesMap[j];
+      mem = resultObj.memberMap[j];
+      if(mating.matGender == 0) {
+        gen = "숫컷";
+      } else {
+        gen = "암컷";
+      }
+
+      j++;
+      show.append(
+      "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+      "' onclick='detail(this.id);'>" +
+
+        "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
+
+        "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+
+        "<div class='left_col'>" +
+          "<div class='views'>" +
+            "<div class='view_count'>" + mating.matViews + "</div>" +
+            "VIEW" +
+          "</div>" +
+        "</div>" +
+
+        "<div class='right_col'>" +
+          "<ul class='contact_information'>" +
+            "<li class='website'>" + mating.matSpec + "</li>" +
+            "<li class='website'>" + mating.matType + "</li>" +
+            "<li class='gender'>" + gen + "</li>" +
+            "<li class='mail'>₩ " + mating.matCost + "</li>" +
+            "<li class='title'>" + mating.matTitle + "</li>" +
+            "<li class='resume'>" + mating.matCreateDate + "</li>" +
+            "<li class='name'>" + mem.mName + "</li>" +
+          "</ul>" +
+        "</div>" +
+      "</div>")
+    };
+    
+    $.getJSON('mating/ajax/pages.do', function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      if (ajaxResult.data == page) {
+        console.log("더보기 끝")
+        $('#more').empty();
+        
+      } else {
+        console.log("더보기 생성")
+        var more = $('#more');
+        $('#more').empty();
+        var i = parseInt(page)+1;
+        more.append(
+          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+      }
+    })
+  }
+    
+  })
+//  $.getJSON('mating/ajax/list.do?pageNo=' + page, function(resultObj) {
+//                                                   console.log(resultObj);
+//    $("#hidden").trigger("click");
+//    $("button:first").trigger("click");
+//
+//    var show = $('#Container');
+//    var j = 0;
+//    var file;
+//    var mem;
+//    var gen;
+//    for (var mating of resultObj.mating) {
+//      console.log("for문~")
+//      file = resultObj.filesMap[j];
+//      mem = resultObj.memberMap[j];
+//      if(mating.matGender == 0) {
+//        gen = "숫컷";
+//      } else {
+//        gen = "암컷";
+//      }
+//
+//      j++;
+//      show.append(
+//      "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+//      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+//      "' onclick='detail(this.id);'>" +
+//
+//        "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
+//
+//        "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+//
+//        "<div class='left_col'>" +
+//          "<div class='views'>" +
+//            "<div class='view_count'>" + mating.matViews + "</div>" +
+//            "VIEW" +
+//          "</div>" +
+//        "</div>" +
+//
+//        "<div class='right_col'>" +
+//          "<ul class='contact_information'>" +
+//            "<li class='website'>" + mating.matSpec + "</li>" +
+//            "<li class='website'>" + mating.matType + "</li>" +
+//            "<li class='gender'>" + gen + "</li>" +
+//            "<li class='mail'>₩ " + mating.matCost + "</li>" +
+//            "<li class='title'>" + mating.matTitle + "</li>" +
+//            "<li class='resume'>" + mating.matCreateDate + "</li>" +
+//            "<li class='name'>" + mem.mName + "</li>" +
+//          "</ul>" +
+//        "</div>" +
+//      "</div>")
+//    };
+//    
+//    $.getJSON('mating/ajax/pages.do', function(resultObj) {
+//      var ajaxResult = resultObj.ajaxResult;
+//      if (ajaxResult.data == page) {
+//        console.log("더보기 끝")
+//        $('#more').empty();
+//        
+//      } else {
+//        console.log("더보기 생성")
+//        var more = $('#more');
+//        $('#more').empty();
+//        var i = parseInt(page)+1;
+//        more.append(
+//          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+//      }
+//    })
+//  })
+}
 
 </script>
 

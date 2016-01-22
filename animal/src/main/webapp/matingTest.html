@@ -144,10 +144,14 @@ $(function(){
         </div>
                     
     </div>
+    
+    <div id="more">
+      <a role="button" class="moreBtn" id="m1" onclick='moree(this.id);'>더보기</a>
+    </div>
 
   </section>
 
-  
+<!-- 짝짓기 디테일 모달 -->
 <div id='saleModal' class='modal fade' data-keyboard='true'>
     <div class='modal-dialog'>
         <div class='modal-content'>
@@ -255,8 +259,7 @@ $(function(){
     </div>
 </div>
 
-
-
+<!-- 댓글 삭제 확인 모달 -->
 <div id="checkModal" class="modal fade bs-example-modal-sm">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -274,6 +277,16 @@ $(function(){
   </div>
 </div>
 
+  <script>
+    function moree(id) {
+      console.log(id)
+      var page = id;
+      $.getJSON('mating/ajax/pages.do', function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        console.log(ajaxResult.data)
+      })
+    }
+  </script>
 
   
 </body>

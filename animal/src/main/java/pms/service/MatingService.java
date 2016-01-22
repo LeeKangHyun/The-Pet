@@ -10,6 +10,8 @@ public interface MatingService {
   
 	Mating getMatingOne(int matNo);
 	
+	Mating pages();
+	
   void addPet(Mating mating);
   
   int remove(int matNo);

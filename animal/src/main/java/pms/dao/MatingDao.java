@@ -9,6 +9,8 @@ public interface MatingDao {
   
 	Mating selectOne(int matNo);
 	
+	Mating count();
+	
   void insert(Mating mating);
   
   void updateviews(int matNo);

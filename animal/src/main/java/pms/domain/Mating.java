@@ -18,9 +18,17 @@ public class Mating implements Serializable {
 	protected String matType;	  		// 애완 동물 종류 -> 포메라이안, 시베리안허스키 등등..
 	protected boolean matGender;		// 애완 동물 성별   남: false 0  	여: true 1
 	protected int matCost;					// 중매금
+	protected double count;
 	
 	public Mating () {}
 
+	
+	public double getCount() {
+		return count;
+	}
+	public void setCount(double count) {
+		this.count = count;
+	}
 	public int getMatNo() {
 		return matNo;
 	}

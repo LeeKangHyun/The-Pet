@@ -38,6 +38,16 @@ public class MatingController {
 	@Autowired CommentService commentService;
 	@Autowired ServletContext servletContext;
 	
+	@RequestMapping("pages")
+	public Object pages() throws Exception {
+
+		Mating pages = matingService.pages();
+		
+		double page = Math.ceil(pages.getCount()/4);
+		
+		return new AjaxResult("success", page);
+	}
+	
 	@RequestMapping("list")
 	public Object list(@RequestParam(defaultValue="1") int pageNo) throws Exception {
 		 

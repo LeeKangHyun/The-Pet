@@ -18,6 +18,10 @@
 	<result column="MEM_NUM" 		property="mno"/>	
  </resultMap>
 
+ 	<select id="count" resultMap="matingMap">
+ 		select count(*) as count from mating
+ 	</select>
+ 
 	<select id="matingList" resultMap="matingMap" parameterType="int">
 		select * 
 		from mating
