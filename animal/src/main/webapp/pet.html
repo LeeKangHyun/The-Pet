@@ -95,7 +95,7 @@
           </div>
         </div>
 
-        <div style="margin-top:50px; margin-bottom: 160px;">
+        <div style="margin-top:50px; margin-bottom: 16%;">
           <a href="#"><h2><i class="fa fa-map-marker">Location</i></h2></a>
           <div class="map_wrap" style="width: 1024px; height: 480px; margin: 0 auto;">
             <div id="map" style="width: 480px; height: 480px; margin: 0 auto; position:relative; overflow:hidden; float: left"></div>
@@ -132,13 +132,13 @@ $(document).ready(function() {
             "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
             "<a role='button' id='outBtn' class='logout'>" +
             "<i class='fa fa-unlock fa-lg'></i></a>")
-        
+
         ul.append("<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-        
+
     } else {
         div.append("<a href='login.html' id='loginBtn'>로그인</a>")
     }
-    
+
 //    로그아웃
     $(document).on("click", "#outBtn", function() {
         $.session.clear();
