@@ -55,29 +55,95 @@ insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
 
   
 /* 짝짓기 내용 추가 */
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~1','서울 강남역 근처로 부탁드려요~','DIV01','포메라이안',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~2','서울 강남역 근처로 부탁드려요~','DIV02','페르시안',false,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~3','서울 강남역 근처로 부탁드려요~','DIV01','시베리안허스키',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~4','서울 강남역 근처로 부탁드려요~','DIV01','슈나우져',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~5','서울 강남역 근처로 부탁드려요~','DIV01','불독',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~6','서울 강남역 근처로 부탁드려요~','DIV02','집고양이',false,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~7','우리 아이 부탁드려요~~~~','DIV05','악어',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~8','나이는 어려용~~~','DIV04','비둘기',false,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~9','서울 강남역 근처로 부탁드려요~','DIV04','앵무새',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 짝짓기 부탁해요~~~10','서울 강남역 근처로 부탁드려요~','DIV01','누렁이',true,now());
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE)
-  values('우리 아이 한번 하게 해주~~~11','서울 강남역 근처로 부탁드려요~','DIV01','진돗개',true,now());
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~1','서울 강남역 근처로 부탁드려요~','DOG','포메라이안',true,now(),1);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~2','서울 강남역 근처로 부탁드려요~','CAT','페르시안',false,now(),1);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~3','서울 강남역 근처로 부탁드려요~','DOG','시베리안허스키',true,now(),1);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~4','서울 강남역 근처로 부탁드려요~','DOG','슈나우져',true,now(),1);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~5','서울 강남역 근처로 부탁드려요~','DOG','불독',true,now(),2);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~6','서울 강남역 근처로 부탁드려요~','CAT','집고양이',false,now(),2);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~7','우리 아이 부탁드려요~~~~','FISH','악어',true,now(),2);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~8','나이는 어려용~~~','DIV04','BIRD',false,now(),3);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~9','서울 강남역 근처로 부탁드려요~','BIRD','앵무새',true,now(),3);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 짝짓기 부탁해요~~~10','서울 강남역 근처로 부탁드려요~','DOG','누렁이',true,now(),4);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 한번 하게 해주~~~11','서울 강남역 근처로 부탁드려요~','DOG','진돗개',true,now(),4);
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('우리 아이 한번 하게 해주~~~12','서울 강남역 근처로 부탁드려요~','CAT','냥이',true,now(),4);
 
+  
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 1);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h4.jpg', 1);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h7.jpg', 1);
+insert into files(FILE_NAME,MAT_NUM)
+values ('a8.jpg', 1);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h9.jpg', 2);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h8.jpg', 2);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 2);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h4.jpg', 3);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h5.jpg', 3);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h6.jpg', 3);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 4);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 5);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h6.jpg', 5);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 6);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h8.jpg', 6);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h7.jpg', 6);
+insert into files(FILE_NAME,MAT_NUM)
+values ('a8.jpg', 7);
+insert into files(FILE_NAME,MAT_NUM)
+values ('a6.jpg', 8);
+insert into files(FILE_NAME,MAT_NUM)
+values ('a2.jpg', 8);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h9.jpg', 9);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 9);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h3.jpg', 10);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h6.jpg', 10);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h4.jpg', 10);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 11);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h4.jpg', 11);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h5.jpg', 11);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h2.jpg', 12);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h5.jpg', 12);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h7.jpg', 12);
+insert into files(FILE_NAME,MAT_NUM)
+values ('h4.jpg', 12);
+  
 
 /* 분양 글쓰기 */
 insert into Sale(S_CRE,S_TITLE,S_CONTENT,S_SPEC,S_TYPE,MEM_NUM)
