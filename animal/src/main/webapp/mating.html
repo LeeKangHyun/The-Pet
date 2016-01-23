@@ -27,13 +27,13 @@
 
 <!-- filter 및 sort Test 중 -->
 <script src="mixitup-master/build/jquery.mixitup.min.js" type="text/javascript"></script>
-    
+
 <script>
 $(function(){
     $('#Container').mixItUp();
 });
 </script>
-    
+
 <script src="js/autosize.js" type="text/javascript"></script>
 
 </head>
@@ -71,7 +71,7 @@ $(function(){
   <section id="main-body">
     <!-- 위의 제목 부분 -->
       <span id="boastname"><i class="lnr lnr-heart"></i> 짝짓기</span>
-    
+
       <button id="button" class="filter" data-filter="*">All</button>
       <button class="filter" data-filter=".DOG">DOG</button>
       <button class="filter" data-filter=".CAT">CAT</button>
@@ -79,13 +79,13 @@ $(function(){
       <button class="filter" data-filter=".BIRD">BIRD</button>
       <button class="filter" data-filter=".ETC">ETC</button>
       <button id="hidden" class="filter" data-filter="*" hidden="">All</button>
-        
+
         <!--  Filter 영역 시작 -->
 
-        
+
     <!-- 사진 게시물 영역 -->
     <div id='Container' class='container'>
-          
+
 <!--
         <div class='portfoliocard mix DOG' role='button' data-target='#saleModal' data-toggle='modal' id="a" onclick='detail(this.id);'>
 
@@ -113,11 +113,11 @@ $(function(){
             </div>
         </div>
 -->
-                    
+
     </div>
-    
+
     <div id="more">
-      <a role="button" class="moreBtn" id="m2" onclick='moree(id);'>더보기</a>
+      <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
     </div>
 
   </section>
@@ -156,7 +156,7 @@ $(function(){
                             <span class='sr-only'>Next</span>
                         </a>
                     </div>
-                    
+
                     <div class='contents'>
 
                         <div class='content' id="mcontent"></div>
@@ -193,7 +193,7 @@ $(function(){
         </div>
     </div>
 </div>
-    
+
 <!-- 댓글 삭제 확인 모달 -->
 <div id="checkModal" class="modal fade bs-example-modal-sm">
   <div class="modal-dialog modal-sm">
@@ -212,7 +212,7 @@ $(function(){
     </div>
   </div>
 </div>
-    
+
   <script>
 $(document).ready(function() {
 //    로그인 회원 정보출력 세션없으면 로그인페이지로
@@ -224,73 +224,128 @@ $(document).ready(function() {
             "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
             "<a role='button' id='outBtn' class='logout'>" +
             "<i class='fa fa-unlock fa-lg'></i></a>")
-        
+
         ul.append("<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-        
+
     } else {
         div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-        
+
     }
-    
+
 //    로그아웃
     $(document).on("click", "#outBtn", function() {
         $.session.clear();
         location.href = "login.html"
     });
-  
+
 });
 
 // 분양 리스트 출력
-$.getJSON('mating/ajax/list.do', function(resultObj) {
-    $("#hidden").trigger("click");
-    $("button:first").trigger("click");
-    
-    var show = $('#Container');
-    var j = 0;
-    var file;
-    var mem;
-    var gen;
-    for (var mating of resultObj.mating) {
-        file = resultObj.filesMap[j];
-        mem = resultObj.memberMap[j];
-        if(mating.matGender == 0) {
-          gen = "숫컷";
-        } else {
-          gen = "암컷";
-        }
-//        console.log(file[0])
-//        console.log(mem)
-        j++;
-        show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-                       "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
-                       "' onclick='detail(this.id);'>" +
+$.ajax({
+    url: 'mating/ajax/list.do',
+    async: false,
+    type: 'post',
+    dataType: 'json',
+    success: function(resultObj) {
+        $("#hidden").trigger("click");
+        $("button:first").trigger("click");
+        console.log(resultObj)
+        var show = $('#Container');
+        var j = 0;
+        var file;
+        var mem;
+        var gen;
+        for (var mating of resultObj.mating) {
+            file = resultObj.filesMap[j];
+            mem = resultObj.memberMap[j];
+            if(mating.matGender == 0) {
+              gen = "숫컷";
+            } else {
+              gen = "암컷";
+            }
+    //        console.log(file[0])
+    //        console.log(mem)
+            j++;
+            show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+                           "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
+                           "' onclick='detail(this.id);'>" +
 
-            "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
+                "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
 
-            "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+                "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
 
-            "<div class='left_col'>" +
-                "<div class='views'>" +
-                    "<div class='view_count'>" + mating.matViews + "</div>" +
-                    "VIEW" +
+                "<div class='left_col'>" +
+                    "<div class='views'>" +
+                        "<div class='view_count'>" + mating.matViews + "</div>" +
+                        "VIEW" +
+                    "</div>" +
                 "</div>" +
-            "</div>" +
 
-            "<div class='right_col'>" +
-                "<ul class='contact_information'>" +
-                    "<li class='website'>" + mating.matSpec + "</li>" +
-                    "<li class='website'>" + mating.matType + "</li>" +
-                    "<li class='gender'>" + gen + "</li>" +
-                    "<li class='mail'>₩ " + mating.matCost + "</li>" +
-                    "<li class='title'>" + mating.matTitle + "</li>" +
-                    "<li class='resume'>" + mating.matCreateDate + "</li>" +
-                    "<li class='name'>" + mem.mName + "</li>" +
-                "</ul>" +
-            "</div>" +
-        "</div>")
-        }       
-});
-      
+                "<div class='right_col'>" +
+                    "<ul class='contact_information'>" +
+                        "<li class='website'>" + mating.matSpec + "</li>" +
+                        "<li class='website'>" + mating.matType + "</li>" +
+                        "<li class='gender'>" + gen + "</li>" +
+                        "<li class='mail'>₩ " + mating.matCost + "</li>" +
+                        "<li class='title'>" + mating.matTitle + "</li>" +
+                        "<li class='resume'>" + mating.matCreateDate + "</li>" +
+                        "<li class='name'>" + mem.mName + "</li>" +
+                    "</ul>" +
+                "</div>" +
+            "</div>")
+            }
+    }
+})
+// $.getJSON('mating/ajax/list.do', function(resultObj) {
+//     $("#hidden").trigger("click");
+//     $("button:first").trigger("click");
+//     console.log(resultObj)
+//     var show = $('#Container');
+//     var j = 0;
+//     var file;
+//     var mem;
+//     var gen;
+//     for (var mating of resultObj.mating) {
+//         file = resultObj.filesMap[j];
+//         mem = resultObj.memberMap[j];
+//         if(mating.matGender == 0) {
+//           gen = "숫컷";
+//         } else {
+//           gen = "암컷";
+//         }
+// //        console.log(file[0])
+// //        console.log(mem)
+//         j++;
+//         show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+//                        "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
+//                        "' onclick='detail(this.id);'>" +
+//
+//             "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
+//
+//             "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+//
+//             "<div class='left_col'>" +
+//                 "<div class='views'>" +
+//                     "<div class='view_count'>" + mating.matViews + "</div>" +
+//                     "VIEW" +
+//                 "</div>" +
+//             "</div>" +
+//
+//             "<div class='right_col'>" +
+//                 "<ul class='contact_information'>" +
+//                     "<li class='website'>" + mating.matSpec + "</li>" +
+//                     "<li class='website'>" + mating.matType + "</li>" +
+//                     "<li class='gender'>" + gen + "</li>" +
+//                     "<li class='mail'>₩ " + mating.matCost + "</li>" +
+//                     "<li class='title'>" + mating.matTitle + "</li>" +
+//                     "<li class='resume'>" + mating.matCreateDate + "</li>" +
+//                     "<li class='name'>" + mem.mName + "</li>" +
+//                 "</ul>" +
+//             "</div>" +
+//         "</div>")
+//         }
+// });
+
 // 분양 디테일
 function detail(id) {
   var form_data = new FormData();
@@ -387,7 +442,7 @@ function detail(id) {
   })
 }
 
-  
+
 // 펫 디테일 -> 댓글게시 클릭
 $(document).on("click", "#comDelBtn", function() {
   if ($('#comcontent').val() == "") {
@@ -445,7 +500,7 @@ $(document).on("click", "#comDelBtn", function() {
               j++;
             }
           }
-        })  
+        })
       }
     })
   }
@@ -455,7 +510,7 @@ function del(id) {
   $('#comno').val(id)
   $('#checkModal').modal('show')
 }
-    
+
 $(document).on("click", "#delCom", function() {
   var form_data = new FormData();
   console.log($('#comno').val())
@@ -504,7 +559,7 @@ $(document).on("click", "#delCom", function() {
     }
   })
 })
-                    
+
 $('#saleModal').on('hide.bs.modal', function(e) {
   $('#comComment').empty();
   $('#dots').empty();
@@ -513,7 +568,7 @@ $('#saleModal').on('hide.bs.modal', function(e) {
   $('#mcontent').val('');
   $('#mmatno').val('');
   $('#Container').empty();
-  
+
 $.getJSON('mating/ajax/list.do', function(resultObj) {
   $("#hidden").trigger("click");
   $("button:first").trigger("click");
@@ -535,7 +590,7 @@ $.getJSON('mating/ajax/list.do', function(resultObj) {
     j++;
     show.append(
       "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
       "' onclick='detail(this.id);'>" +
 
       "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
@@ -600,7 +655,7 @@ function moree(id) {
       j++;
       show.append(
       "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
       "' onclick='detail(this.id);'>" +
 
         "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
@@ -627,13 +682,13 @@ function moree(id) {
         "</div>" +
       "</div>")
     };
-    
+
     $.getJSON('mating/ajax/pages.do', function(resultObj) {
       var ajaxResult = resultObj.ajaxResult;
       if (ajaxResult.data == page) {
         console.log("더보기 끝")
         $('#more').empty();
-        
+
       } else {
         console.log("더보기 생성")
         var more = $('#more');
@@ -644,7 +699,7 @@ function moree(id) {
       }
     })
   }
-    
+
   })
 //  $.getJSON('mating/ajax/list.do?pageNo=' + page, function(resultObj) {
 //                                                   console.log(resultObj);
@@ -669,7 +724,7 @@ function moree(id) {
 //      j++;
 //      show.append(
 //      "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-//      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo + 
+//      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
 //      "' onclick='detail(this.id);'>" +
 //
 //        "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
@@ -696,13 +751,13 @@ function moree(id) {
 //        "</div>" +
 //      "</div>")
 //    };
-//    
+//
 //    $.getJSON('mating/ajax/pages.do', function(resultObj) {
 //      var ajaxResult = resultObj.ajaxResult;
 //      if (ajaxResult.data == page) {
 //        console.log("더보기 끝")
 //        $('#more').empty();
-//        
+//
 //      } else {
 //        console.log("더보기 생성")
 //        var more = $('#more');
