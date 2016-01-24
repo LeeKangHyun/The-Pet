@@ -39,7 +39,19 @@ public class DefaultBoastBoardService implements BoastBoardService {
 	  return boastboardDao.selectOne(dno);
 	}
 
-
+  public List<Diary> searchList(int pageNo, int pageSize, Diary diary) {
+    
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("diary", diary);
+    
+    return boastboardDao.searchList(paramMap);
+  }
+  
+  public double searchCount(Diary diary) {
+    return boastboardDao.searchCount(diary);
+  }
 
 
 

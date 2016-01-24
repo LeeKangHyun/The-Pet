@@ -15,6 +15,10 @@ public interface BoastBoardDao {
   
   Diary selectOne(int dno);
   
+  List<Diary> searchList(Map<String, Object> paramMap);
+  
+  double searchCount(Diary diary);
+  
 }
 
 

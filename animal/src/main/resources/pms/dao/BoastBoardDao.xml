@@ -43,7 +43,7 @@
       count(*) as count
     from schedule;
     </select>
-  
+    
   
   
   <select id="rankList" resultMap="diaryMap">
@@ -61,6 +61,34 @@
      where CATE_CODE='JARANG' and NOTI_HIDE=1 
      order by rank asc
   </select>
+  
+  
+  
+  
+<select id="searchList" resultMap="diaryMap" parameterType="map">
+    select
+      sc.SCH_NUM,
+      sc.SCH_CRE, 
+      sc.SCH_TITLE, 
+      sc.CATE_CODE,
+      sc.NOTI_LIKES,
+      sc.NOTI_VIEWS,
+      fi.FILE_NAME,
+      sc.PET_SPEC
+    from schedule sc 
+    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
+    where CATE_CODE='JARANG' and NOTI_HIDE=1 and SCH_TITLE like CONCAT('%', #{diary.title}, '%')
+    order by sc.SCH_CRE desc limit #{startIndex}, #{length}
+  </select>
+  
+        <select id="searchCount" resultType="double" parameterType="diary">
+      select
+      count(*) as count
+    from schedule where SCH_TITLE like CONCAT('%', #{title}, '%');
+    </select>
+  
+  
+  
   
     <select id="selectOne" resultMap="diaryMap" parameterType="int">
     select
@@ -81,9 +109,3 @@
   </select>
   
 </mapper>
-
-
-
-
-
-

@@ -41,15 +41,10 @@ public class BoastBoardController {
     log.debug("pageNo = " + pageNo);
     
     List<Diary> boastboards = boastBoardDao.selectList(paramMap);
-    double count = boastBoardDao.count();
-    count = Math.ceil(count / pageSize);
-    
-    log.debug(count);
    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
-    resultMap.put("count", count);
     
     log.debug("Controller/selectList()....호출");
 
@@ -102,6 +97,51 @@ public class BoastBoardController {
   public Object detail(int dno) throws Exception {
     Diary diary = boastBoardDao.selectOne(dno);
     return new AjaxResult("success", diary);
+  }
+  
+  
+  
+  @RequestMapping(value="search", method=RequestMethod.POST)
+  public Object search(
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="16") int pageSize,
+      Diary diary
+      ) throws Exception {
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("diary", diary);
+    
+    
+    List<Diary> boastboards = boastBoardDao.searchList(paramMap);
+    
+
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", boastboards);
+    
+    return resultMap;
+  }
+  
+  @RequestMapping(value="searchCount", method=RequestMethod.GET)
+  public Object searchCount(
+  @RequestParam(defaultValue="16") int pageSize,
+  Diary diary
+  ) throws Exception {
+   
+    double count = boastBoardDao.searchCount(diary);
+    count = Math.ceil(count / pageSize);
+    
+   
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("count", count);
+    
+    log.debug("Controller/searchCount()....호출");
+
+    return resultMap;
   }
   
 
