@@ -44,10 +44,6 @@ ALTER TABLE Pet
 
 -- 다이어리 - 일정
 ALTER TABLE Schedule
-  DROP FOREIGN KEY FK_Pet_TO_Schedule; -- 팻 -> 다이어리 - 일정
-
--- 다이어리 - 일정
-ALTER TABLE Schedule
   DROP FOREIGN KEY FK_Category_TO_Schedule; -- 카테고리 -> 다이어리 - 일정
 
 -- 다이어리 - 일정
@@ -169,11 +165,12 @@ ALTER TABLE Member
 
 -- 쪽지
 CREATE TABLE Message (
-  MSG_NUM     INTEGER NOT NULL COMMENT '쪽지번호', -- 쪽지번호
-  MEM_NUM     INTEGER NOT NULL COMMENT '보내는이', -- 보내는이
-  MEM_NUM2    INTEGER NOT NULL COMMENT '받는이', -- 받는이
-  MSG_CONTENT TEXT    NOT NULL COMMENT '내용', -- 내용
-  CHECKED     BOOLEAN NOT NULL DEFAULT 0 COMMENT '조회상태' -- 조회상태
+  MSG_NUM     INTEGER  NOT NULL COMMENT '쪽지번호', -- 쪽지번호
+  MEM_NUM     INTEGER  NOT NULL COMMENT '보내는이', -- 보내는이
+  MEM_NUM2    INTEGER  NOT NULL COMMENT '받는이', -- 받는이
+  MSG_CONTENT TEXT     NOT NULL COMMENT '내용', -- 내용
+  CHECKED     BOOLEAN  NOT NULL DEFAULT 0 COMMENT '조회상태', -- 조회상태
+  SEND_DATE   DATETIME NOT NULL COMMENT '작성일' -- 작성일
 )
 COMMENT '쪽지';
 
@@ -259,13 +256,14 @@ ALTER TABLE Mating
 
 -- 댓글
 CREATE TABLE Comment (
-  CMT_NUM     INTEGER NOT NULL COMMENT '댓글번호', -- 댓글번호
-  CMT_CONTENT TEXT    NOT NULL COMMENT '내용', -- 내용
-  MEM_NUM     INTEGER NULL     COMMENT '회원번호', -- 회원번호
-  SCH_NUM     INTEGER NULL     COMMENT '일정번호', -- 일정번호
-  EDU_NUM     INTEGER NULL     COMMENT '교육번호', -- 교육번호
-  S_NUM       INTEGER NULL     COMMENT '분양번호', -- 분양번호
-  MAT_NUM     INTEGER NULL     COMMENT '짝짓기번호' -- 짝짓기번호
+  CMT_NUM     INTEGER      NOT NULL COMMENT '댓글번호', -- 댓글번호
+  CMT_CONTENT TEXT         NOT NULL COMMENT '내용', -- 내용
+  CMT_IMG     VARCHAR(255) NULL     COMMENT '이미지', -- 이미지
+  MEM_NUM     INTEGER      NULL     COMMENT '회원번호', -- 회원번호
+  SCH_NUM     INTEGER      NULL     COMMENT '일정번호', -- 일정번호
+  EDU_NUM     INTEGER      NULL     COMMENT '교육번호', -- 교육번호
+  S_NUM       INTEGER      NULL     COMMENT '분양번호', -- 분양번호
+  MAT_NUM     INTEGER      NULL     COMMENT '짝짓기번호' -- 짝짓기번호
 )
 COMMENT '댓글';
 
@@ -318,7 +316,7 @@ CREATE TABLE Schedule (
   NOTI_VIEWS  INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
   NOTI_LIKES  INTEGER     NOT NULL DEFAULT 0 COMMENT '좋아요', -- 좋아요
   TAG_COLOR   CHAR(7)     NOT NULL COMMENT '태그색', -- 태그색
-  PET_SPEC    char(5)     NULL     COMMENT '새 컬럼' -- 새 컬럼
+  PET_SPEC    char(5)     NOT NULL COMMENT '새 컬럼' -- 새 컬럼
 )
 COMMENT '다이어리 - 일정';
 
@@ -481,16 +479,6 @@ ALTER TABLE Pet
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
-
--- 다이어리 - 일정
-ALTER TABLE Schedule
-  ADD CONSTRAINT FK_Pet_TO_Schedule -- 팻 -> 다이어리 - 일정
-    FOREIGN KEY (
-      PET_NUM -- 팻번호
-    )
-    REFERENCES Pet ( -- 팻
-      PET_NUM -- 팻번호
     );
 
 -- 다이어리 - 일정
