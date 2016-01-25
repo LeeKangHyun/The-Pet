@@ -25,6 +25,12 @@
 	order by desc MEM_NUM
 	</select>
 	
+	<select id="findMno" resultMap="memberMap" parameterType="String">
+		select MEM_NUM
+		from member
+		where MEM_EMAIL=#{mEmail}
+	</select>
+	
 	<insert id="insert" parameterType="member">
 		insert into member(MEM_NAME,MEM_EMAIL,MEM_TEL,MEM_IMG,MEM_PWD)
 		values(#{mName},#{mEmail},#{tel},#{mImg},#{password})

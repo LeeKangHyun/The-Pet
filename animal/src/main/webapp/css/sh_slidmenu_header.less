@@ -38,89 +38,90 @@
     background-color: #2d335e;
     .clearfix();
     #header_title {
-        width: 1024px;
-        .center-block();
-        .headerTitle {
-            color: @headerFontColor;
-            line-height: 44px;
-            
-//            font-family: 'Nanum Pen Script';
-            font-size: 30px;
-          
-            text-decoration: none;
-            margin-left: 50px;
+      width: 1024px;
+      .center-block();
+      .headerTitle {
+        color: @headerFontColor;
+        line-height: 44px;
+        font-size: 30px;
+        text-decoration: none;
+        margin-left: 50px;
+      }
+      .headerSubTitle {
+        color: @headerFontColor;
+        font-size: 20px;
+      }
+      #the {
+        letter-spacing: px;
+      }
+      #P {
+        color: #d06a79;
+        font-size: 40px;
+//        margin-right: 2px;
+        letter-spacing: 1px;
+      }
+      #et {
+        letter-spacing: 3px;
+      }
+      .headerTitle:hover {
+        color: @headerFontColor;
+        text-decoration: none;
+      }
+      #user_info {
+        position: relative;
+        top: 2px;
+        right: 10px;
+        .pull-right();
+        #userImg {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
         }
-        #the {
-          letter-spacing: px;
+        #userName {
+          color: @headerFontColor;
+          font-size: 16px;
+          font-family: 'Nanum Gothic';
+          letter-spacing: 2px;
+          font-weight: 400;
+          text-decoration: none;
+          position: relative;
+          top: 2px;
+          margin-left: 6px;
+          padding: 2px 15px;
+          border: @baseBorder;
+          border-radius: 10px;
         }
-        #P {
-          color: #d06a79;
-          font-size: 40px;
-  //        margin-right: 2px;
-          letter-spacing: 1px;
+        #userName:hover {
+          color: @headerFontColor;
+          text-decoration: none;
         }
-        #et {
-          letter-spacing: 3px;
+        #outBtn {
+          color: @headerFontColor;
+          margin-left: 10px;
+          font-size: 18px;
+          text-decoration: none;
         }
-        .headerTitle:hover {
-            color: @headerFontColor;
-            text-decoration: none;
+        #outBtn:hover {
+          color: @headerFontColor;
+          text-decoration: none;
         }
-        #user_info {
-            position: relative;
-            top: 2px;
-            right: 10px;
-            .pull-right();
-            #userImg {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-            }
-            #userName {
-                color: @headerFontColor;
-                font-size: 16px;
-                font-family: 'Nanum Gothic';
-                letter-spacing: 2px;
-                font-weight: 400;
-                text-decoration: none;
-                position: relative;
-                top: 2px;
-                margin-left: 6px;
-                padding: 2px 15px;
-                border: @baseBorder;
-                border-radius: 10px;
-            }
-            #userName:hover {
-                color: @headerFontColor;
-                text-decoration: none;
-            }
-            #outBtn {
-                color: @headerFontColor;
-                margin-left: 10px;
-                font-size: 18px;
-                text-decoration: none;
-            }
-            #outBtn:hover {
-                color: @headerFontColor;
-                text-decoration: none;
-            }
-            #loginBtn {
-                color: @headerFontColor;
-                font-size: 16px;
-                text-decoration: none;
-                line-height: 40px;
-                margin-left: 10px;
-                margin-top: 20px;
-                padding: 2px 15px;
-                border: @baseBorder;
-                border-radius: 10px;
-            }
-            #loginBtn:hover {
-                color: @headerFontColor;
-                text-decoration: none;
-                background: none;
-            }
+        #loginBtn {
+          color: @headerFontColor;
+          font-size: 16px;
+          text-decoration: none;
+          line-height: 40px;
+          margin-left: 10px;
+          margin-top: 20px;
+          padding: 2px 15px;
+          border: @baseBorder;
+          border-radius: 10px;
         }
+        #loginBtn:hover {
+          color: @headerFontColor;
+          text-decoration: none;
+          background: none;
+        }
+      }
     }
     #menuToggle{
         display: none;

@@ -1,0 +1,160 @@
+#main-body {
+  
+}
+
+#mainTitle {
+  width: 1024px;
+  height: 300px;
+  font-size: 30px;
+  margin-left: 25px;
+}
+
+#msgBox {
+  
+}
+
+#msg-nav {
+  margin-top: 29px;
+  float: left !important;
+  width: 190px;
+}
+
+#msg-nav-ul {
+  padding-left: 25px;
+  list-style: none;
+}
+
+#msg-nav-ul > li > a{
+  display: block;
+  width: 150px;
+  margin-bottom: 3px;
+  padding: 6px;
+  color: #fff;
+  background-color: #d06a79;
+  text-decoration: none;
+  text-align: center;
+  font-size: 17px;
+}
+
+#msgList {
+  float: right !important;
+  width: 800px;
+  margin-right: 25px;
+}
+
+#msgList {
+  font-size: 14px;
+}
+
+#sender, .sender {
+  min-width: 150px;
+  width: 150px;
+  text-align: center;
+}
+
+#msgContent, .msgContent {
+  max-width: 500px;
+  width: 500px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#msgDate, .msgDate {
+  min-width: 150px;
+  width: 150px;
+  text-align: center;
+}
+
+#sender {
+  font-weight: bold;
+}
+
+#msgContent {
+  font-weight: bold;
+}
+
+#msgDate {
+  font-weight: bold; 
+}
+
+.read a{
+  font-weight: 400;
+  color: #555;
+}
+
+.noread a{
+  font-weight: bolder;
+  color: #3333ff;
+}
+
+#sendMsg .modal-dialog {
+  width: 400px;
+}
+
+#sendMsg .modal-header {
+  height: 50px
+}
+
+#sendMsg .modal-title {
+  line-height: 20px;
+}
+
+#sendMsg .modal-body {
+  height: 400px;
+}
+
+#sendName {
+  margin-bottom: 20px;
+}
+
+#msgText {
+  min-height: 250px;
+  max-height: 250px;
+  resize: none;
+}
+
+#sendMsg .modal-footer {
+  height: 55px;
+}
+
+#sendMsg .modal-footer #sendMsgBtn {
+  margin-top: -5px;
+  margin-right: 15px;
+  width: 100px;
+}
+
+
+
+#viewContent .modal-dialog {
+  width: 400px;
+}
+
+#viewContent .modal-header {
+  height: 50px
+}
+
+#viewContent .modal-title {
+  line-height: 20px;
+}
+
+#viewContent .modal-body {
+  height: 400px;
+/*  padding: 30px;*/
+}
+
+#viewMsg {
+  max-height: 360px;
+  overflow-y: scroll;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#viewContent {
+  margin-bottom: 20px;
+}
+
+#msgText {
+  height: 200px;
+}
+

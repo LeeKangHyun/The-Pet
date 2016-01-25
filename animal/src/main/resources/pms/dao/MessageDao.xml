@@ -14,7 +14,7 @@
 		<result column="SEND_DATE" 		property="msgCreateDate"/>
 	</resultMap>
 	
-	<select id="selectList" resultMap="messageMap" parameterType="int">
+	<select id="selectList" resultMap="messageMap" parameterType="map">
 		select 
 			MSG_NUM, 
 			MEM_NUM,
@@ -23,8 +23,9 @@
 			CHECKED,
 			SEND_DATE
 		from message
-		order by desc MSG_NUM
 		where MEM_NUM2=#{recvMno}
+		order by SEND_DATE desc
+		limit #{startIndex}, 15
 	</select>
 	
 	<select id="selectOne" resultMap="messageMap" parameterType="int">
@@ -38,6 +39,18 @@
 		from message
 		where MSG_NUM=#{msgNo}
 	</select>
+	
+	<select id="noRead" resultMap="messageMap" parameterType="int">
+		select count(*) as noReadCount
+		from message
+		where MEM_NUM2=#{recvMno} and CHECKED=0
+	</select>
+	
+	<update id="read" parameterType="int">
+		update message set 
+			CHECKED=1
+		where MSG_NUM=#{msgNo} 
+	</update>
 	
 	<insert id="insert" parameterType="message">
 		insert into message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE)

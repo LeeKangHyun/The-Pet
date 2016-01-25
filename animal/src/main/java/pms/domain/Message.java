@@ -13,9 +13,17 @@ public class Message implements Serializable {
 	protected String msgContent;	// 쪽지 내용
 	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 false(0), 읽으면 true(1)
 	protected Date msgCreateDate;
+	protected int noReadCount;
 	
 	public Message () {}
+	
 
+	public int getNoReadCount() {
+		return noReadCount;
+	}
+	public void setNoReadCount(int noReadCount) {
+		this.noReadCount = noReadCount;
+	}
 	public Date getMsgCreateDate() {
 		return msgCreateDate;
 	}
