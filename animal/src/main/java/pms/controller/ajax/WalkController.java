@@ -12,7 +12,7 @@ import pms.domain.Walk;
 import pms.service.WalkService;
 
 @Controller("ajax.LotController")
-@RequestMapping("lot/ajax/*")
+@RequestMapping("walk/ajax/*")
 public class WalkController {
   
   @Autowired WalkService lotService;

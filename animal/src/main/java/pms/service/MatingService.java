@@ -12,7 +12,7 @@ public interface MatingService {
 	
 	Mating pages();
 	
-	void views();
+//	void views();
 	
   void addPet(Mating mating);
   

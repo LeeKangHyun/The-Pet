@@ -27,9 +27,9 @@ public class DefaultMatingService implements MatingService {
 		return matingDao.count();
 	}
 	
-	public void views() {
-	  matingDao.views();
-	}
+//	public void views() {
+//	  matingDao.views();
+//	}
 	
   public void addPet(Mating mating) {
   	matingDao.insert(mating);

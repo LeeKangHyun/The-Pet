@@ -12,13 +12,13 @@ import pms.service.WalkService;
 @Service
 public class DefaultWalkService implements WalkService {
 
-  @Autowired WalkDao lotDao;
+  @Autowired WalkDao walkDao;
   
-  public int add(Walk lot) {
-    return lotDao.add(lot);
+  public int add(Walk walk) {
+    return walkDao.add(walk);
   }
   
   public List<Walk> list(int mno) {
-    return lotDao.list(mno);
+    return walkDao.list(mno);
   }
 }

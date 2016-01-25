@@ -5,7 +5,7 @@ import java.util.List;
 import pms.domain.Walk;
 
 public interface WalkDao {
-  int add(Walk lot);
+  int add(Walk walk);
   
   List<Walk> list(int mno);
 }
