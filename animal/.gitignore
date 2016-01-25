@@ -1,0 +1,7 @@
+/bin/
+/.gradle/
+/.settings/
+/.classpath
+/bower_components/
+/build/
+/.project
