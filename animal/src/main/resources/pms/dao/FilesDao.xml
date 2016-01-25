@@ -4,39 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="pms.dao.FilesDao">
-	
+  
   <resultMap type="files" id="filesMap">
-    <id 	column="FILE_NUM" 		property="fno"/>
-	<result column="FILE_NAME" 		property="fileName"/>
-	<result column="EDU_NUM" 		property="eduNo"/>
-	<result column="MAT_NUM" 		property="matNo"/>
-	<result column="S_NUM" 			property="sno"/>	
-	<result column="SCH_NUM" 		property="dno"/>
+    <id   column="FILE_NUM"     property="fno"/>
+  <result column="FILE_NAME"    property="fileName"/>
+  <result column="EDU_NUM"    property="eduNo"/>
+  <result column="MAT_NUM"    property="matNo"/>
+  <result column="S_NUM"      property="sno"/>  
+  <result column="SCH_NUM"    property="dno"/>
   <result column="fname" property="fName"/>
  </resultMap>
 
   <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
-  	select * 
-  	from files
-  	where SCH_NUM=#{dno}
+    select * 
+    from files
+    where SCH_NUM=#{dno}
   </select>
   
   <select id="EduFileList" resultMap="filesMap" parameterType="int">
-  	select * 
-  	from files
-  	where EDU_NUM=#{eduNo}
+    select * 
+    from files
+    where EDU_NUM=#{eduNo}
   </select>
   
   <select id="MatFileList" resultMap="filesMap" parameterType="int">
-  	select * 
-  	from files
-  	where MAT_NUM=#{matNo}
+    select * 
+    from files
+    where MAT_NUM=#{matNo}
   </select>
   
   <select id="SaleFileList" resultMap="filesMap" parameterType="int">
-  	select * 
-  	from files
-  	where S_NUM=#{sno}
+    select * 
+    from files
+    where S_NUM=#{sno}
   </select>
   
   <insert id="insert" parameterType="files">
@@ -44,24 +44,29 @@
     values(#{fileName},#{dno})
   </insert>
   
+  <insert id="eduInsert" parameterType="files">
+    insert into files(FILE_NAME,EDU_NUM)
+    values(#{fileName},#{eduNo})
+  </insert>
+  
   <delete id="deleteDairyFile" parameterType="int">
     delete from files 
-  	where SCH_NUM=#{dno}
+    where SCH_NUM=#{dno}
   </delete>
   
   <delete id="deleteEduFile" parameterType="int">
     delete from files 
-  	where EDU_NUM=#{eduNo}
+    where EDU_NUM=#{eduNo}
   </delete>
   
   <delete id="deleteMatFile" parameterType="int">
     delete from files 
-  	where MAT_NUM=#{matNo}
+    where MAT_NUM=#{matNo}
   </delete>
   
   <delete id="deleteSaleFile" parameterType="int">
     delete from files 
-  	where S_NUM=#{sno}
+    where S_NUM=#{sno}
   </delete>
   
   <update id="update" parameterType="files">
