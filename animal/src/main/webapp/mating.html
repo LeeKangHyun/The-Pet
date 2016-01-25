@@ -97,7 +97,7 @@ $(function(){
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
-                <button id="closeBtn" type='button' class='close' data-dismiss='modal' onclick='ref()'>&times;</button>
+                <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
                 <h3 id='modalTitle' class='title'></h3>
             </div>
 
@@ -197,61 +197,6 @@ $(document).ready(function() {
     });
 });
 
-function ref() {
-    $.ajax({
-        url: 'mating/ajax/list.do',
-        type: 'post',
-        dataType: 'json',
-        success: function(resultObj) {
-            $("#hidden").trigger("click");
-            $("button:first").trigger("click");
-            var show = $('#Container');
-            var j = 0;
-            var file;
-            var mem;
-            var gen;
-            for (var mating of resultObj.mating) {
-                file = resultObj.filesMap[j];
-                mem = resultObj.memberMap[j];
-                if(mating.matGender == 0) {
-                    gen = "숫컷";
-                } else {
-                    gen = "암컷";
-                }
-                j++;
-                show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-                "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
-                "' onclick='detail(this.id);'>" +
-
-                "<div class='coverphoto'><img src='images/" + file[0].fileName + "'></div>" +
-
-                "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
-
-                "<div class='left_col'>" +
-                "<div class='views'>" +
-                //"<div class='view_count'>" + mating.matViews + "</div>" +
-                "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
-                "VIEW" +
-                "</div>" +
-                "</div>" +
-
-                "<div class='right_col'>" +
-                "<ul class='contact_information'>" +
-                "<li class='website'>" + mating.matSpec + "</li>" +
-                "<li class='website'>" + mating.matType + "</li>" +
-                "<li class='gender'>" + gen + "</li>" +
-                "<li class='mail'>₩ " + mating.matCost + "</li>" +
-                "<li class='title'>" + mating.matTitle + "</li>" +
-                "<li class='resume'>" + mating.matCreateDate + "</li>" +
-                "<li class='name'>" + mem.mName + "</li>" +
-                "</ul>" +
-                "</div>" +
-                "</div>")
-            }
-        }
-    });
-}
-
 // 분양 리스트 출력
 $.ajax({
     url: 'mating/ajax/list.do',
@@ -309,19 +254,62 @@ $.ajax({
 
 // 분양 디테일
 function detail(id) {
-  // $.ajax({
-  //     url: 'mating/ajax/views.do',
-  //     dataType: 'json',
-  //     cache: false,
-  //     contentType: false,
-  //     processData: false,
-  //     success: function() {
-  //         var view = $("#v" + id);
-  //         view.append('matViews', )
+    console.log('id=' + id)
+  var view = $("#v" + id);
+  var form_data = new FormData();
+  form_data.append("matNo", id)
+  $.ajax({
+    url: "mating/ajax/detail.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      var matinfo = re.ajaxResult.data;
+      $('#modalTitle').html(matinfo.matTitle);
+      $('#mcontent').html(matinfo.matContent);
+      $('#mmatno').val(matinfo.matNo);
+      var form_data = new FormData();
+      form_data.append("matNo", id)
+      $.ajax({
+        url: "files/ajax/matlist.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+          var files = re.ajaxResult.data;
+          var imgs = $('#imgs');
+          var dots = $('#dots');
+          var i = 0;
+          for (var file of files) {
+            if (i == 0) {
+              imgs.append(
+              "<div class='item active'>" +
+                "<img class='slideimg' src='images/" + file.fileName + "'>" +
+              "</div>")
+              dots.append(
+              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
+              "' class='active'></li>")
+            } else {
+              imgs.append(
+              "<div class='item'>" +
+                "<img class='slideimg' src='images/" + file.fileName + "'>" +
+              "</div>")
+              dots.append(
+              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
+              "'></li>")
+            }
+            i++;
+          }
           var form_data = new FormData();
           form_data.append("matNo", id)
           $.ajax({
-            url: "mating/ajax/detail.do",
+            url: "comment/ajax/matcomlist.do",
             dataType: 'json',
             cache: false,
             contentType: false,
@@ -329,91 +317,55 @@ function detail(id) {
             data: form_data,
             type: 'post',
             success: function(re) {
-              var matinfo = re.ajaxResult.data;
-              $('#modalTitle').html(matinfo.matTitle);
-              $('#mcontent').html(matinfo.matContent);
-              $('#mmatno').val(matinfo.matNo);
-              var form_data = new FormData();
-              form_data.append("matNo", id)
-              $.ajax({
-                url: "files/ajax/matlist.do",
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(re) {
-                  var files = re.ajaxResult.data;
-                  var imgs = $('#imgs');
-                  var dots = $('#dots');
-                  var i = 0;
-                  for (var file of files) {
-                    if (i == 0) {
-                      imgs.append(
-                      "<div class='item active'>" +
-                        "<img class='slideimg' src='images/" + file.fileName + "'>" +
-                      "</div>")
-                      dots.append(
-                      "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-                      "' class='active'></li>")
-                    } else {
-                      imgs.append(
-                      "<div class='item'>" +
-                        "<img class='slideimg' src='images/" + file.fileName + "'>" +
-                      "</div>")
-                      dots.append(
-                      "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-                      "'></li>")
-                    }
-                    i++;
-                  }
-                  var form_data = new FormData();
-                  form_data.append("matNo", id)
-                  $.ajax({
-                    url: "comment/ajax/matcomlist.do",
-                    dataType: 'json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: form_data,
-                    type: 'post',
-                    success: function(re) {
-                      var commen = re.comments;
-                      var comdiv = $('#comComment');
-                      var mem;
-                      var j = 0;
-                      for (var com of commen) {
-                        mem = re.memberMap[j];
-                        if($.session.get('mno') == mem.mno) {
-                          comdiv.append(
-                          "<div class='comment'>" +
-                            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                            "<div class='commentname'>" + mem.mName + "</div>" +
-                            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-                            "<i class='fa fa-close'></i></a>" +
-                            "<div class='commenttext'>" + com.comComment + "</div>" +
-                          "</div>")
-                        } else {
-                          comdiv.append(
-                          "<div class='comment'>" +
-                            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                            "<div class='commentname'>" + mem.mName + "</div>" +
-                            "<div class='commenttext'>" + com.comComment + "</div>" +
-                          "</div>")
-                        }
-                        j++;
-                      }
-                    }
-                  })
+              var commen = re.comments;
+              var comdiv = $('#comComment');
+              var mem;
+              var j = 0;
+              for (var com of commen) {
+                mem = re.memberMap[j];
+                if($.session.get('mno') == mem.mno) {
+                  comdiv.append(
+                  "<div class='comment'>" +
+                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                    "<div class='commentname'>" + mem.mName + "</div>" +
+                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+                    "<i class='fa fa-close'></i></a>" +
+                    "<div class='commenttext'>" + com.comComment + "</div>" +
+                  "</div>")
+                } else {
+                  comdiv.append(
+                  "<div class='comment'>" +
+                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                    "<div class='commentname'>" + mem.mName + "</div>" +
+                    "<div class='commenttext'>" + com.comComment + "</div>" +
+                  "</div>")
                 }
-              })
+                    j++;
+              }
             }
           })
-  //     }
-  // })
-}
+        }
+      })
+    },
+    complete: function() {
+      $.ajax({
+          url: 'mating/ajax/views.do',
+          data: {
+              "matNo": id
+          },
+          async: false,
+          dataType: 'json',
+          type: "post",
+          success: function(re) {
+            console.log()
+            console.log(re.ajaxResult.data.matViews)
+            view.html(re.ajaxResult.data.matViews)
+          }
+      })
+    }
+  })
 
+}
 
 // 펫 디테일 -> 댓글게시 클릭
 $(document).on("click", "#comDelBtn", function() {
@@ -584,7 +536,7 @@ function moree(id) {
 
         "<div class='left_col'>" +
           "<div class='views'>" +
-            "<div class='view_count'>" + mating.matViews + "</div>" +
+            "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
             "VIEW" +
           "</div>" +
         "</div>" +

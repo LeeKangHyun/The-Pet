@@ -48,11 +48,13 @@ public class MatingController {
 		return new AjaxResult("success", page);
 	}
 	
-//	@RequestMapping("views")
-//	public void views() throws Exception {
-//	  
-//	  matingService.views();
-//	}
+	@RequestMapping("views")
+	public Object views(int matNo) throws Exception {
+
+	  Mating mating = matingService.views(matNo);
+	  
+	  return new AjaxResult("success", mating);
+	}
 	
 	
 	
