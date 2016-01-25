@@ -75,185 +75,206 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 
 
 
-	/*사진 리스트 출력*/
+/*사진 리스트 출력*/
 
-	
+
 
 
 $(document).ready(function() {
-    
-    /* count Ajax 시작 */
-        	  $.ajax({
-    		  url: "../boastboard/ajax/count.do",
-    		  dataType: "json",
-    		  async: "false",
-    		  type: "GET",
-    		  success:	function(resultObj) {
-    			  /* page function 시작 */
-    			    var pag = $('#pagination').simplePaginator({
-    			        totalPages:resultObj.count,
-    			        maxButtonsVisible: 5,
-    			        clickCurrentPage: true,
-    			        pageChange: function(page) {
-    			        	/* list Ajax 시작 */
-    			            $.ajax({
-    			            	
-    			            	url: "../boastboard/ajax/list.do?pageNo="+page,
-    			                dataType: "json",
-    			                type: "POST",
-    			                async: "false",
-    			                success:
-    			                	function(resultObj) {
-    			                	$("#subtable").empty();
-    			                	$("#HIDDEN").trigger("click");
-    			                	$("#All").trigger("click");
-    			            		var div = $("#subtable");
-    			            		console.log(resultObj.data.length);
-    			            		
 
-    			                      
-    			                  		for(var i = 0; i < resultObj.data.length; i++ ) {
-    			                			var check1 = resultObj.data[i].filename.split(".");
-    			                			check1 = check1.slice(1,2);
-    			                			if(check1 == "jpg" ||
-    			                					check1 == "jpeg" ||
-    			                					check1 == "png" ||
-    			                					check1 == "gif" ||
-    			                					check1 == "bmp") { 
-    			                				$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-    			                				.html(
-    			                						"<div class='card'>" +
-    			                						"<div class='background'>" +
-    			                						"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
-    			                						"</div>"+
-    			                						"<a href='#' class='overlay'></a> <a href='#'>"+ 
-    			                						"<i class='fa fa-camera-retro'></i>"+
-    			                						"</a> <a class='thumb' href='#'></a>"+
-    			                						"<div class='infosub'>"+
-    			                						"<h2>"+
-    			                						"<a href='#'>"+resultObj.data[i].title+"</a>"+
-    			                						"</h2>"+
-    			                						"<div class='foot'>"+
-    			                						"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
-    			                						"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
-    			                						" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
-    			                						"</div>"+
-    			                						"</div>"+
-    			                				"</div>").appendTo(div);
-    			                			} else if (check1 == "avi" ||
-    			                					check1 == "wmv" ||
-    			                					check1 == "mp4" ||
-    			                					check1 == "mkv" ||
-    			                					check1 == "wav") {
-    			                				$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-    			                				.html(
-    			                						"<div class='card'>"+
-    			                						"<div class='background'>"+
-    			                						"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
-    			                						"</div>"+
-    			                						"<a href='#' class='overlay'></a> <a href='#'>"+ 
-    			                						"<i class='fa fa-youtube-play'></i>"+
-    			                						"</a> <a class='thumb' href='#'></a>"+
-    			                						"<div class='infosub'>"+
-    			                						"<h2>"+
-    			                						"<a href='#'>"+resultObj.data[i].title+"</a>"+
-    			                						"</h2>"+
-    			                						"<div class='foot'>"+
-    			                						"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
-    			                						"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
-    			                						" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
-    			                						"</div>"+
-    			                						"</div>"+
-    			                				"</div>").appendTo(div);
-    			                			}
-    			                		}
-    			                    	  
-    			            }
-    			                	
-    			                	
-    			                	
-    			                
-    			              });
-    			        	/* list Ajax 종료 */
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        	
-    			        }
-    			      });
-/* 첫번째 page function 종료 */
-    			      $('#changeTotalPages').click(function() {
-    			        pag.simplePaginator('setTotalPages', 10);
-    			      })
+	/* list Ajax 시작 */
+	$.ajax({
 
-    			      $('#changePage').click(function() {
-    			        pag.simplePaginator('changePage', 3);
-    			      })
+		url: "../boastboard/ajax/list.do?pageNo=1",
+		dataType: "json",
+		type: "POST",
+		async: "false",
+		success:
+			function(resultObj) {
+			$("#subtable").empty();
+			$("#HIDDEN").trigger("click");
+			$("#All").trigger("click");
+			var div = $("#subtable");
+			console.log("불러온 데이터 갯수....." + resultObj.data.length);
 
-    			      $('#hide').click(function() {
-    			        pag.simplePaginator('hide');
-    			      })
-    			      
-    		  }/*count ajax success 끝나는 지점*/
-    	  })/*count ajax 끝나는 지점*/
+
+
+			for(var i = 0; i < resultObj.data.length; i++ ) {
+				var check1 = resultObj.data[i].filename.split(".");
+				check1 = check1.slice(1,2);
+				if(check1 == "jpg" ||
+						check1 == "jpeg" ||
+						check1 == "png" ||
+						check1 == "gif" ||
+						check1 == "bmp") { 
+					$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+					.html(
+							"<div class='card'>" +
+							"<div class='background'>" +
+							"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+							"</div>"+
+							"<a href='#' class='overlay'></a> <a href='#'>"+ 
+							"<i class='fa fa-camera-retro'></i>"+
+							"</a> <a class='thumb' href='#'></a>"+
+							"<div class='infosub'>"+
+							"<h2>"+
+							"<a href='#'>"+resultObj.data[i].title+"</a>"+
+							"</h2>"+
+							"<div class='foot'>"+
+							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+							"</div>"+
+							"</div>"+
+					"</div>").appendTo(div);
+				} else if (check1 == "avi" ||
+						check1 == "wmv" ||
+						check1 == "mp4" ||
+						check1 == "mkv" ||
+						check1 == "wav") {
+					$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+					.html(
+							"<div class='card'>"+
+							"<div class='background'>"+
+							"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+							"</div>"+
+							"<a href='#' class='overlay'></a> <a href='#'>"+ 
+							"<i class='fa fa-youtube-play'></i>"+
+							"</a> <a class='thumb' href='#'></a>"+
+							"<div class='infosub'>"+
+							"<h2>"+
+							"<a href='#'>"+resultObj.data[i].title+"</a>"+
+							"</h2>"+
+							"<div class='foot'>"+
+							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+							"</div>"+
+							"</div>"+
+					"</div>").appendTo(div);
+				}
+			}
+
+		}
+
+	});
+	/* list Ajax 종료 */
+
 });/*마지막지점*/
-    
-	
-    
 
 
 
+/* more 페이징 */
+$(document).ready(function() {
+	/* count ajax 실행 */
+	var currentPage = 0;
+	$('.moreBtn').click(function(event) {
+		$.ajax({
+			url:"../boastboard/ajax/count.do",
+			dataType: "json",
+			async: "json",
+			type: "GET",
+			success: function(resultObj) {
+
+				var totalPage = resultObj.count;
+
+				if(currentPage < totalPage) {
+					currentPage = currentPage + 1;
+					console.log("현재 currentPage...." + currentPage);
+
+					/*Paging ajax 실행*/		
+					$.ajax({
+
+						url:"../boastboard/ajax/list.do?pageNo="+currentPage,
+						dataType: "json",
+						type: "POST",
+						async: "false",
+						success:
+							function(resultObj) {
+							/* $("#subtable").empty(); */
+							var div = $("#subtable");
+							console.log("불러온 데이터 갯수....." + resultObj.data.length);
 
 
+							for(var i = 0; i < resultObj.data.length; i++ ) {
+								var check1 = resultObj.data[i].filename.split(".");
+								check1 = check1.slice(1,2);
+								if(check1 == "jpg" ||
+										check1 == "jpeg" ||
+										check1 == "png" ||
+										check1 == "gif" ||
+										check1 == "bmp") { 
+									$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+									.html(
+											"<div class='card'>" +
+											"<div class='background'>" +
+											"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+											"</div>"+
+											"<a href='#' class='overlay'></a> <a href='#'>"+ 
+											"<i class='fa fa-camera-retro'></i>"+
+											"</a> <a class='thumb' href='#'></a>"+
+											"<div class='infosub'>"+
+											"<h2>"+
+											"<a href='#'>"+resultObj.data[i].title+"</a>"+
+											"</h2>"+
+											"<div class='foot'>"+
+											"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+											"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+											" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+											"</div>"+
+											"</div>"+
+									"</div>").appendTo(div);
+								} else if (check1 == "avi" ||
+										check1 == "wmv" ||
+										check1 == "mp4" ||
+										check1 == "mkv" ||
+										check1 == "wav") {
+									$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+									.html(
+											"<div class='card'>"+
+											"<div class='background'>"+
+											"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+											"</div>"+
+											"<a href='#' class='overlay'></a> <a href='#'>"+ 
+											"<i class='fa fa-youtube-play'></i>"+
+											"</a> <a class='thumb' href='#'></a>"+
+											"<div class='infosub'>"+
+											"<h2>"+
+											"<a href='#'>"+resultObj.data[i].title+"</a>"+
+											"</h2>"+
+											"<div class='foot'>"+
+											"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+											"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+											" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
+											"</div>"+
+											"</div>"+
+									"</div>").appendTo(div);
+								}
+							}
 
 
+							$("#HIDDEN").trigger("click");
+							$("#All").trigger("click");
 
 
+						}/* List Load function(resultObj) 끝 */
 
+					})/*List Load ajax 끝*/  
 
+					if(currentPage == totalPage) {
+						$('#more').css({"border":"0px"});
+						$('#more').empty();
+					}
 
+				} /* IF문 끝 */
 
+				else if(currentPage == totalPage) {
+					alert("더이상 페이지가 존재하지 않습니다.");
+					console.log("더이상 페이지가 존재하지 않습니다.");
+				}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			}
+		})
+	})
+});/*마지막지점*/
 

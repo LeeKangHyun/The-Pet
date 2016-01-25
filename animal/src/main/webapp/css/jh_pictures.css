@@ -39,11 +39,18 @@
 }
 
 #subtable {
-    top: 100px;
+    position: relative;
     width: 1024px;
     margin-left: -15px ;
+    padding-left: 15px;
     /* border: 1px red solid; */
 }
+
+
+#rank-section {
+    padding-left: 10px;
+}
+
 
 hr {
     border: 1px;
@@ -448,20 +455,21 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 .search-form {
-	  position:absolute;
-	  width:auto;
-	  height:auto;
-	  right: 0px;
-	  top: 555px;
+    position:relative;
+    width:auto;
+    height:25px;
+    right: -15px;
+      bottom: 65px;
+    
 }
 
 .form-control {
     position: relative;
     float: right;
     text-align: center;
-	width: 80px;
+  width: 80px;
     height: 25px;
-	appearance: none;
+  appearance: none;
 
 }
 
@@ -504,4 +512,26 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 .form-submit:active {
     font-size: 15px;
     color: #d06a79;
+}
+
+
+
+/* more scroll button */
+#more {
+    position:relative;
+  text-align: center;
+    margin: 0 auto;
+    font-size: 18px;
+    width: 1024px;
+    background-color: #2d335e;
+    border: 1px #2d335e solid;
+}
+
+#moreBtn {
+    text-decoration: none;
+    color: #fff;
+}
+
+a#moreBtn:visited {
+    color:inherit;
 }
