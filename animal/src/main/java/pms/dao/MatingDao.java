@@ -11,6 +11,8 @@ public interface MatingDao {
 	
 	Mating count();
 	
+	void views();
+	
   void insert(Mating mating);
   
   void updateviews(int matNo);
