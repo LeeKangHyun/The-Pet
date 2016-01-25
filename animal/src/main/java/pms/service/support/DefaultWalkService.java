@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pms.dao.LotDao;
-import pms.domain.Lot;
-import pms.service.LotService;
+import pms.dao.WalkDao;
+import pms.domain.Walk;
+import pms.service.WalkService;
 
 @Service
-public class DefaultLotService implements LotService {
+public class DefaultWalkService implements WalkService {
 
-  @Autowired LotDao lotDao;
+  @Autowired WalkDao lotDao;
   
-  public int add(Lot lot) {
+  public int add(Walk lot) {
     return lotDao.add(lot);
   }
   
-  public List<Lot> list(int mno) {
+  public List<Walk> list(int mno) {
     return lotDao.list(mno);
   }
 }

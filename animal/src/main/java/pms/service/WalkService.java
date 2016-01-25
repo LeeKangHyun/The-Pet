@@ -2,10 +2,10 @@ package pms.service;
 
 import java.util.List;
 
-import pms.domain.Lot;
+import pms.domain.Walk;
 
-public interface LotService {
-  int add(Lot lot);
+public interface WalkService {
+  int add(Walk lot);
   
-  List<Lot> list(int mno);
+  List<Walk> list(int mno);
 }

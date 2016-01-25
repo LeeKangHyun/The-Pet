@@ -2,10 +2,10 @@ package pms.dao;
 
 import java.util.List;
 
-import pms.domain.Lot;
+import pms.domain.Walk;
 
-public interface LotDao {
-  int add(Lot lot);
+public interface WalkDao {
+  int add(Walk lot);
   
-  List<Lot> list(int mno);
+  List<Walk> list(int mno);
 }

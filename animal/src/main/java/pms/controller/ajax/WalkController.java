@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pms.domain.AjaxResult;
-import pms.domain.Lot;
-import pms.service.LotService;
+import pms.domain.Walk;
+import pms.service.WalkService;
 
 @Controller("ajax.LotController")
 @RequestMapping("lot/ajax/*")
-public class LotController {
+public class WalkController {
   
-  @Autowired LotService lotService;
+  @Autowired WalkService lotService;
   
   @RequestMapping(value="add", method=RequestMethod.POST)
-  public AjaxResult add(Lot lot) throws Exception {
+  public AjaxResult add(Walk lot) throws Exception {
     
     lotService.add(lot);
     
@@ -28,7 +28,7 @@ public class LotController {
   @RequestMapping(value="list", method=RequestMethod.GET)
   public Object list(int mno) throws Exception {
     
-    List<Lot> lots = lotService.list(mno);
+    List<Walk> lots = lotService.list(mno);
     
     return lots;
   }

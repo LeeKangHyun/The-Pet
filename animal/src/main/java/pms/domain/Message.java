@@ -1,6 +1,7 @@
 package pms.domain;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /* 쪽지 정보 */
 public class Message implements Serializable {
@@ -10,10 +11,17 @@ public class Message implements Serializable {
 	protected int sendMno;    		// 보내는 멤버 번호
 	protected int recvMno;				// 받는 멤버 번호
 	protected String msgContent;	// 쪽지 내용
-	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 true(1), 읽으면 false(0)
+	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 false(0), 읽으면 true(1)
+	protected Date msgCreateDate;
 	
 	public Message () {}
 
+	public Date getMsgCreateDate() {
+		return msgCreateDate;
+	}
+	public void setMsgCreateDate(Date msgCreateDate) {
+		this.msgCreateDate = msgCreateDate;
+	}
 	public int getMsgNo() {
 		return msgNo;
 	}

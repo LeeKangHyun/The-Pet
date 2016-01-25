@@ -11,65 +11,46 @@
 		<result column="MEM_NUM2" 		property="recvMno"/>
 		<result column="MSG_CONTENT" 	property="msgContent"/>
 		<result column="CHECKED" 		property="msgChecked"/>
+		<result column="SEND_DATE" 		property="msgCreateDate"/>
 	</resultMap>
 	
-	<select id="selectList" resultMap="memberMap">
-	select 
-		MSG_NUM, 
-		MEM_NUM,
-		MEM_NUM2,
-		MSG_CONTENT,
-		CHECKED
-	from message
-	order by desc MEM_NUM
+	<select id="selectList" resultMap="messageMap" parameterType="int">
+		select 
+			MSG_NUM, 
+			MEM_NUM,
+			MEM_NUM2,
+			MSG_CONTENT,
+			CHECKED,
+			SEND_DATE
+		from message
+		order by desc MSG_NUM
+		where MEM_NUM2=#{recvMno}
+	</select>
+	
+	<select id="selectOne" resultMap="messageMap" parameterType="int">
+		select 
+			MSG_NUM, 
+			MEM_NUM,
+			MEM_NUM2,
+			MSG_CONTENT,
+			CHECKED,
+			SEND_DATE
+		from message
+		where MSG_NUM=#{msgNo}
 	</select>
 	
 	<insert id="insert" parameterType="member">
-		insert into member(MEM_NAME,MEM_EMAIL,MEM_TEL,MEM_IMG,MEM_PWD)
-		values(#{mName},#{mEmail},#{tel},#{mImg},#{password})
+		insert into message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE)
+		values(#{sendMno},#{recvMno},#{msgContent},0,now())
 	</insert>
 	
 	<delete id="delete" parameterType="int">
-		delete from member where MEM_NUM=#{mno}
+		delete from message where MSG_NUM=#{msgNo}
 	</delete>
 	
-	<update id="update" parameterType="member">
-		update member set
-			MEM_EMAIL=#{mEmail},
-			MEM_NAME=#{mName},
-			MEM_TEL=#{tel},
-			MEM_IMG=#{mImg}
-		where MEM_EMAIL=#{mEmail}
-	</update>
-	
-	<select id="selectOne" resultMap="memberMap" parameterType="int">
-		select 
-	  		MEM_NUM, 
-	  		MEM_NAME,
-	  		MEM_EMAIL,
-	  		MEM_TEL,
-	  		MEM_IMG
-		from member
-		where MEM_NUM=#{mno}
-	</select>
-	
-	<select id="selectEmail" resultMap="memberMap" parameterType="string">
-		select 
-	  		MEM_EMAIL
-		from member
-		where MEM_EMAIL=#{mEmail}
-	</select>
-	
-	<select id="selectOneByEmailPassword" resultMap="memberMap" parameterType="map">
-		select 
-	  		MEM_NUM, 
-	  		MEM_NAME,
-	  		MEM_EMAIL,
-	  		MEM_TEL,
-	  		MEM_IMG
-		from member
-		where MEM_EMAIL=#{mEmail} and MEM_PWD=#{password}
-	</select>
+	<delete id="deleteAll" parameterType="int">
+		delete from message where MEM_NUM2=#{recvMno}
+	</delete>
     
 </mapper>
 

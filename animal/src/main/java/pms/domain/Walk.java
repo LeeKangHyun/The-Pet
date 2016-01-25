@@ -2,7 +2,7 @@ package pms.domain;
 
 import java.io.Serializable;
 
-public class Lot implements Serializable {
+public class Walk implements Serializable {
   private static final long serialVersionUID = 1L;
   
   protected String lat;
@@ -10,7 +10,7 @@ public class Lot implements Serializable {
   protected int lno;
   protected int mno;
   
-  public Lot () {}
+  public Walk () {}
 
   public String getLat() {
     return lat;
