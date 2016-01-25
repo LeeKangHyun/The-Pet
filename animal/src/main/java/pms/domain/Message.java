@@ -6,11 +6,11 @@ import java.io.Serializable;
 public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int msgNo;					 // 쪽지 번호
-	protected int sendMno;     // 보내는 멤버 번호
-	protected int recvMno;  // 받는 멤버 번호
-	protected String msgContent; // 쪽지 내용
-	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 true, 읽으면 false
+	protected int msgNo;					// 쪽지 번호
+	protected int sendMno;    		// 보내는 멤버 번호
+	protected int recvMno;				// 받는 멤버 번호
+	protected String msgContent;	// 쪽지 내용
+	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 true(1), 읽으면 false(0)
 	
 	public Message () {}
 
