@@ -189,6 +189,7 @@ div.item img {
 
 .slideimg {
   max-width: 480px;
+  max-height: 480px;
   padding-right: auto;
   padding-left: auto;
 }

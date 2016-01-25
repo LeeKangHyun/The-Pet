@@ -1,0 +1,96 @@
+.fc-toolbar h2 {
+	margin: 0;
+}
+
+.fc-icon { 
+  color: #2d335e;
+  padding-top: 7px;
+  padding-bottom: 22px;
+  padding-left: 27px;
+  padding-right: 27px;
+ 	border: 2px solid #2d335e;
+  border-radius: 6px;
+}
+
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-popover {
+  border-color: #3e4680;
+}
+
+.fc th {
+  background-color: #3e4680;
+  color: #fff;
+  font-weight: 300;
+}
+
+.fc button .fc-icon:hover {
+  border: 2px solid #d06a79;
+  color: #d06a79;
+}
+
+.fc button {
+  padding: 0px;
+  margin-top: 0px;
+  border: 0px;
+  background: #fff;
+  outline: none;
+}
+
+.fc button.fc-today-button {
+  color: #2d335e;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 24px;
+  padding-left: 17px;
+  padding-right: 17px;
+  margin-top: -1px;
+  border: 2px solid #2d335e;
+  border-radius: 6px;
+  opacity: 1;
+}
+
+.fc button .fc-icon {
+  overflow: hidden;
+}
+
+.fc td.fc-today {
+  border-top: 1px solid #3e4680;
+  background-color: #ecc3c9;
+  color: #fff;  
+}
+
+.fc-sun {
+  color: #d06a79;
+  font-weight: bold;
+}
+
+.fc-mon, .fc-tue, .fc-wed, .fc-thu, .fc-fri {
+  color: #555;
+  font-weight: bold;
+}
+
+.fc-sat {
+  color: #3e4680;
+  font-weight: bold;
+}
+
+/*.fc-basic-view td.fc-week-number span,*/
+.fc-basic-view td.fc-day-number {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.fc-row .fc-content-skeleton td, 
+.fc-row .fc-helper-skeleton td {
+  border-color: #3e4680;
+}
+
+.fc-basic-view .fc-week-number,
+.fc-basic-view .fc-day-number {
+	padding: 0 6px;
+}
