@@ -49,6 +49,23 @@ public class FilesController {
 		return new AjaxResult("success", null);
 	}
 	
+	@RequestMapping(value="eduupload", method=RequestMethod.POST)
+	public Object eduAdd(
+				Files files,
+			  MultipartFile file
+			) throws Exception {
+ 
+	 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+		File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+															+ "/" + newFileName);
+		file.transferTo(attachfile);
+		files.setFileName(newFileName);
+
+		filesService.eduAdd(files);
+		
+		return new AjaxResult("success", null);
+	}
+	
 	@RequestMapping("list")
 	public Object list(int dno) throws Exception {
 		 

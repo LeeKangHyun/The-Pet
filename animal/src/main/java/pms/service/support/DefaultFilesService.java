@@ -30,6 +30,11 @@ public class DefaultFilesService implements FilesService {
   public void add(Files files) {
   	filesDao.insert(files);
   }
+  
+  /* 대진 작업중 */
+  public void eduAdd(Files files) {
+  		filesDao.eduInsert(files);
+  }
   ///////////////////////////////////////////
   public void fadd(Files files) {
     filesDao.fadd(files);
