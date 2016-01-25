@@ -5,22 +5,23 @@
 
 <mapper namespace="pms.dao.MemberDao">
 	
-	<resultMap type="message" id="messageMap">
-		<id 	column="MSG_NUM" 		property="msgNo"/>
-		<result column="MEM_NUM" 		property="sendMno"/>    
-		<result column="MEM_NUM2" 		property="recvMno"/>
-		<result column="MSG_CONTENT" 	property="msgContent"/>
-		<result column="CHECKED" 		property="msgChecked"/>
+	<resultMap type="member" id="memberMap">
+		<id 	column="MEM_NUM" 		property="mno"/>
+		<result column="MEM_NAME" 		property="mName"/>    
+		<result column="MEM_EMAIL" 		property="mEmail"/>
+		<result column="MEM_PWD" 		property="password"/>
+		<result column="MEM_TEL" 		property="tel"/>
+		<result column="MEM_IMG" 		property="mImg"/>
 	</resultMap>
 	
 	<select id="selectList" resultMap="memberMap">
 	select 
-		MSG_NUM, 
-		MEM_NUM,
-		MEM_NUM2,
-		MSG_CONTENT,
-		CHECKED
-	from message
+		MEM_NUM, 
+		MEM_NAME,
+		MEM_EMAIL,
+		MEM_TEL,
+		MEM_IMG
+	from member
 	order by desc MEM_NUM
 	</select>
 	
