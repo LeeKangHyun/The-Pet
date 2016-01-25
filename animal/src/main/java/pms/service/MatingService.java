@@ -12,6 +12,8 @@ public interface MatingService {
 	
 	Mating pages();
 	
+	void views();
+	
   void addPet(Mating mating);
   
   int remove(int matNo);
