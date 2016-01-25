@@ -16,7 +16,6 @@ import pms.dao.FilesDao;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
-import pms.domain.Member;
 import pms.service.EducationService;
 
 @Controller("ajax.EducationController")
@@ -56,12 +55,16 @@ public class EductionController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
-			Education education,
-			Member member) throws Exception {
+			Education education) throws Exception {
 		
-		educationService.add(education);
+		educationDao.insert(education);
+		HashMap<String,Object> paramMap = new HashMap<>();
 		
-		return new AjaxResult("success", education.getEduNo());
+		List<Education> educations = educationDao.selectList(paramMap);
+		Education e = educations.get(0);
+		int eduNo = e.getEduNo();
+		System.out.println(eduNo);
+		return new AjaxResult("success", eduNo);
 	}
 		
 	

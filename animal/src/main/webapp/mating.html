@@ -141,19 +141,18 @@ $(function(){
             </div>
 
 
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" id="editPet" class="btn btn-warning">변경</button>
-                <button type="button" id="delPet" class="btn btn-danger">삭제</button>
-            </div>
-
         </div>
+
+        <div class="modal-footer">
+            <button type="button" id="editPet" class="btn btn-warning">변경</button>
+            <button type="button" id="delPet" class="btn btn-danger">삭제</button>
+        </div>
+
     </div>
 </div>
 
 <!-- 댓글 삭제 확인 모달 -->
-<div id="checkModal" class="modal fade bs-example-modal-sm">
+<div id="checkModal" class="modal fade bs-example-modal-sm" data-keyboard='false' data-backdrop='static'>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class='modal-header'>
@@ -448,7 +447,6 @@ $(document).on("click", "#delCom", function() {
     data: form_data,
     type: 'post',
     success: function(re) {
-      console.log("삭제완료")
       $('#checkModal').modal('hide')
       var form_data = new FormData();
       form_data.append("matNo", $('#mmatno').val())
@@ -484,7 +482,7 @@ $(document).on("click", "#delCom", function() {
   })
 })
 
-$('#saleModal').on('hide.bs.modal', function(e) {
+$('#saleModal').on('hidden.bs.modal', function(e) {
   $('#comComment').empty();
   $('#dots').empty();
   $('#imgs').empty();

@@ -39,10 +39,9 @@
       "blueimp-canvas-to-blob": "bower_components/blueimp-canvas-to-blob/**",
       "blueimp-load-image": "bower_components/blueimp-load-image/**",
       "blueimp-tmpl": "bower_components/blueimp-tmpl/**",
-      "jquery.cookie": "bower_components/jquery.cookie/jquery.cookie.js",
+      "jquery.cookie": "bower_components/jquery.cookie/**",
       "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js",
       "less": "bower_components/less/dist/**",
-      "jquery.cookie": "bower_components/jquery.cookie/**",
       "multifile": "bower_components/multifile/**",
       "textarea-autosize": "bower_components/textarea-autosize/dist/**"
     }
