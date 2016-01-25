@@ -1,7 +1,6 @@
 package pms.controller.ajax;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -17,6 +16,7 @@ import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Pet;
 import pms.service.DiaryService;
+import pms.service.EducationService;
 import pms.service.FilesService;
 import pms.service.PetService;
 import pms.util.MultipartHelper;
@@ -30,6 +30,7 @@ public class FilesController {
 	@Autowired PetService petService;
 	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
+	@Autowired EducationService eduService;
 
 	@RequestMapping(value="upload", method=RequestMethod.POST)
 	public Object add(
@@ -60,6 +61,15 @@ public class FilesController {
 	public Object matlist(int matNo) throws Exception {
 		 
 		List<Files> files = filesService.getMatFile(matNo);
+
+		return new AjaxResult("success", files);
+	}
+	
+	// 대진 edu 작업중
+	@RequestMapping("edulist")
+	public Object edulist(int eduNo) throws Exception {
+		 
+		List<Files> files = filesService.getMatFile(eduNo);
 
 		return new AjaxResult("success", files);
 	}

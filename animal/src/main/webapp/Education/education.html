@@ -87,8 +87,7 @@
         <button class="filter" data-filter=".DIV04">BIRD</button>
         <button class="filter" data-filter=".DIV05"
           style="margin-right: 560px;">ETC</button>
-        <a class="btn btn-default" id="scheduleAdd" role="button"
-          data-toggle="modal" data-target="#AddBoard">New</a>
+        <span id='scheduleAdd'></span>
       </div>
 
       <!-- 새로운 게시글 모달 부분 -->
@@ -195,7 +194,7 @@
               "</div>"+
               "<a class='overlay detailLnk' href='#' eduNo='"
               + education.eduNo + "' ></a> " + 
-              "<i class='fa fa-camera-retro'></i>"+
+              "<i class='fa fa-play-retro'></i>"+
               "</a> <a class='thumb' href='#'></a>"+
               "<div class='infosub'>"+
               "<h2>"+
@@ -215,23 +214,16 @@
         $("a.detailLnk").click(clickDetailLnk);
       }
     }); 
-    
     $(document).on("click", "#addBtn", function(event) {
-        if ($('#pno').val() == "" ||
-          $('#title').val() == "" ||
+        if ($('#title').val() == "" ||
           $('#fContent').val() == "" ||
           $('#file-1').val() == "") {
           alert("모두 입력해주세요")
           return false;
         } else {
           var form_data = new FormData();
- 
           form_data.append("mno", $('#myMno2').val())
-          form_data.append("dhide", q)
-          form_data.append("cateCode", $('#cateCode').val())
-          form_data.append("pno", $('#pno').val())
-          form_data.append("startDate", $('#startDate').val())
-          form_data.append("endDate", $('#endDate').val())
+          form_data.append("eduSpec", $('#eduSpec').val())
           form_data.append("title", $('#title').val())
           form_data.append("content", $('#fContent').val())
           $.ajax({
@@ -264,14 +256,12 @@
                   }
                 })
               }
-//              $('#AddBoard').modal('hide')
               alert("다이어리가 추가되었습니다.")
               location.href = "diary.html"
             }
           })
         }
       });
-
     function clickDetailLnk(event) {
       event.preventDefault(); 
       location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
@@ -281,22 +271,32 @@
   $(function(){
     $('#Container').mixItUp();
   });
-  
-  console.log(mno);
   </script>
 
   <script>
   $(document).ready(function() {
      var div = $('#user_info');
-     if ($.session.get('mno') != undefined) {
-       div.append(
+     var btn = $('#scheduleAdd');
+     if ($.session.get('mno') == undefined) {
+    	   div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
+     } else if ($.session.get('mno') == 1) {
+    	   div.append(
+         "<img src='../files/" + $.session.get('mimg') +
+         "' id='userImg' />" +
+         "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+         "<a role='button' id='outBtn' class='logout'>" +
+         "<i class='fa fa-unlock fa-lg'></i></a>");
+    	   btn.append(
+    			   "<a class='btn btn-default' id='scheduleAdd' role='button'"
+    			   + "data-toggle='modal' data-target='#AddBoard'>New</a>"
+    			   );
+     } else {
+    	   div.append(
          "<img src='../files/" + $.session.get('mimg') +
          "' id='userImg' />" +
          "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
          "<a role='button' id='outBtn' class='logout'>" +
          "<i class='fa fa-unlock fa-lg'></i></a>")
-     } else {
-       div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
      }
 
      //    로그아웃

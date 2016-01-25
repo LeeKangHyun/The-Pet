@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.dao.EducationDao;
@@ -15,6 +16,7 @@ import pms.dao.FilesDao;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
+import pms.domain.Member;
 import pms.service.EducationService;
 
 @Controller("ajax.EducationController")
@@ -51,32 +53,18 @@ public class EductionController {
 		
 		return resultMap;
 	}
-//	
-//	@RequestMapping(value="add", method=RequestMethod.POST)
-//	public AjaxResult add(
-//			Education education,
-//			Member member,
-//			Files files,
-//			MultipartFile file) throws Exception {
-//		
-//		if (file.getSize() > 0) {
-//			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());
-//			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-//														+ "/" + newFileName);
-//			file.transferTo(attachfile);
-//			
-//			files.setFileName(newFileName);
-//			
-//		}
-//		files.setEduNo(education.getEduNo());
-//		
-//		filesService.add(files);
-//		educationService.add(education);
-//		
-//		return new AjaxResult("success", null);
-//	}
-//		
-//	
+	
+	@RequestMapping(value="add", method=RequestMethod.POST)
+	public AjaxResult add(
+			Education education,
+			Member member) throws Exception {
+		
+		educationService.add(education);
+		
+		return new AjaxResult("success", education.getEduNo());
+	}
+		
+	
 	@RequestMapping("detail")
 	public Object detail(int eduNo) throws Exception {
     educationDao.addViews(eduNo);
