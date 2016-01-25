@@ -21,6 +21,10 @@
  	<select id="count" resultMap="matingMap">
  		select count(*) as count from mating
  	</select>
+  
+  <select id='views' resultMap='matingMap'>
+    select MAT_VIEWS from mating
+  </select>'
  
 	<select id="matingList" resultMap="matingMap" parameterType="int">
 		select * 

@@ -93,7 +93,7 @@ $(function(){
   </section>
 
 <!--짝짓기 디테일 모달-->
-<div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static' onshow="ref()">
+<div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
@@ -196,14 +196,8 @@ $(document).ready(function() {
         location.href = "login.html"
     });
 });
-mat();
-function ref() {
-    $('#Container').load();
-    mat();
-}
 
 // 분양 리스트 출력
-function mat() {
 $.ajax({
     url: 'mating/ajax/list.do',
     async: false,
@@ -258,7 +252,7 @@ $.ajax({
         }
     }
 });
-}
+
 // 분양 디테일
 function detail(id) {
   // var view = $("#v" + id);
