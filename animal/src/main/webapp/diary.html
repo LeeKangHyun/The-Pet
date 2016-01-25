@@ -15,7 +15,7 @@
 
   <!-- 캘린더 css -->
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
-  <link href='css/sh_main_fullcalendar.css' rel='stylesheet' />
+  <link href='lib/fullcalendar/fullcalendar.css' rel='stylesheet' />
   <link href="css/sh_user_fullcalendar.css" rel="stylesheet" />
   <link href='lib/fullcalendar/fullcalendar.print.css' rel='stylesheet' tpye='text/css'
   media='print' />
@@ -474,7 +474,7 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
       "<i class='fa fa-unlock fa-lg'></i></a>")
   } else {
-//            location.href = "login.html"
+            location.href = "login.html"
   }
 
   //    로그아웃
@@ -487,7 +487,7 @@ $(document).ready(function() {
   function renderCalendar() {
     $('#calendar').fullCalendar({
       header: {
-        left: 'prevYear today',
+        left: 'today prevYear',
         center: 'prev title next',
         right: 'nextYear',
       },
