@@ -11,20 +11,17 @@
     <result column="EDU_CRE" property="eduCreateDate" />
     <result column="CRE_TITLE" property="eduTitle" />
     <result column="EDU_CONTENT" property="eduContent" />
-    <result column="EDU_TYPE" property="eduType" />  
+    <result column="EDU_TYPE" property="eduType" /> 
   </resultMap>
   
   <select id="selectList" resultMap="educationMap" parameterType="map">
     select
-      edu.EDU_NUM as eduNo,
-      edu.EDU_TITLE as eduTitle,
-      edu.EDU_SPEC as eduSpec,
-      edu.EDU_CRE as eduCreateDate,
-      edu.EDU_VIEWS as eduViews,
-      f.FILE_NUM as fNo,
-      f.FILE_NAME as fName
-    from Education edu
-      left outer join Files f on edu.EDU_NUM = f.EDU_NUM
+      EDU_NUM as eduNo,
+      EDU_TITLE as eduTitle,
+      EDU_SPEC as eduSpec,
+      EDU_CRE as eduCreateDate,
+      EDU_VIEWS as eduViews
+    from Education 
     order by
     <choose>
       <otherwise>EDU_CRE </otherwise>
@@ -57,5 +54,10 @@
       left outer join Comment c on f.EDU_NUM = c.EDU_NUM
     where edu.EDU_NUM = #{value}
   </select>
+  
+  <insert id="insert" parameterType="education">
+    insert into education(MEM_NUM,EDU_CRE,EDU_TITLE,EDU_CONTENT,EDU_SPEC)
+    values(#{mno},now(),#{eduTitle},#{eduContent},#{eduSpec})
+  </insert>
   
 </mapper>

@@ -8,7 +8,7 @@ import pms.domain.Education;
 public interface EducationDao {
 	List<Education> selectList(Map<String,Object> paramMap);
 	
-	int insert(Education education);
+	void insert(Education education);
 	
 	int delete(Map<String,Object> paramMap);
 	
