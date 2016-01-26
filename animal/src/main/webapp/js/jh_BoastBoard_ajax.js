@@ -81,7 +81,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 
 
 $(document).ready(function() {
-
+	
 	/* list Ajax 시작 */
 	$.ajax({
 
@@ -92,8 +92,6 @@ $(document).ready(function() {
 		success:
 			function(resultObj) {
 			$("#subtable").empty();
-			$("#HIDDEN").trigger("click");
-			$("#All").trigger("click");
 			var div = $("#subtable");
 			console.log("불러온 데이터 갯수....." + resultObj.data.length);
 
@@ -154,6 +152,9 @@ $(document).ready(function() {
 					"</div>").appendTo(div);
 				}
 			}
+			
+//			$("#HIDDEN").trigger("click");
+			$("#All").trigger("click");
 
 		}
 
@@ -167,20 +168,29 @@ $(document).ready(function() {
 /* more 페이징 */
 $(document).ready(function() {
 	/* count ajax 실행 */
-	var currentPage = 0;
+	var currentPage = 1;
+	var totalPage = 0;
+	
+	
+	$.ajax({
+		url:"../boastboard/ajax/count.do",
+		dataType: "json",
+		async: "json",
+		type: "GET",
+		success: function(resultObj) {			
+			totalPage = resultObj.count;
+			if(totalPage == 1) {
+				  $('#moreBtn-Origin').empty();
+			}
+		}
+	})
+	
 	$('.moreBtn').click(function(event) {
-		$.ajax({
-			url:"../boastboard/ajax/count.do",
-			dataType: "json",
-			async: "json",
-			type: "GET",
-			success: function(resultObj) {
 
-				var totalPage = resultObj.count;
 
 				if(currentPage < totalPage) {
 					currentPage = currentPage + 1;
-					console.log("현재 currentPage...." + currentPage);
+					console.log("List/현재 currentPage...." + currentPage);
 
 					/*Paging ajax 실행*/		
 					$.ajax({
@@ -263,7 +273,7 @@ $(document).ready(function() {
 
 					if(currentPage == totalPage) {
 						$('#more').css({"border":"0px"});
-						$('#more').empty();
+						$('#moreBtn-Origin').empty();
 					}
 
 				} /* IF문 끝 */
@@ -273,8 +283,8 @@ $(document).ready(function() {
 					console.log("더이상 페이지가 존재하지 않습니다.");
 				}
 
-			}
-		})
+
 	})
 });/*마지막지점*/
+
 

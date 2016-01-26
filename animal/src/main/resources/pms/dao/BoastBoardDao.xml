@@ -77,15 +77,32 @@
       sc.PET_SPEC
     from schedule sc 
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
-    where CATE_CODE='JARANG' and NOTI_HIDE=1 and SCH_TITLE like CONCAT('%', #{diary.title}, '%')
+    left outer join Member me on sc.MEM_NUM = me.MEM_NUM
+    where CATE_CODE='JARANG' and NOTI_HIDE=1 
+    and 
+    if(#{diary.title} is not null, sc.SCH_TITLE like CONCAT('%', #{diary.title}, '%'), sc.SCH_TITLE like '%%')
+    and 
+    if(#{diary.member} is not NULL, me.MEM_NAME like CONCAT('%', #{diary.member}, '%'), me.MEM_NAME like '%%')
     order by sc.SCH_CRE desc limit #{startIndex}, #{length}
   </select>
   
-        <select id="searchCount" resultType="double" parameterType="diary">
+  
+  
+    <select id="search_title_Count" resultType="double" parameterType="diary">
       select
       count(*) as count
-    from schedule where SCH_TITLE like CONCAT('%', #{title}, '%');
+    from schedule
+    where SCH_TITLE like CONCAT('%', #{title}, '%') 
     </select>
+    
+    <select id="search_member_Count" resultType="double" parameterType="diary">
+      select
+      count(*) as count
+    from schedule sc
+    left outer join Member me on sc.MEM_NUM = me.MEM_NUM
+    where me.MEM_NAME like CONCAT('%', #{member}, '%') 
+    </select>
+    
   
   
   

@@ -3,7 +3,6 @@
 
 
 
-
 #main-body {
     position: relative;
     top: 230px;
@@ -43,7 +42,8 @@
     width: 1024px;
     margin-left: -15px ;
     padding-left: 15px;
-    /* border: 1px red solid; */
+    /* border: 1px red solid;  */
+    top: 10px;
 }
 
 
@@ -57,6 +57,13 @@ hr {
     border-style: groove;
     border-color: darkgray;
 }
+
+
+#button-form {
+    display: inline;
+}
+
+
 
 button#All{
   display: inline-block;
@@ -191,6 +198,73 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 
+/* search form style */
+
+
+.search-form {
+    position:relative;
+    width:auto;
+    height:auto;
+    float: right;
+    right: -25px;
+    
+    /* border:1px blue solid; */
+	  
+}
+
+.form-control {
+    position: relative;
+    float: right;
+    text-align: center;
+	width: 80px;
+    height: 25px;
+	appearance: none;
+
+}
+
+.form-control:focus {
+    outline: 0 none;
+    border: 1px #d06a79 solid;
+    box-shadow: 0px 0px 5px 1px #C07C86;
+}
+
+.form-search {
+    position: relative;
+    border-radius: 6px;
+    float: right;
+    width: 215px;
+    height: 25px;
+    margin-left: 10px;
+    border: 1px #D7DBDB solid;
+    padding-right: 30px;
+    padding-left: 5px;
+}
+
+.form-search:focus {
+    outline: 0 none;
+    border: 1px #d06a79 solid;
+    box-shadow: 0px 0px 5px 1px #C07C86;
+}
+
+.form-submit {
+    position: relative;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px;
+    float: right;
+    right: 25px;
+    width: 25px;
+    height: 25px;
+    z-index: 1;
+}
+
+.form-submit:active {
+    font-size: 15px;
+    color: #d06a79;
+}
+
+
+
 
 .container .mix{
   display: none;
@@ -240,6 +314,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   margin: 10px 0px;
   margin-left: 10px;
   overflow: hidden;
+  /* border:1px red solid; */
   /* border-radius: 5%; */
 }
 
@@ -451,73 +526,19 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 
-/* search form style */
-
-
-.search-form {
-    position:relative;
-    width:auto;
-    height:25px;
-    right: -15px;
-      bottom: 65px;
-    
-}
-
-.form-control {
-    position: relative;
-    float: right;
-    text-align: center;
-  width: 80px;
-    height: 25px;
-  appearance: none;
-
-}
-
-.form-control:focus {
-    outline: 0 none;
-    border: 1px #d06a79 solid;
-    box-shadow: 0px 0px 5px 1px #C07C86;
-}
-
-.form-search {
-    position: relative;
-    border-radius: 6px;
-    float: right;
-    width: 215px;
-    height: 25px;
-    margin-left: 10px;
-    border: 1px #D7DBDB solid;
-    padding-right: 30px;
-    padding-left: 5px;
-}
-
-.form-search:focus {
-    outline: 0 none;
-    border: 1px #d06a79 solid;
-    box-shadow: 0px 0px 5px 1px #C07C86;
-}
-
-.form-submit {
-    position: relative;
-    background-color: transparent;
-    border-radius: 6px;
-    border: 1px;
-    float: right;
-    right: 25px;
-    width: 25px;
-    height: 25px;
-    z-index: 1;
-}
-
-.form-submit:active {
-    font-size: 15px;
-    color: #d06a79;
-}
-
-
 
 /* more scroll button */
 #more {
+    position:relative;
+	text-align: center;
+    margin: 0 auto;
+    font-size: 18px;
+    width: 1024px;
+    background-color: #2d335e;
+    border: 1px #2d335e solid;
+}
+
+#moreSearch {
     position:relative;
   text-align: center;
     margin: 0 auto;

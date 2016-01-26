@@ -18,7 +18,9 @@ public interface BoastBoardService {
   
   List<Diary> searchList(int pageNo, int pageSize, Diary diary);
   
-  double searchCount(Diary diary);
+  double search_title_Count(Diary diary);
+  
+  double search_member_Count(Diary diary);
 }
 
 

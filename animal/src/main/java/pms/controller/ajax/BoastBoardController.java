@@ -108,6 +108,9 @@ public class BoastBoardController {
       Diary diary
       ) throws Exception {
     
+   log.debug("diary.getTitle()............."+diary.getTitle());
+   log.debug("diary.getMember()............."+diary.getMember());
+    
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
@@ -116,7 +119,6 @@ public class BoastBoardController {
     
     List<Diary> boastboards = boastBoardDao.searchList(paramMap);
     
-
     
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -125,15 +127,23 @@ public class BoastBoardController {
     return resultMap;
   }
   
-  @RequestMapping(value="searchCount", method=RequestMethod.GET)
+  @RequestMapping(value="searchCount", method=RequestMethod.POST)
   public Object searchCount(
   @RequestParam(defaultValue="16") int pageSize,
   Diary diary
   ) throws Exception {
-   
-    double count = boastBoardDao.searchCount(diary);
-    count = Math.ceil(count / pageSize);
     
+    double count = 0;
+    
+    if(diary.getTitle() != null) {
+      count = boastBoardDao.search_title_Count(diary);
+    } else if(diary.getMember() != null) {
+      count = boastBoardDao.search_member_Count(diary);
+    }
+    
+    log.debug("Count의 갯수는......."+count);
+    
+    count = Math.ceil(count / pageSize);
    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
