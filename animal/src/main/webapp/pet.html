@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/kh_map.css">
 
   <!--  상훈 css  -->
-  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
+  <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -124,27 +124,53 @@
 
 <script>
 $(document).ready(function() {
-    //    로그인 회원 정보출력 세션없으면 로그인페이지로
-    var div = $('#user_info');
-    var ul = $('#menu-nav-ul')
-    if ($.session.get('mno') != undefined) {
-        div.append(
-            "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
-            "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-            "<a role='button' id='outBtn' class='logout'>" +
-            "<i class='fa fa-unlock fa-lg'></i></a>")
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  var div = $('#user_info');
+  var ul = $('#menu-nav-ul');
+  if (no == undefined) {
+    div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+  } else {
+    $('#myMno1').val(no);
+    $('#myMno2').val(no);
 
-        ul.append("<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-
-    } else {
-        div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-    }
-
-//    로그아웃
-    $(document).on("click", "#outBtn", function() {
+    div.append(
+      "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+        "<i class='fa fa-envelope-o'></i>" +
+        "<span class='badge' id='userBadge'>0</span>" +
+      "</a>" +
+      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a role='button' id='outBtn' class='logout'>" +
+        "<i class='fa fa-unlock fa-lg'></i>" +
+      "</a>")
+    ul.append(
+      "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+  }
+  
+  // 로그아웃
+  $(document).on("click", "#outBtn", function() {
         $.session.clear();
         location.href = "login.html"
     });
+  
+  // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/noReadMsg.do',
+    type: 'post',
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      $('#userBadge').html(ajaxResult.data.noReadCount)
+    }
+  })
 
 //      $.get("http://ipinfo.io", function(response) {
 //        console.log(response.loc);

@@ -59,7 +59,7 @@
         $(document).ready(function() {
             //    로그인 회원 정보출력 세션없으면 로그인페이지로
             var div = $('#user_info');
-            var ul = $('#menu-nav-ul')
+            var ul = $('#menu-nav-ul');
             if ($.session.get('mno') != undefined) {
                 div.append(
                     "<img src='files/" + $.session.get('mimg') +

@@ -7,7 +7,7 @@
   <title>Slid Menu</title>
   <!--  내가만든 less들  -->
   <link href="css/sh_diary.less" type="style.less" rel="stylesheet/less" />
-  <link href="css/sh_slidmenu_header.less" type="style.less" rel="stylesheet/less" />
+  <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -46,6 +46,9 @@
     <div id="header_title">
       <a class="headerTitle" href="pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="diary.html">
+        다이어리
       </a>
       <div id="user_info"></div>
     </div>
@@ -457,31 +460,51 @@
 <script>
 $(document).ready(function() {
 
-  //    로그인 회원 정보출력 세션없으면 로그인페이지로
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
-    no = 0;
+    location.href = "login.html"
   }
   $('#myMno1').val(no);
   $('#myMno2').val(no);
-
+  
   var div = $('#user_info');
-  if (no != 0) {
-    div.append(
-      "<img src='files/" + $.session.get('mimg') +
-      "' id='userImg' />" +
-      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-      "<a role='button' id='outBtn' class='logout'>" +
-      "<i class='fa fa-unlock fa-lg'></i></a>")
-  } else {
-            location.href = "login.html"
-  }
+  div.append(
+    "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+      "<i class='fa fa-envelope-o'></i>" +
+      "<span class='badge' id='userBadge'>0</span>" +
+    "</a>" +
+    "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+    "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+    "<a role='button' id='outBtn' class='logout'>" +
+      "<i class='fa fa-unlock fa-lg'></i>" +
+    "</a>")
 
   //    로그아웃
   $(document).on("click", "#outBtn", function() {
     $.session.clear();
     location.href = "login.html"
   });
+  
+  // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/noReadMsg.do',
+    type: 'post',
+//    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      $('#count').html(ajaxResult.data.noReadCount)
+      $('#userBadge').html(ajaxResult.data.noReadCount)
+    }
+  })
 
   //    켈린더 출력
   function renderCalendar() {

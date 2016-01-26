@@ -122,4 +122,24 @@ public class MessageController {
 		return new AjaxResult("success", message);
 		
 	}
+	
+	@RequestMapping("delMsg")
+	public Object delMsg(int msgNo) throws Exception {
+		
+		if(messageService.remove(msgNo) <= 0) {
+			return new AjaxResult("failure", null);
+		}
+		return new AjaxResult("success", null);
+		
+	}
+	
+	@RequestMapping("delMsgAll")
+	public Object delMsgAll(int recvMno) throws Exception {
+		
+		if(messageService.removeAll(recvMno) <= 0) {
+			return new AjaxResult("failure", null);
+		}
+		return new AjaxResult("success", null);
+		
+	}
 }

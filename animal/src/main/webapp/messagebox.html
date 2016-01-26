@@ -53,7 +53,7 @@
           <li><a role="button" data-target='#sendMsg' data-toggle='modal'>쪽지쓰기</a></li>
           <li><a role="button" id="recvMsgBox">받은 쪽지함 <span id="count" class="badge">0</span></a></li>
           <li><a role="button" id="sendMsgBox">보낸 쪽지함</a></li>
-          <li><a role="button" id="delMsgAll">전체 삭제</a></li>
+          <li><a role="button" data-target='#delAll' data-toggle='modal'>전체 삭제</a></li>
         </ul>
       </nav>
       
@@ -139,11 +139,30 @@
       </div>
       <div class='modal-body'>
         이 쪽지를 삭제하시겠어요?
-        <input type="hidden" id="comno">
+        <input type="hidden" id="msgno">
       </div>
       <div class='modal-footer'>
         <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
-        <button type="button" id="delCom" class="btn btn-danger">삭제</button>
+        <button type="button" id="delMsg" class="btn btn-danger">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<!-- 쪽지 삭제 확인 모달 -->
+<div id="delAll" class="modal fade bs-example-modal-sm">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class='modal-header'>
+        쪽지 삭제
+      </div>
+      <div class='modal-body'>
+        모든 쪽지를 삭제하시겠어요?
+        <input type="hidden" id="msgno">
+      </div>
+      <div class='modal-footer'>
+        <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" id="delMsgAll" class="btn btn-danger">삭제</button>
       </div>
     </div>
   </div>
@@ -154,18 +173,22 @@ $(document).ready(function() {
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
-//    location.href = "login.html"
+    location.href = "login.html"
   }
   $('#myMno1').val(no);
   $('#myMno2').val(no);
   
   var div = $('#user_info');
   div.append(
-    "<img src='files/" + $.session.get('mimg') +
-    "' id='userImg' />" +
+    "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+      "<i class='fa fa-envelope-o'></i>" +
+      "<span class='badge' id='userBadge'>0</span>" +
+    "</a>" +
+    "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
     "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
     "<a role='button' id='outBtn' class='logout'>" +
-    "<i class='fa fa-unlock fa-lg'></i></a>")
+      "<i class='fa fa-unlock fa-lg'></i>" +
+    "</a>")
   
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
@@ -206,7 +229,7 @@ $(document).ready(function() {
         $("<tr>")
         .html(
         "<td class='del'>" +
-          "<a role='button' data-toggle='modal' data-target='#checkModal'>" +
+          "<a role='button' id='d" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
             "<i class='fa fa-trash'></i>" +
           "</a>" +
         "</td>" +
@@ -238,111 +261,19 @@ $(document).ready(function() {
     success: function(resultObj) {
       var ajaxResult = resultObj.ajaxResult;
       $('#count').html(ajaxResult.data.noReadCount)
+      $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
   
-  // 받은 쪽지함 리스트 출력
-  $(document).on("click", "#recvMsgBox", function() {
-    $('#del').css('display', '')
-    $('#sender').empty();
-    $('#tableBody').empty();
-    var recver = $('#sender');
-    recver.html('보낸사람')
-    var no = $.session.get('mno');
-    var form_data = new FormData();
-    form_data.append("recvMno", no)
-    $.ajax({
-      url: 'message/ajax/recvList.do',
-      type: 'post',
-      async: false,
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      success: function(resultObj) {
-
-        var table = $('#tableBody');
-        var status;
-        var mem;
-        var j = 0;
-
-        for (var msg of resultObj.message) {
-          if(msg.msgChecked == 0) {
-              status = "noread";
-          } else {
-              status = "read";
-          }
-
-          mem = resultObj.memberMap[j];
-          j++;
-
-          $("<tr>")
-          .html(
-          "<td class='del'>" +
-            "<a role='button' data-toggle='modal' data-target='#checkModal'>" +
-              "<i class='fa fa-trash'></i>" +
-            "</a>" +
-          "</td>" +
-          "<td class='sender'>" + mem.mName + "</td>" +
-          "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
-            "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
-              msg.msgContent +
-            "</a>" +
-          "</td>" +
-          "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-          .appendTo(table);
-        }
-      }
-    });
-  });
-  
-  // 보낸 쪽지함 리스트 출력
-  $(document).on("click", "#sendMsgBox", function() {
-    $('#sender').empty();
-    $('#tableBody').empty();
-    var recver = $('#sender');
-    recver.html('받는사람')
-    $('#del').css('display', 'none')
-    var no = $.session.get('mno');
-    var form_data = new FormData();
-    form_data.append("sendMno", no)
-    $.ajax({
-      url: 'message/ajax/sendList.do',
-      type: 'post',
-      async: false,
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      success: function(resultObj) {
-
-        var table = $('#tableBody');
-        var status;
-        var mem;
-        var j = 0;
-        for (var msg of resultObj.message) {
-
-          mem = resultObj.memberMap[j];
-          j++;
-
-          $("<tr>")
-          .html(
-          "<td class='sender'>" + mem.mName + "</td>" +
-          "<td id='msg" + msg.msgNo + "' class='msgContent read'>" +
-            "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
-              msg.msgContent +
-            "</a>" +
-          "</td>" +
-          "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-          .appendTo(table);
-        }
-      }
-    });
-  })
   
 })
+
+// 쪽지 삭제 쪽지번호 모달에 주기
+function del(id) {
+  var did = id.substring(1)
+  console.log(did)
+  $('#msgno').val(did);
+}
 
 // 보낸 쪽지 내용 보기
 function detail2(id) {
@@ -505,6 +436,7 @@ $(document).on("click", "#sendMsgBtn", function() {
                     success: function(resultObj) {
                       var ajaxResult = resultObj.ajaxResult;
                       $('#count').html(ajaxResult.data.noReadCount)
+                      $('#userBadge').html(ajaxResult.data.noReadCount)
                     }
                   })
     
@@ -520,8 +452,8 @@ $(document).on("click", "#sendMsgBtn", function() {
 
                     $("<tr>")
                     .html(
-                    "<td class='del'>" +
-                      "<a role='button' data-toggle='modal' data-target='#checkModal'>" +
+                   "<td class='del'>" +
+                      "<a role='button' id='d" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
                         "<i class='fa fa-trash'></i>" +
                       "</a>" +
                     "</td>" +
@@ -545,6 +477,283 @@ $(document).on("click", "#sendMsgBtn", function() {
     }
   })
 })
+
+// 받은 쪽지함 리스트 출력
+$(document).on("click", "#recvMsgBox", function() {
+  $('#del').css('display', '')
+  $('#sender').empty();
+  $('#tableBody').empty();
+  var recver = $('#sender');
+  recver.html('보낸사람')
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/recvList.do',
+    type: 'post',
+    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+
+      var table = $('#tableBody');
+      var status;
+      var mem;
+      var j = 0;
+
+      for (var msg of resultObj.message) {
+        if(msg.msgChecked == 0) {
+            status = "noread";
+        } else {
+            status = "read";
+        }
+
+        mem = resultObj.memberMap[j];
+        j++;
+
+        $("<tr>")
+        .html(
+        "<td class='del'>" +
+          "<a role='button' id='d" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+            "<i class='fa fa-trash'></i>" +
+          "</a>" +
+        "</td>" +
+        "<td class='sender'>" + mem.mName + "</td>" +
+        "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+          "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+            msg.msgContent +
+          "</a>" +
+        "</td>" +
+        "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+        .appendTo(table);
+      }
+    }
+  });
+});
+
+// 보낸 쪽지함 리스트 출력
+$(document).on("click", "#sendMsgBox", function() {
+  $('#sender').empty();
+  $('#tableBody').empty();
+  var recver = $('#sender');
+  recver.html('받는사람')
+  $('#del').css('display', 'none')
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("sendMno", no)
+  $.ajax({
+    url: 'message/ajax/sendList.do',
+    type: 'post',
+    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+
+      var table = $('#tableBody');
+      var status;
+      var mem;
+      var j = 0;
+      for (var msg of resultObj.message) {
+
+        mem = resultObj.memberMap[j];
+        j++;
+
+        $("<tr>")
+        .html(
+        "<td class='sender'>" + mem.mName + "</td>" +
+        "<td id='msg" + msg.msgNo + "' class='msgContent read'>" +
+          "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+            msg.msgContent +
+          "</a>" +
+        "</td>" +
+        "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+        .appendTo(table);
+      }
+    }
+  });
+})
+
+// 쪽지 삭제
+$(document).on("click", "#delMsg", function() {
+  var form_data = new FormData();
+  form_data.append("msgNo", $('#msgno').val())
+  $.ajax({
+    url: 'message/ajax/delMsg.do',
+    type: 'post',
+    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      alert("삭제에 성공했습니다.")
+      $('#checkModal').modal('hide')
+
+      $('#tableBody').empty();
+      var no = $.session.get('mno');
+      var form_data = new FormData();
+      form_data.append("recvMno", no)
+      $.ajax({
+        url: 'message/ajax/recvList.do',
+        type: 'post',
+        async: false,
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function(resultObj) {
+
+          var table = $('#tableBody');
+          var status;
+          var mem;
+          var j = 0;
+
+          var no = $.session.get('mno');
+          var form_data = new FormData();
+          form_data.append("recvMno", no)
+          $.ajax({
+            url: 'message/ajax/noReadMsg.do',
+            type: 'post',
+        //    async: false,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            success: function(resultObj) {
+              var ajaxResult = resultObj.ajaxResult;
+              $('#count').html(ajaxResult.data.noReadCount)
+            }
+          })
+
+          for (var msg of resultObj.message) {
+            if(msg.msgChecked == 0) {
+                status = "noread";
+            } else {
+                status = "read";
+            }
+
+            mem = resultObj.memberMap[j];
+            j++;
+
+            $("<tr>")
+            .html(
+            "<td class='del'>" +
+              "<a role='button' id='d" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                "<i class='fa fa-trash'></i>" +
+              "</a>" +
+            "</td>" +
+            "<td class='sender'>" + mem.mName + "</td>" +
+            "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+              "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                msg.msgContent +
+              "</a>" +
+            "</td>" +
+            "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+            .appendTo(table);
+          }
+        }
+      });
+    }
+  })
+})
+
+// 전체 쪽지 삭제
+$(document).on("click", "#delMsgAll", function() {
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/delMsgAll.do',
+    type: 'post',
+    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      alert("삭제에 성공했습니다.")
+      $('#delAll').modal('hide')
+
+      $('#tableBody').empty();
+      var no = $.session.get('mno');
+      var form_data = new FormData();
+      form_data.append("recvMno", no)
+      $.ajax({
+        url: 'message/ajax/recvList.do',
+        type: 'post',
+        async: false,
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function(resultObj) {
+
+          var table = $('#tableBody');
+          var status;
+          var mem;
+          var j = 0;
+
+          var no = $.session.get('mno');
+          var form_data = new FormData();
+          form_data.append("recvMno", no)
+          $.ajax({
+            url: 'message/ajax/noReadMsg.do',
+            type: 'post',
+        //    async: false,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            success: function(resultObj) {
+              var ajaxResult = resultObj.ajaxResult;
+              $('#count').html(ajaxResult.data.noReadCount)
+            }
+          })
+
+          for (var msg of resultObj.message) {
+            if(msg.msgChecked == 0) {
+                status = "noread";
+            } else {
+                status = "read";
+            }
+
+            mem = resultObj.memberMap[j];
+            j++;
+
+            $("<tr>")
+            .html(
+            "<td class='del'>" +
+              "<a role='button' id='d" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                "<i class='fa fa-trash'></i>" +
+              "</a>" +
+            "</td>" +
+            "<td class='sender'>" + mem.mName + "</td>" +
+            "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+              "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                msg.msgContent +
+              "</a>" +
+            "</td>" +
+            "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+            .appendTo(table);
+          }
+        }
+      });
+    }
+  })
+})
+  
 // 새일정추가 모달 닫으면 입력 초기화
 $('#sendMsg').on('hide.bs.modal', function(e) {
   $('#sendName').val('');
