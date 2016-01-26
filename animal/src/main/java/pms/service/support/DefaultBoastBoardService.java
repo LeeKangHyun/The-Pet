@@ -49,8 +49,13 @@ public class DefaultBoastBoardService implements BoastBoardService {
     return boastboardDao.searchList(paramMap);
   }
   
-  public double searchCount(Diary diary) {
-    return boastboardDao.searchCount(diary);
+  public double search_title_Count(Diary diary) {
+    return boastboardDao.search_title_Count(diary);
+  }
+  
+  
+  public double search_member_Count(Diary diary) {
+    return boastboardDao.search_member_Count(diary);
   }
 
 

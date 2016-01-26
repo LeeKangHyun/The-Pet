@@ -17,7 +17,9 @@ public interface BoastBoardDao {
   
   List<Diary> searchList(Map<String, Object> paramMap);
   
-  double searchCount(Diary diary);
+  double search_title_Count(Diary diary);
+  
+  double search_member_Count(Diary diary);
   
 }
 
