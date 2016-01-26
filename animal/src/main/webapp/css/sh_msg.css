@@ -5,12 +5,13 @@
 #mainTitle {
   width: 1024px;
   height: 300px;
-  font-size: 30px;
+  font-size: 35px;
   margin-left: 25px;
+  line-height: 80px;
 }
 
 #msgBox {
-  
+  margin-top: 40px;
 }
 
 #msg-nav {
@@ -36,6 +37,11 @@
   font-size: 17px;
 }
 
+.badge {
+  background-color: #2d335e;
+  margin-bottom: 3px;
+}
+
 #msgList {
   float: right !important;
   width: 800px;
@@ -46,14 +52,20 @@
   font-size: 14px;
 }
 
+#del, .del {
+  width: 40px;
+  text-align: center;
+/*  display: none;*/
+}
+
 #sender, .sender {
-  min-width: 150px;
+  min-width: 130px;
   width: 150px;
   text-align: center;
 }
 
 #msgContent, .msgContent {
-  max-width: 500px;
+  max-width: 490px;
   width: 500px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -61,9 +73,17 @@
 }
 
 #msgDate, .msgDate {
-  min-width: 150px;
+  min-width: 130px;
   width: 150px;
   text-align: center;
+}
+
+.del {
+  text-decoration: none;
+}
+
+.del > a > i {
+  color: #ff0000;
 }
 
 #sender {

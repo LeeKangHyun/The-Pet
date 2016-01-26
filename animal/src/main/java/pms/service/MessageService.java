@@ -9,6 +9,7 @@ import pms.domain.Message;
 public interface MessageService {
 	
   List<Message> msgList(int recvMno, int pageNo);
+  List<Message> sendMsgList(int sendMno, int pageNo);
 	Message msgDetail(int msgNo);
 	Message noReadMsg(int recvMno);
 	int readMsg(int msgNo);

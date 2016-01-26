@@ -23,6 +23,14 @@ public class DefaultMessageService implements MessageService {
 		return messageDao.selectList(paramMap);
   }
 	
+	public List<Message> sendMsgList(int sendMno, int pageNo) {
+		HashMap<String, Object> paramMap = new HashMap<>();
+	  paramMap.put("startIndex", (pageNo - 1) * 15);
+	  paramMap.put("sendMno", sendMno);
+	  
+		return messageDao.sendList(paramMap);
+  }
+	
 	public Message msgDetail(int msgNo) {
 		return messageDao.selectOne(msgNo);
 	}

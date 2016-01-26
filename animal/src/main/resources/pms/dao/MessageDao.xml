@@ -28,6 +28,20 @@
 		limit #{startIndex}, 15
 	</select>
 	
+	<select id="sendList" resultMap="messageMap" parameterType="map">
+		select 
+			MSG_NUM, 
+			MEM_NUM,
+			MEM_NUM2,
+			MSG_CONTENT,
+			CHECKED,
+			SEND_DATE
+		from message
+		where MEM_NUM=#{sendMno}
+		order by SEND_DATE desc
+		limit #{startIndex}, 15
+	</select>
+	
 	<select id="selectOne" resultMap="messageMap" parameterType="int">
 		select 
 			MSG_NUM, 

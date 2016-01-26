@@ -7,6 +7,8 @@ import pms.domain.Message;
 
 public interface MessageDao {
 	List<Message> selectList(Map<String, Object> paramMap);
+	
+	List<Message> sendList(Map<String, Object> paramMap);
 
 	Message selectOne(int msgNo);
 	

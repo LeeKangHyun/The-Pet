@@ -25,8 +25,8 @@ public class MessageController {
 	@Autowired MemberService memberService;
 	@Autowired ServletContext servletContext;
 
-	@RequestMapping("list")
-	public Object list(int recvMno,
+	@RequestMapping("recvList")
+	public Object recvList(int recvMno,
 			@RequestParam(defaultValue="1") int pageNo) throws Exception {
 		 
 		List<Message> message = messageService.msgList(recvMno, pageNo);
@@ -36,6 +36,29 @@ public class MessageController {
 		
 		for (Message m : message) {
 			member = memberService.oneMember(m.getSendMno());
+			memberMap.add(member);
+		}
+		
+		HashMap<String,Object> resultMap = new HashMap<>();
+		resultMap.put("status", "success");
+		resultMap.put("message", message);
+		resultMap.put("memberMap", memberMap);
+		
+		return resultMap;
+		
+	}
+	
+	@RequestMapping("sendList")
+	public Object sendList(int sendMno,
+			@RequestParam(defaultValue="1") int pageNo) throws Exception {
+		 
+		List<Message> message = messageService.sendMsgList(sendMno, pageNo);
+		
+		Member member = null;
+		List<Member> memberMap = new ArrayList<>();
+		
+		for (Message m : message) {
+			member = memberService.oneMember(m.getRecvMno());
 			memberMap.add(member);
 		}
 		
@@ -77,6 +100,24 @@ public class MessageController {
 		Message message = messageService.msgDetail(msgNo);
 		
 		messageService.readMsg(msgNo);
+		
+		return new AjaxResult("success", message);
+		
+	}
+	
+	@RequestMapping("detail2")
+	public Object detail2(int msgNo) throws Exception {
+		
+		Message message = messageService.msgDetail(msgNo);
+		
+		return new AjaxResult("success", message);
+		
+	}
+	
+	@RequestMapping("noReadMsg")
+	public Object noReadMsg(int recvMno) throws Exception {
+		
+		Message message = messageService.noReadMsg(recvMno);
 		
 		return new AjaxResult("success", message);
 		
