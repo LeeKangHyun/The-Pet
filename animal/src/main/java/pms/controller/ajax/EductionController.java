@@ -1,5 +1,6 @@
 package pms.controller.ajax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,8 +35,7 @@ public class EductionController {
 			@RequestParam(defaultValue="1") int pageNo,
 			@RequestParam(defaultValue="10") int pageSize,
 			@RequestParam(defaultValue="EDU_CRE") String keyword,
-			@RequestParam(defaultValue="desc") String align,
-			Files files) throws Exception {
+			@RequestParam(defaultValue="desc") String align) throws Exception {
 		
 		
 		HashMap<String,Object> paramMap = new HashMap<>();
@@ -45,10 +45,18 @@ public class EductionController {
         paramMap.put("align", align);
     
 		List<Education> educations = educationDao.selectList(paramMap);
+		List<Files> files = null;
+		List<List<Files>> filesMap = new ArrayList<>();
+		
+		for (Education e : educations) {
+			files = filesDao.EduFileList(e.getEduNo());
+			filesMap.add(files);
+		}
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
 		resultMap.put("data", educations);
+		resultMap.put("filesMap", filesMap);
 		
 		return resultMap;
 	}
