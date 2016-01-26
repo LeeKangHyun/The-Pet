@@ -15,27 +15,6 @@ insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(3,2,'
 insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,4,'YO',true,now());
 insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,1,'CSS',false,now());
 
-/* 교육 내용 입력 */
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('포메라이안 교육','교육이다아아앙1','DIV01',now(),1);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('냐옹이 교육','교육이다아아앙2','DIV02','2015-01-01',1);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('송사리 교육','교육이다아아앙3','DIV03',now(),2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('상어 교육','교육이다아아앙4','DIV03','2016-01-01',3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('앵무새 교육','교육이다아아앙5','DIV04','2015-12-30',2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('악어 교육','교육이다아아앙6','DIV05',now(),3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('타조 교육','교육이다아아앙7','DIV04',now(),4);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('시베리안 허스키 교육','교육이다아아앙8','DIV01','2015-12-01',3);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('페르시안 교육','교육이다아아앙9','DIV02','2015-03-27',2);
-insert into Education(EDU_TITLE,EDU_CONTENT,EDU_SPEC,EDU_CRE,MEM_NUM)
-  values('터키 앙고라 교육','교육이다아아앙10','DIV02','2016-01-05',3);
 
 /* 내 펫 추가하기 */
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)

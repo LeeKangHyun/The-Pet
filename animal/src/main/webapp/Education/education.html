@@ -12,7 +12,6 @@
 <!--  내가만든 css들  -->
 <link href="../css/sh_slidmenu_header.less" type="style.less"
   rel="stylesheet/less" />
-<!--  <link href="css/sh_slid_checkbox.css" type="text/css" rel="stylesheet" />-->
 
 <!--  폰트아이콘 링크  -->
 <link href="../lib/font-awesome/css/font-awesome.min.css"
@@ -183,17 +182,18 @@
       success : function(resultObj) {
         $("button:first").trigger("click");
         var div = $("#subtable");
+        var j = 0;
         var file;
         for(var education of resultObj.data) {
-        	  file = resultObj.filesMap;
+            file = resultObj.filesMap[j];
+            j++;
           $("<div class='boxsub1 gallery mix all " + education.eduSpec + "'>")
           .html(
               "<div class='card'>"+
-              "<div class='background detailLnk' eduNo='" + education.eduNo + "'>"+
-              "<img src='../files/" + file.fileName + "' width='325px;' height='410px;' />"+
+              "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
+              "<img src='../files/" + file[0].fileName + "' width='325px;' height='410px;' />"+
               "</div>"+
-              "<a class='overlay detailLnk' href='#' eduNo='"
-              + education.eduNo + "' ></a> " + 
+              "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
               "<i class='fa fa-youtube-play'></i>"+
               "</a> <a class='thumb' href='#'></a>"+
               "<div class='infosub'>"+
@@ -208,9 +208,6 @@
               "</div>"+
           "</div>")
           .appendTo(div);
-          console.log(education.eduTitle);
-          console.log(education);
-          j++;
         }
         $("a.detailLnk").click(clickDetailLnk);
       }
@@ -256,11 +253,10 @@
                   data: form_data,
                   type: 'post',
                   success: function(resultObj) {
-                      console.log(file_name)
                   }
                 })
               }
-              alert("다이어리가 추가되었습니다.")
+              alert("게시물이 추가되었습니다.")
               location.href = "education.html"
             }
           })

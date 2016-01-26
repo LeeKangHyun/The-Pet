@@ -65,6 +65,12 @@ public class Files implements Serializable {
     this.fName = fName;
   }
   ///////////////////////////////////////////
+
+	@Override
+	public String toString() {
+		return "Files [fno=" + fno + ", fileName=" + fileName + ", eduNo=" + eduNo + ", matNo=" + matNo + ", sno=" + sno
+		    + ", dno=" + dno + ", fName=" + fName + "]";
+	}
 	
 	
 	

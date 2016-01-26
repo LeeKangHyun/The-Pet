@@ -51,6 +51,8 @@ public class EductionController {
 		for (Education e : educations) {
 			files = filesDao.EduFileList(e.getEduNo());
 			filesMap.add(files);
+			System.out.println(files);
+			System.out.println(filesMap);
 		}
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
