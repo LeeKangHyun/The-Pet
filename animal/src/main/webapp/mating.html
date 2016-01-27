@@ -459,11 +459,13 @@ $(document).on("click", "#comDelBtn", function() {
   }
 })
 
+//댓글 삭제 도우미
 function del(id) {
   $('#comno').val(id)
   $('#checkModal').modal('show')
 }
 
+// 댓글 삭제
 $(document).on("click", "#delCom", function() {
   var form_data = new FormData();
   console.log($('#comno').val())

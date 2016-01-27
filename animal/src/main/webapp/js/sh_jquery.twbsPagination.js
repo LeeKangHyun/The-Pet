@@ -112,6 +112,7 @@
 
             for (var i = 0; i < pages.numeric.length; i++) {
                 listItems.push(this.buildItem('page', pages.numeric[i]));
+                
             }
 
             if (this.options.next) {
@@ -135,6 +136,9 @@
                 case 'page':
                     itemText = page;
                     $itemContainer.addClass(this.options.pageClass);
+                    if (itemText == 1) {
+                      $itemContainer.attr('id', '1p');
+                    }
                     break;
                 case 'first':
                     itemText = this.options.first;

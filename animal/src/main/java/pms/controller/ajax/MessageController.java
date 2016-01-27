@@ -99,7 +99,26 @@ public class MessageController {
 		}
 		
 		return new AjaxResult("success", null);
+	}
+	
+	@RequestMapping("recvPage")
+	public Object recvPage(int recvMno) throws Exception {
+
+		Receive recv = reciveService.recvBoxCount(recvMno);
+		System.out.println(recv.getCount());
+		double page = Math.ceil(recv.getCount()/15);
+		System.out.println(page);
+		return new AjaxResult("success", page);
+	}
+	
+	@RequestMapping("sendPage")
+	public Object sendPage(int sendMno) throws Exception {
+
+		Send send = sendService.sendBoxCount(sendMno);
 		
+		double page = Math.ceil(send.getCount()/15);
+		System.out.println(page);
+		return new AjaxResult("success", page);
 	}
 	
 	@RequestMapping("recvDetail")

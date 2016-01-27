@@ -14,14 +14,15 @@ public class Receive implements Serializable {
 	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 false(0), 읽으면 true(1)
 	protected Date msgCreateDate;
 	protected int noReadCount;
-	protected int count;
+	protected double count;
 	
 	public Receive () {}
 	
-	public int getCount() {
+
+	public double getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+	public void setCount(double count) {
 		this.count = count;
 	}
 	public int getNoReadCount() {

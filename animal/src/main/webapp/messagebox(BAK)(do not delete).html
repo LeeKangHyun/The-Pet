@@ -60,7 +60,7 @@
       
       <table id="msgList" class="table table-hover table-condensed">
         <thead>
-          <tr id="tabletitle">
+          <tr>
             <td id="del"><i class="fa fa-trash-o"></i></td>
             <td id="sender">보낸사람</td>
             <td id="msgContent">내용</td>
@@ -72,14 +72,13 @@
       </table>
       
       <input type="hidden" id="nowStatus" value="r">
-      
       <ul id="pagination" class="pagination pagination-sm"></ul>
       
     </div>
   </section>
   
 <!-- 쪽지 보내기 모달 -->
-<div id="sendMsg" class="modal fade" data-keyboard="true">
+  <div id="sendMsg" class="modal fade" data-keyboard="true">
     <div class="modal-dialog">
       <div class="modal-content">
         
@@ -156,7 +155,7 @@
   </div>
 </div>
   
-<!-- 쪽지 전체삭제 확인 모달 -->
+<!-- 쪽지 삭제 확인 모달 -->
 <div id="delAll" class="modal fade bs-example-modal-sm">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -181,8 +180,10 @@ $(document).ready(function() {
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
-    location.href = "login.html"
+//    location.href = "login.html"
   }
+  $('#myMno1').val(no);
+  $('#myMno2').val(no);
   
   var div = $('#user_info');
   div.append(
@@ -203,12 +204,21 @@ $(document).ready(function() {
   });
   
   $('#pagination').empty();
-
+  var url1;
+  var url2;
+  var nowstatus = $('#nowStatus').val();
+  if (nowstatus == 'r') {
+    url1 = 'message/ajax/recvPage.do';
+    
+  } else {
+    url1 = 'message/ajax/sendPage.do';
+    
+  }
   var form_data = new FormData();
   form_data.append("recvMno", no)
-  
+  form_data.append("sendMno", no)
   $.ajax({
-    url: 'message/ajax/recvPage.do',
+    url: url1,
     type: 'post',
     dataType: 'json',
     cashe: false,
@@ -218,21 +228,34 @@ $(document).ready(function() {
     success: function(resultObj) {
       var ajaxResult = resultObj.ajaxResult;
       var totalPage = ajaxResult.data;
+      totalPage = parseInt(totalPage);
+      console.log("성공")
+      $('#pagination').css('display', '')
+      $('#pagination2').css('display', 'none')
       
       $('#pagination').twbsPagination({
         totalPages: totalPage,
         visiblePages: 7,
         onPageClick: function (event, page) {
+          console.log('페이징접속')
           
+          var nowstatus = $('#nowStatus').val();
+          console.log(nowstatus)
+          if (nowstatus == 'r') {
+            url2 = 'message/ajax/recvList.do';
+          } else {
+            url2 = 'message/ajax/sendList.do';
+          }
           // 처음 화면 출력
           var now = page;
           var no = $.session.get('mno');
           var form_data = new FormData();
           form_data.append("recvMno", no)
+          form_data.append("sendMno", no)
           form_data.append("pageNo", page)
           
           $.ajax({
-            url: 'message/ajax/recvList.do',
+            url: url2,
             type: 'post',
             dataType: 'json',
             cache: false,
@@ -256,26 +279,39 @@ $(document).ready(function() {
                 mem = resultObj.memberMap[j];
                 j++;
 
-                $("<tr>")
-                .html(
-                "<td class='del'>" +
-                  "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
-                    "<i class='fa fa-trash'></i>" +
-                  "</a>" +
-                "</td>" +
-                "<td class='sender'>" +
-                  "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" + 
-                    mem.mName + " (" + mem.mEmail +
-                  ")</a>" +
-                "</td>" +
-                "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
-                  "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
-                    msg.msgContent +
-                  "</a>" +
-                "</td>" +
-                "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-                .appendTo(table);
-              
+                if (nowstatus == 's') {
+                  $("<tr>")
+                  .html(
+                  "<td class='del'>" +
+                    "<a role='button' id='s" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                      "<i class='fa fa-trash'></i>" +
+                    "</a>" +
+                  "</td>" +
+                  "<td class='sender'>" + mem.mName + "</td>" +
+                  "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                    "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+                      msg.msgContent +
+                    "</a>" +
+                  "</td>" +
+                  "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+                  .appendTo(table);
+                } else {
+                  $("<tr>")
+                  .html(
+                  "<td class='del'>" +
+                    "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                      "<i class='fa fa-trash'></i>" +
+                    "</a>" +
+                  "</td>" +
+                  "<td class='sender'>" + mem.mName + "</td>" +
+                  "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                    "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                      msg.msgContent +
+                    "</a>" +
+                  "</td>" +
+                  "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+                  .appendTo(table);
+                }
               }
             }
           });
@@ -306,12 +342,6 @@ $(document).ready(function() {
   
 })
 
-// 보낸사람 이름 클릭시 답글 쓰기
-function reply(id) {
-  $('#sendMsg').modal('show')
-  $('#sendName').val(id);
-}
-
 // 쪽지 삭제 쪽지번호 모달에 주기
 function del(id) {
   var type = id.substring(0,1);
@@ -319,6 +349,29 @@ function del(id) {
   $('#msgno').val(did);
   $('#deltype').val(type);
 }
+
+// 보낸 쪽지 내용 보기
+//function detail2(id) {
+//  var form_data = new FormData();
+//  form_data.append("msgNo", id)
+//  $.ajax({
+//    url: 'message/ajax/sendDetail.do',
+//    type: 'post',
+//    async: false,
+//    dataType: 'json',
+//    cache: false,
+//    contentType: false,
+//    processData: false,
+//    data: form_data,
+//    success: function(resultObj) {
+//      var ajaxResult = resultObj.ajaxResult;
+//    
+//      $('#msg' + id).removeClass("noread");
+//      $('#msg' + id).addClass("read");
+//      $('#viewMsg').html(ajaxResult.data.msgContent)
+//    }
+//  })
+//}
 
 // 받은 쪽지 내용 보기
 function detail(id) {
@@ -381,6 +434,10 @@ $(document).on("click", "#sendMsgBtn", function() {
     
       var ajaxResult = resultObj.ajaxResult;
     
+      console.log(ajaxResult)
+      console.log(ajaxResult.status)
+      console.log(ajaxResult.data)
+    
       if(ajaxResult.status == "success") {
         var form_data = new FormData();
         form_data.append("sendMno", no)
@@ -415,14 +472,7 @@ $(document).on("click", "#sendMsgBtn", function() {
               processData: false,
               data: form_data,
               success: function(resultObj) {
-    
-                $('.page').removeClass("active");
-                $('#1p').addClass("active");
-                $('.last').removeClass("disabled");
-                $('.next').removeClass("disabled");
-                $('.first').addClass("disabled");
-                $('.prev').addClass("disabled");
-    
+
                 var table = $('#tableBody');
                 var status;
                 var mem;
@@ -466,11 +516,7 @@ $(document).on("click", "#sendMsgBtn", function() {
                       "<i class='fa fa-trash'></i>" +
                     "</a>" +
                   "</td>" +
-                  "<td class='sender'>" +
-                    "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" + 
-                      mem.mName + " (" + mem.mEmail +
-                    ")</a>" +
-                  "</td>" +
+                  "<td class='sender'>" + mem.mName + "</td>" +
                   "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
                     "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
                       msg.msgContent +
@@ -490,13 +536,233 @@ $(document).on("click", "#sendMsgBtn", function() {
   })
 })
 
+// 받은 쪽지함 리스트 출력
+//$(document).on("click", "#recvMsgBox", function() {
+//  $('#sender').empty();
+//  $('#tableBody').empty();
+//  
+//  $('#nowStatus').val('r');
+//  $('#deltypea').val('r');
+//  
+//  var recver = $('#sender');
+//  recver.html('보낸사람')
+//  
+//  var no = $.session.get('mno');
+//  var form_data = new FormData();
+//  form_data.append("recvMno", no)
+//  $.ajax({
+//    url: 'message/ajax/recvList.do',
+//    type: 'post',
+//    async: false,
+//    dataType: 'json',
+//    cache: false,
+//    contentType: false,
+//    processData: false,
+//    data: form_data,
+//    success: function(resultObj) {
+//
+//      var table = $('#tableBody');
+//      var status;
+//      var mem;
+//      var j = 0;
+//
+//      for (var msg of resultObj.message) {
+//        if(msg.msgChecked == 0) {
+//            status = "noread";
+//        } else {
+//            status = "read";
+//        }
+//
+//        mem = resultObj.memberMap[j];
+//        j++;
+//
+//        $("<tr>")
+//        .html(
+//        "<td class='del'>" +
+//          "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+//            "<i class='fa fa-trash'></i>" +
+//          "</a>" +
+//        "</td>" +
+//        "<td class='sender'>" + mem.mName + "</td>" +
+//        "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+//          "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+//            msg.msgContent +
+//          "</a>" +
+//        "</td>" +
+//        "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+//        .appendTo(table);
+//      }
+//    }
+//  });
+//});
+
+// 보낸 쪽지함 리스트 출력
+//$(document).on("click", "#sendMsgBox", function() {
+//  $('#sender').empty();
+//  $('#tableBody').empty();
+//  
+//  $('#deltypea').val('s');
+//  $('#nowStatus').val('s');
+//  
+//  var recver = $('#sender');
+//  recver.html('받는사람')
+//  var url1;
+//  var url2;
+//  url1 = 'message/ajax/sendPage.do';
+//  url2 = 'message/ajax/sendList.do';
+//  $('#pagination').empty();
+//  var no = $.session.get('mno');
+//  var form_data = new FormData();
+//  form_data.append("sendMno", no)
+//  
+//  $.ajax({
+//    url: url1,
+//    type: 'post',
+//    dataType: 'json',
+////    async: false,
+//    cashe: false,
+//    contentType: false,
+//    processData: false,
+//    data: form_data,
+//    success: function(resultObj) {
+//      var ajaxResult = resultObj.ajaxResult;
+//      var totalPage = ajaxResult.data;
+//      totalPage = parseInt(totalPage) + 1;
+//      console.log("보낸편지함성공")
+//      $('#pagination').css('display', 'none')
+//      $('#pagination2').css('display', '')
+//      
+//      $('#pagination').twbsPagination({
+//        totalPages: totalPage,
+//        visiblePages: 7,
+//        onPageClick: function (event, page) {
+//        console.log('보낸편지함페이징접속')
+//
+//          // 처음 화면 출력
+//          var now = page;
+//          var no = $.session.get('mno');
+//          var form_data = new FormData();
+//          form_data.append("sendMno", no)
+//          form_data.append("pageNo", page)
+//          
+//          $.ajax({
+//            url: url2,
+//            type: 'post',
+//            dataType: 'json',
+//            async: false,
+//            cache: false,
+//            contentType: false,
+//            processData: false,
+//            data: form_data,
+//            success: function(resultObj) {
+//              $('#tableBody').empty();
+//              var table = $('#tableBody');
+//              var status;
+//              var mem;
+//              var j = 0;
+//
+//              for (var msg of resultObj.message) {
+//                if(msg.msgChecked == 0) {
+//                    status = "noread";
+//                } else {
+//                    status = "read";
+//                }
+//
+//                mem = resultObj.memberMap[j];
+//                j++;
+//
+//                $("<tr>")
+//                .html(
+//                "<td class='del'>" +
+//                  "<a role='button' id='s" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+//                    "<i class='fa fa-trash'></i>" +
+//                  "</a>" +
+//                "</td>" +
+//                "<td class='sender'>" + mem.mName + "</td>" +
+//                "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+//                  "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+//                    msg.msgContent +
+//                  "</a>" +
+//                "</td>" +
+//                "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+//                .appendTo(table);
+//                
+//              }
+//            }
+//          });
+//        }
+//      });
+//    }
+//  })
+//  $('#sender').empty();
+//  $('#tableBody').empty();
+//  
+//  $('#deltypea').val('s');
+//  $('#nowStatus').val('s');
+//  
+//  var recver = $('#sender');
+//  recver.html('받는사람')
+//  
+//  var no = $.session.get('mno');
+//  var form_data = new FormData();
+//  form_data.append("sendMno", no)
+//  $.ajax({
+//    url: 'message/ajax/sendList.do',
+//    type: 'post',
+//    async: false,
+//    dataType: 'json',
+//    cache: false,
+//    contentType: false,
+//    processData: false,
+//    data: form_data,
+//    success: function(resultObj) {
+//
+//      var table = $('#tableBody');
+//      var status;
+//      var mem;
+//      var j = 0;
+//      for (var msg of resultObj.message) {
+//
+//        mem = resultObj.memberMap[j];
+//        j++;
+//
+//        $("<tr>")
+//        .html(
+//        "<td class='del'>" +
+//          "<a role='button' id='s" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+//            "<i class='fa fa-trash'></i>" +
+//          "</a>" +
+//        "</td>" +
+//        "<td class='sender'>" + mem.mName + "</td>" +
+//        "<td id='msg" + msg.msgNo + "' class='msgContent read'>" +
+//          "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+//            msg.msgContent +
+//          "</a>" +
+//        "</td>" +
+//        "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+//        .appendTo(table);
+//      }
+//    }
+//  });
+//})
+
 // 쪽지 삭제
 $(document).on("click", "#delMsg", function() {
   var form_data = new FormData();
   form_data.append("msgNo", $('#msgno').val())
-  
+  var type = $('#deltype').val();
+  console.log(type)
+  var url1;
+  var url2;
+  if (type == 's') {
+    url1 = 'message/ajax/delSendMsg.do';
+    url2 = 'message/ajax/sendList.do';
+  } else {
+    url1 = 'message/ajax/delRecvMsg.do';
+    url2 = 'message/ajax/recvList.do';
+  }
   $.ajax({
-    url: 'message/ajax/delRecvMsg.do',
+    url: url1,
     type: 'post',
     async: false,
     dataType: 'json',
@@ -512,9 +778,9 @@ $(document).on("click", "#delMsg", function() {
       var no = $.session.get('mno');
       var form_data = new FormData();
       form_data.append("recvMno", no)
-
+      form_data.append("sendMno", no)
       $.ajax({
-        url: 'message/ajax/recvList.do',
+        url: url2,
         type: 'post',
         async: false,
         dataType: 'json',
@@ -523,14 +789,7 @@ $(document).on("click", "#delMsg", function() {
         processData: false,
         data: form_data,
         success: function(resultObj) {
-    
-          $('.page').removeClass("active");
-          $('#1p').addClass("active");
-          $('.last').removeClass("disabled");
-          $('.next').removeClass("disabled");
-          $('.first').addClass("disabled");
-          $('.prev').addClass("disabled");
-    
+
           var table = $('#tableBody');
           var status;
           var mem;
@@ -539,7 +798,7 @@ $(document).on("click", "#delMsg", function() {
           var no = $.session.get('mno');
           var form_data = new FormData();
           form_data.append("recvMno", no)
-
+          form_data.append("sendMno", no)
           $.ajax({
             url: 'message/ajax/noReadMsg.do',
             type: 'post',
@@ -565,26 +824,39 @@ $(document).on("click", "#delMsg", function() {
             mem = resultObj.memberMap[j];
             j++;
             
-            $("<tr>")
-            .html(
-            "<td class='del'>" +
-              "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
-                "<i class='fa fa-trash'></i>" +
-              "</a>" +
-            "</td>" +
-            "<td class='sender'>" +
-              "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" + 
-                mem.mName + " (" + mem.mEmail +
-              ")</a>" +
-            "</td>" +
-            "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
-              "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
-                msg.msgContent +
-              "</a>" +
-            "</td>" +
-            "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-            .appendTo(table);
-
+            if (type == 's') {
+              $("<tr>")
+              .html(
+              "<td class='del'>" +
+                "<a role='button' id='s" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                  "<i class='fa fa-trash'></i>" +
+                "</a>" +
+              "</td>" +
+              "<td class='sender'>" + mem.mName + "</td>" +
+              "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+                  msg.msgContent +
+                "</a>" +
+              "</td>" +
+              "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+              .appendTo(table);
+            } else {
+              $("<tr>")
+              .html(
+              "<td class='del'>" +
+                "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                  "<i class='fa fa-trash'></i>" +
+                "</a>" +
+              "</td>" +
+              "<td class='sender'>" + mem.mName + "</td>" +
+              "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                  msg.msgContent +
+                "</a>" +
+              "</td>" +
+              "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+              .appendTo(table);
+            }
           }
         }
       });
@@ -594,12 +866,23 @@ $(document).on("click", "#delMsg", function() {
 
 // 전체 쪽지 삭제
 $(document).on("click", "#delMsgAll", function() {
+  var type = $('#deltypea').val();
+  var url1;
+  var url2;
+  if (type == 's') {
+    url1 = 'message/ajax/delSendMsgAll.do';
+    url2 = 'message/ajax/sendList.do';
+  } else {
+    url1 = 'message/ajax/delRecvMsgAll.do';
+    url2 = 'message/ajax/recvList.do';
+  }
+  
   var no = $.session.get('mno');
   var form_data = new FormData();
   form_data.append("recvMno", no)
-
+  form_data.append("sendMno", no)
   $.ajax({
-    url: 'message/ajax/delRecvMsgAll.do',
+    url: url1,
     type: 'post',
     async: false,
     dataType: 'json',
@@ -615,9 +898,9 @@ $(document).on("click", "#delMsgAll", function() {
       var no = $.session.get('mno');
       var form_data = new FormData();
       form_data.append("recvMno", no)
-
+      form_data.append("sendMno", no)
       $.ajax({
-        url: 'message/ajax/recvList.do',
+        url: url2,
         type: 'post',
         async: false,
         dataType: 'json',
@@ -627,13 +910,6 @@ $(document).on("click", "#delMsgAll", function() {
         data: form_data,
         success: function(resultObj) {
 
-          $('.page').removeClass("active");
-          $('#1p').addClass("active");
-          $('.last').removeClass("disabled");
-          $('.next').removeClass("disabled");
-          $('.first').addClass("disabled");
-          $('.prev').addClass("disabled");
-    
           var table = $('#tableBody');
           var status;
           var mem;
@@ -642,7 +918,6 @@ $(document).on("click", "#delMsgAll", function() {
           var no = $.session.get('mno');
           var form_data = new FormData();
           form_data.append("recvMno", no)
-    
           $.ajax({
             url: 'message/ajax/noReadMsg.do',
             type: 'post',
@@ -669,26 +944,39 @@ $(document).on("click", "#delMsgAll", function() {
             mem = resultObj.memberMap[j];
             j++;
 
-            $("<tr>")
-            .html(
-            "<td class='del'>" +
-              "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
-                "<i class='fa fa-trash'></i>" +
-              "</a>" +
-            "</td>" +
-            "<td class='sender'>" +
-              "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" + 
-                mem.mName + " (" + mem.mEmail +
-              ")</a>" +
-            "</td>" +
-            "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
-              "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
-                msg.msgContent +
-              "</a>" +
-            "</td>" +
-            "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-            .appendTo(table);
-           
+            if (type == 's') {
+              $("<tr>")
+              .html(
+              "<td class='del'>" +
+                "<a role='button' id='s" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                  "<i class='fa fa-trash'></i>" +
+                "</a>" +
+              "</td>" +
+              "<td class='sender'>" + mem.mName + "</td>" +
+              "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail2(this.id);'>" +
+                  msg.msgContent +
+                "</a>" +
+              "</td>" +
+              "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+              .appendTo(table);
+            } else {
+              $("<tr>")
+              .html(
+              "<td class='del'>" +
+                "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                  "<i class='fa fa-trash'></i>" +
+                "</a>" +
+              "</td>" +
+              "<td class='sender'>" + mem.mName + "</td>" +
+              "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                  msg.msgContent +
+                "</a>" +
+              "</td>" +
+              "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+              .appendTo(table);
+            }
           }
         }
       });
