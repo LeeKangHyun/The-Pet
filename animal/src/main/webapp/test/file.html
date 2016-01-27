@@ -46,7 +46,9 @@
             type : 'post',
             success : function(resultObj) {
               console.log(resultObj);
-              $("div").append('<img src="../files/' + resultObj.files.fName + '">')
+              $("div").empty();
+              $("div").append('<img src="../files/' + resultObj.files.fName + '"><br>' +
+                      '<img src="../files/thumb/' + resultObj.files.fName + '">');
             }
           })
         }

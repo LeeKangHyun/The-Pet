@@ -24,7 +24,9 @@
     "less": "~2.5.3",
     "multifile": "~2.2.0",
     "jquery-session-plugin": "~0.0.1",
-    "textarea-autosize": "latest"
+    "textarea-autosize": "latest",
+    "jquery.imgcutter": "*",
+    "jquery-colorbox": "colorbox#~1.6.3"
   },
   "install": {
     "path": "src/main/webapp/lib",
@@ -43,7 +45,9 @@
       "jquery-session-plugin": "bower_components/jquery-session-plugin/jquery.session.js",
       "less": "bower_components/less/dist/**",
       "multifile": "bower_components/multifile/**",
-      "textarea-autosize": "bower_components/textarea-autosize/dist/**"
+      "textarea-autosize": "bower_components/textarea-autosize/dist/**",
+      "jquery.imgcutter": "bower_components/jquery.imgcutter/dist/**",
+      "jquery-colorbox": "bower_components/jquery-colorbox/jquery.*"
     }
   }
 }
