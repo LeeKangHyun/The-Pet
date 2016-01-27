@@ -94,7 +94,7 @@
         daum.maps.event.addListener(map, 'click', function(mouseEvent) {
             var zb = mouseEvent.latLng.zb;
             var Ab = mouseEvent.latLng.Ab;
-            
+
             // 마우스로 클릭한 위치입니다
             var clickPosition = mouseEvent.latLng;
             dotmap.push({
@@ -215,7 +215,7 @@
 
                     for (var i = 0; i < dotmap.length;) {
                         $.ajax({
-                            url: "../lot/ajax/add.do",
+                            url: "../walk/ajax/add.do",
                             dataType: "json",
                             type: "post",
                             data: {

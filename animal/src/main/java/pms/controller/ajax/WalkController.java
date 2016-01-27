@@ -15,12 +15,12 @@ import pms.service.WalkService;
 @RequestMapping("walk/ajax/*")
 public class WalkController {
   
-  @Autowired WalkService lotService;
+  @Autowired WalkService walkService;
   
   @RequestMapping(value="add", method=RequestMethod.POST)
   public AjaxResult add(Walk lot) throws Exception {
     
-    lotService.add(lot);
+    walkService.add(lot);
     
     return new AjaxResult("status", null);
   }
@@ -28,8 +28,8 @@ public class WalkController {
   @RequestMapping(value="list", method=RequestMethod.GET)
   public Object list(int mno) throws Exception {
     
-    List<Walk> lots = lotService.list(mno);
+    List<Walk> walk = walkService.list(mno);
     
-    return lots;
+    return walk;
   }
 }

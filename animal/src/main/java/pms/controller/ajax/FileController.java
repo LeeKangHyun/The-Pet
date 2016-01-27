@@ -37,7 +37,7 @@ public class FileController {
     Thumbnails.of(attachFile)
     .scale(1)
     .sourceRegion(Positions.CENTER, 300, 300)
-  //.sourceRegion(x, y, width, height)  
+  //.sourceRegion(x, y, width, height)
     .outputQuality(1.0)
     .toFile(thumbFile);
     
