@@ -12,10 +12,10 @@
 #map {
   border-left: 2px solid #d06a79;
   border-right: 2px solid #d06a79;
-  width: 480px; 
-  height: 480px; 
+  width: 500px;
+  height: 200px;
   margin: 0 auto;
-  position:relative; 
+  position:relative;
   overflow:hidden;
   float: left;
 }
@@ -231,7 +231,7 @@ ul, menu, dir {
 }
 
 .pet:hover, .pet:before, .pet:after {
-  text-decoration: none; 
+  text-decoration: none;
   background-color: #d06a79;
   color: #fff;
 }

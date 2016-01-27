@@ -24,7 +24,7 @@ public class FileController {
   @Autowired FilesService fileService;
   @Autowired ServletContext servletContext;
 
-  @RequestMapping(value = "upload", method = RequestMethod.POST)
+/*  @RequestMapping(value = "upload", method = RequestMethod.POST)
   public AjaxResult insert(Files files, MultipartFile file) throws Exception {
     String fileName = MultipartHelper.generateFilename(file.getOriginalFilename());
     File attachFile = new File(servletContext.getRealPath("/files") 
@@ -45,9 +45,9 @@ public class FileController {
     fileService.fadd(files);
 
     return new AjaxResult("status" , null);
-  }
+  }*/
   
-/*  @RequestMapping(value = "upload", method = RequestMethod.POST)
+  @RequestMapping(value = "upload", method = RequestMethod.POST)
   public AjaxResult insert(Files files, MultipartFile file) throws Exception {
     System.out.println("파일 크기: " + file.getBytes().length);
     System.out.println("파일 타입: " + file.getContentType());
@@ -63,6 +63,6 @@ public class FileController {
     fileService.fadd(files);
     
     return new AjaxResult("status" , null);
-  }*/
+  }
 
 }

@@ -10,6 +10,8 @@
 
     <!-- 강현 css -->
     <link rel='stylesheet' href='css/kh_map.css' />
+    <link rel='stylesheet' href='css/kh_walk.css' />
+
     <!--  상훈 css  -->
     <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less"
     />
@@ -73,17 +75,74 @@
     </header>
 
     <section id="main-body" style="border: 1px solid black;">
+        <h1>딸랑 딸랑 산책 코스 미리보기 딸랑 딸랑</h1>
         <div id='map'></div>
-        <div id="m-list" style="border: 1px solid blue; float: right; min-width: 50%;">
+
+        <div id="m-list" style="border: 1px solid blue;">
             <ul style='list-style: none;'></ul>
-        </div>
-        <div style='border: 1px solid red; width: 480px; height: 480px;'>
-            asdfasdfasdfasdfasdfasdf
         </div>
     </section>
 
+    <section id='main-comment'>
+        <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
+            <!-- Indicators -->
+            <ol class='carousel-indicators' id="dots">
+               <li data-target='#carousel-example-generic' data-slide-to='0' class='active'></li>
+               <li data-target='#carousel-example-generic' data-slide-to='1' ></li>
+               <li data-target='#carousel-example-generic' data-slide-to='2' ></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox" id="imgs">
+                <div class='item active'><img class='slideimg' src='images/h1.jpg'></div>
+                <div class='item'><img class='slideimg' src='images/h2.jpg'></div>
+                <div class='item'><img class='slideimg' src='images/h3.jpg'></div>
+            </div>
+
+            <!-- Controls -->
+            <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
+                <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
+                <span class='sr-only'>Previous</span>
+            </a>
+            <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
+                <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
+                <span class='sr-only'>Next</span>
+            </a>
+        </div>
+
+    </section>
+
+    <section id='main-text'>
+        <div>
+            <div class='contents'>
+
+                <div class='content' id="mcontent"></div>
+
+                <div class='input'>
+                    <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
+                    <a id="comDelBtn" role='button'>게시</a>
+                </div>
+                <div class='comments' id="comComment">
+<!--
+                    <div class='comment'>
+                      <img class='commentimg' src='files/'>
+                      <div class='commentname'>" + mem.mName + "</div>
+                      <div class='commenttext'>" + com.comComment + "</div>
+                    </div>
+-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="width: 1024px; height: auto; margin: 0 auto;">
+        &copy;lkh
+    </footer>
+
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
     <script>
+        var no = location.href.split('?')[1].split('=')[1];
+
         $(document).ready(function() {
             //    로그인 회원 정보출력 세션없으면 로그인페이지로
             var div = $('#user_info');
@@ -127,8 +186,9 @@
         $.ajax({
             url: "walk/ajax/list.do",
             data: {
-                mno: "1"
+                mno: no
             },
+            async: false,
             type: "get",
             dataType: "json",
             success: function(resultObj) {
@@ -137,12 +197,12 @@
                 var bounds = new daum.maps.LatLngBounds();
                 var coord = new daum.maps.LatLng();
                 var content = '';
-                for (var i = 0; i < resultObj.walkList.length;) {
-                    // console.log('들어갔다')
+                var j = 0;
+                for (var i = 0; i < resultObj.walkList.length; i++) {
                     // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
                     content = '<h3>' + (i + 1) +
                         '</h3><span class="dot"></span>';
-
+                    console.log(i);
                     coord = new daum.maps.LatLng(resultObj.walkList[
                             i].lat, resultObj.walkList[i].lng);
                     //console.log(coord)
@@ -155,16 +215,19 @@
                         yAnchor: 1
                     });
 
+
                     // 리스트 나오기
                     var callback = function(status, result) {
                         if (status === daum.maps.services.Status
                             .OK) {
                             console.log(result)
-                            $("#m-list ul").append("<li>" +
-                                result[0].jibunAddress.name +
+                            $("#m-list ul").append("<li>" + (j + 1) +
+                                result[0].region +
                                 "</li>")
+                            j++;
                         }
-                    }
+                    };
+
                     geocoder.coord2detailaddr(coord, callback);
 
                     // 지도에 표시합니다
@@ -172,7 +235,6 @@
 
                     // 중심 좌표
                     bounds.extend(coord);
-                    i++;
                 }
 
                 map.setBounds(bounds);
