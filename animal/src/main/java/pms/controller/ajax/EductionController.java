@@ -73,7 +73,6 @@ public class EductionController {
 		List<Education> educations = educationDao.selectList(paramMap);
 		Education e = educations.get(0);
 		int eduNo = e.getEduNo();
-		System.out.println(eduNo);
 		return new AjaxResult("success", eduNo);
 	}
 		
@@ -81,9 +80,16 @@ public class EductionController {
 	@RequestMapping("detail")
 	public Object detail(int eduNo) throws Exception {
     educationDao.addViews(eduNo);
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
 		Education education = educationDao.selectOne(eduNo);
+		List<Files> files = filesDao.EduFileList(education.getEduNo());
 		
-		return new AjaxResult("success", education);
+		resultMap.put("status", "success");
+		resultMap.put("education", education);
+		resultMap.put("files", files);
+		
+		return resultMap;
 	}
 	
 //	@RequestMapping(value="update", method=RequestMethod.POST)

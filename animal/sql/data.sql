@@ -8,12 +8,19 @@ insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD)
 insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
   values('관리자4','admin4@test.com','rpdlek');
 
-/* 쪽지 내용 입력 */
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,2,'HIHI',true,now());
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,1,'HELLO',true,now());
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(3,2,'GAY',false,now());
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,4,'YO',true,now());
-insert into Message(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,1,'CSS',false,now());
+/* 수신함 내용 입력 */
+insert into RECIEVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,2,'HIHI',true,now());
+insert into RECIEVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,1,'HELLO',true,now());
+insert into RECIEVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(3,2,'GAY',false,now());
+insert into RECIEVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,4,'YO',true,now());
+insert into RECIEVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,1,'CSS',false,now());
+
+/* 송신함 내용 입력 */
+insert into SENDBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,2,'HIHI',true,now());
+insert into SENDBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,1,'HELLO',true,now());
+insert into SENDBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(3,2,'GAY',false,now());
+insert into SENDBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,4,'YO',true,now());
+insert into SENDBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,1,'CSS',false,now());
 
 
 /* 내 펫 추가하기 */
