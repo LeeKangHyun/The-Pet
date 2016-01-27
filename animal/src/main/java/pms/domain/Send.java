@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /* 쪽지 정보 */
-public class Message implements Serializable {
+public class Send implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected int msgNo;					// 쪽지 번호
@@ -14,10 +14,16 @@ public class Message implements Serializable {
 	protected boolean msgChecked; // 쪽지 확인 여부 -> 읽지 않으면 false(0), 읽으면 true(1)
 	protected Date msgCreateDate;
 	protected int noReadCount;
+	protected int count;
 	
-	public Message () {}
+	public Send () {}
 	
-
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getNoReadCount() {
 		return noReadCount;
 	}
