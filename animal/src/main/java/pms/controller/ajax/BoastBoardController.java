@@ -154,5 +154,13 @@ public class BoastBoardController {
     return resultMap;
   }
   
+  
+  @RequestMapping(value="view", method=RequestMethod.POST)
+  public AjaxResult view(Diary diary) throws Exception {
+    log.debug("Diary.dno..............?"+diary.getDno());
+    boastBoardDao.view(diary);
+    return new AjaxResult("success", null);
+  }
+  
 
 }

@@ -17,14 +17,14 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<div class='background'>" +
 					"<img src='../images/" + resultObj.data[i].filename + "'>" +
 					"</div>" +
-					"<a href='' class='overlay'></a>" + 
-					"<a href='#'>" +
+					"<a href='' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 					"<i class='fa fa-camera-retro'></i>" +
 					"</a>" +
-					"<a class='thumb' href='#'></a>" +
+					"<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<div class='info'>" +
 					"<h2>" +
-					"<a href='#3'>" + resultObj.data[i].title + "</a>" +
+					"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
 					"</h2>" +
 					"<div class='foot'>" +
 					"<i class='line'></i>" + 
@@ -49,14 +49,14 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<div class='background'>" +
 					"<img src='../images/" + resultObj.data[i].filename + "'>" + 
 					"</div>" +
-					"<a href='' class='overlay'></a>" +
-					"<a href='#'>" +
+					"<a href='' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+					"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 					"<i class='fa fa-youtube-play'></i>" +
 					"</a>" +
-					"<a class='thumb' href='#'></a>" +
+					"<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<div class='info'>" +
 					"<h2>" +
-					"<a href='#3'>" + resultObj.data[i].title + "</a>" +
+					"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
 					"</h2>" +
 					"<div class='foot'>" +
 					"<i class='line'></i>" + 
@@ -76,10 +76,6 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 
 
 /*사진 리스트 출력*/
-
-
-
-
 $(document).ready(function() {
 	
 	/* list Ajax 시작 */
@@ -111,12 +107,13 @@ $(document).ready(function() {
 							"<div class='background'>" +
 							"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
 							"</div>"+
-							"<a href='#' class='overlay'></a> <a href='#'>"+ 
+							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
+							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 							"<i class='fa fa-camera-retro'></i>"+
-							"</a> <a class='thumb' href='#'></a>"+
+							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
 							"<h2>"+
-							"<a href='#'>"+resultObj.data[i].title+"</a>"+
+							"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 							"</h2>"+
 							"<div class='foot'>"+
 							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
@@ -136,12 +133,13 @@ $(document).ready(function() {
 							"<div class='background'>"+
 							"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
 							"</div>"+
-							"<a href='#' class='overlay'></a> <a href='#'>"+ 
+							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 							"<i class='fa fa-youtube-play'></i>"+
-							"</a> <a class='thumb' href='#'></a>"+
+							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
 							"<h2>"+
-							"<a href='#'>"+resultObj.data[i].title+"</a>"+
+							"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 							"</h2>"+
 							"<div class='foot'>"+
 							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
@@ -220,12 +218,13 @@ $(document).ready(function() {
 											"<div class='background'>" +
 											"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
 											"</div>"+
-											"<a href='#' class='overlay'></a> <a href='#'>"+ 
+											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+											"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 											"<i class='fa fa-camera-retro'></i>"+
-											"</a> <a class='thumb' href='#'></a>"+
+											"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 											"<div class='infosub'>"+
 											"<h2>"+
-											"<a href='#'>"+resultObj.data[i].title+"</a>"+
+											"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 											"</h2>"+
 											"<div class='foot'>"+
 											"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
@@ -245,12 +244,13 @@ $(document).ready(function() {
 											"<div class='background'>"+
 											"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
 											"</div>"+
-											"<a href='#' class='overlay'></a> <a href='#'>"+ 
+											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> "+
+											"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 											"<i class='fa fa-youtube-play'></i>"+
-											"</a> <a class='thumb' href='#'></a>"+
+											"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 											"<div class='infosub'>"+
 											"<h2>"+
-											"<a href='#'>"+resultObj.data[i].title+"</a>"+
+											"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 											"</h2>"+
 											"<div class='foot'>"+
 											"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+

@@ -3,13 +3,12 @@
 
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="../icon/1.ico" type="image/x-icon" />
 <title>자랑하기 상세보기</title>
 
 <!-- 상세보고 클릭 시 메인 홈 효과를 위한 js,css 들 -->
 <link rel="stylesheet" type="text/css" href="../css/jh_update2015.css" />
 <link rel="stylesheet" href="../css/jh_transitions.css" media="all"
-	type="text/css" />
+  type="text/css" />
     
 <script type="text/javascript" src="../js/jh_jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="../js/jh_fade-effect-main.js"></script>
@@ -22,33 +21,33 @@
 <!-- font 참조할라고 가져온 css -->
 <link href="../css/jh_pictures.css" type="text/css" rel="stylesheet">
 <link href="../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" />
+  rel="stylesheet" />
     
 <!-- 사진 슬라이드 js, css -->
     <link rel="stylesheet" type="text/css" media="screen" href="../css/jh_CSSreset.min.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="../css/jh_als_demo.css" />
-		<script type="text/javascript" src="../js/jh_jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="../js/jh_jquery.als-1.7.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() 
-			{
-				$("#lista1").als({
-					visible_items: 4,
-					scrolling_items: 2,
-					orientation: "horizontal",
-					circular: "no",
-					autoscroll: "no",
-					interval: 5000,
-					speed: 500,
-					easing: "linear",
-					direction: "right",
-					start_from: 0
-				});
-	
-			});
-		</script>
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/jh_als_demo.css" />
+    <script type="text/javascript" src="../js/jh_jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jh_jquery.als-1.7.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() 
+      {
+        $("#lista1").als({
+          visible_items: 4,
+          scrolling_items: 3,
+          orientation: "horizontal",
+          circular: "no",
+          autoscroll: "no",
+          interval: 5000,
+          speed: 500,
+          easing: "linear",
+          direction: "right",
+          start_from: 0
+        });
+  
+      });
+    </script>
     <!-- 여기까지 -->
-	
+  
 <script type="text/javascript">
 function doshow(imgSrc) {
     document.getElementById("bigimg").src = imgSrc;
@@ -90,12 +89,12 @@ $(document).ready(function() {
     
     
     
-    		
-			<div id="lista1" class="als-container">
-                <span class="als-prev"><img src="../images/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
-				<div class="als-viewport">
-					<ul class="als-wrapper">
-						<li class="als-item"><img src="../images/h1.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
+        
+      <div id="lista1" class="als-container">
+                <span class="als-prev"><img src="../images/thin_left_arrow_333.png" alt="prev" title="previous" width="18px"/></span>
+        <div class="als-viewport">
+          <ul class="als-wrapper">
+            <li class="als-item"><img src="../images/h1.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
                         <li class="als-item"><img src="../images/h2.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
                         <li class="als-item"><img src="../images/h3.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
                         <li class="als-item"><img src="../images/h4.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
@@ -104,11 +103,11 @@ $(document).ready(function() {
                         <li class="als-item"><img src="../images/h7.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
                         <li class="als-item"><img src="../images/h8.png" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
                         <li class="als-item"><img src="../images/h9.jpg" alt="calculator" title="calculator" class="image_size" onclick="doshow(this.src)"/></li>
-						
-					</ul>
-				</div>
-				<span class="als-next"><img src="../images/thin_right_arrow_333.png" alt="next" title="next" /></span>
-			</div>
+            
+          </ul>
+        </div>
+        <span class="als-next"><img src="../images/thin_right_arrow_333.png" alt="next" title="next" width="18px" /></span>
+      </div>
     
     
     

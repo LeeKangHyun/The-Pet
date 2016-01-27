@@ -2,14 +2,16 @@
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 
-
 #main-body {
+    background-color: #fff;
     position: relative;
     top: 230px;
     width: 1024px;
     margin: 0 auto;
     padding-bottom: 200px;
 }
+
+
 
 #top3 {
   top: -60px;
@@ -207,18 +209,17 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
     height:auto;
     float: right;
     right: -25px;
+        /* border:1px blue solid; */
     
-    /* border:1px blue solid; */
-	  
 }
 
 .form-control {
     position: relative;
     float: right;
     text-align: center;
-	width: 80px;
+  width: 80px;
     height: 25px;
-	appearance: none;
+  appearance: none;
 
 }
 
@@ -530,7 +531,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 /* more scroll button */
 #more {
     position:relative;
-	text-align: center;
+  text-align: center;
     margin: 0 auto;
     font-size: 18px;
     width: 1024px;
@@ -556,3 +557,54 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 a#moreBtn:visited {
     color:inherit;
 }
+
+
+
+.quick-menu {
+border: 1px #DBDBDB solid;
+border-radius: 10px;
+padding-left: 5px;
+padding-right: 5px;
+position: absolute;
+text-align: center;
+width: 100px;
+height: 130px;
+right:30px;
+top: 150px;
+}
+
+#quick-header {
+    margin-top: 10px;
+    border-bottom: 1px #DBDBDB solid;
+    font-weight: 900;
+}
+
+.fa-chevron-up {
+    font-size: 15px;
+}
+
+.fa-chevron-down {
+    font-size: 15px;
+}
+
+#quick-top {
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#quick-bottom {
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+#quick-top-a:hover, 
+#quick-bottom-a:hover,
+#quick-top-a:FOCUS,
+#quick-bottom-a:FOCUS
+ {
+  text-decoration: none;
+}
+
+
+
+
