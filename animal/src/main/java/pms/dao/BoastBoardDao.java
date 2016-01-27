@@ -21,6 +21,8 @@ public interface BoastBoardDao {
   
   double search_member_Count(Diary diary);
   
+  int view(Diary diary); 
+  
 }
 
 

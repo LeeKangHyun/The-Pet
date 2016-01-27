@@ -58,8 +58,10 @@ public class DefaultBoastBoardService implements BoastBoardService {
     return boastboardDao.search_member_Count(diary);
   }
 
-
-
+  
+  public int view(Diary diary) {
+    return boastboardDao.view(diary);
+  }
 
 }
 

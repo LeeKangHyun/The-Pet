@@ -44,7 +44,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch({
-      keyword: keyword+"동물병원",
+      keyword: keyword,
       callback: placesSearchCB,
       radius: 1000
     });

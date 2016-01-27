@@ -21,6 +21,8 @@ public interface BoastBoardService {
   double search_title_Count(Diary diary);
   
   double search_member_Count(Diary diary);
+  
+  int view(Diary diary);
 }
 
 
