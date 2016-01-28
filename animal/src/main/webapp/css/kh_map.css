@@ -12,8 +12,8 @@
 #map {
   border-left: 2px solid #d06a79;
   border-right: 2px solid #d06a79;
-  width: 500px;
-  height: 200px;
+  width: 480px;
+  height: 480px;
   margin: 0 auto;
   position:relative;
   overflow:hidden;
