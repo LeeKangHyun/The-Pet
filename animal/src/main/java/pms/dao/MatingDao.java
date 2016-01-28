@@ -6,6 +6,7 @@ import pms.domain.Mating;
 
 public interface MatingDao {
 	List<Mating> matingList(int pageNo);
+	List<Mating> matingLast();
   
 	Mating selectOne(int matNo);
 	

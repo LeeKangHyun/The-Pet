@@ -18,6 +18,10 @@ public class DefaultMatingService implements MatingService {
 		pageNo = (pageNo - 1) * 4;
 		return matingDao.matingList(pageNo);
 	}
+	
+	public List<Mating> getMatingLast() {	
+	  return matingDao.matingLast();
+	}
   
 	public Mating getMatingOne(int matNo) {
 		return matingDao.selectOne(matNo);

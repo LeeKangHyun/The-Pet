@@ -35,6 +35,10 @@ public class DefaultFilesService implements FilesService {
   public void eduAdd(Files files) {
   		filesDao.eduInsert(files);
   }
+  
+  public void matAdd(Files files) {
+    filesDao.matInsert(files);
+  }
   ///////////////////////////////////////////
   public void fadd(Files files) {
     filesDao.fadd(files);

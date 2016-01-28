@@ -49,6 +49,12 @@
     values(#{fileName},#{eduNo})
   </insert>
   
+  <insert id="matInsert" parameterType="files">
+    insert into files(FILE_NAME,MAT_NUM)
+    values(#{fileName},#{matNo})
+  </insert>
+  
+  
   <delete id="deleteDairyFile" parameterType="int">
     delete from files 
     where SCH_NUM=#{dno}

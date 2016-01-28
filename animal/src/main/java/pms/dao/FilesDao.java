@@ -15,6 +15,8 @@ public interface FilesDao {
   /* 대진 작업중 */
   
   void eduInsert(Files files);
+  
+  void matInsert(Files files);
   //////////////////////////////////
   void fadd(Files files);
   //////////////////////////////////

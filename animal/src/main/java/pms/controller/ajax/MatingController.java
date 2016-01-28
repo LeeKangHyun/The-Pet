@@ -97,10 +97,15 @@ public class MatingController {
 			Mating mating
 			) throws Exception {
 	  
-	 matingService.insert(mating);
-	 System.out.println('성');
+	  matingService.insert(mating);
+	  
+	   List<Mating> mat = matingService.getMatingLast();
+	    int lastDno = 0;
+	    for (Mating d : mat) {
+	      lastDno = d.getMatNo();
+	    }
 	 
-	  return new AjaxResult("success", null);
+	  return new AjaxResult("success", lastDno);
 	}
 	
 //

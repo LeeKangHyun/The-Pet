@@ -17,6 +17,8 @@ public interface FilesService {
   
   
   void eduAdd(Files files);
+  
+  void matAdd(Files files);
   ////////////////////////////////////
   void fadd(Files files);
   ////////////////////////////////////

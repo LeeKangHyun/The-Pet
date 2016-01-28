@@ -32,6 +32,11 @@
 		order by MAT_NUM desc
 	    limit #{startIndex}, 4
 	</select>
+  
+  <select id="matingLast" resultMap="matingMap">
+    select * 
+    from mating
+  </select>
  
 	<select id="selectOne" resultMap="matingMap" parameterType="int">
 		select 

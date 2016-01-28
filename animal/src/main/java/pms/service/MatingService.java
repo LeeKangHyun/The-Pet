@@ -7,6 +7,7 @@ import pms.domain.Mating;
 public interface MatingService {
 	
 	List<Mating> getMatingList(int pageNo);
+	List<Mating> getMatingLast();
   
 	Mating getMatingOne(int matNo);
 	
