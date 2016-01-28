@@ -73,8 +73,6 @@ $(function(){
 
   <section id="main-body">
     <!-- 위의 제목 부분 -->
-      <span id="boastname"><i class="lnr lnr-heart"></i> 짝짓기</span>
-
       <button id="button" class="filter" data-filter="*">All</button>
       <button class="filter" data-filter=".DOG">DOG</button>
       <button class="filter" data-filter=".CAT">CAT</button>
@@ -83,6 +81,7 @@ $(function(){
       <button class="filter" data-filter=".ETC">ETC</button>
       <button id="hidden" class="filter" data-filter="*" hidden="">All</button>
 
+      <button id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
@@ -94,6 +93,86 @@ $(function(){
     </div>
 
   </section>
+
+<div id='addModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button id='closeAdd' type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h3>짝짓기 새글</h3>
+            </div>
+
+            <div class='modal-body'>
+
+                <div class='form-group'>
+                    <label class='col-sm-3 control-label'>제목</label>
+                    <div class="col-sm-9">
+                        <input type='text' name='mat_content' id='mat_title' class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">구분</label>
+                  <div class="col-sm-9">
+                    <select id="mat_spec" name="mat_spec" class="form-control">
+                      <option value="DOG" selected="selected">강아지</option>
+                      <option value="CAT">고양이</option>
+                      <option value="FISH">물고기</option>
+                      <option value="BIRD">새</option>
+                      <option value="ETC">ETC..</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="mat_gen" class="col-sm-3 control-label">펫 종류</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"
+                    required>
+                  </div>
+                </div>
+
+                <div class='form-group'>
+                    <label for="pdType" class="col-sm-3 control-label">펫 성별</label>
+                    <div class="col-sm-9">
+                        <div class="radio-inline">
+                          <label>
+                            <input type="radio" class='mat_gen' name='MAT_GENDER' value="0" checked>
+                            수컷
+                          </label>
+                        </div>
+                        <div class="radio-inline">
+                          <label>
+                            <input type="radio" class='mat_gen' name='MAT_GENDER' value="1">
+                            암컷
+                          </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label for="pdType" class="col-sm-3 control-label">내용</label>
+                    <textarea class="form-control" name='MAT_CONTENT' id='mat_content' style="height: 100px;"></textarea>
+                </div>
+
+                <!-- <div class='form-group'>
+                    <div class="box">
+                      <input type="file" name="pImg" id="dfile" class="inputfile inputfile-1" />
+                      <label for="dfile">
+                        <i class="fa fa-upload"></i>
+                        <span>펫 이미지 등록</span>
+                      </label>
+                    </div>
+                </div> -->
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" id="addMat" class="btn btn-warning">등록</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--짝짓기 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
@@ -175,7 +254,7 @@ $(function(){
 
   <script>
 $(document).ready(function() {
-  
+
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   var div = $('#user_info');
@@ -199,13 +278,13 @@ $(document).ready(function() {
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
   }
-  
+
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
         $.session.clear();
         location.href = "login.html"
     });
-  
+
   // 안읽은 받은쪽지 갯수 출력
   var no = $.session.get('mno');
   var form_data = new FormData();
@@ -279,6 +358,39 @@ $.ajax({
             "</div>")
         }
     }
+});
+
+$(document).on('click', '#addMat', function() {
+    var no = $.session.get('mno');
+    var mgen = $('input[name=MAT_GENDER]:checked').val();
+    var form_data = new FormData();
+
+    console.log('등러갔다')
+    console.log(no);
+    console.log($('#mat_title').val());
+    console.log($('#mat_spec').val());
+    console.log($('#mat_type').val());
+    console.log($('#mat_content').val());
+
+    form_data.append("mno", no)
+    form_data.append("matTitle", $('#mat_title').val())
+    form_data.append("matSpec", $('#mat_spec').val())
+    form_data.append("matType", $('#mat_type').val())
+    form_data.append("matGender", mgen)
+    form_data.append("matContent", $('#mat_content').val())
+
+    $.ajax({
+        url: 'mating/ajax/add.do',
+        dataType: 'json',
+        type: 'post',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function() {
+            console.log('성공')
+        }
+    })
 });
 
 // 짝짓기 디테일

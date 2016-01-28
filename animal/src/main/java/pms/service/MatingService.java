@@ -14,7 +14,7 @@ public interface MatingService {
 	
 	Mating views(int matNo);
 	
-  void addPet(Mating mating);
+  void insert(Mating mating);
   
   int remove(int matNo);
   

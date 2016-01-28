@@ -92,33 +92,17 @@ public class MatingController {
 		return new AjaxResult("success", mating);
 	}
 	
-//	@RequestMapping(value="add", method=RequestMethod.POST)
-//	public Object add(
-//			Diary diary,
-//			int mno
-//			) throws Exception {
-//
-//		Pet pet = petService.getOnePet(diary.getPno());
-//		diary.setTagColor(pet.getTagColor());
-//		diary.setpSpec(pet.getpSpec());
-//		
-//		if (diary.getStartDate().equals("")) {
-//			Date d = new Date();
-//      SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
-//			diary.setStartDate(now.format(d));
-//			diary.setEndDate(now.format(d));
-//		}
-//
-//		diaryService.add(diary);
-//		
-//		List<Diary> events = diaryService.getEventList(mno);
-//		int lastDno = 0;
-//		for (Diary d : events) {
-//			lastDno = d.getDno();
-//		}
-//
-//		return new AjaxResult("success", lastDno);
-//	}
+	@RequestMapping(value="add", method=RequestMethod.POST)
+	public Object add(
+			Mating mating
+			) throws Exception {
+	  
+	 matingService.insert(mating);
+	 System.out.println('성');
+	 
+	  return new AjaxResult("success", null);
+	}
+	
 //
 //	@RequestMapping("delete")
 //	public AjaxResult delete(

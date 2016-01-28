@@ -31,7 +31,7 @@ public class DefaultMatingService implements MatingService {
 	  return matingDao.views(matNo);
 	}
 	
-  public void addPet(Mating mating) {
+  public void insert(Mating mating) {
   	matingDao.insert(mating);
   }
   

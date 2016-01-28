@@ -35,11 +35,11 @@
  
 	<select id="selectOne" resultMap="matingMap" parameterType="int">
 		select 
-	  		MAT_NUM, 
-	  		MAT_VIEWS,
-	  		MAT_CRE,
-	  		MAT_TITLE,
-	  		MAT_CONTENT,
+  		MAT_NUM, 
+  		MAT_VIEWS,
+  		MAT_CRE,
+  		MAT_TITLE,
+  		MAT_CONTENT,
 			MAT_SPEC,
 			MAT_TYPE,
 			MAT_GEN,
@@ -49,12 +49,12 @@
 		where MAT_NUM=#{matNo}
 	</select>
   
-	<!-- insert need fix -->
 	<insert id="insert" parameterType="mating">
-		insert into mating(MEM_NUM,PET_SPEC,PET_NAME,PET_TYPE,PET_IMG,TAG_COLOR,INJECTION,MEDICINE) 
-		values(#{mno},#{pSpec},#{pName},#{pType},#{pImg},#{tagColor},#{injection},#{medicine})
+		insert into mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM) 
+		values(#{matTitle},#{matContent},#{matSpec},#{matType},#{matGender},now(),#{mno})
 	</insert>
 	
+	<!-- insert need fix -->
 	<delete id="delete" parameterType="int">
 		delete from mating 
 		where MAT_NUM=#{matNo}
