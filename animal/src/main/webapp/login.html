@@ -250,6 +250,10 @@ $(document).ready(function() {
         $('#lsaveEmail').prop("checked", true);
     }
     
+    if ($.session.get('mno') != undefined) {
+      location.href = "pet.html"
+    }
+    
     $('#loginBtn').click(function(event) {
         if ($('#lmEmail').val() == "") {
             alert("아이디를 입력하세요")

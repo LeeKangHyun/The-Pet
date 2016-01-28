@@ -28,85 +28,82 @@
   background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
 }
 
+div.item {
+  height: 480px;
+  position: relative;
+}
+div.item img {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.slideimg {
+  max-width: 480px;
+  max-height: 480px;
+  padding-right: auto;
+  padding-left: auto;
+}
+
+
 
 #left {
   width: 824px;
   padding-left: 30px;
   .clearfix();
   .pull-left();
-  #main-comment {
+  
+  #carousel-example-generic {
     position: relative;
     width: 100%;
-    margin: 0 auto;
     height: 480px;
+    margin: 0 auto;
+    .pull-left();
     margin-top: 10px;
     border-left: 2px solid #2d335e;
     border-right: 2px solid #2d335e;
-    #carousel-example-generic {
-      float: left !important;
-      width: 100%;
-      height: 480px;
-      background-color: #fff;
-      li {
-        border: 1px solid #2d335e;
-        padding: 1px;
-        zoom: 1;
+    background-color: #fff;
+    
+    li {
+      border: 1px solid #2d335e;
+      padding: 1px;
+      zoom: 1;
+    }
+    li.active {
+      background-color: #d06a79;
+    }
+    .carousel-control {
+      color: #000;
+      font-size: 1px;
+      opacity: 1;
+      width: 15%;
+      text-align: left;
+      text-shadow:1px 1px 3px rgba(255, 255, 255, 1);
+      .glyphicon-chevron-left {
+        position: relative;
+        top: 200px;
       }
-      li.active {
-        background-color: #d06a79;
+      .glyphicon-chevron-right {
+        position: relative;
+        top: 200px;
+        left: 45px;
       }
-      #imgs {
-        .item {
-          height: 480px;
-          position: relative;
-          img {
-            margin: 0 auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 480px;
-            max-height: 480px;
-            padding-right: auto;
-            padding-left: auto;
-          }
-        }
+      .glyphicon-chevron-left:before {
+        content: "";
       }
-      .carousel-control {
-        color: #000;
-        font-size: 1px;
-        opacity: 1;
-        width: 15%;
-        text-align: left;
-        text-shadow:1px 1px 3px rgba(255, 255, 255, 1);
-        .glyphicon-chevron-left {
-          position: relative;
-          top: 200px;
-          
-        }
-        .glyphicon-chevron-right {
-          position: relative;
-          top: 200px;
-          left: 45px;
-          
-        }
-        .glyphicon-chevron-left:before {
-          content: "";
-        }
-        .glyphicon-chevron-right:before {
-          content: "";
-        }
-      }
-      .carousel-control.left {
-        background-image: none;
-        
-      }
-      .carousel-control.right {
-        background-image: none;
-        
+      .glyphicon-chevron-right:before {
+        content: "";
       }
     }
+    .carousel-control.left {
+      background-image: none;
+    }
+    .carousel-control.right {
+      background-image: none;
+    }
   }
+  
   #detailTitle {
     h3 {
       margin-left: 5px;
