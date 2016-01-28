@@ -22,7 +22,7 @@
 			MSG_CONTENT,
 			CHECKED,
 			SEND_DATE
-		from recievebox
+		from receivebox
 		where MEM_NUM2=#{recvMno}
 		order by SEND_DATE desc
 		limit #{startIndex}, 15
@@ -36,30 +36,30 @@
 			MSG_CONTENT,
 			CHECKED,
 			SEND_DATE
-		from recievebox
+		from receivebox
 		where MSG_NUM=#{msgNo}
 	</select>
 	
 	<select id="noRead" resultMap="receiveMap" parameterType="int">
 		select count(*) as noReadCount
-		from recievebox
+		from receivebox
 		where MEM_NUM2=#{recvMno} and CHECKED=0
 	</select>
 	
 	<update id="read" parameterType="int">
-		update recievebox set 
+		update receivebox set 
 			CHECKED=1
 		where MSG_NUM=#{msgNo} 
 	</update>
 
 	<select id="recvCount" resultMap="receiveMap" parameterType="int">
 		select count(*) as count
-		from recievebox
+		from receivebox
 		where MEM_NUM2=#{recvMno}
 	</select>
 	
 	<insert id="insert" parameterType="receive">
-		insert into recievebox(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE)
+		insert into receivebox(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE)
 		values(#{sendMno},#{recvMno},#{msgContent},0,now())
 	</insert>
 	
@@ -68,7 +68,7 @@
 	</delete>
 	
 	<delete id="deleteAll" parameterType="int">
-		delete from recievebox where MEM_NUM2=#{recvMno}
+		delete from receivebox where MEM_NUM2=#{recvMno}
 	</delete>
     
 </mapper>
