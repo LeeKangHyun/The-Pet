@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="../icon/1.ico" type="image/x-icon" />
 <title>Slid Menu</title>
-<link href="../css/sh_diary.less" type="style.less"
-  rel="stylesheet/less" />
+
 <link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
   type='text/css' />
 
 <!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header.less" type="style.less"
+<link href="../css/sh_slidmenu_header_diary.less" type="style.less"
   rel="stylesheet/less" />
 
 <!--  폰트아이콘 링크  -->
@@ -136,17 +135,22 @@
                       rows='10' cols='60' required></textarea>
                   </div>
                 </div>
-
+                
+                <div class="form-group">
+                  <label for="fileUrl" class="col-sm-2 control-label">url</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="fileUrl" class="form-control"
+                      id="fileUrl" required>
+                  </div>
+                </div>
+                
                 <div class="box">
-                  <input type="file" name="fName" id="file-1"
-                    class="inputfile inputfile-1"
-                    data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple /> <label
-                    for="file-1"> <i class="fa fa-upload"></i> <span>이미지
-                      추가</span>
+                   <label
+                    for="file-1">
                   </label>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="text-align:right">
                   <div class="col-sm-offset-2 col-sm-10">
                     <button id='addBtn' type='button'
                       class="newForm btn btn-primary btn-xs">등록</button>
@@ -192,7 +196,7 @@
           .html(
               "<div class='card'>"+
               "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-              "<img src='../files/" + file[0].fileName + "' width='325px;' height='410px;' />"+
+              "<video src='../files/" + file[0].fileName + "' width='325px;' height='410px;' />"+
               "</div>"+
               "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
               "<i class='fa fa-youtube-play'></i>"+
@@ -238,11 +242,8 @@
             type: 'post',
             success: function(re) {
               var eduNo = re.ajaxResult.data;
-              for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                var file_data = $("#file-1").prop("files")[i];
-                var file_name = file_data.name;
+                var file_name = $("#fileUrl");
                 var form_data = new FormData();
-                form_data.append("file", file_data)
                 form_data.append("fName", file_name)
                 form_data.append("eduNo", eduNo)
                 $.ajax({
@@ -256,7 +257,6 @@
                   success: function(resultObj) {
                   }
                 })
-              }
               alert("게시물이 추가되었습니다.")
               location.href = "education.html"
             }
