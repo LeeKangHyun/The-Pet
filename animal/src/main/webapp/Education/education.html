@@ -242,9 +242,9 @@
             type: 'post',
             success: function(re) {
               var eduNo = re.ajaxResult.data;
-                var file_name = $("#fileUrl");
+              var file_name = $("#fileUrl").val();
                 var form_data = new FormData();
-                form_data.append("fName", file_name)
+                form_data.append("file_name", file_name)
                 form_data.append("eduNo", eduNo)
                 $.ajax({
                   url: "../files/ajax/eduupload.do",
