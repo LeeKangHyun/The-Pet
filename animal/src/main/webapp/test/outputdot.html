@@ -51,7 +51,7 @@
         $.ajax({
             url: "../walk/ajax/list.do",
             data: {
-                mno: "1"
+                mno: "3"
             },
             type: "get",
             dataType: "json",
@@ -62,13 +62,11 @@
 
                 var coord = new daum.maps.LatLng();
 
-                for (var i = 0; i < resultObj.lotList.length;) {
-                    // console.log('들어갔다')
-                    // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
+                for (var i = 0; i < resultObj.walkList.length;) {
                     var content = '<h3>' + (i + 1) +
                         '</h3><span class="dot"></span>';
-                    coord = new daum.maps.LatLng(resultObj.lotList[
-                            i].lat, resultObj.lotList[i].lng);
+                    coord = new daum.maps.LatLng(resultObj.walkList[
+                            i].lat, resultObj.walkList[i].lng);
                     console.log(coord)
 
                     var circleOverlay = new daum.maps.CustomOverlay({
