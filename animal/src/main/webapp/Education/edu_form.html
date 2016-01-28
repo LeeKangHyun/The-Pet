@@ -36,7 +36,7 @@
 <link href="../css/sh_file_upload.css" rel="stylesheet" type="text/css" />
 
 <link href="//vjs.zencdn.net/4.9/video-js.css" rel="stylesheet">
-<script src="//vjs.zencdn.net/4,9/video.js" ></script>
+<script src="//vjs.zencdn.net/4.9/video.js" ></script>
 </head>
 <body>
   <header id="menu">
@@ -67,11 +67,10 @@
     </div>
   </header>
 
-  <section id="main-body">
-    <div>
+  <section>
+    <div class="m_content">
+      <div id="va"></div>
       <form id='form1' class="form-horizontal">
-        <div class="va">
-        </div>
         <div>
           <label for="eduNo" class="col-sm-2 control-label" readonly>번호</label>
           <div class="col-sm-10">
@@ -120,7 +119,7 @@
         var education = resultObj.education;
         var files = resultObj.files;
         var va = $("#va");
-        $("<video controls='controls' width='650px;' height='350px;' class='video-js vjs-default-skin' data-setup='{}'>")
+        $("<video controls='controls' autoplay width='650px' height='350px' class='video-js vjs-default-skin' data-setup='{}'>")
         .html("<source src='../files/" + files[0].fileName + "' type='video/mp4' />")
         	.appendTo(va);
         $("#eduNo").val(education.eduNo);
