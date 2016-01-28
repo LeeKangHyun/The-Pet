@@ -187,6 +187,7 @@ $(function(){
     <div class='modal-dialog'>
         <div class='modal-content'>
             <div class='modal-header'>
+                <input type='button' id='matDelBtn' class='' value='삭제'/>
                 <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
                 <h3 id='modalTitle' class='title'></h3>
             </div>
@@ -342,7 +343,6 @@ $.ajax({
 
             "<div class='left_col'>" +
             "<div class='views'>" +
-            //"<div class='view_count'>" + mating.matViews + "</div>" +
             "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
             "VIEW" +
             "</div>" +
@@ -364,6 +364,7 @@ $.ajax({
     }
 });
 
+// 짝짓기 추가
 $(document).on('click', '#addMat', function() {
     var no = $.session.get('mno');
     var mgen = $('input[name=MAT_GENDER]:checked').val();
@@ -657,6 +658,13 @@ $('#saleModal').on('hidden.bs.modal', function(e) {
   $('#mcontent').val('');
   $('#mmatno').val('');
 })
+
+// 짝짓기 삭제
+$(document).on('click', '#matDelBtn', function() {
+//    console.log(id)
+    console.log($('#mmatno').val())
+});
+
 
 //더보기
 function moree(id) {

@@ -59,12 +59,12 @@
 		values(#{matTitle},#{matContent},#{matSpec},#{matType},#{matGender},now(),#{mno})
 	</insert>
 	
-	<!-- insert need fix -->
 	<delete id="delete" parameterType="int">
 		delete from mating 
 		where MAT_NUM=#{matNo}
 	</delete>
 	
+	<!-- insert need fix -->
 	<update id="update" parameterType="mating">
 	update mating set 
 		MAT_TITLE=#{matTitle},

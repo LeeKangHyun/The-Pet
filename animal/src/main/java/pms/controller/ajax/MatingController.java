@@ -108,18 +108,18 @@ public class MatingController {
 	  return new AjaxResult("success", lastDno);
 	}
 	
-//
-//	@RequestMapping("delete")
-//	public AjaxResult delete(
-//			int dno) throws Exception {
-//		
-//		commentService.removeComment(dno);
-//		filesService.removeDairyFile(dno);
-//		diaryService.remove(dno);
-//		 
-//		return new AjaxResult("success", null);
-//	}
-//	
+
+	@RequestMapping("delete")
+	public AjaxResult delete(
+			int dno) throws Exception {
+		
+		commentService.removeComment(dno);
+		filesService.removeDairyFile(dno);
+		diaryService.remove(dno);
+		 
+		return new AjaxResult("success", null);
+	}
+	
 	/////////// 위까진 성공
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
