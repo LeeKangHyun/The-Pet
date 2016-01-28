@@ -131,7 +131,7 @@
           <div id="commentSection">
           
             <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400022.jpeg'>
               <div class='commentname'>Name</div>
               <div class='commenttext'>CommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentCommentComment</div>
             </div>
@@ -308,6 +308,7 @@
   </section>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
+  
 <script>
 var no = location.href.split('?')[1].split('=')[1];
 
@@ -338,83 +339,78 @@ $(document).ready(function() {
   
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "login.html"
-    });
+    $.session.clear();
+    location.href = "login.html"
+  });
+  
 });
 
       
 //    <!-- 지도 나오기 -->
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+  mapOption = {
+    center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+  };
 
-        var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new daum.maps.services.Geocoder();
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
 
-        $.ajax({
-            url: "walk/ajax/list.do",
-            data: {
-                mno: no
-            },
-            async: false,
-            type: "get",
-            dataType: "json",
-            success: function(resultObj) {
-                //console.log(resultObj.walkList)
-                //var i = 0;
-                var bounds = new daum.maps.LatLngBounds();
-                var coord = new daum.maps.LatLng();
-                var content = '';
-                var j = 0;
-                for (var i = 0; i < resultObj.walkList.length; i++) {
-                    // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
-                    content = '<h3>' + (i + 1) +
-                        '</h3><span class="dot"></span>';
-                    console.log(i);
-                    coord = new daum.maps.LatLng(resultObj.walkList[
-                            i].lat, resultObj.walkList[i].lng);
-                    //console.log(coord)
+$.ajax({
+  url: "walk/ajax/list.do",
+  data: {
+    mno: no
+  },
+  async: false,
+  type: "get",
+  dataType: "json",
+  success: function(resultObj) {
+    //console.log(resultObj.walkList)
+    //var i = 0;
+    var bounds = new daum.maps.LatLngBounds();
+    var coord = new daum.maps.LatLng();
+    var content = '';
+    var j = 0;
+    for (var i = 0; i < resultObj.walkList.length; i++) {
+      // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
+      content = '<h3>' + (i + 1) + '</h3><span class="dot"></span>';
+      console.log(i);
+      coord = new daum.maps.LatLng(resultObj.walkList[i].lat, resultObj.walkList[i].lng);
+      //console.log(coord)
 
-                    var circleOverlay = new daum.maps.CustomOverlay({
-                        map: map,
-                        content: content,
-                        position: coord,
-                        zIndex: 1,
-                        yAnchor: 1
-                    });
+      var circleOverlay = new daum.maps.CustomOverlay({
+        map: map,
+        content: content,
+        position: coord,
+        zIndex: 1,
+        yAnchor: 1
+      });
 
+      // 리스트 나오기
+      var callback = function(status, result) {
+        if (status === daum.maps.services.Status.OK) {
+          console.log(result)
+          $("#m-list ul").append("<li>" + (j + 1) +
+              result[0].region +
+              "</li>")
+          j++;
+        }
+      };
 
-                    // 리스트 나오기
-                    var callback = function(status, result) {
-                        if (status === daum.maps.services.Status
-                            .OK) {
-                            console.log(result)
-                            $("#m-list ul").append("<li>" + (j + 1) +
-                                result[0].region +
-                                "</li>")
-                            j++;
-                        }
-                    };
+      geocoder.coord2detailaddr(coord, callback);
 
-                    geocoder.coord2detailaddr(coord, callback);
+      // 지도에 표시합니다
+      circleOverlay.setMap(map);
 
-                    // 지도에 표시합니다
-                    circleOverlay.setMap(map);
-
-                    // 중심 좌표
-                    bounds.extend(coord);
-                }
-
-                map.setBounds(bounds);
-            }
-        })
-
-    </script>
+      // 중심 좌표
+      bounds.extend(coord);
+    }
+    map.setBounds(bounds);
+  }
+})
+</script>
 </body>
 
 </html>
