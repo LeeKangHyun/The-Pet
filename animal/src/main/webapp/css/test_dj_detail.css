@@ -1,0 +1,19 @@
+
+#va {
+	margin : 0px;
+	width : 650px;
+	height : auto;
+}
+
+.m_content > * {
+	border : solid 1px red;
+}
+.title {
+	text-align : left;
+}
+
+.videoarea {
+	width : 650px;
+	height : 350px;
+	padding-left : -30px;
+}

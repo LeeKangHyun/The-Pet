@@ -9,8 +9,7 @@
   type='text/css' />
 
 <!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header_diary.less" type="style.less"
-  rel="stylesheet/less" />
+<link href="../css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
 
 <!--  폰트아이콘 링크  -->
 <link href="../lib/font-awesome/css/font-awesome.min.css"
@@ -38,26 +37,25 @@
 <body>
   <header id="menu">
     <div id="header_title">
-      <a class="headerTitle" href="../pet.html">THE PET</a>
+      <a class="headerTitle" href="../pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
       <div id="user_info"></div>
     </div>
     <!--  메뉴 버튼  -->
     <input type="checkbox" id="menuToggle" />
 
     <div id="sideMenu">
-      <label for="menuToggle" id="menu-icon"><i
-        class="fa fa-bars fa-lg"></i></label>
+      <label for="menuToggle" id="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
       <!--  메뉴 내용  -->
 
       <nav id="menu-nav">
-        <ul>
-          <li><a href="education.html"><i class="lnr lnr-pencil"></i>
-              교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+        <ul id="menu-nav-ul">
+          <li><a href="education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-          <li><a href="../BoastBoard/boastBoard.html"><i
-              class="lnr lnr-paw"></i> 자랑해요</a></li>
+          <li><a href="../BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
         </ul>
       </nav>
       <!--  //메뉴 내용  -->
@@ -280,26 +278,39 @@
   $(document).ready(function() {
      var div = $('#user_info');
      var btn = $('#scheduleAdd');
+     var ul = $('#menu-nav-ul');
      if ($.session.get('mno') == undefined) {
          div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
      } else if ($.session.get('mno') == 1) {
          div.append(
-         "<img src='../files/" + $.session.get('mimg') +
-         "' id='userImg' />" +
-         "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-         "<a role='button' id='outBtn' class='logout'>" +
-         "<i class='fa fa-unlock fa-lg'></i></a>");
+             "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+                  "<i class='fa fa-envelope-o'></i>" +
+                  "<span class='badge' id='userBadge'>0</span>" +
+                "</a>" +
+                "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+                "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+                "<a role='button' id='outBtn' class='logout'>" +
+                  "<i class='fa fa-unlock fa-lg'></i>" +
+                "</a>")
          btn.append(
              "<a class='btn btn-default' id='scheduleAdd' role='button'"
              + "data-toggle='modal' data-target='#AddBoard'>New</a>"
              );
+         ul.append(
+         "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
      } else {
          div.append(
-         "<img src='../files/" + $.session.get('mimg') +
-         "' id='userImg' />" +
-         "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-         "<a role='button' id='outBtn' class='logout'>" +
-         "<i class='fa fa-unlock fa-lg'></i></a>")
+             "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+                 "<i class='fa fa-envelope-o'></i>" +
+                 "<span class='badge' id='userBadge'>0</span>" +
+               "</a>" +
+               "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+               "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+               "<a role='button' id='outBtn' class='logout'>" +
+                 "<i class='fa fa-unlock fa-lg'></i>" +
+               "</a>")
+         ul.append(
+      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
      }
 
      //    로그아웃
@@ -307,7 +318,24 @@
        $.session.clear();
        location.href = "../login.html"
      });
-  });
+     
+  // 안읽은 받은쪽지 갯수 출력
+     var no = $.session.get('mno');
+     var form_data = new FormData();
+     form_data.append("recvMno", no)
+     $.ajax({
+       url: '../message/ajax/noReadMsg.do',
+       type: 'post',
+       dataType: 'json',
+       cache: false,
+       contentType: false,
+       processData: false,
+       data: form_data,
+       success: function(resultObj) {
+         var ajaxResult = resultObj.ajaxResult;
+         $('#userBadge').html(ajaxResult.data.noReadCount)
+       }
+     })});
   </script>
 
 </body>

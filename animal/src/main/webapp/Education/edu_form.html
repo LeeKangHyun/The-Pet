@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
+<link rel="icon" href="../icon/1.ico" type="image/x-icon" />
 <title>Slid Menu</title>
-<link href="../css/sh_diary.less" type="style.less"
-  rel="stylesheet/less" />
-<link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
-  type='text/css' />
 
-<!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header.less" type="style.less"
-  rel="stylesheet/less" />
+<link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+<!--  상훈 css  -->
+<link href="../css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
 
 <!--  폰트아이콘 링크  -->
-<link href="../lib/font-awesome/css/font-awesome.min.css"
-  rel="stylesheet" />
+<link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="../css/icon-font.min.css" rel="stylesheet" />
 
 <!-- 부트스트랩 -->
@@ -23,42 +19,35 @@
 <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="../lib/less/less.js" type="text/javascript"></script>
 
-<script src="../lib/jquery-session-plugin/jquery.session.js"
-  type="text/javascript"></script>
+<script src="../lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
 
 <!-- 대진 css & js -->
 <link href="../css/dj_main.css" type="text/css" rel="stylesheet">
 <link href="../css/dj_pictures.css" type="text/css" rel="stylesheet">
 
-<!-- filter 및 sort Test 중 -->
-<script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
-
-<link href="../css/sh_file_upload.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
   <header id="menu">
     <div id="header_title">
-      <a class="headerTitle" href="../pet.html">THE PET</a>
+      <a class="headerTitle" href="../pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
       <div id="user_info"></div>
     </div>
     <!--  메뉴 버튼  -->
     <input type="checkbox" id="menuToggle" />
 
     <div id="sideMenu">
-      <label for="menuToggle" id="menu-icon"><i
-        class="fa fa-bars fa-lg"></i></label>
+      <label for="menuToggle" id="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
       <!--  메뉴 내용  -->
 
       <nav id="menu-nav">
-        <ul>
-          <li><a href="education.html"><i class="lnr lnr-pencil"></i>
-              교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="#"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+        <ul id="menu-nav-ul">
+          <li><a href="education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-          <li><a href="../BoastBoard/boastBoard.html"><i
-              class="lnr lnr-paw"></i> 자랑해요</a></li>
+          <li><a href="../BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
         </ul>
       </nav>
       <!--  //메뉴 내용  -->
@@ -99,7 +88,6 @@
     </div>
   </section>
 
-  <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
   <script>
     var eduNo = location.href.split('?')[1].split('=')[1];
     
@@ -108,7 +96,6 @@
       dataType : 'json',
       type : "get",
       contentType : "multipart/form-data",
-      async : true,
       cache : true,
       data : {
         eduNo : eduNo
@@ -116,11 +103,9 @@
       success : function(resultObj) {
         var education = resultObj.education;
         var files = resultObj.files;
-        console.log(files);
         var url = (files[0].fileName).split('?')[1].split('=')[1];
-        console.log(url);
         var va = $("#va");
-        $("<iframe width='560' height='315' src='https://www.youtube.com/embed/" 
+        $("<iframe class='videoarea' src='https://www.youtube.com/embed/" 
         		+ url + "?rel=0'" +
         		"' frameborder='0' allowfullscreen></iframe>'")	
         .appendTo(va);
@@ -131,6 +116,70 @@
         
       }
     })
+  </script>
+  
+  <script>
+  $(document).ready(function() {
+	     var div = $('#user_info');
+	     var btn = $('#scheduleAdd');
+	     var ul = $('#menu-nav-ul');
+	     if ($.session.get('mno') == undefined) {
+	         div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
+	     } else if ($.session.get('mno') == 1) {
+	         div.append(
+	             "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+	                  "<i class='fa fa-envelope-o'></i>" +
+	                  "<span class='badge' id='userBadge'>0</span>" +
+	                "</a>" +
+	                "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+	                "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	                "<a role='button' id='outBtn' class='logout'>" +
+	                  "<i class='fa fa-unlock fa-lg'></i>" +
+	                "</a>")
+	         btn.append(
+	             "<a class='btn btn-default' id='scheduleAdd' role='button'"
+	             + "data-toggle='modal' data-target='#AddBoard'>New</a>"
+	             )
+	         ul.append(
+	         "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>");
+	     } else {
+	         div.append(
+	             "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+	                 "<i class='fa fa-envelope-o'></i>" +
+	                 "<span class='badge' id='userBadge'>0</span>" +
+	               "</a>" +
+	               "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+	               "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	               "<a role='button' id='outBtn' class='logout'>" +
+	                 "<i class='fa fa-unlock fa-lg'></i>" +
+	               "</a>")
+	         ul.append(
+	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+	     }
+
+	     //    로그아웃
+	     $(document).on("click", "#outBtn", function() {
+	       $.session.clear();
+	       location.href = "../login.html"
+	     });
+	     
+	  // 안읽은 받은쪽지 갯수 출력
+	     var no = $.session.get('mno');
+	     var form_data = new FormData();
+	     form_data.append("recvMno", no)
+	     $.ajax({
+	       url: '../message/ajax/noReadMsg.do',
+	       type: 'post',
+	       dataType: 'json',
+	       cache: false,
+	       contentType: false,
+	       processData: false,
+	       data: form_data,
+	       success: function(resultObj) {
+	         var ajaxResult = resultObj.ajaxResult;
+	         $('#userBadge').html(ajaxResult.data.noReadCount)
+	       }
+	     })});
   </script>
 </body>
 </html>
