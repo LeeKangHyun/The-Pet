@@ -13,11 +13,8 @@ public interface FilesService {
   List<Files> getMatFile(int matNo);
   List<Files> getSaleFile(int sno);
   
-  void add(Files files);
-  
-  
+  void add(Files files);  
   void eduAdd(Files files);
-  
   void matAdd(Files files);
   ////////////////////////////////////
   void fadd(Files files);

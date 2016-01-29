@@ -17,7 +17,7 @@ insert into Files(FILE_NAME,SCH_NUM) values('h3.jpg','7');
 insert into Files(FILE_NAME,SCH_NUM) values('h4.jpg','8');
 insert into Files(FILE_NAME,SCH_NUM) values('h5.jpeg','9');
 
-insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','19');
+insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','10');
 insert into Files(FILE_NAME,SCH_NUM) values('h2.jpg','20');
 insert into Files(FILE_NAME,SCH_NUM) values('h3.jpg','21');
 insert into Files(FILE_NAME,SCH_NUM) values('h4.jpg','22');

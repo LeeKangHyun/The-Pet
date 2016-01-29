@@ -109,13 +109,13 @@ public class MatingController {
 	}
 	
 
-	@RequestMapping("delete")
+	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public AjaxResult delete(
-			int dno) throws Exception {
-		
-		commentService.removeComment(dno);
-		filesService.removeDairyFile(dno);
-		diaryService.remove(dno);
+			int matNo) throws Exception {
+	  
+	  commentService.removeComment(matNo);
+	  filesService.removeMatFile(matNo);
+	  matingService.remove(matNo);
 		 
 		return new AjaxResult("success", null);
 	}

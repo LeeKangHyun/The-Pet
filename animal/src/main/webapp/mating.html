@@ -448,6 +448,7 @@ function detail(id) {
         type: 'post',
         success: function(re) {
           var files = re.ajaxResult.data;
+          console.log(files);
           var imgs = $('#imgs');
           var dots = $('#dots');
           var i = 0;
@@ -661,9 +662,20 @@ $('#saleModal').on('hidden.bs.modal', function(e) {
 
 // 짝짓기 삭제
 $(document).on('click', '#matDelBtn', function() {
-//    console.log(id)
-    console.log($('#mmatno').val())
+    $.ajax({
+        url: 'mating/ajax/delete.do',
+        dataType: 'json',
+        type: 'get',
+        data: {
+            "matNo": $('#mmatno').val()
+        },
+        success: function (ro) {
+            console.log(ro)
+            location.href='mating.html';
+        }
+    })
 });
+
 
 
 //더보기
