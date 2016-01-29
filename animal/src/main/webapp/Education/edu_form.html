@@ -35,8 +35,6 @@
 
 <link href="../css/sh_file_upload.css" rel="stylesheet" type="text/css" />
 
-<link href="//vjs.zencdn.net/4.9/video-js.css" rel="stylesheet">
-<script src="//vjs.zencdn.net/4.9/video.js" ></script>
 </head>
 <body>
   <header id="menu">
@@ -104,13 +102,13 @@
   <script type="text/javascript" src="../lib/jquery/jquery.js"></script>
   <script>
     var eduNo = location.href.split('?')[1].split('=')[1];
-
+    
     $.ajax({
       url : 'education/ajax/detail.do',
       dataType : 'json',
       type : "get",
       contentType : "multipart/form-data",
-      async : false,
+      async : true,
       cache : true,
       data : {
         eduNo : eduNo
@@ -118,10 +116,14 @@
       success : function(resultObj) {
         var education = resultObj.education;
         var files = resultObj.files;
+        console.log(files);
+        var url = (files[0].fileName).split('?')[1].split('=')[1];
+        console.log(url);
         var va = $("#va");
-        $("<video controls='controls' autoplay width='650px' height='350px' class='video-js vjs-default-skin' data-setup='{}'>")
-        .html("<source src='../files/" + files[0].fileName + "' type='video/mp4' />")
-        	.appendTo(va);
+        $("<iframe width='560' height='315' src='https://www.youtube.com/embed/" 
+        		+ url + "?rel=0'" +
+        		"' frameborder='0' allowfullscreen></iframe>'")	
+        .appendTo(va);
         $("#eduNo").val(education.eduNo);
         $("#eduTitle").val(education.eduTitle);
         $("#eduContent").val(education.eduContent);

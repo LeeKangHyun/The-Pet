@@ -192,11 +192,13 @@
         for(var education of resultObj.data) {
             file = resultObj.filesMap[j];
             j++;
+            var fname = file[0].fileName;
+            var url = fname.split('?')[1].split('=')[1];
           $("<div class='boxsub1 gallery mix all " + education.eduSpec + "'>")
           .html(
               "<div class='card'>"+
               "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-              "<video src='../files/" + file[0].fileName + "' width='325px;' height='410px;' />"+
+              "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' width='325px;' height='410px;' />"+
               "</div>"+
               "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
               "<i class='fa fa-youtube-play'></i>"+
