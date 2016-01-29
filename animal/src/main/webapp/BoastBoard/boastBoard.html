@@ -178,11 +178,10 @@ function detailBoastBoard(dno) {
         data : view_data,
         success : function(resultObj) {} });
     
-    console.log(dno);
-    alert("zzzzzzzzz");
+    console.log("넘어가는 Detail Page Dno = "+dno);
     
     location.href='boastDetail.html?dno='+dno;
-    location.replace("boastDetail.html?dno="+dno);
+    location.replace('boastDetail.html?dno='+dno);
     
 }
 </script>
