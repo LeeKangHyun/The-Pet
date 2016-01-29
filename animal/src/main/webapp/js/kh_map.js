@@ -17,37 +17,62 @@ var ps = new daum.maps.services.Places();
 var infowindow = new daum.maps.InfoWindow({
   zIndex: 1
 });
+var sub = '';
+
+$(document).on('click', "#ali", function() {
+    $('#keyword').val('');
+    sub='';
+});
+
+$(document).on('click', "#hospital", function() {
+    $('#keyword').val('');
+    sub=$('#hospital').val();
+});
+
+$(document).on('click', "#object", function() {
+    $('#keyword').val('');
+    sub=$('#object').val();
+});
+
+$(document).on('click', "#cafe", function() {
+    $('#keyword').val('');
+    sub=$('#cafe').val();
+});
+
+// 키워드 검색을 요청하는 함수입니다
+$(document).on("click", "#finder", function () {
+
+  var keyword = document.getElementById('keyword').value;
+
+  if (!keyword.replace(/^\s+|\s+$/g, '')) {
+    alert('키워드를 입력해주세요!');
+    return false;
+  }
+
+  // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+  ps.keywordSearch({
+    keyword: keyword + sub,
+    callback: placesSearchCB,
+    radius: 1000
+  });
+});
 
 navigator.geolocation.getCurrentPosition(function (position) {
   var lat = position.coords.latitude, // 위도
       lon = position.coords.longitude; // 경도
   var locPosition = new daum.maps.LatLng(lat, lon)
-
+  console.log(locPosition);
   $(document).on("click", ".pet", function (event) {
-    ps.keywordSearch({
-      keyword: event.target.value,
-      callback: placesSearchCB,
-      radius: 1000,
-      location: locPosition
-    })
-  });
-
-  // 키워드 검색을 요청하는 함수입니다
-  $(document).on("click", "#finder", function () {
-
-    var keyword = document.getElementById('keyword').value;
-
-    if (!keyword.replace(/^\s+|\s+$/g, '')) {
-      alert('키워드를 입력해주세요!');
-      return false;
+    if ($('#keyword').val() === '') {
+        ps.keywordSearch({
+            keyword: event.target.value,
+            callback: placesSearchCB,
+            radius: 1000,
+            location: locPosition
+        });
+    } else {
+        return false;
     }
-
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch({
-      keyword: keyword,
-      callback: placesSearchCB,
-      radius: 1000
-    });
   });
 });
 
@@ -85,9 +110,6 @@ function placesSearchCB(status, data, pagination) {
     // 정상적으로 검색이 완료됐으면
     // 검색 목록과 마커를 표출합니다
     displayPlaces(data.places);
-
-    // 페이지 번호를 표출합니다
-    displayPagination(pagination);
 
   } else if (status === daum.maps.services.Status.ZERO_RESULT) {
 
@@ -162,7 +184,7 @@ function displayPlaces(places) {
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-
+  console.log(places)
   var el = document.createElement('li'),
       itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
       '<div class="info">' +
@@ -212,37 +234,6 @@ function removeMarker() {
     markers[i].setMap(null);
   }
   markers = [];
-}
-
-// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-function displayPagination(pagination) {
-  var paginationEl = document.getElementById('pagination'),
-      fragment = document.createDocumentFragment(),
-      i;
-
-  // 기존에 추가된 페이지번호를 삭제합니다
-  while (paginationEl.hasChildNodes()) {
-    paginationEl.removeChild(paginationEl.lastChild);
-  }
-
-  for (i = 1; i <= pagination.last; i++) {
-    var el = document.createElement('a');
-    el.href = "#";
-    el.innerHTML = i;
-
-    if (i === pagination.current) {
-      el.className = 'on';
-    } else {
-      el.onclick = (function (i) {
-        return function () {
-          pagination.gotoPage(i);
-        }
-      })(i);
-    }
-
-    fragment.appendChild(el);
-  }
-  paginationEl.appendChild(fragment);
 }
 
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
