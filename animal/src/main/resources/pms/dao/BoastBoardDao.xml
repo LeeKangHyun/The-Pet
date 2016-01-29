@@ -43,7 +43,8 @@
   <select id="count" resultType="double">
       select
       count(*) as count
-    from schedule;
+    from schedule
+    where CATE_CODE='JARANG' and NOTI_HIDE=1
     </select>
     
   
@@ -70,13 +71,13 @@
 <select id="searchList" resultMap="diaryMap" parameterType="map">
     select
       sc.SCH_NUM,
-      sc.SCH_CRE, 
-      sc.SCH_TITLE, 
-      sc.CATE_CODE,
-      sc.NOTI_LIKES,
-      sc.NOTI_VIEWS,
-      fi.FILE_NAME,
-      sc.PET_SPEC
+     MAX(sc.SCH_CRE) as SCH_CRE, 
+     MAX(sc.SCH_TITLE)as SCH_TITLE, 
+     MAX(sc.CATE_CODE)as CATE_CODE,
+     MAX(sc.NOTI_LIKES)as NOTI_LIKES,
+     MAX(sc.NOTI_VIEWS)as NOTI_VIEWS,
+     MAX(fi.FILE_NAME)as FILE_NAME,
+     MAX(sc.PET_SPEC) as PET_SPEC
     from schedule sc 
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
     left outer join Member me on sc.MEM_NUM = me.MEM_NUM
@@ -85,6 +86,7 @@
     if(#{diary.title} is not null, sc.SCH_TITLE like CONCAT('%', #{diary.title}, '%'), sc.SCH_TITLE like '%%')
     and 
     if(#{diary.member} is not NULL, me.MEM_NAME like CONCAT('%', #{diary.member}, '%'), me.MEM_NAME like '%%')
+    group by sc.SCH_NUM
     order by sc.SCH_CRE desc limit #{startIndex}, #{length}
   </select>
   
@@ -109,27 +111,6 @@
   update schedule set NOTI_VIEWS = NOTI_VIEWS + 1 where SCH_NUM=#{dno}
   </update>
     
-  
-  
-  
-  
-    <select id="selectOne" resultMap="diaryMap" parameterType="int">
-    select
-      sc.SCH_NUM,
-      sc.SCH_CRE, 
-      sc.SCH_TITLE,
-      sc.SCH_CONTENT,
-      sc.CATE_CODE,
-      sc.NOTI_LIKES,
-      sc.NOTI_VIEWS,
-      fi.FILE_NAME,
-      me.MEM_name
-    from schedule sc
-    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
-    left outer join pet pe on sc.PET_NUM = pe.PET_NUM
-    left outer join member me on sc.PET_NUM = me.MEM_NUM
-    where sc.CATE_CODE='JARANG' and sc.NOTI_HIDE=1 and sc.SCH_NUM = #{dno}
-  </select>
   
   <select id="detail_image" resultMap="diaryMap" parameterType="diary">
   select

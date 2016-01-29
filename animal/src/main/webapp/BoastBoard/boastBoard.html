@@ -1275,13 +1275,13 @@ function detailBoastBoard(dno) {
                         + "<i class='fa fa-unlock fa-lg'></i></a>")
               } else {
                 div
-                    .append("<a href='login.html' id='loginBtn'>로그인</a>")
+                    .append("<a href='../login.html' id='loginBtn'>로그인</a>")
               }
 
               //    로그아웃
               $(document).on("click", "#outBtn", function() {
                 $.session.clear();
-                location.href = "login.html"
+                location.href = "../login.html"
               });
             });
   </script>

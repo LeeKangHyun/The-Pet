@@ -30,8 +30,8 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<i class='line'></i>" + 
 					"<span class='date'>"+resultObj.data[i].createDate+"</span>" +
 					"<span class='view-like'>" + 
-					"<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like + 
-					"<i class='fa fa-eye'></i>" + resultObj.data[i].view + 
+					"<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
+					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
 					"</span>" +
 					"</div>" +
 					"</div>" +
@@ -62,8 +62,8 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<i class='line'></i>" + 
 					"<span class='date'>" + resultObj.data[i].createDate + "</span>" +
 					"<span class='view-like'>" +
-					"<i class='fa fa-eye'>" + "</i>" + resultObj.data[i].view + 
-					"<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like + 
+					"<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
+					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
 					"</span>" +
 					"</div>" +
 					"</div>" +
