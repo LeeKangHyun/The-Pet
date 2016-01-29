@@ -17,7 +17,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<div class='background'>" +
 					"<img src='../images/" + resultObj.data[i].filename + "'>" +
 					"</div>" +
-					"<a href='' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
 					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 					"<i class='fa fa-camera-retro'></i>" +
 					"</a>" +
@@ -49,7 +49,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<div class='background'>" +
 					"<img src='../images/" + resultObj.data[i].filename + "'>" + 
 					"</div>" +
-					"<a href='' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 					"<i class='fa fa-youtube-play'></i>" +
 					"</a>" +

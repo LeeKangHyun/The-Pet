@@ -14,8 +14,6 @@ public interface BoastBoardService {
   
   List<Diary> rankList();
   
-  Diary selectOne(int dno);
-  
   List<Diary> searchList(int pageNo, int pageSize, Diary diary);
   
   double search_title_Count(Diary diary);
@@ -23,6 +21,11 @@ public interface BoastBoardService {
   double search_member_Count(Diary diary);
   
   int view(Diary diary);
+  
+  List<Diary> detail_image(Diary diary);
+  
+  List<Diary> detail_content(Diary diary);
+
 }
 
 

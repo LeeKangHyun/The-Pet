@@ -35,10 +35,6 @@ public class DefaultBoastBoardService implements BoastBoardService {
 	  return boastboardDao.rankList();
 	}
 	
-	public Diary selectOne(int dno) {
-	  return boastboardDao.selectOne(dno);
-	}
-
   public List<Diary> searchList(int pageNo, int pageSize, Diary diary) {
     
     HashMap<String, Object> paramMap = new HashMap<>();
@@ -61,6 +57,14 @@ public class DefaultBoastBoardService implements BoastBoardService {
   
   public int view(Diary diary) {
     return boastboardDao.view(diary);
+  }
+  
+  public List<Diary> detail_image(Diary diary) {
+    return boastboardDao.detail_image(diary);
+  }
+  
+  public List<Diary> detail_content(Diary diary) {
+    return boastboardDao.detail_content(diary);
   }
 
 }

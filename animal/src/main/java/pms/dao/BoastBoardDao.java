@@ -13,8 +13,6 @@ public interface BoastBoardDao {
   
   List<Diary> rankList();
   
-  Diary selectOne(int dno);
-  
   List<Diary> searchList(Map<String, Object> paramMap);
   
   double search_title_Count(Diary diary);
@@ -22,6 +20,12 @@ public interface BoastBoardDao {
   double search_member_Count(Diary diary);
   
   int view(Diary diary); 
+  
+  List<Diary> detail_image(Diary diary);
+  
+  List<Diary> detail_content(Diary diary);
+  
+  
   
 }
 

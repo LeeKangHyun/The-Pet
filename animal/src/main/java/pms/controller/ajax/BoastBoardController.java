@@ -75,10 +75,6 @@ public class BoastBoardController {
   
   
   
-  
-  
-  
-  
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {
     List<Diary> boastboards = boastBoardDao.rankList();
@@ -91,14 +87,6 @@ public class BoastBoardController {
 
     return resultMap;
   }
-  
-  
-  @RequestMapping(value="detail", method=RequestMethod.GET)
-  public Object detail(int dno) throws Exception {
-    Diary diary = boastBoardDao.selectOne(dno);
-    return new AjaxResult("success", diary);
-  }
-  
   
   
   @RequestMapping(value="search", method=RequestMethod.POST)
@@ -160,6 +148,41 @@ public class BoastBoardController {
     log.debug("Diary.dno..............?"+diary.getDno());
     boastBoardDao.view(diary);
     return new AjaxResult("success", null);
+  }
+  
+  
+  @RequestMapping(value="detail_image", method=RequestMethod.POST)
+  public Object detail_image(Diary diary) throws Exception {
+    log.debug("Diary.dno..............?"+diary.getDno());
+    List<Diary> boastboards = boastBoardDao.detail_image(diary);
+    int ImageCount = 0;
+    
+    log.debug("sql 결과 값 테스트 = " + boastboards.get(0).getFilename());
+    
+    ImageCount = boastboards.size();
+    
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", boastboards);
+    resultMap.put("ImageCount", ImageCount);
+    
+    return resultMap;
+  }
+  
+  
+  @RequestMapping(value="detail_content", method=RequestMethod.POST)
+  public Object detail_content(Diary diary) throws Exception {
+    
+    log.debug("Diary.dno..............?"+diary.getDno());
+    
+    List<Diary> boastboards = boastBoardDao.detail_content(diary);
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", boastboards);
+    
+    return resultMap;
   }
   
 
