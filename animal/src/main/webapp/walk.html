@@ -3,12 +3,15 @@
   
   <link rel="icon" href="icon/1.ico" type="image/x-icon" />
   <meta charset="UTF-8">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <title>산책코스</title>
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+  
   <!--  상훈 css  -->
   <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
   <link href='css/sh_walk.less' type="style.less" rel='stylesheet/less'/>
-
+  <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
+  
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
   <link href="css/icon-font.min.css" rel="stylesheet" />
@@ -55,7 +58,232 @@
   </header>
   
   <section id="main-body" >
-    
+    <div id="cardSection">
+      
+      <div class="card-container manual-flip">
+        <div class="card">
+
+          <div class="front">
+            <div class="cover">
+              <img src="images/h3.jpg"/>
+            </div>
+            <div class="user">
+              <img class="img-circle" src="images/p8.jpeg"/>
+            </div>
+
+            <div class="content">
+
+              <a role="button" href="">
+                <div class="main">
+                  <h3 class="name">설현</h3>
+                  <div class="creDate">2016-01-29</div>
+                  <h5 class="title"> 
+                    제목입니다.
+                  </h5>
+                  <h5>
+                    <i class="fa fa-map-marker fa-fw text-muted"></i> 
+                    위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                  </h5>
+                </div>
+              </a>
+              <div class="footer">
+                <div class="like">
+                  <i class="fa fa-thumbs-o-up"></i> 392
+                </div>
+                <div class="view">
+                  <i class="fa fa-eye"></i> 392
+                </div>
+                <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                  <i class="fa fa-mail-forward"></i> 간략정보
+                </button>
+              </div>
+            </div>
+
+          </div> <!-- end front panel -->
+
+          <div class="back">
+            <div class="header">
+              <div class='map' id='map1'></div>
+            </div> 
+            <div class="content">
+              <div class="main">
+                <h4 class="text-center">위치 정보</h4>
+              </div>
+            </div>
+            <div class="footer">
+              <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                <i class="fa fa-reply"></i> 돌아가기
+              </button>
+              <button type="button" class="detail">
+                <i class="fa fa-sign-in"></i> 상세정보
+              </button>
+            </div>
+          </div> <!-- end back panel -->
+
+        </div> <!-- end card -->
+      </div> <!-- end card-container -->
+
+      <div class="card-container manual-flip">
+        <div class="card">
+
+          <div class="front">
+            <div class="cover">
+              <img src="images/h3.jpg"/>
+            </div>
+            <div class="user">
+              <img class="img-circle" src="images/p8.jpeg"/>
+            </div>
+
+            <div class="content">
+
+              <a role="button" href="#">
+              <div class="main">
+                <h3 class="name">설현</h3>
+                <div class="creDate">2016-01-29</div>
+                <h5 class="title"> 
+                  제목입니다.
+                </h5>
+                <h5>
+                  <i class="fa fa-map-marker fa-fw text-muted"></i> 
+                  위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                </h5>
+              </div>
+              </a>
+              <div class="footer">
+                <div class="like">
+                  <i class="fa fa-thumbs-o-up"></i> 392
+                </div>
+                <div class="view">
+                  <i class="fa fa-eye"></i> 392
+                </div>
+                <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                  <i class="fa fa-mail-forward"></i> 간략정보
+                </button>
+              </div>
+            </div>
+
+          </div> <!-- end front panel -->
+
+          <div class="back">
+            <div class="header">
+              <div class='map' id='map2'></div>
+            </div> 
+            <div class="content">
+              <div class="main">
+                <h4 class="text-center">위치 정보</h4>
+              </div>
+            </div>
+            <div class="footer">
+              <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                <i class="fa fa-reply"></i> 돌아가기
+              </button>
+              <button type="button" class="detail">
+                <i class="fa fa-sign-in"></i> 상세정보
+              </button>
+            </div>
+          </div> <!-- end back panel -->
+
+        </div> <!-- end card -->
+      </div> <!-- end card-container -->
+
+      <div class="card-container manual-flip">
+        <div class="card">
+          
+          <div class="front">
+            <div class="cover">
+              <img src="images/h3.jpg"/>
+            </div>
+            <div class="user">
+              <img class="img-circle" src="images/p8.jpeg"/>
+            </div>
+
+            <div class="content">
+
+              <a role="button" href="#">
+              <div class="main">
+                <h3 class="name">설현</h3>
+                <div class="creDate">2016-01-29</div>
+                <h5 class="title"> 
+                  제목입니다.
+                </h5>
+                <h5>
+                  <i class="fa fa-map-marker fa-fw text-muted"></i> 
+                  위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                </h5>
+              </div>
+              </a>
+              <div class="footer">
+                <div class="like">
+                  <i class="fa fa-thumbs-o-up"></i> 392
+                </div>
+                <div class="view">
+                  <i class="fa fa-eye"></i> 392
+                </div>
+                <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                  <i class="fa fa-mail-forward"></i> 간략정보
+                </button>
+              </div>
+            </div>
+
+          </div> <!-- end front panel -->
+
+          <div class="back">
+            <div class="header">
+              <div class='map' id='map3'></div>
+            </div> 
+            <div class="content">
+              <div class="main">
+                <h4 class="text-center">위치 정보</h4>
+              </div>
+            </div>
+            <div class="footer">
+              <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                <i class="fa fa-reply"></i> 돌아가기
+              </button>
+              <button type="button" class="detail">
+                <i class="fa fa-sign-in"></i> 상세정보
+              </button>
+            </div>
+          </div> <!-- end back panel -->
+
+        </div> <!-- end card -->
+      </div> <!-- end card-container -->     
+      
+    </div> <!-- cardSection 끝 -->
   </section>
+  
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
+  
+<script type="text/javascript">
+$(document).ready(function(){
+  $('[rel="tooltip"]').tooltip();
+
+  //    <!-- 지도 나오기 -->
+  for (var i=1; i<4; i++) {
+    var ids = 'map' + i;
+    var mapContainer = document.getElementById(ids), 
+      // 지도를 표시할 div
+      mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };
+
+    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+  }
+  
+});
+
+function rotateCard(btn){
+  var $card = $(btn).closest('.card-container');
+  console.log($card);
+  if($card.hasClass('hover')){
+    $card.removeClass('hover');
+  } else {
+    $card.addClass('hover');
+  }
+}
+
+
+</script>
 </body>
 </html>
