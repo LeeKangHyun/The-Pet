@@ -49,7 +49,7 @@ insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_N
 insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
   values('우리 아이 짝짓기 부탁해요~~~7','우리 아이 부탁드려요~~~~','FISH','악어',true,now(),2);
 insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~8','나이는 어려용~~~','DIV04','BIRD',false,now(),3);
+  values('우리 아이 짝짓기 부탁해요~~~8','나이는 어려용~~~','BIRD',false,now(),3);
 insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
   values('우리 아이 짝짓기 부탁해요~~~9','서울 강남역 근처로 부탁드려요~','BIRD','앵무새',true,now(),3);
 insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
@@ -166,37 +166,37 @@ insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_C
 /* 자랑하기 등록 */
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(4,3,'2016-01-25','2016-02-25',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098','DIV04');
+  values(4,3,'2016-01-25','2016-02-25',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098','FISH');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(2,1,'2016-01-25','2016-01-25',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456','DIV01');
+  values(2,1,'2016-01-25','2016-01-25',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456','DOG');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(1,1,'2016-01-20','2016-01-20',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000','DIV01');
+  values(1,1,'2016-01-20','2016-01-20',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000','CAT');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(1,1,'2016-01-28','2016-01-28',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000','DIV01');
+  values(1,1,'2016-01-28','2016-01-28',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000','BIRD');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-29','2016-01-29',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122','DIV05');
+  values(3,2,'2016-01-29','2016-01-29',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122','ETC');
 
 
 /* 산책코스 등록 */
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(5,3,'2016-01-20','2016-01-20',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',false,'#120982','DIV02');
+  values(5,3,'2016-01-20','2016-01-20',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',false,'#120982','CAT');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-19','2016-01-19',now(),'반해버렸어요','너무 이쁜거 있죠?','SANCHE',true,'#001122','DIV05');
+  values(3,2,'2016-01-19','2016-01-19',now(),'반해버렸어요','너무 이쁜거 있죠?','SANCHE',true,'#001122','ETC');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-09','2016-01-09',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','SANCHE',false,'#001122','DIV05');
+  values(3,2,'2016-01-09','2016-01-09',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','SANCHE',false,'#001122','DOG');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(7,4,'2016-01-11','2016-01-11',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','SANCHE',false,'#572985','DIV05');
+  values(7,4,'2016-01-11','2016-01-11',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','SANCHE',false,'#572985','FISH');
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752','DIV03');
+  values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752','BIRD');
   
 /* Comment */
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 

@@ -11,6 +11,18 @@ insert into Files(FILE_NAME,SCH_NUM) values('h4.jpg','43');
 insert into Files(FILE_NAME,SCH_NUM) values('h5.jpeg','44');
 insert into Files(FILE_NAME,SCH_NUM) values('h6.png','45');
 
+insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','5');
+insert into Files(FILE_NAME,SCH_NUM) values('h2.jpg','6');
+insert into Files(FILE_NAME,SCH_NUM) values('h3.jpg','7');
+insert into Files(FILE_NAME,SCH_NUM) values('h4.jpg','8');
+insert into Files(FILE_NAME,SCH_NUM) values('h5.jpeg','9');
+
+insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','19');
+insert into Files(FILE_NAME,SCH_NUM) values('h2.jpg','20');
+insert into Files(FILE_NAME,SCH_NUM) values('h3.jpg','21');
+insert into Files(FILE_NAME,SCH_NUM) values('h4.jpg','22');
+insert into Files(FILE_NAME,SCH_NUM) values('h5.jpeg','23');
+
 insert into Files(FILE_NAME,SCH_NUM) values('h1.jpg','45');
 insert into Files(FILE_NAME,SCH_NUM) values('h2.jpg','46');
 insert into Files(FILE_NAME,SCH_NUM) values('h3.jpg','47');
@@ -74,6 +86,8 @@ insert into Files(FILE_NAME,Mat_num) values('a5.jpg','4');
 insert into Files(FILE_NAME,Mat_num) values('a6.jpg','5');
 insert into Files(FILE_NAME,Mat_num) values('a7.jpg','4');
 insert into Files(FILE_NAME,Mat_num) values('a8.jpg','4');
+
+
 
 
 

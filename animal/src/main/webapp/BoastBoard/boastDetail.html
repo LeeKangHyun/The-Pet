@@ -235,8 +235,12 @@ detail_data.append("dno", dno);
 $(document).ready(function() {
 var like_toggle = 0;
 
+
+
 $('#likes').click(function(event) { 
 
+	alert($.session.get('mname'));
+	
     if(like_toggle == 0) {
         $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
         like_toggle = 1;
