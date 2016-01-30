@@ -144,12 +144,11 @@
 
 
 
-
-
 <script type="text/javascript">
 $(document).ready(function() {
 var url = location.href;
 var dno = url.split('?')[1].split('=')[1];
+var like_toggle = 0;
 
 var detail_data = new FormData();
 detail_data.append("dno", dno);
@@ -206,7 +205,7 @@ detail_data.append("dno", dno);
     } }); 
  
  
- 
+ <!-- Content 뽑아내는 Ajax -->
  $.ajax({
       url : "../boastboard/ajax/detail_content.do",
       dataType : "json",
@@ -224,73 +223,158 @@ detail_data.append("dno", dno);
         $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.data[0].like+"</span>")
         $('#content-content').append("<pre id='content-content-content'>"+resultObj.data[0].content+"</pre>")
         
+        
+        <!-- Detail 접속 시 Like 눌렀는지 확인 유무 -->
+        
+        var mno = $.session.get('mno');
+        var like_check_data = new FormData();
+        like_check_data.append("mno", mno);
+        like_check_data.append("SCH_NUM", dno);
+        
+        $.ajax({
+            url : "../boastboard/ajax/detail_like_check.do",
+            dataType : "json",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            async: false,
+            data : like_check_data,
+            success : function(resultObj) {
+              
+              if (resultObj.like[0].lno != null ) {
+                $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
+                like_toggle = 1;
+              } else {
+                $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
+                like_toggle = 0;
+              }
+              
+            } }); 
+        
       } }); 
  
-});  
-</script>
+ 
+ <!-- 좋아요(Likes) Toggle 기능 -->
+ $('#likes').click(function(event) { 
 
-
-<!-- 좋아요(Likes) Toggle 기능 -->
-<script>
-$(document).ready(function() {
-var like_toggle = 0;
-
-
-
-$('#likes').click(function(event) { 
-
-	if ($.session.get('mname') == undefined) {
-		alert("로그인 후 이용해주십시오.")
-	} else {
-    if(like_toggle == 0) {
+   var mno = $.session.get('mno');
+   
+   var like_data = new FormData();
+   like_data.append("mno", mno);
+   like_data.append("SCH_NUM", dno);
+   
+   
+   if ($.session.get('mno') == undefined) {
+     
+     alert("로그인 후 이용해주십시오.");
+     
+   } else {
+     
+     if(like_toggle == 0) {
+       
+        $.ajax({
+             url : "../boastboard/ajax/like_add.do",
+             dataType : "json",
+             type : "POST",
+             contentType : false,
+             processData : false,
+             async: false,
+             data : like_data,
+             success : function(resultObj) {
+               $('#likes').empty();
+               $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"</span>")
+             } }); 
+         
         $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
-        like_toggle = 1;
-    } else if(like_toggle == 1) {
-        $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
-        like_toggle = 0;
-    }
-	}
-	
-});
+          like_toggle = 1;
+          
+     } else if(like_toggle == 1) {
+       
+          $.ajax({
+             url : "../boastboard/ajax/like_delete.do",
+             dataType : "json",
+             type : "POST",
+             contentType : false,
+             processData : false,
+             async: false,
+             data : like_data,
+             success : function(resultObj) {
+               $('#likes').empty();
+               $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"</span>")
+             } });
+       
+         $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
+         like_toggle = 0;
+     }
+     
+   }
+   
+ });
 
 
-/* List 돌아가는 이벤트 */
-$('#list-Btn').click(function(event) {
-    location.href='boastBoard.html';
-    location.replace('boastBoard.html');
-});
+ /* List 돌아가는 이벤트 */
+ $('#list-Btn').click(function(event) {
+     location.href='boastBoard.html';
+     location.replace('boastBoard.html');
+ });
 
-});
+ 
+});  
 </script>
 
 
 
 <!-- Log In/Out Script -->
 <script>
-    $(document).ready(function() {
-              //    로그인 회원 정보출력 세션없으면 로그인페이지로
-              var div = $('#user_info');
-              if ($.session.get('mno') != undefined) {
-                div
-                    .append("<img src='files/"
-                        + $.session.get('mimg')
-                        + "' id='userImg' />"
-                        + "<a id='userName' href='#'>"
-                        + $.session.get('mname')
-                        + "</a>"
-                        + "<a role='button' id='outBtn' class='logout'>"
-                        + "<i class='fa fa-unlock fa-lg'></i></a>")
-              } else {
-                div
-                    .append("<a href='../login.html' id='loginBtn'>로그인</a>")
-              }
+$(document).ready(function() {
+    // 로그인 회원 정보출력 세션없으면 로그인페이지로
+    var no = $.session.get('mno');
+    var div = $('#user_info');
+    var ul = $('#menu-nav-ul');
+    if (no == undefined) {
+      div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
+    } else {
+      $('#myMno1').val(no);
+      $('#myMno2').val(no);
 
-              //    로그아웃
-              $(document).on("click", "#outBtn", function() {
-                $.session.clear();
-                location.href = "../login.html"
-              });
-            });
+      div.append(
+        "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
+          "<i class='fa fa-envelope-o'></i>" +
+          "<span class='badge' id='userBadge'>0</span>" +
+        "</a>" +
+        "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
+        "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+        "<a role='button' id='outBtn' class='logout'>" +
+          "<i class='fa fa-unlock fa-lg'></i>" +
+        "</a>")
+      ul.append(
+        "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    }
+    
+    // 로그아웃
+    $(document).on("click", "#outBtn", function() {
+          $.session.clear();
+          location.href = "login.html"
+      });
+    
+    // 안읽은 받은쪽지 갯수 출력
+    var no = $.session.get('mno');
+    var form_data = new FormData();
+    form_data.append("recvMno", no)
+    $.ajax({
+      url: '../message/ajax/noReadMsg.do',
+      type: 'post',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        $('#userBadge').html(ajaxResult.data.noReadCount)
+      }
+    })
+      });
   </script>
 </body>
 </html>

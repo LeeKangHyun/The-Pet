@@ -8,182 +8,252 @@ import javax.servlet.ServletContext;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 import pms.dao.BoastBoardDao;
+import pms.dao.MemberDao;
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
+import pms.domain.Likes;
+import pms.domain.Member;
 import pms.service.support.DefaultBoastBoardService;
 
 @Controller("ajax.BoastBoardController")
 @RequestMapping("/boastboard/ajax/*")
 public class BoastBoardController { 
-  
+
   private static Logger log = Logger.getLogger(DefaultBoastBoardService.class);
   //public static final String SAVED_DIR = "/attachfile";
 
   @Autowired  BoastBoardDao boastBoardDao;
+  @Autowired MemberDao memberDao;
   @Autowired ServletContext servletContext;
 
   @RequestMapping(value="list", method=RequestMethod.POST)
   public Object list(
-  @RequestParam(defaultValue="1") int pageNo,
-  @RequestParam(defaultValue="16") int pageSize
-  ) throws Exception {
-    
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="16") int pageSize
+      ) throws Exception {
+
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
-    
+
     log.debug("pageNo = " + pageNo);
-    
+
     List<Diary> boastboards = boastBoardDao.selectList(paramMap);
-   
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
-    
+
     log.debug("Controller/selectList()....호출");
 
     return resultMap;
   }
-  
-  
-  
-  
-  
+
+
+
+
+
   @RequestMapping(value="count", method=RequestMethod.GET)
   public Object count(
-  @RequestParam(defaultValue="16") int pageSize
-  ) throws Exception {
-   
+      @RequestParam(defaultValue="16") int pageSize
+      ) throws Exception {
+
     double count = boastBoardDao.count();
     count = Math.ceil(count / pageSize);
-    
-   
+
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("count", count);
-    
+
     log.debug("Controller/count()....호출");
 
     return resultMap;
   }
-  
-  
-  
+
+
+
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {
     List<Diary> boastboards = boastBoardDao.rankList();
-   
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
-    
+
     log.debug("Controller/ranktList()....호출");
 
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="search", method=RequestMethod.POST)
   public Object search(
       @RequestParam(defaultValue="1") int pageNo,
       @RequestParam(defaultValue="16") int pageSize,
       Diary diary
       ) throws Exception {
-    
-   log.debug("diary.getTitle()............."+diary.getTitle());
-   log.debug("diary.getMember()............."+diary.getMember());
-    
+
+    log.debug("diary.getTitle()............."+diary.getTitle());
+    log.debug("diary.getMember()............."+diary.getMember());
+
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
     paramMap.put("diary", diary);
-    
-    
+
+
     List<Diary> boastboards = boastBoardDao.searchList(paramMap);
-    
-    
+
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
-    
+
     return resultMap;
   }
-  
+
   @RequestMapping(value="searchCount", method=RequestMethod.POST)
   public Object searchCount(
-  @RequestParam(defaultValue="16") int pageSize,
-  Diary diary
-  ) throws Exception {
-    
+      @RequestParam(defaultValue="16") int pageSize,
+      Diary diary
+      ) throws Exception {
+
     double count = 0;
-    
+
     if(diary.getTitle() != null) {
       count = boastBoardDao.search_title_Count(diary);
     } else if(diary.getMember() != null) {
       count = boastBoardDao.search_member_Count(diary);
     }
-    
+
     log.debug("Count의 갯수는......."+count);
-    
+
     count = Math.ceil(count / pageSize);
-   
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("count", count);
-    
+
     log.debug("Controller/searchCount()....호출");
 
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="view", method=RequestMethod.POST)
   public AjaxResult view(Diary diary) throws Exception {
     log.debug("Diary.dno..............?"+diary.getDno());
     boastBoardDao.view(diary);
     return new AjaxResult("success", null);
   }
-  
-  
+
+
   @RequestMapping(value="detail_image", method=RequestMethod.POST)
   public Object detail_image(Diary diary) throws Exception {
     log.debug("Diary.dno..............?"+diary.getDno());
     List<Diary> boastboards = boastBoardDao.detail_image(diary);
     int ImageCount = 0;
-    
+
     log.debug("sql 결과 값 테스트 = " + boastboards.get(0).getFilename());
-    
+
     ImageCount = boastboards.size();
-    
-    
+
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
     resultMap.put("ImageCount", ImageCount);
-    
+
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="detail_content", method=RequestMethod.POST)
   public Object detail_content(Diary diary) throws Exception {
-    
+
     log.debug("Diary.dno..............?"+diary.getDno());
-    
+
     List<Diary> boastboards = boastBoardDao.detail_content(diary);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
+
+    return resultMap;
+  }
+
+
+  @RequestMapping(value="like_add", method=RequestMethod.POST)
+  public Object like_add(String mno, String SCH_NUM) throws Exception {
+    
+
+    int like_mno = Integer.valueOf(mno);
+    int like_SCH_NUM= Integer.valueOf(SCH_NUM);
+    
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", like_mno);
+    paramMap.put("SCH_NUM", like_SCH_NUM);
+
+    boastBoardDao.like_add(paramMap);
+    boastBoardDao.like_add_update(like_SCH_NUM);
+    int like = boastBoardDao.like_select(like_SCH_NUM);
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
     
     return resultMap;
   }
   
+  
+  @RequestMapping(value="like_delete", method=RequestMethod.POST)
+  public Object like_delete(String mno, String SCH_NUM) throws Exception {
+
+    int like_mno = Integer.valueOf(mno);
+    int like_SCH_NUM= Integer.valueOf(SCH_NUM);
+
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", like_mno);
+    paramMap.put("SCH_NUM", like_SCH_NUM);
+
+    boastBoardDao.like_delete(paramMap);
+    boastBoardDao.like_delete_update(like_SCH_NUM);
+    int like = boastBoardDao.like_select(like_SCH_NUM);
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
+    
+    return resultMap;
+  }
+  
+  
+  @RequestMapping(value="detail_like_check", method=RequestMethod.POST)
+  public Object detail_like_check(String mno, String SCH_NUM) throws Exception {
+    
+    int like_mno = Integer.valueOf(mno);
+    int like_SCH_NUM= Integer.valueOf(SCH_NUM);
+
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", like_mno);
+    paramMap.put("SCH_NUM", like_SCH_NUM);
+    
+    List<Likes> like = boastBoardDao.detail_like_check(paramMap);
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
+    
+    return resultMap;
+  }
+
 
 }
