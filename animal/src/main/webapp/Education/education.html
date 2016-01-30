@@ -26,7 +26,7 @@
 
 <!-- 대진 css & js -->
 <link href="../css/dj_main.css" type="text/css" rel="stylesheet">
-<link href="../css/dj_pictures.css" type="text/css" rel="stylesheet">
+<link href="../css/dj_list.css" type="text/css" rel="stylesheet">
 
 <!-- filter 및 sort Test 중 -->
 <script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
@@ -39,6 +39,9 @@
     <div id="header_title">
       <a class="headerTitle" href="../pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      <a class="headerSubTitle" href="education.html">
+       교육
+      </a>
       </a>
       <div id="user_info"></div>
     </div>
@@ -76,14 +79,13 @@
 
       <hr>
       <div style="text-align: left; margin-bottom: 30px;">
-        <button id="button" class="filter" data-filter="*">All</button>
-        <button class="filter" data-filter=".DIV01">DOG</button>
-        <button class="filter" data-filter=".DIV02">CAT</button>
-        <button class="filter" data-filter=".DIV03">FISH</button>
-        <button class="filter" data-filter=".DIV04">BIRD</button>
-        <button class="filter" data-filter=".DIV05"
-          style="margin-right: 560px;">ETC</button>
-        <span id='scheduleAdd'></span>
+        <button id="All" class="filter" data-filter="*">All</button>
+        <button id="DOG" class="filter" data-filter=".DIV01"></button>
+        <button id="CAT" class="filter" data-filter=".DIV02"></button>
+        <button id="FISH" class="filter" data-filter=".DIV03"></button>
+        <button id="BIRD" class="filter" data-filter=".DIV04"></button>
+        <button id="ETC" class="filter" data-filter=".DIV05">ETC</button>
+        <span id='scheduleAdd' style="margin-left:597px;"></span>
       </div>
 
       <!-- 새로운 게시글 모달 부분 -->
@@ -196,7 +198,7 @@
           .html(
               "<div class='card'>"+
               "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-              "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' width='325px;' height='410px;' />"+
+              "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
               "</div>"+
               "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
               "<i class='fa fa-youtube-play'></i>"+
