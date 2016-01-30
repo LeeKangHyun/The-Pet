@@ -1,32 +1,28 @@
-.m_content {
-    position: inherit;
-    padding-top: 47px;
-    margin: 0 auto;
-    width: 1024px;
-    text-align: center;
-    overflow: hidden;
-    z-index: 500;
+.main-img {
+  margin-left: 90px;
+    width: 1100px;
+    height: 580px;
 }
 
-.m_img {
-    width: 1024px;
-    height: 500px;
+.contents {
+  padding-top: 10px;
+  text-align: center;
 }
 
-.m_boast {
-    padding-top: 10px;
+.boast {
+  margin: 0 auto;
+  width: 1200px;
 }
 
-.m_most {
-    width: 300px;
-    height: auto;
-    padding-left: 0px;
-    padding-right: 62px;
-    overflow: hidden;
+.subtitles {
+  max-width: 1100px;
+  text-align: left;
+  text-decoration: none;
+  color: #2d335e;
 }
 
-li {
-    list-style: none;
+.subtitles:hover {
+  text-decoration: none;
 }
 
 table {
@@ -38,15 +34,13 @@ tr {
 td {
     border: none;
 }
-img {
-    width:300px;
-    height:150px;
+
+#cardSection {
+  padding-top: 10px;
+  padding-bottom: 500px;
 }
 
-div > a {
-  text-decoration: none;
-}
-
-div > a:hover {
-  text-decoration: none;
+.map_wrap {
+  margin-top:50px; 
+  margin-bottom: 16%;
 }

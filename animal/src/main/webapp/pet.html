@@ -13,6 +13,7 @@
 
   <!--  상훈 css  -->
   <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
+  <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
 
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -59,68 +60,247 @@
     </div>
   </header>
 
-  <section>
+  <section id="main-body">
     <!-- 메인 컨텐츠 위치-->
-    <div class="m_content">
-      <img class="m_img" src="files/h.jpeg">
 
-      <div class="m_boast">
-        <div>
-          <a href="BoastBoard/boastBoard.html"><h2><i class="lnr lnr-paw">자랑하기 Top3</i></h2></a>
-        </div>
+    <img class="main-img" src="images/1.jpg">
+
+    <div class="contents">
+      
+      <div class="boast">
+        <a class="subtitles" href="BoastBoard/boastBoard.html"><h2><i class="lnr lnr-paw"></i> 자랑하기 Top3</h2></a>
+      
         <table id="boastTable">
           <tr></tr>
         </table>
-        <div class="m_boast">
-          <div>
-            <a href="#"><h2><i class="lnr lnr-leaf">산책하기 Top3</i></h2></a>
-            <table>
-              <tr>
-                <td class="m_most">
-                  <a href="#"><img src="images/h1.jpg" /></a>
-                  <li>title</li>
-                </td>
-                <td class="m_most">
-                  <a href="#"><img src="images/h2.jpg" /></a>
-                  <li>title</li>
-                </td>
-                <td class="m_most">
-                  <a href="#"><img src="images/h2.jpg" /></a>
-                  <li>title</li>
-                </td>
-              </tr>
-            </table>
-          </div>
+      </div>  <!-- boast 끝 -->
+      
+      <div class="walk">
+              
+        <div id="cardSection">
+          
+          <a class="subtitles" href="#"><h2><i class="lnr lnr-leaf"></i> 산책하기 Top3</h2></a>
+            
+          <div class="card-container manual-flip">
+            <div class="card">
+
+              <div class="front">
+                <div class="cover">
+                  <img src="images/h3.jpg"/>
+                </div>
+                <div class="user">
+                  <img class="img-circle" src="images/p8.jpeg"/>
+                </div>
+
+                <div class="content">
+
+                  <a role="button" href="">
+                    <div class="main">
+                      <h3 class="name">설현</h3>
+                      <div class="creDate">2016-01-29</div>
+                      <h5 class="title">
+                        제목입니다.
+                      </h5>
+                      <h5>
+                        <i class="fa fa-map-marker fa-fw text-muted"></i>
+                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                      </h5>
+                    </div>
+                  </a>
+                  <div class="footer">
+                    <div class="like">
+                      <i class="fa fa-thumbs-o-up"></i> 392
+                    </div>
+                    <div class="view">
+                      <i class="fa fa-eye"></i> 392
+                    </div>
+                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                      <i class="fa fa-mail-forward"></i> 간략정보
+                    </button>
+                  </div>
+                </div>
+
+              </div> <!-- end front panel -->
+
+              <div class="back">
+                <div class="header">
+                  <div class='map' id='map1'></div>
+                </div>
+                <div class="content">
+                  <div class="main">
+                    <h4 class="text-center">위치 정보</h4>
+                  </div>
+                </div>
+                <div class="footer">
+                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                    <i class="fa fa-reply"></i> 돌아가기
+                  </button>
+                  <button type="button" class="detail">
+                    <i class="fa fa-sign-in"></i> 상세정보
+                  </button>
+                </div>
+              </div> <!-- end back panel -->
+
+            </div> <!-- end card -->
+          </div> <!-- end card-container -->
+
+
+          <div class="card-container manual-flip">
+            <div class="card">
+
+              <div class="front">
+                <div class="cover">
+                  <img src="images/h3.jpg"/>
+                </div>
+                <div class="user">
+                  <img class="img-circle" src="images/p8.jpeg"/>
+                </div>
+
+                <div class="content">
+
+                  <a role="button" href="">
+                    <div class="main">
+                      <h3 class="name">설현</h3>
+                      <div class="creDate">2016-01-29</div>
+                      <h5 class="title">
+                        제목입니다.
+                      </h5>
+                      <h5>
+                        <i class="fa fa-map-marker fa-fw text-muted"></i>
+                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                      </h5>
+                    </div>
+                  </a>
+                  <div class="footer">
+                    <div class="like">
+                      <i class="fa fa-thumbs-o-up"></i> 392
+                    </div>
+                    <div class="view">
+                      <i class="fa fa-eye"></i> 392
+                    </div>
+                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                      <i class="fa fa-mail-forward"></i> 간략정보
+                    </button>
+                  </div>
+                </div>
+
+              </div> <!-- end front panel -->
+
+              <div class="back">
+                <div class="header">
+                  <div class='map' id='map2'></div>
+                </div>
+                <div class="content">
+                  <div class="main">
+                    <h4 class="text-center">위치 정보</h4>
+                  </div>
+                </div>
+                <div class="footer">
+                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                    <i class="fa fa-reply"></i> 돌아가기
+                  </button>
+                  <button type="button" class="detail">
+                    <i class="fa fa-sign-in"></i> 상세정보
+                  </button>
+                </div>
+              </div> <!-- end back panel -->
+
+            </div> <!-- end card -->
+          </div> <!-- end card-container -->
+
+          <div class="card-container manual-flip">
+            <div class="card">
+
+              <div class="front">
+                <div class="cover">
+                  <img src="images/h3.jpg"/>
+                </div>
+                <div class="user">
+                  <img class="img-circle" src="images/p8.jpeg"/>
+                </div>
+
+                <div class="content">
+
+                  <a role="button" href="">
+                    <div class="main">
+                      <h3 class="name">설현</h3>
+                      <div class="creDate">2016-01-29</div>
+                      <h5 class="title">
+                        제목입니다.
+                      </h5>
+                      <h5>
+                        <i class="fa fa-map-marker fa-fw text-muted"></i>
+                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
+                      </h5>
+                    </div>
+                  </a>
+                  <div class="footer">
+                    <div class="like">
+                      <i class="fa fa-thumbs-o-up"></i> 392
+                    </div>
+                    <div class="view">
+                      <i class="fa fa-eye"></i> 392
+                    </div>
+                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
+                      <i class="fa fa-mail-forward"></i> 간략정보
+                    </button>
+                  </div>
+                </div>
+
+              </div> <!-- end front panel -->
+
+              <div class="back">
+                <div class="header">
+                  <div class='map' id='map3'></div>
+                </div>
+                <div class="content">
+                  <div class="main">
+                    <h4 class="text-center">위치 정보</h4>
+                  </div>
+                </div>
+                <div class="footer">
+                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
+                    <i class="fa fa-reply"></i> 돌아가기
+                  </button>
+                  <button type="button" class="detail">
+                    <i class="fa fa-sign-in"></i> 상세정보
+                  </button>
+                </div>
+              </div> <!-- end back panel -->
+
+            </div> <!-- end card -->
+          </div> <!-- end card-container -->
+
         </div>
 
-        <div style="margin-top:50px; margin-bottom: 16%;">
-          <a href="#"><h2><i class="fa fa-map-marker">Location</i></h2></a>
-          <div class="map_wrap">
-            <div id="map"></div>
+      </div>  <!-- walk 끝 -->
 
-            <div id="menu_wrap">
-              <div id='map-header'>
-              <div>
-                <input type="button" value="통합검색" id="ali" />
-                <input type="button" value="동물병원" class='pet' id="hospital" />
-                <input type="button" value="애견용품" class='pet' id="object" />
-                <input type="button" value="애견카페" class='pet' id="cafe" />
-              </div>
-              <div class="option">
-                  <p>
-                      <input type="text" value="" id="keyword">
-                      <button type="button" id="finder"><i class="fa fa-search"></i></button>
-                  </p>
-              </div>
-              </div>
-              <hr>
-              <ul id="placesList"></ul>
-              <div id="pagination"></div>
-            </div>
+      <div class="map_wrap">
+      <a class="subtitles" href="#"><h2><i class="fa fa-map-marker"></i> 지도검색</h2></a>
+        <div id="map"></div>
+
+        <div id="menu_wrap">
+          <div id='map-header'>
+          <div>
+            <input type="button" value="통합검색" id="ali" class="pet2" />
+            <input type="button" value="동물병원" class='pet' id="hospital" />
+            <input type="button" value="애견용품" class='pet' id="object" />
+            <input type="button" value="애견카페" class='pet' id="cafe" />
           </div>
+          <div class="option">
+            <p>
+              <input type="text" value="" id="keyword">
+              <button type="button" id="finder"><i class="fa fa-search"></i></button>
+            </p>
+          </div>
+          </div>
+          <hr>
+          <ul id="placesList"></ul>
+          <div id="pagination"></div>
         </div>
       </div>
     </div>
+      
   </section>
 
 <script>
@@ -151,10 +331,15 @@ $(document).ready(function() {
 
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "login.html"
-    });
+    $.session.clear();
+    location.href = "login.html"
+  });
 
+  $('#ali').css('background-color', '#d06a79')
+  $('#hospital').css('background-color', '#2d335e')
+  $('#object').css('background-color', '#2d335e')
+  $('#cafe').css('background-color', '#2d335e')
+  
   // 안읽은 받은쪽지 갯수 출력
   var no = $.session.get('mno');
   var form_data = new FormData();
@@ -177,22 +362,47 @@ $(document).ready(function() {
 //        console.log(response.loc);
 //      }, "json");
 
-      // top3 뽑아내기
-      $.ajax({
-        url: "boastboard/ajax/rank.do",
-        dataType: "json",
-        type: "get",
-        success: function(resultObj) {
-          var table = $("#boastTable");
-          for (var data of resultObj.data) {
-            $("#boastTable tr").append(
-              '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
-              data.filename + '" /></a><li>' + data.title +
-              '</li></td>')
-          }
-        }
-      })
-    });
+  // top3 뽑아내기
+  $.ajax({
+    url: "boastboard/ajax/rank.do",
+    dataType: "json",
+    type: "get",
+    success: function(resultObj) {
+      var table = $("#boastTable");
+      for (var data of resultObj.data) {
+        $("#boastTable tr").append(
+          '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
+          data.filename + '" /></a><li>' + data.title +
+          '</li></td>')
+      }
+    }
+  })
+  
+  $('[rel="tooltip"]').tooltip();
+
+  //    <!-- 지도 나오기 -->
+  for (var i=1; i<4; i++) {
+    var ids = 'map' + i;
+    var mapContainer = document.getElementById(ids),
+      // 지도를 표시할 div
+      mapOption = {
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };
+
+    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+  }
+});
+  
+function rotateCard(btn){
+  var $card = $(btn).closest('.card-container');
+  console.log($card);
+  if($card.hasClass('hover')){
+    $card.removeClass('hover');
+  } else {
+    $card.addClass('hover');
+  }
+}
   </script>
 
   <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>

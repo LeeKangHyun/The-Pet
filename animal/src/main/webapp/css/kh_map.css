@@ -1,18 +1,13 @@
 .map_wrap {
+  margin: 0 auto;
+  width: 1200px;
   height: 480px;
 }
 
-.map_wrap a,
-.map_wrap a:hover,
-.map_wrap a:active {
-  color: #000;
-  text-decoration: none;
-}
-
 #map {
-  border-left: 2px solid #d06a79;
-  border-right: 2px solid #d06a79;
-  width: 480px;
+  border-left: 2px solid #2d335e;
+  border-right: 2px solid #2d335e;
+  width: 49%;
   height: 480px;
   margin: 0 auto;
   position:relative;
@@ -21,7 +16,7 @@
 }
 
 #menu_wrap {
-  width: 50%;
+  width: 49%;
   max-height: 480px;
   margin: 0 auto;
   overflow-y: auto;
@@ -174,25 +169,6 @@ ul, menu, dir {
   background-position: 0 -654px;
 }
 
-
-/* 페이징 css */
-#pagination {
-  margin: 10px auto;
-  text-align: center;
-}
-
-#pagination a {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-#pagination .on {
-  font-weight: bold;
-  cursor: default;
-  color: #777;
-}
-
-
 /* 지도 검색창 */
 #keyword {
   border: 0px;
@@ -200,7 +176,7 @@ ul, menu, dir {
   border-bottom: 1px solid #000;
   border-left: 1px solid #000;
   height: 25px;
-  width: 185px;
+  width: 265px;
   margin-left: 8px;
 }
 
@@ -214,7 +190,7 @@ ul, menu, dir {
   height: 25px;
   position: relative;
   right: 9px;
-  top: 1px;
+  top: 0.5px;
 }
 
 #keyword:focus, #finder:focus {
@@ -222,6 +198,7 @@ ul, menu, dir {
 }
 
 .pet {
+  margin-top: 5px;
   outline: none;
   border: 0px;
   padding: 5px 15px;
@@ -240,7 +217,27 @@ ul, menu, dir {
   outline: none;
 }
 
+.pet2 {
+  margin-top: 5px;
+  outline: none;
+  border: 0px;
+  padding: 5px 15px;
+  text-decoration: none;
+ background-color: #2d335e;
+  color: #fff;
+}
+
+.pet2:hover, .pet2:before, .pet2:after {
+  text-decoration: none;
+  background-color: #d06a79;
+  color: #fff;
+}
+
+.pet2:focus {
+  outline: none;
+}
+
 #placesList {
-  max-height: 335px;
+  max-height: 363px;
   overflow-y: scroll;
 }

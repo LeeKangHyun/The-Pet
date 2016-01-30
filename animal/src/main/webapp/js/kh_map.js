@@ -20,23 +20,39 @@ var infowindow = new daum.maps.InfoWindow({
 var sub = '';
 
 $(document).on('click', "#ali", function() {
-    $('#keyword').val('');
-    sub='';
+  $('#keyword').val('');
+  sub='';
+  $('#ali').css('background-color', '#d06a79')
+  $('#hospital').css('background-color', '#2d335e')
+  $('#object').css('background-color', '#2d335e')
+  $('#cafe').css('background-color', '#2d335e')
 });
 
 $(document).on('click', "#hospital", function() {
     $('#keyword').val('');
     sub=$('#hospital').val();
+  $('#ali').css('background-color', '#2d335e')
+  $('#hospital').css('background-color', '#d06a79')
+  $('#object').css('background-color', '#2d335e')
+  $('#cafe').css('background-color', '#2d335e')
 });
 
 $(document).on('click', "#object", function() {
     $('#keyword').val('');
     sub=$('#object').val();
+  $('#ali').css('background-color', '#2d335e')
+  $('#hospital').css('background-color', '#2d335e')
+  $('#object').css('background-color', '#d06a79')
+  $('#cafe').css('background-color', '#2d335e')
 });
 
 $(document).on('click', "#cafe", function() {
     $('#keyword').val('');
     sub=$('#cafe').val();
+  $('#ali').css('background-color', '#2d335e')
+  $('#hospital').css('background-color', '#2d335e')
+  $('#object').css('background-color', '#2d335e')
+  $('#cafe').css('background-color', '#d06a79')
 });
 
 // 키워드 검색을 요청하는 함수입니다

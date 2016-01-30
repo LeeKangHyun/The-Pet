@@ -1,12 +1,12 @@
 /* 회원 정보 입력 */
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자1','admin1@test.com','rpdlek');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자2','admin2@test.com','rpdlek');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자3','admin3@test.com','rpdlek');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자4','admin4@test.com','rpdlek');
+insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD,MEM_IMG) 
+  values('관리자1','admin1@test.com','rpdlek','default.jpg');
+insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD,MEM_IMG) 
+  values('관리자2','admin2@test.com','rpdlek','default.jpg');
+insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD,MEM_IMG) 
+  values('관리자3','admin3@test.com','rpdlek','default.jpg');
+insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD,MEM_IMG) 
+  values('관리자4','admin4@test.com','rpdlek','default.jpg');
 
 /* 수신함 내용 입력 */
 insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,2,'HIHI',true,now());
@@ -18,19 +18,19 @@ insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,
 
 /* 내 펫 추가하기 */
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('1','강현찡','DIV01','포메라이안','#FF1122');
+  values('1','강현찡','DOG','포메라이안','#FF1122');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('1','상훈찡','DIV01','시베리안허스키','#FF0000');
+  values('1','상훈찡','DOG','시베리안허스키','#FF0000');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('2','지호찡','DIV05','자라','#FF1234');
+  values('2','지호찡','FISH','자라','#FF1234');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('3','대진꽁','DIV04','앵무새','#FF1122');
+  values('3','대진꽁','BIRD','앵무새','#FF1122');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('3','냥냥이','DIV02','페르시안','#FF0000');
+  values('3','냥냥이','CAT','페르시안','#FF0000');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('4','갓쥐','DIV03','상어','#FF1211');
+  values('4','갓쥐','FISH','상어','#FF1211');
 insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('4','야꽐라','DIV05','코알라','#123421');
+  values('4','야꽐라','ETC','코알라','#123421');
 
   
 /* 짝짓기 내용 추가 */
@@ -205,6 +205,7 @@ insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM)
 values('너무 이뻐요~',3,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
 values('너무 이뻐요~',4,2);
+
 insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
   values('잘 키우고 싶네여 도움이 많이 되요~',1,1);
 insert into Comment(CMT_CONTENT,MEM_NUM,EDU_NUM) 
@@ -226,15 +227,21 @@ insert into Comment(CMT_CONTENT,MEM_NUM,S_NUM)
   values('너무 아쉽네~',1,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,S_NUM) 
   values('이쁜 아이 데려가고 싶네요~',3,1);
+  
 insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
   values('저희 아가랑 짝짓기 하실래요?',1,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
   values('네 ~ 좋아요~',1,2);
 insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
   values('꽐라꽐라~~~~',3,9);
+  
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
   values('너무 이뻐요~?',1,7);
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
   values('어쩜 이리 이뻐요~?',1,9);
 insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
   values('길이 너무 좋은 것 같아요 꼭 가볼게요~',3,11);
+  
+  
+  
+  
