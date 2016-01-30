@@ -45,10 +45,10 @@
 
       <nav id="menu-nav">
         <ul id="menu-nav-ul">
-          <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
           <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
           <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
           <li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>
         </ul>
@@ -58,9 +58,9 @@
   </header>
 
   <section id="main-body" >
-    
+
     <div id="left">
-        
+
       <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='ture' data-interval="false">
         <!-- Indicators -->
         <ol class='carousel-indicators' id="dots">
@@ -90,62 +90,62 @@
           <span class='sr-only'>Next</span>
         </a>
       </div>  <!-- 캐러셀 끝 -->
-      
+
       <div id="detailTitle">
         <h3>딸랑 딸랑 산책 코스 미리보기 딸랑 딸랑</h3>
         <span id="likeCount">1000</span>
         <a role="button" id="likeBtn"><i class="fa fa-thumbs-o-up"></i></a>
       </div>  <!-- detailTitle 끝 -->
-      
+
       <div id="mapNlist">
-        
+
         <div id='map'></div>  <!-- 지도 출력부분 -->
 
-        
-        
+
+
       </div>  <!-- mapNlist 끝 -->
-      
+
       <div class='contents'>
 
         <div class='content' id="mcontent">
           content!!!!!!
         </div>
-        
+
         <!-- 댓글 입력부분 -->
         <div class='input'>
           <img id='comimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
           <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
           <a id="comAddBtn" role='button'>게시</a>
         </div>
-        
+
         <!-- 댓글과 버튼을 포함한 구역 -->
         <div class='comments' id="comComment">
-          
+
           <!-- 댓글 구역 -->
           <div id="commentSection">
-            
+
             <!-- 댓글1개 -->
             <div class='comment'>
               <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
               <div class='commentname'>Name</div>
               <div class='commenttext'>Comment</div>
             </div>
-          
+
           </div>
           <!-- 댓글 더보기 버튼 -->
           <div id="more">
             <a href="#" role="button" id="moreBtn">더보기</a>
           </div>
-          
+
         </div>  <!-- 댓글과 버튼을 포함한 구역 끝 -->
-        
+
       </div> <!-- contents 클래스 끝 -->
-      
+
     </div> <!-- left 끝 -->
-    
+
     <div id="right">
       <h4>더 많은 리스트</h4>
-      
+
       <!-- 리스트 항목 -->
       <a class="listbox" role="button">
         <img class="boximg" src="images/h11.gif">
@@ -156,7 +156,7 @@
           <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
         </div>
       </a>
-      
+
       <!-- 리스트 항목 -->
       <a class="listbox" role="button">
         <img class="boximg" src="images/h11.gif">
@@ -167,12 +167,12 @@
           <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
         </div>
       </a>
-      
+
     </div>
   </section>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
-  
+
 <script>
 //var no = location.href.split('?')[1].split('=')[1];
 
@@ -200,16 +200,16 @@ $(document).ready(function() {
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
   }
-  
+
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
     $.session.clear();
     location.href = "login.html"
   });
-  
+
 });
 
-      
+
 //    <!-- 지도 나오기 -->
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
   mapOption = {

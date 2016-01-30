@@ -61,10 +61,10 @@
 
       <nav id="menu-nav">
         <ul id="menu-nav-ul">
-          <li><a href="#"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
           <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
           <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
           <li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>
         </ul>
@@ -251,7 +251,7 @@
           <br>
 
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" id="editPet" class="btn btn-warning">변경</button>
           <button type="button" id="delPet" class="btn btn-danger">삭제</button>
@@ -342,7 +342,7 @@
           </div>
 
         </div>
-        
+
         <div class="modal-footer">
           <div class="col-sm-offset-2 col-sm-10">
             <button id='addPetBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
@@ -441,7 +441,7 @@
           </div>
 
         </div>
-        
+
         <div class="modal-footer">
           <div class="col-sm-offset-2 col-sm-10">
             <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
@@ -467,7 +467,7 @@ $(document).ready(function() {
   }
   $('#myMno1').val(no);
   $('#myMno2').val(no);
-  
+
   var div = $('#user_info');
   div.append(
     "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
@@ -485,7 +485,7 @@ $(document).ready(function() {
     $.session.clear();
     location.href = "login.html"
   });
-  
+
   // 안읽은 받은쪽지 갯수 출력
   var no = $.session.get('mno');
   var form_data = new FormData();
