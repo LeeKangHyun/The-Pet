@@ -1,30 +1,46 @@
-#subtable {
-    position: relative;
-    width: 1024px;
-    margin-left: -15px ;
-    padding-left: 15px;
-    /* border: 1px red solid;  */
-    top: 10px;
+.modal-body {
+  height: 385px;
 }
 
+.form-control {
+  margin-bottom: 14px;
+}
+
+.control-label {
+  padding-top: 5px;
+  margin-bottom: 15px;
+}
+
+#addBtn {
+  width: 80px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 300;
+  background-color: #2d335e;
+}
+
+#subtable {
+  position: relative;
+  width: 1024px;
+  margin-left: -15px ;
+  padding-left: 15px;
+  /* border: 1px red solid;  */
+  top: 10px;
+}
 
 #rank-section {
-    padding-left: 10px;
+  padding-left: 10px;
 }
-
 
 hr {
-    border: 1px;
-    border-style: groove;
-    border-color: darkgray;
+  border: 1px;
+  border-style: groove;
+  border-color: darkgray;
 }
-
 
 #button-form {
-    display: inline;
+  display: inline;
 }
-
-
 
 button#All{
   display: inline-block;
@@ -163,64 +179,53 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 .search-form {
-    position:relative;
-    width:auto;
-    height:auto;
-    float: right;
-    right: -25px;
-        /* border:1px blue solid; */
-    
-}
-
-.form-control {
-    position: relative;
-    float: right;
-    text-align: center;
-  width: 80px;
-    height: 25px;
-  appearance: none;
-
+  position:relative;
+  width:auto;
+  height:auto;
+  float: right;
+  right: -25px;
+      /* border:1px blue solid; */
 }
 
 .form-control:focus {
-    outline: 0 none;
-    border: 1px #d06a79 solid;
-    box-shadow: 0px 0px 5px 1px #C07C86;
+  outline: 0 none;
+  border: 1px #d06a79 solid;
+  box-shadow: 0px 0px 5px 1px #C07C86;
 }
 
 .form-search {
-    position: relative;
-    border-radius: 6px;
-    float: right;
-    width: 215px;
-    height: 25px;
-    margin-left: 10px;
-    border: 1px #D7DBDB solid;
-    padding-right: 30px;
-    padding-left: 5px;
+  position: relative;
+  border-radius: 6px;
+  float: right;
+  width: 215px;
+  height: 25px;
+  margin-left: 10px;
+  border: 1px #D7DBDB solid;
+  padding-right: 30px;
+  padding-left: 5px;
 }
 
 .form-search:focus {
-    outline: 0 none;
-    border: 1px #d06a79 solid;
-    box-shadow: 0px 0px 5px 1px #C07C86;
+  outline: 0 none;
+  border: 1px #d06a79 solid;
+  box-shadow: 0px 0px 5px 1px #C07C86;
 }
 
 .form-submit {
-    position: relative;
-    background-color: transparent;
-    border-radius: 6px;
-    border: 1px;
-    float: right;
-    right: 25px;
-    width: 25px;
-    height: 25px;
-    z-index: 1;
+  position: relative;
+  background-color: transparent;
+  border-radius: 6px;
+  border: 1px;
+  float: right;
+  right: 25px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
 }
 
 .form-submit:active {
-    font-size: 15px;
-    color: #d06a79;
+  font-size: 15px;
+  color: #d06a79;
 }
 
 
@@ -233,7 +238,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 .gallery.box1 {
-    display: inline-block;
+  display: inline-block;
   position:relative;
   width: 320px;
   height:440px;
@@ -245,7 +250,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 .gallery.box1:hover {
-    display: inline-block;
+  display: inline-block;
   position:relative;
   width: 320px;
   height:440px;
@@ -257,13 +262,13 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 .box1 .card .background img {
-    width: 240px;
-    height: 110px;
+  width: 240px;
+  height: 110px;
 }
 
 .boxsub1 .card .background img {
-    width: 240px;
-    height: 110px;
+  width: 240px;
+  height: 110px;
 }
 
 .gallery.boxsub1 {
@@ -448,111 +453,104 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 
-
-
-
-
-
-
 /**** Transitions ****/
 
 .transitions-enabled.masonry,
 .transitions-enabled.masonry .masonry-brick {
   -webkit-transition-duration: 0.7s;
-     -moz-transition-duration: 0.7s;
-       -o-transition-duration: 0.7s;
-          transition-duration: 0.7s;
+  -moz-transition-duration: 0.7s;
+  -o-transition-duration: 0.7s;
+  transition-duration: 0.7s;
 }
 
 .transitions-enabled.masonry {
   -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
+  -moz-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
 }
 
 .transitions-enabled.masonry  .masonry-brick {
   -webkit-transition-property: left, right, top;
-     -moz-transition-property: left, right, top;
-       -o-transition-property: left, right, top;
-          transition-property: left, right, top;
+  -moz-transition-property: left, right, top;
+  -o-transition-property: left, right, top;
+  transition-property: left, right, top;
 }
 
 
 
 /* more scroll button */
 #more {
-    position:relative;
+  position:relative;
   text-align: center;
-    margin: 0 auto;
-    font-size: 18px;
-    width: 1024px;
-    background-color: #2d335e;
-    border: 1px #2d335e solid;
+  margin: 0 auto;
+  font-size: 18px;
+  width: 1024px;
+  background-color: #2d335e;
+  border: 1px #2d335e solid;
 }
 
 #moreSearch {
-    position:relative;
+  position:relative;
   text-align: center;
-    margin: 0 auto;
-    font-size: 18px;
-    width: 1024px;
-    background-color: #2d335e;
-    border: 1px #2d335e solid;
+  margin: 0 auto;
+  font-size: 18px;
+  width: 1024px;
+  background-color: #2d335e;
+  border: 1px #2d335e solid;
 }
 
 #moreBtn {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 a#moreBtn:visited {
-    color:inherit;
+  color:inherit;
 }
 
 
 
 .quick-menu {
-border: 1px #DBDBDB solid;
-border-radius: 10px;
-padding-left: 5px;
-padding-right: 5px;
-position: absolute;
-text-align: center;
-width: 100px;
-height: 130px;
-right:30px;
-top: 150px;
+  border: 1px #DBDBDB solid;
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 130px;
+  right:30px;
+  top: 150px;
 }
 
 #quick-header {
-    margin-top: 10px;
-    border-bottom: 1px #DBDBDB solid;
-    font-weight: 900;
+  margin-top: 10px;
+  border-bottom: 1px #DBDBDB solid;
+  font-weight: 900;
 }
 
 .fa-chevron-up {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .fa-chevron-down {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 #quick-top {
-    margin-top: 15px;
-    font-weight: 500;
+  margin-top: 15px;
+  font-weight: 500;
 }
 
 #quick-bottom {
-    margin-top: 15px;
-    font-weight: 500;
+  margin-top: 15px;
+  font-weight: 500;
 }
 
 #quick-top-a:hover, 
 #quick-bottom-a:hover,
 #quick-top-a:FOCUS,
-#quick-bottom-a:FOCUS
- {
+#quick-bottom-a:FOCUS {
   text-decoration: none;
 }
