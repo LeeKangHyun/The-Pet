@@ -1,8 +1,8 @@
 $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
-
+	
 	var div = $("#rank-section");
 	var topcheck1;
-	for(var i = 0; i < 3; i++ ) {
+	for(var i = 0; i < resultObj.data.length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
 		topcheck1 = topcheck1.slice(1,2);
 		if(topcheck1 == "jpg" ||
