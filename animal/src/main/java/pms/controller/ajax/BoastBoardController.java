@@ -30,7 +30,6 @@ public class BoastBoardController {
   //public static final String SAVED_DIR = "/attachfile";
 
   @Autowired  BoastBoardDao boastBoardDao;
-  @Autowired MemberDao memberDao;
   @Autowired ServletContext servletContext;
 
   @RequestMapping(value="list", method=RequestMethod.POST)
@@ -182,7 +181,7 @@ public class BoastBoardController {
     log.debug("Diary.dno..............?"+diary.getDno());
 
     List<Diary> boastboards = boastBoardDao.detail_content(diary);
-
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
@@ -193,11 +192,11 @@ public class BoastBoardController {
 
   @RequestMapping(value="like_add", method=RequestMethod.POST)
   public Object like_add(String mno, String SCH_NUM) throws Exception {
-    
+
 
     int like_mno = Integer.valueOf(mno);
     int like_SCH_NUM= Integer.valueOf(SCH_NUM);
-    
+
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("mno", like_mno);
     paramMap.put("SCH_NUM", like_SCH_NUM);
@@ -205,15 +204,15 @@ public class BoastBoardController {
     boastBoardDao.like_add(paramMap);
     boastBoardDao.like_add_update(like_SCH_NUM);
     int like = boastBoardDao.like_select(like_SCH_NUM);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("like", like);
-    
+
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="like_delete", method=RequestMethod.POST)
   public Object like_delete(String mno, String SCH_NUM) throws Exception {
 
@@ -227,33 +226,39 @@ public class BoastBoardController {
     boastBoardDao.like_delete(paramMap);
     boastBoardDao.like_delete_update(like_SCH_NUM);
     int like = boastBoardDao.like_select(like_SCH_NUM);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("like", like);
-    
+
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="detail_like_check", method=RequestMethod.POST)
   public Object detail_like_check(String mno, String SCH_NUM) throws Exception {
-    
+
     int like_mno = Integer.valueOf(mno);
     int like_SCH_NUM= Integer.valueOf(SCH_NUM);
 
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("mno", like_mno);
     paramMap.put("SCH_NUM", like_SCH_NUM);
-    
+
     List<Likes> like = boastBoardDao.detail_like_check(paramMap);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("like", like);
-    
+
     return resultMap;
   }
-
+  
+  
+  @RequestMapping(value="delete", method=RequestMethod.POST)
+  public AjaxResult like_delete(int dno) throws Exception {
+    boastBoardDao.delete(dno);
+    return new AjaxResult("success", null);
+  }
 
 }

@@ -15,7 +15,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			.html(
 					"<div class='card'>" +
 					"<div class='background'>" +
-					"<img src='../images/" + resultObj.data[i].filename + "'>" +
+					"<img src='../files/" + resultObj.data[i].filename + "'>" +
 					"</div>" +
 					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
 					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -47,7 +47,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			.html(
 					"<div class='card'>" +
 					"<div class='background'>" +
-					"<img src='../images/" + resultObj.data[i].filename + "'>" + 
+					"<img src='../files/" + resultObj.data[i].filename + "'>" + 
 					"</div>" +
 					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -105,7 +105,7 @@ $(document).ready(function() {
 					.html(
 							"<div class='card'>" +
 							"<div class='background'>" +
-							"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+							"<img src='../files/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
 							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -131,7 +131,7 @@ $(document).ready(function() {
 					.html(
 							"<div class='card'>"+
 							"<div class='background'>"+
-							"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+							"<img src='../files/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -216,7 +216,7 @@ $(document).ready(function() {
 									.html(
 											"<div class='card'>" +
 											"<div class='background'>" +
-											"<img src='../images/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+											"<img src='../files/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
 											"</div>"+
 											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 											"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -242,7 +242,7 @@ $(document).ready(function() {
 									.html(
 											"<div class='card'>"+
 											"<div class='background'>"+
-											"<img src='../images/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+											"<img src='../files/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
 											"</div>"+
 											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> "+
 											"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 

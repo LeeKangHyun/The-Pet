@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pms.dao.BoastBoardDao;
+import pms.domain.AjaxResult;
 import pms.domain.Diary;
 import pms.domain.Likes;
 import pms.service.BoastBoardService;
@@ -123,6 +124,11 @@ public class DefaultBoastBoardService implements BoastBoardService {
     paramMap.put("SCH_NUM", like_SCH_NUM);
     
     return boastboardDao.detail_like_check(paramMap);
+  }
+  
+  
+  public int delete(int dno) {
+    return boastboardDao.delete(dno);
   }
 
 }

@@ -163,6 +163,13 @@
             top: 115px;
             width: 60px;
         }
+
+        #delete {
+            position: relative;
+            float: right;
+            top: 115px;
+            width: 60px;
+        }
         
         #list-Btn {
             background-color: #E29CBB;
@@ -172,10 +179,29 @@
         #list-Btn:focus {
             outline: none;
         }
+
+        #delete-Btn {
+            background-color: #F55B75;
+            border: 1px #F5516D solid;
+        }
+
+        #delete-Btn:focus {
+            outline: none;
+        }
         
         #content-content-content {
             background-color: #E0E1E1;
             width: 800px;
             padding: 20px;
+        }
+     
+        #delete-yes:FOCUS     
+         {
+            outline: none;
+        }
+        
+        #delete-no:FOCUS
+        {
+            outline: none;
         }
         

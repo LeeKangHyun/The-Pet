@@ -375,7 +375,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .gallery .infosub{
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   width: 100%;
 }
 

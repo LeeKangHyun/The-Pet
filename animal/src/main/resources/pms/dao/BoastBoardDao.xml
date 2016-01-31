@@ -20,6 +20,7 @@
   <result column="FILE_NAME"   property="filename"/>
   <result column="MEM_NAME"   property="member"/>
   <result column="PET_SPEC"   property="pSpec"/>
+  <result column="MEM_NUM"   property="mno"/>
  </resultMap>
  
    <resultMap type="Likes" id="likesMap">
@@ -139,12 +140,12 @@
       sc.CATE_CODE,
       sc.NOTI_LIKES,
       sc.NOTI_VIEWS,
+      sc.MEM_NUM,
       fi.FILE_NAME,
       me.MEM_name
     from schedule sc
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
-    left outer join pet pe on sc.PET_NUM = pe.PET_NUM
-    left outer join member me on sc.PET_NUM = me.MEM_NUM
+    left outer join member me on sc.MEM_NUM = me.MEM_NUM
     where sc.CATE_CODE='JARANG' and sc.NOTI_HIDE=1 and sc.SCH_NUM = #{dno}
   </select>
   
@@ -168,8 +169,12 @@
   select NOTI_LIKES from schedule where SCH_NUM = #{like_SCH_NUM}
   </select>
   
-    <select id="detail_like_check" resultMap="likesMap" parameterType="map">
-      select LIKE_NUM from Likes where SCH_NUM = #{SCH_NUM} and MEM_NUM = #{mno}
-    </select>
+  <select id="detail_like_check" resultMap="likesMap" parameterType="map">
+   select LIKE_NUM from Likes where SCH_NUM = #{SCH_NUM} and MEM_NUM = #{mno}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+  delete from Schedule where SCH_NUM = #{dno}
+  </delete>
   
 </mapper>

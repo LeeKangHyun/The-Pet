@@ -38,6 +38,8 @@ public interface BoastBoardDao {
   
   List<Likes> detail_like_check(Map<String, Object> paramMap);
   
+  int delete(int dno);
+  
 }
 
 
