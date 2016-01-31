@@ -174,7 +174,7 @@
   </select>
   
   <delete id="delete" parameterType="int">
-  delete from Schedule where SCH_NUM = #{dno}
+  delete fi, sc from files as fi left join schedule as sc on fi.SCH_NUM = sc.SCH_NUM where fi.SCH_NUM = #{dno};
   </delete>
   
 </mapper>

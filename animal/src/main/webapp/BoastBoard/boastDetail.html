@@ -270,8 +270,8 @@ detail_data.append("dno", dno);
             async: false,
             data : like_check_data,
             success : function(resultObj) {
-              
-              if (resultObj.like[0].lno != null ) {
+            	
+              if (resultObj.like != "" ) {
                 $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
                 like_toggle = 1;
               } else {
@@ -280,6 +280,7 @@ detail_data.append("dno", dno);
               }
               
             } });
+        
         
       } });
  
@@ -294,7 +295,10 @@ detail_data.append("dno", dno);
          async: false,
          data : detail_data,
          success : function(resultObj) {
-           
+         
+        	    location.href='boastBoard.html';
+        	    location.replace('boastBoard.html');
+        	 
          } });
  });
  

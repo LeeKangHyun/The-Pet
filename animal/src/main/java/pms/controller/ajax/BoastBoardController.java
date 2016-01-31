@@ -246,7 +246,7 @@ public class BoastBoardController {
     paramMap.put("SCH_NUM", like_SCH_NUM);
 
     List<Likes> like = boastBoardDao.detail_like_check(paramMap);
-
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("like", like);
