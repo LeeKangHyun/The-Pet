@@ -170,7 +170,7 @@ $(document).ready(function() {
         "<i class='fa fa-envelope-o'></i>" +
         "<span class='badge' id='userBadge'>0</span>" +
       "</a>" +
-      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<img src='../images/" + $.session.get('mimg') + "' id='userImg' />" +
       "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
@@ -189,7 +189,7 @@ $(document).ready(function() {
         "<i class='fa fa-envelope-o'></i>" +
         "<span class='badge' id='userBadge'>0</span>" +
       "</a>" +
-      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<img src='../images/" + $.session.get('mimg') + "' id='userImg' />" +
       "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
@@ -265,12 +265,23 @@ $(document).ready(function() {
       $("a.detailLnk").click(clickDetailLnk);
     }
   });
-    
-  $(document).on("click", "#addBtn", function(event) {
+  
+  function clickDetailLnk(event) {
+    event.preventDefault(); 
+    location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+  }
+  
+});
+  
+$(function(){
+  $('#Container').mixItUp();
+});
+
+$(document).on("click", "#addBtn", function(event) {
     if ($('#eduTitle').val() == "" ||
       $('#eduContent').val() == "" ||
-      $('#file-1').val() == "") {
-      alert("모두 입력해주세요")
+      $('#fileUrl').val() == "") {
+      alert("모두 입력해주세요");
       return false;
     } else {
       var form_data = new FormData();
@@ -278,9 +289,6 @@ $(document).ready(function() {
       form_data.append("eduSpec", $('#eduSpec').val())
       form_data.append("eduTitle", $('#eduTitle').val())
       form_data.append("eduContent", $('#eduContent').val())
-      console.log($('eduSpec'));
-      console.log(eduTitle);
-      console.log(eduContent);
       $.ajax({
         url: "education/ajax/add.do",
         dataType: 'json',
@@ -292,6 +300,7 @@ $(document).ready(function() {
         success: function(re) {
           var eduNo = re.ajaxResult.data;
           var file_name = $("#fileUrl").val();
+          console.log(file_name);
           var form_data = new FormData();
           form_data.append("file_name", file_name)
           form_data.append("eduNo", eduNo)
@@ -312,17 +321,6 @@ $(document).ready(function() {
       })
     }
   });
-  
-  function clickDetailLnk(event) {
-    event.preventDefault(); 
-    location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
-  }
-  
-});
-  
-$(function(){
-  $('#Container').mixItUp();
-});
 </script>
 
 
