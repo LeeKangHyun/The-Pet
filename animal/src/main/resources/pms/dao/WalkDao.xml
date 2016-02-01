@@ -71,5 +71,9 @@
     from schedule
     where CATE_CODE='SANCHE' and NOTI_HIDE=1
     </select>
+    
+   <update id="view" parameterType="diary">
+  update schedule set NOTI_VIEWS = NOTI_VIEWS + 1 where SCH_NUM=#{dno}
+  </update>
 
 </mapper>

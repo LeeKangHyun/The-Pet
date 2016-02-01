@@ -102,13 +102,11 @@ a#moreBtn:visited {
 <script>
   function detailWalk(dno) {
     
-    alert(dno);
-    
-/*     var view_data = new FormData();
-    view_data.append("dno", dno); */
+var view_data = new FormData();
+     view_data.append("dno", dno); 
 
-/*     $.ajax({
-      url : "../boastboard/ajax/view.do",
+    $.ajax({
+      url : "walk/ajax/view.do",
       dataType : "json",
       type : "POST",
       contentType : false,
@@ -117,10 +115,10 @@ a#moreBtn:visited {
       success : function(resultObj) {
 
       }
-    }); */
+    });
     
-/*     location.href='boastDetail.html?dno='+dno;
-    location.replace('boastDetail.html?dno='+dno); */
+    location.href='walkDetail.html?dno='+dno;
+    location.replace('walkDetail.html?dno='+dno);
   }
 </script>
 
@@ -353,6 +351,39 @@ function rotateCard(btn){
   }
 }
 
+
+$(document).ready(function() {
+	  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+	  var no = $.session.get('mno');
+	  var div = $('#user_info');
+	  var ul = $('#menu-nav-ul');
+	  if (no == undefined) {
+	    div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+	  } else {
+	    $('#myMno1').val(no);
+	    $('#myMno2').val(no);
+
+	    div.append(
+	      "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+	        "<i class='fa fa-envelope-o'></i>" +
+	        "<span class='badge' id='userBadge'>0</span>" +
+	      "</a>" +
+	      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+	      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	      "<a role='button' id='outBtn' class='logout'>" +
+	        "<i class='fa fa-unlock fa-lg'></i>" +
+	      "</a>")
+	    ul.append(
+	      "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+	  }
+
+	  // 로그아웃
+	  $(document).on("click", "#outBtn", function() {
+	    $.session.clear();
+	    location.href = "login.html"
+	  });
+
+	});
 
 </script>
 </body>
