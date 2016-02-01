@@ -2,16 +2,16 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="pms.dao.WalkDao">
   <resultMap type="walk" id="walkMap">
     <id column="lno" property="lno"/>
     <result column="LOC_LAT" property="locLat"/>
     <result column="LOC_LNG" property="locLng"/>
     <result column="LOC_NAME" property="locName" />
-    <result column="sno" property="sno"/>
+    <result column="SCH_NUM" property="sno"/>
   </resultMap>
-  
+
   <resultMap type="diary" id="diaryMap">
     <id column="lno" property="lno"/>
     <result column="lat" property="lat"/>
@@ -20,18 +20,16 @@
   </resultMap>
 
   <select id="list" resultMap="walkMap" parameterType="int">
-    select
-      lat,
-      lng
-    from lot
-    where mno=#{value}
+    select *
+    from location
+    where SCH_NUM=#{value}
   </select>
-  
+
 <select id="selectList" resultMap="diaryMap">
     select
      sc.SCH_NUM,
-     MAX(sc.SCH_CRE) as SCH_CRE, 
-     MAX(sc.SCH_TITLE) as SCH_TITLE, 
+     MAX(sc.SCH_CRE) as SCH_CRE,
+     MAX(sc.SCH_TITLE) as SCH_TITLE,
      MAX(sc.CATE_CODE) as CATE_CODE,
      MAX(sc.NOTI_LIKES) as NOTI_LIKES,
      MAX(sc.NOTI_VIEWS) as NOTI_VIEWS,

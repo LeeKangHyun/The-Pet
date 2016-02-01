@@ -17,25 +17,25 @@ import pms.service.WalkService;
 @Controller("ajax.LotController")
 @RequestMapping("walk/ajax/*")
 public class WalkController {
-  
+
   @Autowired WalkService walkService;
-  
+
   @RequestMapping(value="add", method=RequestMethod.POST)
   public AjaxResult add(Walk walk) throws Exception {
-    
+
     walkService.add(walk);
-    
+
     return new AjaxResult("status", null);
   }
-  
+
   @RequestMapping(value="list", method=RequestMethod.GET)
-  public Object list(int mno) throws Exception {
-    System.out.println(mno);
-    List<Walk> walk = walkService.list(mno);
-    
+  public Object list(int sno) throws Exception {
+    System.out.println(sno);
+    List<Walk> walk = walkService.list(sno);
+
     return walk;
   }
-  
+
   @RequestMapping(value="selectList", method=RequestMethod.POST)
   public Object selectList(
       @RequestParam(defaultValue="1") int pageNo,
