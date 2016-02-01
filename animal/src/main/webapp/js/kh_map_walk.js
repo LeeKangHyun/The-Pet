@@ -18,40 +18,36 @@ navigator.geolocation.getCurrentPosition(function (position) {
   });
 });
 
-
-
 var dotlng, dotlat;
 var circleOverlay;
+var aaa = [];
+var i = 0;
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 daum.maps.event.addListener(map, 'click', function(mouseEvent) {
-    var zb = mouseEvent.latLng.zb;
-    var Ab = mouseEvent.latLng.Ab;
-    console.log(mouseEvent);
-    // 마우스로 클릭한 위치입니다
-    var clickPosition = mouseEvent.latLng;
-    dotlng = zb;
-    dotlat = Ab;
-    displayCircleDot(clickPosition);
+    if (i === 0) {
+        var zb = mouseEvent.latLng.zb;
+        var Ab = mouseEvent.latLng.Ab;
+        console.log(mouseEvent);
+        // 마우스로 클릭한 위치입니다
+        var clickPosition = mouseEvent.latLng;
+        dotlng = zb;
+        dotlat = Ab;
+        displayCircleDot(clickPosition);
+
+        i++;
+    } else {
+        alert('1곳만 선택할수 있습니다.');
+        i = 0;
+        deleteCircleDot();
+    }
 });
 
 
 // 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
 // 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
 daum.maps.event.addListener(map, 'rightclick', function(mouseEvent) {
-    $.ajax({
-        url: "walk/ajax/add.do",
-        dataType: "json",
-        type: "post",
-        data: {
-            lat: dotlat,
-            lng: dotlng
-        },
-        success: function(resultObj) {
-            console.log(resultObj);
-        }
-    });
-
+    i = 0;
     deleteCircleDot();
 });
 
