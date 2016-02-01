@@ -352,6 +352,8 @@ ALTER TABLE Schedule
 CREATE TABLE Files (
   FILE_NUM  INTEGER      NOT NULL COMMENT '파일번호', -- 파일번호
   FILE_NAME VARCHAR(255) NOT NULL COMMENT '파일명', -- 파일명
+  width     INTEGER      NULL     COMMENT '새 컬럼', -- 새 컬럼
+  height    INTEGER      NULL     COMMENT '새 컬럼2', -- 새 컬럼2
   EDU_NUM   INTEGER      NULL     COMMENT '교육번호', -- 교육번호
   MAT_NUM   INTEGER      NULL     COMMENT '짝짓기번호', -- 짝짓기번호
   S_NUM     INTEGER      NULL     COMMENT '분양번호', -- 분양번호
