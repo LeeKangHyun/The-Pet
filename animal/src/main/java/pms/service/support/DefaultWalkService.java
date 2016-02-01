@@ -20,8 +20,8 @@ public class DefaultWalkService implements WalkService {
     return walkDao.add(walk);
   }
   
-  public List<Walk> list(int mno) {
-    return walkDao.list(mno);
+  public List<Walk> list(int sno) {
+    return walkDao.list(sno);
   }
   
   public List<Walk> selectList(Map<String, Object> paramMap) {

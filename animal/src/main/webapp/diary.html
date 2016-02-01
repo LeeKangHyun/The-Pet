@@ -126,7 +126,6 @@
               <div class="col-sm-2">
                   <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
               </div>
-              <div class="col-sm-8"><input type="text" style="border:none;"></div>
           </div>
 
           <div class="form-group">
@@ -435,6 +434,7 @@
 
           <div class='pMap form-group'>
             <label for='flocation' class='col-sm-2 control-label'>지도</label>
+            <img src='images/where.jpg' id='where' role='button' />
             <div id='map'></div>
           </div>
 
@@ -791,13 +791,13 @@
           }
         })
       });
-</script>
 
-<script>
+<!-- 지도 -->
     $(document).on('click', '#scheduleAdd', function() {
         $('#AddBoard').modal('show');
 
         $('#AddBoard').on('shown.bs.modal', function (e) {
+
             map.relayout();
         })
     })
@@ -805,68 +805,152 @@
 
 
     // 다이어리 추가
+    var sel;
+
+    $("#cateCode").change(function() {
+        sel = $('#cateCode').val();
+    }).change();
+
     $(document).on("click", "#addBtn", function(event) {
-      if ($('#pno').val() == "" ||
-        $('#title').val() == "" ||
-        $('#fContent').val() == "" ||
-        $('#file-1').val() == "") {
-        alert("모두 입력해주세요")
-        return false;
-      } else {
-        var form_data = new FormData();
-        var x = document.getElementById("dmhide").checked;
-        var q;
-        if (x) {
-            q = 1;
-        } else {
-            q = 0;
-        }
-        console.log(q)
-        form_data.append("mno", $('#myMno2').val())
-        form_data.append("dhide", q)
-        form_data.append("cateCode", $('#cateCode').val())
-        form_data.append("pno", $('#pno').val())
-        form_data.append("startDate", $('#startDate').val())
-        form_data.append("endDate", $('#endDate').val())
-        form_data.append("title", $('#title').val())
-        form_data.append("content", $('#fContent').val())
-        $.ajax({
-          url: "diary/ajax/add.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            var lastDno = re.ajaxResult.data;
-            for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-              var file_data = $("#file-1").prop("files")[i];
-              var file_name = file_data.name;
-              var form_data = new FormData();
-              form_data.append("file", file_data)
-              form_data.append("fName", file_name)
-              form_data.append("dno", lastDno)
-              $.ajax({
-                url: "files/ajax/upload.do",
+        if (sel === 'ILJUNG') {
+          if ($('#pno').val() == "" ||
+            $('#title').val() == "" ||
+            $('#fContent').val() == "" ||
+            $('#file-1').val() == "") {
+            alert("모두 입력해주세요")
+            return false;
+          } else {
+            var form_data = new FormData();
+            var x = document.getElementById("dmhide").checked;
+            var q;
+            if (x) {
+                q = 1;
+            } else {
+                q = 0;
+            }
+            console.log(q)
+            form_data.append("mno", $('#myMno2').val())
+            form_data.append("dhide", q)
+            form_data.append("cateCode", $('#cateCode').val())
+            form_data.append("pno", $('#pno').val())
+            form_data.append("startDate", $('#startDate').val())
+            form_data.append("endDate", $('#endDate').val())
+            form_data.append("title", $('#title').val())
+            form_data.append("content", $('#fContent').val())
+            $.ajax({
+              url: "diary/ajax/add.do",
+              dataType: 'json',
+              cache: false,
+              contentType: false,
+              processData: false,
+              data: form_data,
+              type: 'post',
+              success: function(re) {
+                var lastDno = re.ajaxResult.data;
+                for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                  var file_data = $("#file-1").prop("files")[i];
+                  var file_name = file_data.name;
+                  var form_data = new FormData();
+                  form_data.append("file", file_data)
+                  form_data.append("fName", file_name)
+                  form_data.append("dno", lastDno)
+                  $.ajax({
+                    url: "files/ajax/upload.do",
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(resultObj) {
+                        console.log(file_name)
+                    }
+                  })
+                }
+                alert("다이어리가 추가되었습니다.")
+                location.href = "diary.html"
+              }
+            })
+          }
+      }
+      else if (sel === 'SANCHE') {
+          if ($('#pno').val() == "" ||
+            $('#title').val() == "" ||
+            $('#fContent').val() == "" ||
+            $('#file-1').val() == "" ||
+            $('#subtitle').val() =="") {
+            alert("모두 입력해주세요")
+            return false;
+          } else {
+            var form_data = new FormData();
+            var x = document.getElementById("dmhide").checked;
+            var q;
+            if (x) {
+                q = 1;
+            } else {
+                q = 0;
+            }
+            console.log(q)
+            form_data.append("mno", $('#myMno2').val())
+            form_data.append("dhide", q)
+            form_data.append("cateCode", $('#cateCode').val())
+            form_data.append("pno", $('#pno').val())
+            form_data.append("startDate", $('#startDate').val())
+            form_data.append("endDate", $('#endDate').val())
+            form_data.append("title", $('#title').val())
+            form_data.append("content", $('#fContent').val())
+            $.ajax({
+                url: "diary/ajax/add.do",
                 dataType: 'json',
                 cache: false,
                 contentType: false,
                 processData: false,
                 data: form_data,
                 type: 'post',
-                success: function(resultObj) {
-                    console.log(file_name)
+                success: function(re) {
+                    console.log(re);
+                    var lastDno = re.ajaxResult.data;
+                    $.ajax({
+                        url: "walk/ajax/add.do",
+                        dataType: "json",
+                        type: "post",
+                        data: {
+                            locLat: dotlat,
+                            locLng: dotlng,
+                            locName: $('#subtitle').val(),
+                            sno: lastDno
+                        },
+                        success: function(resultObj) {
+                            deleteCircleDot();
+                            for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                              var file_data = $("#file-1").prop("files")[i];
+                              var file_name = file_data.name;
+                              var form_data = new FormData();
+                              form_data.append("file", file_data)
+                              form_data.append("fName", file_name)
+                              form_data.append("dno", lastDno)
+                              $.ajax({
+                                url: "files/ajax/upload.do",
+                                dataType: 'json',
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                data: form_data,
+                                type: 'post',
+                                success: function(resultObj) {
+                                    console.log(file_name)
+                                }
+                              })
+                            }
+                            alert("다이어리가 추가되었습니다.")
+                            location.href = "diary.html"
+                        }
+                    })
                 }
-              })
-            }
-    //            $('#AddBoard').modal('hide')
-            alert("다이어리가 추가되었습니다.")
-            location.href = "diary.html"
-          }
-        })
+            });
       }
-    });
+  }
+});
 
     // 다이어리 삭제
     $(document).on("click", "#delSchedule", function() {

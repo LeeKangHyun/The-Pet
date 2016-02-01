@@ -3,28 +3,17 @@
 
 
 #main-body {
-    background-color: #fff;
-    position: relative;
-    top: 230px;
-    width: 1024px;
-    margin: 0 auto;
-    padding-bottom: 200px;
+  padding-top: 70px;
+  width: 1024px;
 }
-
-
 
 #top3 {
-  top: -60px;
-  left: 10px;
-  position: absolute;
   color: #394141;
   font-size: 50px;
-  /* z-index: 1; */
-  transition: font-size 0.35s;
+/*  transition: font-size 0.35s;*/
   width: 500px;
-  font-family: 'Nanum Pen Script', cursive;
+/*  font-family: 'Nanum Pen Script', cursive;*/
 }
-
 
 #boastname {
   top: -150px;
@@ -35,40 +24,7 @@
   /* z-index: 1; */
   transition: font-size 0.35s;
   width: 100%;
-  font-family: font-family: 'Jeju Gothic', sans-serif;
-    
-}
-
-#subtable {
-    position: relative;
-    width: 1024px;
-    margin-left: -15px ;
-    padding-left: 15px;
-    /* border: 1px red solid;  */
-    top: 10px;
-}
-
-
-#rank-section {
-	  border: 1px red solid;
-	  margin: 0 auto;
-    /* padding-left: 10px; */
-    alight-content: center;
-}
-
-#section-img {
-	border: 1px black solid;
-  width: auto;
-	padding: 0;
-  align: center;
-}
-
-#section-img img {
-	border: 0px;
-	margin: 0;
-	top: 50%;
-  left: 50%;;
-	align: center;
+/*  font-family: font-family: 'Jeju Gothic', sans-serif;  */
 }
 
 
@@ -291,16 +247,66 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 
+#subtable {
+/*  position: relative;*/
+/*  width: 1024px;*/
+
+/*  padding-left: 15px;*/
+/*  top: 10px;*/
+}
+
+#subtable img {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.boxsub1 .card .background {
+  border: 1px solid #d06a79;
+  height: 330px;
+  width: 235px;
+  position: relative;
+}
+
+#rank-section {
+	  margin: 0 auto;
+
+}
+
+#section-img {
+/*	border: 1px black solid;*/
+}
+
+#section-img img {
+/*	border: 0px;*/
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height:440px;
+  max-width: 320px;
+}
+
+.box1 .card .background {
+  border: 1px solid #d06a79;
+  height: 440px;
+  width: 320px;
+  position: relative;
+}
+
 .gallery.box1 {
     display: inline-block;
   position:relative;
   width: auto;
   height:440px;
-  max-width: 300px;
+  max-width: 320px;
   margin: 10px 10px;
   overflow: hidden;
   /* border-radius: 5%; */
-  border: 10px # solid;
+/*  border: 10px # solid;*/
 }
 
 .gallery.box1:hover {
@@ -308,7 +314,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   position:relative;
   width: auto;
   height:440px;
-  max-width: 300px;
+  max-width: 320px;
   margin: 10px 10px;
   overflow: hidden;
   /* border-radius: 5%; */
@@ -316,23 +322,12 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   box-shadow: 0px 0px 5px 1px #C07C86;
 }
 
-.box1 .card .background img {
-    width: auto;
-    height: 440px;
-}
-
-.boxsub1 .card .background img {
-/*    width: 240px;*/
-    height: 340px;
-    overflow: scroll;
-}
-
 .gallery.boxsub1 {
   position:relative;
   width: auto;
-  height:300px;
-  margin: 10px 0px;
-  margin-left: 10px;
+  height:330px;
+  max-width: 235px;
+  margin: 10px 10px;
   overflow: hidden;
   /* border:1px red solid; */
   /* border-radius: 5%; */
@@ -341,9 +336,9 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 .gallery.boxsub1:hover {
   position:relative;
   width: auto;
-  height:300px;
-  margin: 10px 0px;
-  margin-left: 10px;
+  height:330px;
+  max-width: 235px;
+  margin: 10px 10px;
   overflow: hidden;
   /* border-radius: 5%; */
   border: 1px solid #d06a79;
@@ -414,18 +409,18 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .gallery .info h2{
   line-height: 24px;
-  font-size: 26px;
+  font-size: 20px;
   padding: 0 10px;
   font-weight: 400;
-  font-family: 'Nanum Pen Script', cursive;
+/*  font-family: 'Nanum Pen Script', cursive;*/
 }
 
 .gallery .infosub h2{
   line-height: 24px;
-  font-size: 21px;
+  font-size: 15px;
   padding: 0 10px;
   font-weight: 400;
-  font-family: 'Nanum Pen Script', cursive;
+/*  font-family: 'Nanum Pen Script', cursive;*/
 }
 
 .gallery .foot{
@@ -434,8 +429,8 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   position: relative;
   color: #fff;
   padding: 0 10px;
-  font-family: 'Nanum Pen Script', cursive;
-  font-size: 18px;
+/*  font-family: 'Nanum Pen Script', cursive;*/
+  font-size: 15px;
 }
 
 .gallery .foot .line{

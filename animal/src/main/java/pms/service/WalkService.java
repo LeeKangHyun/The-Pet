@@ -8,7 +8,8 @@ import pms.domain.Walk;
 public interface WalkService {
   int add(Walk walk);
   
-  List<Walk> list(int mno);
+  List<Walk> list(int sno);
   
   List<Walk> selectList(Map<String, Object> paramMap);
+
 }

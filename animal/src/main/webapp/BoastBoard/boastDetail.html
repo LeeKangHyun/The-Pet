@@ -2,99 +2,79 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<title>Slid Menu</title>
+  <meta charset="utf-8">
+  <title>Slid Menu</title>
 
-<link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
-	type='text/css' />
+  <link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'	type='text/css' />
 
-<!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header.less" type="style.less"
-	rel="stylesheet/less" />
+  <!--  내가만든 css들  -->
+  <link href="../css/sh_slidmenu_header_diary.less" type="style.less"	rel="stylesheet/less" />
 
-<!--  폰트아이콘 링크  -->
-<link href="../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" />
-<link href="../css/icon-font.min.css" rel="stylesheet" />
+  <!--  폰트아이콘 링크  -->
+  <link href="../lib/font-awesome/css/font-awesome.min.css"	rel="stylesheet" />
+  <link href="../css/icon-font.min.css" rel="stylesheet" />
 
-<!-- 부트스트랩 -->
-<script src='../lib/jquery/jquery.js'></script>
-<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../lib/less/less.js" type="text/javascript"></script>
+  <!-- 지호가 만든 BoastDetail Css -->
+  <link href="../css/jh_detail.css" type="stylesheet" rel="stylesheet" />
+  
+  <!-- 부트스트랩 -->
+  <script src='../lib/jquery/jquery.js'></script>
+  <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../lib/less/less.js" type="text/javascript"></script>
 
-<script src="../lib/jquery-session-plugin/jquery.session.js"
-	type="text/javascript"></script>
+  <script src="../lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
 
-<!-- 지호가 만든 BoastDetail Css -->
-<link href="../css/jh_detail.css" type="stylesheet" rel="stylesheet" />
-
-
-<!-- Image Slide get Start Script -->
-<script>
-    $(document).ready(function() {
+  <!-- Image Slide get Start Script -->
+  <script>
+  $(document).ready(function() {
     $('.carousel').carousel({
-        interval: 3000,
-        pause: "hover",
-        wrap: true,
-        keyboard: true
+      interval: 3000,
+      pause: "hover",
+      wrap: true,
+      keyboard: true
     });
-    });
-    </script>
-
-
+  });
+  </script>
 
 </head>
 
 <body>
-	<header id="menu" style="position: fix; margin-top: -80px;">
-		<div id="header_title">
-			<a class="headerTitle" href="../pet.html"> <span id="the">THE</span>
-				<span id="P">P</span><span id="et">ET</span>
-			</a>
-			<div id="user_info"></div>
-		</div>
-		<!--  메뉴 버튼  -->
-		<input type="checkbox" id="menuToggle" />
+	<header id="menu">
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="boastBoard.html">
+        자랑해요
+      </a>
+      <div id="user_info"></div>
+    </div>
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
 
-		<div id="sideMenu">
-			<label for="menuToggle" id="menu-icon"><i
-				class="fa fa-bars fa-lg"></i></label>
-			<!--  메뉴 내용  -->
+    <div id="sideMenu">
+      <label for="menuToggle" id="menu-icon"><i
+        class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
 
-			<nav id="menu-nav">
-				<ul id="menu-nav-ul">
-					<li><a href="Education/education.html"><i
-							class="lnr lnr-pencil"></i> 교육</a></li>
-					<li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
-					<li><a href="mating.html"><i class="lnr lnr-heart"></i>
-							짝짓기</a></li>
-					<li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-					<li><a href="BoastBoard/boastBoard.html"><i
-							class="lnr lnr-paw"></i> 자랑해요</a></li>
-				</ul>
-			</nav>
-			<!--  //메뉴 내용  -->
-		</div>
-	</header>
+      <nav id="menu-nav">
+        <ul id="menu-nav-ul">
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
+              자랑해요</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
+  </header>
 
 
 
 	<!-- 내용 시작 -->
-	<div id="content">
-
-		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) -->
-		<div id="title-section">
-			<div id="title"></div>
-
-			<div id="writer"></div>
-
-			<div id="cre_dt"></div>
-
-			<div id="views"></div>
-
-			<div id="likes"></div>
-		</div>
-		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) 끝 -->
+	<section id="main-body">
 
 		<!-- image Slide Section -->
 		<div id="carousel-example-generic" class="carousel slide"
@@ -107,8 +87,7 @@
 			<!-- Wrapper for slides -->
 			<div id="img-container">
 				<div class="carousel-inner" id="img-container-inner" role="listbox">
-
-
+            
 				</div>
 			</div>
 
@@ -116,72 +95,169 @@
 			<!-- Controls -->
 			<a class="left carousel-control" id="left-control"
 				href="#carousel-example-generic" role="button" data-slide="prev">
-
-			</a> <a class="right carousel-control" id="right-control"
+        
+			</a> 
+      
+      <a class="right carousel-control" id="right-control"
 				href="#carousel-example-generic" role="button" data-slide="next">
-
+        
 			</a>
 
 		</div>
 		<!-- Image Slide Section End -->
 
+    <!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) -->
+		<div id="title"></div>
+    
+		<div id="title-section">
+			<div id="writer"></div>
+			<div id="likes"></div>
+			<div id="cre_dt"></div>
+			<div id="views"></div>
 
-
+		</div>
+		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) 끝 -->
+		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) 끝 -->
+    
 
 		<!-- 자랑하기 내용 Section -->
-		<div id="content-content">
-
-
-
-			<div id="list">
-				<button type="button" class="btn btn-success" id="list-Btn">목록</button>
-			</div>
-			<div id="delete"></div>
-
-		</div>
+		<div id="content-content"></div>
+    
+    <div id="btn-Section">
+      <div id="list">
+        <button type="button" class="btn btn-success" id="list-Btn">목록</button>
+      </div>
+      <div id="delete"></div>
+    </div>
 		<!-- 자랑하기 내용 Section End -->
+    
+    <!-- 댓글 입력부분 -->
+    <div class='input'>
+      <img id='comimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+      <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
+      <a id="comAddBtn" role='button'>게시</a>
+    </div>
+
+    <!-- 댓글과 버튼을 포함한 구역 -->
+    <div class='comments' id="comComment">
+
+      <!-- 댓글 구역 -->
+      <div id="commentSection">
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+        <!-- 댓글1개 -->
+        <div class='comment'>
+          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <div class='commentname'>Name</div>
+          <div class='commenttext'>Comment</div>
+        </div>
+
+      </div>
+      <!-- 댓글 더보기 버튼 -->
+      <div id="more">
+        <a href="#" role="button" id="moreBtn">더보기</a>
+      </div>
+
+    </div>  <!-- 댓글과 버튼을 포함한 구역 끝 -->
+
+	</section>
+  
+  
+  <!-- Delete Check Modal -->
+  <div class="modal fade" id="Delete-Check-Modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">게시물 삭제</h4>
+        </div>
+        <div class="modal-body">삭제하시겠습니까?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="delete-yes">예</button>
+          <button type="button" class="btn btn-default" id="delete-no" data-dismiss="modal">아니오</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
-
-		<!-- Delete Check Modal -->
-		<div class="modal fade" id="Delete-Check-Modal" tabindex="-1"
-			role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">게시물 삭제</h4>
-					</div>
-					<div class="modal-body">삭제하시겠습니까?</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="delete-yes">예</button>
-						<button type="button" class="btn btn-default" id="delete-no" data-dismiss="modal">아니오</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-
-
-	</div>
-
-
-
-	<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
-var url = location.href;
-var dno = url.split('?')[1].split('=')[1];
-var like_toggle = 0;
+  var url = location.href;
+  var dno = url.split('?')[1].split('=')[1];
+  var like_toggle = 0;
 
-var detail_data = new FormData();
-detail_data.append("dno", dno);
+  var detail_data = new FormData();
+  detail_data.append("dno", dno);
 
- $.ajax({
+  $.ajax({
     url : "../boastboard/ajax/detail_image.do",
     dataType : "json",
     type : "POST",
@@ -193,226 +269,221 @@ detail_data.append("dno", dno);
       
       var img = $("#img-container-inner");
       var circle = $(".carousel-indicators");
-      
-      console.log("resultObj.count의 return 값은?"+resultObj.ImageCount+" 입니다.");
-      
+
+      console.log("resultObj.count의 return 값은?" + resultObj.ImageCount + " 입니다.");
+
       /* 사진이 1장일 경우 */
       if (resultObj.ImageCount == 1) {
-          $("<div class='item active'>").html(
-                  "<div id='img-section'>"+
-                "<img src='../files/"+resultObj.data[0].filename+"' id='img'>"+
-                  "</div>").appendTo(img);
+        $("<div class='item active'>").html(
+        "<div id='img-section'>" +
+        "<img src='../files/" + resultObj.data[0].filename + "' id='img'>" +
+        "</div>").appendTo(img);
       }
-      
+
       /* 사진이 여러 장일 경우 */
       else if (resultObj.ImageCount >= 2) {
-          $("<div class='item active'>").html(
-                  "<div id='img-section'>"+
-                "<img src='../files/"+resultObj.data[0].filename+"' id='img'>"+
-                  "</div>").appendTo(img);
-          $("<li data-target='#carousel-example-generic' data-slide-to='0' class='active'></li>").appendTo(circle);
-          
-          for(var i = 1; i < resultObj.ImageCount; i++) {
-            $("<div class='item'>").html(
-                      "<div id='img-section'>"+
-                    "<img src='../files/"+resultObj.data[i].filename+"' id='img'>"+
-                      "</div>").appendTo(img);
-              $("<li data-target='#carousel-example-generic' data-slide-to='0'></li>").appendTo(circle);
-          }
-          
-          $('#left-control')
-          .append("<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>"
-                +"<span class='sr-only'>Previous</span>");
-          
-          $('#right-control')
-          .append("<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>"
-                +"<span class='sr-only'>Next</span>");
+        $("<div class='item active'>").html(
+        "<div id='img-section'>" +
+        "<img src='../files/" + resultObj.data[0].filename + "' id='img'>" +
+        "</div>").appendTo(img);
+        $("<li data-target='#carousel-example-generic' data-slide-to='0' class='active'></li>").appendTo(circle);
+
+        for(var i = 1; i < resultObj.ImageCount; i++) {
+          $("<div class='item'>").html(
+          "<div id='img-section'>" +
+            "<img src='../files/" + resultObj.data[i].filename + "' id='img'>" +
+          "</div>").appendTo(img);
+          $("<li data-target='#carousel-example-generic' data-slide-to='0'></li>").appendTo(circle);
+        }
+
+        $('#left-control')
+        .append("<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>" +
+        "<span class='sr-only'>Previous</span>");
+
+        $('#right-control')
+        .append("<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>" +
+        "<span class='sr-only'>Next</span>");
+      }
+    } 
+  }); 
+ 
+ 
+  // Content 뽑아내는 Ajax
+  $.ajax({
+    url : "../boastboard/ajax/detail_content.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    async: "true",
+    data : detail_data,
+    success : function(resultObj) {
+
+      $('#title').append("<span>" + resultObj.data[0].title + "</span>")
+      $('#writer').append("<span><i class='fa fa-user'></i> " + resultObj.data[0].member + "</span>")
+      $('#cre_dt').append("<span><i class='fa fa-calendar'></i> " + resultObj.data[0].createDate + "</span>")
+      $('#views').append("<span><i class='fa fa-eye'></i> " + resultObj.data[0].view + "</span>")
+      $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> " + resultObj.data[0].like + 
+                         "</span>")
+      $('#content-content').append("<pre id='content-content-content'>" + resultObj.data[0].content + "</pre>")
+
+      if ($.session.get('mno') == resultObj.data[0].mno) {
+       $('#delete').append("<button type='button' class='btn btn-success' id='delete-Btn' data-toggle='modal' data-target='#Delete-Check-Modal'>삭제</button>");
       }
 
+      // Detail 접속 시 Like 눌렀는지 확인 유무
+      var mno = $.session.get('mno');
 
-    } }); 
+      if (mno != undefined) {
+
+        var like_check_data = new FormData();
+        like_check_data.append("mno", mno);
+        like_check_data.append("SCH_NUM", dno);
+
+        $.ajax({
+          url : "../boastboard/ajax/detail_like_check.do",
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          async: false,
+          data : like_check_data,
+          success : function(resultObj) {
+
+            if (resultObj.like != "" ) {
+              $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
+              like_toggle = 1;
+            } else {
+              $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
+              like_toggle = 0;
+            }
+          } 
+        });
+      }
+    } 
+  });
  
- 
- <!-- Content 뽑아내는 Ajax -->
- $.ajax({
-      url : "../boastboard/ajax/detail_content.do",
+  // 삭제(Delete) 클릭 이벤트
+  $('#delete-yes').click(function(event) {
+    $.ajax({
+      url : "../boastboard/ajax/delete.do",
       dataType : "json",
       type : "POST",
       contentType : false,
       processData : false,
-      async: "true",
+      async: false,
       data : detail_data,
       success : function(resultObj) {
-        
-        $('#title').append("<span>"+resultObj.data[0].title+"</span>")
-        $('#writer').append("<span><i class='fa fa-user'></i> "+resultObj.data[0].member+"</span>")
-        $('#cre_dt').append("<span><i class='fa fa-calendar'></i> "+resultObj.data[0].createDate+"</span>")
-        $('#views').append("<span><i class='fa fa-eye'></i> "+resultObj.data[0].view+"</span>")
-        $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.data[0].like+"</span>")
-        $('#content-content').append("<pre id='content-content-content'>"+resultObj.data[0].content+"</pre>")
-        
-       if ($.session.get('mno') == resultObj.data[0].mno) {
-        $('#delete').append("<button type='button' class='btn btn-success' id='delete-Btn' data-toggle='modal' data-target='#Delete-Check-Modal'>삭제</button>");
-       }
-        
-        <!-- Detail 접속 시 Like 눌렀는지 확인 유무 -->
-        var mno = $.session.get('mno');
-        
-        if (mno == undefined) {
-        	  mno = 0;        	
-        }
-        
-        var like_check_data = new FormData();
-        like_check_data.append("mno", mno);
-        like_check_data.append("SCH_NUM", dno);
-        
+        location.href='boastBoard.html';
+        location.replace('boastBoard.html');
+      } 
+    });
+  });
+ 
+ 
+  // 좋아요(Likes) Toggle 기능
+  $('#likes').click(function(event) { 
+
+    var mno = $.session.get('mno');
+
+    var like_data = new FormData();
+    like_data.append("mno", mno);
+    like_data.append("SCH_NUM", dno);
+
+
+    if ($.session.get('mno') == undefined) {
+      alert("로그인 후 이용해주십시오.");
+    } else {
+      if(like_toggle == 0) {
+
         $.ajax({
-            url : "../boastboard/ajax/detail_like_check.do",
-            dataType : "json",
-            type : "POST",
-            contentType : false,
-            processData : false,
-            async: false,
-            data : like_check_data,
-            success : function(resultObj) {
-            	
-              if (resultObj.like != "" ) {
-                $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
-                like_toggle = 1;
-              } else {
-                $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
-                like_toggle = 0;
-              }
-              
-            } });
-        
-        
-      } });
- 
- <!-- 삭제(Delete) 클릭 이벤트 -->
- $('#delete-yes').click(function(event) {
-	 $.ajax({
-         url : "../boastboard/ajax/delete.do",
-         dataType : "json",
-         type : "POST",
-         contentType : false,
-         processData : false,
-         async: false,
-         data : detail_data,
-         success : function(resultObj) {
-         
-        	    location.href='boastBoard.html';
-        	    location.replace('boastBoard.html');
-        	 
-         } });
- });
- 
- 
- <!-- 좋아요(Likes) Toggle 기능 -->
- $('#likes').click(function(event) { 
-	 
-   var mno = $.session.get('mno');
-   
-   var like_data = new FormData();
-   like_data.append("mno", mno);
-   like_data.append("SCH_NUM", dno);
-   
-   
-   if ($.session.get('mno') == undefined) {
-     
-     alert("로그인 후 이용해주십시오.");
-     
-   } else {
-     
-     if(like_toggle == 0) {
-       
-        $.ajax({
-             url : "../boastboard/ajax/like_add.do",
-             dataType : "json",
-             type : "POST",
-             contentType : false,
-             processData : false,
-             async: false,
-             data : like_data,
-             success : function(resultObj) {
-               $('#likes').empty();
-               $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"</span>")
-             } }); 
-         
+          url : "../boastboard/ajax/like_add.do",
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          async: false,
+          data : like_data,
+          success : function(resultObj) {
+            $('#likes').empty();
+            $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> " + resultObj.like + "</span>")
+          }
+        }); 
+
         $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
-          like_toggle = 1;
-          
-     } else if(like_toggle == 1) {
-       
-          $.ajax({
-             url : "../boastboard/ajax/like_delete.do",
-             dataType : "json",
-             type : "POST",
-             contentType : false,
-             processData : false,
-             async: false,
-             data : like_data,
-             success : function(resultObj) {
-               $('#likes').empty();
-               $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"</span>")
-             } });
-       
-         $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
-         like_toggle = 0;
-     }
-     
-   }
-   
- });
+        like_toggle = 1;
 
+      } else if(like_toggle == 1) {
 
- /* List 돌아가는 이벤트 */
- $('#list-Btn').click(function(event) {
-     location.href='boastBoard.html';
-     location.replace('boastBoard.html');
- });
+        $.ajax({
+          url : "../boastboard/ajax/like_delete.do",
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          async: false,
+          data : like_data,
+          success : function(resultObj) {
+            $('#likes').empty();
+            $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> " + resultObj.like + "</span>")
+          }
+        });
 
- 
+        $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
+        like_toggle = 0;
+      }
+    }
+
+  });
+
+  /* List 돌아가는 이벤트 */
+  $('#list-Btn').click(function(event) {
+    location.href='boastBoard.html';
+    location.replace('boastBoard.html');
+  });
 });  
 </script>
 
 
 
 	<!-- Log In/Out Script -->
-	<script>
-  $(document).ready(function() {
-    // 로그인 회원 정보출력 세션없으면 로그인페이지로
-    var no = $.session.get('mno');
-    var div = $('#user_info');
-    var ul = $('#menu-nav-ul');
-    if (no == undefined) {
-      div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
-    } else {
-      $('#myMno1').val(no);
-      $('#myMno2').val(no);
+<script>
+$(document).ready(function() {
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  var div = $('#user_info');
+  var ul = $('#menu-nav-ul');
+  if (no == undefined) {
+    div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
+  } else {
+    $('#myMno1').val(no);
+    $('#myMno2').val(no);
 
-      div.append(
-        "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
-          "<i class='fa fa-envelope-o'></i>" +
-          "<span class='badge' id='userBadge'>0</span>" +
-        "</a>" +
-        "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-        "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-        "<a role='button' id='outBtn' class='logout'>" +
-          "<i class='fa fa-unlock fa-lg'></i>" +
-        "</a>")
-      ul.append(
-        "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-    }
-    
-    // 로그아웃
-    $(document).on("click", "#outBtn", function() {
-          $.session.clear();
-          location.href = "../login.html"
-      });
-    
-    // 안읽은 받은쪽지 갯수 출력
-    var no = $.session.get('mno');
+    div.append(
+      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
+        "<i class='fa fa-envelope-o'></i>" +
+        "<span class='badge' id='userBadge'>0</span>" +
+      "</a>" +
+      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a role='button' id='outBtn' class='logout'>" +
+        "<i class='fa fa-unlock fa-lg'></i>" +
+      "</a>")
+    ul.append(
+      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+  }
+
+  // 로그아웃
+  $(document).on("click", "#outBtn", function() {
+        $.session.clear();
+        location.href = "../login.html"
+    });
+
+  // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+
+  if (no != undefined) {
+
     var form_data = new FormData();
     form_data.append("recvMno", no)
     $.ajax({
@@ -428,7 +499,9 @@ detail_data.append("dno", dno);
         $('#userBadge').html(ajaxResult.data.noReadCount)
       }
     })
-      });
-  </script>
+  }
+
+});
+</script>
 </body>
 </html>

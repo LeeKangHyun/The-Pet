@@ -21,9 +21,9 @@ public class WalkController {
   @Autowired WalkService walkService;
   
   @RequestMapping(value="add", method=RequestMethod.POST)
-  public AjaxResult add(Walk lot) throws Exception {
+  public AjaxResult add(Walk walk) throws Exception {
     
-    walkService.add(lot);
+    walkService.add(walk);
     
     return new AjaxResult("status", null);
   }
