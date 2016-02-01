@@ -1,6 +1,5 @@
 package pms.service.support;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +30,10 @@ public class DefaultWalkService implements WalkService {
   
   public Double count() {
     return walkDao.count();
+  }
+  
+  public int view(Diary diary) {
+    return walkDao.view(diary);
   }
   
 }

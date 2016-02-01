@@ -72,5 +72,11 @@ public class WalkController {
 
     return resultMap;
   }
+  
+  @RequestMapping(value="view", method=RequestMethod.POST)
+  public AjaxResult view(Diary diary) throws Exception {
+    walkService.view(diary);
+    return new AjaxResult("success", null);
+  }
 
 }

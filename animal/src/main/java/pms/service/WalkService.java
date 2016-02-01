@@ -15,4 +15,6 @@ public interface WalkService {
   
   public Double count();
 
+  int view(Diary diary);
+  
 }

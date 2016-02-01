@@ -15,4 +15,6 @@ public interface WalkDao {
   
   double count();
   
+  int view(Diary diary);
+  
 }
