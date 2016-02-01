@@ -3,6 +3,7 @@ package pms.service;
 import java.util.List;
 import java.util.Map;
 
+import pms.domain.Diary;
 import pms.domain.Walk;
 
 public interface WalkService {
@@ -10,6 +11,6 @@ public interface WalkService {
   
   List<Walk> list(int sno);
   
-  List<Walk> selectList(Map<String, Object> paramMap);
+  List<Diary> selectList(Map<String, Object> paramMap);
 
 }

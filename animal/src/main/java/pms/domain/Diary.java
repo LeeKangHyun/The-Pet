@@ -22,6 +22,7 @@ public class Diary  implements Serializable {
   protected String filename; //파일이름 (자랑하기 게시판 사용 by.JH)
   protected String member; // 회원 이름 추가(자랑하기 게시판 사용 by.JH)
   protected String pSpec;	// 펫 구분
+  protected String mimg; //멤버 사진 
   
   public Diary() {}
 
@@ -151,6 +152,14 @@ public class Diary  implements Serializable {
 
   public void setpSpec(String pSpec) {
     this.pSpec = pSpec;
+  }
+
+  public String getMimg() {
+    return mimg;
+  }
+
+  public void setMimg(String mimg) {
+    this.mimg = mimg;
   }
   
 }

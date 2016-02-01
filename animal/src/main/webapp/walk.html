@@ -81,44 +81,41 @@ $(document).ready(function(){
         	
         	var div = $("#cardSection");
         	
-        	for(var i = 0; i < 2; i++) {
+        	for (var i = 0; i < resultObj.data.length; i++) {
+        	
         	$("<div class='card-container manual-flip'>").html(
         			"<div class='card'>"+
         			  "<div class='front'>"+
                       "<div class='cover'>"+
-                        "<img src='images/h3.jpg'/>"+
+                        "<img src='files/" + resultObj.data[0].filename + "'/>"+
                       "</div>"+
                       "<div class='user'>"+
-                        "<img class='img-circle' src='images/p8.jpeg'/>"+
-                      "</div>"+
-                      "<div class='content'>"+
-                        "<a role='button' href=''>"+
-                          "<div class='main'>"+
-                            "<h3 class='name'>설현22"+i+"</h3>"+
-                            "<div class='creDate'>2016-01-29</div>"+
-                            "<h5 class='title'>"+
-                              "제목입니다."+
-                            "</h5>"+
-                            "<h5>"+
-                              "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
-                              "위치 장소이름위치"+ 
-                            "</h5>"+
-                          "</div>"+
-                        "</a>"+
-                        "<div class='footer'>"+
-                          "<div class='like'>"+
-                            "<i class='fa fa-thumbs-o-up'></i> 392"+
-                          "</div>"+
-                          "<div class='view'>"+
-                            "<i class='fa fa-eye'></i> 392"+
-                          "</div>"+
-                          "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
-                            "<i class='fa fa-mail-forward'></i> 간략정보"+
-                          "</button>"+
+                        "<img class='img-circle' src='files/" + resultObj.data[0].mimg + "'/>"+
                         "</div>"+
-                      "</div>"+
+                        "<div class='content'>"+
+                          "<a role='button' href=''>"+
+                            "<div class='main'>"+
+                              "<h3 class='name'>"+resultObj.data[0].member+"</h3>"+
+                              "<div class='creDate'>"+resultObj.data[0].createDate+"</div>"+
+                              "<h5 class='title'>"+resultObj.data[0].title+"</h5>"+
+                              "<h5>"+
+                                "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
+                                "위치 장소이름위치"+ 
+                              "</h5>"+
+                            "</div>"+
+                          "</a>"+
+                          "<div class='footer'>"+
+                            "<div class='like'>"+
+                              "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[0].like +"</div>"+
+                            "<div class='view'>"+
+                              "<i class='fa fa-eye'></i>" + resultObj.data[0].view + "</div>"+
+                            "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
+                              "<i class='fa fa-mail-forward'></i> 간략정보"+
+                            "</button>"+
+                          "</div>"+
+                        "</div>"+
 
-                    "</div>"+ <!-- end front panel -->
+                      "</div>"+ <!-- end front panel -->
 
                     "<div class='back'>"+
                       "<div class='header'>"+
@@ -142,6 +139,7 @@ $(document).ready(function(){
                   "</div>"+ <!-- end card -->		
                   "</div>" <!-- end card-container -->
         	).appendTo(div);
+        	
         	}
         	
         } });  
