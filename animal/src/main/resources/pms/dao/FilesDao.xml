@@ -18,7 +18,7 @@
   <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
     select * 
     from files
-    where SCH_NUM=#{dno}
+    where SCH_NUM=#{value}
   </select>
   
   <select id="EduFileList" resultMap="filesMap" parameterType="int">

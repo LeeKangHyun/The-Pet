@@ -78,6 +78,15 @@ public class DiaryController {
 		return resultMap;
 	}
 	
+	@RequestMapping("walklist")
+	public Object list(int sno) throws Exception {
+	  
+	  Diary diary;
+	  diary = diaryService.detail(sno);
+	  
+	  return diary;
+	}
+	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(
 			Diary diary,

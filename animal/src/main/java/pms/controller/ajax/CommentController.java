@@ -47,6 +47,26 @@ public class CommentController {
 
 		return resultMap;
 	}
+
+	@RequestMapping("walkcomlist")
+	public Object walkcomlist(int dno) throws Exception {
+	  
+	  List<Comment> comments = commentService.getDiaryComment(dno);
+	  
+	  List<Member> memberMap = new ArrayList<>();
+	  
+	  for (Comment c : comments) {
+	    Member member = memberService.oneMember(c.getMno());
+	    memberMap.add(member);
+	  }
+	  
+	  HashMap<String,Object> resultMap = new HashMap<>();
+	  resultMap.put("status", "success");
+	  resultMap.put("comments", comments);
+	  resultMap.put("memberMap", memberMap);
+	  
+	  return resultMap;
+	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public AjaxResult add(
@@ -58,6 +78,18 @@ public class CommentController {
 		
 		return new AjaxResult("success", null);
 	}
+
+	@RequestMapping(value="walkcom", method=RequestMethod.POST)
+	public AjaxResult walkcom(
+	    Comment comment) throws Exception {
+	  
+	  if (commentService.walkcom(comment) <= 0) {
+	    return new AjaxResult("failure", null);
+	  } 
+	  
+	  return new AjaxResult("success", null);
+	}
+	
 	
 	@RequestMapping("delete")
 	public AjaxResult delete(
