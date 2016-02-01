@@ -45,9 +45,14 @@ public class FilesController {
 															+ "/" + newFileName);
 		file.transferTo(attachfile);
 		files.setFileName(newFileName);
+		
 		Image img = new ImageIcon(servletContext.getRealPath(SAVED_DIR) 
 				+ "/" + newFileName).getImage();
+		
 		System.out.println( img.getWidth(null) + " x " + img.getHeight(null) );
+		files.setWidth(img.getWidth(null));
+		files.setHeight(img.getHeight(null));
+		
 		filesService.add(files);
 		
 		return new AjaxResult("success", null);
@@ -64,6 +69,13 @@ public class FilesController {
 	      + "/" + newFileName);
 	  file.transferTo(attachfile);
 	  files.setFileName(newFileName);
+	  
+	  Image img = new ImageIcon(servletContext.getRealPath(SAVED_DIR) 
+				+ "/" + newFileName).getImage();
+		
+		System.out.println( img.getWidth(null) + " x " + img.getHeight(null) );
+		files.setWidth(img.getWidth(null));
+		files.setHeight(img.getHeight(null));
 	  
 	  filesService.matAdd(files);
 	  

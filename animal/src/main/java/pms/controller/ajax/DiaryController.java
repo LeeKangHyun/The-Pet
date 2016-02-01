@@ -26,6 +26,7 @@ import pms.service.CommentService;
 import pms.service.DiaryService;
 import pms.service.FilesService;
 import pms.service.PetService;
+import pms.service.WalkService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.DiaryController")
@@ -37,6 +38,7 @@ public class DiaryController {
 	@Autowired PetService petService;
 	@Autowired FilesService filesService;
 	@Autowired CommentService commentService;
+	@Autowired WalkService walkService;
 	@Autowired ServletContext servletContext;
 	
 	@RequestMapping("events")
@@ -79,10 +81,10 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("walklist")
-	public Object list(int sno) throws Exception {
+	public Object list(int dno) throws Exception {
 	  
 	  Diary diary;
-	  diary = diaryService.detail(sno);
+	  diary = diaryService.detail(dno);
 	  
 	  return diary;
 	}
@@ -119,7 +121,7 @@ public class DiaryController {
 	@RequestMapping("delete")
 	public AjaxResult delete(
 			int dno) throws Exception {
-		
+		walkService.remove(dno);
 		commentService.removeComment(dno);
 		filesService.removeDairyFile(dno);
 		diaryService.remove(dno);

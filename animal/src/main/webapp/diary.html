@@ -557,9 +557,14 @@
             var backEnd;
             var fullEnd;
             if (event.end) {
-                frontEnd = event.end.format().substring(0,8);
-                backEnd = Number(event.end.format().substring(8,10)) - 1;
+              frontEnd = event.end.format().substring(0,8);
+              backEnd = Number(event.end.format().substring(8,10)) - 1;
+              if (backEnd > 0 && backEnd < 10) {
                 fullEnd = frontEnd + 0 + backEnd;
+              } else {
+                fullEnd = frontEnd + backEnd;
+              }
+              
               console.log(event.start.format().substring(0,10))
               console.log(event.start.format())
               console.log(fullEnd)
@@ -930,7 +935,7 @@
                   locLat: dotlat,
                   locLng: dotlng,
                   locName: $('#subtitle').val(),
-                  sno: lastDno
+                  dno: lastDno
                 },
                 success: function(resultObj) {
                   deleteCircleDot();
@@ -1024,144 +1029,142 @@
       }
   });
 
-    // 다이어리 삭제
-    $(document).on("click", "#delSchedule", function() {
+  // 다이어리 삭제
+  $(document).on("click", "#delSchedule", function() {
 
-        var form_data = new FormData();
-        form_data.append("dno", $('#sdno').val())
+    var form_data = new FormData();
+    form_data.append("dno", $('#sdno').val())
 
-        $.ajax({
-          url: "diary/ajax/delete.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            alert("게시글이 삭제되었습니다.")
-    //            $('#fullCalModal').modal('hide')
-            location.href="diary.html"
-
-          }
-        })
-      });
-
-    // 펫추가 모달 닫으면 입력 초기화
-    $('#AddPet').on('hidden.bs.modal', function(e) {
-      $('#pName').val('');
-      $('#pType').val('');
-      $('#tagColor').val('#ff0000');
-      $('#injection').val('1차');
-      $('#medicine').val('');
-      $('#pImg').val('');
-      $('#file').val('');
+    $.ajax({
+      url: "diary/ajax/delete.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        alert("게시글이 삭제되었습니다.")
+        location.href="diary.html"
+      }
     })
+  });
 
-    // 새일정추가 모달 닫으면 입력 초기화
-    $('#AddBoard').on('hidden.bs.modal', function(e) {
-      $('#dhide').prop("checked", true);
-      $('#cateCode').val('SANCHE');
-      $('.pDate').css('display', '');
-      $('#pno').val('');
-      $('#startDate').val('');
-      $('#endDate').val('');
-      $('#title').val('');
-      $('#fContent').val('');
-      $('#file-1').val('');
+  // 펫추가 모달 닫으면 입력 초기화
+  $('#AddPet').on('hidden.bs.modal', function(e) {
+    $('#pName').val('');
+    $('#pType').val('');
+    $('#tagColor').val('#ff0000');
+    $('#injection').val('1차');
+    $('#medicine').val('');
+    $('#pImg').val('');
+    $('#file').val('');
+  })
+
+  // 새일정추가 모달 닫으면 입력 초기화
+  $('#AddBoard').on('hidden.bs.modal', function(e) {
+    $('#dhide').prop("checked", true);
+    $('#cateCode').val('SANCHE');
+    $('.pDate').css('display', '');
+    $('#pno').val('');
+    $('#startDate').val('');
+    $('#endDate').val('');
+    $('#title').val('');
+    $('#fContent').val('');
+    $('#file-1').val('');
+  })
+
+  $('#fullCalModal').on('hidden.bs.modal', function(e) {
+    $('#mainImage').attr('src', '');
+    $('#scrollImg').empty();
+    $('#mFile').val('');
+  })
+
+  // 펫 디테일
+  function detail(id) {
+    console.log(id)
+    var form_data = new FormData();
+    form_data.append("pno", id)
+
+    $.ajax({
+      url: "pet/ajax/detail.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        var oimg = $('#oimg')
+        var petinfo = re.ajaxResult.data;
+        $('#myMno3').val(petinfo.mno);
+        $('#myPno').val(petinfo.pno);
+        $('#pdName').val(petinfo.pName);
+        $('#pdType').val(petinfo.pType);
+        $('#pdSpec').val(petinfo.pSpec);
+        $('#dtagColor').val(petinfo.tagColor);
+        $('#dinjection').val(petinfo.injection);
+        $('#dmedicine').val(petinfo.medicine);
+        $('#oImage').val(petinfo.pImg);
+        $('.pdimg').attr('src', 'files/' + petinfo.pImg);
+      }
     })
+  }
 
-    $('#fullCalModal').on('hidden.bs.modal', function(e) {
-      $('#mainImage').attr('src', '');
-      $('#scrollImg').empty();
-      $('#mFile').val('');
-    })
+  // 로그인한 회원의 펫 보여주는것
+  $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
+      var showpet = $('#myPets');
+      for (var pet of resultObj.pets) {
+        showpet.append(
+          "<a class='petdetailBtn' id='" + pet.pno +
+            "' onclick='detail(this.id);'" +
+            "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+            "<div class='myPet'>" +
+              "<input type='hidden' class='pno'>" +
+              "<img class='mImg' src='files/" + pet.pImg + "'>" +
+              "<input class='petName' type='text' value='" + pet.pName +
+              "' disabled>" +
+              "<label class='pName'>이름 : </label>" +
+              "<input class='pColor' type='color' value='" + pet.tagColor +
+              "' disabled>" +
+              "<label class='pInfo'>태그색 : </label>" +
+            "</div>" +
+          "</a>")
+      }
 
-    // 펫 디테일
-    function detail(id) {
-      console.log(id)
-      var form_data = new FormData();
-      form_data.append("pno", id)
-
-      $.ajax({
-        url: "pet/ajax/detail.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          var oimg = $('#oimg')
-          var petinfo = re.ajaxResult.data;
-          $('#myMno3').val(petinfo.mno);
-          $('#myPno').val(petinfo.pno);
-          $('#pdName').val(petinfo.pName);
-          $('#pdType').val(petinfo.pType);
-          $('#pdSpec').val(petinfo.pSpec);
-          $('#dtagColor').val(petinfo.tagColor);
-          $('#dinjection').val(petinfo.injection);
-          $('#dmedicine').val(petinfo.medicine);
-          $('#oImage').val(petinfo.pImg);
-          $('.pdimg').attr('src', 'files/' + petinfo.pImg);
-        }
-      })
-    }
-
-    // 로그인한 회원의 펫 보여주는것
-    $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
-        var showpet = $('#myPets');
-        for (var pet of resultObj.pets) {
-          showpet.append(
-            "<a class='petdetailBtn' id='" + pet.pno +
-              "' onclick='detail(this.id);'" +
-              "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-              "<div class='myPet'>" +
-                "<input type='hidden' class='pno'>" +
-                "<img class='mImg' src='files/" + pet.pImg + "'>" +
-                "<input class='petName' type='text' value='" + pet.pName +
-                "' disabled>" +
-                "<label class='pName'>이름 : </label>" +
-                "<input class='pColor' type='color' value='" + pet.tagColor +
-                "' disabled>" +
-                "<label class='pInfo'>태그색 : </label>" +
-              "</div>" +
-            "</a>")
-        }
-
-        var sel = $("#pno");
-        for (var pet of resultObj.pets) {
-          sel.append("<option value='" + pet.pno + "'>" + pet.pName +
-            "</option>")
-        }
-      });
-
-    // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
-    $('#my-today-button').click(function() {
-      $('#calendar').fullCalendar('today');
+      var sel = $("#pno");
+      for (var pet of resultObj.pets) {
+        sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+          "</option>")
+      }
     });
 
-    // 글쓰기 카테고리 선택 부분
-    $("#cateCode").change(function() {
-      if ($('#cateCode').val() == "JARANG") { // 자랑 해요
-        $('.pDate').css('display', 'none');
-        $('.pMap').css('display', 'none');
-      }
-      else if ($('#cateCode').val() == "SANCHE") {
-        $('.pDate').css('display', '');
-        $('.pMap').css('display', '');
-      }
-      else if ($('#cateCode').val() == 'ILJUNG'){
-        $('.pDate').css('display', '');
-        $('.pMap').css('display', 'none');
-      }
-    }).change();
+  // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
+  $('#my-today-button').click(function() {
+    $('#calendar').fullCalendar('today');
+  });
 
-
-
-    function doshow(imgSrc) {
-      document.getElementById("mainImage").src = imgSrc;
+  // 글쓰기 카테고리 선택 부분
+  $("#cateCode").change(function() {
+    if ($('#cateCode').val() == "JARANG") { // 자랑 해요
+      $('.pDate').css('display', 'none');
+      $('.pMap').css('display', 'none');
     }
+    else if ($('#cateCode').val() == "SANCHE") {
+      $('.pDate').css('display', '');
+      $('.pMap').css('display', '');
+    }
+    else if ($('#cateCode').val() == 'ILJUNG'){
+      $('.pDate').css('display', '');
+      $('.pMap').css('display', 'none');
+    }
+  }).change();
+
+
+
+  function doshow(imgSrc) {
+    document.getElementById("mainImage").src = imgSrc;
+  }
 </script>
 
 </body>

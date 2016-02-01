@@ -20,8 +20,8 @@ public class DefaultWalkService implements WalkService {
     return walkDao.add(walk);
   }
   
-  public List<Walk> list(int sno) {
-    return walkDao.list(sno);
+  public List<Walk> list(int dno) {
+    return walkDao.list(dno);
   }
   
   public List<Diary> selectList(Map<String, Object> paramMap) {
@@ -36,4 +36,7 @@ public class DefaultWalkService implements WalkService {
     return walkDao.view(diary);
   }
   
+  public int remove(int dno) {
+  	return walkDao.delete(dno);
+  }
 }

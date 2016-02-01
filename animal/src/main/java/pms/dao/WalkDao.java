@@ -9,7 +9,7 @@ import pms.domain.Walk;
 public interface WalkDao {
   int add(Walk walk);
   
-  List<Walk> list(int sno);
+  List<Walk> list(int dno);
   
   List<Diary> selectList(Map<String, Object> paramMap);
   
@@ -17,4 +17,5 @@ public interface WalkDao {
   
   int view(Diary diary);
   
+  int delete(int dno);
 }

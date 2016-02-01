@@ -29,9 +29,9 @@ public class WalkController {
   }
 
   @RequestMapping(value="list", method=RequestMethod.GET)
-  public Object list(int sno) throws Exception {
-    System.out.println(sno);
-    List<Walk> walk = walkService.list(sno);
+  public Object list(int dno) throws Exception {
+    System.out.println(dno);
+    List<Walk> walk = walkService.list(dno);
 
     return walk;
   }
