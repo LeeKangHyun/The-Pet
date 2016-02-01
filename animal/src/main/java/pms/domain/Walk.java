@@ -5,28 +5,13 @@ import java.io.Serializable;
 public class Walk implements Serializable {
   private static final long serialVersionUID = 1L;
   
-  protected String lat;
-  protected String lng;
   protected int lno;
-  protected int mno;
+  protected String locLat;
+  protected String locLng;
+  protected String locName;
+  protected int sno;
   
   public Walk () {}
-
-  public String getLat() {
-    return lat;
-  }
-
-  public void setLat(String lat) {
-    this.lat = lat;
-  }
-
-  public String getLng() {
-    return lng;
-  }
-
-  public void setLng(String lng) {
-    this.lng = lng;
-  }
 
   public int getLno() {
     return lno;
@@ -36,14 +21,36 @@ public class Walk implements Serializable {
     this.lno = lno;
   }
 
-  public int getMno() {
-    return mno;
+  public String getLocLat() {
+    return locLat;
   }
 
-  public void setMno(int mno) {
-    this.mno = mno;
+  public void setLocLat(String locLat) {
+    this.locLat = locLat;
   }
-  
-  
+
+  public String getLocLng() {
+    return locLng;
+  }
+
+  public void setLocLng(String locLng) {
+    this.locLng = locLng;
+  }
+
+  public String getLocName() {
+    return locName;
+  }
+
+  public void setLocName(String locName) {
+    this.locName = locName;
+  }
+
+  public int getSno() {
+    return sno;
+  }
+
+  public void setSno(int sno) {
+    this.sno = sno;
+  }
   
 }

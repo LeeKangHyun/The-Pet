@@ -7,5 +7,5 @@ import pms.domain.Walk;
 public interface WalkService {
   int add(Walk walk);
   
-  List<Walk> list(int mno);
+  List<Walk> list(int sno);
 }

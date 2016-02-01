@@ -1,19 +1,24 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-      center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-      level: 3 // 지도의 확대 레벨
-    };
-
+mapOption = {
+    center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+};
 // 지도를 생성합니다
 var map = new daum.maps.Map(mapContainer, mapOption);
-
 
 navigator.geolocation.getCurrentPosition(function (position) {
   var lat = position.coords.latitude, // 위도
       lon = position.coords.longitude; // 경도
   var locPosition = new daum.maps.LatLng(lat, lon);
-  console.log(locPosition);
+
+  map.setCenter(locPosition);
+
+  $(document).on('click', '#where', function() {
+     map.setCenter(locPosition);
+  });
 });
+
+
 
 var dotlng, dotlat;
 var circleOverlay;

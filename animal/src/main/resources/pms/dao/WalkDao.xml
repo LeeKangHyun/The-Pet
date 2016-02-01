@@ -6,9 +6,10 @@
 <mapper namespace="pms.dao.WalkDao">
   <resultMap type="walk" id="walkMap">
     <id column="lno" property="lno"/>
-    <result column="lat" property="lat"/>
-    <result column="lng" property="lng"/>
-    <result column="mno" property="mno"/>
+    <result column="LOC_LAT" property="locLat"/>
+    <result column="LOC_LNG" property="locLng"/>
+    <result column="LOC_NAME" property="locName" />
+    <result column="sno" property="sno"/>
   </resultMap>
 
   <select id="list" resultMap="walkMap" parameterType="int">
@@ -20,8 +21,8 @@
   </select>
 
   <insert id="add" parameterType="walk">
-    insert into lot(lat, lng, mno)
-    values(#{lat}, #{lng}, 3)
+    insert into location(LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM)
+    values(#{locLat}, #{locLng}, #{locName}, #{sno})
   </insert>
 
 </mapper>
