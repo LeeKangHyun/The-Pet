@@ -1,6 +1,8 @@
 package pms.service.support;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,10 @@ public class DefaultWalkService implements WalkService {
   
   public List<Walk> list(int mno) {
     return walkDao.list(mno);
+  }
+  
+  public List<Walk> selectList(Map<String, Object> paramMap) {
+    
+    return walkDao.selectList(paramMap);
   }
 }

@@ -10,6 +10,13 @@
     <result column="lng" property="lng"/>
     <result column="mno" property="mno"/>
   </resultMap>
+  
+  <resultMap type="diary" id="diaryMap">
+    <id column="lno" property="lno"/>
+    <result column="lat" property="lat"/>
+    <result column="lng" property="lng"/>
+    <result column="mno" property="mno"/>
+  </resultMap>
 
   <select id="list" resultMap="walkMap" parameterType="int">
     select
@@ -17,6 +24,26 @@
       lng
     from lot
     where mno=#{value}
+  </select>
+  
+<select id="selectList" resultMap="diaryMap">
+    select
+     sc.SCH_NUM,
+     MAX(sc.SCH_CRE) as SCH_CRE, 
+     MAX(sc.SCH_TITLE) as SCH_TITLE, 
+     MAX(sc.CATE_CODE) as CATE_CODE,
+     MAX(sc.NOTI_LIKES) as NOTI_LIKES,
+     MAX(sc.NOTI_VIEWS) as NOTI_VIEWS,
+     MAX(fi.FILE_NAME) as FILE_NAME,
+     MAX(sc.PET_SPEC) as PET_SPEC,
+     MAX(me.MEM_NUM) as MEM_NUM,
+     MAX(me.MEM_NAME) as MEM_NAME
+    from schedule sc
+    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
+    left outer join member me on sc.MEM_NUM = me.MEM_NUM
+    where CATE_CODE='SANCHE' and NOTI_HIDE=1
+    group by sc.SCH_NUM
+    order by sc.SCH_CRE desc limit #{startIndex}, #{length}
   </select>
 
   <insert id="add" parameterType="walk">
