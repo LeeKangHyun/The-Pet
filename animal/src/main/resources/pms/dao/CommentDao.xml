@@ -40,9 +40,16 @@
   	where S_NUM=#{sno}
   </select>
   
+  <!-- matinsert -->
   <insert id="insert" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,MAT_NUM) 
     values(#{comComment},#{comImg},#{mno},#{matNo})
+  </insert>
+  
+  <!-- walkinsert -->
+  <insert id='walkcom' parameterType='comment'>
+    insert into comment(CMT_CONTENT, CMT_IMG, MEM_NUM, SCH_NUM)
+    values(#{comComment}, #{comImg}, ${mno}, #{dno})
   </insert>
   
   <insert id="insert2" parameterType="comment">

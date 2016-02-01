@@ -30,6 +30,9 @@ public class DefaultCommentService implements CommentService {
   public int add(Comment comment) {
   	return commentDao.insert(comment);
   }
+  public int walkcom(Comment comment) {
+    return commentDao.walkcom(comment);
+  }
 
   public int removeComment(int comNo) {
   	return commentDao.deleteComment(comNo);

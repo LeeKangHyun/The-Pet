@@ -12,6 +12,7 @@ public interface CommentService {
   List<Comment> getSaleComment(int eduNo);
   
   int add(Comment comment);
+  int walkcom(Comment comment);
 
   int removeComment(int comNo);
   

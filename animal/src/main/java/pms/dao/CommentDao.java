@@ -11,6 +11,7 @@ public interface CommentDao {
   List<Comment> SaleCommentList(int sno);
   
   int insert(Comment comment);
+  int walkcom(Comment comment);
   
   int deleteComment(int comNo);
   

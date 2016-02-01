@@ -127,79 +127,7 @@
         <div class='comments' id="comComment">
 
           <!-- 댓글 구역 -->
-          <div id="commentSection">
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-            <!-- 댓글1개 -->
-            <div class='comment'>
-              <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-              <div class='commentname'>Name</div>
-              <div class='commenttext'>Comment</div>
-            </div>
-
-          </div>
+          <div id="commentSection"></div>
           <!-- 댓글 더보기 버튼 -->
           <div id="more">
             <a href="#" role="button" id="moreBtn">더보기</a>
@@ -325,6 +253,25 @@
       </a>
 
     </div>
+
+    <!-- 댓글 삭제 확인 모달 -->
+    <div id="checkModal" class="modal fade bs-example-modal-sm" data-keyboard='false' data-backdrop='static'>
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class='modal-header'>
+            댓글 삭제
+          </div>
+          <div class='modal-body'>
+            이 댓글을 삭제하시겠어요?
+            <input type="hidden" id="comno">
+          </div>
+          <div class='modal-footer'>
+            <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
+            <button type="button" id="delCom" class="btn btn-danger">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
@@ -381,7 +328,7 @@ $.ajax({
         console.log(re);
         console.log(re.diary.content);
 
-        html(re.diary.content).appendTo('#m-list');
+        $('#m-list').html(re.diary.content).appendTo('#mapNlist');
         $('h3').html(re.diary.title).appendTo('#detailTitle');
     }
 })
@@ -455,7 +402,165 @@ $.ajax({
   }
 });
 
+var form_data = new FormData();
+form_data.append("dno", mapno)
+$.ajax({
+    url: "comment/ajax/walkcomlist.do",
+    dataType: 'json',
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+        $('#comComment').empty();
+        var commen = re.comments;
+        var comdiv = $('#comComment');
+        var mem;
+        var j = 0;
+        for (var com of commen) {
+            mem = re.memberMap[j];
+            if($.session.get('mno') == mem.mno) {
+                comdiv.append(
+                "<div class='comment'>" +
+                "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                "<div class='commentname'>" + mem.mName + "</div>" +
+                "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+                "<i class='fa fa-close'></i></a>" +
+                "<div class='commenttext'>" + com.comComment + "</div>" +
+                "</div>")
+            } else {
+                comdiv.append(
+                "<div class='comment'>" +
+                "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                "<div class='commentname'>" + mem.mName + "</div>" +
+                "<div class='commenttext'>" + com.comComment + "</div>" +
+                "</div>")
+            }
+            j++;
+        }
+    }
+});
 
+// 댓글 부분
+$(document).on('click', '#comAddBtn', function() {
+    if ($('#comcontent').val() == "") {
+      alert("댓글을 입력해 주세요")
+    } else {
+        var form_data = new FormData();
+        form_data.append("dno", mapno)
+        form_data.append("comComment", $('#comcontent').val())
+        form_data.append("mno", $.session.get('mno'))
+        $.ajax({
+            url: "comment/ajax/walkcom.do",
+            dataType: 'json',
+            cache: false,
+            async: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(re) {
+            $('#comcontent').val('')
+            var form_data = new FormData();
+            form_data.append("dno", mapno)
+            $.ajax({
+                url: "comment/ajax/walkcomlist.do",
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(re) {
+                    $('#comComment').empty();
+                    var commen = re.comments;
+                    var comdiv = $('#comComment');
+                    var mem;
+                    var j = 0;
+                    for (var com of commen) {
+                        mem = re.memberMap[j];
+                        if($.session.get('mno') == mem.mno) {
+                            comdiv.append(
+                            "<div class='comment'>" +
+                            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                            "<div class='commentname'>" + mem.mName + "</div>" +
+                            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+                            "<i class='fa fa-close'></i></a>" +
+                            "<div class='commenttext'>" + com.comComment + "</div>" +
+                            "</div>")
+                        } else {
+                            comdiv.append(
+                            "<div class='comment'>" +
+                            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                            "<div class='commentname'>" + mem.mName + "</div>" +
+                            "<div class='commenttext'>" + com.comComment + "</div>" +
+                            "</div>")
+                        }
+                        j++;
+                    }
+                }
+            })
+          }
+        })
+    }
+});
+
+// 댓글 삭제 도우미
+function del(id) {
+    $('#comno').val(id)
+    $('#checkModal').modal('show')
+}
+
+// 댓글 삭제
+$(document).on("click", "#delCom", function() {
+    var form_data = new FormData();
+    console.log($('#comno').val())
+    form_data.append("comNo", $('#comno').val())
+    $.ajax({
+        url: "comment/ajax/delete.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+            $('#checkModal').modal('hide')
+            var form_data = new FormData();
+            form_data.append("dno", mapno)
+            $.ajax({
+                url: "comment/ajax/walkcomlist.do",
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(re) {
+                    $('#comComment').empty();
+                    var commen = re.comments;
+                    var comdiv = $('#comComment');
+                    var mem;
+                    var j = 0;
+                    for (var com of commen) {
+                        mem = re.memberMap[j];
+                        comdiv.append(
+                        "<div class='comment'>" +
+                        "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                        "<div class='commentname'>" + mem.mName + "</div>" +
+                        "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+                        "<i class='fa fa-close'></i></a>" +
+                        "<div class='commenttext'>" + com.comComment + "</div>" +
+                        "</div>")
+                        j++;
+                    }
+                }
+            })
+        }
+    })
+})
 </script>
 
 <script>
