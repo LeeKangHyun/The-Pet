@@ -236,7 +236,7 @@ public class BoastBoardController {
 
 
   @RequestMapping(value="detail_like_check", method=RequestMethod.POST)
-  public Object detail_like_check(String mno, String SCH_NUM) throws Exception {
+  public Object detail_like_check(int mno, String SCH_NUM) throws Exception {
 
     int like_mno = Integer.valueOf(mno);
     int like_SCH_NUM= Integer.valueOf(SCH_NUM);

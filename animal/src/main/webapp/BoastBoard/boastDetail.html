@@ -257,6 +257,11 @@ detail_data.append("dno", dno);
         
         <!-- Detail 접속 시 Like 눌렀는지 확인 유무 -->
         var mno = $.session.get('mno');
+        
+        if (mno == undefined) {
+        	  mno = 0;        	
+        }
+        
         var like_check_data = new FormData();
         like_check_data.append("mno", mno);
         like_check_data.append("SCH_NUM", dno);
@@ -305,7 +310,7 @@ detail_data.append("dno", dno);
  
  <!-- 좋아요(Likes) Toggle 기능 -->
  $('#likes').click(function(event) { 
-
+	 
    var mno = $.session.get('mno');
    
    var like_data = new FormData();
