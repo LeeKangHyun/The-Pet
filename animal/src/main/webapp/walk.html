@@ -20,6 +20,36 @@
   <script src="lib/less/less.js" type="text/javascript"></script>
 
   <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+  
+  
+  <!-- 더보기 CSS -->
+<style type="text/css">
+  
+#moreBtn-Origin {
+position: relative;
+width: 1024px;
+margin: 0 auto;
+bottom: 150px;
+}
+
+#more {
+    position:relative;
+  text-align: center;
+    margin: 0 auto;
+    font-size: 18px;
+    width: 1024px;
+    background-color: #2d335e;
+}
+
+#moreBtn {
+    text-decoration: none;
+    color: #fff;
+}
+
+a#moreBtn:visited {
+    color:inherit;
+}
+  </style>
 
 </head>
 <body>
@@ -58,20 +88,47 @@
 
   <section id="main-body"  style="padding-bottom:150px;">
     <div id="cardSection">
-
-      
-
-
     </div> <!-- cardSection 끝 -->
   </section>
-
+  
+        <!-- 더보기 버튼 -->
+    <div id="moreBtn-Origin">
+      <a role="button" class="moreBtn" id="moreBtn"><div id="more">더보기</div></a>
+    </div>
+  
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
+
+
+<script>
+  function detailWalk(dno) {
+    
+    alert(dno);
+    
+/*     var view_data = new FormData();
+    view_data.append("dno", dno); */
+
+/*     $.ajax({
+      url : "../boastboard/ajax/view.do",
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      data : view_data,
+      success : function(resultObj) {
+
+      }
+    }); */
+    
+/*     location.href='boastDetail.html?dno='+dno;
+    location.replace('boastDetail.html?dno='+dno); */
+  }
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
 	
      $.ajax({
-        url : "walk/ajax/selectList.do",
+        url : "walk/ajax/selectList.do?pageNo=1",
         dataType : "json",
         type : "POST",
         contentType : false,
@@ -87,17 +144,17 @@ $(document).ready(function(){
         			"<div class='card'>"+
         			  "<div class='front'>"+
                       "<div class='cover'>"+
-                        "<img src='files/" + resultObj.data[0].filename + "'/>"+
+                        "<img src='files/" + resultObj.data[i].filename + "'/>"+
                       "</div>"+
                       "<div class='user'>"+
-                        "<img class='img-circle' src='files/" + resultObj.data[0].mimg + "'/>"+
+                        "<img class='img-circle' src='files/" + resultObj.data[i].mimg + "'/>"+
                         "</div>"+
                         "<div class='content'>"+
-                          "<a role='button' href=''>"+
+                          "<a role='button' href='#' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
                             "<div class='main'>"+
-                              "<h3 class='name'>"+resultObj.data[0].member+"</h3>"+
-                              "<div class='creDate'>"+resultObj.data[0].createDate+"</div>"+
-                              "<h5 class='title'>"+resultObj.data[0].title+"</h5>"+
+                              "<h3 class='name'>"+resultObj.data[i].member+"</h3>"+
+                              "<div class='creDate'>"+resultObj.data[i].createDate+"</div>"+
+                              "<h5 class='title'>"+resultObj.data[i].title+"</h5>"+
                               "<h5>"+
                                 "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
                                 "위치 장소이름위치"+ 
@@ -106,9 +163,9 @@ $(document).ready(function(){
                           "</a>"+
                           "<div class='footer'>"+
                             "<div class='like'>"+
-                              "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[0].like +"</div>"+
+                              "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[i].like +"</div>"+
                             "<div class='view'>"+
-                              "<i class='fa fa-eye'></i>" + resultObj.data[0].view + "</div>"+
+                              "<i class='fa fa-eye'></i>" + resultObj.data[i].view + "</div>"+
                             "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
                               "<i class='fa fa-mail-forward'></i> 간략정보"+
                             "</button>"+
@@ -130,7 +187,7 @@ $(document).ready(function(){
                         "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>"+
                           "<i class='fa fa-reply'></i> 돌아가기"+
                         "</button>"+
-                        "<button type='button' class='detail'>"+
+                        "<button type='button' class='detail' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
                           "<i class='fa fa-sign-in'></i> 상세정보"+
                         "</button>"+
                       "</div>"+
@@ -142,13 +199,133 @@ $(document).ready(function(){
         	
         	}
         	
-        } });  
-	
-	
-	
-	
-	
-	
+        } });
+     
+     //첫번째 리스트 출력
+     
+     
+     // 더 보기 생성
+     
+     /* more 페이징 */
+  /* count ajax 실행 */
+  var currentPage = 1;
+  var totalPage = 0;
+  
+  
+  $.ajax({
+    url:"walk/ajax/count.do",
+    dataType: "json",
+    async: "json",
+    type: "GET",
+    success: function(resultObj) {      
+      totalPage = resultObj.count;
+      if(totalPage == 1) {
+          $('#moreBtn-Origin').empty();
+      }
+    }
+  })
+  
+  
+  
+    $('.moreBtn').click(function(event) {
+
+        if(currentPage < totalPage) {
+          currentPage = currentPage + 1;
+          console.log("List/현재 currentPage...." + currentPage);
+          
+          
+          
+          $.ajax({
+              url : "walk/ajax/selectList.do?pageNo="+currentPage,
+              dataType : "json",
+              type : "POST",
+              contentType : false,
+              processData : false,
+              async: false,
+              success : function(resultObj) {
+                
+                var div = $("#cardSection");
+                
+                for (var i = 0; i < resultObj.data.length; i++) {
+                
+                $("<div class='card-container manual-flip'>").html(
+                    "<div class='card'>"+
+                      "<div class='front'>"+
+                            "<div class='cover'>"+
+                              "<img src='files/" + resultObj.data[i].filename + "'/>"+
+                            "</div>"+
+                            "<div class='user'>"+
+                              "<img class='img-circle' src='files/" + resultObj.data[i].mimg + "'/>"+
+                              "</div>"+
+                              "<div class='content'>"+
+                                "<a role='button' href='#' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
+                                  "<div class='main'>"+
+                                    "<h3 class='name'>"+resultObj.data[i].member+"</h3>"+
+                                    "<div class='creDate'>"+resultObj.data[i].createDate+"</div>"+
+                                    "<h5 class='title'>"+resultObj.data[i].title+"</h5>"+
+                                    "<h5>"+
+                                      "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
+                                      "위치 장소이름위치"+ 
+                                    "</h5>"+
+                                  "</div>"+
+                                "</a>"+
+                                "<div class='footer'>"+
+                                  "<div class='like'>"+
+                                    "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[i].like +"</div>"+
+                                  "<div class='view'>"+
+                                    "<i class='fa fa-eye'></i>" + resultObj.data[i].view + "</div>"+
+                                  "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
+                                    "<i class='fa fa-mail-forward'></i> 간략정보"+
+                                  "</button>"+
+                                "</div>"+
+                              "</div>"+
+
+                            "</div>"+ <!-- end front panel -->
+
+                          "<div class='back'>"+
+                            "<div class='header'>"+
+                              "<div class='map' id='map1'></div>"+
+                            "</div>"+
+                            "<div class='content'>"+
+                              "<div class='main'>"+
+                                "<h4 class='text-center'>위치 정보</h4>"+
+                              "</div>"+
+                            "</div>"+
+                            "<div class='footer'>"+
+                              "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>"+
+                                "<i class='fa fa-reply'></i> 돌아가기"+
+                              "</button>"+
+                              "<button type='button' class='detail' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
+                                "<i class='fa fa-sign-in'></i> 상세정보"+
+                              "</button>"+
+                            "</div>"+
+                          "</div>"+ <!-- end back panel -->
+
+                        "</div>"+ <!-- end card -->   
+                        "</div>" <!-- end card-container -->
+                ).appendTo(div);
+                
+                }
+                
+              } });
+
+
+          if(currentPage == totalPage) {
+            $('#more').css({"border":"0px"});
+            $('#moreBtn-Origin').empty();
+          }
+
+        } /* IF문 끝 */
+
+        else if(currentPage == totalPage) {
+          alert("더이상 페이지가 존재하지 않습니다.");
+          console.log("더이상 페이지가 존재하지 않습니다.");
+        }
+
+
+  });
+  
+  
   $('[rel="tooltip"]').tooltip();
 
   //    <!-- 지도 나오기 -->

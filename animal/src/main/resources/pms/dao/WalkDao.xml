@@ -64,5 +64,12 @@
     insert into location(LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM)
     values(#{locLat}, #{locLng}, #{locName}, #{sno})
   </insert>
+  
+    <select id="count" resultType="double">
+      select
+      count(*) as count
+    from schedule
+    where CATE_CODE='SANCHE' and NOTI_HIDE=1
+    </select>
 
 </mapper>
