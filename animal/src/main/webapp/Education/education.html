@@ -64,7 +64,7 @@
   </header>
 
   <section id="main-body">
-    <div class="m_content" style="width: 973px;">
+    <div class="m_content" style="width: 973px; margin-top:30px;">
 
       <div style="text-align: left; margin-bottom: 30px;">
         <button id="All" class="filter" data-filter="*">All</button>
@@ -156,6 +156,52 @@
     </div>
   </div>
   <!-- //게시글 추가 모달 -->
+  
+<script>
+$(dovument).ready(function() {
+	$.ajax({
+    url : 'education/ajax/list.do',
+    dataType : 'json',
+    type : "get",
+    contentType : "multipart/form-data",
+    async : false,
+    cache : true,
+    success : function(resultObj) {
+      $("button:first").trigger("click");
+      var div = $("#subtable");
+      var j = 0;
+      var file;
+      for(var education of resultObj.data) {
+        file = resultObj.filesMap[j];
+        j++;
+        var fname = file[0].fileName;
+        var url = fname.split('?')[1].split('=')[1];
+        $("<div class='boxsub1 gallery mix all " + education.eduSpec + "'>")
+        .html(
+          "<div class='card'>"+
+          "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
+          "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
+          "</div>"+
+          "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
+          "<i class='fa fa-youtube-play'></i>"+
+          "</a> <a class='thumb' href='#'></a>"+
+          "<div class='infosub'>"+
+          "<h2>"+
+          "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
+          "</h2>"+
+          "<div class='foot'>"+
+          "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
+          "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
+          "</span>"+
+          "</div>"+
+          "</div>"+
+        "</div>").appendTo(div);
+      }
+      $("a.detailLnk").click(clickDetailLnk);
+    }
+  });
+})
+</script>
 <script>
 $(document).ready(function() {
     
@@ -222,49 +268,6 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
-     
-    
-  $.ajax({
-    url : 'education/ajax/list.do',
-    dataType : 'json',
-    type : "get",
-    contentType : "multipart/form-data",
-    async : false,
-    cache : true,
-    success : function(resultObj) {
-      $("button:first").trigger("click");
-      var div = $("#subtable");
-      var j = 0;
-      var file;
-      for(var education of resultObj.data) {
-        file = resultObj.filesMap[j];
-        j++;
-        var fname = file[0].fileName;
-        var url = fname.split('?')[1].split('=')[1];
-        $("<div class='boxsub1 gallery mix all " + education.eduSpec + "'>")
-        .html(
-          "<div class='card'>"+
-          "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-          "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
-          "</div>"+
-          "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
-          "<i class='fa fa-youtube-play'></i>"+
-          "</a> <a class='thumb' href='#'></a>"+
-          "<div class='infosub'>"+
-          "<h2>"+
-          "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
-          "</h2>"+
-          "<div class='foot'>"+
-          "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
-          "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
-          "</span>"+
-          "</div>"+
-          "</div>"+
-        "</div>").appendTo(div);
-      }
-      $("a.detailLnk").click(clickDetailLnk);
-    }
-  });
   
   function clickDetailLnk(event) {
     event.preventDefault(); 
