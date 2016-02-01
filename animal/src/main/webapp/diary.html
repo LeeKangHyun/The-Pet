@@ -549,6 +549,9 @@
             });
           },
           timeFormat: 'H:mm',
+          eventRender: function(event, element) {
+            element.attr('title', event.tooltip);
+          },
           eventClick: function(event, jsEvent, view) {
             var frontEnd;
             var backEnd;
