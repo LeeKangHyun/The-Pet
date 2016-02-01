@@ -556,8 +556,8 @@
             if (event.end) {
                 frontEnd = event.end.format().substring(0,8);
                 backEnd = Number(event.end.format().substring(8,10)) - 1;
-                fullEnd = frontEnd + backEnd;
-              console.log(event.start.format())
+                fullEnd = frontEnd + 0 + backEnd;
+              console.log(event.start.format().substring(0,10))
               console.log(event.start.format())
               console.log(fullEnd)
               $('#sdno').val(event.no);
