@@ -12,5 +12,9 @@ public interface WalkService {
   List<Walk> list(int sno);
   
   List<Diary> selectList(Map<String, Object> paramMap);
+  
+  public Double count();
 
+  int view(Diary diary);
+  
 }

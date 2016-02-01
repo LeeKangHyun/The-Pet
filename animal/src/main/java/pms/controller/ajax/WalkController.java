@@ -39,7 +39,7 @@ public class WalkController {
   @RequestMapping(value="selectList", method=RequestMethod.POST)
   public Object selectList(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="16") int pageSize
+      @RequestParam(defaultValue="9") int pageSize
       ) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
@@ -54,4 +54,29 @@ public class WalkController {
 
     return resultMap;
   }
+
+
+
+
+  @RequestMapping(value="count", method=RequestMethod.GET)
+  public Object count(
+      @RequestParam(defaultValue="9") int pageSize
+      ) throws Exception {
+
+    double count = walkService.count();
+    count = Math.ceil(count / pageSize);
+
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("count", count);
+
+    return resultMap;
+  }
+  
+  @RequestMapping(value="view", method=RequestMethod.POST)
+  public AjaxResult view(Diary diary) throws Exception {
+    walkService.view(diary);
+    return new AjaxResult("success", null);
+  }
+
 }

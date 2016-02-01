@@ -239,7 +239,17 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 
+#Container {
+  width: 1020px;
+  margin: 0 auto;
+}
 
+.container {
+  padding-right: 0;
+  padding-left: 0; 
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .container .mix{
   display: none;
@@ -248,11 +258,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 #subtable {
-/*  position: relative;*/
-/*  width: 1024px;*/
-
-/*  padding-left: 15px;*/
-/*  top: 10px;*/
+ padding-left: -15px;
 }
 
 #subtable img {
@@ -261,10 +267,29 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+/*
+  height: 330px;
+  max-width: 235px;
+*/
+}
+
+/* 세로로 긴 사진 */
+#subtable img.portrait {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+/* 가로로 긴 사진 */
+#subtable img.landscape {
+  width: auto;
+  max-width: none;
+  height: 100%;
 }
 
 .boxsub1 .card .background {
-  border: 1px solid #d06a79;
+/*  border: 1px solid #d06a79;*/
+  background-color: #2d335e;
   height: 330px;
   width: 235px;
   position: relative;
@@ -286,12 +311,27 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+/*
   height:440px;
   max-width: 320px;
+*/
+}
+
+#section-img img.portrait {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+#section-img img.landscape {
+  width: auto;
+  max-width: none;
+  height: 100%;
 }
 
 .box1 .card .background {
-  border: 1px solid #d06a79;
+/*  border: 1px solid #d06a79;*/
+  background-color: #2d335e;
   height: 440px;
   width: 320px;
   position: relative;
@@ -389,7 +429,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .gallery .infosub{
   position: absolute;
-  bottom: 100px;
+  bottom: -40px;
   width: 100%;
 }
 
@@ -482,7 +522,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 .gallery:hover .infosub{
-  bottom:140px;
+  bottom:0px;
 }
 
 

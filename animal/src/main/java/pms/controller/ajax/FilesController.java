@@ -1,9 +1,11 @@
 package pms.controller.ajax;
 
+import java.awt.Image;
 import java.io.File;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,9 @@ public class FilesController {
 															+ "/" + newFileName);
 		file.transferTo(attachfile);
 		files.setFileName(newFileName);
-
+		Image img = new ImageIcon(servletContext.getRealPath(SAVED_DIR) 
+				+ "/" + newFileName).getImage();
+		System.out.println( img.getWidth(null) + " x " + img.getHeight(null) );
 		filesService.add(files);
 		
 		return new AjaxResult("success", null);

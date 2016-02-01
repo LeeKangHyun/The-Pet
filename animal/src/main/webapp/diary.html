@@ -79,9 +79,8 @@
 
     <div id="diary-pet-info">
       <div class="addSce">
-        <button type="button" id="my-today-button" class="btn btn-default">Today</button>
-        <a class="btn btn-default" id="petAdd" role="button" data-toggle="modal" data-target="#AddPet">Add Pet</a>
-        <a class="btn btn-default" id="scheduleAdd" role="button">New</a>
+        <a class="btn btn-default" id="petAdd" role="button" data-toggle="modal" data-target="#AddPet">펫 추가</a>
+        <a class="btn btn-default" id="scheduleAdd" role="button">다이어리 쓰기</a>
       </div>
 
       <div id="myPets"></div>
@@ -91,7 +90,7 @@
 
   </section>
 
-<!--  캘린더 일정 클릭후 나오는 모달  -->
+  <!--  캘린더 일정 클릭후 나오는 모달  -->
   <div id="fullCalModal" class="modal fade" data-keyboard="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -375,7 +374,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">전체공개</label>
             <div class="switch">
-              <input type="checkbox" name="dmhide" id="dmhide">
+              <input type="checkbox" name="dmhide" id="dmhide" checked>
               <label for="dmhide">
                 <span class="fa fa-check"></span>
                 <span class="fa fa-times"></span>
@@ -557,10 +556,13 @@
             if (event.end) {
                 frontEnd = event.end.format().substring(0,8);
                 backEnd = Number(event.end.format().substring(8,10)) - 1;
-                fullEnd = frontEnd + backEnd;
+                fullEnd = frontEnd + 0 + backEnd;
+              console.log(event.start.format().substring(0,10))
+              console.log(event.start.format())
+              console.log(fullEnd)
               $('#sdno').val(event.no);
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format()); // 2015-12-31
+              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
               $('#mEnd').val(fullEnd);
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
@@ -579,19 +581,24 @@
                 success: function(re) {
                   var img = $("#scrollImg");
                   var ajaxResult = re.ajaxResult;
-
-                  for (var file of ajaxResult.data) {
-                    img.append("<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                  
+                  console.log(ajaxResult.data.length)
+                  if (ajaxResult.data.length <= 1) {
+                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
+                  } else {
+                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
+                    for (var file of ajaxResult.data) {
+                      img.append("<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                    }
                   }
-
                 }
               })
 
             } else {
               $('#sdno').val(event.no);
               $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format());
-              $('#mEnd').val(event.start.format());
+              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+              $('#mEnd').val(event.start.format().substring(0,10));
               $('#mColor').val(event.color);
               $('#mDes').html(event.description);
               $('#fullCalModal').modal();
@@ -814,6 +821,8 @@
         if (sel === 'ILJUNG') {
           if ($('#pno').val() == "" ||
             $('#title').val() == "" ||
+            $('#startDate').val() == "" ||
+            $('#endDate').val() == "" ||
             $('#fContent').val() == "" ||
             $('#file-1').val() == "") {
             alert("모두 입력해주세요")
@@ -866,90 +875,151 @@
                     }
                   })
                 }
-                alert("다이어리가 추가되었습니다.")
+                alert("다이어리에 일정이 추가되었습니다.")
                 location.href = "diary.html"
               }
             })
           }
-      }
-      else if (sel === 'SANCHE') {
-          if ($('#pno').val() == "" ||
-            $('#title').val() == "" ||
-            $('#fContent').val() == "" ||
-            $('#file-1').val() == "" ||
-            $('#subtitle').val() =="") {
-            alert("모두 입력해주세요")
-            return false;
+      } else if (sel === 'SANCHE') {
+        if ($('#pno').val() == "" ||
+          $('#title').val() == "" ||
+          $('#startDate').val() == "" ||
+          $('#endDate').val() == "" ||
+          $('#fContent').val() == "" ||
+          $('#file-1').val() == "" ||
+          $('#subtitle').val() =="") {
+          alert("모두 입력해주세요")
+          return false;
+        } else {
+          var form_data = new FormData();
+          var x = document.getElementById("dmhide").checked;
+          var q;
+          if (x) {
+            q = 1;
           } else {
-            var form_data = new FormData();
-            var x = document.getElementById("dmhide").checked;
-            var q;
-            if (x) {
-                q = 1;
-            } else {
-                q = 0;
-            }
-            console.log(q)
-            form_data.append("mno", $('#myMno2').val())
-            form_data.append("dhide", q)
-            form_data.append("cateCode", $('#cateCode').val())
-            form_data.append("pno", $('#pno').val())
-            form_data.append("startDate", $('#startDate').val())
-            form_data.append("endDate", $('#endDate').val())
-            form_data.append("title", $('#title').val())
-            form_data.append("content", $('#fContent').val())
-            $.ajax({
-                url: "diary/ajax/add.do",
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(re) {
-                    console.log(re);
-                    var lastDno = re.ajaxResult.data;
+            q = 0;
+          }
+          console.log(q)
+          form_data.append("mno", $('#myMno2').val())
+          form_data.append("dhide", q)
+          form_data.append("cateCode", $('#cateCode').val())
+          form_data.append("pno", $('#pno').val())
+          form_data.append("startDate", $('#startDate').val())
+          form_data.append("endDate", $('#endDate').val())
+          form_data.append("title", $('#title').val())
+          form_data.append("content", $('#fContent').val())
+          $.ajax({
+            url: "diary/ajax/add.do",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(re) {
+              console.log(re);
+              var lastDno = re.ajaxResult.data;
+              $.ajax({
+                url: "walk/ajax/add.do",
+                dataType: "json",
+                type: "post",
+                data: {
+                  locLat: dotlat,
+                  locLng: dotlng,
+                  locName: $('#subtitle').val(),
+                  sno: lastDno
+                },
+                success: function(resultObj) {
+                  deleteCircleDot();
+                  for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                    var file_data = $("#file-1").prop("files")[i];
+                    var file_name = file_data.name;
+                    var form_data = new FormData();
+                    form_data.append("file", file_data)
+                    form_data.append("fName", file_name)
+                    form_data.append("dno", lastDno)
                     $.ajax({
-                        url: "walk/ajax/add.do",
-                        dataType: "json",
-                        type: "post",
-                        data: {
-                            locLat: dotlat,
-                            locLng: dotlng,
-                            locName: $('#subtitle').val(),
-                            sno: lastDno
-                        },
-                        success: function(resultObj) {
-                            deleteCircleDot();
-                            for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                              var file_data = $("#file-1").prop("files")[i];
-                              var file_name = file_data.name;
-                              var form_data = new FormData();
-                              form_data.append("file", file_data)
-                              form_data.append("fName", file_name)
-                              form_data.append("dno", lastDno)
-                              $.ajax({
-                                url: "files/ajax/upload.do",
-                                dataType: 'json',
-                                cache: false,
-                                contentType: false,
-                                processData: false,
-                                data: form_data,
-                                type: 'post',
-                                success: function(resultObj) {
-                                    console.log(file_name)
-                                }
-                              })
-                            }
-                            alert("다이어리가 추가되었습니다.")
-                            location.href = "diary.html"
-                        }
+                      url: "files/ajax/upload.do",
+                      dataType: 'json',
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      data: form_data,
+                      type: 'post',
+                      success: function(resultObj) {
+                          console.log(file_name)
+                      }
                     })
+                  }
+                  alert("다이어리에 산책코스가 추가되었습니다.")
+                  location.href = "diary.html"
                 }
-            });
+              })
+            }
+          });
       }
-  }
-});
+    } else if (sel === 'JARANG') {
+        if ($('#pno').val() == "" ||
+          $('#title').val() == "" ||
+          $('#fContent').val() == "" ||
+          $('#file-1').val() == "") {
+          alert("모두 입력해주세요")
+          return false;
+        } else {
+          var form_data = new FormData();
+          var x = document.getElementById("dmhide").checked;
+          var q;
+          if (x) {
+            q = 1;
+          } else {
+            q = 0;
+          }
+          console.log(q)
+          form_data.append("mno", $('#myMno2').val())
+          form_data.append("dhide", q)
+          form_data.append("cateCode", $('#cateCode').val())
+          form_data.append("pno", $('#pno').val())
+          form_data.append("title", $('#title').val())
+          form_data.append("content", $('#fContent').val())
+          form_data.append("startDate", $('#startDate').val())
+          form_data.append("endDate", $('#endDate').val())
+          $.ajax({
+            url: "diary/ajax/add.do",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(re) {
+              var lastDno = re.ajaxResult.data;
+              for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                var file_data = $("#file-1").prop("files")[i];
+                var file_name = file_data.name;
+                var form_data = new FormData();
+                form_data.append("file", file_data)
+                form_data.append("fName", file_name)
+                form_data.append("dno", lastDno)
+                $.ajax({
+                  url: "files/ajax/upload.do",
+                  dataType: 'json',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: form_data,
+                  type: 'post',
+                  success: function(resultObj) {
+                      console.log(file_name)
+                  }
+                })
+              }
+              alert("다이어리에 자랑하기가 추가되었습니다.")
+              location.href = "diary.html"
+            }
+          })
+        }
+      }
+  });
 
     // 다이어리 삭제
     $(document).on("click", "#delSchedule", function() {
@@ -975,7 +1045,7 @@
       });
 
     // 펫추가 모달 닫으면 입력 초기화
-    $('#AddPet').on('hide.bs.modal', function(e) {
+    $('#AddPet').on('hidden.bs.modal', function(e) {
       $('#pName').val('');
       $('#pType').val('');
       $('#tagColor').val('#ff0000');
@@ -986,7 +1056,7 @@
     })
 
     // 새일정추가 모달 닫으면 입력 초기화
-    $('#AddBoard').on('hide.bs.modal', function(e) {
+    $('#AddBoard').on('hidden.bs.modal', function(e) {
       $('#dhide').prop("checked", true);
       $('#cateCode').val('SANCHE');
       $('.pDate').css('display', '');
@@ -998,7 +1068,7 @@
       $('#file-1').val('');
     })
 
-    $('#fullCalModal').on('hide.bs.modal', function(e) {
+    $('#fullCalModal').on('hidden.bs.modal', function(e) {
       $('#mainImage').attr('src', '');
       $('#scrollImg').empty();
       $('#mFile').val('');

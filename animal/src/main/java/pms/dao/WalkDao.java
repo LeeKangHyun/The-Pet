@@ -13,4 +13,8 @@ public interface WalkDao {
   
   List<Diary> selectList(Map<String, Object> paramMap);
   
+  double count();
+  
+  int view(Diary diary);
+  
 }
