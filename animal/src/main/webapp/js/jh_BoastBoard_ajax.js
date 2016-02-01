@@ -1,8 +1,19 @@
 $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 	
-	var div = $("#rank-section");
+	var div = $("#section-img");
 	var topcheck1;
-	for(var i = 0; i < resultObj.data.length; i++ ) {
+	
+	var length = resultObj.data.length;
+	
+	if (resultObj.data.length == 1) {
+		length = 1;
+	} else if (resultObj.data.length == 2) {
+		length = 2;
+	} else if (resultObj.data.length >= 3) {
+		length = 3;
+	}
+		
+	for(var i = 0; i < length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
 		topcheck1 = topcheck1.slice(1,2);
 		if(topcheck1 == "jpg" ||
@@ -105,7 +116,7 @@ $(document).ready(function() {
 					.html(
 							"<div class='card'>" +
 							"<div class='background'>" +
-							"<img src='../files/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+							"<img src='../files/" + resultObj.data[i].filename + "' style='height: 300px;'/>" +
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
 							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 

@@ -50,7 +50,25 @@
 
 
 #rank-section {
-    padding-left: 10px;
+	  border: 1px red solid;
+	  margin: 0 auto;
+    /* padding-left: 10px; */
+    alight-content: center;
+}
+
+#section-img {
+	border: 1px black solid;
+  width: auto;
+	padding: 0;
+  align: center;
+}
+
+#section-img img {
+	border: 0px;
+	margin: 0;
+	top: 50%;
+  left: 50%;;
+	align: center;
 }
 
 
@@ -276,10 +294,10 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 .gallery.box1 {
     display: inline-block;
   position:relative;
-  width: 320px;
+  width: auto;
   height:440px;
-  margin: 10px 0px;
-  margin-left: 10px;
+  max-width: 300px;
+  margin: 10px 10px;
   overflow: hidden;
   /* border-radius: 5%; */
   border: 10px # solid;
@@ -288,10 +306,10 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 .gallery.box1:hover {
     display: inline-block;
   position:relative;
-  width: 320px;
+  width: auto;
   height:440px;
-  margin: 10px 0px;
-  margin-left: 10px;
+  max-width: 300px;
+  margin: 10px 10px;
   overflow: hidden;
   /* border-radius: 5%; */
   border: 1px solid #d06a79;
@@ -299,18 +317,19 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 .box1 .card .background img {
-    width: 320px;
+    width: auto;
     height: 440px;
 }
 
 .boxsub1 .card .background img {
-    width: 240px;
+/*    width: 240px;*/
     height: 340px;
+    overflow: scroll;
 }
 
 .gallery.boxsub1 {
   position:relative;
-  width: 235px;
+  width: auto;
   height:300px;
   margin: 10px 0px;
   margin-left: 10px;
@@ -321,7 +340,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .gallery.boxsub1:hover {
   position:relative;
-  width: 235px;
+  width: auto;
   height:300px;
   margin: 10px 0px;
   margin-left: 10px;
@@ -604,6 +623,37 @@ top: 150px;
  {
   text-decoration: none;
 }
+
+
+/*
+.boxsub1 {
+    border: 1px red solid;
+    width:  500px;
+    height: 500px;
+    overflow: visible;
+}
+
+.card {
+    border : 5px yellow solid;
+    width:  500px;
+    height: 500px;
+    overflow: visible;
+}
+
+.background {
+    border : 10px green solid;
+    width:  500px;
+    height: 500px;
+    z-index: 1000;
+    overflow: visible;
+    
+}
+
+.background img {
+    border : 1px black solid;
+    overflow: visible;
+}
+*/
 
 
 
