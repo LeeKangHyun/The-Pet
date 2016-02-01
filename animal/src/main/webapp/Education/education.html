@@ -158,7 +158,7 @@
   <!-- //게시글 추가 모달 -->
   
 <script>
-$(dovument).ready(function() {
+$(document).ready(function() {
 	$.ajax({
     url : 'education/ajax/list.do',
     dataType : 'json',
@@ -200,6 +200,10 @@ $(dovument).ready(function() {
       $("a.detailLnk").click(clickDetailLnk);
     }
   });
+	function clickDetailLnk(event) {
+        event.preventDefault(); 
+        location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+      }
 })
 </script>
 <script>
@@ -268,12 +272,6 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
-  
-  function clickDetailLnk(event) {
-    event.preventDefault(); 
-    location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
-  }
-  
 });
   
 $(function(){
