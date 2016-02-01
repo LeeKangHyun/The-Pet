@@ -1,0 +1,158 @@
+<html>
+<head>
+  <title></title>
+  <script src="../lib/jquery/jquery.js" ></script>
+  <style>
+    body {
+      margin: 50px
+    }
+
+    h2 {
+      font-size: 14px
+    }
+
+    .thumbnail-wrap {
+      display: inline-block;
+      width: 25%;
+      border: 1px solid #000;
+    }
+
+    .thumbnail-wrap img {
+      display: block;
+      max-width: 50%;
+      height: auto;
+    }
+
+    .responsive-fixed {
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .responsive-center {
+      position: relative;
+      height: 200px;
+    }
+
+    .responsive-center img {
+      position: absolute;
+      max-height: 90%;
+      max-width: 90%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .thumbnail {
+      position: relative;
+      padding-top: 100%;
+      overflow: hidden;
+    }
+
+    .thumbnail img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .thumbnail .centered {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      -webkit-transform: translate(50%, 50%);
+      -ms-transform: translate(50%, 50%);
+      transform: translate(50%, 50%);
+    }
+
+    .thumbnail .centered img {
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .thumbnail img.portrait {
+      width: 100%;
+      max-width: none;
+      height: auto;
+    }
+
+    .thumbnail img.landscape {
+      width: auto;
+      max-width: none;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>fluid container ratio-fixed centered portrait landscape img</h2>
+  <div class="thumbnail-wrap">
+    <div class="thumbnail">
+      <div class="centered">
+        <img src="../images/test01.png" class="portrait">
+        <div id="size"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="thumbnail-wrap">
+    <div class="thumbnail">
+      <div class="centered">
+        <img src="../images/test02.jpg" class="landscape" id="qqq">
+        <div id="size2"></div>
+      </div>
+    </div>
+  </div>
+<script>
+
+  var img = new Image();
+
+  img.onload = function(){
+    var height = img.height;
+    var width = img.width;
+
+    console.log("test01 가로 : " + width);
+    console.log("test01 세로 : " + height);
+  }
+
+  img.src = "../images/test01.png";
+  
+  
+  
+  
+  var img2 = new Image();
+
+  img2.onload = function(){
+    var height2 = img2.height;
+    var width2 = img2.width;
+
+    console.log("test02 가로 : " + width2);
+    console.log("test02 세로 : " + height2);
+  }
+
+  img2.src = "../images/test02.jpg";
+
+</script>
+  
+<script type="text/javascript">
+$(document).ready(function()
+{
+  var img2 = new Image();
+  img2.src = "../images/test02.jpg";
+    $('#qqq').load(function()
+    {
+        var height2 = img2.height;
+        var width2 = img2.width;
+
+        console.log("test02 가로 : " + width2);
+        console.log("test02 세로 : " + height2);
+    });
+
+});
+</script>
+
+
+</body>
+</html>

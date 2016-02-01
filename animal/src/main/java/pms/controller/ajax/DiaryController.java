@@ -93,6 +93,7 @@ public class DiaryController {
       SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
 			diary.setStartDate(now.format(d));
 			diary.setEndDate(now.format(d));
+			System.out.println(now.format(d));
 		}
 
 		diaryService.add(diary);

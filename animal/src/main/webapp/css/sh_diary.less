@@ -1,4 +1,4 @@
-@addWidth: 80px;
+@addWidth: 100px;
 @addMargin: 15px;
 @petColor: #000000;
 @baseMargin : 0 auto;
@@ -141,22 +141,16 @@
         .addSce {
             padding-bottom: 18px;
             a {
-                color: #000;
-                text-decoration: none;
-            }
-            #my-today-button {
-                margin-right: @addMargin;
-                width: @addWidth;
-                .pull-right();
+              color: #000;
+              text-decoration: none;
             }
             #petAdd {
-                margin-left: @addMargin;
-                width: @addWidth;
-                .pull-left();
+              width: @addWidth;
+              .pull-left();
             }
             #scheduleAdd {
-                width: @addWidth;
-                margin-left: @addMargin;
+              width: @addWidth;
+              .pull-right();
             }
         }
         #myPets {

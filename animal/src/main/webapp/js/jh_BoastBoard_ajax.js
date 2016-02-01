@@ -1,3 +1,4 @@
+
 $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 	
 	var div = $("#section-img");
@@ -11,8 +12,8 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 		length = 2;
 	} else if (resultObj.data.length >= 3) {
 		length = 3;
-	}
-		
+	}  
+  
 	for(var i = 0; i < length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
 		topcheck1 = topcheck1.slice(1,2);
@@ -21,33 +22,41 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 				topcheck1 == "png" ||
 				topcheck1 == "gif" ||
 				topcheck1 == "bmp") {
+      
+      
 
-			$("<div class='box1 gallery'>")
-			.html(
-					"<div class='card'>" +
-					"<div class='background'>" +
-					"<img src='../files/" + resultObj.data[i].filename + "'>" +
-					"</div>" +
-					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
-					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
-					"<i class='fa fa-camera-retro'></i>" +
-					"</a>" +
-					"<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
-					"<div class='info'>" +
-					"<h2>" +
-					"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
-					"</h2>" +
-					"<div class='foot'>" +
-					"<i class='line'></i>" + 
-					"<span class='date'>"+resultObj.data[i].createDate+"</span>" +
-					"<span class='view-like'>" + 
-					"<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
-					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
-					"</span>" +
-					"</div>" +
-					"</div>" +
-			"</div>")
-			.appendTo(div);
+      
+        
+ 
+      
+      $("<div class='box1 gallery'>")
+      .html(
+          "<div class='card'>" +
+          "<div class='background'>" +
+          "<img src='../files/" + resultObj.data[i].filename + "' class='' id='c" + i + "'>" +
+          "</div>" +
+          "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+          "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+          "<i class='fa fa-camera-retro'></i>" +
+          "</a>" +
+          "<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+          "<div class='info'>" +
+          "<h2>" +
+          "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
+          "</h2>" +
+          "<div class='foot'>" +
+          "<i class='line'></i>" + 
+          "<span class='date'>"+resultObj.data[i].createDate+"</span>" +
+          "<span class='view-like'>" + 
+          "<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
+          " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+          "</span>" +
+          "</div>" +
+          "</div>" +
+      "</div>")
+      .appendTo(div);
+      
+      
 		} else if (topcheck1 == "avi" ||
 				topcheck1 == "wmv" ||
 				topcheck1 == "mp4" ||
@@ -82,6 +91,31 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			.appendTo(div);
 		}
 	}
+  
+    
+  for (var i = 0; i < 3; i++) {
+    var img = new Image();
+    var ids = "c" + i;
+    console.log(ids)
+    var urls = document.getElementById(ids).src;
+    img.src = urls;
+
+    $('#c'+i).load(function() {
+      var height = img.height;
+      var width = img.width;
+
+      console.log("c" + i + "의 가로 : " + width);
+      console.log("c" + i + "의 세로 : " + height);
+
+      var clas;
+
+      if (height > width) {
+        clas = "portrait";
+      } else {
+        clas = "landscape";
+      }
+    });
+  }
 });
 
 
@@ -111,12 +145,12 @@ $(document).ready(function() {
 						check1 == "jpeg" ||
 						check1 == "png" ||
 						check1 == "gif" ||
-						check1 == "bmp") { 
+						check1 == "bmp") {
 					$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
 					.html(
 							"<div class='card'>" +
 							"<div class='background'>" +
-							"<img src='../files/" + resultObj.data[i].filename + "' style='height: 300px;'/>" +
+							"<img src='../files/" + resultObj.data[i].filename + "' />" +
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
 							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
