@@ -1,220 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="icon" href="../icon/1.ico" type="image/x-icon" />
-  <title>교육</title>
+<meta charset="utf-8">
+<link rel="icon" href="../icon/1.ico" type="image/x-icon" />
+<title>교육</title>
 
-  <link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
-    type='text/css' />
+<link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet'
+	type='text/css' />
 
-  <!--  내가만든 css들  -->
-  <link href="../css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
+<!--  내가만든 css들  -->
+<link href="../css/sh_slidmenu_header_diary.less" type="style.less"
+	rel="stylesheet/less" />
 
-  <!--  폰트아이콘 링크  -->
-  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="../css/icon-font.min.css" rel="stylesheet" />
+<!--  폰트아이콘 링크  -->
+<link href="../lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" />
+<link href="../css/icon-font.min.css" rel="stylesheet" />
 
-  <!-- 대진 css & js -->
-  <link href="../css/dj_main.css" type="text/css" rel="stylesheet">
-  <link href="../css/dj_list.css" type="text/css" rel="stylesheet">
+<!-- 대진 css & js -->
+<link href="../css/dj_main.css" type="text/css" rel="stylesheet">
+<link href="../css/dj_list.css" type="text/css" rel="stylesheet">
 
-  <link href="../css/sh_file_upload.css" rel="stylesheet" type="text/css" />
+<!-- 부트스트랩 -->
+<script src='../lib/jquery/jquery.min.js'></script>
+<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../lib/less/less.js" type="text/javascript"></script>
 
-  <!-- 부트스트랩 -->
-  <script src='../lib/jquery/jquery.min.js'></script>
-  <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="../lib/less/less.js" type="text/javascript"></script>
+<script src="../lib/jquery-session-plugin/jquery.session.js"
+	type="text/javascript"></script>
 
-  <script src="../lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
-
-  <!-- filter 및 sort Test 중 -->
-  <script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
+<!-- filter 및 sort Test 중 -->
+<script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
 
 </head>
 <body>
-  <header id="menu">
-    <div id="header_title">
-      <a class="headerTitle" href="../pet.html">
-        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
-        <a class="headerSubTitle" href="education.html">
-          교육
-        </a>
-      </a>
-      <div id="user_info"></div>
-    </div>
-    <!--  메뉴 버튼  -->
-    <input type="checkbox" id="menuToggle" />
+	<header id="menu">
+		<div id="header_title">
+			<a class="headerTitle" href="../pet.html"> <span id="the">THE</span>
+				<span id="P">P</span><span id="et">ET</span> <a
+				class="headerSubTitle" href="education.html"> 교육 </a>
+			</a>
+			<div id="user_info"></div>
+		</div>
+		<!--  메뉴 버튼  -->
+		<input type="checkbox" id="menuToggle" />
 
-    <div id="sideMenu">
-      <label for="menuToggle" id="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
-      <!--  메뉴 내용  -->
+		<div id="sideMenu">
+			<label for="menuToggle" id="menu-icon"><i
+				class="fa fa-bars fa-lg"></i></label>
+			<!--  메뉴 내용  -->
 
-      <nav id="menu-nav">
-        <ul id="menu-nav-ul">
-          <li><a href="education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="../walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-          <li><a href="../BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
-        </ul>
-      </nav>
-      <!--  //메뉴 내용  -->
-    </div>
-  </header>
+			<nav id="menu-nav">
+				<ul id="menu-nav-ul">
+					<li><a href="education.html"><i class="lnr lnr-pencil"></i>
+							교육</a></li>
+					<li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
+					<li><a href="../mating.html"><i class="lnr lnr-heart"></i>
+							짝짓기</a></li>
+					<li><a href="../walk.html"><i class="lnr lnr-leaf"></i>
+							산책코스</a></li>
+					<li><a href="../BoastBoard/boastBoard.html"><i
+							class="lnr lnr-paw"></i> 자랑해요</a></li>
+				</ul>
+			</nav>
+			<!--  //메뉴 내용  -->
+		</div>
+	</header>
 
-  <section id="main-body">
-    <div class="m_content" style="width: 973px; margin-top:30px;">
+	<section id="main-body">
+		<div class="m_content" style="width: 973px; margin-top: 30px;">
 
-      <div style="text-align: left; margin-bottom: 30px;">
-        <button id="All" class="filter" data-filter="*">All</button>
-        <button id="DOG" class="filter" data-filter=".DOG"></button>
-        <button id="CAT" class="filter" data-filter=".CAT"></button>
-        <button id="FISH" class="filter" data-filter=".FISH"></button>
-        <button id="BIRD" class="filter" data-filter=".BIRD"></button>
-        <button id="ETC" class="filter" data-filter=".ETC">ETC</button>
-        <span id='scheduleAdd' style='margin-left:587px;'></span>
-      </div>
+			<div style="text-align: left; margin-bottom: 30px;">
+				<button id="All" class="filter" data-filter="*">All</button>
+				<button id="DOG" class="filter" data-filter=".DOG"></button>
+				<button id="CAT" class="filter" data-filter=".CAT"></button>
+				<button id="FISH" class="filter" data-filter=".FISH"></button>
+				<button id="BIRD" class="filter" data-filter=".BIRD"></button>
+				<button id="ETC" class="filter" data-filter=".ETC">ETC</button>
+				<button id="hidden" class="filter" data-filter="*" hidden="">All</button>
+				<span id='scheduleAdd' style='margin-left: 587px;'></span>
+			</div>
 
-      <!-- 사진 게시물 영역 -->
-      <div id="Container" class="container"
-        style="margin-left: -10px; padding: 0px;">
-        <div id="subtable" style="text-align: left;"></div>
-      </div>
-      <!-- 사진 게시물 영역 끝 -->
+			<!-- 사진 게시물 영역 -->
+			<div id="Container" class="container"
+				style="margin-left: -10px; padding: 0px;">
+				<div id="subtable" style="text-align: left;"></div>
+			</div>
+			<!-- 사진 게시물 영역 끝 -->
+			<div id="more">
+				<a role="button" style='color:#fff;' class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
+			</div>
+		</div>
+	</section>
 
-    </div>
-  </section>
-  
-  
-  <!-- 새로운 게시글 모달 부분 -->
-  <div id="AddBoard" class="modal fade" data-keyboard="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">close</span>
-          </button>
-          <h3 id="modalTitle" class="modal-title">교육 글 추가</h3>
-        </div>
 
-        <div class="modal-body">
+	<!-- 새로운 게시글 모달 부분 -->
+	<div id="AddBoard" class="modal fade" data-keyboard="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span> <span class="sr-only">close</span>
+					</button>
+					<h3 id="modalTitle" class="modal-title">교육 글 추가</h3>
+				</div>
 
-          <input type="hidden" name="mno" id="myMno2">
+				<div class="modal-body">
 
-          <div class="form-group">
-            <label for="eduSpec" class="col-sm-2 control-label">카테고리</label>
-            <div class="col-sm-10">
-              <select id="eduSpec" name="eduSpec" class="form-control">
-                <option value="DOG" selected="selected">강아지</option>
-                <option value="CAT">고양이</option>
-                <option value="FISH">물고기</option>
-                <option value="BIRD">새</option>
-                <option value="ETC">ETC</option>
-              </select>
-            </div>
-          </div>
+					<input type="hidden" name="mno" id="myMno2">
 
-          <div class="form-group">
-            <label for="eduTitle" class="col-sm-2 control-label">제목</label>
-            <div class="col-sm-10">
-              <input type="text" name="eduTitle" class="form-control"
-                id="eduTitle" required>
-            </div>
-          </div>
+					<div class="form-group">
+						<label for="eduSpec" class="col-sm-2 control-label">카테고리</label>
+						<div class="col-sm-10">
+							<select id="eduSpec" name="eduSpec" class="form-control">
+								<option value="DOG" selected="selected">강아지</option>
+								<option value="CAT">고양이</option>
+								<option value="FISH">물고기</option>
+								<option value="BIRD">새</option>
+								<option value="ETC">ETC</option>
+							</select>
+						</div>
+					</div>
 
-          <div class="form-group">
-            <label for="eduContent" class="col-sm-2 control-label">내용</label>
-            <div class="col-sm-10">
-              <textarea id="eduContent" name="eduContent" class="form-control"
-                rows='10' cols='60' required></textarea>
-            </div>
-          </div>
+					<div class="form-group">
+						<label for="eduTitle" class="col-sm-2 control-label">제목</label>
+						<div class="col-sm-10">
+							<input type="text" name="eduTitle" class="form-control"
+								id="eduTitle" required>
+						</div>
+					</div>
 
-          <div class="form-group">
-            <label for="fileUrl" class="col-sm-2 control-label">url</label>
-            <div class="col-sm-10">
-              <input type="text" name="fileUrl" class="form-control"
-                id="fileUrl" required>
-            </div>
-          </div>
+					<div class="form-group">
+						<label for="eduContent" class="col-sm-2 control-label">내용</label>
+						<div class="col-sm-10">
+							<textarea id="eduContent" name="eduContent" class="form-control"
+								rows='10' cols='60' required></textarea>
+						</div>
+					</div>
 
-        </div>
-        
-        <div class="modal-footer">
-          
-          <div class="form-group" style="text-align:right">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button id='addBtn' type='button' class="newForm btn btn-primary btn-xs">등록</button>
-            </div>
-          </div>
-          
-        </div>
+					<div class="form-group">
+						<label for="fileUrl" class="col-sm-2 control-label">url</label>
+						<div class="col-sm-10">
+							<input type="text" name="fileUrl" class="form-control"
+								id="fileUrl" required>
+						</div>
+					</div>
 
-      </div>
-    </div>
-  </div>
-  <!-- //게시글 추가 모달 -->
-  
+				</div>
+
+				<div class="modal-footer">
+
+					<div class="form-group" style="text-align: right">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button id='addBtn' type='button'
+								class="newForm btn btn-primary btn-xs">등록</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- //게시글 추가 모달 -->
+
 <script>
 $(document).ready(function() {
-	$.ajax({
-    url : 'education/ajax/list.do',
-    dataType : 'json',
-    type : "get",
-    contentType : "multipart/form-data",
-    async : false,
-    cache : true,
-    success : function(resultObj) {
-      $("button:first").trigger("click");
-      var div = $("#subtable");
-      var j = 0;
-      var file;
-      for(var education of resultObj.data) {
-        file = resultObj.filesMap[j];
-        j++;
-        var fname = file[0].fileName;
-        var url = fname.split('?')[1].split('=')[1];
-        $("<div class='boxsub1 gallery mix all " + education.eduSpec + "'>")
-        .html(
-          "<div class='card'>"+
-          "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-          "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
-          "</div>"+
-          "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
-          "<i class='fa fa-youtube-play'></i>"+
-          "</a> <a class='thumb' href='#'></a>"+
-          "<div class='infosub'>"+
-          "<h2>"+
-          "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
-          "</h2>"+
-          "<div class='foot'>"+
-          "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
-          "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
-          "</span>"+
-          "</div>"+
-          "</div>"+
-        "</div>").appendTo(div);
-      }
-      $("a.detailLnk").click(clickDetailLnk);
-    }
-  });
-	function clickDetailLnk(event) {
-        event.preventDefault(); 
-        location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
-      }
-})
-</script>
-<script>
-$(document).ready(function() {
-    
+	var no = $.session.get('mno');
   var div = $('#user_info');
   var btn = $('#scheduleAdd');
   var ul = $('#menu-nav-ul');
-  if ($.session.get('mno') == undefined) {
+  if (no == undefined) {
     div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
-  } else if ($.session.get('mno') == 1) {
+  } else if (no == 1) {
     div.append(
       "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
         "<i class='fa fa-envelope-o'></i>" +
@@ -273,57 +231,176 @@ $(document).ready(function() {
     }
   })
 });
-  
-$(function(){
-  $('#Container').mixItUp();
-});
-
-$(document).on("click", "#addBtn", function(event) {
-    if ($('#eduTitle').val() == "" ||
-      $('#eduContent').val() == "" ||
-      $('#fileUrl').val() == "") {
-      alert("모두 입력해주세요");
-      return false;
-    } else {
-      var form_data = new FormData();
-      form_data.append("mno", 1)
-      form_data.append("eduSpec", $('#eduSpec').val())
-      form_data.append("eduTitle", $('#eduTitle').val())
-      form_data.append("eduContent", $('#eduContent').val())
-      $.ajax({
-        url: "education/ajax/add.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          var eduNo = re.ajaxResult.data;
-          var file_name = $("#fileUrl").val();
-          console.log(file_name);
-          var form_data = new FormData();
-          form_data.append("file_name", file_name)
-          form_data.append("eduNo", eduNo)
-          $.ajax({
-            url: "../files/ajax/eduupload.do",
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(resultObj) {
-            }
-          })
-          alert("게시물이 추가되었습니다.")
-          location.href = "education.html"
-        }
-      })
-    }
-  });
 </script>
+<script>
+$.ajax({
+	  url : 'education/ajax/list.do',
+	  dataType : 'json',
+	  type : 'post',
+	  async : false,
+	  cache : true,
+	  success : function(resultObj) {
+		  $("#hidden").trigger("click");
+		  $("button:first").trigger("click");
+	    var show = $("#subtable");
+	    var j = 0;
+	    var file;
+	    for(var education of resultObj.educations) {
+	      file = resultObj.filesMap[j];
+	      j++;
+	      var fname = file[0].fileName;
+	      var url = fname.split('?')[1].split('=')[1];
+	      show.append(
+	        "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" + 
+	        "<div class='card'>"+
+	        "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
+	        "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
+	        "</div>"+
+	        "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
+	        "<i class='fa fa-youtube-play'></i>"+
+	        "</a> <a class='thumb' href='#'></a>"+
+	        "<div class='infosub'>"+
+	        "<h2>"+
+	        "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
+	        "</h2>"+
+	        "<div class='foot'>"+
+	        "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
+	        "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
+	        "</span>"+
+	        "</div>"+
+	        "</div>"+
+	      "</div>");
+	    }
+	    $("a.detailLnk").click(clickDetailLnk);
+	  }
+	  
+	});
+function clickDetailLnk(event) {
+    event.preventDefault(); 
+    location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+}
 
+	$(document).on("click", "#addBtn", function(event) {
+	    if ($('#eduTitle').val() == "" ||
+	      $('#eduContent').val() == "" ||
+	      $('#fileUrl').val() == "") {
+	      alert("모두 입력해주세요");
+	      return false;
+	    } else {
+	      var form_data = new FormData();
+	      form_data.append("mno", 1)
+	      form_data.append("eduSpec", $('#eduSpec').val())
+	      form_data.append("eduTitle", $('#eduTitle').val())
+	      form_data.append("eduContent", $('#eduContent').val())
+	      $.ajax({
+	        url: "education/ajax/add.do",
+	        dataType: 'json',
+	        cache: false,
+	        contentType: false,
+	        processData: false,
+	        data: form_data,
+	        type: 'post',
+	        success: function(re) {
+	          var eduNo = re.ajaxResult.data;
+	          var file_name = $("#fileUrl").val();
+	          console.log(file_name);
+	          var form_data = new FormData();
+	          form_data.append("file_name", file_name)
+	          form_data.append("eduNo", eduNo)
+	          $.ajax({
+	            url: "../files/ajax/eduupload.do",
+	            dataType: 'json',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            data: form_data,
+	            type: 'post',
+	            success: function(resultObj) {
+	            }
+	        })
+	        alert("게시물이 추가되었습니다.")
+	        location.href = "education.html"
+	      }
+	    })
+	  }
+	});
+	  
+	//더보기
+	function moree(id) {
+	  console.log(id)
+	  alert('hihi');
+	  var page = id.substring(1);
+	  $.ajax({
+	  url: 'education/ajax/list.do',
+	  data: {
+	    pageNo: page
+	  },
+	  type: 'post',
+	  dataType: 'json',
+	  success: function(resultObj) {
+		$("#hidden").trigger("click");
+	  $("button:first").trigger("click");
+	  var show = $('#subtable');
+	  var j = 0;
+	  var file;
+	  for (var education of resultObj.educations) {
+	      console.log(education);
+	    file = resultObj.filesMap[j];
+	    j++;
+	    var fname = file[0].fileName;
+	    var url = fname.split('?')[1].split('=')[1];
+	    show.append(
+	      "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" +
+	      "<div class='card'>"+
+	      "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
+	      "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
+	      "</div>"+
+	      "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
+	      "<i class='fa fa-youtube-play'></i>"+
+	      "</a> <a class='thumb' href='#'></a>"+
+	      "<div class='infosub'>"+
+	      "<h2>"+
+	      "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
+	      "</h2>"+
+	      "<div class='foot'>"+
+	      "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
+	      "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
+	      "</span>"+
+	      "</div>"+
+	      "</div>"+
+	    "</div>")
+	  };
+	  $("a.detailLnk").click(clickDetailLnk);
+
+	  $.getJSON('education/ajax/pages.do', function(resultObj) {
+	    var ajaxResult = resultObj.ajaxResult;
+	    if (ajaxResult.data == page) {
+	      console.log("더보기 끝")
+	      $('#more').empty();
+
+	    } else {
+	      console.log("더보기 생성")
+	      var more = $('#more');
+	      $('#more').empty();
+	      var i = parseInt(page)+1;
+	      more.append(
+	        "<a role='button' style='color:#fff;' class='moreBtn' id='m" + i + "' onclick='moree(this.pid);'>더보기</a>")
+	    }
+	  })
+	}
+
+	});
+	  function clickDetailLnk(event) {
+	      event.preventDefault(); 
+	      location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+	  }
+	}
+</script>
+<script>
+$(function(){
+    $('#Container').mixItUp();
+});
+</script>
 
 </body>
 

@@ -6,7 +6,10 @@ import java.util.Map;
 import pms.domain.Education;
 
 public interface EducationDao {
-	List<Education> selectList(Map<String,Object> paramMap);
+	List<Education> educationList(int pageNo);
+	List<Education> educationLast();
+	
+	Education count();
 	
 	void insert(Education education);
 	

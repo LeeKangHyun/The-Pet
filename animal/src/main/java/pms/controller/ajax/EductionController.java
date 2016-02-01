@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pms.dao.EducationDao;
 import pms.dao.FilesDao;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
@@ -24,40 +23,35 @@ import pms.service.EducationService;
 public class EductionController {
 	public static final String SAVED_DIR = "/files";
 	
-	@Autowired EducationDao educationDao;
 	@Autowired EducationService educationService;
 	@Autowired FilesDao filesDao;
 	@Autowired ServletContext servletContext;
 	
 	
+	@RequestMapping("pages")
+	public Object pages() throws Exception {
+		Education pages = educationService.pages();
+		
+		double page = Math.ceil(pages.getCount()/8);
+		
+		return new AjaxResult("success", page);
+	}
+	
 	@RequestMapping("list")
-	public Object list(
-			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="10") int pageSize,
-			@RequestParam(defaultValue="EDU_CRE") String keyword,
-			@RequestParam(defaultValue="desc") String align) throws Exception {
-		
-		
-		HashMap<String,Object> paramMap = new HashMap<>();
-        paramMap.put("startIndex", (pageNo - 1) * pageSize);
-        paramMap.put("length", pageSize);
-        paramMap.put("keyword", keyword);
-        paramMap.put("align", align);
+	public Object list(@RequestParam(defaultValue="1") int pageNo) throws Exception {
     
-		List<Education> educations = educationDao.selectList(paramMap);
+		List<Education> educations = educationService.getEducationList(pageNo);
 		List<Files> files = null;
 		List<List<Files>> filesMap = new ArrayList<>();
 		
 		for (Education e : educations) {
 			files = filesDao.EduFileList(e.getEduNo());
 			filesMap.add(files);
-			System.out.println(files);
-			System.out.println(filesMap);
 		}
 		
 		HashMap<String,Object> resultMap = new HashMap<>();
 		resultMap.put("status", "success");
-		resultMap.put("data", educations);
+		resultMap.put("educations", educations);
 		resultMap.put("filesMap", filesMap);
 		
 		return resultMap;
@@ -67,22 +61,23 @@ public class EductionController {
 	public AjaxResult add(
 			Education education) throws Exception {
 		
-		educationDao.insert(education);
-		HashMap<String,Object> paramMap = new HashMap<>();
+		educationService.insert(education);
 		
-		List<Education> educations = educationDao.selectList(paramMap);
-		Education e = educations.get(0);
-		int eduNo = e.getEduNo();
+		List<Education> educations = educationService.getEducationLast();
+		int eduNo = 0;
+		for (Education e : educations) {
+			eduNo = e.getEduNo();
+		}
 		return new AjaxResult("success", eduNo);
 	}
 		
 	
 	@RequestMapping("detail")
 	public Object detail(int eduNo) throws Exception {
-    educationDao.addViews(eduNo);
+    educationService.addViews(eduNo);
     
     HashMap<String,Object> resultMap = new HashMap<>();
-		Education education = educationDao.selectOne(eduNo);
+		Education education = educationService.getOneEducation(eduNo);
 		List<Files> files = filesDao.EduFileList(education.getEduNo());
 		
 		resultMap.put("status", "success");
