@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pms.dao.WalkDao;
+import pms.domain.Diary;
 import pms.domain.Walk;
 import pms.service.WalkService;
 
@@ -24,7 +25,7 @@ public class DefaultWalkService implements WalkService {
     return walkDao.list(sno);
   }
   
-  public List<Walk> selectList(Map<String, Object> paramMap) {
+  public List<Diary> selectList(Map<String, Object> paramMap) {
     
     return walkDao.selectList(paramMap);
   }

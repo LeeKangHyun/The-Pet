@@ -46,7 +46,7 @@ public class WalkController {
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
 
-    List<Walk> walks = walkService.selectList(paramMap);
+    List<Diary> walks = walkService.selectList(paramMap);
 
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");

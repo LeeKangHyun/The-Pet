@@ -11,13 +11,25 @@
     <result column="LOC_NAME" property="locName" />
     <result column="SCH_NUM" property="sno"/>
   </resultMap>
-
-  <resultMap type="diary" id="diaryMap">
-    <id column="lno" property="lno"/>
-    <result column="lat" property="lat"/>
-    <result column="lng" property="lng"/>
-    <result column="mno" property="mno"/>
-  </resultMap>
+  
+<resultMap type="diary" id="diaryMap">
+    <id   column="SCH_NUM"    property="dno"/>
+  <result column="PET_NUM"    property="pno"/>    
+    <result column="START_DATE"   property="startDate"/>
+    <result column="END_DATE"     property="endDate"/>
+  <result column="SCH_CRE"    property="createDate"/>
+  <result column="SCH_CONTENT"  property="content"/>
+  <result column="SCH_TITLE"    property="title"/>
+  <result column="CATE_CODE"    property="cateCode"/>
+  <result column="NOTI_HIDE"    property="dhide"/>
+  <result column="NOTI_VIEWS"   property="view"/>
+  <result column="NOTI_LIKES"   property="like"/>
+  <result column="FILE_NAME"   property="filename"/>
+  <result column="MEM_NAME"   property="member"/>
+  <result column="PET_SPEC"   property="pSpec"/>
+  <result column="MEM_NUM"   property="mno"/>
+  <result column="MEM_IMG"   property="mimg"/>
+ </resultMap>
 
   <select id="list" resultMap="walkMap" parameterType="int">
     select *
@@ -36,7 +48,8 @@
      MAX(fi.FILE_NAME) as FILE_NAME,
      MAX(sc.PET_SPEC) as PET_SPEC,
      MAX(me.MEM_NUM) as MEM_NUM,
-     MAX(me.MEM_NAME) as MEM_NAME
+     MAX(me.MEM_NAME) as MEM_NAME,
+     MAX(me.MEM_IMG) as MEM_IMG
     from schedule sc
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
     left outer join member me on sc.MEM_NUM = me.MEM_NUM
