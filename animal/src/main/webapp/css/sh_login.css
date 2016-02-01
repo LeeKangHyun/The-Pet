@@ -59,6 +59,7 @@
 
 #loginBtn:hover {
     background: #d06a79;
+  text-decoration: none;
 }
 
 #joinBtn {
@@ -68,7 +69,7 @@
     width: 100%;
 }
 
-#joinBtn[type="submit"] {
+#joinBtn[type="button"] {
   background: #2d335e;
   border: none;
   border-radius:8px;
@@ -91,7 +92,7 @@
 }
 
 #joinBtn:hover {
-    background: #2d335e;
+    background: #d06a79;
   text-decoration: none;
 }
 
