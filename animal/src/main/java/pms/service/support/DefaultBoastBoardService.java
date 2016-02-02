@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pms.dao.BoastBoardDao;
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
+import pms.domain.Files;
 import pms.domain.Likes;
 import pms.service.BoastBoardService;
 
@@ -140,6 +141,10 @@ public class DefaultBoastBoardService implements BoastBoardService {
     
     return boastboardDao.like_add(paramMap);
   };
+  
+  public Files getsize(String filename) {
+    return boastboardDao.getsize(filename);
+  }
 
 }
 

@@ -1,5 +1,6 @@
 package pms.controller.ajax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,9 +46,18 @@ public class BoastBoardController {
 
     List<Diary> boastboards = boastBoardDao.selectList(paramMap);
 
+    List<Files> fileMap = new ArrayList<Files>();
+
+    for(int i = 0; i < boastboards.size(); i++) {
+      fileMap.add(boastBoardDao.getsize(boastboards.get(i).getFilename()));
+    }
+    
+
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
+    resultMap.put("size", fileMap);
 
     log.debug("Controller/selectList()....호출");
 
@@ -62,7 +72,7 @@ public class BoastBoardController {
   public Object count(
       @RequestParam(defaultValue="16") int pageSize
       ) throws Exception {
-  	
+
     double count = boastBoardDao.count();
     count = Math.ceil(count / pageSize);
 
@@ -81,8 +91,8 @@ public class BoastBoardController {
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {
     List<Diary> boastboards = boastBoardDao.rankList();
-    
-    
+
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
@@ -181,7 +191,7 @@ public class BoastBoardController {
     log.debug("Diary.dno..............?"+diary.getDno());
 
     List<Diary> boastboards = boastBoardDao.detail_content(diary);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
@@ -246,27 +256,27 @@ public class BoastBoardController {
     paramMap.put("SCH_NUM", like_SCH_NUM);
 
     List<Likes> like = boastBoardDao.detail_like_check(paramMap);
-    
+
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("like", like);
 
     return resultMap;
   }
-  
-  
+
+
   @RequestMapping(value="delete", method=RequestMethod.POST)
   public AjaxResult like_delete(int dno) throws Exception {
     boastBoardDao.delete(dno);
     return new AjaxResult("success", null);
   }
 
-  
-  
+
+
   @RequestMapping(value="comment_add", method=RequestMethod.POST)
   public Object comment_add(int mno, int dno, String content) throws Exception {
 
-    
+
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("mno", mno);
     paramMap.put("dno", dno);
@@ -274,11 +284,11 @@ public class BoastBoardController {
 
     boastBoardDao.comment_add(paramMap);
 
-//    HashMap<String, Object> resultMap = new HashMap<>();
-//    resultMap.put("status", "success");
-//    resultMap.put("like", like);
+    //    HashMap<String, Object> resultMap = new HashMap<>();
+    //    resultMap.put("status", "success");
+    //    resultMap.put("like", like);
 
     return null;
   }
-  
+
 }

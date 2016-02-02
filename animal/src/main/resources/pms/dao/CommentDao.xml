@@ -17,9 +17,9 @@
  </resultMap>
 
   <select id="DiaryCommentList" resultMap="commentMap" parameterType="int">
-  	select * 
-  	from comment
-  	where SCH_NUM=#{dno}
+  	select *
+    from comment
+    where SCH_NUM=#{dno}
   </select>
   
   <select id="EduCommentList" resultMap="commentMap" parameterType="int">
@@ -38,6 +38,18 @@
   	select * 
   	from comment
   	where S_NUM=#{sno}
+  </select>
+  
+  <select id="WalkCommentList" resultMap="commentMap" parameterType="map">
+    select * 
+    from comment
+    where SCH_NUM = #{dno}
+    order by CMT_NUM asc
+    limit #{startIndex}, 10
+  </select>
+  
+  <select id="count" resultMap="commentMap" parameterType="int">
+    select count(*) as count from comment where SCH_NUM=${value}
   </select>
   
   <!-- matinsert -->

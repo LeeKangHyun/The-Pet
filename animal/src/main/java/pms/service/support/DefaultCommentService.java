@@ -1,6 +1,7 @@
 package pms.service.support;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,14 @@ public class DefaultCommentService implements CommentService {
   }
   public List<Comment> getSaleComment(int sno) {
 		return commentDao.SaleCommentList(sno);
+  }
+  
+  public List<Comment> getWalkComment(Map<String,Object> paramMap) {
+    return commentDao.WalkCommentList(paramMap);
+  }
+  
+  public Comment pages(int dno) {
+    return commentDao.count(dno);
   }
   
   public int add(Comment comment) {

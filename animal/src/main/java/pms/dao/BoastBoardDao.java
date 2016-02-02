@@ -3,7 +3,9 @@ package pms.dao;
 import java.util.List;
 import java.util.Map;
 
+
 import pms.domain.Diary;
+import pms.domain.Files;
 import pms.domain.Likes;
 
 public interface BoastBoardDao {
@@ -41,6 +43,8 @@ public interface BoastBoardDao {
   int delete(int dno);
   
   int comment_add(Map<String, Object> paramMap);
+  
+  Files getsize(String filename);
   
 }
 

@@ -126,14 +126,14 @@
         <!-- 댓글과 버튼을 포함한 구역 -->
         <div class='comments' id="comComment">
 
-          <!-- 댓글 구역 -->
-          <div id="commentSection"></div>
-          <!-- 댓글 더보기 버튼 -->
-          <div id="more">
-            <a href="#" role="button" id="moreBtn">더보기</a>
-          </div>
 
-        </div>  <!-- 댓글과 버튼을 포함한 구역 끝 -->
+        </div>
+
+        <div id="more">
+            <a role="button" class="moreBtn" id="m10" onclick='moree(this.id);'>더보기</a>
+        </div>
+
+        <!-- 댓글과 버튼을 포함한 구역 끝 -->
 
       </div> <!-- contents 클래스 끝 -->
 
@@ -318,20 +318,21 @@ $.ajax({
     url: 'diary/ajax/walklist.do',
     dataType: 'json',
     async: false,
+    cache: false,
     data: {
-        sno: mapno
+        "dno": mapno
     },
     type: 'post',
     success: function(re) {
         // var con = $('#m-list');
         // var tit = $('#detailTitle h3');
-        console.log(re);
-        console.log(re.diary.content);
+        // console.log(re);
+        // console.log(re.diary.content);
 
         $('#m-list').html(re.diary.content).appendTo('#mapNlist');
         $('h3').html(re.diary.title).appendTo('#detailTitle');
     }
-})
+});
 
 // 사진 디테일
 $.ajax({
@@ -340,7 +341,7 @@ $.ajax({
     cache: false,
     async: false,
     data: {
-        dno: mapno
+        "dno": mapno
     },
     type: 'post',
     success: function(re) {
@@ -376,9 +377,10 @@ $.ajax({
 $.ajax({
   url: "walk/ajax/list.do",
   data: {
-    sno: mapno
+    "dno": mapno
   },
   async: false,
+  cache: false,
   type: "get",
   dataType: "json",
   success: function(re) {
@@ -401,7 +403,8 @@ $.ajax({
     overlay.setContent(content);
   }
 });
-
+var i = 0;
+// 댓글 부분
 var form_data = new FormData();
 form_data.append("dno", mapno)
 $.ajax({
@@ -414,6 +417,7 @@ $.ajax({
     data: form_data,
     type: 'post',
     success: function(re) {
+        console.log(re);
         $('#comComment').empty();
         var commen = re.comments;
         var comdiv = $('#comComment');
@@ -440,6 +444,9 @@ $.ajax({
             }
             j++;
         }
+    },
+    complete: function() {
+        i++;
     }
 });
 
@@ -500,6 +507,11 @@ $(document).on('click', '#comAddBtn', function() {
                         }
                         j++;
                     }
+                    $('#more').empty();
+                    $('#more').append(
+                        '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+                    );
+                    i=1;
                 }
             })
           }
@@ -561,6 +573,74 @@ $(document).on("click", "#delCom", function() {
         }
     })
 })
+
+// 더보기 부분
+function moree(id) {
+    i++;
+    console.log(id);
+    var page = id.substring(1);
+    console.log(page);
+    var cpage = i;
+    var form_data = new FormData();
+    form_data.append("dno", mapno)
+    form_data.append("pageNo", page)
+    $.ajax({
+        url: "comment/ajax/walkcomlist.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+            var commen = re.comments;
+            var comdiv = $('#comComment');
+            var mem;
+            var j = 0;
+            for (var com of commen) {
+                mem = re.memberMap[j];
+                if($.session.get('mno') == mem.mno) {
+                    comdiv.append(
+                    "<div class='comment'>" +
+                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                    "<div class='commentname'>" + mem.mName + "</div>" +
+                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+                    "<i class='fa fa-close'></i></a>" +
+                    "<div class='commenttext'>" + com.comComment + "</div>" +
+                    "</div>")
+                } else {
+                    comdiv.append(
+                    "<div class='comment'>" +
+                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+                    "<div class='commentname'>" + mem.mName + "</div>" +
+                    "<div class='commenttext'>" + com.comComment + "</div>" +
+                    "</div>")
+                }
+                j++;
+            }
+            $("#hidden").trigger("click");
+            $("button:first").trigger("click");
+
+            $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+                var ajaxResult = resultObj.ajaxResult;
+                console.log(cpage);
+                if (ajaxResult.data == cpage) {
+                    console.log("더보기 끝")
+                    $('#more').empty();
+
+                } else {
+                    console.log("더보기 생성")
+                    var more = $('#more');
+                    $('#more').empty();
+                    var i = parseInt(page)+10;
+                    console.log(i);
+                    more.append(
+                          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+                }
+            })
+        }
+    })
+};
 </script>
 
 <script>
