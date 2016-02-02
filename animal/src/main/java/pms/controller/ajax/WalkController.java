@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
 import pms.domain.Files;
+import pms.domain.Likes;
 import pms.domain.Member;
 import pms.domain.Walk;
 import pms.service.FilesService;
@@ -37,7 +38,7 @@ public class WalkController {
 
   @RequestMapping(value="list", method=RequestMethod.GET)
   public Object list(int dno) throws Exception {
-    System.out.println(dno);
+    
     List<Walk> walk = walkService.list(dno);
 
     return walk;
@@ -97,6 +98,51 @@ public class WalkController {
   public AjaxResult view(Diary diary) throws Exception {
     walkService.view(diary);
     return new AjaxResult("success", null);
+  }
+  
+  
+  @RequestMapping(value="likeAdd", method=RequestMethod.POST)
+  public Object like_add(int mno, int dno) throws Exception {
+
+    walkService.like_add(mno, dno);
+    walkService.like_add_update(dno);
+    int like = walkService.like_select(dno);
+
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
+
+    return resultMap;
+  }
+
+
+  @RequestMapping(value="likeDel", method=RequestMethod.POST)
+  public Object like_delete(int mno, int dno) throws Exception {
+
+    walkService.like_delete(mno, dno);
+    walkService.like_delete_update(dno);
+    int like = walkService.like_select(dno);
+
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
+
+    return resultMap;
+  }
+
+
+  @RequestMapping(value="detail_like_check", method=RequestMethod.POST)
+  public Object detail_like_check(int mno, int dno) throws Exception {
+  	
+    Likes like = walkService.detail_like_check(mno, dno);
+    
+    System.out.println("dno : " + dno);
+    System.out.println("mno : " + mno);
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("like", like);
+
+    return resultMap;
   }
 
 }
