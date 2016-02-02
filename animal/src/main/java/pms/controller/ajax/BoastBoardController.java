@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.dao.BoastBoardDao;
 import pms.domain.AjaxResult;
+import pms.domain.Comment;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Likes;
@@ -186,15 +187,19 @@ public class BoastBoardController {
 
 
   @RequestMapping(value="detail_content", method=RequestMethod.POST)
-  public Object detail_content(Diary diary) throws Exception {
+  public Object detail_content(Diary diary, int dno) throws Exception {
 
     log.debug("Diary.dno..............?"+diary.getDno());
 
     List<Diary> boastboards = boastBoardDao.detail_content(diary);
+    double count = boastBoardDao.comment_count(dno);
+    List<Comment> comment = boastBoardDao.comment_list(dno);
 
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
+    resultMap.put("count", count);
+    resultMap.put("comment", comment);
 
     return resultMap;
   }
@@ -283,12 +288,15 @@ public class BoastBoardController {
     paramMap.put("content", content);
 
     boastBoardDao.comment_add(paramMap);
+    double count = boastBoardDao.comment_count(dno);
+    List<Comment> comment = boastBoardDao.comment_list(dno);
+    
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("status", "success");
+        resultMap.put("count", count);
+        resultMap.put("comment", comment);
 
-    //    HashMap<String, Object> resultMap = new HashMap<>();
-    //    resultMap.put("status", "success");
-    //    resultMap.put("like", like);
-
-    return null;
+    return resultMap;
   }
 
 }

@@ -3,6 +3,7 @@ package pms.service;
 import java.util.HashMap;
 import java.util.List;
 
+import pms.domain.Comment;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Likes;
@@ -44,6 +45,10 @@ public interface BoastBoardService {
   public int delete(int dno);
   
   public int comment_add(int mno, int dno, String content);
+  
+  public double comment_count(int dno);
+  
+  public List<Comment> comment_list(int dno);
   
   public Files getsize(String filename);
   
