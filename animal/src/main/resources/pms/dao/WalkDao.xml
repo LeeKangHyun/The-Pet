@@ -73,7 +73,7 @@
   </select>
   
   <select id='selectName' resultMap='walkMap'>
-    select LOC_NAME, SCH_NUM
+    select LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM
     from location
   </select>
 
