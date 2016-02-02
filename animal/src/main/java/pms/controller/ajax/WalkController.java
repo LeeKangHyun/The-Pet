@@ -55,9 +55,6 @@ public class WalkController {
     return resultMap;
   }
 
-
-
-
   @RequestMapping(value="count", method=RequestMethod.GET)
   public Object count(
       @RequestParam(defaultValue="9") int pageSize

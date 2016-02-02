@@ -1,6 +1,7 @@
 package pms.service;
 
 import java.util.List;
+import java.util.Map;
 
 import pms.domain.Comment;
 
@@ -10,6 +11,9 @@ public interface CommentService {
   List<Comment> getEduComment(int eduNo);
   List<Comment> getMatComment(int eduNo);
   List<Comment> getSaleComment(int eduNo);
+  List<Comment> getWalkComment(Map<String,Object> paramMap);
+  
+  Comment pages(int dno);
   
   int add(Comment comment);
   int walkcom(Comment comment);

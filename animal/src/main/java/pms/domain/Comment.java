@@ -15,6 +15,8 @@ public class Comment implements Serializable {
 	protected int sno;						// 분양 게시물 번호
 	protected int matNo;					// 짝짓기 게시물 번호
 	
+	protected double count;
+	
 	public Comment () {}
 
 	
@@ -66,4 +68,15 @@ public class Comment implements Serializable {
 	public void setMatNo(int matNo) {
 		this.matNo = matNo;
 	}
+
+
+  public double getCount() {
+    return count;
+  }
+
+
+  public void setCount(double count) {
+    this.count = count;
+  }
+	
 }
