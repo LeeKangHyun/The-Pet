@@ -54,7 +54,7 @@ public class DiaryController {
 		String frontEnd = "";
 		int backEnd = 0;
 		String fullEnd = "";
-		Pet pet = null;
+		
 		for (Diary d: events) {
 			
 			frontEnd = d.getEndDate().substring(0, 8);
@@ -68,9 +68,7 @@ public class DiaryController {
 			m.put("title", d.getTitle());
   		m.put("description", d.getContent());
 			m.put("hide", d.isDhide());
-			
-			pet = petService.getOnePet(d.getPno());
-			m.put("color", pet.getTagColor());
+			m.put("color", d.getTagColor());
 			
 			dummyDate.add(m);
 		}

@@ -10,6 +10,8 @@ public interface FilesDao {
   List<Files> MatFileList(int matNo);
   List<Files> SaleFileList(int sno);
   
+  Files size(String fileName);
+  
   void insert(Files files);
   
   /* 대진 작업중 */
