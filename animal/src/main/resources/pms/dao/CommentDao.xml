@@ -44,7 +44,7 @@
     select * 
     from comment
     where SCH_NUM = #{dno}
-    order by CMT_NUM asc
+    order by CMT_NUM desc
     limit #{startIndex}, 10
   </select>
   
