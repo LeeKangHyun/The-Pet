@@ -36,7 +36,7 @@ public class BoastBoardController {
   @RequestMapping(value="list", method=RequestMethod.POST)
   public Object list(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="16") int pageSize
+      @RequestParam(defaultValue="12") int pageSize
       ) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
@@ -71,7 +71,7 @@ public class BoastBoardController {
 
   @RequestMapping(value="count", method=RequestMethod.GET)
   public Object count(
-      @RequestParam(defaultValue="16") int pageSize
+      @RequestParam(defaultValue="12") int pageSize
       ) throws Exception {
 
     double count = boastBoardDao.count();
@@ -107,7 +107,7 @@ public class BoastBoardController {
   @RequestMapping(value="search", method=RequestMethod.POST)
   public Object search(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="16") int pageSize,
+      @RequestParam(defaultValue="12") int pageSize,
       Diary diary
       ) throws Exception {
 
@@ -132,7 +132,7 @@ public class BoastBoardController {
 
   @RequestMapping(value="searchCount", method=RequestMethod.POST)
   public Object searchCount(
-      @RequestParam(defaultValue="16") int pageSize,
+      @RequestParam(defaultValue="12") int pageSize,
       Diary diary
       ) throws Exception {
 

@@ -202,7 +202,11 @@
   </select>
   
   <delete id="delete" parameterType="int">
-  delete fi, sc from files as fi left join schedule as sc on fi.SCH_NUM = sc.SCH_NUM where fi.SCH_NUM = #{dno};
+delete co, fi, sc    
+from comment as co    
+left join files as fi on co.SCH_NUM = fi.SCH_NUM   
+left join schedule sc on fi.SCH_NUM = sc.SCH_NUM   
+where fi.SCH_NUM = #{dno}
   </delete>
   
    <insert id="comment_add" parameterType="map">

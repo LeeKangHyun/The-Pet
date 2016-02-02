@@ -39,6 +39,55 @@
     });
   });
   </script>
+    
+    <style>
+        #comment-delete {
+            position: relative;
+            float: right;
+            right: 15px;
+            font-size: 18px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        
+ .modal-content, .modal-dialog {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  border-radius: 0;
+}
+
+.modal-header {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: -5px; 
+  padding-bottom: 10px;
+}
+
+.modal-body {
+  height: 40px;
+  padding-top: 14px;
+  font-size: 15px;
+}
+
+.modal-footer {
+  height: 45px;
+}
+
+.modal-footer button {
+  margin-top: -8px;
+  height: 30px;
+  font-size: 13px;
+  border-radius: 0;
+}
+
+.modal-footer {
+  font-weight: bold;
+  color: #2d335e;
+}
+    </style>
 
 </head>
 
@@ -150,12 +199,6 @@
 
 			<!-- 댓글 구역 -->
 			<div id="commentSection">
-            
-            <div class='comment'>
-            <img class='commentimg' src='../files/default.jpg'>
-            <div class='commentname'>resultObj.comment[i].mName</div>
-            <div class='commenttext'>resultObj.comment[i].comComment</div>
-            <i class='fa fa-times' id='comment-delete'></i>
           </div>
                 
             </div>
@@ -182,15 +225,38 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">게시물 삭제</h4>
 				</div>
-				<div class="modal-body">삭제하시겠습니까?</div>
+				<div class="modal-body">이 게시글을 삭제하시겠어요?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="delete-yes">예</button>
-					<button type="button" class="btn btn-default" id="delete-no"
-						data-dismiss="modal">아니오</button>
+				          <button type="button" class="btn btn-default" id="delete-no"
+            data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-danger" id="delete-yes">삭제</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
+	 <!-- Comment Delete Check Modal -->
+  <div class="modal fade" id="Comment-Delete-Check-Modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">댓글 삭제</h4>
+        </div>
+        <div class="modal-body">이 댓글을 삭제하시겠어요?</div>
+        <div class="modal-footer">
+                  <button type="button" class="btn btn-default" id="comment-delete-no"
+            data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-danger" id="comment-delete-yes">삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 	<script>
@@ -318,8 +384,8 @@ $(document).ready(function() {
               "<div class='comment'>"+
             "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
             "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+            "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
             "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-            "<i class='fa fa-times' id='comment-delete'></i>"+
           "</div>"
           );
           }
