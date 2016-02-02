@@ -106,10 +106,8 @@ $(document).ready(function() {
 			$("#subtable").empty();
 			var div = $("#subtable");
 			console.log("불러온 데이터 갯수....." + resultObj.data.length);
-			alert(resultObj.size[0].width);
-			alert(resultObj.size[0].height);
-
-
+			
+      var setClass;
 			for(var i = 0; i < resultObj.data.length; i++ ) {
 				var check1 = resultObj.data[i].filename.split(".");
 				check1 = check1.slice(1,2);
@@ -118,11 +116,20 @@ $(document).ready(function() {
 						check1 == "png" ||
 						check1 == "gif" ||
 						check1 == "bmp") {
+    
+          console.log("가로 : " + resultObj.size[i].width);
+          console.log("세로 : " + resultObj.size[i].height);
+          if (resultObj.size[i].width > resultObj.size[i].height) {
+            setClass="landscape"
+          } else {
+            setClass="portrait"
+          }
+         
 					$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
 					.html(
 							"<div class='card'>" +
 							"<div class='background'>" +
-							"<img src='../files/" + resultObj.data[i].filename + "' />" +
+							"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "' />" +
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
 							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -144,11 +151,20 @@ $(document).ready(function() {
 						check1 == "mp4" ||
 						check1 == "mkv" ||
 						check1 == "wav") {
+  
+          console.log("가로 : " + resultObj.size[i].width);
+          console.log("세로 : " + resultObj.size[i].height);
+          if (resultObj.size[i].width > resultObj.size[i].height) {
+            setClass="landscape"
+          } else {
+            setClass="portrait"
+          }
+  
 					$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
 					.html(
 							"<div class='card'>"+
 							"<div class='background'>"+
-							"<img src='../files/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+							"<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -229,11 +245,20 @@ $(document).ready(function() {
 										check1 == "png" ||
 										check1 == "gif" ||
 										check1 == "bmp") { 
+            
+                  console.log("가로 : " + resultObj.size[i].width);
+                  console.log("세로 : " + resultObj.size[i].height);
+                  if (resultObj.size[i].width > resultObj.size[i].height) {
+                    setClass="landscape"
+                  } else {
+                    setClass="portrait"
+                  }
+            
 									$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
 									.html(
 											"<div class='card'>" +
 											"<div class='background'>" +
-											"<img src='../files/" + resultObj.data[i].filename + "' width=325px; height=410px; />" +
+											"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "' />" +
 											"</div>"+
 											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 											"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
@@ -255,11 +280,20 @@ $(document).ready(function() {
 										check1 == "mp4" ||
 										check1 == "mkv" ||
 										check1 == "wav") {
+                  
+                    console.log("가로 : " + resultObj.size[i].width);
+                    console.log("세로 : " + resultObj.size[i].height);
+                    if (resultObj.size[i].width > resultObj.size[i].height) {
+                      setClass="landscape"
+                    } else {
+                      setClass="portrait"
+                    }
+                  
 									$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
 									.html(
 											"<div class='card'>"+
 											"<div class='background'>"+
-											"<img src='../files/"+resultObj.data[i].filename+"' width='325px;' height='410px;' />"+
+											"<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
 											"</div>"+
 											"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> "+
 											"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 

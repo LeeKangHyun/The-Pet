@@ -289,7 +289,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .boxsub1 .card .background {
 /*  border: 1px solid #d06a79;*/
-  background-color: #2d335e;
+/*  background-color: #2d335e;*/
   height: 330px;
   width: 235px;
   position: relative;
