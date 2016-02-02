@@ -106,7 +106,8 @@ $(document).ready(function() {
 			$("#subtable").empty();
 			var div = $("#subtable");
 			console.log("불러온 데이터 갯수....." + resultObj.data.length);
-
+			alert(resultObj.size[0].width);
+			alert(resultObj.size[0].height);
 
 
 			for(var i = 0; i < resultObj.data.length; i++ ) {

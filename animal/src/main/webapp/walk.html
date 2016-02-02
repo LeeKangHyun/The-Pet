@@ -28,7 +28,7 @@
       <a class="headerTitle" href="pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
       </a>
-      <a class="headerSubTitle" href="diary.html">
+      <a class="headerSubTitle" href="walk.html">
         산책
       </a>
       <div id="user_info">
@@ -56,99 +56,38 @@
   </header>
 
   <section id="main-body"  style="padding-bottom:150px;">
-    <div id="cardSection">
-      
-      
-      <div class='card-container manual-flip'>
-          <div class='card'>
-            <div class='front'>
-              <div class='cover'>
-                <img src='images/%EC%84%A4%ED%98%8400008.jpeg' class="portrait"/>
-              </div>
-              <div class='user'>
-                <img class='img-circle' src='images/%EC%84%A4%ED%98%8400005.jpeg'/>
-                </div>
-                <div class='content'>
-                  <a role='button' href='#' onclick='detailWalk("+resultObj.data[i].dno+")'>
-                    <div class='main'>
-                      <h3 class='name'>member</h3>
-                      <div class='creDate'>createDate</div>
-                      <h5 class='title'>title</h5>
-                      <h5>
-                        <i class='fa fa-map-marker fa-fw text-muted'></i>
-                        위치 장소이름위치
-                      </h5>
-                    </div>
-                  </a>
-                  <div class='footer'>
-                    <div class='like'>
-                      <i class='fa fa-thumbs-o-up'></i> 133</div>
-                    <div class='view'>
-                      <i class='fa fa-eye'></i>32</div>
-                    <button class='btn btn-simple summary' onclick='rotateCard(this)'>
-                      <i class='fa fa-mail-forward'></i> 간략정보
-                    </button>
-                  </div>
-                </div>
-
-              </div> <!-- end front panel -->
-
-              <div class='back'>
-                <div class='header'>
-                  <div class='map' id='map1'></div>
-                </div>
-                <div class='content'>
-                  <div class='main'>
-                    <h4 class='text-center'>위치 정보</h4>
-                  </div>
-                </div>
-                <div class='footer'>
-                  <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
-                    <i class='fa fa-reply'></i> 돌아가기
-                  </button>
-                  <button type='button' class='detail' onclick='detailWalk("+resultObj.data[i].dno+")'>
-                    <i class='fa fa-sign-in'></i> 상세정보
-                  </button>
-                </div>
-              </div> <!-- end back panel -->
-
-            </div> <!-- end card -->
-          </div> <!-- end card-container -->
-      
-      
-      
-    </div> <!-- cardSection 끝 -->
+    <div id="cardSection"></div> <!-- cardSection 끝 -->
   </section>
   
         <!-- 더보기 버튼 -->
-    <div id="moreBtn-Origin">
-      <a role="button" class="moreBtn" id="moreBtn"><div id="more">더보기</div></a>
-    </div>
+  <div id="moreBtn-Origin">
+    <a role="button" class="moreBtn" id="moreBtn"><div id="more">더보기</div></a>
+  </div>
   
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 
 
 <script>
-  function detailWalk(dno) {
+function detailWalk(dno) {
     
-var view_data = new FormData();
-     view_data.append("dno", dno); 
+  var view_data = new FormData();
+  view_data.append("dno", dno); 
 
-    $.ajax({
-      url : "walk/ajax/view.do",
-      dataType : "json",
-      type : "POST",
-      contentType : false,
-      processData : false,
-      data : view_data,
-      success : function(resultObj) {
+  $.ajax({
+    url : "walk/ajax/view.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : view_data,
+    success : function(resultObj) {
 
-      }
-    });
+    }
+  });
     
-    location.href='walkDetail.html?dno='+dno;
-    location.replace('walkDetail.html?dno='+dno);
-  }
+  location.href = 'walkDetail.html?dno=' + dno;
+  location.replace('walkDetail.html?dno=' + dno);
+}
 </script>
 
 <script type="text/javascript">
@@ -171,83 +110,118 @@ $(document).ready(function(){
       var setClass;
       for (var i = 0; i < resultObj.data.length; i++) {
         file = resultObj.filesMap[i];
-        imgWidth = file.width;
+        mem = resultObj.memberMap[i];
+        console.log(file)  
+    
+        imgWidth = file[0].width;
         console.log("가로 : " + imgWidth);
-        imgHeight = file.height;
+    
+        imgHeight = file[0].height;
         console.log("세로 : " + imgHeight);
         if (imgWidth > imgHeight) {
-          
+          setClass = "landscape"
         } else {
-         
+          setClass = "portrait"
         }
         
         $("<div class='card-container manual-flip'>").html(
-          "<div class='card'>"+
-            "<div class='front'>"+
-              "<div class='cover'>"+
-                "<img src='files/" + resultObj.data[i].filename + "'/>"+
-              "</div>"+
-              "<div class='user'>"+
-                "<img class='img-circle' src='files/" + resultObj.data[i].mimg + "'/>"+
-                "</div>"+
-                "<div class='content'>"+
-                  "<a role='button' href='#' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
-                    "<div class='main'>"+
-                      "<h3 class='name'>"+resultObj.data[i].member+"</h3>"+
-                      "<div class='creDate'>"+resultObj.data[i].createDate+"</div>"+
-                      "<h5 class='title'>"+resultObj.data[i].title+"</h5>"+
-                      "<h5>"+
-                        "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
-                        "위치 장소이름위치"+ 
-                      "</h5>"+
-                    "</div>"+
-                  "</a>"+
-                  "<div class='footer'>"+
-                    "<div class='like'>"+
-                      "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[i].like +"</div>"+
-                    "<div class='view'>"+
-                      "<i class='fa fa-eye'></i>" + resultObj.data[i].view + "</div>"+
-                    "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
-                      "<i class='fa fa-mail-forward'></i> 간략정보"+
-                    "</button>"+
-                  "</div>"+
-                "</div>"+
+          "<div class='card'>" +
+            "<div class='front'>" +
+    
+              "<div class='cover'>" +
+                "<img src='files/" + file[0].fileName + "' class='" + setClass + "'/>"+
+              "</div>" +
+    
+              "<div class='user'>" +
+                "<img class='img-circle' src='files/" + mem.mImg + "'/>" +
+              "</div>" +
+    
+              "<div class='content'>" +
+    
+                "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<div class='main'>" +
+                    "<h3 class='name'>" + mem.mName + "</h3>" +
+    
+                    "<div class='creDate'>" +
+                      resultObj.data[i].createDate + 
+                    "</div>" +
+    
+                    "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
+                    "<h5>" +
+                      "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                      "위치 장소이름위치" + 
+                    "</h5>" +
+                  "</div>" +
+                "</a>" +
+    
+                "<div class='footer'>" +
+                  "<div class='like'>" +
+                    "<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like + 
+                  "</div>" +
+                  
+                  "<div class='view'>" +
+                    "<i class='fa fa-eye'></i>" + resultObj.data[i].view + 
+                  "</div>" +
+    
+                  "<button class='btn btn-simple summary' onclick='rotateCard(this)'>" +
+                    "<i class='fa fa-mail-forward'></i> 간략정보" +
+                  "</button>" +
+                "</div>" +  <!-- end footer -->
+    
+              "</div> " +   <!-- end content -->
 
-              "</div>"+ <!-- end front panel -->
+            "</div>" + <!-- end front panel -->
 
-              "<div class='back'>"+
-                "<div class='header'>"+
-                  "<div class='map' id='map1'></div>"+
-                "</div>"+
-                "<div class='content'>"+
-                  "<div class='main'>"+
-                    "<h4 class='text-center'>위치 정보</h4>"+
-                  "</div>"+
-                "</div>"+
-                "<div class='footer'>"+
-                  "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>"+
-                    "<i class='fa fa-reply'></i> 돌아가기"+
-                  "</button>"+
-                  "<button type='button' class='detail' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
-                    "<i class='fa fa-sign-in'></i> 상세정보"+
-                  "</button>"+
-                "</div>"+
-              "</div>"+ <!-- end back panel -->
+            "<div class='back'>" +
+    
+              "<div class='header'>" +
+                "<div class='map' id='map" + i + "'></div>" +
+              "</div>" +
+    
+              "<div class='content'>" +
+                "<div class='main'>" +
+                  "<h4 class='text-center'>위치 정보</h4>" +
+                "</div>" +
+              "</div>" +
+    
+              "<div class='footer'>" +
+                "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>" +
+                  "<i class='fa fa-reply'></i> 돌아가기" +
+                "</button>" +
+    
+                "<button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<i class='fa fa-sign-in'></i> 상세정보" +
+                "</button>" +
+              "</div>" +  <!-- end footer -->
+    
+            "</div>" + <!-- end back panel -->
 
-            "</div>"+ <!-- end card -->
-          "</div>" <!-- end card-container -->
+          "</div>" + <!-- end card -->
+        "</div>" <!-- end card-container -->
         ).appendTo(div);
 
+      }
+      //    <!-- 지도 나오기 -->
+      for (var i=0; i < resultObj.data.length; i++) {
+        var ids = 'map' + i;
+        var mapContainer = document.getElementById(ids),
+          // 지도를 표시할 div
+          mapOption = {
+            center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
+
+        var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
       }
     } 
   });
      
-     //첫번째 리스트 출력
+  //첫번째 리스트 출력
      
      
-     // 더 보기 생성
+  // 더 보기 생성
      
-     /* more 페이징 */
+  /* more 페이징 */
   /* count ajax 실행 */
   var currentPage = 1;
   var totalPage = 0;
@@ -268,119 +242,149 @@ $(document).ready(function(){
   
   
   
-    $('.moreBtn').click(function(event) {
+  $('.moreBtn').click(function(event) {
 
-        if(currentPage < totalPage) {
-          currentPage = currentPage + 1;
-          console.log("List/현재 currentPage...." + currentPage);
-          
-          
-          
-          $.ajax({
-              url : "walk/ajax/selectList.do?pageNo="+currentPage,
-              dataType : "json",
-              type : "POST",
-              contentType : false,
-              processData : false,
-              async: false,
-              success : function(resultObj) {
-                
-                var div = $("#cardSection");
-                
-                for (var i = 0; i < resultObj.data.length; i++) {
-                
-                $("<div class='card-container manual-flip'>").html(
-                    "<div class='card'>"+
-                      "<div class='front'>"+
-                            "<div class='cover'>"+
-                              "<img src='files/" + resultObj.data[i].filename + "'/>"+
-                            "</div>"+
-                            "<div class='user'>"+
-                              "<img class='img-circle' src='files/" + resultObj.data[i].mimg + "'/>"+
-                              "</div>"+
-                              "<div class='content'>"+
-                                "<a role='button' href='#' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
-                                  "<div class='main'>"+
-                                    "<h3 class='name'>"+resultObj.data[i].member+"</h3>"+
-                                    "<div class='creDate'>"+resultObj.data[i].createDate+"</div>"+
-                                    "<h5 class='title'>"+resultObj.data[i].title+"</h5>"+
-                                    "<h5>"+
-                                      "<i class='fa fa-map-marker fa-fw text-muted'></i>"+
-                                      "위치 장소이름위치"+ 
-                                    "</h5>"+
-                                  "</div>"+
-                                "</a>"+
-                                "<div class='footer'>"+
-                                  "<div class='like'>"+
-                                    "<i class='fa fa-thumbs-o-up'></i>"+ resultObj.data[i].like +"</div>"+
-                                  "<div class='view'>"+
-                                    "<i class='fa fa-eye'></i>" + resultObj.data[i].view + "</div>"+
-                                  "<button class='btn btn-simple summary' onclick='rotateCard(this)'>"+
-                                    "<i class='fa fa-mail-forward'></i> 간략정보"+
-                                  "</button>"+
-                                "</div>"+
-                              "</div>"+
+    if(currentPage < totalPage) {
+      currentPage = currentPage + 1;
+      console.log("List/현재 currentPage...." + currentPage);
 
-                            "</div>"+ <!-- end front panel -->
+      $.ajax({
+        url : "walk/ajax/selectList.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        async: false,
+        success : function(resultObj) {
 
-                          "<div class='back'>"+
-                            "<div class='header'>"+
-                              "<div class='map' id='map1'></div>"+
-                            "</div>"+
-                            "<div class='content'>"+
-                              "<div class='main'>"+
-                                "<h4 class='text-center'>위치 정보</h4>"+
-                              "</div>"+
-                            "</div>"+
-                            "<div class='footer'>"+
-                              "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>"+
-                                "<i class='fa fa-reply'></i> 돌아가기"+
-                              "</button>"+
-                              "<button type='button' class='detail' onclick='detailWalk("+resultObj.data[i].dno+")'>"+
-                                "<i class='fa fa-sign-in'></i> 상세정보"+
-                              "</button>"+
-                            "</div>"+
-                          "</div>"+ <!-- end back panel -->
+          var div = $("#cardSection");
+          var file;
+          var j = 0;
+          var imgWidth;
+          var imgHeight;
+          var setClass;
+          for (var i = 0; i < resultObj.data.length; i++) {
+            file = resultObj.filesMap[i];
+            mem = resultObj.memberMap[i];
+            console.log(file)  
 
-                        "</div>"+ <!-- end card -->   
-                        "</div>" <!-- end card-container -->
-                ).appendTo(div);
-                
-                }
-                
-              } });
+            imgWidth = file[0].width;
+            console.log("가로 : " + imgWidth);
 
+            imgHeight = file[0].height;
+            console.log("세로 : " + imgHeight);
+            if (imgWidth > imgHeight) {
+              setClass = "landscape"
+            } else {
+              setClass = "portrait"
+            }
 
-          if(currentPage == totalPage) {
-            $('#more').css({"border":"0px"});
-            $('#moreBtn-Origin').empty();
+            $("<div class='card-container manual-flip'>").html(
+              "<div class='card'>" +
+                "<div class='front'>" +
+
+                  "<div class='cover'>" +
+                    "<img src='files/" + file[0].fileName + "' class='" + setClass + "'/>"+
+                  "</div>" +
+
+                  "<div class='user'>" +
+                    "<img class='img-circle' src='files/" + mem.mImg + "'/>" +
+                  "</div>" +
+
+                  "<div class='content'>" +
+
+                    "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                      "<div class='main'>" +
+                        "<h3 class='name'>" + mem.mName + "</h3>" +
+
+                        "<div class='creDate'>" +
+                          resultObj.data[i].createDate + 
+                        "</div>" +
+
+                        "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
+                        "<h5>" +
+                          "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                          "위치 장소이름위치" + 
+                        "</h5>" +
+                      "</div>" +
+                    "</a>" +
+
+                    "<div class='footer'>" +
+                      "<div class='like'>" +
+                        "<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like + 
+                      "</div>" +
+
+                      "<div class='view'>" +
+                        "<i class='fa fa-eye'></i>" + resultObj.data[i].view + 
+                      "</div>" +
+
+                      "<button class='btn btn-simple summary' onclick='rotateCard(this)'>" +
+                        "<i class='fa fa-mail-forward'></i> 간략정보" +
+                      "</button>" +
+                    "</div>" +  <!-- end footer -->
+
+                  "</div> " +   <!-- end content -->
+
+                "</div>" + <!-- end front panel -->
+
+                "<div class='back'>" +
+
+                  "<div class='header'>" +
+                    "<div class='map' id='map" + i + "'></div>" +
+                  "</div>" +
+
+                  "<div class='content'>" +
+                    "<div class='main'>" +
+                      "<h4 class='text-center'>위치 정보</h4>" +
+                    "</div>" +
+                  "</div>" +
+
+                  "<div class='footer'>" +
+                    "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>" +
+                      "<i class='fa fa-reply'></i> 돌아가기" +
+                    "</button>" +
+
+                    "<button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                      "<i class='fa fa-sign-in'></i> 상세정보" +
+                    "</button>" +
+                  "</div>" +  <!-- end footer -->
+
+                "</div>" + <!-- end back panel -->
+
+              "</div>" + <!-- end card -->
+            "</div>" <!-- end card-container -->
+            ).appendTo(div);
+
           }
+          //    <!-- 지도 나오기 -->
+          for (var i=0; i < resultObj.data.length; i++) {
+            var ids = 'map' + i;
+            var mapContainer = document.getElementById(ids),
+              // 지도를 표시할 div
+              mapOption = {
+                center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+              };
 
-        } /* IF문 끝 */
-
-        else if(currentPage == totalPage) {
-          alert("더이상 페이지가 존재하지 않습니다.");
-          console.log("더이상 페이지가 존재하지 않습니다.");
-        }
+            var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+          }
+        } 
+      });
 
 
+      if(currentPage == totalPage) {
+        $('#more').css({"border":"0px"});
+        $('#moreBtn-Origin').empty();
+      }
+
+    } else if(currentPage == totalPage) {
+      alert("더이상 페이지가 존재하지 않습니다.");
+      console.log("더이상 페이지가 존재하지 않습니다.");
+    }
   });
   
   
   $('[rel="tooltip"]').tooltip();
-
-  //    <!-- 지도 나오기 -->
-  for (var i=1; i<2; i++) {
-    var ids = 'map' + i;
-    var mapContainer = document.getElementById(ids),
-      // 지도를 표시할 div
-      mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-      };
-
-    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-  }
 
 });
 

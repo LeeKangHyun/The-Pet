@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import pms.domain.Diary;
+import pms.domain.Files;
 import pms.domain.Likes;
 
 
@@ -43,7 +44,9 @@ public interface BoastBoardService {
   public int delete(int dno);
   
   public int comment_add(int mno, int dno, String content);
-
+  
+  public Files getsize(String filename);
+  
 }
 
 
