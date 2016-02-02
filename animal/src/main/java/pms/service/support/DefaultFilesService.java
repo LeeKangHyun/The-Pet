@@ -27,6 +27,10 @@ public class DefaultFilesService implements FilesService {
 		return filesDao.SaleFileList(sno);
   }
   
+  public Files getSize(String fileName) {
+  	return filesDao.size(fileName);
+  }
+  
   public void add(Files files) {
   	filesDao.insert(files);
   }

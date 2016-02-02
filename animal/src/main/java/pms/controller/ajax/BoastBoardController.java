@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 import pms.dao.BoastBoardDao;
-import pms.dao.MemberDao;
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
+import pms.domain.Files;
 import pms.domain.Likes;
-import pms.domain.Member;
+import pms.service.FilesService;
 import pms.service.support.DefaultBoastBoardService;
 
 @Controller("ajax.BoastBoardController")
@@ -30,6 +28,7 @@ public class BoastBoardController {
   //public static final String SAVED_DIR = "/attachfile";
 
   @Autowired  BoastBoardDao boastBoardDao;
+  @Autowired FilesService filesService;
   @Autowired ServletContext servletContext;
 
   @RequestMapping(value="list", method=RequestMethod.POST)
@@ -63,7 +62,7 @@ public class BoastBoardController {
   public Object count(
       @RequestParam(defaultValue="16") int pageSize
       ) throws Exception {
-
+  	
     double count = boastBoardDao.count();
     count = Math.ceil(count / pageSize);
 
@@ -82,7 +81,8 @@ public class BoastBoardController {
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {
     List<Diary> boastboards = boastBoardDao.rankList();
-
+    
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
@@ -261,4 +261,24 @@ public class BoastBoardController {
     return new AjaxResult("success", null);
   }
 
+  
+  
+  @RequestMapping(value="comment_add", method=RequestMethod.POST)
+  public Object comment_add(int mno, int dno, String content) throws Exception {
+
+    
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", mno);
+    paramMap.put("dno", dno);
+    paramMap.put("content", content);
+
+    boastBoardDao.comment_add(paramMap);
+
+//    HashMap<String, Object> resultMap = new HashMap<>();
+//    resultMap.put("status", "success");
+//    resultMap.put("like", like);
+
+    return null;
+  }
+  
 }

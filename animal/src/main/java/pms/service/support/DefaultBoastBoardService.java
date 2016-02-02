@@ -130,6 +130,16 @@ public class DefaultBoastBoardService implements BoastBoardService {
   public int delete(int dno) {
     return boastboardDao.delete(dno);
   }
+  
+  
+  public int comment_add(int mno, int dno, String content){
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", mno);
+    paramMap.put("dno", dno);
+    paramMap.put("content", content);
+    
+    return boastboardDao.like_add(paramMap);
+  };
 
 }
 

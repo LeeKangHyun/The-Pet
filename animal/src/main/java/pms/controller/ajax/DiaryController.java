@@ -54,6 +54,7 @@ public class DiaryController {
 		String frontEnd = "";
 		int backEnd = 0;
 		String fullEnd = "";
+		
 		for (Diary d: events) {
 			
 			frontEnd = d.getEndDate().substring(0, 8);
@@ -68,6 +69,7 @@ public class DiaryController {
   		m.put("description", d.getContent());
 			m.put("hide", d.isDhide());
 			m.put("color", d.getTagColor());
+			
 			dummyDate.add(m);
 		}
 		

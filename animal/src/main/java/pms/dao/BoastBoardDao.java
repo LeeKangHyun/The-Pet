@@ -40,6 +40,8 @@ public interface BoastBoardDao {
   
   int delete(int dno);
   
+  int comment_add(Map<String, Object> paramMap);
+  
 }
 
 

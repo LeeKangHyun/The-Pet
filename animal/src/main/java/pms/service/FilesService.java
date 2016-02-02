@@ -13,6 +13,8 @@ public interface FilesService {
   List<Files> getMatFile(int matNo);
   List<Files> getSaleFile(int sno);
   
+  Files getSize(String fileName);
+  
   void add(Files files);  
   void eduAdd(Files files);
   void matAdd(Files files);

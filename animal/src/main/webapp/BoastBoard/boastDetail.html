@@ -41,7 +41,7 @@
 <body>
 	<header id="menu">
     <div id="header_title">
-      <a class="headerTitle" href="pet.html">
+      <a class="headerTitle" href="../pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
       </a>
       <a class="headerSubTitle" href="boastBoard.html">
@@ -59,11 +59,11 @@
 
       <nav id="menu-nav">
         <ul id="menu-nav-ul">
-          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="../Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
           <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
-          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
+          <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="../walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i>
               자랑해요</a></li>
         </ul>
       </nav>
@@ -132,10 +132,13 @@
 		<!-- 자랑하기 내용 Section End -->
     
     <!-- 댓글 입력부분 -->
-    <div class='input'>
-      <img id='comimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+    <div class='input' id='input'>
+      <img id='comimg' src='../files/default.jpg'>
+      <form>
       <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
-      <a id="comAddBtn" role='button'>게시</a>
+      <a id="comAddBtn" role='button' onclick='detailBoastBoard()'>게시</a>
+      <button type="reset" id="reset" hidden=""/>
+      </form>
     </div>
 
     <!-- 댓글과 버튼을 포함한 구역 -->
@@ -144,81 +147,22 @@
       <!-- 댓글 구역 -->
       <div id="commentSection">
 
+
         <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+ <div class='comment'>
+          <img class='commentimg' src='../files/default.jpg'>
           <div class='commentname'>Name</div>
           <div class='commenttext'>Comment</div>
         </div>
 
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
-
-        <!-- 댓글1개 -->
-        <div class='comment'>
-          <img class='commentimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
-          <div class='commentname'>Name</div>
-          <div class='commenttext'>Comment</div>
-        </div>
+        
+        
 
       </div>
       <!-- 댓글 더보기 버튼 -->
-      <div id="more">
+<!--       <div id="more">
         <a href="#" role="button" id="moreBtn">더보기</a>
-      </div>
+      </div> -->
 
     </div>  <!-- 댓글과 버튼을 포함한 구역 끝 -->
 
@@ -247,6 +191,36 @@
   </div>
 
 
+<script>
+ function detailBoastBoard() {
+	  var url = location.href;
+	  var dno = url.split('?')[1].split('=')[1];
+	  
+	  var mno = $.session.get('mno');
+	  var content = $('#comcontent').val();
+	
+	  var comment_data = new FormData();
+	  comment_data.append("dno", dno);
+	  comment_data.append("mno", mno);
+	  comment_data.append("content", content);
+	  
+	  $.ajax({
+		    url : "../boastboard/ajax/comment_add.do",
+		    dataType : "json",
+		    type : "POST",
+		    contentType : false,
+		    processData : false,
+		    async: false,
+		    data : comment_data,
+		    success : function(resultObj) { 
+		    	
+		    	alert("결과 값 확인.");
+		    	  $("#reset").trigger("click");
+		    	  
+		    } });
+	  
+ }
+</script>
 
 <script type="text/javascript">
 $(document).ready(function() {

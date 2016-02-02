@@ -1,5 +1,6 @@
 package pms.controller.ajax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.domain.AjaxResult;
 import pms.domain.Diary;
+import pms.domain.Files;
 import pms.domain.Walk;
+import pms.service.FilesService;
 import pms.service.WalkService;
 
 @Controller("ajax.LotController")
@@ -19,6 +22,7 @@ import pms.service.WalkService;
 public class WalkController {
 
   @Autowired WalkService walkService;
+  @Autowired FilesService filesService;
 
   @RequestMapping(value="add", method=RequestMethod.POST)
   public AjaxResult add(Walk walk) throws Exception {
@@ -46,11 +50,20 @@ public class WalkController {
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
 
+    Files files = null;
+    
     List<Diary> walks = walkService.selectList(paramMap);
-
+    List<Files> filesMap = new ArrayList<>();
+    for (Diary d : walks) {
+    	System.out.println(d.getFilename());
+    	files = filesService.getSize(d.getFilename());
+    	filesMap.add(files);
+    }
+    
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", walks);
+    resultMap.put("filesMap", filesMap);
 
     return resultMap;
   }
