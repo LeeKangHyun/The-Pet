@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pms.dao.BoastBoardDao;
 import pms.domain.AjaxResult;
+import pms.domain.Comment;
 import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Likes;
@@ -141,6 +142,16 @@ public class DefaultBoastBoardService implements BoastBoardService {
     
     return boastboardDao.like_add(paramMap);
   };
+  
+  public double comment_count(int dno){
+    return boastboardDao.comment_count(dno);
+  };
+  
+  
+  public List<Comment> comment_list(int dno){
+    return boastboardDao.comment_list(dno);
+  };
+  
   
   public Files getsize(String filename) {
     return boastboardDao.getsize(filename);
