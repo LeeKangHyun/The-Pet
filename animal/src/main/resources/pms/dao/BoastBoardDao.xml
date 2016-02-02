@@ -177,4 +177,8 @@
   delete fi, sc from files as fi left join schedule as sc on fi.SCH_NUM = sc.SCH_NUM where fi.SCH_NUM = #{dno};
   </delete>
   
+   <insert id="comment_add" parameterType="map">
+  insert into Comment(CMT_CONTENT, SCH_NUM, MEM_NUM) value(#{content}, #{dno}, #{mno})
+  </insert>
+  
 </mapper>

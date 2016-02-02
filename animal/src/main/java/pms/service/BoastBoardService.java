@@ -41,6 +41,8 @@ public interface BoastBoardService {
   public List<Likes> detail_like_check(String mno, String SCH_NUM);
   
   public int delete(int dno);
+  
+  public int comment_add(int mno, int dno, String content);
 
 }
 

@@ -261,4 +261,24 @@ public class BoastBoardController {
     return new AjaxResult("success", null);
   }
 
+  
+  
+  @RequestMapping(value="comment_add", method=RequestMethod.POST)
+  public Object comment_add(int mno, int dno, String content) throws Exception {
+
+    
+    HashMap<String, Object> paramMap = new HashMap<>();
+    paramMap.put("mno", mno);
+    paramMap.put("dno", dno);
+    paramMap.put("content", content);
+
+    boastBoardDao.comment_add(paramMap);
+
+//    HashMap<String, Object> resultMap = new HashMap<>();
+//    resultMap.put("status", "success");
+//    resultMap.put("like", like);
+
+    return null;
+  }
+  
 }
