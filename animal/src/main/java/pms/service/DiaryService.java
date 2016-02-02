@@ -15,6 +15,7 @@ public interface DiaryService {
   int add(Diary diary);
   int remove(int dno);
   int change(Diary diary);
+  int changeColor(Diary diary);
 }
 
 

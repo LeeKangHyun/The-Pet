@@ -82,6 +82,12 @@
   	where SCH_NUM=#{dno}
   </delete>
 
+  <update id="updateColor" parameterType="diary">
+  	update schedule set
+  	  TAG_COLOR=#{tagColor}
+  	where PET_NUM=#{pno}
+  </update>
+  
   <update id="update" parameterType="diary">
     update schedule set
       START_DATE=#{startDate},

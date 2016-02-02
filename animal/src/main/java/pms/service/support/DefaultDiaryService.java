@@ -45,5 +45,9 @@ public class DefaultDiaryService implements DiaryService {
   public int change(Diary diary) {
   	return diaryDao.update(diary);
   }
+  
+  public int changeColor(Diary diary) {
+  	return diaryDao.updateColor(diary);
+  }
 
 }

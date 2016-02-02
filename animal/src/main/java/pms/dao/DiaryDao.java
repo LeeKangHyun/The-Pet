@@ -17,6 +17,8 @@ public interface DiaryDao {
   int delete(int dno);
   
   int update(Diary diary);
+  
+  int updateColor(Diary diary);
 }
 
 

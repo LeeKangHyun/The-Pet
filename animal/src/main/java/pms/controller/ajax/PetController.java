@@ -79,15 +79,14 @@ public class PetController {
 
 		return new AjaxResult("success", null);
 	}
-	
-	////////위까지 완성
 
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
 			Pet pet,
 			String oriImg,
+			Diary diary,
 			MultipartFile file) throws Exception {
-	  System.out.println(pet.getpImg());
+	  
 		if (file != null) {	
 		 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
 			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
@@ -97,23 +96,15 @@ public class PetController {
 		}	else if (pet.getpImg().equals("default.jpg")) {
 			pet.setpImg("default.jpg");
 		} 
-		System.out.println(pet.getpImg());
+		
 		if (petService.change(pet) <= 0) {
 			return new AjaxResult("failure", null);
-		} 
+		}
+		diary.setTagColor(pet.getTagColor());
+		diary.setPno(pet.getPno());
+		diaryService.changeColor(diary);
 		List<Pet> pets = petService.getPetList(pet.getMno());
 		return new AjaxResult("success", pets);
 	}
 
-	
-
-
-	/*private String replace(String checkIndex) {
-		if ( checkIndex != null ) {
-			checkIndex = checkIndex.replaceAll("<","&lt;");
-			checkIndex = checkIndex.replaceAll(">","&gt;");
-		} 
-		return checkIndex;
-
-	}*/
 }
