@@ -14,7 +14,10 @@
   <!--  상훈 css  -->
   <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
   <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
-
+  
+  <!-- 지호가 만든 css -->
+  <link href="../css/jh_pictures.css" type="text/css" rel="stylesheet">
+  
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
   <link href="css/icon-font.min.css" rel="stylesheet" />
@@ -70,208 +73,23 @@
       <div class="boast">
         <a class="subtitles" href="BoastBoard/boastBoard.html"><h2><i class="lnr lnr-paw"></i> 자랑하기 Top3</h2></a>
       
-        <table id="boastTable">
-          <tr></tr>
-        </table>
+        <div id="rank-section">
+          <div id="section-img"></div>
+        </div>
       </div>  <!-- boast 끝 -->
       
       <div class="walk">
               
-        <div id="cardSection">
+        <div id="cardSec">
           
           <a class="subtitles" href="#"><h2><i class="lnr lnr-leaf"></i> 산책하기 Top3</h2></a>
-            
-          <div class="card-container manual-flip">
-            <div class="card">
-
-              <div class="front">
-                <div class="cover">
-                  <img src="images/h3.jpg"/>
-                </div>
-                <div class="user">
-                  <img class="img-circle" src="images/p8.jpeg"/>
-                </div>
-
-                <div class="content">
-
-                  <a role="button" href="">
-                    <div class="main">
-                      <h3 class="name">설현</h3>
-                      <div class="creDate">2016-01-29</div>
-                      <h5 class="title">
-                        제목입니다.
-                      </h5>
-                      <h5>
-                        <i class="fa fa-map-marker fa-fw text-muted"></i>
-                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
-                      </h5>
-                    </div>
-                  </a>
-                  <div class="footer">
-                    <div class="like">
-                      <i class="fa fa-thumbs-o-up"></i> 392
-                    </div>
-                    <div class="view">
-                      <i class="fa fa-eye"></i> 392
-                    </div>
-                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
-                      <i class="fa fa-mail-forward"></i> 간략정보
-                    </button>
-                  </div>
-                </div>
-
-              </div> <!-- end front panel -->
-
-              <div class="back">
-                <div class="header">
-                  <div class='map' id='map1'></div>
-                </div>
-                <div class="content">
-                  <div class="main">
-                    <h4 class="text-center">위치 정보</h4>
-                  </div>
-                </div>
-                <div class="footer">
-                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
-                    <i class="fa fa-reply"></i> 돌아가기
-                  </button>
-                  <button type="button" class="detail">
-                    <i class="fa fa-sign-in"></i> 상세정보
-                  </button>
-                </div>
-              </div> <!-- end back panel -->
-
-            </div> <!-- end card -->
-          </div> <!-- end card-container -->
-
-
-          <div class="card-container manual-flip">
-            <div class="card">
-
-              <div class="front">
-                <div class="cover">
-                  <img src="images/h3.jpg"/>
-                </div>
-                <div class="user">
-                  <img class="img-circle" src="images/p8.jpeg"/>
-                </div>
-
-                <div class="content">
-
-                  <a role="button" href="">
-                    <div class="main">
-                      <h3 class="name">설현</h3>
-                      <div class="creDate">2016-01-29</div>
-                      <h5 class="title">
-                        제목입니다.
-                      </h5>
-                      <h5>
-                        <i class="fa fa-map-marker fa-fw text-muted"></i>
-                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
-                      </h5>
-                    </div>
-                  </a>
-                  <div class="footer">
-                    <div class="like">
-                      <i class="fa fa-thumbs-o-up"></i> 392
-                    </div>
-                    <div class="view">
-                      <i class="fa fa-eye"></i> 392
-                    </div>
-                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
-                      <i class="fa fa-mail-forward"></i> 간략정보
-                    </button>
-                  </div>
-                </div>
-
-              </div> <!-- end front panel -->
-
-              <div class="back">
-                <div class="header">
-                  <div class='map' id='map2'></div>
-                </div>
-                <div class="content">
-                  <div class="main">
-                    <h4 class="text-center">위치 정보</h4>
-                  </div>
-                </div>
-                <div class="footer">
-                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
-                    <i class="fa fa-reply"></i> 돌아가기
-                  </button>
-                  <button type="button" class="detail">
-                    <i class="fa fa-sign-in"></i> 상세정보
-                  </button>
-                </div>
-              </div> <!-- end back panel -->
-
-            </div> <!-- end card -->
-          </div> <!-- end card-container -->
-
-          <div class="card-container manual-flip">
-            <div class="card">
-
-              <div class="front">
-                <div class="cover">
-                  <img src="images/h3.jpg"/>
-                </div>
-                <div class="user">
-                  <img class="img-circle" src="images/p8.jpeg"/>
-                </div>
-
-                <div class="content">
-
-                  <a role="button" href="">
-                    <div class="main">
-                      <h3 class="name">설현</h3>
-                      <div class="creDate">2016-01-29</div>
-                      <h5 class="title">
-                        제목입니다.
-                      </h5>
-                      <h5>
-                        <i class="fa fa-map-marker fa-fw text-muted"></i>
-                        위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름위치 장소이름
-                      </h5>
-                    </div>
-                  </a>
-                  <div class="footer">
-                    <div class="like">
-                      <i class="fa fa-thumbs-o-up"></i> 392
-                    </div>
-                    <div class="view">
-                      <i class="fa fa-eye"></i> 392
-                    </div>
-                    <button class="btn btn-simple summary" onclick="rotateCard(this)">
-                      <i class="fa fa-mail-forward"></i> 간략정보
-                    </button>
-                  </div>
-                </div>
-
-              </div> <!-- end front panel -->
-
-              <div class="back">
-                <div class="header">
-                  <div class='map' id='map3'></div>
-                </div>
-                <div class="content">
-                  <div class="main">
-                    <h4 class="text-center">위치 정보</h4>
-                  </div>
-                </div>
-                <div class="footer">
-                  <button class="btn btn-simple backBtn" rel="tooltip" title="앞면으로.." onclick="rotateCard(this)">
-                    <i class="fa fa-reply"></i> 돌아가기
-                  </button>
-                  <button type="button" class="detail">
-                    <i class="fa fa-sign-in"></i> 상세정보
-                  </button>
-                </div>
-              </div> <!-- end back panel -->
-
-            </div> <!-- end card -->
-          </div> <!-- end card-container -->
-
         </div>
+        
+        <div id="cardSection">
+           
+          
+
+        </div>  <!-- cardSection 끝 -->
 
       </div>  <!-- walk 끝 -->
 
@@ -357,56 +175,255 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
+  
+  // 산책하기 top3
+  $.ajax({
+    url : "walk/ajax/rank.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+//    async: false,
+    success : function(resultObj) {
+      console.log("rank 진입");
+      var div = $("#cardSection");
+      var file;
+      var mem;
+      var j = 0;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
+      var content;
+      for (var i = 0; i < resultObj.data.length; i++) {
+        file = resultObj.filesMap[i];
+        mem = resultObj.memberMap[i];
+        console.log(file)
+        console.log(resultObj.data[0].dno);
+        console.log("dno= " + resultObj.name[0].locName)
+        content = '';
+
+        for (var j = 0; j < resultObj.name.length; j++) {
+            if (resultObj.data[i].dno == resultObj.name[j].dno) {
+                content = resultObj.name[j].locName;
+            }
+        }
+
+        imgWidth = file[0].width;
+        console.log("가로 : " + imgWidth);
+
+        imgHeight = file[0].height;
+        console.log("세로 : " + imgHeight);
+        
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
+
+        $("<div class='card-container manual-flip'>").html(
+          "<div class='card'>" +
+            "<div class='front'>" +
+
+              "<div class='cover'>" +
+                "<img src='files/" + file[0].fileName + "' class='" + setClass + "'/>"+
+              "</div>" +
+
+              "<div class='user'>" +
+                "<img class='img-circle' src='files/" + mem.mImg + "'/>" +
+              "</div>" +
+
+              "<div class='content'>" +
+
+                "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<div class='main'>" +
+                    "<h3 class='name'>" + mem.mName + "</h3>" +
+
+                    "<div class='creDate'>" +
+                      resultObj.data[i].createDate +
+                    "</div>" +
+
+                    "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
+                    "<h5>" +
+                      "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                      "위치/ " + content +
+                    "</h5>" +
+                  "</div>" +
+                "</a>" +
+
+                "<div class='footer'>" +
+                  "<div class='like'>" +
+                    "<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like +
+                  "</div>" +
+
+                  "<div class='view'>" +
+                    "<i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                  "</div>" +
+
+                  "<button class='btn btn-simple summary' onclick='rotateCard(this)'>" +
+                    "<i class='fa fa-mail-forward'></i> 간략정보" +
+                  "</button>" +
+                "</div>" +
+
+              "</div> " + 
+
+            "</div>" + 
+
+            "<div class='back'>" +
+
+              "<div class='header'>" +
+                "<div class='map' id='map" + i + "'></div>" +
+              "</div>" +
+
+              "<div class='content'>" +
+                "<div class='main'>" +
+                  "<h4 class='text-center'>위치 정보</h4>" +
+                "</div>" +
+              "</div>" +
+
+              "<div class='footer'>" +
+                "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>" +
+                  "<i class='fa fa-reply'></i> 돌아가기" +
+                "</button>" +
+
+                "<button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<i class='fa fa-sign-in'></i> 상세정보" +
+                "</button>" +
+              "</div>" +
+
+            "</div>" +
+
+          "</div>" +
+        "</div>" 
+        ).appendTo(div);
+
+      }
+      //    <!-- 지도 나오기 -->
+      for (var i=0; i < resultObj.data.length; i++) {
+        var ids = 'map' + i;
+        var mapContainer = document.getElementById(ids),
+          // 지도를 표시할 div
+          mapOption = {
+            center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3, // 지도의 확대 레벨
+            draggable: false,
+            scrollwheel: false
+          };
+
+        var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+      }
+    }
+  })
+  
 
 //      $.get("http://ipinfo.io", function(response) {
 //        console.log(response.loc);
 //      }, "json");
 
-  // top3 뽑아내기
-  $.ajax({
-    url: "boastboard/ajax/rank.do",
-    dataType: "json",
-    type: "get",
-    success: function(resultObj) {
-      var table = $("#boastTable");
-      for (var data of resultObj.data) {
-        $("#boastTable tr").append(
-          '<td class="m_most"><a href="boastBoard.html"><img src="images/' +
-          data.filename + '" /></a><li>' + data.title +
-          '</li></td>')
+  // 자랑하기 top3 뽑아내기
+  $.getJSON('boastboard/ajax/rank.do', function(resultObj) {
+
+    var div = $("#section-img");
+    var topcheck1;
+
+    var length = resultObj.data.length;
+
+    if (resultObj.data.length == 1) {
+      length = 1;
+    } else if (resultObj.data.length == 2) {
+      length = 2;
+    } else if (resultObj.data.length >= 3) {
+      length = 3;
+    }  
+
+    for(var i = 0; i < length; i++ ) {
+      topcheck1 = resultObj.data[i].filename.split(".");
+      topcheck1 = topcheck1.slice(1,2);
+      if(topcheck1 == "jpg" ||
+          topcheck1 == "jpeg" ||
+          topcheck1 == "png" ||
+          topcheck1 == "gif" ||
+          topcheck1 == "bmp") {
+
+
+        $("<div class='box1 gallery'>")
+        .html(
+            "<div class='card'>" +
+            "<div class='background'>" +
+            "<img src='files/" + resultObj.data[i].filename + "' class=''>" +
+            "</div>" +
+            "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+            "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+            "<i class='fa fa-camera-retro'></i>" +
+            "</a>" +
+            "<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+            "<div class='info'>" +
+            "<h2>" +
+            "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
+            "</h2>" +
+            "<div class='foot'>" +
+            "<i class='line'></i>" + 
+            "<span class='date'>"+resultObj.data[i].createDate+"</span>" +
+            "<span class='view-like'>" + 
+            "<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
+            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+            "</span>" +
+            "</div>" +
+            "</div>" +
+        "</div>")
+        .appendTo(div);
+
+
+      } else if (topcheck1 == "avi" ||
+          topcheck1 == "wmv" ||
+          topcheck1 == "mp4" ||
+          topcheck1 == "mkv" ||
+          topcheck1 == "wav") {
+
+        $("<div class='box1 gallery'>")
+        .html(
+            "<div class='card'>" +
+            "<div class='background'>" +
+            "<img src='files/" + resultObj.data[i].filename + "'>" + 
+            "</div>" +
+            "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+            "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+            "<i class='fa fa-youtube-play'></i>" +
+            "</a>" +
+            "<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+            "<div class='info'>" +
+            "<h2>" +
+            "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
+            "</h2>" +
+            "<div class='foot'>" +
+            "<i class='line'></i>" + 
+            "<span class='date'>" + resultObj.data[i].createDate + "</span>" +
+            "<span class='view-like'>" +
+            "<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
+            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+            "</span>" +
+            "</div>" +
+            "</div>" +
+        "</div>")
+        .appendTo(div);
       }
     }
-  })
-  
+  });
   $('[rel="tooltip"]').tooltip();
-
-  //    <!-- 지도 나오기 -->
-  for (var i=1; i<4; i++) {
-    var ids = 'map' + i;
-    var mapContainer = document.getElementById(ids),
-      // 지도를 표시할 div
-      mapOption = {
-        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-      };
-
-    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-  }
 });
-  
-function rotateCard(btn){
-  var $card = $(btn).closest('.card-container');
-  console.log($card);
-  if($card.hasClass('hover')){
-    $card.removeClass('hover');
-  } else {
-    $card.addClass('hover');
+ 
+  function rotateCard(btn){
+    var $card = $(btn).closest('.card-container');
+    console.log($card);
+    if($card.hasClass('hover')){
+      $card.removeClass('hover');
+    } else {
+      $card.addClass('hover');
+    }
   }
-}
-  </script>
+</script>
 
-  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
-  <script src="js/kh_map.js"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
+<script src="js/kh_map.js"></script>
 
 </body>
 

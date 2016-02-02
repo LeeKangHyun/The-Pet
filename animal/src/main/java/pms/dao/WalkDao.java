@@ -12,6 +12,8 @@ public interface WalkDao {
   
   List<Walk> list(int dno);
   
+  List<Diary> rank();
+  
   List<Diary> selectList(Map<String, Object> paramMap);
   
   List<Walk> selectName();

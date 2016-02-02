@@ -12,6 +12,8 @@ public interface WalkService {
   
   List<Walk> list(int dno);
   
+  List<Diary> top3();
+  
   List<Diary> selectList(Map<String, Object> paramMap);
   
   List<Walk> selectName();
@@ -33,4 +35,5 @@ public interface WalkService {
   int like_select(int dno);
   
   public Likes detail_like_check(int mno, int dno);
+
 }
