@@ -189,21 +189,21 @@ a:hover {
 
 .card .footer {
   border-top: 1px solid #EEEEEE;
-  color: #999999;
+  color: #666;
   margin: 30px 0 0 0;
   padding: 10px 0 0 0;
   text-align: center;
 }
 
 .card .footer .like {
-  color: #777777;
+  color: #444;
   font-size: 15px;
   margin-left: 15px;
   float: left;
 }
 
 .card .footer .view {
-  color: #777777;
+  color: #444;
   font-size: 15px;
   margin-left: 15px;
   float: left;
@@ -211,7 +211,7 @@ a:hover {
 
 .btn-simple.summary {
   opacity: .7;
-  color: #555555;
+  color: #555;
   background-color: transparent;
   margin-right: 5px;
   float: right
