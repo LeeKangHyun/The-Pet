@@ -28,6 +28,10 @@ public class DefaultWalkService implements WalkService {
     return walkDao.selectList(paramMap);
   }
   
+  public List<Walk> selectName() {
+    return walkDao.selectName();
+  }
+  
   public Double count() {
     return walkDao.count();
   }
