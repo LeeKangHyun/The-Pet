@@ -13,9 +13,12 @@ public interface WalkDao {
   
   List<Diary> selectList(Map<String, Object> paramMap);
   
+  List<Walk> selectName();
+  
   double count();
   
   int view(Diary diary);
   
   int delete(int dno);
+
 }

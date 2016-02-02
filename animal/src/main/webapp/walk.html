@@ -108,10 +108,20 @@ $(document).ready(function(){
       var imgWidth;
       var imgHeight;
       var setClass;
+      var content;
       for (var i = 0; i < resultObj.data.length; i++) {
         file = resultObj.filesMap[i];
         mem = resultObj.memberMap[i];
         console.log(file)
+        console.log(resultObj.data[0].dno);
+        console.log("dno= " + resultObj.name[0].locName)
+        content = '';
+
+        for (var j = 0; j < resultObj.name.length; j++) {
+            if (resultObj.data[i].dno == resultObj.name[j].dno) {
+                content = resultObj.name[j].locName;
+            }
+        }
 
         imgWidth = file[0].width;
         console.log("가로 : " + imgWidth);
@@ -149,7 +159,7 @@ $(document).ready(function(){
                     "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
                     "<h5>" +
                       "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                      "위치 장소이름위치" +
+                      "위치/ " + content +
                     "</h5>" +
                   "</div>" +
                 "</a>" +
@@ -208,7 +218,9 @@ $(document).ready(function(){
           // 지도를 표시할 div
           mapOption = {
             center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
+            level: 3, // 지도의 확대 레벨
+            draggable: false,
+            scrollwheel: false
           };
 
         var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -363,7 +375,9 @@ $(document).ready(function(){
               // 지도를 표시할 div
               mapOption = {
                 center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
+                level: 3, // 지도의 확대 레벨
+                draggable: false,
+                scrollwheel: false
               };
 
             var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

@@ -59,6 +59,7 @@ public class WalkController {
     List<Diary> walks = walkService.selectList(paramMap);
     List<List<Files>> filesMap = new ArrayList<>();
     List<Member> memberMap = new ArrayList<>();
+    List<Walk> walkname = walkService.selectName();
     
     for (Diary d : walks) {
     	files = filesService.getDiaryFile(d.getDno());
@@ -72,6 +73,7 @@ public class WalkController {
     resultMap.put("data", walks);
     resultMap.put("filesMap", filesMap);
     resultMap.put("memberMap", memberMap);
+    resultMap.put("name", walkname);
 
     return resultMap;
   }

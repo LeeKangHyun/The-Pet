@@ -33,7 +33,8 @@
     from location
     where SCH_NUM=#{value}
   </select>
-<!--- 
+  
+<!--
   <select id="selectList" resultMap="diaryMap">
     select
      sc.SCH_NUM as dno,
@@ -69,6 +70,11 @@
     from schedule 
     where CATE_CODE='SANCHE' and NOTI_HIDE=1
     order by SCH_NUM desc limit #{startIndex}, #{length}
+  </select>
+  
+  <select id='selectName' resultMap='walkMap'>
+    select LOC_NAME, SCH_NUM
+    from location
   </select>
 
   <insert id="add" parameterType="walk">
