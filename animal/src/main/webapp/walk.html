@@ -92,7 +92,8 @@ function detailWalk(dno) {
 
 <script type="text/javascript">
 $(document).ready(function(){
-
+  var geocoder = new daum.maps.services.Geocoder();
+  var coord;
   $.ajax({
     url : "walk/ajax/selectList.do",
     dataType : "json",
@@ -109,26 +110,38 @@ $(document).ready(function(){
       var imgWidth;
       var imgHeight;
       var setClass;
-      var content;
       for (var i = 0; i < resultObj.data.length; i++) {
         file = resultObj.filesMap[i];
         mem = resultObj.memberMap[i];
-        console.log(file)
-        console.log(resultObj.data[0].dno);
-        console.log("dno= " + resultObj.name[0].locName)
-        content = '';
+        // console.log(file)
+        var content = '';
+        var jibun = '';
+        coord = '';
 
         for (var j = 0; j < resultObj.name.length; j++) {
             if (resultObj.data[i].dno == resultObj.name[j].dno) {
                 content = resultObj.name[j].locName;
+                coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
             }
         }
 
+        geocoder.coord2detailaddr({
+            coord: coord,
+            callback: function(status, result) {
+                if (status === daum.maps.services.Status.OK) {
+                    $("#jibun" + i).append(
+                        "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                        "위치/ "  + result[0].jibunAddress.name);
+                }
+            }
+        });
+
         imgWidth = file[0].width;
-        console.log("가로 : " + imgWidth);
+        // console.log("가로 : " + imgWidth);
 
         imgHeight = file[0].height;
-        console.log("세로 : " + imgHeight);
+        // console.log("세로 : " + imgHeight);
+
         if (imgWidth > imgHeight) {
           setClass = "landscape"
         } else {
@@ -158,9 +171,9 @@ $(document).ready(function(){
                     "</div>" +
 
                     "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
-                    "<h5>" +
-                      "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                      "위치/ " + content +
+                    "<h5 id='jibun" + i + "'>" +
+                    //   "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                    //   "위치/ "  + jibun +
                     "</h5>" +
                   "</div>" +
                 "</a>" +
@@ -191,7 +204,7 @@ $(document).ready(function(){
 
               "<div class='content'>" +
                 "<div class='main'>" +
-                  "<h4 class='text-center'>위치 정보</h4>" +
+                  "<h4 class='text-center'>" + content + "</h4>" +
                 "</div>" +
               "</div>" +
 
