@@ -105,8 +105,9 @@ div.item img {
   }
 
   #detailTitle {
-    height: 50px;
+    height: 60px;
     margin-top: 490px;
+    line-height: 55px;
     .clearfix();
     background-color: #fff;
     h3 {
@@ -139,7 +140,7 @@ div.item img {
   #mapNlist {
     .clearfix();
     #map {
-      width: 50%;
+      width: 49%;
       height: 230px;
       margin: 0 auto;
       position:relative;
@@ -167,8 +168,9 @@ div.item img {
     }
   }
   .contents {
-    background-color: #fff;
-
+    background-color: #2d335e;
+    padding-bottom: 1px;
+    border-bottom: 2px solid #d06a79;
     .input {
       padding-left: 10px;
       padding-right: 10px;
@@ -219,9 +221,9 @@ div.item img {
     }
     .comments {
       width: 100%;
-      min-height: 480px;
+      min-height: 240px;
       overflow-y: scroll;
-      border-bottom: 1px solid #d06a79;
+//      border-bottom: 2px solid #d06a79;
       background-color: #2d335e;
       margin-bottom: 150px;
       padding-bottom: 20px;
@@ -260,15 +262,18 @@ div.item img {
     }
     #more {
       border: 1px solid black;
+      background-color: #fff;
       width: 96%;
       font-weight: bold;
       text-align: center;
       margin: 10px auto;
-      #moreBtn {
+      margin-top: -140px;
+      position: relative;
+      .moreBtn {
         color: #2d335e;
         text-decoration: none;
       }
-      #moreBtn:hover {
+      .moreBtn:hover {
         text-decoration: none;
       }
     }
@@ -316,6 +321,60 @@ div.item img {
     }
   }
 }
+
+
+
+.wrap {
+  position: absolute;
+  left: 0;
+  bottom: 45px;
+  width: 280px;
+  height: 55px;
+  margin-left: -140px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+  line-height: 1.5;
+  border: 2px solid #000;
+}
+.wrap * {
+  padding: 0;margin: 0;
+}
+.wrap .info {
+  width: 280px;
+  height: 55px;
+//  border-radius: 5px;
+//  border-bottom: 2px solid #ccc;
+//  border-right: 2px solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.wrap .info:nth-child(1) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.info .title {
+  padding: 5px 0 0 10px;
+  height: 25px;
+  background: #fff;
+  font-size: 15px;
+  font-weight: bold;
+}
+.info .close {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  color: #000;
+  width: 17px;
+  height: 17px;
+  background-image: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+  opacity: 1;
+}
+.info .close:hover {
+  cursor: pointer;
+}
+
 
 
 
