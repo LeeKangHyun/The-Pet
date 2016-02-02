@@ -55,6 +55,7 @@
     order by dno desc limit #{startIndex}, #{length}
   </select>
   -->
+  
   <select id="selectList" resultMap="diaryMap">
     select
      SCH_NUM,
