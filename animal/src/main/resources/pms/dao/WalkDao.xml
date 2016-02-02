@@ -6,26 +6,35 @@
 <mapper namespace="pms.dao.WalkDao">
   <resultMap type="walk" id="walkMap">
     <id column="lno" property="lno"/>
-    <result column="LOC_LAT" property="locLat"/>
-    <result column="LOC_LNG" property="locLng"/>
-    <result column="LOC_NAME" property="locName" />
-    <result column="SCH_NUM" property="dno"/>
+    <result column="LOC_LAT" 	property="locLat"/>
+    <result column="LOC_LNG" 	property="locLng"/>
+    <result column="LOC_NAME" 	property="locName" />
+    <result column="SCH_NUM" 	property="dno"/>
+  </resultMap>
+  
+  <resultMap type="Likes" id="likesMap">
+    <id   column="LIKE_NUM"    	property="lno"/>
+	<result column="MEM_NUM"    property="memno"/>    
+	<result column="EDU_NUM"   	property="eduno"/>
+	<result column="MAT_NUM"    property="matno"/>
+	<result column="S_NUM"    	property="sno"/>
+	<result column="SCH_NUM"  	property="dno"/>
   </resultMap>
   
 	<resultMap type="diary" id="diaryMap">
-	  <id   column="SCH_NUM"    property="dno"/>
-	  <result column="PET_NUM"    property="pno"/>    
+	  <id   column="SCH_NUM"    	property="dno"/>
+	  <result column="PET_NUM"    	property="pno"/>    
 	  <result column="START_DATE"   property="startDate"/>
 	  <result column="END_DATE"     property="endDate"/>
-	  <result column="SCH_CRE"    property="createDate"/>
+	  <result column="SCH_CRE"    	property="createDate"/>
 	  <result column="SCH_CONTENT"  property="content"/>
 	  <result column="SCH_TITLE"    property="title"/>
 	  <result column="CATE_CODE"    property="cateCode"/>
 	  <result column="NOTI_HIDE"    property="dhide"/>
 	  <result column="NOTI_VIEWS"   property="view"/>
 	  <result column="NOTI_LIKES"   property="like"/>
-	  <result column="PET_SPEC"   property="pSpec"/>
-	  <result column="MEM_NUM"   property="mno"/>
+	  <result column="PET_SPEC"   	property="pSpec"/>
+	  <result column="MEM_NUM"   	property="mno"/>
 	</resultMap>
 
   <select id="list" resultMap="walkMap" parameterType="int">
@@ -96,4 +105,34 @@
   <delete id="delete" parameterType="int">
   	delete from location where SCH_NUM=#{dno}
   </delete>
+  
+  
+  
+  
+  <insert id="like_add" parameterType="map">
+  	insert into LIKES(SCH_NUM,MEM_NUM) 
+  	value(#{dno}, #{mno})
+  </insert>
+  
+  <delete id="like_delete" parameterType="map">
+  	delete from LIKES where SCH_NUM = #{dno} and MEM_NUM = #{mno}
+  </delete>
+  
+  <update id="like_add_update" parameterType="int">
+  	update schedule set NOTI_LIKES = NOTI_LIKES + 1  where SCH_NUM = #{dno}
+  </update>
+  
+  <update id="like_delete_update" parameterType="int">
+  	update schedule set NOTI_LIKES = NOTI_LIKES - 1  where SCH_NUM = #{dno}
+  </update>
+  
+  <select id="like_select" resultType="int" parameterType="int">
+  	select NOTI_LIKES from schedule where SCH_NUM = #{dno}
+  </select>
+  
+  <select id="detail_like_check" resultMap="likesMap" parameterType="map">
+   	select LIKE_NUM from Likes where SCH_NUM = #{dno} and MEM_NUM = #{mno}
+  </select>
+  
+  
 </mapper>

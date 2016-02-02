@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import pms.domain.Diary;
+import pms.domain.Likes;
 import pms.domain.Walk;
 
 public interface WalkDao {
@@ -20,5 +21,19 @@ public interface WalkDao {
   int view(Diary diary);
   
   int delete(int dno);
+  
+  
+  
+  int like_add(Map<String, Object> paramMap);
+  
+  int like_delete(Map<String, Object> paramMap);
+  
+  int like_add_update(int like_SCH_NUM);
+  
+  int like_delete_update(int like_SCH_NUM);
+  
+  int like_select(int like_SCH_NUM);
+  
+  Likes detail_like_check(Map<String, Object> paramMap);
 
 }

@@ -89,7 +89,7 @@
         </h3>
         <div id="like-section">
         <a role="button" id="likeBtn"><i class="fa fa-thumbs-o-up" id="likes"></i></a>
-        <span id="likeCount">1000</span>
+        <span id="likeCount"></span>
         </div>
       </div>  <!-- detailTitle 끝 -->
 
@@ -311,13 +311,47 @@ $.ajax({
     },
     type: 'post',
     success: function(re) {
-        // var con = $('#m-list');
-        // var tit = $('#detailTitle h3');
-        // console.log(re);
-        // console.log(re.diary.content);
+      // var con = $('#m-list');
+      // var tit = $('#detailTitle h3');
+      // console.log(re);
+      // console.log(re.diary.content);
 
-        $('#m-list').html(re.diary.content).appendTo('#mapNlist');
-        $('h3').html(re.diary.title).appendTo('#detailTitle');
+      $('#m-list').html(re.diary.content)
+      $('h3').html(re.diary.title)
+      $('#likeCount').html(re.diary.like)
+      
+      var mno = $.session.get('mno');
+      var dno = location.href.split('?')[1].split('=')[1];
+      console.log(dno)
+      if (mno != undefined) {
+
+        var form_data = new FormData();
+        form_data.append("mno", mno);
+        form_data.append("dno", dno);
+
+        $.ajax({
+          url : "walk/ajax/detail_like_check.do",
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          async: false,
+          data : form_data,
+          success : function(resultObj) {
+          
+            console.log("resultObj.like : " + resultObj.like)
+          
+            if (resultObj.like != null ) {
+              $('#likes').css("color","blue");
+              like_toggle = 1;
+            } else {
+              $('#likes').css("color","#767475");
+              like_toggle = 0;
+            }
+            console.log("like_toggle : " + like_toggle)
+          } 
+        });
+      }
     }
 });
 
@@ -360,7 +394,7 @@ $.ajax({
     }
 });
 
-// 산책 목록부분
+// 지도 팝업창
 $.ajax({
   url: "walk/ajax/list.do",
   data: {
@@ -391,7 +425,7 @@ $.ajax({
   }
 });
 var i = 0;
-// 댓글 부분
+// 댓글 리스트
 var form_data = new FormData();
 form_data.append("dno", mapno)
 $.ajax({
@@ -437,7 +471,7 @@ $.ajax({
     }
 });
 
-// 댓글 부분
+// 댓글 추가
 $(document).on('click', '#comAddBtn', function() {
     if ($('#comcontent').val() == "") {
       alert("댓글을 입력해 주세요")
@@ -636,61 +670,81 @@ function moree(id) {
 </script>
 
 <script>
-var like_toggle = 0;
 
 	 <!-- 좋아요(Likes) Toggle 기능 -->
-	 $('#likes').click(function(event) {
-/* 	   var mno = $.session.get('mno'); */
-/* 	   var like_data = new FormData();
-	   like_data.append("mno", mno);
-	   like_data.append("SCH_NUM", no); */
+$('#likes').click(function(event) {
+  
+  var mno = $.session.get('mno');
+  var dno = location.href.split('?')[1].split('=')[1];
+
+  var form_data = new FormData();
+  
+  form_data.append("mno", mno);
+  form_data.append("dno", dno);
 
 
-	   if ($.session.get('mno') == undefined) {
+  if ($.session.get('mno') == undefined) {
 
-	     alert("로그인 후 이용해주십시오.");
+    alert("로그인 후 이용해주십시오.");
 
-	   } else {
+  } else {
+    $.ajax({
+      url : "walk/ajax/detail_like_check.do",
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      async: false,
+      data : form_data,
+      success : function(resultObj) {
+        console.log("resultObj.like : " + resultObj.like)
+        if (resultObj.like != null ) {
+          like_toggle = 1;
+        } else {
+          like_toggle = 0;
+        }
+        console.log("like_toggle : " + like_toggle)
+        if(like_toggle == 0) {
+          $.ajax({
+            url : "walk/ajax/likeAdd.do",
+            dataType : "json",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            async: false,
+            data : form_data,
+            success : function(resultObj) {
+              $('#likeCount').remove();
+              $('#like-section').append("<span id='likeCount'>" + resultObj.like + "</span>")
+            } 
+          });
 
-	     if(like_toggle == 0) {
-/* 	        $.ajax({
-	             url : "../boastboard/ajax/like_add.do",
-	             dataType : "json",
-	             type : "POST",
-	             contentType : false,
-	             processData : false,
-	             async: false,
-	             data : like_data,
-	             success : function(resultObj) { */
-	               $('#likeCount').remove();
-	               $('#like-section').append("<span id='likeCount'>" + 1001 + "</span>")
-/* 	             } });  */
+          $('#likes').css({"color":"blue"});
+          like_toggle = 1;
 
-	        $('#likes').css({"color":"blue","font-size": "25px"});
-	          like_toggle = 1;
+        } else if(like_toggle == 1) {
 
-	     } else if(like_toggle == 1) {
+          $.ajax({
+            url : "walk/ajax/likeDel.do",
+            dataType : "json",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            async: false,
+            data : form_data,
+            success : function(resultObj) { 
+              $('#likeCount').remove();
+              $('#like-section').append("<span id='likeCount'>" + resultObj.like + "</span>")
+            } 
+          }); 
 
-	     /*      $.ajax({
-	             url : "../boastboard/ajax/like_delete.do",
-	             dataType : "json",
-	             type : "POST",
-	             contentType : false,
-	             processData : false,
-	             async: false,
-	             data : like_data,
-	             success : function(resultObj) { */
-	               $('#likeCount').remove();
-	               $('#like-section').append("<span id='likeCount'>" + 1000 + "</span>")
-	     /*         } }); */
-
-	         $('#likes').css({"color":"#767475","font-size": "25px"});
-	         like_toggle = 0;
-	     }
-
-	   }
-
-	 });
+          $('#likes').css({"color":"#767475"});
+          like_toggle = 0;
+        }
+      } 
+    });
+  }
+});
 </script>
 </body>
 
