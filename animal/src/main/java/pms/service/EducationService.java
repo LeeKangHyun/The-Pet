@@ -6,12 +6,16 @@ import pms.domain.Education;
 
 public interface EducationService {
 	
-	List<Education> getEducationList(int pageNo, int pageSize,
-			String keyword, String align);
+	List<Education> getEducationList(int pageNo);
+	List<Education> getEducationLast();
 	
 	Education getOneEducation(int eduNo);
 	
-	void add(Education education);
+	Education pages();
+	
+	void addViews(int eduNo);
+	
+	void insert(Education education);
 	
 	void remove(int eduNo, int mno);
 	

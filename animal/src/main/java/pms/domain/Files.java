@@ -12,6 +12,8 @@ public class Files implements Serializable {
 	protected int matNo;				// file이 올려진 짝짓기 게시물 번호 
 	protected int sno;					// file이 올려진 분양 게시물 번호
 	protected int dno;					// file이 올려진 일정(자랑하기, 산책코스) 게시물 번호
+  protected int width;
+  protected int height;
 	
 	///////////////////////////
 	protected String fName;
@@ -19,6 +21,18 @@ public class Files implements Serializable {
 	
 	public Files () {}
 
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
 	public int getFno() {
 		return fno;
 	}

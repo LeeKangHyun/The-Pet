@@ -32,12 +32,6 @@
   padding-left: 10px;
 }
 
-hr {
-  border: 1px;
-  border-style: groove;
-  border-color: darkgray;
-}
-
 #button-form {
   display: inline;
 }
@@ -484,32 +478,15 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   position:relative;
   text-align: center;
   margin: 0 auto;
-  font-size: 18px;
-  width: 1024px;
+  font-size: 20px;
+  width: 992px;
   background-color: #2d335e;
-  border: 1px #2d335e solid;
-}
-
-#moreSearch {
-  position:relative;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 18px;
-  width: 1024px;
-  background-color: #2d335e;
-  border: 1px #2d335e solid;
 }
 
 #moreBtn {
   text-decoration: none;
-  color: #fff;
+  color: #000;
 }
-
-a#moreBtn:visited {
-  color:inherit;
-}
-
-
 
 .quick-menu {
   border: 1px #DBDBDB solid;

@@ -9,7 +9,7 @@ import pms.domain.Walk;
 public interface WalkService {
   int add(Walk walk);
   
-  List<Walk> list(int sno);
+  List<Walk> list(int dno);
   
   List<Diary> selectList(Map<String, Object> paramMap);
   
@@ -17,4 +17,5 @@ public interface WalkService {
 
   int view(Diary diary);
   
+  int remove(int dno);
 }

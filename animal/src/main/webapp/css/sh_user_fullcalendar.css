@@ -94,3 +94,22 @@
 .fc-basic-view .fc-day-number {
 	padding: 0 6px;
 }
+
+.fc-unthemed .fc-popover {
+	background-color: #fff;
+}
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header {
+	background: #3e4680;
+  color: #fff;
+}
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border: none;
+	color: #fff;
+}

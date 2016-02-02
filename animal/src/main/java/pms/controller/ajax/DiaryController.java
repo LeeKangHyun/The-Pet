@@ -26,6 +26,7 @@ import pms.service.CommentService;
 import pms.service.DiaryService;
 import pms.service.FilesService;
 import pms.service.PetService;
+import pms.service.WalkService;
 import pms.util.MultipartHelper;
 
 @Controller("ajax.DiaryController")
@@ -37,6 +38,7 @@ public class DiaryController {
 	@Autowired PetService petService;
 	@Autowired FilesService filesService;
 	@Autowired CommentService commentService;
+	@Autowired WalkService walkService;
 	@Autowired ServletContext servletContext;
 	
 	@RequestMapping("events")
@@ -52,6 +54,7 @@ public class DiaryController {
 		String frontEnd = "";
 		int backEnd = 0;
 		String fullEnd = "";
+		Pet pet = null;
 		for (Diary d: events) {
 			
 			frontEnd = d.getEndDate().substring(0, 8);
@@ -65,7 +68,10 @@ public class DiaryController {
 			m.put("title", d.getTitle());
   		m.put("description", d.getContent());
 			m.put("hide", d.isDhide());
-			m.put("color", d.getTagColor());
+			
+			pet = petService.getOnePet(d.getPno());
+			m.put("color", pet.getTagColor());
+			
 			dummyDate.add(m);
 		}
 		
@@ -79,10 +85,10 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("walklist")
-	public Object list(int sno) throws Exception {
+	public Object list(int dno) throws Exception {
 	  
 	  Diary diary;
-	  diary = diaryService.detail(sno);
+	  diary = diaryService.detail(dno);
 	  
 	  return diary;
 	}
@@ -119,7 +125,7 @@ public class DiaryController {
 	@RequestMapping("delete")
 	public AjaxResult delete(
 			int dno) throws Exception {
-		
+		walkService.remove(dno);
 		commentService.removeComment(dno);
 		filesService.removeDairyFile(dno);
 		diaryService.remove(dno);

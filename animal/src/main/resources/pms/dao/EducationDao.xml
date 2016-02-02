@@ -14,7 +14,7 @@
     <result column="EDU_TYPE" property="eduType" /> 
   </resultMap>
   
-  <select id="selectList" resultMap="educationMap" parameterType="map">
+  <select id="educationList" resultMap="educationMap" parameterType="int">
     select
       EDU_NUM as eduNo,
       EDU_TITLE as eduTitle,
@@ -22,14 +22,17 @@
       EDU_CRE as eduCreateDate,
       EDU_VIEWS as eduViews
     from Education 
-    order by
-    <choose>
-      <otherwise>EDU_CRE </otherwise>
-    </choose>
-    <choose>
-      <when test="align == 'asc'">asc</when>
-      <otherwise>desc</otherwise>
-    </choose>
+    order by EDU_NUM desc
+      limit #{startIndex}, 8
+  </select>
+  
+  <select id="educationLast" resultMap="educationMap">
+    select *
+    from education
+  </select>
+  
+  <select id="count" resultMap="educationMap">
+    select count(*) as count from education
   </select>
     
   <update id="addViews" parameterType="int">

@@ -8,11 +8,13 @@
   <resultMap type="files" id="filesMap">
     <id   column="FILE_NUM"     property="fno"/>
   <result column="FILE_NAME"    property="fileName"/>
-  <result column="EDU_NUM"    property="eduNo"/>
-  <result column="MAT_NUM"    property="matNo"/>
-  <result column="S_NUM"      property="sno"/>  
-  <result column="SCH_NUM"    property="dno"/>
-  <result column="fname" property="fName"/>
+  <result column="EDU_NUM"    	property="eduNo"/>
+  <result column="MAT_NUM"    	property="matNo"/>
+  <result column="S_NUM"      	property="sno"/>  
+  <result column="SCH_NUM"   	property="dno"/>
+  <result column="fname" 		property="fName"/>
+  <result column="width" 		property="width"/>
+  <result column="height" 		property="height"/> 
  </resultMap>
 
   <select id="DiaryFileList" resultMap="filesMap" parameterType="int">
@@ -40,8 +42,8 @@
   </select>
   
   <insert id="insert" parameterType="files">
-    insert into files(FILE_NAME,SCH_NUM) 
-    values(#{fileName},#{dno})
+    insert into files(FILE_NAME,SCH_NUM,width,height) 
+    values(#{fileName},#{dno},#{width},#{height})
   </insert>
   
   <insert id="eduInsert" parameterType="files">
@@ -50,8 +52,8 @@
   </insert>
   
   <insert id="matInsert" parameterType="files">
-    insert into files(FILE_NAME,MAT_NUM)
-    values(#{fileName},#{matNo})
+    insert into files(FILE_NAME,MAT_NUM,width,height)
+    values(#{fileName},#{matNo},#{width},#{height})
   </insert>
   
   

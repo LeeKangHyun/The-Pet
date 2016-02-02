@@ -15,27 +15,23 @@ public class DefaultEducationService implements EducationService {
 
 	@Autowired EducationDao educationDao;
 	
-	@Override
-	public List<Education> getEducationList(
-			int pageNo,
-			int pageSize,
-			String keyword,
-			String align) {
-		HashMap<String, Object> paramMap = new HashMap<>();
-		paramMap.put("startIndex", (pageNo - 1) * pageSize);
-		paramMap.put("length", pageSize);
-    paramMap.put("keyword", keyword);
-    paramMap.put("align", align);
-    
-    return educationDao.selectList(paramMap);
+	public List<Education> getEducationList(int pageNo) {
+		pageNo = (pageNo - 1) * 8;
+    return educationDao.educationList(pageNo);
 	}
 	
-	@Override
-	public void add(Education education) {
+	public List<Education> getEducationLast() {
+		return educationDao.educationLast();
+	}
+	
+	public Education pages() {
+		return educationDao.count();
+	}
+	
+	public void insert(Education education) {
 		educationDao.insert(education);
 	}
 	
-	@Override
 	public void remove(int eduNo, int mno) {
 		HashMap<String,Object> paramMap = new HashMap<>();
 		paramMap.put("eduNo", eduNo);
@@ -44,14 +40,16 @@ public class DefaultEducationService implements EducationService {
 		educationDao.delete(paramMap);
 	}
 	
-	@Override
 	public void change(Education education) {
 		educationDao.update(education);
 	}
 	
-	@Override
 	public Education getOneEducation(int eduNo) {
 		educationDao.addViews(eduNo);
 		return educationDao.selectOne(eduNo);
+	}
+
+	public void addViews(int eduNo) {
+		educationDao.addViews(eduNo);
 	}
 }

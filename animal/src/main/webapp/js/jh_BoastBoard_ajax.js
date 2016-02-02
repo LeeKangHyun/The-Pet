@@ -22,18 +22,13 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 				topcheck1 == "png" ||
 				topcheck1 == "gif" ||
 				topcheck1 == "bmp") {
-      
-      
-
-      
-        
  
       
       $("<div class='box1 gallery'>")
       .html(
           "<div class='card'>" +
           "<div class='background'>" +
-          "<img src='../files/" + resultObj.data[i].filename + "' class='' id='c" + i + "'>" +
+          "<img src='../files/" + resultObj.data[i].filename + "' class=''>" +
           "</div>" +
           "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
           "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -92,30 +87,6 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 		}
 	}
   
-    
-  for (var i = 0; i < 3; i++) {
-    var img = new Image();
-    var ids = "c" + i;
-    console.log(ids)
-    var urls = document.getElementById(ids).src;
-    img.src = urls;
-
-    $('#c'+i).load(function() {
-      var height = img.height;
-      var width = img.width;
-
-      console.log("c" + i + "의 가로 : " + width);
-      console.log("c" + i + "의 세로 : " + height);
-
-      var clas;
-
-      if (height > width) {
-        clas = "portrait";
-      } else {
-        clas = "landscape";
-      }
-    });
-  }
 });
 
 
