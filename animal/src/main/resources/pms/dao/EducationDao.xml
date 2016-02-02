@@ -37,25 +37,19 @@
     
   <update id="addViews" parameterType="int">
     update Education set
-      EDU_VIEWS = EDU_VIEWS + 1
-    where EDU_NUM=#{value}
+      EDU_VIEWS=EDU_VIEWS+1
+    where EDU_NUM=#{eduNo}
   </update>
   
   <select id="selectOne" resultMap="educationMap" parameterType="int">
     select
-      edu.EDU_NUM as eduNo,
-      edu.EDU_TITLE as eduTitle,
-      edu.EDU_CONTENT as eduContent,
-      edu.EDU_CRE as eduCreateDate,
-      edu.EDU_VIEWS as eduViews,
-      f.FILE_NUM as fNo,
-      f.FILE_NAME as fName,
-      c.CMT_NUM as cNo,
-      c.CMT_CONTENT as cContent
-    from Education edu
-      left outer join Files f on edu.EDU_NUM = f.EDU_NUM
-      left outer join Comment c on f.EDU_NUM = c.EDU_NUM
-    where edu.EDU_NUM = #{value}
+      EDU_NUM as eduNo,
+      EDU_TITLE as eduTitle,
+      EDU_CONTENT as eduContent,
+      EDU_CRE as eduCreateDate,
+      EDU_VIEWS as eduViews
+    from Education
+    where EDU_NUM = #{value}
   </select>
   
   <insert id="insert" parameterType="education">

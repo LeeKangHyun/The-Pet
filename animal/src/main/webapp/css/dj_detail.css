@@ -1,0 +1,129 @@
+#body {
+	background-color: #000;
+}
+	
+.m_content {
+	position : relative;
+	left : 200px;
+	padding-top : 60px;
+	width : 1024px;
+	height : auto;
+}
+
+#va {
+	position : relative;
+	width : 650px;
+	height : 450px;
+	background-color: #fff;
+}
+
+#va > iframe {
+	width : 650px;
+	height :450px;
+}
+
+#ca {
+	position : relative;
+	top : 30px;
+	width : 650px;
+	height : 150px;
+	padding : 0px;
+	background-color : #fff;
+	box-shadow: 1px 1px 1px 1px grey;
+}
+
+#sa {
+  position : absolute;
+  left : 750px;
+  top : 65px;
+  width : 270px;
+  background-color: #fff;
+}
+
+#ra {
+	position : relative;
+	top : 180px;
+	background-color: #fff;
+	margin-bottom: 30px;
+	height: 400px;
+}
+
+#views {
+	/* position : relative; */
+	font-size : 17px;
+	margin-right:10px;
+  text-align: right;
+}
+
+.title {
+	position : relative;
+	top : -430px;
+	font-size : 24px;
+}
+
+.da {
+	font-size : 15px;
+}
+
+.comtents {
+	padding-bottom: 1px;
+	border-bottom: 2px solid #d06a79;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	height : 300px;
+}
+
+.input {
+	width:600px;
+	font-size: 13px;
+	border-top: 2px solid #d06a79;
+	border-bottom: 2px solid #d06a79;
+	padding: 0 9px;
+	margin-left: 10px;
+}
+
+#comimg {
+	margin-top: 10px;
+	margin-right: 10px;
+	height: 50px;
+	width: 50px;
+	float: !important;
+}
+
+img {
+	float: left;
+	vertical-align: middle;
+}
+
+#comcontent {
+    margin: 10px auto 5px auto;
+    padding: 7px;
+    width: 84%;
+    height: 50px;
+    overflow: visible;
+    border: 2px solid #d06a79;
+    border-radius: 5px;
+    resize: none;
+}
+
+#comAddBtn {
+    position: absolute;
+    min-width: 56x;
+    margin-top: 10px;
+    margin-left: 8px;
+    padding: 11px 12px 12px 12px;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 16px;
+    background-color: #d06a79;
+    color: #fff;
+    border: 2px solid #d06a79;
+    border-radius: 5px;
+}
+
+.comment {
+    margin-top: 5px;
+    min-height: 50px;
+    margin-bottom: 7px;
+    color: #000;
+}

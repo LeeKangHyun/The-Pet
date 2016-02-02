@@ -7,7 +7,7 @@ import pms.domain.Comment;
 
 public interface CommentDao {
   List<Comment> DiaryCommentList(int dno);
-  List<Comment> EduCommentList(int eduNo);
+  List<Comment> EduCommentList(Map<String,Object> paramMap);
   List<Comment> MatCommentList(int matNo);
   List<Comment> SaleCommentList(int sno);
   List<Comment> WalkCommentList(Map<String,Object> paramMap);
@@ -16,6 +16,8 @@ public interface CommentDao {
   
   int insert(Comment comment);
   int walkcom(Comment comment);
+  
+  int eduinsert(Comment comment);
   
   int deleteComment(int comNo);
   
