@@ -2,6 +2,7 @@
   padding-top: 50px;
   margin: 0 auto;
   width: 1200px;
+  height: auto;
 }
 
 .btn:hover,
@@ -80,42 +81,41 @@
 .card{
   background: none repeat scroll 0 0 #FFFFFF;
   color: #444444;
+  position: relative;
 }
 
 .card-container, .front, .back {
 	width: 350px;
 	height: 470px;
 }
-.card .cover{
-   
-  width: 350px;
+.card .cover {
   height: 300px;
   overflow: hidden;
 }
-.card .cover img{
+.card .cover img {
   width: 100%;
   height: 100%;
-/*  position: absolute;*/
-/*  top: 50%;*/
-/*  left: 50%;*/
-  transform: translate(0%, -10%);
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
-/* 세로로 긴 사진 */
+/* 세로가 긴 이미지 */
 .card .cover img.portrait {
   width: 100%;
   max-width: none;
   height: auto;
 }
-
-/* 가로로 긴 사진 */
+/* 가로가 긴 이미지 */
 .card .cover img.landscape {
   width: auto;
   max-width: none;
   height: 100%;
 }
 
-.card .user{
+.card .user {
+  position: relative;
   border-radius: 50%;
   display: block;
   height: 120px;
@@ -123,11 +123,17 @@
   overflow: hidden;
   width: 120px;
 }
+
+.cover img {
+  
+}
+
 .card .user img{
   background: none repeat scroll 0 0 #FFFFFF;
   border: 4px solid #FFFFFF;
   width: 100%;
   height: 100%;
+  
 }
 
 .card .content{

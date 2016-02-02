@@ -23,10 +23,10 @@
     where SCH_NUM=#{value}
   </select>
   
-  <select id="size" resultMap="filesMap" parameterType="string">
+  <select id="size" resultMap="filesMap" parameterType="int">
   	select *
   	from files
-  	where FILE_NAME=#{fileName}
+  	where SCH_NUM=#{dno}
   </select>
   
   <select id="EduFileList" resultMap="filesMap" parameterType="int">

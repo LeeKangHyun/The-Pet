@@ -6,12 +6,12 @@ import java.io.Serializable;
 public class Member implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	protected int mno; 			 // 회원 번호
-	protected String mName;  // 회원 이름
-	protected String mEmail; // 회원 이메일
-	protected String password; // 회원 비밀번호
-	protected String tel; 			 // 회원 전화번호
-	protected String mImg;		 // 회원 이미지 정보
+	protected int mno; 					// 회원 번호
+	protected String mName;  		// 회원 이름
+	protected String mEmail; 		// 회원 이메일
+	protected String password; 	// 회원 비밀번호
+	protected String tel; 			// 회원 전화번호
+	protected String mImg;			// 회원 이미지 정보
 	
 	public Member() {}
 
