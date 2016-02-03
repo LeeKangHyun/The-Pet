@@ -16,7 +16,7 @@
   <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
   
   <!-- 지호가 만든 css -->
-  <link href="../css/jh_pictures.css" type="text/css" rel="stylesheet">
+  <link href="css/jh_pictures.css" type="text/css" rel="stylesheet">
   
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -80,12 +80,8 @@
       
       <div class="walk">
               
-        <div id="cardSec">
-          
-          <a class="subtitles" href="#"><h2><i class="lnr lnr-leaf"></i> 산책하기 Top3</h2></a>
-        </div>
-        
         <div id="cardSection">
+          <a class="subtitles" href="walk.html"><h2><i class="lnr lnr-leaf"></i> 산책하기 Top3</h2></a>
            
           
 
@@ -121,6 +117,29 @@
       
   </section>
 
+<script>
+function detailWalk(dno) {
+
+  var view_data = new FormData();
+  view_data.append("dno", dno);
+
+  $.ajax({
+    url : "walk/ajax/view.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : view_data,
+    success : function(resultObj) {
+
+    }
+  });
+
+  location.href = 'walkDetail.html?dno=' + dno;
+  location.replace('walkDetail.html?dno=' + dno);
+}
+</script>
+  
 <script>
 $(document).ready(function() {
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
@@ -234,7 +253,7 @@ $(document).ready(function() {
 
               "<div class='content'>" +
 
-                "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                "<a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
                   "<div class='main'>" +
                     "<h3 class='name'>" + mem.mName + "</h3>" +
 
