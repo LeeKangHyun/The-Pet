@@ -27,6 +27,7 @@
   		SCH_NUM,
   		PET_NUM,
   		START_DATE,
+      CATE_CODE,
   		END_DATE,
   		SCH_TITLE,
   		SCH_CONTENT,

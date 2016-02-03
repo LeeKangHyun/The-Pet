@@ -66,6 +66,7 @@ public class DiaryController {
 			m.put("start", d.getStartDate());
 			m.put("end", fullEnd);
 			m.put("title", d.getTitle());
+			m.put("cateCode", d.getCateCode());
   		m.put("description", d.getContent());
 			m.put("hide", d.isDhide());
 			m.put("color", d.getTagColor());
@@ -132,6 +133,13 @@ public class DiaryController {
 	}
 	
 	/////////// 위까진 성공
+	@RequestMapping(value="walkUpdate", method=RequestMethod.POST)
+	public Object walkupdate(
+	    Diary diary
+	) throws Exception {
+	  return 0;
+	}
+	
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public AjaxResult update(
@@ -157,6 +165,7 @@ public class DiaryController {
 		
 		return new AjaxResult("success", null);
 	}
+	
 
 
 
