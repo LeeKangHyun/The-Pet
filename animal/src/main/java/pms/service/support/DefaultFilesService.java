@@ -49,6 +49,9 @@ public class DefaultFilesService implements FilesService {
   }
   ///////////////////////////////////////////
   
+  public int removeOne(int fno) {
+  	return filesDao.delOne(fno);
+  }
   
   public int removeDairyFile(int dno) {
   	return filesDao.deleteDairyFile(dno);

@@ -21,6 +21,7 @@ public interface FilesDao {
   void fadd(Files files);
   //////////////////////////////////
   
+  int delOne(int fno);
   
   int deleteDairyFile(int dno);
   int deleteEduFile(int eduNo);

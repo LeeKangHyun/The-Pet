@@ -62,6 +62,10 @@
     values(#{fileName},#{matNo},#{width},#{height})
   </insert>
   
+  <delete id="delOne" parameterType="int">
+  	delete from files
+  	where FILE_NUM=#{fno}
+  </delete>
   
   <delete id="deleteDairyFile" parameterType="int">
     delete from files 

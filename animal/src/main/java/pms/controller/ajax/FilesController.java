@@ -58,6 +58,16 @@ public class FilesController {
 		return new AjaxResult("success", null);
 	}
 	
+	@RequestMapping(value="delOneImg", method=RequestMethod.POST)
+	public Object delOneImg(int fno) throws Exception {
+		
+		if (filesService.removeOne(fno) <= 0) {
+			return new AjaxResult("failure", null);
+		} 
+		
+		return new AjaxResult("success", null);
+	}
+	
 	@RequestMapping(value="matUpload", method=RequestMethod.POST)
 	public Object matAdd(
 	    Files files,

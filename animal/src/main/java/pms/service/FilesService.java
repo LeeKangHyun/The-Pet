@@ -22,6 +22,8 @@ public interface FilesService {
   void fadd(Files files);
   ////////////////////////////////////
   
+  int removeOne(int fno);
+  
   int removeDairyFile(int dno);
   int removeEduFile(int eduNo);
   int removeMatFile(int matNo);
