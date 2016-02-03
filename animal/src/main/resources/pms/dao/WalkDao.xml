@@ -9,6 +9,7 @@
     <result column="LOC_LAT" 	property="locLat"/>
     <result column="LOC_LNG" 	property="locLng"/>
     <result column="LOC_NAME" 	property="locName" />
+    <result column="LOC_DONG" property="locDong" />
     <result column="SCH_NUM" 	property="dno"/>
   </resultMap>
   
@@ -79,13 +80,13 @@
 
   
   <select id='selectName' resultMap='walkMap'>
-    select LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM
+    select LOC_LAT, LOC_LNG, LOC_NAME, LOC_DONG, SCH_NUM
     from location
   </select>
 
   <insert id="add" parameterType="walk">
-    insert into location(LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM)
-    values(#{locLat}, #{locLng}, #{locName}, #{dno})
+    insert into location(LOC_LAT, LOC_LNG, LOC_NAME, LOC_DONG, SCH_NUM)
+    values(#{locLat}, #{locLng}, #{locName}, #{locDong}, #{dno})
   </insert>
   
   <select id="count" resultType="double">

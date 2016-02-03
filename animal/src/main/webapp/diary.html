@@ -468,7 +468,7 @@
 
   <!-- 파일 업로드 파일 이름뜨는부분 -->
   <script src="js/sh_custom-file-input.js"></script>
-  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77"></script>
+  <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
   <script type='text/javascript' src='js/kh_map_walk.js'></script>
 
   <!-- 캘린더 스크립트 -->
@@ -564,7 +564,7 @@
               } else {
                 fullEnd = frontEnd + backEnd;
               }
-              
+
               console.log(event.start.format().substring(0,10))
               console.log(event.start.format())
               console.log(fullEnd)
@@ -589,7 +589,7 @@
                 success: function(re) {
                   var img = $("#scrollImg");
                   var ajaxResult = re.ajaxResult;
-                  
+
                   console.log(ajaxResult.data.length)
                   if (ajaxResult.data.length <= 1) {
                     document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
@@ -906,42 +906,49 @@
             success: function(re) {
               console.log(re);
               var lastDno = re.ajaxResult.data;
-              $.ajax({
-                url: "walk/ajax/add.do",
-                dataType: "json",
-                type: "post",
-                data: {
-                  locLat: dotlat,
-                  locLng: dotlng,
-                  locName: $('#subtitle').val(),
-                  dno: lastDno
-                },
-                success: function(resultObj) {
-                  deleteCircleDot();
-                  for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                    var file_data = $("#file-1").prop("files")[i];
-                    var file_name = file_data.name;
-                    var form_data = new FormData();
-                    form_data.append("file", file_data)
-                    form_data.append("fName", file_name)
-                    form_data.append("dno", lastDno)
-                    $.ajax({
-                      url: "files/ajax/upload.do",
-                      dataType: 'json',
-                      cache: false,
-                      contentType: false,
-                      processData: false,
-                      data: form_data,
-                      type: 'post',
-                      success: function(resultObj) {
-                          console.log(file_name)
-                      }
-                    })
+              var geocoder = new daum.maps.services.Geocoder();
+              geocoder.coord2detailaddr({
+                  coord: new daum.maps.LatLng(dotlat, dotlng),
+                  callback: function(status, result) {
+                      $.ajax({
+                          url: "walk/ajax/add.do",
+                          dataType: "json",
+                          type: "post",
+                          data: {
+                              locLat: dotlat,
+                              locLng: dotlng,
+                              locName: $('#subtitle').val(),
+                              dno: lastDno,
+                              locDong: result[0].region
+                          },
+                          success: function(resultObj) {
+                              deleteCircleDot();
+                              for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                                  var file_data = $("#file-1").prop("files")[i];
+                                  var file_name = file_data.name;
+                                  var form_data = new FormData();
+                                  form_data.append("file", file_data)
+                                  form_data.append("fName", file_name)
+                                  form_data.append("dno", lastDno)
+                                  $.ajax({
+                                      url: "files/ajax/upload.do",
+                                      dataType: 'json',
+                                      cache: false,
+                                      contentType: false,
+                                      processData: false,
+                                      data: form_data,
+                                      type: 'post',
+                                      success: function(resultObj) {
+                                          console.log(file_name)
+                                      }
+                                  })
+                              }
+                              alert("다이어리에 산책코스가 추가되었습니다.")
+                              location.href = "diary.html"
+                          }
+                      })
                   }
-                  alert("다이어리에 산책코스가 추가되었습니다.")
-                  location.href = "diary.html"
-                }
-              })
+              });
             }
           });
       }

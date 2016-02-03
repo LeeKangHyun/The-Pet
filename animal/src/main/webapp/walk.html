@@ -92,8 +92,6 @@ function detailWalk(dno) {
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var geocoder = new daum.maps.services.Geocoder();
-  var coord;
   $.ajax({
     url : "walk/ajax/selectList.do",
     dataType : "json",
@@ -114,10 +112,11 @@ $(document).ready(function(){
         file = resultObj.filesMap[i];
         mem = resultObj.memberMap[i];
         var content = '';
-
+        var jibun = '';
         for (var j = 0; j < resultObj.name.length; j++) {
             if (resultObj.data[i].dno == resultObj.name[j].dno) {
                 content = resultObj.name[j].locName;
+                jibun = resultObj.name[j].locDong;
             }
         }
 
@@ -157,8 +156,8 @@ $(document).ready(function(){
 
                     "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
                     "<h5 id='jibun" + i + "'>" +
-                    //   "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                    //   jibun +
+                      "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                      jibun +
                     "</h5>" +
                   "</div>" +
                 "</a>" +
@@ -210,48 +209,31 @@ $(document).ready(function(){
         ).appendTo(div);
 
       }
-      var coord = new Array();
-      for (var i = 0; i < resultObj.data.length; ) {
-        for (var j = 0; j < resultObj.name.length; ) {
-            if (resultObj.data[i].dno == resultObj.name[j].dno) {
-                coord.push({
-                    lat: resultObj.name[j].locLat,
-                    lng: resultObj.name[j].locLng
-                })
-            }
-            j++;
-        }
-        i++;
-    }
-    console.log(coord);
-    var jibun = new Array();
-    for (var i = 0; i < coord.length; i++) {
-        var k = 0;
-        geocoder.coord2detailaddr({
-            coord: new daum.maps.LatLng(coord[i].lat, coord[i].lng),
-            callback: function(status, result) {
-                if (status === daum.maps.services.Status.OK) {
-                    jibun = result[0].jibunAddress;
-                    $("#jibun" + k++).append("<i class='fa fa-map-marker fa-fw text-muted'></i>" + jibun.name);
-                    console.log(jibun);
-                }
-            }
-        })
-    }
 
       //    <!-- 지도 나오기 -->
       for (var i=0; i < resultObj.data.length; i++) {
         var ids = 'map' + i;
-        var mapContainer = document.getElementById(ids),
-          // 지도를 표시할 div
-          mapOption = {
-            center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3, // 지도의 확대 레벨
-            draggable: false,
-            scrollwheel: false
-          };
-
+        var coord = new daum.maps.LatLng();
+        for (var j = 0; j < resultObj.name.length; j++) {
+            if (resultObj.data[i].dno === resultObj.name[j].dno) {
+                var mapContainer = document.getElementById(ids),
+                // 지도를 표시할 div
+                mapOption = {
+                    center: new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng),
+                    level: 3,
+                    draggable: false,
+                    scrollwheel: false
+                };
+                coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
+                break;
+            }
+        }
         var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        // map.relayout();
+        var marker = new daum.maps.Marker({
+            map: map,
+            position: coord
+        });
       }
     }
   });
