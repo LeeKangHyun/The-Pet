@@ -26,6 +26,8 @@ $(document).on('click', "#ali", function() {
   $('#hospital').css('background-color', '#2d335e')
   $('#object').css('background-color', '#2d335e')
   $('#cafe').css('background-color', '#2d335e')
+  removeAllChildNods(document.getElementById('placesList'));
+  removeMarker();
 });
 
 $(document).on('click', "#hospital", function() {
@@ -91,34 +93,6 @@ navigator.geolocation.getCurrentPosition(function (position) {
     }
   });
 });
-
-// $(document).on("click", "#pet", function(event) {
-//   ps.keywordSearch({
-//     keyword: event.target.value,
-//     callback: placesSearchCB,
-//     radius: 1000,
-//     location: new daum.maps.LatLng(37.566826, 126.9786567)
-//   })
-// });
-
-// // 키워드 검색을 요청하는 함수입니다
-// function searchPlaces() {
-//
-//   var keyword = document.getElementById('keyword').value;
-//
-//   if (!keyword.replace(/^\s+|\s+$/g, '')) {
-//     alert('키워드를 입력해주세요!');
-//     return false;
-//   }
-//
-//   // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-//   ps.keywordSearch({
-//     keyword: keyword,
-//     callback: placesSearchCB,
-//     radius: 1000,
-//     location: new daum.maps.LatLng(37.566826, 126.9786567)
-//   });
-// }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(status, data, pagination) {
@@ -200,7 +174,7 @@ function displayPlaces(places) {
 
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
-  console.log(places)
+  //console.log(places)
   var el = document.createElement('li'),
       itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
       '<div class="info">' +
