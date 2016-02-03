@@ -13,7 +13,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 	} else if (resultObj.data.length >= 3) {
 		length = 3;
 	}  
-
+	var setClass;
 	for(var i = 0; i < length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
 		topcheck1 = topcheck1.slice(1,2).toString().toLowerCase();
@@ -23,13 +23,20 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 				topcheck1 == "png" ||
 				topcheck1 == "gif" ||
 				topcheck1 == "bmp") {
-
+			
+			console.log("가로 : " + resultObj.size[i].width);
+			console.log("세로 : " + resultObj.size[i].height);
+			if (resultObj.size[i].width > resultObj.size[i].height) {
+				setClass="landscape"
+			} else {
+				setClass="portrait"
+			}
 
 			$("<div class='box1 gallery'>")
 			.html(
 					"<div class='card'>" +
 					"<div class='background'>" +
-					"<img src='../files/" + resultObj.data[i].filename + "' class=''>" +
+					"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "'>" +
 					"</div>" +
 					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
 					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -58,12 +65,20 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 				topcheck1 == "mp4" ||
 				topcheck1 == "mkv" ||
 				topcheck1 == "wav") {
+			
+			console.log("가로 : " + resultObj.size[i].width);
+			console.log("세로 : " + resultObj.size[i].height);
+			if (resultObj.size[i].width > resultObj.size[i].height) {
+				setClass="landscape"
+			} else {
+				setClass="portrait"
+			}
 
 			$("<div class='box1 gallery'>")
 			.html(
 					"<div class='card'>" +
 					"<div class='background'>" +
-					"<img src='../files/" + resultObj.data[i].filename + "'>" + 
+					"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "'>" + 
 					"</div>" +
 					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -110,8 +125,8 @@ $(document).ready(function() {
 			console.log("불러온 데이터 갯수....." + resultObj.data.length);
 
 			var setClass;
-			for(var n = 0; n < resultObj.data.length; n++ ) {
-				var check1 = resultObj.data[n].filename.split(".");
+			for(var i = 0; i < resultObj.data.length; i++ ) {
+				var check1 = resultObj.data[i].filename.split(".");
 				check1 = check1.slice(1,2).toString().toLowerCase();
 
 				if(check1 == "jpg" ||
@@ -119,32 +134,32 @@ $(document).ready(function() {
 						check1 == "png" ||
 						check1 == "gif" ||
 						check1 == "bmp") {
-					console.log("가로 : " + resultObj.size[n].width);
-					console.log("세로 : " + resultObj.size[n].height);
-					if (resultObj.size[n].width > resultObj.size[n].height) {
+					console.log("가로 : " + resultObj.size[i].width);
+					console.log("세로 : " + resultObj.size[i].height);
+					if (resultObj.size[i].width > resultObj.size[i].height) {
 						setClass="landscape"
 					} else {
 						setClass="portrait"
 					}
 
-					$("<div class='boxsub1 gallery mix " +resultObj.data[n].pSpec + "'>")
+					$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
 					.html(
 							"<div class='card'>" +
 							"<div class='background'>" +
-							"<img src='../files/" + resultObj.data[n].filename + "' class='" + setClass + "' />" +
+							"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "' />" +
 							"</div>"+
-							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[n].dno+")'></a> " +
-							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[n].dno+")'>"+ 
+							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
+							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 							"<i class='fa fa-camera-retro'></i>"+
-							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[n].dno+")'></a>"+
+							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
 							"<h2>"+
-							"<a href='#' onclick='detailBoastBoard("+resultObj.data[n].dno+")'>"+resultObj.data[n].title+"</a>"+
+							"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 							"</h2>"+
 							"<div class='foot'>"+
-							"<i class='line'></i> <span class='date'>"+resultObj.data[n].createDate+"</span>"+
-							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[n].view+
-							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[n].like +" </span>"+
+							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
 							"</div>"+
 							"</div>"+
 					"</div>").appendTo(div);
@@ -154,31 +169,31 @@ $(document).ready(function() {
 						check1 == "mkv" ||
 						check1 == "wav") {
 
-					console.log("가로 : " + resultObj.size[n].width);
-					console.log("세로 : " + resultObj.size[n].height);
-					if (resultObj.size[n].width > resultObj.size[n].height) {
+					console.log("가로 : " + resultObj.size[i].width);
+					console.log("세로 : " + resultObj.size[i].height);
+					if (resultObj.size[i].width > resultObj.size[i].height) {
 						setClass="landscape"
 					} else {
 						setClass="portrait"
 					}
-					$("<div class='boxsub1 gallery mix "+resultObj.data[n].pSpec+"'>")
+					$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
 					.html(
 							"<div class='card'>"+
 							"<div class='background'>"+
-							"<img src='../files/"+resultObj.data[n].filename+"' class='" + setClass + "' />"+
+							"<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
 							"</div>"+
-							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[n].dno+")'>" +
-							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[n].dno+")'>"+ 
+							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
 							"<i class='fa fa-youtube-play'></i>"+
-							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[n].dno+")'></a>"+
+							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
 							"<h2>"+
-							"<a href='#' onclick='detailBoastBoard("+resultObj.data[n].dno+")'>"+resultObj.data[n].title+"</a>"+
+							"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+resultObj.data[i].title+"</a>"+
 							"</h2>"+
 							"<div class='foot'>"+
-							"<i class='line'></i> <span class='date'>"+resultObj.data[n].createDate+"</span>"+
-							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[n].view+
-							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[n].like +" </span>"+
+							"<i class='line'></i> <span class='date'>"+resultObj.data[i].createDate+"</span>"+
+							"<span class='view-like'><i class='fa fa-eye'></i> "+resultObj.data[i].view+
+							" <i class='fa fa-thumbs-o-up'></i> "+ resultObj.data[i].like +" </span>"+
 							"</div>"+
 							"</div>"+
 					"</div>").appendTo(div);
@@ -237,10 +252,10 @@ $(document).ready(function() {
 					var div = $("#subtable");
 					console.log("불러온 데이터 갯수....." + resultObj.data.length);
 
-
+					var setClass;
 					for(var i = 0; i < resultObj.data.length; i++ ) {
 						var check1 = resultObj.data[i].filename.split(".");
-						check1 = check1.slice(1,2);
+						check1 = check1.slice(1,2).toString().toLowerCase();
 						if(check1 == "jpg" ||
 								check1 == "jpeg" ||
 								check1 == "png" ||

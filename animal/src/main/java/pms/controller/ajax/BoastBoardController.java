@@ -93,10 +93,16 @@ public class BoastBoardController {
   public Object rank() throws Exception {
     List<Diary> boastboards = boastBoardDao.rankList();
 
+    List<Files> fileMap = new ArrayList<Files>();
+    
+    for(int i = 0; i < boastboards.size(); i++) {
+      fileMap.add(boastBoardDao.getsize(boastboards.get(i).getFilename()));
+    }
 
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
+    resultMap.put("size", fileMap);
 
     log.debug("Controller/ranktList()....호출");
 
@@ -111,9 +117,6 @@ public class BoastBoardController {
       Diary diary
       ) throws Exception {
 
-    log.debug("diary.getTitle()............."+diary.getTitle());
-    log.debug("diary.getMember()............."+diary.getMember());
-
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
@@ -121,12 +124,19 @@ public class BoastBoardController {
 
 
     List<Diary> boastboards = boastBoardDao.searchList(paramMap);
+    
+    List<Files> fileMap = new ArrayList<Files>();
+    
+    for(int i = 0; i < boastboards.size(); i++) {
+      fileMap.add(boastBoardDao.getsize(boastboards.get(i).getFilename()));
+    }
 
 
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
-
+    resultMap.put("size", fileMap);
+    
     return resultMap;
   }
 
