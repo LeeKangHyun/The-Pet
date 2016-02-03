@@ -80,8 +80,6 @@ public class EductionController {
 		Education education = educationService.getOneEducation(eduNo);
 		List<Files> files = filesService.getEduFile(education.getEduNo());
 		
-		System.out.println(files);
-		System.out.println(education);
 		resultMap.put("status", "success");
 		resultMap.put("education", education);
 		resultMap.put("files", files);

@@ -14,6 +14,7 @@ public interface CommentService {
   List<Comment> getWalkComment(Map<String,Object> paramMap);
   
   Comment pages(int dno);
+  Comment edupages(int eduNo);
   
   int add(Comment comment);
   int walkcom(Comment comment);

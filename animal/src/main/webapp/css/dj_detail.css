@@ -3,7 +3,7 @@
 }
 	
 .m_content {
-	position : relative;
+	position : absolute;
 	left : 200px;
 	padding-top : 60px;
 	width : 1024px;
@@ -11,7 +11,6 @@
 }
 
 #va {
-	position : relative;
 	width : 650px;
 	height : 450px;
 	background-color: #fff;
@@ -23,8 +22,8 @@
 }
 
 #ca {
-	position : relative;
-	top : 30px;
+	position : absolute;
+	top : 530px;
 	width : 650px;
 	height : 150px;
 	padding : 0px;
@@ -41,8 +40,9 @@
 }
 
 #ra {
-	position : relative;
-	top : 180px;
+	position : absolute;
+	width: 650px;
+	top : 200px;
 	background-color: #fff;
 	margin-bottom: 30px;
 	height: 400px;
@@ -56,12 +56,12 @@
 }
 
 .title {
-	position : relative;
-	top : -430px;
+	position : absolute;
 	font-size : 24px;
 }
 
 .da {
+	position : absolute;
 	font-size : 15px;
 }
 

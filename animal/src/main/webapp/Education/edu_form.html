@@ -126,11 +126,7 @@
         	  "<hr>" + "<div class='da'>작성일 : " + education.eduCreateDate + "</div>" +
         		"</div>")
         .appendTo(ca);
-        $("#eduNo").val(education.eduNo);
-        $("#eduTitle").val(education.eduTitle);
         $("#eduContent").val(education.eduContent);
-        $("#eduViews").text(education.eduViews);
-        
       }
     })
   </script>
@@ -203,11 +199,11 @@
 	      alert("댓글을 입력해 주세요")
 	    } else {
 	        var form_data = new FormData();
-	        form_data.append("dno", eduNo)
+	        form_data.append("eduNo", eduNo)
 	        form_data.append("comComment", $('#comcontent').val())
 	        form_data.append("mno", $.session.get('mno'))
 	        $.ajax({
-	            url: "../comment/ajax/walkcom.do",
+	            url: "../comment/ajax/educom.do",
 	            dataType: 'json',
 	            cache: false,
 	            async: false,
@@ -218,9 +214,9 @@
 	            success: function(re) {
 	            $('#comcontent').val('')
 	            var form_data = new FormData();
-	            form_data.append("dno", eduNo)
+	            form_data.append("eduNo", eduNo)
 	            $.ajax({
-	                url: "comment/ajax/walkcomlist.do",
+	                url: "../comment/ajax/educomlist.do",
 	                dataType: 'json',
 	                cache: false,
 	                contentType: false,
@@ -288,7 +284,7 @@
 	        success: function(re) {
 	            $('#checkModal').modal('hide')
 	            var form_data = new FormData();
-	            form_data.append("dno", eduNo)
+	            form_data.append("eduNo", eduNo)
 	            $.ajax({
 	                url: "../comment/ajax/educomlist.do",
 	                dataType: 'json',
@@ -332,7 +328,7 @@
     console.log(page);
     var cpage = i;
     var form_data = new FormData();
-    form_data.append("dno", eduNo)
+    form_data.append("eduNo", eduNo)
     form_data.append("pageNo", page)
     $.ajax({
         url: "../comment/ajax/educomlist.do",
@@ -371,7 +367,7 @@
             $("#hidden").trigger("click");
             $("button:first").trigger("click");
 
-            $.getJSON('../comment/ajax/pages.do?dno=' + eduNo, function(resultObj) {
+            $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
                 var ajaxResult = resultObj.ajaxResult;
                 console.log(cpage);
                 if (ajaxResult.data == cpage) {

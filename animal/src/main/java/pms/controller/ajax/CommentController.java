@@ -80,18 +80,15 @@ public class CommentController {
   @RequestMapping("educomlist")
   public Object educomlist(
       @RequestParam(defaultValue="0") int pageNo, 
-      int dno
+      int eduNo
       ) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", pageNo);
-    paramMap.put("dno", dno);
+    paramMap.put("eduNo", eduNo);
     
     List<Comment> comments = commentService.getEduComment(paramMap);
-    System.out.println(comments);
-    
     List<Member> memberMap = new ArrayList<>();
-
     for (Comment c : comments) {
       Member member = memberService.oneMember(c.getMno());
       memberMap.add(member);
@@ -147,7 +144,16 @@ public class CommentController {
 
     return new AjaxResult("success", page);
   }
+  
+  @RequestMapping("edupages")
+  public Object edupages(int eduNo) throws Exception {
+  		Comment pages = commentService.pages(eduNo);
 
+    double page = Math.ceil(pages.getCount()/10);
+
+    return new AjaxResult("success", page);
+  }
+  
   @RequestMapping("delete")
   public AjaxResult delete(
       int comNo) throws Exception {

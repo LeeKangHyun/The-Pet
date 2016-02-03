@@ -36,6 +36,10 @@ public class DefaultCommentService implements CommentService {
     return commentDao.count(dno);
   }
   
+  public Comment edupages(int eduNo) {
+    return commentDao.count(eduNo);
+  }
+  
   public int add(Comment comment) {
   	return commentDao.insert(comment);
   }
