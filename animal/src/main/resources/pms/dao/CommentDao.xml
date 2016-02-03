@@ -85,6 +85,11 @@
   	where CMT_NUM=#{comNo}
   </delete>
   
+  <delete id="delete" parameterType="int">
+    delete from comment
+    where SCH_NUM=#{dno}
+  </delete>
+  
   <!--       update 수정해야함       -->
   <update id="update" parameterType="comment">
     update comment set 
