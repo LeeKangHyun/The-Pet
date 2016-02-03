@@ -45,7 +45,6 @@ public class DefaultEducationService implements EducationService {
 	}
 	
 	public Education getOneEducation(int eduNo) {
-		educationDao.addViews(eduNo);
 		return educationDao.selectOne(eduNo);
 	}
 
