@@ -250,7 +250,7 @@ $(document).ready(function(){
   $.ajax({
     url:"walk/ajax/count.do",
     dataType: "json",
-    async: "json",
+    async: false,
     type: "GET",
     success: function(resultObj) {
       totalPage = resultObj.count;

@@ -140,105 +140,6 @@
         </div>
       </a>
 
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
-      <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">title2</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a>
-
     </div>
 
     <!-- 댓글 삭제 확인 모달 -->
@@ -272,10 +173,10 @@ $(document).ready(function() {
   var no = $.session.get('mno');
   var div = $('#user_info');
   var ul = $('#menu-nav-ul');
-  
+
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-    
+
   } else {
     div.append(
       "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
@@ -287,12 +188,12 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
-    
+
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-    
+
     $('#comimg').attr('src', 'files/' + $.session.get('mimg'));
-    
+
   }
 
   // 로그아웃
@@ -322,7 +223,7 @@ $.ajax({
       $('#m-list').html(re.diary.content)
       $('h3').html(re.diary.title)
       $('#likeCount').html(re.diary.like)
-      
+
       var mno = $.session.get('mno');
       var dno = location.href.split('?')[1].split('=')[1];
       console.log(dno)
@@ -341,9 +242,9 @@ $.ajax({
           async: false,
           data : form_data,
           success : function(resultObj) {
-          
+
             console.log("resultObj.like : " + resultObj.like)
-          
+
             if (resultObj.like != null ) {
               $('#likes').css("color","blue");
               like_toggle = 1;
@@ -352,7 +253,7 @@ $.ajax({
               like_toggle = 0;
             }
             console.log("like_toggle : " + like_toggle)
-          } 
+          }
         });
       }
     }
@@ -427,6 +328,7 @@ $.ajax({
     overlay.setContent(content);
   }
 });
+
 var i = 0;
 // 댓글 리스트
 var form_data = new FormData();
@@ -441,7 +343,7 @@ $.ajax({
     data: form_data,
     type: 'post',
     success: function(re) {
-        console.log(re);
+        // console.log(re);
         $('#comComment').empty();
         var commen = re.comments;
         var comdiv = $('#comComment');
@@ -473,6 +375,14 @@ $.ajax({
         i++;
     }
 });
+
+$.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+    var ajaxResult = resultObj.ajaxResult
+    console.log(resultObj)
+    if (ajaxResult.data == 0) {
+        $('#more').empty();
+    }
+})
 
 // 댓글 추가
 $(document).on('click', '#comAddBtn', function() {
@@ -532,9 +442,18 @@ $(document).on('click', '#comAddBtn', function() {
                         j++;
                     }
                     $('#more').empty();
-                    $('#more').append(
-                        '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
-                    );
+                    $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+                        var ajaxResult = resultObj.ajaxResult
+                        console.log(resultObj)
+                        if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+                            $('#more').empty();
+                        }
+                        else {
+                            $('#more').append(
+                                '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+                            );
+                        }
+                    })
                     i=1;
                 }
             })
@@ -593,9 +512,18 @@ $(document).on("click", "#delCom", function() {
                         j++;
                     }
                     $('#more').empty();
-                    $('#more').append(
-                        '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
-                    );
+                    $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+                        var ajaxResult = resultObj.ajaxResult
+                        console.log(resultObj)
+                        if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+                            $('#more').empty();
+                        }
+                        else {
+                            $('#more').append(
+                                '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+                            );
+                        }
+                    })
                     i=1;
                 }
             })
@@ -676,12 +604,12 @@ function moree(id) {
 
 	 <!-- 좋아요(Likes) Toggle 기능 -->
 $('#likes').click(function(event) {
-  
+
   var mno = $.session.get('mno');
   var dno = location.href.split('?')[1].split('=')[1];
 
   var form_data = new FormData();
-  
+
   form_data.append("mno", mno);
   form_data.append("dno", dno);
 
@@ -719,7 +647,7 @@ $('#likes').click(function(event) {
             success : function(resultObj) {
               $('#likeCount').remove();
               $('#like-section').append("<span id='likeCount'>" + resultObj.like + "</span>")
-            } 
+            }
           });
 
           $('#likes').css({"color":"blue"});
@@ -735,16 +663,16 @@ $('#likes').click(function(event) {
             processData : false,
             async: false,
             data : form_data,
-            success : function(resultObj) { 
+            success : function(resultObj) {
               $('#likeCount').remove();
               $('#like-section').append("<span id='likeCount'>" + resultObj.like + "</span>")
-            } 
-          }); 
+            }
+          });
 
           $('#likes').css({"color":"#767475"});
           like_toggle = 0;
         }
-      } 
+      }
     });
   }
 });
