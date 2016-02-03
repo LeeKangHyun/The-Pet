@@ -473,743 +473,743 @@
 
   <!-- 캘린더 스크립트 -->
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-      // 로그인 회원 정보출력 세션없으면 로그인페이지로
-      var no = $.session.get('mno');
-      if (no == undefined) {
-        location.href = "login.html"
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  if (no == undefined) {
+    location.href = "login.html"
+  }
+  $('#myMno1').val(no);
+  $('#myMno2').val(no);
+
+  var div = $('#user_info');
+  div.append(
+    "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+      "<i class='fa fa-envelope-o'></i>" +
+      "<span class='badge' id='userBadge'>0</span>" +
+    "</a>" +
+    "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+    "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+    "<a role='button' id='outBtn' class='logout'>" +
+      "<i class='fa fa-unlock fa-lg'></i>" +
+    "</a>")
+
+  //    로그아웃
+  $(document).on("click", "#outBtn", function() {
+    $.session.clear();
+    location.href = "login.html"
+  });
+
+  // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/noReadMsg.do',
+    type: 'post',
+//    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      $('#count').html(ajaxResult.data.noReadCount)
+      $('#userBadge').html(ajaxResult.data.noReadCount)
+    }
+  })
+
+  //    켈린더 출력
+  function renderCalendar() {
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'today prevYear',
+        center: 'prev title next',
+        right: 'nextYear',
+      },
+      theme: false, // false : 태마 적용 안함
+      fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
+      weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
+      editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
+      eventLimit: true, // allow "more" link when too many events
+      events: function(start, end, timezone, callback) {
+        $.ajax({
+          url: 'diary/ajax/events.do',
+          dataType: 'json',
+          data: {
+            mno: $.session.get('mno')
+          },
+          type: "get",
+          success: function(doc) {
+            var event = eval(doc.events);
+            callback(event);
+          }
+        });
+      },
+      timeFormat: 'H:mm',
+      eventRender: function(event, element) {
+        element.attr('title', event.tooltip);
+      },
+      eventClick: function(event, jsEvent, view) {
+        var frontEnd;
+        var backEnd;
+        var fullEnd;
+        if (event.end) {
+          frontEnd = event.end.format().substring(0,8);
+          backEnd = Number(event.end.format().substring(8,10)) - 1;
+          if (backEnd > 0 && backEnd < 10) {
+            fullEnd = frontEnd + 0 + backEnd;
+          } else {
+            fullEnd = frontEnd + backEnd;
+          }
+
+          console.log(event.start.format().substring(0,10))
+          console.log(event.start.format())
+          console.log(fullEnd)
+          $('#sdno').val(event.no);
+          $('#modalTitle').html(event.title);
+          $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+          $('#mEnd').val(fullEnd);
+          $('#mColor').val(event.color);
+          $('#mDes').html(event.description);
+          $('#fullCalModal').modal();
+
+          var form_data = new FormData();
+          form_data.append("dno", event.no)
+          $.ajax({
+            url: "files/ajax/list.do",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(re) {
+              var img = $("#scrollImg");
+              var ajaxResult = re.ajaxResult;
+
+              console.log(ajaxResult.data.length)
+              if (ajaxResult.data.length <= 1) {
+                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
+              } else {
+                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
+                for (var file of ajaxResult.data) {
+                  img.append(
+                    "<a role='button' id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>" +
+                    "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                }
+              }
+            }
+          })
+
+        } else {
+          $('#sdno').val(event.no);
+          $('#modalTitle').html(event.title);
+          $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
+          $('#mEnd').val(event.start.format().substring(0,10));
+          $('#mColor').val(event.color);
+          $('#mDes').html(event.description);
+          $('#fullCalModal').modal();
+
+          var form_data = new FormData();
+          form_data.append("dno", event.no)
+          $.ajax({
+            url: "files/ajax/list.do",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(re) {
+              var img = $("#scrollImg");
+              var ajaxResult = re.ajaxResult;
+
+              console.log(ajaxResult.data.length)
+              if (ajaxResult.data.length <= 1) {
+                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
+              } else {
+                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
+                for (var file of ajaxResult.data) {
+                  img.append(
+                    "<a role='button' id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>" +
+                    "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
+                }
+              }
+            }
+          })
+        }
       }
-      $('#myMno1').val(no);
-      $('#myMno2').val(no);
+    });
+  }
+  renderCalendar();
+});
 
-      var div = $('#user_info');
-      div.append(
-        "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
-          "<i class='fa fa-envelope-o'></i>" +
-          "<span class='badge' id='userBadge'>0</span>" +
-        "</a>" +
-        "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
-        "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-        "<a role='button' id='outBtn' class='logout'>" +
-          "<i class='fa fa-unlock fa-lg'></i>" +
-        "</a>")
+// 세션값 받아서 모달에 mno셋팅
+var no = $.session.get('mno');
+$('#myMno1').val(no);
+$('#myMno2').val(no);
+if (no == undefined) {
+  no = 0;
+}
 
-      //    로그아웃
-      $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "login.html"
-      });
+// 펫 수정
+$(document).on("click", "#editPet", function() {
+    var file_data = $("#dfile").prop("files")[0];
+    var file;
+    var file_name;
+    if (file_data != null) {
+      file = "yes";
+      file_name = file_data.name;
+    }
 
-      // 안읽은 받은쪽지 갯수 출력
-      var no = $.session.get('mno');
+    var form_data = new FormData();
+
+    form_data.append("file", file_data)
+
+    if (file == "yes") {
+        form_data.append("fName", file_name)
+    }
+
+    form_data.append("mno", $('#myMno3').val())
+    form_data.append("pno", $('#myPno').val())
+    form_data.append("pName", $('#pdName').val())
+    form_data.append("pSpec", $('#pdSpec').val())
+    form_data.append("pType", $('#pdType').val())
+    form_data.append("tagColor", $('#dtagColor').val())
+    form_data.append("injection", $('#dinjection').val())
+    form_data.append("medicine", $('#dmedicine').val())
+    form_data.append("pImg", $('#oImage').val())
+
+    $.ajax({
+      url: "pet/ajax/update.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        $('#petDetailModal').modal('hide')
+        alert("펫의 정보가 변경되었습니다.")
+        location.href = "diary.html"
+      }
+    })
+  });
+
+// 펫 추가
+$(document).on("click", "#addPetBtn", function() {
+  if ($('#pName').val() == "" ||
+    $('#pType').val() == "" ||
+    $('#medicine').val() == "") {
+    alert("펫의 정보를 입력해주세요")
+    return false;
+  } else {
+    var file_data = $("#file").prop("files")[0];
+    var file;
+
+    if (file_data != null) {
+      file = "yes";
+      var file_name = file_data.name;
+    }
+
+    var form_data = new FormData();
+
+    form_data.append("file", file_data)
+
+    if (file == "yes") {
+        form_data.append("fName", file_name)
+    }
+
+    form_data.append("mno", $('#myMno1').val())
+    form_data.append("pName", $('#pName').val())
+    form_data.append("pSpec", $('#pSpec').val())
+    form_data.append("pType", $('#pType').val())
+    form_data.append("tagColor", $('#tagColor').val())
+    form_data.append("injection", $('#injection').val())
+    form_data.append("medicine", $('#medicine').val())
+
+    $.ajax({
+      url: "pet/ajax/add.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        $('#AddPet').modal('hide')
+        alert("펫이 추가되었습니다.")
+        $("#myPets").empty();
+        $("#pno").html("");
+        var showpet = $('#myPets');
+        var sel = $("#pno");
+        var ajaxResult = re.ajaxResult;
+
+        for (var pet of ajaxResult.data) {
+          showpet.append(
+            "<a class='petdetailBtn' id='" + pet.pno +
+              "' onclick='detail(this.id);'" +
+              "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+              "<div class='myPet'>" +
+                "<input type='hidden' class='pno'>" +
+                "<img class='mImg' src='files/" + pet.pImg + "'>" +
+                "<input class='petName' type='text' value='" + pet.pName +
+                "' disabled>" +
+                "<label class='pName'>이름 : </label>" +
+                "<input class='pColor' type='color' value='" + pet.tagColor +
+                "' disabled>" +
+                "<label class='pInfo'>태그색 : </label>" +
+              "</div>" +
+            "</a>")
+
+          sel.append(
+            "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+        }
+      }
+    })
+  }
+});
+
+// 펫 삭제
+$(document).on("click", "#delPet", function() {
+
+    var form_data = new FormData();
+    form_data.append("pno", $('#myPno').val())
+
+    $.ajax({
+      url: "pet/ajax/delete.do",
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(re) {
+        alert("펫이 삭제되었습니다.")
+//            $('#fullCalModal').modal('hide')
+        location.href="diary.html"
+
+      }
+    })
+  });
+
+<!-- 지도 -->
+$(document).on('click', '#scheduleAdd', function() {
+    $('#AddBoard').modal('show');
+
+    $('#AddBoard').on('shown.bs.modal', function (e) {
+        map.relayout();
+    })
+})
+
+
+
+// 다이어리 추가
+var sel;
+
+$("#cateCode").change(function() {
+    sel = $('#cateCode').val();
+}).change();
+
+$(document).on("click", "#addBtn", function(event) {
+    if (sel === 'ILJUNG') {
+      if ($('#pno').val() == "" ||
+        $('#title').val() == "" ||
+        $('#startDate').val() == "" ||
+        $('#endDate').val() == "" ||
+        $('#fContent').val() == "" ||
+        $('#file-1').val() == "") {
+        alert("모두 입력해주세요")
+        return false;
+      } else {
+        var form_data = new FormData();
+        var x = document.getElementById("dmhide").checked;
+        var q;
+        if (x) {
+            q = 1;
+        } else {
+            q = 0;
+        }
+        console.log(q)
+        form_data.append("mno", $('#myMno2').val())
+        form_data.append("dhide", q)
+        form_data.append("cateCode", $('#cateCode').val())
+        form_data.append("pno", $('#pno').val())
+        form_data.append("startDate", $('#startDate').val())
+        form_data.append("endDate", $('#endDate').val())
+        form_data.append("title", $('#title').val())
+        form_data.append("content", $('#fContent').val())
+        $.ajax({
+          url: "diary/ajax/add.do",
+          dataType: 'json',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+          success: function(re) {
+            var lastDno = re.ajaxResult.data;
+            for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+              var file_data = $("#file-1").prop("files")[i];
+              var file_name = file_data.name;
+              var form_data = new FormData();
+              form_data.append("file", file_data)
+              form_data.append("fName", file_name)
+              form_data.append("dno", lastDno)
+              $.ajax({
+                url: "files/ajax/upload.do",
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(resultObj) {
+                    console.log(file_name)
+                }
+              })
+            }
+            alert("다이어리에 일정이 추가되었습니다.")
+            location.href = "diary.html"
+          }
+        })
+      }
+  } else if (sel === 'SANCHE') {
+    if ($('#pno').val() == "" ||
+      $('#title').val() == "" ||
+      $('#startDate').val() == "" ||
+      $('#endDate').val() == "" ||
+      $('#fContent').val() == "" ||
+      $('#file-1').val() == "" ||
+      $('#subtitle').val() =="") {
+      alert("모두 입력해주세요")
+      return false;
+    } else {
       var form_data = new FormData();
-      form_data.append("recvMno", no)
+      var x = document.getElementById("dmhide").checked;
+      var q;
+      if (x) {
+        q = 1;
+      } else {
+        q = 0;
+      }
+      console.log(q)
+      form_data.append("mno", $('#myMno2').val())
+      form_data.append("dhide", q)
+      form_data.append("cateCode", $('#cateCode').val())
+      form_data.append("pno", $('#pno').val())
+      form_data.append("startDate", $('#startDate').val())
+      form_data.append("endDate", $('#endDate').val())
+      form_data.append("title", $('#title').val())
+      form_data.append("content", $('#fContent').val())
       $.ajax({
-        url: 'message/ajax/noReadMsg.do',
-        type: 'post',
-    //    async: false,
+        url: "diary/ajax/add.do",
         dataType: 'json',
         cache: false,
         contentType: false,
         processData: false,
         data: form_data,
-        success: function(resultObj) {
-          var ajaxResult = resultObj.ajaxResult;
-          $('#count').html(ajaxResult.data.noReadCount)
-          $('#userBadge').html(ajaxResult.data.noReadCount)
-        }
-      })
-
-      //    켈린더 출력
-      function renderCalendar() {
-        $('#calendar').fullCalendar({
-          header: {
-            left: 'today prevYear',
-            center: 'prev title next',
-            right: 'nextYear',
-          },
-          theme: false, // false : 태마 적용 안함
-          fixedWeekCount: false, // true 항상 6주로 표시, false 매 달에 따라 주의 수가 유동적
-          weekNumbers: false, // 달력 맨앞에 그해의 몇주차인지 나오는거 false하면 안나옴
-          editable: false, // false : 달력 내에 이밴트들 드래그로 이동 불가
-          eventLimit: true, // allow "more" link when too many events
-          events: function(start, end, timezone, callback) {
-            $.ajax({
-              url: 'diary/ajax/events.do',
-              dataType: 'json',
-              data: {
-                mno: $.session.get('mno')
-              },
-              type: "get",
-              success: function(doc) {
-                var event = eval(doc.events);
-                callback(event);
+        type: 'post',
+        success: function(re) {
+          console.log(re);
+          var lastDno = re.ajaxResult.data;
+          var geocoder = new daum.maps.services.Geocoder();
+          geocoder.coord2detailaddr({
+              coord: new daum.maps.LatLng(dotlat, dotlng),
+              callback: function(status, result) {
+                  $.ajax({
+                      url: "walk/ajax/add.do",
+                      dataType: "json",
+                      type: "post",
+                      data: {
+                          locLat: dotlat,
+                          locLng: dotlng,
+                          locName: $('#subtitle').val(),
+                          dno: lastDno,
+                          locDong: result[0].region
+                      },
+                      success: function(resultObj) {
+                          deleteCircleDot();
+                          for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                              var file_data = $("#file-1").prop("files")[i];
+                              var file_name = file_data.name;
+                              var form_data = new FormData();
+                              form_data.append("file", file_data)
+                              form_data.append("fName", file_name)
+                              form_data.append("dno", lastDno)
+                              $.ajax({
+                                  url: "files/ajax/upload.do",
+                                  dataType: 'json',
+                                  cache: false,
+                                  contentType: false,
+                                  processData: false,
+                                  data: form_data,
+                                  type: 'post',
+                                  success: function(resultObj) {
+                                      console.log(file_name)
+                                  }
+                              })
+                          }
+                          alert("다이어리에 산책코스가 추가되었습니다.")
+                          location.href = "diary.html"
+                      }
+                  })
               }
-            });
-          },
-          timeFormat: 'H:mm',
-          eventRender: function(event, element) {
-            element.attr('title', event.tooltip);
-          },
-          eventClick: function(event, jsEvent, view) {
-            var frontEnd;
-            var backEnd;
-            var fullEnd;
-            if (event.end) {
-              frontEnd = event.end.format().substring(0,8);
-              backEnd = Number(event.end.format().substring(8,10)) - 1;
-              if (backEnd > 0 && backEnd < 10) {
-                fullEnd = frontEnd + 0 + backEnd;
-              } else {
-                fullEnd = frontEnd + backEnd;
-              }
-
-              console.log(event.start.format().substring(0,10))
-              console.log(event.start.format())
-              console.log(fullEnd)
-              $('#sdno').val(event.no);
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
-              $('#mEnd').val(fullEnd);
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
-
-              var form_data = new FormData();
-              form_data.append("dno", event.no)
-              $.ajax({
-                url: "files/ajax/list.do",
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(re) {
-                  var img = $("#scrollImg");
-                  var ajaxResult = re.ajaxResult;
-
-                  console.log(ajaxResult.data.length)
-                  if (ajaxResult.data.length <= 1) {
-                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
-                  } else {
-                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
-                    for (var file of ajaxResult.data) {
-                      img.append(
-                        "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>" +
-                        "<a id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times-circle-o'></i></a>")
-                    }
-                  }
-                }
-              })
-
-            } else {
-              $('#sdno').val(event.no);
-              $('#modalTitle').html(event.title);
-              $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
-              $('#mEnd').val(event.start.format().substring(0,10));
-              $('#mColor').val(event.color);
-              $('#mDes').html(event.description);
-              $('#fullCalModal').modal();
-
-              var form_data = new FormData();
-              form_data.append("dno", event.no)
-              $.ajax({
-                url: "files/ajax/list.do",
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(re) {
-                  var img = $("#scrollImg");
-                  var ajaxResult = re.ajaxResult;
-
-                  console.log(ajaxResult.data.length)
-                  if (ajaxResult.data.length <= 1) {
-                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
-                  } else {
-                    document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
-                    for (var file of ajaxResult.data) {
-                      img.append(
-                        "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>" +
-                        "<a id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times-circle-o'></i></a>")
-                    }
-                  }
-                }
-              })
-            }
-          }
-        });
-      }
-      renderCalendar();
-    });
-
-    // 세션값 받아서 모달에 mno셋팅
-    var no = $.session.get('mno');
-    $('#myMno1').val(no);
-    $('#myMno2').val(no);
-    if (no == undefined) {
-      no = 0;
-    }
-
-    // 펫 수정
-    $(document).on("click", "#editPet", function() {
-        var file_data = $("#dfile").prop("files")[0];
-        var file;
-        var file_name;
-        if (file_data != null) {
-          file = "yes";
-          file_name = file_data.name;
+          });
         }
-
-        var form_data = new FormData();
-
-        form_data.append("file", file_data)
-
-        if (file == "yes") {
-            form_data.append("fName", file_name)
-        }
-
-        form_data.append("mno", $('#myMno3').val())
-        form_data.append("pno", $('#myPno').val())
-        form_data.append("pName", $('#pdName').val())
-        form_data.append("pSpec", $('#pdSpec').val())
-        form_data.append("pType", $('#pdType').val())
-        form_data.append("tagColor", $('#dtagColor').val())
-        form_data.append("injection", $('#dinjection').val())
-        form_data.append("medicine", $('#dmedicine').val())
-        form_data.append("pImg", $('#oImage').val())
-
-        $.ajax({
-          url: "pet/ajax/update.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            $('#petDetailModal').modal('hide')
-            alert("펫의 정보가 변경되었습니다.")
-            location.href = "diary.html"
-          }
-        })
       });
-
-    // 펫 추가
-    $(document).on("click", "#addPetBtn", function() {
-      if ($('#pName').val() == "" ||
-        $('#pType').val() == "" ||
-        $('#medicine').val() == "") {
-        alert("펫의 정보를 입력해주세요")
-        return false;
+  }
+} else if (sel === 'JARANG') {
+    if ($('#pno').val() == "" ||
+      $('#title').val() == "" ||
+      $('#fContent').val() == "" ||
+      $('#file-1').val() == "") {
+      alert("모두 입력해주세요")
+      return false;
+    } else {
+      var form_data = new FormData();
+      var x = document.getElementById("dmhide").checked;
+      var q;
+      if (x) {
+        q = 1;
       } else {
-        var file_data = $("#file").prop("files")[0];
-        var file;
-
-        if (file_data != null) {
-          file = "yes";
-          var file_name = file_data.name;
-        }
-
-        var form_data = new FormData();
-
-        form_data.append("file", file_data)
-
-        if (file == "yes") {
-            form_data.append("fName", file_name)
-        }
-
-        form_data.append("mno", $('#myMno1').val())
-        form_data.append("pName", $('#pName').val())
-        form_data.append("pSpec", $('#pSpec').val())
-        form_data.append("pType", $('#pType').val())
-        form_data.append("tagColor", $('#tagColor').val())
-        form_data.append("injection", $('#injection').val())
-        form_data.append("medicine", $('#medicine').val())
-
-        $.ajax({
-          url: "pet/ajax/add.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            $('#AddPet').modal('hide')
-            alert("펫이 추가되었습니다.")
-            $("#myPets").empty();
-            $("#pno").html("");
-            var showpet = $('#myPets');
-            var sel = $("#pno");
-            var ajaxResult = re.ajaxResult;
-
-            for (var pet of ajaxResult.data) {
-              showpet.append(
-                "<a class='petdetailBtn' id='" + pet.pno +
-                  "' onclick='detail(this.id);'" +
-                  "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-                  "<div class='myPet'>" +
-                    "<input type='hidden' class='pno'>" +
-                    "<img class='mImg' src='files/" + pet.pImg + "'>" +
-                    "<input class='petName' type='text' value='" + pet.pName +
-                    "' disabled>" +
-                    "<label class='pName'>이름 : </label>" +
-                    "<input class='pColor' type='color' value='" + pet.tagColor +
-                    "' disabled>" +
-                    "<label class='pInfo'>태그색 : </label>" +
-                  "</div>" +
-                "</a>")
-
-              sel.append(
-                "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
-            }
-          }
-        })
+        q = 0;
       }
-    });
-
-    // 펫 삭제
-    $(document).on("click", "#delPet", function() {
-
-        var form_data = new FormData();
-        form_data.append("pno", $('#myPno').val())
-
-        $.ajax({
-          url: "pet/ajax/delete.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            alert("펫이 삭제되었습니다.")
-    //            $('#fullCalModal').modal('hide')
-            location.href="diary.html"
-
-          }
-        })
-      });
-
-<!-- 지도 -->
-    $(document).on('click', '#scheduleAdd', function() {
-        $('#AddBoard').modal('show');
-
-        $('#AddBoard').on('shown.bs.modal', function (e) {
-            map.relayout();
-        })
-    })
-
-
-
-    // 다이어리 추가
-    var sel;
-
-    $("#cateCode").change(function() {
-        sel = $('#cateCode').val();
-    }).change();
-
-    $(document).on("click", "#addBtn", function(event) {
-        if (sel === 'ILJUNG') {
-          if ($('#pno').val() == "" ||
-            $('#title').val() == "" ||
-            $('#startDate').val() == "" ||
-            $('#endDate').val() == "" ||
-            $('#fContent').val() == "" ||
-            $('#file-1').val() == "") {
-            alert("모두 입력해주세요")
-            return false;
-          } else {
+      console.log(q)
+      form_data.append("mno", $('#myMno2').val())
+      form_data.append("dhide", q)
+      form_data.append("cateCode", $('#cateCode').val())
+      form_data.append("pno", $('#pno').val())
+      form_data.append("title", $('#title').val())
+      form_data.append("content", $('#fContent').val())
+      form_data.append("startDate", $('#startDate').val())
+      form_data.append("endDate", $('#endDate').val())
+      $.ajax({
+        url: "diary/ajax/add.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+          var lastDno = re.ajaxResult.data;
+          for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+            var file_data = $("#file-1").prop("files")[i];
+            var file_name = file_data.name;
             var form_data = new FormData();
-            var x = document.getElementById("dmhide").checked;
-            var q;
-            if (x) {
-                q = 1;
-            } else {
-                q = 0;
-            }
-            console.log(q)
-            form_data.append("mno", $('#myMno2').val())
-            form_data.append("dhide", q)
-            form_data.append("cateCode", $('#cateCode').val())
-            form_data.append("pno", $('#pno').val())
-            form_data.append("startDate", $('#startDate').val())
-            form_data.append("endDate", $('#endDate').val())
-            form_data.append("title", $('#title').val())
-            form_data.append("content", $('#fContent').val())
+            form_data.append("file", file_data)
+            form_data.append("fName", file_name)
+            form_data.append("dno", lastDno)
             $.ajax({
-              url: "diary/ajax/add.do",
+              url: "files/ajax/upload.do",
               dataType: 'json',
               cache: false,
               contentType: false,
               processData: false,
               data: form_data,
               type: 'post',
-              success: function(re) {
-                var lastDno = re.ajaxResult.data;
-                for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                  var file_data = $("#file-1").prop("files")[i];
-                  var file_name = file_data.name;
-                  var form_data = new FormData();
-                  form_data.append("file", file_data)
-                  form_data.append("fName", file_name)
-                  form_data.append("dno", lastDno)
-                  $.ajax({
-                    url: "files/ajax/upload.do",
-                    dataType: 'json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: form_data,
-                    type: 'post',
-                    success: function(resultObj) {
-                        console.log(file_name)
-                    }
-                  })
-                }
-                alert("다이어리에 일정이 추가되었습니다.")
-                location.href = "diary.html"
+              success: function(resultObj) {
+                  console.log(file_name)
               }
             })
           }
-      } else if (sel === 'SANCHE') {
-        if ($('#pno').val() == "" ||
-          $('#title').val() == "" ||
-          $('#startDate').val() == "" ||
-          $('#endDate').val() == "" ||
-          $('#fContent').val() == "" ||
-          $('#file-1').val() == "" ||
-          $('#subtitle').val() =="") {
-          alert("모두 입력해주세요")
-          return false;
-        } else {
-          var form_data = new FormData();
-          var x = document.getElementById("dmhide").checked;
-          var q;
-          if (x) {
-            q = 1;
-          } else {
-            q = 0;
-          }
-          console.log(q)
-          form_data.append("mno", $('#myMno2').val())
-          form_data.append("dhide", q)
-          form_data.append("cateCode", $('#cateCode').val())
-          form_data.append("pno", $('#pno').val())
-          form_data.append("startDate", $('#startDate').val())
-          form_data.append("endDate", $('#endDate').val())
-          form_data.append("title", $('#title').val())
-          form_data.append("content", $('#fContent').val())
-          $.ajax({
-            url: "diary/ajax/add.do",
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(re) {
-              console.log(re);
-              var lastDno = re.ajaxResult.data;
-              var geocoder = new daum.maps.services.Geocoder();
-              geocoder.coord2detailaddr({
-                  coord: new daum.maps.LatLng(dotlat, dotlng),
-                  callback: function(status, result) {
-                      $.ajax({
-                          url: "walk/ajax/add.do",
-                          dataType: "json",
-                          type: "post",
-                          data: {
-                              locLat: dotlat,
-                              locLng: dotlng,
-                              locName: $('#subtitle').val(),
-                              dno: lastDno,
-                              locDong: result[0].region
-                          },
-                          success: function(resultObj) {
-                              deleteCircleDot();
-                              for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                                  var file_data = $("#file-1").prop("files")[i];
-                                  var file_name = file_data.name;
-                                  var form_data = new FormData();
-                                  form_data.append("file", file_data)
-                                  form_data.append("fName", file_name)
-                                  form_data.append("dno", lastDno)
-                                  $.ajax({
-                                      url: "files/ajax/upload.do",
-                                      dataType: 'json',
-                                      cache: false,
-                                      contentType: false,
-                                      processData: false,
-                                      data: form_data,
-                                      type: 'post',
-                                      success: function(resultObj) {
-                                          console.log(file_name)
-                                      }
-                                  })
-                              }
-                              alert("다이어리에 산책코스가 추가되었습니다.")
-                              location.href = "diary.html"
-                          }
-                      })
-                  }
-              });
-            }
-          });
-      }
-    } else if (sel === 'JARANG') {
-        if ($('#pno').val() == "" ||
-          $('#title').val() == "" ||
-          $('#fContent').val() == "" ||
-          $('#file-1').val() == "") {
-          alert("모두 입력해주세요")
-          return false;
-        } else {
-          var form_data = new FormData();
-          var x = document.getElementById("dmhide").checked;
-          var q;
-          if (x) {
-            q = 1;
-          } else {
-            q = 0;
-          }
-          console.log(q)
-          form_data.append("mno", $('#myMno2').val())
-          form_data.append("dhide", q)
-          form_data.append("cateCode", $('#cateCode').val())
-          form_data.append("pno", $('#pno').val())
-          form_data.append("title", $('#title').val())
-          form_data.append("content", $('#fContent').val())
-          form_data.append("startDate", $('#startDate').val())
-          form_data.append("endDate", $('#endDate').val())
-          $.ajax({
-            url: "diary/ajax/add.do",
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(re) {
-              var lastDno = re.ajaxResult.data;
-              for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                var file_data = $("#file-1").prop("files")[i];
-                var file_name = file_data.name;
-                var form_data = new FormData();
-                form_data.append("file", file_data)
-                form_data.append("fName", file_name)
-                form_data.append("dno", lastDno)
-                $.ajax({
-                  url: "files/ajax/upload.do",
-                  dataType: 'json',
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  data: form_data,
-                  type: 'post',
-                  success: function(resultObj) {
-                      console.log(file_name)
-                  }
-                })
-              }
-              alert("다이어리에 자랑하기가 추가되었습니다.")
-              location.href = "diary.html"
-            }
-          })
+          alert("다이어리에 자랑하기가 추가되었습니다.")
+          location.href = "diary.html"
         }
-      }
-  });
-
-  // 다이어리 삭제
-  $(document).on("click", "#delSchedule", function() {
-
-    var form_data = new FormData();
-    form_data.append("dno", $('#sdno').val())
-
-    $.ajax({
-      url: "diary/ajax/delete.do",
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-      success: function(re) {
-        alert("게시글이 삭제되었습니다.")
-        location.href="diary.html"
-      }
-    })
-  });
-
-  // 펫추가 모달 닫으면 입력 초기화
-  $('#AddPet').on('hidden.bs.modal', function(e) {
-    $('#pName').val('');
-    $('#pType').val('');
-    $('#tagColor').val('#ff0000');
-    $('#injection').val('1차');
-    $('#medicine').val('');
-    $('#pImg').val('');
-    $('#file').val('');
-  })
-
-  // 새일정추가 모달 닫으면 입력 초기화
-  $('#AddBoard').on('hidden.bs.modal', function(e) {
-    $('#dhide').prop("checked", true);
-    $('#cateCode').val('SANCHE');
-    $('.pDate').css('display', '');
-    $('#pno').val('');
-    $('#startDate').val('');
-    $('#endDate').val('');
-    $('#title').val('');
-    $('#fContent').val('');
-    $('#file-1').val('');
-  })
-  
-  //  달력이벤트 모달 닫으면 입력 초기화  
-  $('#fullCalModal').on('hidden.bs.modal', function(e) {
-    $('#mainImage').attr('src', '');
-    $('#scrollImg').empty();
-    $('#mFile').val('');
-  })
-
-  // 펫 디테일
-  function detail(id) {
-    console.log(id)
-    var form_data = new FormData();
-    form_data.append("pno", id)
-
-    $.ajax({
-      url: "pet/ajax/detail.do",
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-      success: function(re) {
-        var oimg = $('#oimg')
-        var petinfo = re.ajaxResult.data;
-        $('#myMno3').val(petinfo.mno);
-        $('#myPno').val(petinfo.pno);
-        $('#pdName').val(petinfo.pName);
-        $('#pdType').val(petinfo.pType);
-        $('#pdSpec').val(petinfo.pSpec);
-        $('#dtagColor').val(petinfo.tagColor);
-        $('#dinjection').val(petinfo.injection);
-        $('#dmedicine').val(petinfo.medicine);
-        $('#oImage').val(petinfo.pImg);
-        $('.pdimg').attr('src', 'files/' + petinfo.pImg);
-      }
-    })
+      })
+    }
   }
+});
 
-  // 로그인한 회원의 펫 보여주는것
-  $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
-      var showpet = $('#myPets');
-      for (var pet of resultObj.pets) {
-        showpet.append(
-          "<a class='petdetailBtn' id='" + pet.pno +
-            "' onclick='detail(this.id);'" +
-            "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-            "<div class='myPet'>" +
-              "<input type='hidden' class='pno'>" +
-              "<img class='mImg' src='files/" + pet.pImg + "'>" +
-              "<input class='petName' type='text' value='" + pet.pName +
-              "' disabled>" +
-              "<label class='pName'>이름 : </label>" +
-              "<input class='pColor' type='color' value='" + pet.tagColor +
-              "' disabled>" +
-              "<label class='pInfo'>태그색 : </label>" +
-            "</div>" +
-          "</a>")
-      }
+// 다이어리 삭제
+$(document).on("click", "#delSchedule", function() {
 
-      var sel = $("#pno");
-      for (var pet of resultObj.pets) {
-        sel.append("<option value='" + pet.pno + "'>" + pet.pName +
-          "</option>")
-      }
-    });
+  var form_data = new FormData();
+  form_data.append("dno", $('#sdno').val())
 
-  // 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
-  $('#my-today-button').click(function() {
-    $('#calendar').fullCalendar('today');
+  $.ajax({
+    url: "diary/ajax/delete.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      alert("게시글이 삭제되었습니다.")
+      location.href="diary.html"
+    }
+  })
+});
+
+// 펫추가 모달 닫으면 입력 초기화
+$('#AddPet').on('hidden.bs.modal', function(e) {
+  $('#pName').val('');
+  $('#pType').val('');
+  $('#tagColor').val('#ff0000');
+  $('#injection').val('1차');
+  $('#medicine').val('');
+  $('#pImg').val('');
+  $('#file').val('');
+})
+
+// 새일정추가 모달 닫으면 입력 초기화
+$('#AddBoard').on('hidden.bs.modal', function(e) {
+  $('#dhide').prop("checked", true);
+  $('#cateCode').val('SANCHE');
+  $('.pDate').css('display', '');
+  $('#pno').val('');
+  $('#startDate').val('');
+  $('#endDate').val('');
+  $('#title').val('');
+  $('#fContent').val('');
+  $('#file-1').val('');
+})
+
+//  달력이벤트 모달 닫으면 입력 초기화  
+$('#fullCalModal').on('hidden.bs.modal', function(e) {
+  $('#mainImage').attr('src', '');
+  $('#scrollImg').empty();
+  $('#mFile').val('');
+})
+
+// 펫 디테일
+function detail(id) {
+  console.log(id)
+  var form_data = new FormData();
+  form_data.append("pno", id)
+
+  $.ajax({
+    url: "pet/ajax/detail.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      var oimg = $('#oimg')
+      var petinfo = re.ajaxResult.data;
+      $('#myMno3').val(petinfo.mno);
+      $('#myPno').val(petinfo.pno);
+      $('#pdName').val(petinfo.pName);
+      $('#pdType').val(petinfo.pType);
+      $('#pdSpec').val(petinfo.pSpec);
+      $('#dtagColor').val(petinfo.tagColor);
+      $('#dinjection').val(petinfo.injection);
+      $('#dmedicine').val(petinfo.medicine);
+      $('#oImage').val(petinfo.pImg);
+      $('.pdimg').attr('src', 'files/' + petinfo.pImg);
+    }
+  })
+}
+
+// 로그인한 회원의 펫 보여주는것
+$.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
+    var showpet = $('#myPets');
+    for (var pet of resultObj.pets) {
+      showpet.append(
+        "<a class='petdetailBtn' id='" + pet.pno +
+          "' onclick='detail(this.id);'" +
+          "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+          "<div class='myPet'>" +
+            "<input type='hidden' class='pno'>" +
+            "<img class='mImg' src='files/" + pet.pImg + "'>" +
+            "<input class='petName' type='text' value='" + pet.pName +
+            "' disabled>" +
+            "<label class='pName'>이름 : </label>" +
+            "<input class='pColor' type='color' value='" + pet.tagColor +
+            "' disabled>" +
+            "<label class='pInfo'>태그색 : </label>" +
+          "</div>" +
+        "</a>")
+    }
+
+    var sel = $("#pno");
+    for (var pet of resultObj.pets) {
+      sel.append("<option value='" + pet.pno + "'>" + pet.pName +
+        "</option>")
+    }
   });
 
-  // 글쓰기 카테고리 선택 부분
-  $("#cateCode").change(function() {
-    if ($('#cateCode').val() == "JARANG") { // 자랑 해요
-      $('.pDate').css('display', 'none');
-      $('.pMap').css('display', 'none');
-    }
-    else if ($('#cateCode').val() == "SANCHE") {
-      $('.pDate').css('display', '');
-      $('.pMap').css('display', '');
-    }
-    else if ($('#cateCode').val() == 'ILJUNG'){
-      $('.pDate').css('display', '');
-      $('.pMap').css('display', 'none');
-    }
-  }).change();
+// 버튼으로 만들어서 누르면 현재 날짜로 이동한다.
+$('#my-today-button').click(function() {
+  $('#calendar').fullCalendar('today');
+});
 
-  function imgDel(id) {
-    console.log("fno : " + id)
-    var form_data = new FormData();
-    form_data.append("fno", id)
-    $.ajax({
-      url: "files/ajax/delOneImg.do",
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-      success: function(re) {
-        console.log("이미지 삭제 성공")
-        
-        var form_data = new FormData();
-        console.log("dno : " + $('#sdno').val())
-        form_data.append("dno", $('#sdno').val())
-        $.ajax({
-          url: "files/ajax/list.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            
-            $("#scrollImg").empty();
-            
-            var img = $("#scrollImg");
-            var ajaxResult = re.ajaxResult;
+// 글쓰기 카테고리 선택 부분
+$("#cateCode").change(function() {
+  if ($('#cateCode').val() == "JARANG") { // 자랑 해요
+    $('.pDate').css('display', 'none');
+    $('.pMap').css('display', 'none');
+  }
+  else if ($('#cateCode').val() == "SANCHE") {
+    $('.pDate').css('display', '');
+    $('.pMap').css('display', '');
+  }
+  else if ($('#cateCode').val() == 'ILJUNG'){
+    $('.pDate').css('display', '');
+    $('.pMap').css('display', 'none');
+  }
+}).change();
 
-            console.log(ajaxResult.data.length)
-            if (ajaxResult.data.length <= 1) {
-              document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
-            } else {
-              document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
-              for (var file of ajaxResult.data) {
-                img.append(
-                  "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>" +
-                  "<a id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times-circle-o'></i></a>")
-              }
+function imgDel(id) {
+  console.log("fno : " + id)
+  var form_data = new FormData();
+  form_data.append("fno", id)
+  $.ajax({
+    url: "files/ajax/delOneImg.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      console.log("이미지 삭제 성공")
+
+      var form_data = new FormData();
+      console.log("dno : " + $('#sdno').val())
+      form_data.append("dno", $('#sdno').val())
+      $.ajax({
+        url: "files/ajax/list.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+
+          $("#scrollImg").empty();
+
+          var img = $("#scrollImg");
+          var ajaxResult = re.ajaxResult;
+
+          console.log(ajaxResult.data.length)
+          if (ajaxResult.data.length <= 1) {
+            document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
+          } else {
+            document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
+            for (var file of ajaxResult.data) {
+              img.append(
+                "<a role='button' id=" + file.fno + " onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>" +
+                "<img src='files/" + file.fileName + "' class='imgs' onclick='doshow(this.src)'>")
             }
           }
-        })  
-      }
-    });
-  }
+        }
+      })  
+    }
+  });
+}
 
-  function doshow(imgSrc) {
-    document.getElementById("mainImage").src = imgSrc;
-  }
+function doshow(imgSrc) {
+  document.getElementById("mainImage").src = imgSrc;
+}
 </script>
 
 </body>
