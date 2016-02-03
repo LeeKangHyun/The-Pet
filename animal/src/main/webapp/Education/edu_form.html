@@ -206,6 +206,7 @@
   $.ajax({
     url: "../comment/ajax/educomlist.do",
     dataType: 'json',
+    async: false,
     cache: false,
     contentType: false,
     processData: false,
@@ -276,7 +277,6 @@
 		            $.ajax({
 		                url: "../comment/ajax/educomlist.do",
 		                dataType: 'json',
-		                async: false,
 		                cache: false,
 		                contentType: false,
 		                processData: false,
@@ -310,7 +310,7 @@
 		                        j++;
 		                    }
 		                    $('#more').empty();
-		                    $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+		                    $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
 		                        var ajaxResult = resultObj.ajaxResult
 		                        console.log(resultObj)
 		                        if (ajaxResult.data == 0 || ajaxResult.data == 1) {
