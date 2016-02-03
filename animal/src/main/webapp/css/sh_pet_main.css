@@ -1,0 +1,275 @@
+.main-img {
+  width: 1100px;
+  height: 580px;
+  margin-left: 90px;
+}
+
+.contents {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.boast {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.subtitles {
+  max-width: 1100px;
+  text-align: left;
+  text-decoration: none;
+  color: #2d335e;
+}
+
+.subtitles:hover {
+  text-decoration: none;
+  color: #2d335e;
+}
+
+#cardSection {
+  padding-top: 10px;
+  padding-bottom: 500px;
+}
+
+.map_wrap {
+  margin-top:50px; 
+  margin-bottom: 16%;
+}
+
+#top3 {
+  color: #394141;
+  font-size: 50px;
+  width: 500px;
+}
+
+#rank-section {
+  margin: 0 auto;
+}
+
+#section-img img {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#section-img img.portrait {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+#section-img img.landscape {
+  width: auto;
+  max-width: none;
+  height: 100%;
+}
+
+.box1 .card2 .background {
+  background-color: #2d335e;
+  height: 440px;
+  width: 320px;
+  position: relative;
+}
+
+.gallery.box1 {
+    display: inline-block;
+  position:relative;
+  width: auto;
+  height:440px;
+  max-width: 320px;
+  margin: 10px 10px;
+  overflow: hidden;
+}
+
+.gallery.box1:hover {
+    display: inline-block;
+  position:relative;
+  width: auto;
+  height:440px;
+  max-width: 320px;
+  margin: 10px 10px;
+  overflow: hidden;
+  border: 1px solid #d06a79;
+  box-shadow: 0px 0px 5px 1px #C07C86;
+}
+
+.gallery .card2 {
+  position: relative;
+}
+
+.gallery .background {
+  height: 440px;
+}
+
+.gallery .overlay{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  opacity: 0;
+  background-color: #000;
+}
+
+.gallery .info,
+.gallery .foot{
+  -webkit-transition: bottom 0.35s;
+  -o-transition: bottom 0.35s;
+  transition: bottom 0.35s;
+}
+
+.gallery .infosub{
+  -webkit-transition: bottom 0.35s;
+  -o-transition: bottom 0.35s;
+  transition: bottom 0.35s;
+}
+
+.gallery .info{
+  position: absolute;
+  bottom: -35px;
+  width: 100%;
+}
+
+.gallery .infosub{
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+}
+
+.gallery .info h2 a{
+  color: #fff;
+  display: block;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  text-decoration:none;
+}
+
+.gallery .infosub h2 a{
+  color: #fff;
+  display: block;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  text-decoration:none;
+}
+
+.gallery .info h2{
+  line-height: 24px;
+  font-size: 20px;
+  padding: 0 10px;
+  font-weight: 400;
+}
+
+.gallery .infosub h2{
+  line-height: 24px;
+  font-size: 15px;
+  padding: 0 10px;
+  font-weight: 400;
+}
+
+.gallery .foot{
+  height: 35px;
+  bottom: -35px;
+  position: relative;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+.gallery .foot .line{
+  height: 2px;
+  display: block;
+  margin: 10px 0;
+  background-color: #fff;
+  margin-top: 20px;
+  width: 0%;
+  transition: width 0.6s;
+}
+
+.gallery .date{
+  font-weight: 300;
+}
+
+.gallery .fa-camera-retro{
+  top: 8px;
+  left: 10px;
+  padding: 8px 8px;
+  position: absolute;
+  color: #f5f5f5;
+  font-size: 25px;
+  transition: font-size 0.35s;
+  background-color: #b00000;
+  border-radius: 50%;
+}
+
+.gallery .fa-youtube-play{
+  top: 8px;
+  left: 10px;
+  padding: 8px 8px;
+  position: absolute;
+  color: #f5f5f5;
+  font-size: 30px;
+  transition: font-size 0.35s;
+  background-color: #b00000;
+  border-radius: 15px;
+}
+
+/* 모든 호버들 */
+.gallery:hover .info,
+.gallery:hover .foot{
+  bottom:10px;
+}
+
+.gallery:hover .infosub{
+  bottom:0px;
+}
+
+.gallery:hover .overlay{
+  opacity: 0.5;
+}
+
+.gallery:hover .foot .line{
+  width: 100%;
+}
+
+.gallery:hover .fa-camera-retro{
+  font-size:40px;
+}
+
+.gallery:hover .fa-youtube-play{
+  font-size:40px;
+}
+
+.view-like {
+  float: right;
+}
+
+
+
+
+
+
+
+
+/**** Transitions ****/
+
+.transitions-enabled.masonry,
+.transitions-enabled.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.transitions-enabled.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.transitions-enabled.masonry  .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
