@@ -65,14 +65,33 @@ div.portfoliocard {
   z-index:100;
 }
 
+div.portfoliocard div.coverphoto {
+  height: 250px;
+  overflow: hidden;
+}
+
 div.portfoliocard div.coverphoto img {
-	width:240px;
-	height:250px;
-	background-position:center center;
-/*	border-top-right-radius:5px;*/
-/*	border-top-left-radius:5px;*/
-	border-bottom:1px solid rgba(0,0,0,0.1);
-	z-index:99;
+	width:100%;
+	height:100%;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 세로가 긴 이미지 */
+div.portfoliocard div.coverphoto img.portrait {
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+/* 가로가 긴 이미지 */
+div.portfoliocard div.coverphoto img.landscape {
+  width: auto;
+  max-width: none;
+  height: 100%;
 }
 
 div.portfoliocard div.profile_picture img {
@@ -107,7 +126,7 @@ div.portfoliocard div.right_col {
 
 
 div.portfoliocard ul.contact_information {
-	margin-top: 20px;
+	margin-top: 40px;
 	padding-left:13px;
 	list-style-type:none;
 }
@@ -224,16 +243,25 @@ div.item img {
 }
 
 .content {
+  height: 175px;
+  margin: 10px;    
+}
+
+.content textarea {
   color: #fff;
+  background-color: #2d335e;
   font-size: 16px;
   font-weight: 200;
-  height: 175px;
+  height: 100%;
+  width: 100%;
+  resize: none;
   overflow-y: scroll;
-  margin: 10px;    
+  border: 0;
 }
 
 .input {
   font-size: 13px;
+  height: 65px;
   border-top: 1px solid #d06a79;
   border-bottom: 1px solid #d06a79;
   background-color: #2d335e;
@@ -276,6 +304,7 @@ div.item img {
 }
 
 .comments {
+  
   width: 480px;
   height: 220px;
   overflow-y: scroll; 
@@ -304,6 +333,25 @@ div.item img {
   max-width: 360px;
   margin-left: 10px;
   color: #d06a79;
+}
+
+#delImg {
+  width: 480px;
+  height: 220px;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+#delImg img {
+  max-height: 100px;
+  margin-bottom: 10px;
+}
+
+#delImg a {
+  position: relative;
+  bottom: 92px;
+  right: 25px;
+  font-size: 1.4em;
 }
 
 .fa-close {
@@ -389,11 +437,136 @@ div.item img {
   text-decoration: none;
 }
 
+.modal-footer {
+/*  position: relative;*/
+/*  bottom: 10px;*/
+  padding: 10px;
+  height: 82px;
+}
+
+#editPet {
+  position: absolute;
+  bottom: 24px;
+  right: 70px;
+}
+
+#matDelBtn {
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+}
+
+#editEnd {
+  position: absolute;
+  bottom: 24px;
+  right: 70px;
+}
+
+.box {
+  width: 80%;
+}
+
+.inputfile {
+  position: relative;
+  top: 20px;
+  overflow: hidden;
+  width: 0.1px;
+}
+
+.js .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  max-width: 80%;
+  font-size: 15px;
+  /* 20px */
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 10px;
+  /* 10px 20px */
+  position: relative;
+  bottom: 10px;
+/*    margin-bottom: -30px;*/
+}
+
+.no-js .inputfile + label {
+  display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+  /* pointer-events: none; */
+  /* in case of FastClick lib use */
+  font-size: 17px
+}
+
+.inputfile + label i {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  /* 4px */
+  margin-right: 0.25em;
+  /* 4px */
+}
 
 
+/* style 1 */
 
+.inputfile-1 + label {
+  color: #f1e5e6;
+  background-color: #d3394c;
+  border-radius: 4px;
+/*  width: 200px;*/
+  height: 40px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 15px;
+  float: left;
+}
 
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #722040;
+}
 
+.gg {
+  color: #fff;
+  float: left;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-left: 10px;
+  margin-top: 21px;
+}
+
+#mmspec {
+  float: left;
+  margin-right: 15px;
+}
+
+.form-control {
+  width: 80%;
+  position: relative;
+  top: 14px;
+  left: 5px;
+}
 
 
 

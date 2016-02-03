@@ -1,6 +1,5 @@
 package pms.controller.ajax;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
-import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Mating;
 import pms.domain.Member;
@@ -24,7 +21,6 @@ import pms.service.DiaryService;
 import pms.service.FilesService;
 import pms.service.MatingService;
 import pms.service.MemberService;
-import pms.util.MultipartHelper;
 
 @Controller("ajax.MatingController")
 @RequestMapping("/mating/ajax/*")
@@ -123,24 +119,12 @@ public class MatingController {
 	/////////// 위까진 성공
 	
 	@RequestMapping(value="update", method=RequestMethod.POST)
-	public AjaxResult update(
-			Diary diary,
-			Files files,
-			MultipartFile file) throws Exception {
-
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																	+ "/" + newFileName);
-			file.transferTo(attachfile);
-			// 파일 만들어야 쓸수있겠군
-//			files.setFileName(fileName);(newFileName);
-			
-		}	else if (files.getFileName().length() == 0) {
-			files.setFileName(null);
-		}
-
-		if (diaryService.change(diary) <= 0 || filesService.change(files) <= 0) {
+	public AjaxResult update(Mating mating) throws Exception {
+		
+		System.out.println(mating.getMatContent());
+		System.out.println(mating.getMatNo());		
+		
+		if (matingService.change(mating) <= 0) {
 			return new AjaxResult("failure", null);
 		} 
 		

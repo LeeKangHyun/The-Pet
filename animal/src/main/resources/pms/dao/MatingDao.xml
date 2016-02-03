@@ -64,15 +64,10 @@
 		where MAT_NUM=#{matNo}
 	</delete>
 	
-	<!-- insert need fix -->
 	<update id="update" parameterType="mating">
 	update mating set 
-		MAT_TITLE=#{matTitle},
 		MAT_CONTENT=#{matContent},
-		MAT_SPEC=#{matSpec},
-		MAT_TYPE=#{matType},
-		MAT_GEN=#{matGender},
-		MAT_COST=#{matCost}
+		MAT_TYPE=#{matType}
 	where MAT_NUM=#{matNo}
 	</update>
 

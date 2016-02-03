@@ -11,7 +11,7 @@
 <!--  내가만든 css들  -->
 <link href="css/sh_slidmenu_header_mating.less" type="style.less" rel="stylesheet/less" />
 <link href="css/sh_mating.css" type="text/css" rel="stylesheet">
-<!--<link href="css/sh_file_upload.css" type="text/css" rel='stylesheet' />-->
+<link href="css/sh_file_upload.css" type="text/css" rel='stylesheet' />
 <link href="css/CSSreset.min.css" type="text/css"	rel="stylesheet" />
 
 <!--  폰트아이콘 링크  -->
@@ -31,7 +31,7 @@
 <script src="js/sh_custom-file-input.js"></script>
 
 <!--  파일 업로드  -->
-<!--<link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />-->
+<link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
 <script>
   (function(e, t, n) {
     var r = e.querySelectorAll("html")[0];
@@ -128,10 +128,10 @@ $(function(){
                 <div class='form-group'>
                     <label class='col-sm-3 control-label'>제목</label>
                     <div class="col-sm-9">
-                        <input type='text' name='mat_content' id='mat_title' class="form-control"/>
+                        <input type='text' name='mat_content' id='mat_title' class="form-control" required/>
                     </div>
                 </div>
-              
+
                 <div class="form-group">
                   <label class="col-sm-3 control-label">구분</label>
                   <div class="col-sm-9">
@@ -148,7 +148,8 @@ $(function(){
                 <div class="form-group">
                   <label for="mat_gen" class="col-sm-3 control-label">펫 종류</label>
                   <div class="col-sm-9">
-                    <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"/>
+                    <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"
+                    required>
                   </div>
                 </div>
 
@@ -175,7 +176,7 @@ $(function(){
                     <textarea class="form-control" name='MAT_CONTENT' id='mat_content' style="height: 100px;"></textarea>
                 </div>
 
-                <div class="box1">
+                <div class="box">
                   <input type="file" name="fileName" id="mafile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
                   <label for="mafile">
                     <i class="fa fa-upload"></i>
@@ -194,77 +195,55 @@ $(function(){
 
 <!--짝짓기 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
-        <h3 id='modalTitle' class='title'></h3>
-      </div>
-
-      <div class='modal-body'>
-
-        <input type="hidden" id="mmatno">
-        
-        <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
-            <!-- Indicators -->
-            <ol class='carousel-indicators' id="dots"></ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" id="imgs"></div>
-
-            <!-- Controls -->
-            <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
-                <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
-                <span class='sr-only'>Previous</span>
-            </a>
-            <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
-                <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
-                <span class='sr-only'>Next</span>
-            </a>
-        </div>
-
-        <div class='contents'>
-
-          <div class='content' id="mcontent">
-            <textarea id="contentText" readonly></textarea>
-          </div>
-
-          <div class='input'>
-            
-            <div id="forms">
-              <span class="gg">펫 종류</span>
-              <input type="text" name="mat_gen" placeholder="ex) 포메라니안" id="mmtype" class="form-control">
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h3 id='modalTitle' class='title'></h3>
             </div>
-            
-            <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
-            <a id="comDelBtn" role='button'>게시</a>
-          </div>
 
-          <div class='comments' id="comComment"></div>
-          <div id="delImg"></div>
+            <div class='modal-body'>
+                <form>
+                    <input type="hidden" id="mmatno">
+                    <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
+                        <!-- Indicators -->
+                        <ol class='carousel-indicators' id="dots"></ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox" id="imgs"></div>
+
+                        <!-- Controls -->
+                        <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
+                            <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
+                            <span class='sr-only'>Previous</span>
+                        </a>
+                        <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
+                            <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
+                            <span class='sr-only'>Next</span>
+                        </a>
+                    </div>
+
+                    <div class='contents'>
+
+                        <div class='content' id="mcontent"></div>
+
+                        <div class='input'>
+                            <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
+                            <a id="comDelBtn" role='button'>게시</a>
+                        </div>
+                        <div class='comments' id="comComment"></div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="editPet" class="btn btn-warning">변경</button>
+                <button type="button" id="matDelBtn" class="btn btn-danger">삭제</button>
+            </div>
         </div>
 
-
-      </div>
-
-      <div class="modal-footer">
-
-        <div class="box">
-          <input type="file" name="files" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-          multiple />
-          <label for="file-1">
-            <i class="fa fa-upload"></i>
-            <span>이미지 추가</span>
-          </label>
-        </div>
-
-        <button type="button" id="editPet" class="btn btn-warning">변경</button>
-        <button type="button" id="editEnd" class="btn btn-warning" style="display:none;">변경완료</button>
-        <button type="button" id="matDelBtn" class="btn btn-danger">삭제</button>
-      </div>
     </div>
-
-  </div>
 </div>
 
 <!-- 댓글 삭제 확인 모달 -->
@@ -285,13 +264,10 @@ $(function(){
     </div>
   </div>
 </div>
-<script src="js/sh_custom-file-input.js"></script>
+
 <script>
 $(document).ready(function() {
-  $('#delImg').css('display', 'none');
-  $('.box').css('display', 'none');
-  $('#forms').css('display', 'none');
-  
+
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   var div = $('#user_info');
@@ -340,13 +316,6 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
-  
-  $.getJSON('mating/ajax/pages.do', function(resultObj) {
-    var ajaxResult = resultObj.ajaxResult;
-    if(ajaxResult.data == 1) {
-      $('#more').empty();
-    } 
-  })
 });
 
 // 분양 리스트 출력
@@ -363,9 +332,6 @@ $.ajax({
         var file;
         var mem;
         var gen;
-        var imgWidth;
-        var imgHeight;
-        var setClass;
         for (var mating of resultObj.mating) {
             file = resultObj.filesMap[j];
             mem = resultObj.memberMap[j];
@@ -374,21 +340,12 @@ $.ajax({
             } else {
                 gen = "암컷";
             }
-            imgWidth = file[0].width;
-
-            imgHeight = file[0].height;
-
-            if (imgWidth > imgHeight) {
-              setClass = "landscape"
-            } else {
-              setClass = "portrait"
-            }
             j++;
             show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
             "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
             "' onclick='detail(this.id);'>" +
 
-            "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
+            "<div class='coverphoto'><img src='files/" + file[0].fileName + "'></div>" +
 
             "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
 
@@ -404,6 +361,7 @@ $.ajax({
             "<li class='website'>" + mating.matSpec + "</li>" +
             "<li class='website'>" + mating.matType + "</li>" +
             "<li class='gender'>" + gen + "</li>" +
+            "<li class='mail'>₩ " + mating.matCost + "</li>" +
             "<li class='title'>" + mating.matTitle + "</li>" +
             "<li class='resume'>" + mating.matCreateDate + "</li>" +
             "<li class='name'>" + mem.mName + "</li>" +
@@ -469,6 +427,7 @@ $(document).on('click', '#addMat', function() {
 
 // 짝짓기 디테일
 function detail(id) {
+    console.log('id=' + id)
   var view = $("#v" + id);
   var form_data = new FormData();
   form_data.append("matNo", id)
@@ -483,10 +442,8 @@ function detail(id) {
     success: function(re) {
       var matinfo = re.ajaxResult.data;
       $('#modalTitle').html(matinfo.matTitle);
-      $('#contentText').val(matinfo.matContent);
+      $('#mcontent').html(matinfo.matContent);
       $('#mmatno').val(matinfo.matNo);
-      $('#mmtype').val(matinfo.matType);
-      
       var form_data = new FormData();
       form_data.append("matNo", id)
       $.ajax({
@@ -499,10 +456,9 @@ function detail(id) {
         type: 'post',
         success: function(re) {
           var files = re.ajaxResult.data;
-          
+          console.log(files);
           var imgs = $('#imgs');
           var dots = $('#dots');
-          var showDel = $('#delImg');
           var i = 0;
           for (var file of files) {
             if (i == 0) {
@@ -513,13 +469,6 @@ function detail(id) {
               dots.append(
               "<li data-target='#carousel-example-generic' data-slide-to='" + i +
               "' class='active'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
             } else {
               imgs.append(
               "<div class='item'>" +
@@ -528,13 +477,6 @@ function detail(id) {
               dots.append(
               "<li data-target='#carousel-example-generic' data-slide-to='" + i +
               "'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
             }
             i++;
           }
@@ -717,38 +659,13 @@ $(document).on("click", "#delCom", function() {
   })
 })
 
-// 새글 모달 닫고 초기화
-$('#saleModal').on('hidden.bs.modal', function(e) {
-  $('#mafile').val('');
-  $('#mat_content').val('');
-  $('#mat_title').val('');
-  $('#mat_type').val('');
-})
-
-// 디테일 모달 닫고 초기화
 $('#saleModal').on('hidden.bs.modal', function(e) {
   $('#comComment').empty();
   $('#dots').empty();
   $('#imgs').empty();
-  $('#delImg').empty();
   $('#modalTitle').val('');
   $('#mcontent').val('');
   $('#mmatno').val('');
-  $('#file-1').val('');
-  
-  $("textarea[id=contentText]").attr("readonly",true);
-  $("textarea[class=commentin]").attr("readonly",false);
-  $('.box').css('display', 'none');
-  $('.commentin').css('display', '');
-  $('#comDelBtn').css('display', '');
-  $('#forms').css('display', 'none');
-  $("button[id=comDelBtn]").attr("disabled",false);
-  $('#editPet').css('display', '');
-  $('#editEnd').css('display', 'none');
-  $('.comments').css('display', '');
-  $('#delImg').css('display', 'none');
-  $('#contentText').css('background-color', '#2d335e');
-  $('#contentText').css('color', '#fff');
 })
 
 // 짝짓기 삭제
@@ -767,216 +684,7 @@ $(document).on('click', '#matDelBtn', function() {
     })
 });
 
-// 디테일 변경 누르면 발생
-$(document).on("click", "#editPet", function() {
-  $("textarea[id=contentText]").attr("readonly",false);
-  $("textarea[class=commentin]").attr("readonly",true);
-  $('.box').css('display', '');
-  $('.commentin').css('display', 'none');
-  $('#comDelBtn').css('display', 'none');
-  $('#forms').css('display', '');
-  $("button[id=comDelBtn]").attr("disabled",true);
-  $('#editPet').css('display', 'none');
-  $('#editEnd').css('display', '');
-  $('.comments').css('display', 'none');
-  $('#delImg').css('display', '');
-  $('#contentText').css('background-color', '#ffffff');
-  $('#contentText').css('color', '#2d335e');
-})
 
-// 디테일 변경완료 누르면 발생
-$(document).on("click", "#editEnd", function() {
-  $("textarea[id=contentText]").attr("readonly",true);
-  $("textarea[class=commentin]").attr("readonly",false);
-  $('.box').css('display', 'none');
-  $('.commentin').css('display', '');
-  $('#comDelBtn').css('display', '');
-  $('#forms').css('display', 'none');
-  $("button[id=comDelBtn]").attr("disabled",false);
-  $('#editPet').css('display', '');
-  $('#editEnd').css('display', 'none');
-  $('.comments').css('display', '');
-  $('#delImg').css('display', 'none');
-  $('#contentText').css('background-color', '#2d335e');
-  $('#contentText').css('color', '#fff');
-  
-  var form_data = new FormData();
-  form_data.append("matNo", $('#mmatno').val())
-  form_data.append("matContent", $('#contentText').val())
-  form_data.append("matType", $('#mmtype').val())
-  $.ajax({
-    url: "mating/ajax/update.do",
-    dataType: 'json',
-    cache: false,
-    async: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      console.log("디테일 변경 성공")
-      for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-        var file_data = $("#file-1").prop("files")[i];
-        var file_name = file_data.name;
-        var form_data = new FormData();
-        form_data.append("file", file_data)
-        form_data.append("fName", file_name)
-        form_data.append("matNo", $('#mmatno').val())
-        $.ajax({
-          url: "files/ajax/matUpload.do",
-          dataType: 'json',
-          cache: false,
-          async: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(resultObj) {
-              console.log(file_name)
-              
-          }
-        })
-      }
-      location.href='mating.html';
-//      $('#file-1').val('');
-//      var form_data = new FormData();
-//      form_data.append("matNo", $('#mmatno').val())
-//      $.ajax({
-//        url: "files/ajax/matlist.do",
-//        dataType: 'json',
-//        cache: false,
-//        async: false,
-//        contentType: false,
-//        processData: false,
-//        data: form_data,
-//        type: 'post',
-//        success: function(re) {
-//          var files = re.ajaxResult.data;
-//          $('#dots').empty();
-//          $('#imgs').empty();
-//          $('#delImg').empty();
-//          
-//          var imgs = $('#imgs');
-//          var dots = $('#dots');
-//          var showDel = $('#delImg');
-//          var i = 0;
-//          for (var file of files) {
-//            if (i == 0) {
-//              imgs.append(
-//              "<div class='item active'>" +
-//                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-//              "</div>")
-//              dots.append(
-//              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-//              "' class='active'></li>")
-//              if (files.length == 1) {
-//                showDel.append("<img src='files/" + file.fileName + "'>")
-//              } else {
-//                showDel.append(
-//                "<img src='files/" + file.fileName + "'>" +
-//                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-//              }
-//            } else {
-//              imgs.append(
-//              "<div class='item'>" +
-//                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-//              "</div>")
-//              dots.append(
-//              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-//              "'></li>")
-//              if (files.length == 1) {
-//                showDel.append("<img src='files/" + file.fileName + "'>")
-//              } else {
-//                showDel.append(
-//                "<img src='files/" + file.fileName + "'>" +
-//                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-//              }
-//            }
-//            i++;
-//          }
-//        }
-//      })
-    }
-  })
-})
-
-// 디테일 모달 속 이미지 하나하나 지우기
-function imgDel(id) {
-  console.log("fno : " + id)
-  var form_data = new FormData();
-  form_data.append("fno", id)
-  $.ajax({
-    url: "files/ajax/delOneImg.do",
-    dataType: 'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      console.log("이미지 삭제 성공")
-
-      var form_data = new FormData();
-      form_data.append("matNo", $('#mmatno').val())
-      console.log("matNo : " + $('#mmatno').val())
-      $.ajax({
-        url: "files/ajax/matlist.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          var files = re.ajaxResult.data;
-          console.log(files);
-          $('#imgs').empty();
-          $('#dots').empty();
-          $('#delImg').empty();
-          var imgs = $('#imgs');
-          var dots = $('#dots');
-          var showDel = $('#delImg');
-          var i = 0;
-          for (var file of files) {
-            if (i == 0) {
-              imgs.append(
-              "<div class='item active'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "' class='active'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-              
-            } else {
-              imgs.append(
-              "<div class='item'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-            }
-            i++;
-          }
-        }
-      })
-    }
-  });
-}
 
 //더보기
 function moree(id) {
@@ -990,71 +698,72 @@ function moree(id) {
     type: 'post',
     dataType: 'json',
     success: function(resultObj) {
-      $("#hidden").trigger("click");
-      $("button:first").trigger("click");
+    $("#hidden").trigger("click");
+    $("button:first").trigger("click");
 
-      var show = $('#Container');
-      var j = 0;
-      var file;
-      var mem;
-      var gen;
-      for (var mating of resultObj.mating) {
+    var show = $('#Container');
+    var j = 0;
+    var file;
+    var mem;
+    var gen;
+    for (var mating of resultObj.mating) {
+      console.log(mating)
+      console.log("for문~")
+      file = resultObj.filesMap[j];
+      mem = resultObj.memberMap[j];
+      if(mating.matGender == 0) {
+        gen = "수컷";
+      } else {
+        gen = "암컷";
+      }
 
-        file = resultObj.filesMap[j];
-        mem = resultObj.memberMap[j];
-        if(mating.matGender == 0) {
-          gen = "수컷";
-        } else {
-          gen = "암컷";
-        }
+      j++;
+      show.append(
+      "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+      "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
+      "' onclick='detail(this.id);'>" +
 
-        j++;
-        show.append(
-        "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
-        "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
-        "' onclick='detail(this.id);'>" +
+        "<div class='coverphoto'><img src='files/" + file[0].fileName + "'></div>" +
 
-          "<div class='coverphoto'><img src='files/" + file[0].fileName + "'></div>" +
+        "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
 
-          "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
-
-          "<div class='left_col'>" +
-            "<div class='views'>" +
-              "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
-              "VIEW" +
-            "</div>" +
+        "<div class='left_col'>" +
+          "<div class='views'>" +
+            "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
+            "VIEW" +
           "</div>" +
+        "</div>" +
 
-          "<div class='right_col'>" +
-            "<ul class='contact_information'>" +
-              "<li class='website'>" + mating.matSpec + "</li>" +
-              "<li class='website'>" + mating.matType + "</li>" +
-              "<li class='gender'>" + gen + "</li>" +
-              "<li class='title'>" + mating.matTitle + "</li>" +
-              "<li class='resume'>" + mating.matCreateDate + "</li>" +
-              "<li class='name'>" + mem.mName + "</li>" +
-            "</ul>" +
-          "</div>" +
-        "</div>")
-      };
+        "<div class='right_col'>" +
+          "<ul class='contact_information'>" +
+            "<li class='website'>" + mating.matSpec + "</li>" +
+            "<li class='website'>" + mating.matType + "</li>" +
+            "<li class='gender'>" + gen + "</li>" +
+            "<li class='mail'>₩ " + mating.matCost + "</li>" +
+            "<li class='title'>" + mating.matTitle + "</li>" +
+            "<li class='resume'>" + mating.matCreateDate + "</li>" +
+            "<li class='name'>" + mem.mName + "</li>" +
+          "</ul>" +
+        "</div>" +
+      "</div>")
+    };
 
-      $.getJSON('mating/ajax/pages.do', function(resultObj) {
-        var ajaxResult = resultObj.ajaxResult;
-        console.log(ajaxResult.data)
-        if (ajaxResult.data == page) {
-          console.log("더보기 끝")
-          $('#more').empty();
+    $.getJSON('mating/ajax/pages.do', function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      if (ajaxResult.data == page) {
+        console.log("더보기 끝")
+        $('#more').empty();
 
-        } else {
-          console.log("더보기 생성")
-          var more = $('#more');
-          $('#more').empty();
-          var i = parseInt(page)+1;
-          more.append(
-            "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
-        }
-      })
-    }
+      } else {
+        console.log("더보기 생성")
+        var more = $('#more');
+        $('#more').empty();
+        var i = parseInt(page)+1;
+        more.append(
+          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+      }
+    })
+  }
 
   })
 }
