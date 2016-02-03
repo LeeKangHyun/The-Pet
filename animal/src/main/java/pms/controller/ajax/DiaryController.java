@@ -124,9 +124,9 @@ public class DiaryController {
 	@RequestMapping("delete")
 	public AjaxResult delete(
 			int dno) throws Exception {
+	  filesService.removeDairyFile(dno);
+	  commentService.remove(dno);
 		walkService.remove(dno);
-		commentService.removeComment(dno);
-		filesService.removeDairyFile(dno);
 		diaryService.remove(dno);
 		 
 		return new AjaxResult("success", null);
