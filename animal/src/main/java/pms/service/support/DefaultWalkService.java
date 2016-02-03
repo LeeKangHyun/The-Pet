@@ -22,6 +22,10 @@ public class DefaultWalkService implements WalkService {
     return walkDao.add(walk);
   }
   
+  public List<Diary> top3() {
+  	return walkDao.rank();
+  }
+  
   public List<Walk> list(int dno) {
     return walkDao.list(dno);
   }

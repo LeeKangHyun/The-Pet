@@ -36,35 +36,31 @@
 	  <result column="PET_SPEC"   	property="pSpec"/>
 	  <result column="MEM_NUM"   	property="mno"/>
 	</resultMap>
-
+   
+  <select id="rank" resultMap="diaryMap">
+  	select
+	  SCH_NUM,
+	  SCH_CRE,
+	  SCH_TITLE,
+	  CATE_CODE,
+	  NOTI_LIKES,
+	  NOTI_VIEWS,
+	  PET_SPEC,
+	  MEM_NUM,
+  	  (select count(*) + 1 
+  		from schedule 
+  		where NOTI_LIKES > s.NOTI_LIKES) as rank
+  	from schedule as s
+  	where CATE_CODE='SANCHE' and NOTI_HIDE=1
+  	order by rank asc
+  	limit 0, 3
+  </select>
+	
   <select id="list" resultMap="walkMap" parameterType="int">
     select *
     from location
     where SCH_NUM=#{value}
   </select>
-  
-<!--
-  <select id="selectList" resultMap="diaryMap">
-    select
-     sc.SCH_NUM as dno,
-     MAX(sc.SCH_CRE) as SCH_CRE,
-     MAX(sc.SCH_TITLE) as SCH_TITLE,
-     MAX(sc.CATE_CODE) as CATE_CODE,
-     MAX(sc.NOTI_LIKES) as NOTI_LIKES,
-     MAX(sc.NOTI_VIEWS) as NOTI_VIEWS,
-     MIN(fi.FILE_NAME) as filename,
-     MAX(sc.PET_SPEC) as PET_SPEC,
-     MAX(me.MEM_NUM) as MEM_NUM,
-     MAX(me.MEM_NAME) as MEM_NAME,
-     MAX(me.MEM_IMG) as MEM_IMG
-    from schedule sc
-    left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
-    left outer join member me on sc.MEM_NUM = me.MEM_NUM
-    where CATE_CODE='SANCHE' and NOTI_HIDE=1
-    group by dno
-    order by dno desc limit #{startIndex}, #{length}
-  </select>
-  -->
   
   <select id="selectList" resultMap="diaryMap">
     select
@@ -80,6 +76,7 @@
     where CATE_CODE='SANCHE' and NOTI_HIDE=1
     order by SCH_NUM desc limit #{startIndex}, #{length}
   </select>
+
   
   <select id='selectName' resultMap='walkMap'>
     select LOC_LAT, LOC_LNG, LOC_NAME, SCH_NUM
@@ -133,6 +130,5 @@
   <select id="detail_like_check" resultMap="likesMap" parameterType="map">
    	select LIKE_NUM from Likes where SCH_NUM = #{dno} and MEM_NUM = #{mno}
   </select>
-  
   
 </mapper>

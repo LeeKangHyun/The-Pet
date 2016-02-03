@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pms.dao.FilesDao;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
 import pms.service.EducationService;
+import pms.service.FilesService;
 
 @Controller("ajax.EducationController")
 @RequestMapping("/Education/education/ajax/*")
@@ -24,7 +24,7 @@ public class EductionController {
 	public static final String SAVED_DIR = "/files";
 	
 	@Autowired EducationService educationService;
-	@Autowired FilesDao filesDao;
+	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
 	
 	
@@ -45,7 +45,7 @@ public class EductionController {
 		List<List<Files>> filesMap = new ArrayList<>();
 		
 		for (Education e : educations) {
-			files = filesDao.EduFileList(e.getEduNo());
+			files = filesService.getEduFile(e.getEduNo());
 			filesMap.add(files);
 		}
 		
@@ -78,8 +78,10 @@ public class EductionController {
     
     HashMap<String,Object> resultMap = new HashMap<>();
 		Education education = educationService.getOneEducation(eduNo);
-		List<Files> files = filesDao.EduFileList(education.getEduNo());
+		List<Files> files = filesService.getEduFile(education.getEduNo());
 		
+		System.out.println(files);
+		System.out.println(education);
 		resultMap.put("status", "success");
 		resultMap.put("education", education);
 		resultMap.put("files", files);

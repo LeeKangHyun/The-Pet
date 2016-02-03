@@ -64,6 +64,12 @@
     values(#{comComment}, #{comImg}, ${mno}, #{dno})
   </insert>
   
+  <!-- 대진 작업 중 -->
+  <insert id="eduinsert" parameterType="comment">
+    insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,EDU_NUM) 
+    values(#{comComment},#{comImg},#{mno},#{eduNo})
+  </insert>
+  
   <insert id="insert2" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,SCH_NUM,EDU_NUM,S_NUM,MAT_NUM) 
     values(#{comComment},#{comImg},#{mno},#{dno},#{eduNo},#{sno},#{matNo})

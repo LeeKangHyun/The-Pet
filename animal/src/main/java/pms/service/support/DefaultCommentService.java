@@ -18,8 +18,8 @@ public class DefaultCommentService implements CommentService {
   public List<Comment> getDiaryComment(int dno) {
 		return commentDao.DiaryCommentList(dno);
   }
-  public List<Comment> getEduComment(int eduNo) {
-		return commentDao.EduCommentList(eduNo);
+  public List<Comment> getEduComment(Map<String,Object> paramMap) {
+		return commentDao.EduCommentList(paramMap);
   }
   public List<Comment> getMatComment(int matNo) {
 		return commentDao.MatCommentList(matNo);
@@ -41,6 +41,9 @@ public class DefaultCommentService implements CommentService {
   }
   public int walkcom(Comment comment) {
     return commentDao.walkcom(comment);
+  }
+  public int educom(Comment comment) {
+  		return commentDao.eduinsert(comment);
   }
 
   public int removeComment(int comNo) {
