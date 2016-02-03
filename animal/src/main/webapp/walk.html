@@ -112,28 +112,13 @@ $(document).ready(function(){
       for (var i = 0; i < resultObj.data.length; i++) {
         file = resultObj.filesMap[i];
         mem = resultObj.memberMap[i];
-        // console.log(file)
         var content = '';
-        var jibun = '';
-        coord = '';
 
         for (var j = 0; j < resultObj.name.length; j++) {
             if (resultObj.data[i].dno == resultObj.name[j].dno) {
                 content = resultObj.name[j].locName;
-                coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
             }
         }
-
-        geocoder.coord2detailaddr({
-            coord: coord,
-            callback: function(status, result) {
-                if (status === daum.maps.services.Status.OK) {
-                    $("#jibun" + i).append(
-                        "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                        "위치/ "  + result[0].jibunAddress.name);
-                }
-            }
-        });
 
         imgWidth = file[0].width;
         // console.log("가로 : " + imgWidth);
@@ -172,7 +157,7 @@ $(document).ready(function(){
                     "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
                     "<h5 id='jibun" + i + "'>" +
                     //   "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                    //   "위치/ "  + jibun +
+                    //   jibun +
                     "</h5>" +
                   "</div>" +
                 "</a>" +
@@ -224,6 +209,35 @@ $(document).ready(function(){
         ).appendTo(div);
 
       }
+      var coord = new Array();
+      for (var i = 0; i < resultObj.data.length; ) {
+        for (var j = 0; j < resultObj.name.length; ) {
+            if (resultObj.data[i].dno == resultObj.name[j].dno) {
+                coord.push({
+                    lat: resultObj.name[j].locLat,
+                    lng: resultObj.name[j].locLng
+                })
+            }
+            j++;
+        }
+        i++;
+    }
+    console.log(coord);
+    var jibun = new Array();
+    for (var i = 0; i < coord.length; i++) {
+        var k = 0;
+        geocoder.coord2detailaddr({
+            coord: new daum.maps.LatLng(coord[i].lat, coord[i].lng),
+            callback: function(status, result) {
+                if (status === daum.maps.services.Status.OK) {
+                    jibun = result[0].jibunAddress;
+                    $("#jibun" + k++).append("<i class='fa fa-map-marker fa-fw text-muted'></i>" + jibun.name);
+                    console.log(jibun);
+                }
+            }
+        })
+    }
+
       //    <!-- 지도 나오기 -->
       for (var i=0; i < resultObj.data.length; i++) {
         var ids = 'map' + i;
