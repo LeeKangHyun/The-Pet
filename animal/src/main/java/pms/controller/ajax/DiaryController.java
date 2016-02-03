@@ -132,43 +132,22 @@ public class DiaryController {
 		return new AjaxResult("success", null);
 	}
 	
-	/////////// 위까진 성공
-	@RequestMapping(value="walkUpdate", method=RequestMethod.POST)
-	public Object walkupdate(
-	    Diary diary
-	) throws Exception {
-	  return 0;
-	}
-	
-	
 	@RequestMapping(value="update", method=RequestMethod.POST)
-	public AjaxResult update(
-			Diary diary,
-			Files files,
-			MultipartFile file) throws Exception {
-
-		if (file.getSize() > 0) {
-			String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
-			File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
-																	+ "/" + newFileName);
-			file.transferTo(attachfile);
-			// 파일 만들어야 쓸수있겠군
-//			files.setFileName(fileName);(newFileName);
-			
-		}	else if (files.getFileName().length() == 0) {
-			files.setFileName(null);
-		}
-
-		if (diaryService.change(diary) <= 0 || filesService.change(files) <= 0) {
-			return new AjaxResult("failure", null);
-		} 
+	public Object update(
+			Diary diary) throws Exception {
 		
+	   if (diary.getStartDate().equals("")) {
+	      Date d = new Date();
+	      SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
+	      diary.setStartDate(now.format(d));
+	      diary.setEndDate(now.format(d));
+	      System.out.println(now.format(d));
+	    }
+
+	    diaryService.change(diary);
+	  
 		return new AjaxResult("success", null);
 	}
-	
-
-
-
 
 	/*private String replace(String checkIndex) {
 		if ( checkIndex != null ) {

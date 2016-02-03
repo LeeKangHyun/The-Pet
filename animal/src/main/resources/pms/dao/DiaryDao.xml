@@ -93,9 +93,7 @@
     update schedule set
       START_DATE=#{startDate},
       END_DATE=#{endDate},
-      SCH_TITLE=#{title},
-  	  SCH_CONTENT=#{content},
-  	  NOTI_HIDE=#{dhide}
+  	  SCH_CONTENT=#{content}
     where SCH_NUM=#{dno}
   </update>
 

@@ -120,12 +120,12 @@
               </div>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
               <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
               <div class="col-sm-2">
                   <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
               </div>
-          </div>
+          </div> -->
 
           <div class="form-group">
               <label for="fcontent" class="col-sm-2 control-label">내용</label>
@@ -558,6 +558,7 @@ $(document).ready(function() {
         var frontEnd;
         var backEnd;
         var fullEnd;
+        // console.log(event.cateCode);
         if (event.end) {
           frontEnd = event.end.format().substring(0,8);
           backEnd = Number(event.end.format().substring(8,10)) - 1;
@@ -572,12 +573,21 @@ $(document).ready(function() {
         //   console.log(fullEnd)
         //   console.log(event)
           $('#sdno').val(event.no);
-          $('#scate').val(event.cateCode)
+          $('#scate').val(event.cateCode);
           $('#modalTitle').html(event.title);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(fullEnd);
-          $('#mColor').val(event.color);
+        //   $('#mColor').val(event.color);
           $('#mDes').html(event.description);
+          if($('#scate').val() == 'JARANG') {
+              $('.cDate').css('display', 'none');
+          }
+          else if ($('#scate').val() == 'SANCHE') {
+              $('.cDate').css('display', 'none');
+          }
+          else if ($('#scate').val() == 'ILJUNG') {
+              $('.cDate').css('display', '');
+          }
           $('#fullCalModal').modal();
 
           var form_data = new FormData();
@@ -611,10 +621,21 @@ $(document).ready(function() {
         } else {
           $('#sdno').val(event.no);
           $('#modalTitle').html(event.title);
+          $('#scate').val(event.cateCode);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(event.start.format().substring(0,10));
-          $('#mColor').val(event.color);
+        //   $('#mColor').val(event.color);
           $('#mDes').html(event.description);
+
+          if($('#scate').val() == 'JARANG') {
+              $('.cDate').css('display', 'none');
+          }
+          else if ($('#scate').val() == 'SANCHE') {
+              $('.cDate').css('display', 'none');
+          }
+          else if ($('#scate').val() == 'ILJUNG') {
+              $('.cDate').css('display', '');
+          }
           $('#fullCalModal').modal();
 
           var form_data = new FormData();
@@ -795,7 +816,6 @@ $(document).on("click", "#delPet", function() {
         alert("펫이 삭제되었습니다.")
 //            $('#fullCalModal').modal('hide')
         location.href="diary.html"
-
       }
     })
   });
@@ -883,8 +903,6 @@ $(document).on("click", "#addBtn", function(event) {
   } else if (sel === 'SANCHE') {
     if ($('#pno').val() == "" ||
       $('#title').val() == "" ||
-      $('#startDate').val() == "" ||
-      $('#endDate').val() == "" ||
       $('#fContent').val() == "" ||
       $('#file-1').val() == "" ||
       $('#subtitle').val() =="") {
@@ -1029,173 +1047,61 @@ $(document).on("click", "#addBtn", function(event) {
 });
 
 // 다이어리 변경
-$(document).on("click", "#editSchedule", function(event) {
-    console.log(event)
-    console.log($('#scate').val())
-//     if (sel === 'ILJUNG') {
-//       if ($('#pno').val() == "" ||
-//         $('#title').val() == "" ||
-//         $('#startDate').val() == "" ||
-//         $('#endDate').val() == "" ||
-//         $('#fContent').val() == "" ||
-//         $('#file-1').val() == "") {
-//         alert("모두 입력해주세요")
-//         return false;
-//       } else {
-//         var form_data = new FormData();
-//         var x = document.getElementById("dmhide").checked;
-//         var q;
-//         if (x) {
-//             q = 1;
-//         } else {
-//             q = 0;
-//         }
-//         console.log(q)
-//         form_data.append("mno", $('#myMno2').val())
-//         form_data.append("dhide", q)
-//         form_data.append("cateCode", $('#cateCode').val())
-//         form_data.append("pno", $('#pno').val())
-//         form_data.append("startDate", $('#startDate').val())
-//         form_data.append("endDate", $('#endDate').val())
-//         form_data.append("title", $('#title').val())
-//         form_data.append("content", $('#fContent').val())
-//         $.ajax({
-//           url: "diary/ajax/add.do",
-//           dataType: 'json',
-//           cache: false,
-//           contentType: false,
-//           processData: false,
-//           data: form_data,
-//           type: 'post',
-//           success: function(re) {
-//             var lastDno = re.ajaxResult.data;
-//             for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-//               var file_data = $("#file-1").prop("files")[i];
-//               var file_name = file_data.name;
-//               var form_data = new FormData();
-//               form_data.append("file", file_data)
-//               form_data.append("fName", file_name)
-//               form_data.append("dno", lastDno)
-//               $.ajax({
-//                 url: "files/ajax/upload.do",
-//                 dataType: 'json',
-//                 cache: false,
-//                 contentType: false,
-//                 processData: false,
-//                 data: form_data,
-//                 type: 'post',
-//                 success: function(resultObj) {
-//                     console.log(file_name)
-//                 }
-//               })
-//             }
-//             alert("다이어리에 일정이 추가되었습니다.")
-//             location.href = "diary.html"
-//           }
-//         })
-//       }
-//   } else if () {
-//     if ($('#mDes').val() == "") {
-//       alert("내용이 비었습니다.")
-//       return false;
-//     } else {
-//       var form_data = new FormData();
-//       form_data.append("content", $('#mDes').val())
-//       $.ajax({
-//         url: "diary/ajax/walkUpate.do",
-//         dataType: 'json',
-//         cache: false,
-//         contentType: false,
-//         processData: false,
-//         data: form_data,
-//         type: 'post',
-//         success: function(re) {
-//             for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-//                 var file_data = $("#file-1").prop("files")[i];
-//                 var file_name = file_data.name;
-//                 var form_data = new FormData();
-//                 form_data.append("file", file_data)
-//                 form_data.append("fName", file_name)
-//                 form_data.append("dno", lastDno)
-//                 $.ajax({
-//                     url: "files/ajax/upload.do",
-//                     dataType: 'json',
-//                     cache: false,
-//                     contentType: false,
-//                     processData: false,
-//                     data: form_data,
-//                     type: 'post',
-//                     success: function(resultObj) {
-//                         console.log(file_name)
-//                     }
-//                 })
-//             }
-//             alert("다이어리에 산책코스가 추가되었습니다.")
-//             location.href = "diary.html"
-//         }
-//       });
-//   }
-// } else if (sel === 'JARANG') {
-//     if ($('#pno').val() == "" ||
-//       $('#title').val() == "" ||
-//       $('#fContent').val() == "" ||
-//       $('#file-1').val() == "") {
-//       alert("모두 입력해주세요")
-//       return false;
-//     } else {
-//       var form_data = new FormData();
-//       var x = document.getElementById("dmhide").checked;
-//       var q;
-//       if (x) {
-//         q = 1;
-//       } else {
-//         q = 0;
-//       }
-//       console.log(q)
-//       form_data.append("mno", $('#myMno2').val())
-//       form_data.append("dhide", q)
-//       form_data.append("cateCode", $('#cateCode').val())
-//       form_data.append("pno", $('#pno').val())
-//       form_data.append("title", $('#title').val())
-//       form_data.append("content", $('#fContent').val())
-//       form_data.append("startDate", $('#startDate').val())
-//       form_data.append("endDate", $('#endDate').val())
-//       $.ajax({
-//         url: "diary/ajax/add.do",
-//         dataType: 'json',
-//         cache: false,
-//         contentType: false,
-//         processData: false,
-//         data: form_data,
-//         type: 'post',
-//         success: function(re) {
-//           var lastDno = re.ajaxResult.data;
-//           for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-//             var file_data = $("#file-1").prop("files")[i];
-//             var file_name = file_data.name;
-//             var form_data = new FormData();
-//             form_data.append("file", file_data)
-//             form_data.append("fName", file_name)
-//             form_data.append("dno", lastDno)
-//             $.ajax({
-//               url: "files/ajax/upload.do",
-//               dataType: 'json',
-//               cache: false,
-//               contentType: false,
-//               processData: false,
-//               data: form_data,
-//               type: 'post',
-//               success: function(resultObj) {
-//                   console.log(file_name)
-//               }
-//             })
-//           }
-//           alert("다이어리에 자랑하기가 추가되었습니다.")
-//           location.href = "diary.html"
-//         }
-//       })
-//     }
-//   }
+$(document).on("click", "#editSchedule", function() {
+    if ($('#mDes').val() == '') {
+        alert('내용이 비었습니다.')
+        return false;
+    } else {
+        console.log($('#sdno').val())
+        console.log($('#mDes').val())
+        console.log($("#mFile").prop("files"))
+
+        var sdno = $('#sdno').val();
+        var content = $('#mDes').val();
+        var sdate = $('#mStart').val();
+        var edate = $('#mEnd').val();
+        console.log(sdate)
+        console.log(edate)
+        var form_data = new FormData();
+        // form_data.append("dno", sdno)
+        // form_data.append("content", content)
+        $.ajax({
+            url: 'diary/ajax/update.do',
+            dataType: 'json',
+            type: "POST",
+            data: {
+                dno: sdno,
+                content: content,
+                startDate: sdate,
+                endDate: edate
+            },
+            success: function() {
+                console.log('diary')
+                for (var i = 0; i < $("#mFile").prop("files").length; i++) {
+                  var file_data = $("#mFile").prop("files")[i];
+                  var file_name = file_data.name;
+                  var form_data = new FormData();
+                  form_data.append("file", file_data)
+                  form_data.append("fName", file_name)
+                  form_data.append("dno", $('#sdno').val())
+                  $.ajax({
+                    url: "files/ajax/upload.do",
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(resultObj) {
+                        console.log(file_name)
+                    }
+                  })
+                }
+                alert("다이어리가 변경되었습니다.");
+                location.href = "diary.html";
+            }
+        })
+    }
 });
 
 // 다이어리 삭제
