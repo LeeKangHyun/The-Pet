@@ -44,12 +44,15 @@ public interface BoastBoardDao {
   
   int comment_add(Map<String, Object> paramMap);
   
+  int comment_delete(int comNo);
+  
   double comment_count(int dno);
   
   List<Comment> comment_list(int dno);
   
   Files getsize(String filename);
   
+  int delete_notcmt(int dno);
 }
 
 

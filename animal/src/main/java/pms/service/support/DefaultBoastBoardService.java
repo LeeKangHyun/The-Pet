@@ -133,6 +133,9 @@ public class DefaultBoastBoardService implements BoastBoardService {
     return boastboardDao.delete(dno);
   }
   
+  public int delete_notcmt(int dno) {
+    return boastboardDao.delete_notcmt(dno);
+  }
   
   public int comment_add(int mno, int dno, String content){
     HashMap<String, Object> paramMap = new HashMap<>();
@@ -140,7 +143,11 @@ public class DefaultBoastBoardService implements BoastBoardService {
     paramMap.put("dno", dno);
     paramMap.put("content", content);
     
-    return boastboardDao.like_add(paramMap);
+    return boastboardDao.comment_add(paramMap);
+  };
+  
+  public int comment_delete(int comNo){
+    return boastboardDao.comment_delete(comNo);
   };
   
   public double comment_count(int dno){

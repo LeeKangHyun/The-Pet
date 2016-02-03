@@ -50,6 +50,14 @@
             cursor: pointer;
         }
         
+        .comment-delete {
+        color: white;
+        }
+        
+        .comment-delete:hover {
+        color: white;
+        }
+        
  .modal-content, .modal-dialog {
   position: absolute;
   top: 40%;
@@ -165,7 +173,6 @@
 			<div id="likes"></div>
 			<div id="cre_dt"></div>
 			<div id="views"></div>
-
 		</div>
 		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) 끝 -->
 		<!-- content top(제목, 작성자, 날짜, 조회수, 좋아요) 끝 -->
@@ -249,6 +256,7 @@
           <h4 class="modal-title" id="myModalLabel">댓글 삭제</h4>
         </div>
         <div class="modal-body">이 댓글을 삭제하시겠어요?</div>
+          <input type="hidden" id="comno">        
         <div class="modal-footer">
                   <button type="button" class="btn btn-default" id="comment-delete-no"
             data-dismiss="modal">취소</button>
@@ -259,6 +267,7 @@
   </div>
 
 
+<!-- 댓글 입력 시 댓글 생성 -->
 	<script>
  function detailBoastBoard() {
 	  var url = location.href;
@@ -284,19 +293,91 @@
 		    	
 		    	  $("#reset").trigger("click");
 		    	  $('#commentSection').empty();
-		    	  for (var i = 0; i < resultObj.count; i++) {
- 		    	  $('#commentSection').append(
-		    			  "<div class='comment'>"+
-		          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-		          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-		          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-		        "</div>"
-		        );
-		    	  }
+		          for (var i = 0; i < resultObj.count; i++) {
+		              if ($.session.get('mno') == resultObj.comment[i].mno) {
+		                   $('#commentSection').append(
+		                           "<div class='comment'>"+
+		                         "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+		                         "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+		                         "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+		                         "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+		                         "</a>"+ 
+		                         "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+		                       "</div>"
+		                       );
+		              } else {
+		                    $('#commentSection').append(
+		                            "<div class='comment'>"+
+		                          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+		                          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+		                          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+		                        "</div>"
+		                    );
+		              }
+		                }
 		    	  
 		    } });
 	  
  }
+</script>
+
+<!--  댓글 삭제 -->
+
+<!-- 댓글 삭제 도우미 -->
+<script>
+function del(id) {
+    $('#comno').val(id)
+}
+</script>
+
+<!-- 댓글 삭제 -->
+<script>
+$(document).on("click", "#comment-delete-yes", function() {
+var comment_del = new FormData();
+var url = location.href;
+var dno = url.split('?')[1].split('=')[1];
+
+	comment_del.append("comNo", $('#comno').val());
+	comment_del.append("dno", dno);
+	
+	$.ajax({
+		url: "../boastboard/ajax/comment_delete.do",
+		dataType: 'json',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: comment_del,
+		type: 'post',
+		success: function(resultObj) {
+		    $('#Comment-Delete-Check-Modal').modal('hide');
+		    
+            $('#commentSection').empty();
+            for (var i = 0; i < resultObj.count; i++) {
+                if ($.session.get('mno') == resultObj.comment[i].mno) {
+                     $('#commentSection').append(
+                             "<div class='comment'>"+
+                           "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+                           "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+                           "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+                           "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+                           "</a>"+ 
+                           "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+                         "</div>"
+                         );
+                } else {
+                      $('#commentSection').append(
+                              "<div class='comment'>"+
+                            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+                            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+                            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+                          "</div>"
+                      );
+                }
+                  }
+		}
+	})
+	
+})
 </script>
 
 	<script type="text/javascript">
@@ -377,18 +458,36 @@ $(document).ready(function() {
       $('#likes').append("<span id='likes-span'><i class='fa fa-thumbs-o-up'></i> " + resultObj.data[0].like + 
                          "</span>")
       $('#content-content').append("<pre id='content-content-content'>" + resultObj.data[0].content + "</pre>")
-      $('#input').append("<img id='comimg' src='../files/"+$.session.get('mimg')+"'>");
+
+      if ($.session.get('mname') != undefined) {
+    	  $('#input').append("<img id='comimg' src='../files/"+$.session.get('mimg')+"'>");
+      } else {
+    	  $('#input').append("<img id='comimg' src='../files/default.jpg'>");
+      }
       
       for (var i = 0; i < resultObj.count; i++) {
-          $('#commentSection').append(
-              "<div class='comment'>"+
-            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-            "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
-            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-          "</div>"
-          );
+    	  if ($.session.get('mno') == resultObj.comment[i].mno) {
+    	       $('#commentSection').append(
+    	               "<div class='comment'>"+
+    	             "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+    	             "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+    	             "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+    	             "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+    	             "</a>"+ 
+    	             "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+    	           "</div>"
+    	           );
+    	  } else {
+              $('#commentSection').append(
+                      "<div class='comment'>"+
+                    "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+                    "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+                    "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+                  "</div>"
+              );
+    	  }
           }
+
       
       if ($.session.get('mno') == resultObj.data[0].mno) {
        $('#delete').append("<button type='button' class='btn btn-success' id='delete-Btn' data-toggle='modal' data-target='#Delete-Check-Modal'>삭제</button>");

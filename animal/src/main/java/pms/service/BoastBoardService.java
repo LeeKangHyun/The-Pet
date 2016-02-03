@@ -44,7 +44,11 @@ public interface BoastBoardService {
   
   public int delete(int dno);
   
+  public int delete_notcmt(int dno);
+  
   public int comment_add(int mno, int dno, String content);
+  
+  public int comment_delete(int comNo);
   
   public double comment_count(int dno);
   

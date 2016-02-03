@@ -272,7 +272,15 @@ public class BoastBoardController {
 
   @RequestMapping(value="delete", method=RequestMethod.POST)
   public AjaxResult like_delete(int dno) throws Exception {
-    boastBoardDao.delete(dno);
+    
+    List<Comment> comment = boastBoardDao.comment_list(dno);
+    
+    if (comment.isEmpty()) {
+      boastBoardDao.delete_notcmt(dno);
+    } else {
+      boastBoardDao.delete(dno);
+    }
+
     return new AjaxResult("success", null);
   }
 
@@ -288,6 +296,21 @@ public class BoastBoardController {
     paramMap.put("content", content);
 
     boastBoardDao.comment_add(paramMap);
+    double count = boastBoardDao.comment_count(dno);
+    List<Comment> comment = boastBoardDao.comment_list(dno);
+    
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("status", "success");
+        resultMap.put("count", count);
+        resultMap.put("comment", comment);
+
+    return resultMap;
+  }
+  
+  @RequestMapping(value="comment_delete", method=RequestMethod.POST)
+  public Object comment_delete(int comNo, int dno) throws Exception {
+
+    boastBoardDao.comment_delete(comNo);
     double count = boastBoardDao.comment_count(dno);
     List<Comment> comment = boastBoardDao.comment_list(dno);
     

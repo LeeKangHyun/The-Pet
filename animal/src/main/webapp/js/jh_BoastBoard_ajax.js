@@ -16,7 +16,8 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 
 	for(var i = 0; i < length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
-		topcheck1 = topcheck1.slice(1,2);
+		topcheck1 = topcheck1.slice(1,2).toString().toLowerCase();
+		
 		if(topcheck1 == "jpg" ||
 				topcheck1 == "jpeg" ||
 				topcheck1 == "png" ||

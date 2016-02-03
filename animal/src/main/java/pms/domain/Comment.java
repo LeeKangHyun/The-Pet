@@ -20,7 +20,7 @@ public class Comment implements Serializable {
 	protected double count;
 	
 	public Comment () {}
-
+	
   public int getComNo() {
     return comNo;
   }

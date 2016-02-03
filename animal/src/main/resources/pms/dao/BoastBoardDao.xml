@@ -209,9 +209,20 @@ left join schedule sc on fi.SCH_NUM = sc.SCH_NUM
 where fi.SCH_NUM = #{dno}
   </delete>
   
+    <delete id="delete_notcmt" parameterType="int">
+delete fi, sc    
+from files as fi    
+left join schedule sc on fi.SCH_NUM = sc.SCH_NUM   
+where fi.SCH_NUM = #{dno}
+  </delete>
+  
    <insert id="comment_add" parameterType="map">
   insert into Comment(CMT_CONTENT, SCH_NUM, MEM_NUM) value(#{content}, #{dno}, #{mno})
   </insert>
+  
+   <delete id="comment_delete" parameterType="int">
+delete from comment where CMT_NUM = #{comNo}
+  </delete>
   
   <select id="comment_count" parameterType="int" resultType="double">
       select
@@ -222,12 +233,15 @@ where fi.SCH_NUM = #{dno}
     
    <select id="comment_list" resultMap="commentMap" parameterType="int">
     select
+      co.CMT_NUM,
       co.CMT_CONTENT,
       me.MEM_NAME,
-      me.MEM_IMG
+      me.MEM_IMG,
+      me.MEM_NUM
     from Comment co 
     left outer join member me on co.MEM_NUM = me.MEM_NUM
     where co.SCH_NUM = #{dno}
+    order by CMT_NUM asc
   </select>
   
 </mapper>
