@@ -26,6 +26,8 @@
   	select * 
   	from comment
   	where EDU_NUM=#{eduNo}
+  	order by CMT_NUM desc
+    limit #{startIndex}, 10
   </select>
   
   <select id="MatCommentList" resultMap="commentMap" parameterType="int">
@@ -52,6 +54,9 @@
     select count(*) as count from comment where SCH_NUM=${value}
   </select>
   
+  <select id='educount' resultMap="commentMap" parameterType="int">
+    select count(*) as count from comment where EDU_NUM=${value}
+  </select>
   <!-- matinsert -->
   <insert id="insert" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,MAT_NUM) 

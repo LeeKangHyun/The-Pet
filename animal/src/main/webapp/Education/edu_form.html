@@ -54,12 +54,13 @@
   <section>
     <div class="m_content">
       <div id="va"></div>
-      <div id="ca">
-      <div id="ra">
+      <div id="ca"></div>
+      <div id="sa"></div>
       <div class='contents'>
+
         <!-- 댓글 입력부분 -->
         <div class='input'>
-          <img id='comimg' src='../images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <img id='comimg' src=''>
           <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
           <a id="comAddBtn" role='button'>게시</a>
         </div>
@@ -73,10 +74,8 @@
         </div>
 
         <!-- 댓글과 버튼을 포함한 구역 끝 -->
-      </div>
-      </div>
-      <div id="sa">
-      </div>
+
+      </div> <!-- contents 클래스 끝 -->
     </div>
     
     <!-- 댓글 삭제 확인 모달 -->
@@ -101,6 +100,7 @@
 
   <script>
     var eduNo = location.href.split('?')[1].split('=')[1];
+    var id = eduNo;
     $.ajax({
       url : 'education/ajax/detail.do',
       dataType : 'json',
@@ -133,67 +133,125 @@
   
   <script>
   $(document).ready(function() {
-	     var div = $('#user_info');
-	     var btn = $('#scheduleAdd');
-	     var ul = $('#menu-nav-ul');
-	     if ($.session.get('mno') == undefined) {
-	         div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
-	     } else if ($.session.get('mno') == 1) {
-	         div.append(
-	             "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
-	                  "<i class='fa fa-envelope-o'></i>" +
-	                  "<span class='badge' id='userBadge'>0</span>" +
-	                "</a>" +
-	                "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-	                "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-	                "<a role='button' id='outBtn' class='logout'>" +
-	                  "<i class='fa fa-unlock fa-lg'></i>" +
-	                "</a>")
-	         btn.append(
-	             "<a class='btn btn-default' id='scheduleAdd' role='button'"
-	             + "data-toggle='modal' data-target='#AddBoard'>New</a>"
-	             )
-	         ul.append(
-	         "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>");
-	     } else {
-	         div.append(
-	             "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
-	                 "<i class='fa fa-envelope-o'></i>" +
-	                 "<span class='badge' id='userBadge'>0</span>" +
-	               "</a>" +
-	               "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-	               "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-	               "<a role='button' id='outBtn' class='logout'>" +
-	                 "<i class='fa fa-unlock fa-lg'></i>" +
-	               "</a>")
-	         ul.append(
+	  var no = $.session.get('mno');
+	  var div = $('#user_info');
+	  var btn = $('#scheduleAdd');
+	  var ul = $('#menu-nav-ul');
+	  if (no == undefined) {
+	    div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
+	  } else if (no == 1) {
+	    div.append(
+	      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
+	        "<i class='fa fa-envelope-o'></i>" +
+	        "<span class='badge' id='userBadge'>0</span>" +
+	      "</a>" +
+	      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
+	      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	      "<a role='button' id='outBtn' class='logout'>" +
+	        "<i class='fa fa-unlock fa-lg'></i>" +
+	      "</a>")
+	    
+	    btn.append(
+	      "<a class='btn btn-default' id='scheduleAdd' role='button'"
+	      + "data-toggle='modal' data-target='#AddBoard'>New</a>")
+	    
+	    ul.append(
 	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-	     }
+	    $('#comimg').attr('src', '../files/' + $.session.get('mimg'));
+	  } else {
+	    div.append(
+	      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
+	        "<i class='fa fa-envelope-o'></i>" +
+	        "<span class='badge' id='userBadge'>0</span>" +
+	      "</a>" +
+	      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
+	      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	      "<a role='button' id='outBtn' class='logout'>" +
+	        "<i class='fa fa-unlock fa-lg'></i>" +
+	      "</a>")
+	    
+	    ul.append(
+	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+	    $('#comimg').attr('src', '../files/' + $.session.get('mimg'));
+	  }
 
-	     //    로그아웃
-	     $(document).on("click", "#outBtn", function() {
-	       $.session.clear();
-	       location.href = "../login.html"
-	     });
-	     
+	  //    로그아웃
+	  $(document).on("click", "#outBtn", function() {
+	    $.session.clear();
+	    location.href = "../login.html"
+	  });
+
 	  // 안읽은 받은쪽지 갯수 출력
-	     var no = $.session.get('mno');
-	     var form_data = new FormData();
-	     form_data.append("recvMno", no)
-	     $.ajax({
-	       url: '../message/ajax/noReadMsg.do',
-	       type: 'post',
-	       dataType: 'json',
-	       cache: false,
-	       contentType: false,
-	       processData: false,
-	       data: form_data,
-	       success: function(resultObj) {
-	         var ajaxResult = resultObj.ajaxResult;
-	         $('#userBadge').html(ajaxResult.data.noReadCount)
-	       }
-	     })});
+	  var no = $.session.get('mno');
+	  var form_data = new FormData();
+	  form_data.append("recvMno", no)
+	  $.ajax({
+	    url: '../message/ajax/noReadMsg.do',
+	    type: 'post',
+	    dataType: 'json',
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    data: form_data,
+	    success: function(resultObj) {
+	      var ajaxResult = resultObj.ajaxResult;
+	      $('#userBadge').html(ajaxResult.data.noReadCount)
+	    }
+	  })
+	});
+  
   var i = 0;
+  var form_data = new FormData();
+  form_data.append("eduNo", eduNo)
+  $.ajax({
+    url: "../comment/ajax/educomlist.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+    	  $('#comComment').empty();
+      var commen = re.comments;
+      var comdiv = $('#comComment');
+      var mem;
+      var j = 0;
+      for (var com of commen) {
+        mem = re.memberMap[j];
+        if($.session.get('mno') == mem.mno) {
+          comdiv.append(
+          "<div class='comment'>" +
+            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+            "<div class='commentname'>" + mem.mName + "</div>" +
+            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+            "<i class='fa fa-close'></i></a>" +
+            "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        } else {
+          comdiv.append(
+          "<div class='comment'>" +
+            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+            "<div class='commentname'>" + mem.mName + "</div>" +
+            "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        }
+            j++;
+      }
+    },
+    complete: function() {
+    	  i++;
+    }
+  });
+  
+  $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult
+      console.log('resultObj : ' + resultObj)
+      if (ajaxResult.data == 0) {
+          $('#more').empty();
+      }
+  })
+  
   $(document).on('click', '#comAddBtn', function() {
 	    if ($('#comcontent').val() == "") {
 	      alert("댓글을 입력해 주세요")
@@ -212,56 +270,66 @@
 	            data: form_data,
 	            type: 'post',
 	            success: function(re) {
-	            $('#comcontent').val('')
-	            var form_data = new FormData();
-	            form_data.append("eduNo", eduNo)
-	            $.ajax({
-	                url: "../comment/ajax/educomlist.do",
-	                dataType: 'json',
-	                cache: false,
-	                contentType: false,
-	                processData: false,
-	                data: form_data,
-	                type: 'post',
-	                success: function(re) {
-	                    $('#comComment').empty();
-	                    var commen = re.comments;
-	                    var comdiv = $('#comComment');
-	                    var mem;
-	                    var j = 0;
-	                    for (var com of commen) {
-	                        mem = re.memberMap[j];
-	                        if($.session.get('mno') == mem.mno) {
-	                            comdiv.append(
-	                            "<div class='comment'>" +
-	                            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
-	                            "<div class='commentname'>" + mem.mName + "</div>" +
-	                            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-	                            "<i class='fa fa-close'></i></a>" +
-	                            "<div class='commenttext'>" + com.comComment + "</div>" +
-	                            "</div>")
-	                        } else {
-	                            comdiv.append(
-	                            "<div class='comment'>" +
-	                            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
-	                            "<div class='commentname'>" + mem.mName + "</div>" +
-	                            "<div class='commenttext'>" + com.comComment + "</div>" +
-	                            "</div>")
-	                        }
-	                        j++;
-	                    }
-	                    $('#more').empty();
-	                    $('#more').append(
-	                        '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
-	                    );
-	                    i=1;
-	                }
-	            })
-	          }
-	        })
-	    }
-	});
-
+		            $('#comcontent').val('')
+		            var form_data = new FormData();
+		            form_data.append("eduNo", eduNo)
+		            $.ajax({
+		                url: "../comment/ajax/educomlist.do",
+		                dataType: 'json',
+		                async: false,
+		                cache: false,
+		                contentType: false,
+		                processData: false,
+		                data: form_data,
+		                type: 'post',
+		                success: function(re) {
+		                    $('#comComment').empty();
+		                    var commen = re.comments;
+		                    var comdiv = $('#comComment');
+		                    var mem;
+		                    var j = 0;
+		                    for (var com of commen) {
+		                        mem = re.memberMap[j];
+		                        if($.session.get('mno') == mem.mno) {
+		                            comdiv.append(
+		                            "<div class='comment'>" +
+		                            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+		                            "<div class='commentname'>" + mem.mName + "</div>" +
+		                            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+		                            "<i class='fa fa-close'></i></a>" +
+		                            "<div class='commenttext'>" + com.comComment + "</div>" +
+		                            "</div>")
+		                        } else {
+		                            comdiv.append(
+		                            "<div class='comment'>" +
+		                            "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+		                            "<div class='commentname'>" + mem.mName + "</div>" +
+		                            "<div class='commenttext'>" + com.comComment + "</div>" +
+		                            "</div>")
+		                        }
+		                        j++;
+		                    }
+		                    $('#more').empty();
+		                    $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
+		                        var ajaxResult = resultObj.ajaxResult
+		                        console.log(resultObj)
+		                        if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+		                            $('#more').empty();
+		                        }
+		                        else {
+		                            $('#more').append(
+		                                '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+		                            );
+		                        }
+		                    })
+		                    i=1;
+		                }
+            });
+          }
+        })
+    }
+});
+	
 	// 댓글 삭제 도우미
 	function del(id) {
 	    $('#comno').val(id)
@@ -312,81 +380,92 @@
 	                        j++;
 	                    }
 	                    $('#more').empty();
-	                    $('#more').append(
-	                        '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
-	                    );
+	                    $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
+	                        var ajaxResult = resultObj.ajaxResult
+	                        console.log('resultObj : ' + resultObj)
+	                        if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+	                            $('#more').empty();
+	                        }
+	                        else {
+	                            $('#more').append(
+	                                '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+	                            );
+	                        }
+	                    })
 	                    i=1;
 	                }
 	            })
 	        }
 	    })
 	})
-  function moree(id) {
-    i++;
-    console.log(id);
-    var page = id.substring(1);
-    console.log(page);
-    var cpage = i;
-    var form_data = new FormData();
-    form_data.append("eduNo", eduNo)
-    form_data.append("pageNo", page)
-    $.ajax({
-        url: "../comment/ajax/educomlist.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-            var commen = re.comments;
-            var comdiv = $('#comComment');
-            var mem;
-            var j = 0;
-            for (var com of commen) {
-                mem = re.memberMap[j];
-                if($.session.get('mno') == mem.mno) {
-                    comdiv.append(
-                    "<div class='comment'>" +
-                    "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-                    "<i class='fa fa-close'></i></a>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                    "</div>")
-                } else {
-                    comdiv.append(
-                    "<div class='comment'>" +
-                    "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                    "</div>")
-                }
-                j++;
-            }
-            $("#hidden").trigger("click");
-            $("button:first").trigger("click");
 
-            $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
-                var ajaxResult = resultObj.ajaxResult;
-                console.log(cpage);
-                if (ajaxResult.data == cpage) {
-                    console.log("더보기 끝")
-                    $('#more').empty();
+	// 더보기 부분
+	function moree(id) {
+	    i++;
+	    console.log(id);
+	    var page = id.substring(1);
+	    console.log('page : ' + page);
+	    var cpage = i;
+	    console.log('cpage : ' + cpage);
+	    var form_data = new FormData();
+	    form_data.append("eduNo", eduNo)
+	    form_data.append("pageNo", page)
+	    $.ajax({
+	        url: "../comment/ajax/educomlist.do",
+	        dataType: 'json',
+	        cache: false,
+	        contentType: false,
+	        processData: false,
+	        data: form_data,
+	        type: 'post',
+	        success: function(re) {
+	            var commen = re.comments;
+	            var comdiv = $('#comComment');
+	            var mem;
+	            var j = 0;
+	            for (var com of commen) {
+	                mem = re.memberMap[j];
+	                if($.session.get('mno') == mem.mno) {
+	                    comdiv.append(
+	                    "<div class='comment'>" +
+	                    "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+	                    "<div class='commentname'>" + mem.mName + "</div>" +
+	                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+	                    "<i class='fa fa-close'></i></a>" +
+	                    "<div class='commenttext'>" + com.comComment + "</div>" +
+	                    "</div>")
+	                } else {
+	                    comdiv.append(
+	                    "<div class='comment'>" +
+	                    "<img class='commentimg' src='../files/" + mem.mImg + "'>" +
+	                    "<div class='commentname'>" + mem.mName + "</div>" +
+	                    "<div class='commenttext'>" + com.comComment + "</div>" +
+	                    "</div>")
+	                }
+	                j++;
+	            }
 
-                } else {
-                    console.log("더보기 생성")
-                    var more = $('#more');
-                    $('#more').empty();
-                    var i = parseInt(page)+10;
-                    console.log(i);
-                    more.append(
-                          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
-                }
-            })
-        }
-    })
-};
+	            $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
+	                var ajaxResult = resultObj.ajaxResult;
+	                console.log('cpage : ' + cpage);
+	                console.log('ajaxResult.data : ' + ajaxResult.data);
+	                if (ajaxResult.data == cpage) {
+	                    console.log("더보기 끝")
+	                    $('#more').empty();
+
+	                } else {
+	                    console.log("더보기 생성")
+	                    var more = $('#more');
+	                    $('#more').empty();
+	                    var i = parseInt(page)+10;
+	                    console.log(i);
+	                    more.append(
+	                          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+	                }
+	            })
+	        }
+	    })
+	};
   </script>
 </body>
 </html>

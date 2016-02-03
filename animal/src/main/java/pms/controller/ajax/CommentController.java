@@ -147,7 +147,7 @@ public class CommentController {
   
   @RequestMapping("edupages")
   public Object edupages(int eduNo) throws Exception {
-  		Comment pages = commentService.pages(eduNo);
+  		Comment pages = commentService.edupages(eduNo);
 
     double page = Math.ceil(pages.getCount()/10);
 
