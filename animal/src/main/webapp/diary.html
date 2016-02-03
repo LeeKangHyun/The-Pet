@@ -796,7 +796,7 @@ $(document).on("click", "#delPet", function() {
     })
   });
 
-// 지도
+// 다이어리 산책하기 지도 보이게하기
 $(document).on('click', '#scheduleAdd', function() {
     $('#AddBoard').modal('show');
 
@@ -918,51 +918,51 @@ $(document).on("click", "#addBtn", function(event) {
           var lastDno = re.ajaxResult.data;
           var geocoder = new daum.maps.services.Geocoder();
           geocoder.coord2detailaddr({
-              coord: new daum.maps.LatLng(dotlat, dotlng),
-              callback: function(status, result) {
-                  $.ajax({
-                      url: "walk/ajax/add.do",
-                      dataType: "json",
-                      type: "post",
-                      data: {
-                          locLat: dotlat,
-                          locLng: dotlng,
-                          locName: $('#subtitle').val(),
-                          dno: lastDno,
-                          locDong: result[0].region
-                      },
+            coord: new daum.maps.LatLng(dotlat, dotlng),
+            callback: function(status, result) {
+              $.ajax({
+                url: "walk/ajax/add.do",
+                dataType: "json",
+                type: "post",
+                data: {
+                  locLat: dotlat,
+                  locLng: dotlng,
+                  locName: $('#subtitle').val(),
+                  dno: lastDno,
+                  locDong: result[0].region
+                },
+                success: function(resultObj) {
+                  deleteCircleDot();
+                  for (var i = 0; i < $("#file-1").prop("files").length; i++) {
+                    var file_data = $("#file-1").prop("files")[i];
+                    var file_name = file_data.name;
+                    var form_data = new FormData();
+                    form_data.append("file", file_data)
+                    form_data.append("fName", file_name)
+                    form_data.append("dno", lastDno)
+                    $.ajax({
+                      url: "files/ajax/upload.do",
+                      dataType: 'json',
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      data: form_data,
+                      type: 'post',
                       success: function(resultObj) {
-                          deleteCircleDot();
-                          for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-                              var file_data = $("#file-1").prop("files")[i];
-                              var file_name = file_data.name;
-                              var form_data = new FormData();
-                              form_data.append("file", file_data)
-                              form_data.append("fName", file_name)
-                              form_data.append("dno", lastDno)
-                              $.ajax({
-                                  url: "files/ajax/upload.do",
-                                  dataType: 'json',
-                                  cache: false,
-                                  contentType: false,
-                                  processData: false,
-                                  data: form_data,
-                                  type: 'post',
-                                  success: function(resultObj) {
-                                      console.log(file_name)
-                                  }
-                              })
-                          }
-                          alert("다이어리에 산책코스가 추가되었습니다.")
-                          location.href = "diary.html"
+                          console.log(file_name)
                       }
-                  })
-              }
+                    })
+                  }
+                  alert("다이어리에 산책코스가 추가되었습니다.")
+                  location.href = "diary.html"
+                }
+              })
+            }
           });
         }
       });
-  }
-} else if (sel === 'JARANG') {
+    }
+  } else if (sel === 'JARANG') {
     if ($('#pno').val() == "" ||
       $('#title').val() == "" ||
       $('#fContent').val() == "" ||
