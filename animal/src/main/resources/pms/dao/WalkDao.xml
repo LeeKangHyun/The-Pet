@@ -81,7 +81,9 @@
   
   <select id='selectName' resultMap='walkMap'>
     select LOC_LAT, LOC_LNG, LOC_NAME, LOC_DONG, SCH_NUM
-    from location
+    from location 
+    <!-- where sch_num in 
+    (select sch_num from schedule where noti_hide=1 and cate_code='SANCHE') -->
   </select>
 
   <insert id="add" parameterType="walk">
