@@ -18,6 +18,10 @@ public interface BoastBoardDao {
   
   List<Diary> searchList(Map<String, Object> paramMap);
   
+  List<Diary> filter_list(Map<String, Object> paramMap);
+  
+  double filterCount(String filter_id);
+  
   double search_title_Count(Diary diary);
   
   double search_member_Count(Diary diary);

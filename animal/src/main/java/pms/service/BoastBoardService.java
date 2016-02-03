@@ -1,6 +1,5 @@
 package pms.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import pms.domain.Comment;
@@ -19,6 +18,10 @@ public interface BoastBoardService {
   List<Diary> rankList();
   
   List<Diary> searchList(int pageNo, int pageSize, Diary diary);
+  
+  public List<Diary> filter_list(int pageNo, int pageSize, String filter_id);
+  
+  public double filterCount(String filter_id);
   
   double search_title_Count(Diary diary);
   

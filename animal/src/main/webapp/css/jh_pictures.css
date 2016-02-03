@@ -612,6 +612,15 @@ a#moreBtn:visited {
     color:inherit;
 }
 
+#filterBtn {
+    text-decoration: none;
+    color: #fff;
+}
+
+a#filterBtn:visited {
+    color:inherit;
+}
+
 
 
 .quick-menu {

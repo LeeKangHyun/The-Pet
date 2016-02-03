@@ -166,6 +166,53 @@ public class BoastBoardController {
 
     return resultMap;
   }
+  
+  @RequestMapping(value="filter_list", method=RequestMethod.POST)
+  public Object filter_list(
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="12") int pageSize,
+      String filter_id
+      ) throws Exception {
+
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("filter_id", filter_id);
+
+    List<Diary> boastboards = boastBoardDao.filter_list(paramMap);
+    List<Files> fileMap = new ArrayList<Files>();
+    for(int i = 0; i < boastboards.size(); i++) {
+      fileMap.add(boastBoardDao.getsize(boastboards.get(i).getFilename()));
+    }
+
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", boastboards);
+    resultMap.put("size", fileMap);
+    
+    return resultMap;
+  }
+  
+  @RequestMapping(value="filterCount", method=RequestMethod.POST)
+  public Object filterCount(
+      @RequestParam(defaultValue="12") int pageSize,
+      String filter_id
+      ) throws Exception {
+
+    double count = boastBoardDao.filterCount(filter_id);
+
+    log.debug("filterCount의 갯수는......."+count);
+
+    count = Math.ceil(count / pageSize);
+
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("count", count);
+
+    log.debug("Controller/searchCount()....호출");
+
+    return resultMap;
+  }
 
 
   @RequestMapping(value="view", method=RequestMethod.POST)
