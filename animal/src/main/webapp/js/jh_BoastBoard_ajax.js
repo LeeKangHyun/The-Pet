@@ -200,9 +200,6 @@ $(document).ready(function() {
 				}
 			}
 
-//			$("#HIDDEN").trigger("click");
-			$("#All").trigger("click");
-
 		}
 
 	});
@@ -329,9 +326,6 @@ $(document).ready(function() {
 						}
 					}
 
-
-					$("#HIDDEN").trigger("click");
-					$("#All").trigger("click");
 
 
 				}/* List Load function(resultObj) 끝 */

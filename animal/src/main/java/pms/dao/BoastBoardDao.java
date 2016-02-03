@@ -20,7 +20,7 @@ public interface BoastBoardDao {
   
   List<Diary> filter_list(Map<String, Object> paramMap);
   
-  double filterCount(String filter_id);
+  double filterCount(Map<String, Object> paramMap);
   
   double search_title_Count(Diary diary);
   

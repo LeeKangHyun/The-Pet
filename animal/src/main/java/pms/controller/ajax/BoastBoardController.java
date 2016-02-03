@@ -198,9 +198,11 @@ public class BoastBoardController {
       @RequestParam(defaultValue="12") int pageSize,
       String filter_id
       ) throws Exception {
-
-    double count = boastBoardDao.filterCount(filter_id);
-
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("filter_id", filter_id);
+    
+    double count = boastBoardDao.filterCount(paramMap);
     log.debug("filterCount의 갯수는......."+count);
 
     count = Math.ceil(count / pageSize);

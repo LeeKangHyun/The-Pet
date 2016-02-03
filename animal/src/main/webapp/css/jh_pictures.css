@@ -252,7 +252,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 
 .container .mix{
-  display: none;
+  display: inline-block;
 } 
 
 

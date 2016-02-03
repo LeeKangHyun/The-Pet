@@ -142,16 +142,18 @@
     from schedule sc 
     left outer join files fi on sc.SCH_NUM = fi.SCH_NUM
     left outer join Member me on sc.MEM_NUM = me.MEM_NUM
-    where CATE_CODE='JARANG' and NOTI_HIDE=1 and PET_SPEC = #{filter_id}
+    where CATE_CODE='JARANG' and NOTI_HIDE=1
+    <if test="filter_id != 'All'">and PET_SPEC = #{filter_id}</if>
     group by sc.SCH_NUM
     order by sc.SCH_CRE desc limit #{startIndex}, #{length}
   </select>
   
-    <select id="filterCount" resultType="double">
+    <select id="filterCount" resultType="double" parameterType="map">
       select
       count(*) as count
     from schedule
-    where CATE_CODE='JARANG' and NOTI_HIDE=1 and PET_SPEC = #{filter_id}
+    where CATE_CODE='JARANG' and NOTI_HIDE=1
+    <if test="filter_id != 'All'">and PET_SPEC = #{filter_id}</if>
     </select>
   
   

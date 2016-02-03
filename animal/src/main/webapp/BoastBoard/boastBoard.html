@@ -27,19 +27,18 @@
 <script src='../js/jh_BoastBoard_ajax.js'></script>
 
 <!-- filter 및 sort -->
-<script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
-
+<!-- <script src="../mixitup-master/build/jquery.mixitup.min.js"></script> -->
 <!-- MixitUp Script -->
-<script>
+<!-- <script>
 $(function() {
   $('#Container').mixItUp({
     animation : {
       effects : 'fade rotateY(-100deg)',
       duration : 800
     }
-  });
 });
-</script>
+  });
+</script> -->
 
 
 </head>
@@ -95,13 +94,13 @@ $(function() {
     <div id=Btn-search-section>
       <div id=button-form>
         <!-- 필터 버튼 -->
-        <button id="All" class="filter" data-filter="*">All</button>
-        <button id="DOG" class="filter" data-filter=".DOG" onclick="filter(this.id)"></button>
-        <button id="CAT" class="filter" data-filter=".CAT" onclick="filter(this.id)"></button>
-        <button id="FISH" class="filter" data-filter=".FISH" onclick="filter(this.id)"></button>
-        <button id="BIRD" class="filter" data-filter=".BIRD" onclick="filter(this.id)"></button>
-        <button id="ETC" class="filter" data-filter=".ETC" onclick="filter(this.id)">ETC</button>
-        <button id="HIDDEN" class="filter" data-filter="*" hidden="">All</button>
+        <button id="All" class="active" onclick="filter(this.id)">All</button>
+        <button id="DOG" onclick="filter(this.id)"></button>
+        <button id="CAT" onclick="filter(this.id)"></button>
+        <button id="FISH" onclick="filter(this.id)"></button>
+        <button id="BIRD" onclick="filter(this.id)"></button>
+        <button id="ETC" onclick="filter(this.id)">ETC</button>
+        <button id="HIDDEN" hidden=""></button>
         <!-- 필터 버튼 끝 -->
       </div>
 
@@ -124,6 +123,10 @@ $(function() {
     <!-- 사진 게시물 영역 -->
     <div id="Container" class="container">
       <div id=subtable></div> <!-- 사진 게시물 영역 끝 -->
+    </div>
+    
+    <div>
+    
     </div>
     
   </section>
@@ -343,8 +346,7 @@ $(document).ready(function() {
             }
           }
 
-                      $("#HIDDEN").trigger("click");
-                      $("#All").trigger("click");
+          
                       searchPage = 1;
 
         }
@@ -466,11 +468,6 @@ $(document).ready(function() {
                                           .appendTo(div);
                                     }
                                   }
-
-
-                                              $("#HIDDEN").trigger("click");
-                                              $("#All").trigger("click");
-
                                 }
 
                               }); <!-- Ajax 끝 -->
@@ -635,9 +632,6 @@ $(document).ready(function() {
                                 }
                               }
 
-
-                                          $("#HIDDEN").trigger("click");
-                                          $("#All").trigger("click");
                                           searchPage = 1;
 
                             }
@@ -756,10 +750,6 @@ $(document).ready(function() {
                                                   .appendTo(div);
                                             }
                                           }
-
-
-                                                      $("#HIDDEN").trigger("click");
-                                                      $("#All").trigger("click");
 
                                         }
 
@@ -929,9 +919,6 @@ $(document).ready(function() {
                         }
                       }
 
-
-                                  $("#HIDDEN").trigger("click");
-                                  $("#All").trigger("click");
                                   searchPage = 1;
 
                     }
@@ -1051,10 +1038,6 @@ $(document).ready(function() {
                                           .appendTo(div);
                                     }
                                   }
-
-
-                                              $("#HIDDEN").trigger("click");
-                                              $("#All").trigger("click");
 
                                 }
 
@@ -1217,8 +1200,6 @@ $(document).ready(function() {
                           }
 
 
-                                      $("#HIDDEN").trigger("click");
-                                      $("#All").trigger("click");
                                       searchPage = 1;
 
                         }
@@ -1338,9 +1319,6 @@ $(document).ready(function() {
                                       }
 
 
-                                                  $("#HIDDEN").trigger("click");
-                                                  $("#All").trigger("click");
-
                                     }
 
                                   }); <!-- Ajax 끝 -->
@@ -1424,6 +1402,50 @@ $(document).ready(function() {
   
   <script>
   function filter(id) {
+	  
+	  if(id == "All") {
+		  $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
+		  $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+		  $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+		  $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+		  $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+		  $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+	  }else if(id == "DOG") {
+	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+	      $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
+	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+	  }else if(id == "CAT") {
+	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+	      $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
+	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+	  }else if(id == "FISH") {
+	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+	      $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
+	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+	  }else if(id == "BIRD") {
+	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+	      $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
+	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+	  }else if(id ==  "ETC") {
+	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+	      $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
+	  }
 	  
       $('#subtable').empty();
       var currentPage = 1;
