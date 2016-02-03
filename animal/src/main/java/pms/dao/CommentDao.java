@@ -13,6 +13,7 @@ public interface CommentDao {
   List<Comment> WalkCommentList(Map<String,Object> paramMap);
   
   Comment count(int dno);
+  Comment educount(int eduNo);
   
   int insert(Comment comment);
   int walkcom(Comment comment);

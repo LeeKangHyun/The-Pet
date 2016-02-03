@@ -37,7 +37,7 @@ public class DefaultCommentService implements CommentService {
   }
   
   public Comment edupages(int eduNo) {
-    return commentDao.count(eduNo);
+    return commentDao.educount(eduNo);
   }
   
   public int add(Comment comment) {
