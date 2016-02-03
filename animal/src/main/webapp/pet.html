@@ -14,17 +14,11 @@
   <!--  상훈 css  -->
   <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
   <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
-  
-  <!-- 지호가 만든 css -->
-  <link href="css/jh_pictures.css" type="text/css" rel="stylesheet">
-  
+  <link href="css/sh_pet_main.css" type="text/css" rel="stylesheet">
+
   <!--  폰트아이콘 링크  -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
   <link href="css/icon-font.min.css" rel="stylesheet" />
-
-  <!-- 대진 메인 css -->
-  <link href="css/dj_main.css" rel="stylesheet" />
-  <!--  <script src="css/dj_main.js"></script>-->
 
   <!-- 캘린더 스크립트 -->
   <script src='lib/jquery/jquery.min.js'></script>
@@ -69,21 +63,21 @@
     <img class="main-img" src="images/1.jpg">
 
     <div class="contents">
-      
+
       <div class="boast">
         <a class="subtitles" href="BoastBoard/boastBoard.html"><h2><i class="lnr lnr-paw"></i> 자랑하기 Top3</h2></a>
-      
+
         <div id="rank-section">
           <div id="section-img"></div>
         </div>
       </div>  <!-- boast 끝 -->
-      
+
       <div class="walk">
-              
+
         <div id="cardSection">
           <a class="subtitles" href="walk.html"><h2><i class="lnr lnr-leaf"></i> 산책하기 Top3</h2></a>
-           
-          
+
+
 
         </div>  <!-- cardSection 끝 -->
 
@@ -114,7 +108,7 @@
         </div>
       </div>
     </div>
-      
+
   </section>
 
 <script>
@@ -139,7 +133,7 @@ function detailWalk(dno) {
   location.replace('walkDetail.html?dno=' + dno);
 }
 </script>
-  
+
 <script>
 $(document).ready(function() {
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
@@ -176,7 +170,7 @@ $(document).ready(function() {
   $('#hospital').css('background-color', '#2d335e')
   $('#object').css('background-color', '#2d335e')
   $('#cafe').css('background-color', '#2d335e')
-  
+
   // 안읽은 받은쪽지 갯수 출력
   var no = $.session.get('mno');
   var form_data = new FormData();
@@ -194,7 +188,7 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
-  
+
   // 산책하기 top3
   $.ajax({
     url : "walk/ajax/rank.do",
@@ -232,7 +226,7 @@ $(document).ready(function() {
 
         imgHeight = file[0].height;
         console.log("세로 : " + imgHeight);
-        
+
         if (imgWidth > imgHeight) {
           setClass = "landscape"
         } else {
@@ -283,9 +277,9 @@ $(document).ready(function() {
                   "</button>" +
                 "</div>" +
 
-              "</div> " + 
+              "</div> " +
 
-            "</div>" + 
+            "</div>" +
 
             "<div class='back'>" +
 
@@ -312,7 +306,7 @@ $(document).ready(function() {
             "</div>" +
 
           "</div>" +
-        "</div>" 
+        "</div>"
         ).appendTo(div);
 
       }
@@ -332,7 +326,7 @@ $(document).ready(function() {
       }
     }
   })
-  
+
 
 //      $.get("http://ipinfo.io", function(response) {
 //        console.log(response.loc);
@@ -352,7 +346,7 @@ $(document).ready(function() {
       length = 2;
     } else if (resultObj.data.length >= 3) {
       length = 3;
-    }  
+    }
 
     for(var i = 0; i < length; i++ ) {
       topcheck1 = resultObj.data[i].filename.split(".");
@@ -366,11 +360,11 @@ $(document).ready(function() {
 
         $("<div class='box1 gallery'>")
         .html(
-            "<div class='card'>" +
+            "<div class='card2'>" +
             "<div class='background'>" +
             "<img src='files/" + resultObj.data[i].filename + "' class=''>" +
             "</div>" +
-            "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+            "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
             "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
             "<i class='fa fa-camera-retro'></i>" +
             "</a>" +
@@ -380,11 +374,11 @@ $(document).ready(function() {
             "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
             "</h2>" +
             "<div class='foot'>" +
-            "<i class='line'></i>" + 
+            "<i class='line'></i>" +
             "<span class='date'>"+resultObj.data[i].createDate+"</span>" +
-            "<span class='view-like'>" + 
-            "<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
-            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+            "<span class='view-like'>" +
+            "<i class='fa fa-eye'></i> "+resultObj.data[i].view +
+            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like +
             "</span>" +
             "</div>" +
             "</div>" +
@@ -400,9 +394,9 @@ $(document).ready(function() {
 
         $("<div class='box1 gallery'>")
         .html(
-            "<div class='card'>" +
+            "<div class='card2'>" +
             "<div class='background'>" +
-            "<img src='files/" + resultObj.data[i].filename + "'>" + 
+            "<img src='files/" + resultObj.data[i].filename + "'>" +
             "</div>" +
             "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
             "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -414,11 +408,11 @@ $(document).ready(function() {
             "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
             "</h2>" +
             "<div class='foot'>" +
-            "<i class='line'></i>" + 
+            "<i class='line'></i>" +
             "<span class='date'>" + resultObj.data[i].createDate + "</span>" +
             "<span class='view-like'>" +
-            "<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
-            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+            "<i class='fa fa-eye'></i> "+resultObj.data[i].view +
+            " <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like +
             "</span>" +
             "</div>" +
             "</div>" +
@@ -429,7 +423,7 @@ $(document).ready(function() {
   });
   $('[rel="tooltip"]').tooltip();
 });
- 
+
   function rotateCard(btn){
     var $card = $(btn).closest('.card-container');
     console.log($card);
