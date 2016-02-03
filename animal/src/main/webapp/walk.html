@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <title>산책코스</title>
-  
+
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
   <!--  상훈 css  -->
@@ -87,7 +87,6 @@ function detailWalk(dno) {
   });
 
   location.href = 'walkDetail.html?dno=' + dno;
-  location.replace('walkDetail.html?dno=' + dno);
 }
 </script>
 
@@ -122,10 +121,8 @@ $(document).ready(function(){
         }
 
         imgWidth = file[0].width;
-         console.log("가로 : " + imgWidth);
 
         imgHeight = file[0].height;
-         console.log("세로 : " + imgHeight);
 
         if (imgWidth > imgHeight) {
           setClass = "landscape"
@@ -253,7 +250,7 @@ $(document).ready(function(){
   $.ajax({
     url:"walk/ajax/count.do",
     dataType: "json",
-    async: "json",
+    async: false,
     type: "GET",
     success: function(resultObj) {
       totalPage = resultObj.count;
@@ -279,9 +276,9 @@ $(document).ready(function(){
         processData : false,
         async: false,
         success : function(resultObj) {
-
           var div = $("#cardSection");
           var file;
+          var mem;
           var j = 0;
           var imgWidth;
           var imgHeight;
@@ -289,13 +286,18 @@ $(document).ready(function(){
           for (var i = 0; i < resultObj.data.length; i++) {
             file = resultObj.filesMap[i];
             mem = resultObj.memberMap[i];
-            console.log(file)
-
+            var content = '';
+            var jibun = '';
+            for (var j = 0; j < resultObj.name.length; j++) {
+              if (resultObj.data[i].dno == resultObj.name[j].dno) {
+                  content = resultObj.name[j].locName;
+                  jibun = resultObj.name[j].locDong;
+              }
+            }
             imgWidth = file[0].width;
-            console.log("가로 : " + imgWidth);
 
             imgHeight = file[0].height;
-            console.log("세로 : " + imgHeight);
+
             if (imgWidth > imgHeight) {
               setClass = "landscape"
             } else {
@@ -325,9 +327,9 @@ $(document).ready(function(){
                         "</div>" +
 
                         "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
-                        "<h5>" +
+                        "<h5 id='jibun" + i + "'>" +
                           "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
-                          "위치 장소이름위치" +
+                          jibun +
                         "</h5>" +
                       "</div>" +
                     "</a>" +
@@ -358,7 +360,7 @@ $(document).ready(function(){
 
                   "<div class='content'>" +
                     "<div class='main'>" +
-                      "<h4 class='text-center'>위치 정보</h4>" +
+                      "<h4 class='text-center'>" + content + "</h4>" +
                     "</div>" +
                   "</div>" +
 
@@ -382,16 +384,27 @@ $(document).ready(function(){
           //    <!-- 지도 나오기 -->
           for (var i=0; i < resultObj.data.length; i++) {
             var ids = 'map' + i;
-            var mapContainer = document.getElementById(ids),
-              // 지도를 표시할 div
-              mapOption = {
-                center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3, // 지도의 확대 레벨
-                draggable: false,
-                scrollwheel: false
-              };
-
+            var coord = new daum.maps.LatLng();
+            for (var j = 0; j < resultObj.name.length; j++) {
+                if (resultObj.data[i].dno === resultObj.name[j].dno) {
+                    var mapContainer = document.getElementById(ids),
+                    // 지도를 표시할 div
+                    mapOption = {
+                        center: new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng),
+                        level: 3,
+                        draggable: false,
+                        scrollwheel: false
+                    };
+                    coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
+                    break;
+                }
+            }
             var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            // map.relayout();
+            var marker = new daum.maps.Marker({
+                map: map,
+                position: coord
+            });
           }
         }
       });
