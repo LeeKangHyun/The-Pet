@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <title>산책코스</title>
+  
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
   <!--  상훈 css  -->
@@ -121,10 +122,10 @@ $(document).ready(function(){
         }
 
         imgWidth = file[0].width;
-        // console.log("가로 : " + imgWidth);
+         console.log("가로 : " + imgWidth);
 
         imgHeight = file[0].height;
-        // console.log("세로 : " + imgHeight);
+         console.log("세로 : " + imgHeight);
 
         if (imgWidth > imgHeight) {
           setClass = "landscape"
@@ -146,7 +147,7 @@ $(document).ready(function(){
 
               "<div class='content'>" +
 
-                "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                "<a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
                   "<div class='main'>" +
                     "<h3 class='name'>" + mem.mName + "</h3>" +
 
@@ -315,7 +316,7 @@ $(document).ready(function(){
 
                   "<div class='content'>" +
 
-                    "<a role='button' href='#' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                    "<a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
                       "<div class='main'>" +
                         "<h3 class='name'>" + mem.mName + "</h3>" +
 

@@ -107,7 +107,7 @@
 
         <!-- 댓글 입력부분 -->
         <div class='input'>
-          <img id='comimg' src='images/%EC%84%A4%ED%98%8400008.jpeg'>
+          <img id='comimg' src=''>
           <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
           <a id="comAddBtn" role='button'>게시</a>
         </div>
@@ -272,12 +272,11 @@ $(document).ready(function() {
   var no = $.session.get('mno');
   var div = $('#user_info');
   var ul = $('#menu-nav-ul');
+  
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+    
   } else {
-    $('#myMno1').val(no);
-    $('#myMno2').val(no);
-
     div.append(
       "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
         "<i class='fa fa-envelope-o'></i>" +
@@ -288,8 +287,12 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
+    
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    
+    $('#comimg').attr('src', 'files/' + $.session.get('mimg'));
+    
   }
 
   // 로그아웃
