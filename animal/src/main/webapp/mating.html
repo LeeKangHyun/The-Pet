@@ -30,6 +30,17 @@
 
 <script src="js/sh_custom-file-input.js"></script>
 
+<!--  파일 업로드  -->
+<link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
+<script>
+  (function(e, t, n) {
+    var r = e.querySelectorAll("html")[0];
+    r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
+  })
+  (document, window, 0);
+</script>
+  
+
 <script>
 $(function(){
     $('#Container').mixItUp();
@@ -103,6 +114,7 @@ $(function(){
 
   </section>
 
+<!-- 새글 모달 -->
 <div id='addModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
     <div class='modal-dialog'>
         <div class='modal-content'>
@@ -165,8 +177,7 @@ $(function(){
                 </div>
 
                 <div class="box">
-                  <input type="file" name="fileName" id="mafile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-                  multiple />
+                  <input type="file" name="fileName" id="mafile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
                   <label for="mafile">
                     <i class="fa fa-upload"></i>
                     <span>이미지 추가</span>
