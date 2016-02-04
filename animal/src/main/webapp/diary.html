@@ -161,7 +161,7 @@
     </div>
   </div>
 
-<!--  펫 상세정보 모달  -->
+  <!--  펫 상세정보 모달  -->
   <div id="petDetailModal" class="modal fade" data-keyboard="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -356,10 +356,31 @@
   </div>
   <!-- //펫 추가 모달 -->
 
-  <!-- 파일 업로드 파일 이름뜨는부분 -->
-  <script src="js/sh_custom-file-input.js"></script>
+<!--  삭제 되었습니다-->
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-info"></i>
+          알림
+        </div>
 
-  <!-- 캘린더 스크립트 -->
+        <div class="modal-body">
+          <span id="modoinfo"></span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+<!-- 파일 업로드 파일 이름뜨는부분 -->
+<script src="js/sh_custom-file-input.js"></script>
+
+<!-- 캘린더 스크립트 -->
 <script>
 $(document).ready(function() {
 
@@ -445,7 +466,7 @@ $(document).ready(function() {
         var frontEnd;
         var backEnd;
         var fullEnd;
-        // console.log(event.cateCode);
+        
         if (event.end) {
           frontEnd = event.end.format().substring(0,8);
           backEnd = Number(event.end.format().substring(8,10)) - 1;
@@ -455,10 +476,6 @@ $(document).ready(function() {
             fullEnd = frontEnd + backEnd;
           }
 
-        //   console.log(event.start.format().substring(0,10))
-        //   console.log(event.start.format())
-        //   console.log(fullEnd)
-        //   console.log(event)
           $('#sdno').val(event.no);
           $('#scate').val(event.cateCode);
           $('#modalTitle').html(event.title);
@@ -491,7 +508,6 @@ $(document).ready(function() {
               var img = $("#scrollImg");
               var ajaxResult = re.ajaxResult;
 
-            //   console.log(ajaxResult.data.length)
               if (ajaxResult.data.length <= 1) {
                 document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
               } else {
@@ -539,7 +555,6 @@ $(document).ready(function() {
               var img = $("#scrollImg");
               var ajaxResult = re.ajaxResult;
 
-              console.log(ajaxResult.data.length)
               if (ajaxResult.data.length <= 1) {
                 document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
               } else {
@@ -605,8 +620,12 @@ $(document).on("click", "#editPet", function() {
       type: 'post',
       success: function(re) {
         $('#petDetailModal').modal('hide')
-        alert("펫의 정보가 변경되었습니다.")
-        location.href = "diary.html"
+        $('#modoinfo').html('펫의 정보가 변경되었습니다.');
+        $('#modo').modal('show')
+        
+        $('#modo').on('hidden.bs.modal', function(e) {
+          location.href = "diary.html"
+        })
       }
     })
   });
@@ -616,8 +635,11 @@ $(document).on("click", "#addPetBtn", function() {
   if ($('#pName').val() == "" ||
     $('#pType').val() == "" ||
     $('#medicine').val() == "") {
-    alert("펫의 정보를 입력해주세요")
+    
+    $('#modoinfo').html('펫의 정보를 입력해주세요.');
+    $('#modo').modal('show')
     return false;
+    
   } else {
     var file_data = $("#file").prop("files")[0];
     var file;
@@ -653,33 +675,39 @@ $(document).on("click", "#addPetBtn", function() {
       type: 'post',
       success: function(re) {
         $('#AddPet').modal('hide')
-        alert("펫이 추가되었습니다.")
-        $("#myPets").empty();
-        $("#pno").html("");
-        var showpet = $('#myPets');
-        var sel = $("#pno");
-        var ajaxResult = re.ajaxResult;
+        
+        $('#modoinfo').html('펫이 추가되었습니다.');
+        $('#modo').modal('show')
+        
+        $('#modo').on('hidden.bs.modal', function(e) {
+        
+          $("#myPets").empty();
+          $("#pno").html("");
+          var showpet = $('#myPets');
+          var sel = $("#pno");
+          var ajaxResult = re.ajaxResult;
 
-        for (var pet of ajaxResult.data) {
-          showpet.append(
-            "<a class='petdetailBtn' id='" + pet.pno +
-              "' onclick='detail(this.id);'" +
-              "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-              "<div class='myPet'>" +
-                "<input type='hidden' class='pno'>" +
-                "<img class='mImg' src='files/" + pet.pImg + "'>" +
-                "<input class='petName' type='text' value='" + pet.pName +
-                "' disabled>" +
-                "<label class='pName'>이름 : </label>" +
-                "<input class='pColor' type='color' value='" + pet.tagColor +
-                "' disabled>" +
-                "<label class='pInfo'>태그색 : </label>" +
-              "</div>" +
-            "</a>")
+          for (var pet of ajaxResult.data) {
+            showpet.append(
+              "<a class='petdetailBtn' id='" + pet.pno +
+                "' onclick='detail(this.id);'" +
+                "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+                "<div class='myPet'>" +
+                  "<input type='hidden' class='pno'>" +
+                  "<img class='mImg' src='files/" + pet.pImg + "'>" +
+                  "<input class='petName' type='text' value='" + pet.pName +
+                  "' disabled>" +
+                  "<label class='pName'>이름 : </label>" +
+                  "<input class='pColor' type='color' value='" + pet.tagColor +
+                  "' disabled>" +
+                  "<label class='pInfo'>태그색 : </label>" +
+                "</div>" +
+              "</a>")
 
-          sel.append(
-            "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
-        }
+            sel.append(
+              "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+          }
+        })
       }
     })
   }
@@ -700,9 +728,13 @@ $(document).on("click", "#delPet", function() {
       data: form_data,
       type: 'post',
       success: function(re) {
-        alert("펫이 삭제되었습니다.")
-//            $('#fullCalModal').modal('hide')
-        location.href="diary.html"
+        
+        $('#modoinfo').html('펫이 삭제되었습니다.');
+        $('#modo').modal('show')
+        
+        $('#modo').on('hidden.bs.modal', function(e) {
+          location.href="diary.html"
+        })
       }
     })
   });
@@ -710,19 +742,18 @@ $(document).on("click", "#delPet", function() {
 // 다이어리 변경
 $(document).on("click", "#editSchedule", function() {
     if ($('#mDes').val() == '') {
-        alert('내용이 비었습니다.')
+      
+        $('#modoinfo').html('내용이 비었습니다.');
+        $('#modo').modal('show')
         return false;
+      
     } else {
-        console.log($('#sdno').val())
-        console.log($('#mDes').val())
-        console.log($("#mFile").prop("files"))
 
         var sdno = $('#sdno').val();
         var content = $('#mDes').val();
         var sdate = $('#mStart').val();
         var edate = $('#mEnd').val();
-        console.log(sdate)
-        console.log(edate)
+
         var form_data = new FormData();
         // form_data.append("dno", sdno)
         // form_data.append("content", content)
@@ -737,7 +768,7 @@ $(document).on("click", "#editSchedule", function() {
                 endDate: edate
             },
             success: function() {
-                console.log('diary')
+                
                 for (var i = 0; i < $("#mFile").prop("files").length; i++) {
                   var file_data = $("#mFile").prop("files")[i];
                   var file_name = file_data.name;
@@ -754,12 +785,16 @@ $(document).on("click", "#editSchedule", function() {
                     data: form_data,
                     type: 'post',
                     success: function(resultObj) {
-                        console.log(file_name)
+                        
                     }
                   })
                 }
-                alert("다이어리가 변경되었습니다.");
-                location.href = "diary.html";
+                $('#modoinfo').html('다이어리가 변경되었습니다.');
+                $('#modo').modal('show')
+               
+                $('#modo').on('hidden.bs.modal', function(e) {
+                  location.href="diary.html"
+                })
             }
         })
     }
@@ -780,8 +815,12 @@ $(document).on("click", "#delSchedule", function() {
     data: form_data,
     type: 'post',
     success: function(re) {
-      alert("게시글이 삭제되었습니다.")
-      location.href="diary.html"
+      $('#modoinfo').html('게시글이 삭제되었습니다.');
+      $('#modo').modal('show')
+
+      $('#modo').on('hidden.bs.modal', function(e) {
+        location.href="diary.html"
+      })
     }
   })
 });
@@ -806,7 +845,7 @@ $('#fullCalModal').on('hidden.bs.modal', function(e) {
 
 // 펫 디테일
 function detail(id) {
-  console.log(id)
+  
   var form_data = new FormData();
   form_data.append("pno", id)
 
@@ -859,7 +898,7 @@ $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
 
 // 캘린더 모달 속 이미지 하나하나 지우기
 function imgDel(id) {
-  console.log("fno : " + id)
+  
   var form_data = new FormData();
   form_data.append("fno", id)
   $.ajax({
@@ -871,10 +910,9 @@ function imgDel(id) {
     data: form_data,
     type: 'post',
     success: function(re) {
-      console.log("이미지 삭제 성공")
 
       var form_data = new FormData();
-      console.log("dno : " + $('#sdno').val())
+      
       form_data.append("dno", $('#sdno').val())
       $.ajax({
         url: "files/ajax/list.do",
@@ -891,7 +929,6 @@ function imgDel(id) {
           var img = $("#scrollImg");
           var ajaxResult = re.ajaxResult;
 
-          console.log(ajaxResult.data.length)
           if (ajaxResult.data.length <= 1) {
             document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
           } else {
