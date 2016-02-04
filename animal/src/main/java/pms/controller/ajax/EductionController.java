@@ -34,7 +34,7 @@ public class EductionController {
 	public Object pages() throws Exception {
 		Education pages = educationService.pages();
 		
-		double page = Math.ceil(pages.getCount()/8);
+		double page = Math.ceil(pages.getCount()/6);
 		
 		return new AjaxResult("success", page);
 	}
@@ -43,6 +43,26 @@ public class EductionController {
 	public Object list(@RequestParam(defaultValue="1") int pageNo) throws Exception {
     
 		List<Education> educations = educationService.getEducationList(pageNo);
+		List<Files> files = null;
+		List<List<Files>> filesMap = new ArrayList<>();
+		
+		for (Education e : educations) {
+			files = filesService.getEduFile(e.getEduNo());
+			filesMap.add(files);
+		}
+		
+		HashMap<String,Object> resultMap = new HashMap<>();
+		resultMap.put("status", "success");
+		resultMap.put("educations", educations);
+		resultMap.put("filesMap", filesMap);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("slist")
+	public Object slist(@RequestParam String eduSpec) throws Exception {
+		List<Education> educations = educationService.getEducationSList(eduSpec);
+		System.out.println(eduSpec);
 		List<Files> files = null;
 		List<List<Files>> filesMap = new ArrayList<>();
 		

@@ -15,8 +15,12 @@ public class DefaultEducationService implements EducationService {
 	@Autowired EducationDao educationDao;
 	
 	public List<Education> getEducationList(int pageNo) {
-		pageNo = (pageNo - 1) * 8;
+		pageNo = (pageNo - 1) * 6;
     return educationDao.educationList(pageNo);
+	}
+	
+	public List<Education> getEducationSList(String eduSpec) {
+		return educationDao.educationSList(eduSpec);
 	}
 	
 	public List<Education> getEducationLast() {

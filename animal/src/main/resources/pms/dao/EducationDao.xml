@@ -23,7 +23,19 @@
       EDU_VIEWS as eduViews
     from Education 
     order by EDU_NUM desc
-      limit #{startIndex}, 8
+      limit #{startIndex}, 6
+  </select>
+  
+  <select id="educationSList" resultMap="educationMap" parameterType="String">
+    select
+      EDU_NUM as eduNo,
+      EDU_TITLE as eduTitle,
+      EDU_SPEC as eduSpec,
+      EDU_CRE as eduCreateDate,
+      EDU_VIEWS as eduViews
+    from Education 
+    where EDU_SPEC=#{eduSpec}
+    order by EDU_VIEWS desc
   </select>
   
   <select id="educationLast" resultMap="educationMap">
@@ -47,7 +59,8 @@
       EDU_TITLE as eduTitle,
       EDU_CONTENT as eduContent,
       EDU_CRE as eduCreateDate,
-      EDU_VIEWS as eduViews
+      EDU_VIEWS as eduViews,
+      EDU_SPEC as eduSpec
     from Education
     where EDU_NUM = #{value}
   </select>

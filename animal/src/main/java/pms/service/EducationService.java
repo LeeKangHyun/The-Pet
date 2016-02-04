@@ -7,6 +7,7 @@ import pms.domain.Education;
 public interface EducationService {
 	
 	List<Education> getEducationList(int pageNo);
+	List<Education> getEducationSList(String eduSpec);
 	List<Education> getEducationLast();
 	
 	Education getOneEducation(int eduNo);
