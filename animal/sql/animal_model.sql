@@ -204,13 +204,13 @@ ALTER TABLE RECEIVEBOX
 
 -- 교육
 CREATE TABLE Education (
-  EDU_NUM     INTEGER     NOT NULL COMMENT '교육번호', -- 교육번호
-  EDU_VIEWS   INTEGER     NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  EDU_CRE     DATETIME    NOT NULL COMMENT '작성일', -- 작성일
-  EDU_TITLE   VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
-  EDU_CONTENT TEXT        NOT NULL COMMENT '내용', -- 내용
-  EDU_SPEC    char(5)     NOT NULL COMMENT '구분', -- 구분
-  MEM_NUM     INTEGER     NULL     COMMENT '회원번호' -- 회원번호
+  EDU_NUM     INTEGER      NOT NULL COMMENT '교육번호', -- 교육번호
+  EDU_VIEWS   INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+  EDU_CRE     DATETIME     NOT NULL COMMENT '작성일', -- 작성일
+  EDU_TITLE   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
+  EDU_CONTENT TEXT         NOT NULL COMMENT '내용', -- 내용
+  EDU_SPEC    char(5)      NOT NULL COMMENT '구분', -- 구분
+  MEM_NUM     INTEGER      NULL     COMMENT '회원번호' -- 회원번호
 )
 COMMENT '교육';
 
@@ -417,8 +417,8 @@ CREATE TABLE LOCATION (
   LOC_NUM  INTEGER      NOT NULL COMMENT '새 컬럼3', -- 새 컬럼3
   LOC_LAT  VARCHAR(255) NOT NULL COMMENT '새 컬럼', -- 새 컬럼
   LOC_LNG  VARCHAR(255) NOT NULL COMMENT '새 컬럼2', -- 새 컬럼2
-  LOC_NAME VARCHAR(50)  NOT NULL COMMENT '새 컬럼4', -- 새 컬럼4
-  LOC_DONG VARCHAR(50)  NULL     COMMENT '새 컬럼5', -- 새 컬럼5
+  LOC_NAME VARCHAR(255) NOT NULL COMMENT '새 컬럼4', -- 새 컬럼4
+  LOC_DONG VARCHAR(255) NULL     COMMENT '새 컬럼5', -- 새 컬럼5
   SCH_NUM  INTEGER      NOT NULL COMMENT '일정번호' -- 일정번호
 )
 COMMENT '새 테이블';
