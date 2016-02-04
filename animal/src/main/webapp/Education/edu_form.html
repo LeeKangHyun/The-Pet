@@ -55,7 +55,9 @@
     <div class="m_content">
       <div id="va"></div>
       <div id="ca"></div>
-      <div id="sa"></div>
+      <div id="sa">
+      <div style='font-size:21px; margin-bottom:10px;'>관련된 동영상</div>
+      </div>
       <div class='contents'>
 
         <!-- 댓글 입력부분 -->
@@ -128,7 +130,6 @@
         		"</div>")
         .appendTo(ca);
         $("#eduContent").val(education.eduContent);
-        alert('ajax전');
         console.log(education.eduSpec);
         $.ajax({
         	    url : 'education/ajax/slist.do',
@@ -149,10 +150,13 @@
                 var fname = file[0].fileName;
                 var url = fname.split('?')[1].split('=')[1];
                 sa.append(
-                  "<div>" + url +
-                "</div>");
+                      "<div role='button' style='margin-bottom:20px;' class='detailLnk' eduNo='" + education.eduNo + "'>"+
+                      "<img class='detailLnk' width=270px; height=150px; eduNo='" + education.eduNo + "' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
+                      "<a class='detailLnk' style='margin-top:20px; text-decoration:none;' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
+                      "</div>");
               }
               $("a.detailLnk").click(clickDetailLnk);
+              $('div.detailLnk').click(clickDetailLnk);
             }
             
           });
