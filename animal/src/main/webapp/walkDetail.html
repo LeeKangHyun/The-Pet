@@ -130,7 +130,7 @@
       <h4>더 많은 리스트</h4>
 
       <!-- 리스트 항목 -->
-      <a class="listbox" role="button">
+      <!-- <a class="listbox" role="button">
         <img class="boximg" src="images/h11.gif">
         <div class="content">
           <div class="boxtitle">titletitletitletitletitletitletitletitletitletitletitletitletitletitle</div>
@@ -138,7 +138,8 @@
           <div class="boxview">조회수 1010회</div>
           <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
         </div>
-      </a>
+      </a> -->
+
 
     </div>
 
@@ -226,7 +227,7 @@ $.ajax({
 
       var mno = $.session.get('mno');
       var dno = location.href.split('?')[1].split('=')[1];
-      console.log(dno)
+      //console.log(dno)
       if (mno != undefined) {
 
         var form_data = new FormData();
@@ -243,7 +244,7 @@ $.ajax({
           data : form_data,
           success : function(resultObj) {
 
-            console.log("resultObj.like : " + resultObj.like)
+            // console.log("resultObj.like : " + resultObj.like)
 
             if (resultObj.like != null ) {
               $('#likes').css("color","blue");
@@ -252,7 +253,7 @@ $.ajax({
               $('#likes').css("color","#767475");
               like_toggle = 0;
             }
-            console.log("like_toggle : " + like_toggle)
+            // console.log("like_toggle : " + like_toggle)
           }
         });
       }
@@ -262,8 +263,68 @@ $.ajax({
 // 랭크 리스트
 $.ajax({
     url: 'walk/ajax/ranklist.do',
+    dataType: 'json',
+    type: 'post',
+    async: false,
+    cache: false,
+    success: function(re) {
+        console.log(re)
+        var right = $('#right');
+        var file;
+        var imgWidth;
+        var imgHeight;
+        var setClass;
+        for (var i = 0; i < re.top10.length; i++) {
+            file = re.files[i];
+            console.log(re.files[i]);
+            imgWidth = file[0].width;
 
+            imgHeight = file[0].height;
+
+            if (imgWidth > imgHeight) {
+              setClass = "landscape"
+            } else {
+              setClass = "portrait"
+            }
+
+            for (var j = 0; j < re.location.length; j++) {
+                if (re.top10[i].dno == re.location[j].dno) {
+
+                    right.append(
+                        '<a onclick="detailWalk(' + re.top10[i].dno + ')" class="listbox" role="button">' +
+                          '<img class="' + setClass + ' boximg" src="files/' + file[0].fileName + '">' +
+                          '<div class="content">' +
+                            '<div class="boxtitle">' + re.top10[i].title + '</div>' +
+                            '<div class="boxwriter">' + re.member[i].mName + '</div>' +
+                            '<div class="boxview">조회수 ' + re.top10[i].view + '</div>' +
+                            '<div class="boxlike"><i class="fa fa-thumbs-o-up"></i> ' + re.top10[i].like + '</div>' +
+                          '</div>' +
+                        '</a>'
+                    )
+                }
+            }
+        }
+    }
 });
+function detailWalk(dno) {
+
+  var view_data = new FormData();
+  view_data.append("dno", dno);
+
+  $.ajax({
+    url : "walk/ajax/view.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : view_data,
+    success : function(resultObj) {
+
+    }
+  });
+
+  location.href = 'walkDetail.html?dno=' + dno;
+}
 
 // 사진 디테일
 $.ajax({
@@ -300,7 +361,7 @@ $.ajax({
         }
         i++;
       }
-      console.log(re);
+    //   console.log(re);
     }
 });
 
@@ -315,7 +376,7 @@ $.ajax({
   type: "get",
   dataType: "json",
   success: function(re) {
-    console.log(re);
+    // console.log(re);
     coord = new daum.maps.LatLng(re.walkList[0].locLat, re.walkList[0].locLng);
     bounds.extend(coord);
     map.setBounds(bounds)
@@ -385,7 +446,7 @@ $.ajax({
 
 $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
     var ajaxResult = resultObj.ajaxResult
-    console.log(resultObj)
+    // console.log(resultObj)
     if (ajaxResult.data == 0 || ajaxResult.data == 1) {
         $('#more').empty();
     }
