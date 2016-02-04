@@ -1,7 +1,6 @@
 package pms.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import pms.domain.Education;
 
@@ -13,7 +12,7 @@ public interface EducationDao {
 	
 	void insert(Education education);
 	
-	int delete(Map<String,Object> paramMap);
+	int delete(int eduNo);
 	
 	int update(Education education);
 	

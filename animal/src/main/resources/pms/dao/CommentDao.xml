@@ -90,6 +90,11 @@
     where SCH_NUM=#{dno}
   </delete>
   
+  <delete id="deleteedu" parameterType="int">
+    delete from comment
+    where EDU_NUM=#{value}
+  </delete>
+  
   <!--       update 수정해야함       -->
   <update id="update" parameterType="comment">
     update comment set 

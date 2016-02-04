@@ -93,10 +93,10 @@ public class WalkController {
     
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
-    resultMap.put("data", walks);
-    resultMap.put("filesMap", filesMap);
-    resultMap.put("memberMap", memberMap);
-    resultMap.put("name", walkname);
+    resultMap.put("top10", walks);
+    resultMap.put("files", filesMap);
+    resultMap.put("member", memberMap);
+    resultMap.put("location", walkname);
     
     return resultMap;
     
