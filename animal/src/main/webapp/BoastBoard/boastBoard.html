@@ -208,6 +208,9 @@ $(document).ready(function() {
 <script>
   var searchPage = 0;
   $('.form-submit').click(function(event) {
+	  
+	  $("#All").trigger("click");
+	  
     if ($('.form-control').val() == 'title') {
       var search_data = new FormData();
       search_data.append("title", $('.form-search').val());
@@ -779,6 +782,9 @@ $(document).ready(function() {
 <!-- Enter Key press 시 Search Event -->         
   $('.form-search').keypress(function(event) {
     if (event.which == 13) {
+    	
+    	$("#All").trigger("click");
+    	
       if ($('.form-control').val() == 'title') {
         var search_data = new FormData();
         search_data.append("title", $('.form-search').val());
@@ -1400,6 +1406,7 @@ $(document).ready(function() {
 	    });
   </script>
   
+  <!-- Filter -->
   <script>
   function filter(id) {
 	  
