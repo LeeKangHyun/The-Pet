@@ -262,7 +262,7 @@ $.ajax({
 // 랭크 리스트
 $.ajax({
     url: 'walk/ajax/ranklist.do',
-    
+
 });
 
 // 사진 디테일
@@ -385,7 +385,7 @@ $.ajax({
 $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
     var ajaxResult = resultObj.ajaxResult
     console.log(resultObj)
-    if (ajaxResult.data == 0) {
+    if (ajaxResult.data == 0 || ajaxResult.data == 1) {
         $('#more').empty();
     }
 })
