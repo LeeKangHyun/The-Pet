@@ -1,0 +1,210 @@
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@baseMargin : 0 auto;
+@baseBorder: 2px solid #fff;
+@headerFontColor: #fff;
+
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#menu {
+    z-index: 1000;
+    position: fixed;
+    margin: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #2d335e;
+    .clearfix();
+    #header_title {
+        width: 1024px;
+        .center-block();
+        .headerTitle {
+            color: @headerFontColor;
+            line-height: 44px;
+            
+//            font-family: 'Nanum Pen Script';
+            font-size: 30px;
+          
+            text-decoration: none;
+            margin-left: 50px;
+        }
+        .headerSubTitle {
+          color: @headerFontColor;
+          font-size: 20px;
+        }
+      .headerSubTitle:hover {
+        text-decoration: none;
+      }
+        #the {
+          letter-spacing: px;
+        }
+        #P {
+          color: #d06a79;
+          font-size: 40px;
+  //        margin-right: 2px;
+          letter-spacing: 1px;
+        }
+        #et {
+          letter-spacing: 3px;
+        }
+        .headerTitle:hover {
+            color: @headerFontColor;
+            text-decoration: none;
+        }
+        #user_info {
+            position: relative;
+            top: 2px;
+            right: 10px;
+            .pull-right();
+            #msgBtn {
+              color: @headerFontColor;
+              font-size: 30px;
+              position: relative;
+              top: 0px;
+            }
+            #userBadge {
+              background-color: #d06a79;
+              font-size: 12px;
+              position: relative;
+              bottom: 12px;
+              right: 11px;
+            }
+            #userImg {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+              position: relative;
+              top: -8px;
+            }
+            #userName {
+                color: @headerFontColor;
+                font-size: 16px;
+                font-family: 'Nanum Gothic';
+                letter-spacing: 2px;
+                font-weight: 400;
+                text-decoration: none;
+                position: relative;
+                top: -6px;
+                margin-left: 6px;
+                padding: 2px 15px;
+                border: @baseBorder;
+                border-radius: 10px;
+            }
+            #userName:hover {
+                color: @headerFontColor;
+                text-decoration: none;
+            }
+            #outBtn {
+                position: relative;
+                top: -7px;
+                color: @headerFontColor;
+                margin-left: 10px;
+                font-size: 18px;
+                text-decoration: none;
+            }
+            #outBtn:hover {
+                color: @headerFontColor;
+                text-decoration: none;
+            }
+            #loginBtn {
+                color: @headerFontColor;
+                font-size: 16px;
+                text-decoration: none;
+                line-height: 40px;
+                margin-left: 10px;
+                margin-top: 20px;
+                padding: 2px 15px;
+                border: @baseBorder;
+                border-radius: 10px;
+            }
+            #loginBtn:hover {
+                color: @headerFontColor;
+                text-decoration: none;
+                background: none;
+            }
+        }
+    }
+    #menuToggle{
+        display: none;
+    }
+    #menuToggle:checked ~ #sideMenu #menu-nav {
+        position: fixed;
+        left: 0;
+    }
+    #sideMenu {
+        #menu-icon {
+            position: fixed;
+            float: left;
+            text-align: center;
+            padding: 14px 18px;
+            color: #fff;
+            cursor: pointer;
+            top: -2px;
+            z-index: 1000;
+        }
+        #menu-icon:hover { 
+          color: #d06a79;
+        }
+        #menu-nav {
+            width: 220px;
+            position: fixed;
+            background-color: #fff;
+            min-height:100%;
+            top: 45px;
+            left: -240px;
+            transition: all 300ms ease-out;
+            box-shadow: 0px 10px 39px 1px #2d335e;
+            z-index: 990;
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li {
+                    a {
+                        display: block;
+                        padding-left: 25px;
+                        margin-bottom: 3px;
+                        padding: 6px;
+                        text-decoration: none;
+                        color: #2d335e;
+                        font-family: 'Nanum Pen Script';
+                        font-size: 26px;
+                    }
+                    a:hover {
+                        background-color: #d06a79;
+                        color: #f5f5f5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#main-body {
+    width: 1280px;
+    .center-block();
+    .clearfix();
+    padding-top: 45px;
+}

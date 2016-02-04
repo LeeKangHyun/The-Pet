@@ -92,7 +92,7 @@ $(function(){
       <button class="filter" data-filter=".ETC">ETC</button>
       <button id="hidden" class="filter" data-filter="*" hidden="">All</button>
 
-      <a href="matingform.html" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</a>
+      <button onclick="location.href='matingform.html'" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
@@ -702,64 +702,6 @@ $(document).on("click", "#editEnd", function() {
         })
       }
       location.href='mating.html';
-//      $('#file-1').val('');
-//      var form_data = new FormData();
-//      form_data.append("matNo", $('#mmatno').val())
-//      $.ajax({
-//        url: "files/ajax/matlist.do",
-//        dataType: 'json',
-//        cache: false,
-//        async: false,
-//        contentType: false,
-//        processData: false,
-//        data: form_data,
-//        type: 'post',
-//        success: function(re) {
-//          var files = re.ajaxResult.data;
-//          $('#dots').empty();
-//          $('#imgs').empty();
-//          $('#delImg').empty();
-//          
-//          var imgs = $('#imgs');
-//          var dots = $('#dots');
-//          var showDel = $('#delImg');
-//          var i = 0;
-//          for (var file of files) {
-//            if (i == 0) {
-//              imgs.append(
-//              "<div class='item active'>" +
-//                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-//              "</div>")
-//              dots.append(
-//              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-//              "' class='active'></li>")
-//              if (files.length == 1) {
-//                showDel.append("<img src='files/" + file.fileName + "'>")
-//              } else {
-//                showDel.append(
-//                "<img src='files/" + file.fileName + "'>" +
-//                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-//              }
-//            } else {
-//              imgs.append(
-//              "<div class='item'>" +
-//                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-//              "</div>")
-//              dots.append(
-//              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-//              "'></li>")
-//              if (files.length == 1) {
-//                showDel.append("<img src='files/" + file.fileName + "'>")
-//              } else {
-//                showDel.append(
-//                "<img src='files/" + file.fileName + "'>" +
-//                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-//              }
-//            }
-//            i++;
-//          }
-//        }
-//      })
     }
   })
 })
@@ -862,45 +804,56 @@ function moree(id) {
       var file;
       var mem;
       var gen;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
       for (var mating of resultObj.mating) {
-
         file = resultObj.filesMap[j];
         mem = resultObj.memberMap[j];
+        
         if(mating.matGender == 0) {
           gen = "수컷";
         } else {
           gen = "암컷";
         }
+        
+        imgWidth = file[0].width;
+        imgHeight = file[0].height;
 
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
         j++;
-        show.append(
-        "<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
+        
+        show.append("<div class='portfoliocard mix " + mating.matSpec + "' role='button' " +
         "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
         "' onclick='detail(this.id);'>" +
 
-          "<div class='coverphoto'><img src='files/" + file[0].fileName + "'></div>" +
+        "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
 
-          "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+        "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
 
-          "<div class='left_col'>" +
-            "<div class='views'>" +
-              "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
-              "VIEW" +
-            "</div>" +
-          "</div>" +
+        "<div class='left_col'>" +
+        "<div class='views'>" +
+        "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
+        "VIEW" +
+        "</div>" +
+        "</div>" +
 
-          "<div class='right_col'>" +
-            "<ul class='contact_information'>" +
-              "<li class='website'>" + mating.matSpec + "</li>" +
-              "<li class='website'>" + mating.matType + "</li>" +
-              "<li class='gender'>" + gen + "</li>" +
-              "<li class='title'>" + mating.matTitle + "</li>" +
-              "<li class='resume'>" + mating.matCreateDate + "</li>" +
-              "<li class='name'>" + mem.mName + "</li>" +
-            "</ul>" +
-          "</div>" +
+        "<div class='right_col'>" +
+        "<ul class='contact_information'>" +
+        "<li class='website'>" + mating.matSpec + "</li>" +
+        "<li class='website'>" + mating.matType + "</li>" +
+        "<li class='gender'>" + gen + "</li>" +
+        "<li class='title'>" + mating.matTitle + "</li>" +
+        "<li class='resume'>" + mating.matCreateDate + "</li>" +
+        "<li class='name'>" + mem.mName + "</li>" +
+        "</ul>" +
+        "</div>" +
         "</div>")
-      };
+      }
 
       $.getJSON('mating/ajax/pages.do', function(resultObj) {
         var ajaxResult = resultObj.ajaxResult;

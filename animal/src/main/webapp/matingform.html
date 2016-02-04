@@ -11,7 +11,7 @@
 <link href="lib/jquery-uploadfile/css/uploadfile.css" rel="stylesheet" />
   
 <!--  내가만든 css들  -->
-<link href="css/sh_slidmenu_header_mating.less" type="style.less" rel="stylesheet/less" />
+<link href="css/sh_slidmenu_header_matingform.less" type="style.less" rel="stylesheet/less" />
 <link href="css/sh_mating_form.css" rel="stylesheet" />
   
 <!--  폰트아이콘 링크  -->
@@ -204,6 +204,7 @@ $(document).ready(function() {
     uploadStr: "이미지 추가",
     dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
     cancelStr: "선택취소",
+    abortStr: "전송취소",
     dynamicFormData: function() {
         var data = {
             file: "files",
@@ -211,6 +212,9 @@ $(document).ready(function() {
             matNo: $('#lastDno').val()
         };
         return data;
+    },
+    afterUploadAll: function() {
+        location.href='mating.html';
     }
   });
 
