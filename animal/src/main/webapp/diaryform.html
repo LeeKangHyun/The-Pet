@@ -16,12 +16,12 @@
   <link href="css/icon-font.min.css" rel="stylesheet" />
 
   <link href='css/sh_map_diaryform.css' rel='stylesheet' />
-  
+
   <script src='lib/jquery/jquery.js'></script>
   <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
   <script src="lib/less/less.js" type="text/javascript"></script>
   <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
-  <script src="lib/jquery-uploadfile/js/jquery.uploadfile.min.js" type="text/javascript"></script>
+  <script src="lib/jquery-uploadfile/js/jquery.uploadfile.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
 
   <section id="main-body">
     <div id="left">
-      
+
       <div id="form-header">
         <h3 class="ftitle" id="lineModalLabel">글 추가</h3>
       </div>
@@ -150,15 +150,15 @@
         </div>
       </div>
     </div>
-    
+
     <div id="right">
       <div id="fileuploader">upload</div>
     </div>
   </section>
-  
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 <script type='text/javascript' src='js/kh_map_walk.js'></script>
-  
+
 <script>
 $(document).ready(function() {
 
@@ -207,8 +207,8 @@ $(document).ready(function() {
       $('#userBadge').html(ajaxResult.data.noReadCount)
     }
   })
-  
-  
+
+
   var uploadObj = $("#fileuploader").uploadFile({
     url : "files/ajax/upload.do",
     autoSubmit: false,
@@ -220,23 +220,23 @@ $(document).ready(function() {
     uploadStr: "이미지 추가",
     dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
     cancelStr: "선택취소",
-    formData: {
-      var data = {
-        file: "files", 
-        fileName: "files.name", 
-        dno:$('#lastDno').val()
-      }
-      return data;
+    dynamicFormData: function() {
+        var data = {
+            file: "files",
+            fileName: "files.name",
+            dno: $('#lastDno').val()
+        };
+        return data;
     }
   });
-  
+
   $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
     var sel = $("#pno");
     for (var pet of resultObj.pets) {
       sel.append("<option value='" + pet.pno + "'>" + pet.pName + "</option>")
     }
   })
-  
+
   // 다이어리 추가
   var sel;
   $("#cateCode").change(function() {
@@ -355,7 +355,7 @@ $(document).ready(function() {
                     uploadObj.startUpload();
 
                     alert("다이어리에 산책코스가 추가되었습니다.")
-                    location.href = "diary.html"
+                    // location.href = "diary.html"
                   }
                 })
               }
@@ -426,7 +426,7 @@ $("#cateCode").change(function() {
     $('.pMap').css('display', 'none');
   }
 }).change();
-</script>  
+</script>
 
 </body>
 </html>

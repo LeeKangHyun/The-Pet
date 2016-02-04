@@ -21,6 +21,7 @@ var sub = '';
 
 $(document).on('click', "#ali", function() {
   $('#keyword').val('');
+  $('#keyword').attr("placeholder", "검색어를 입력하세요");
   sub='';
   $('#ali').css('background-color', '#d06a79')
   $('#hospital').css('background-color', '#2d335e')
@@ -32,6 +33,7 @@ $(document).on('click', "#ali", function() {
 
 $(document).on('click', "#hospital", function() {
     $('#keyword').val('');
+    $('#keyword').attr("placeholder", "지역을 입력하세요");
     sub=$('#hospital').val();
   $('#ali').css('background-color', '#2d335e')
   $('#hospital').css('background-color', '#d06a79')
@@ -41,6 +43,7 @@ $(document).on('click', "#hospital", function() {
 
 $(document).on('click', "#object", function() {
     $('#keyword').val('');
+    $('#keyword').attr("placeholder", "지역을 입력하세요");
     sub=$('#object').val();
   $('#ali').css('background-color', '#2d335e')
   $('#hospital').css('background-color', '#2d335e')
@@ -50,6 +53,7 @@ $(document).on('click', "#object", function() {
 
 $(document).on('click', "#cafe", function() {
     $('#keyword').val('');
+    $('#keyword').attr("placeholder", "지역을 입력하세요");
     sub=$('#cafe').val();
   $('#ali').css('background-color', '#2d335e')
   $('#hospital').css('background-color', '#2d335e')
@@ -71,7 +75,7 @@ $(document).on("click", "#finder", function () {
   ps.keywordSearch({
     keyword: keyword + sub,
     callback: placesSearchCB,
-    radius: 1000
+    radius: 3000
   });
 });
 

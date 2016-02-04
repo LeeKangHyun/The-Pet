@@ -51,6 +51,7 @@ public class FileController {
   public AjaxResult insert(Files files, MultipartFile file) throws Exception {
     System.out.println("파일 크기: " + file.getBytes().length);
     System.out.println("파일 타입: " + file.getContentType());
+    
     String fileName = MultipartHelper.generateFilename(file.getOriginalFilename());
     System.out.println("파일 이름: " + fileName);
 

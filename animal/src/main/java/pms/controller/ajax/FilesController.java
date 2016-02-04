@@ -2,6 +2,7 @@ package pms.controller.ajax;
 
 import java.awt.Image;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
@@ -57,6 +59,30 @@ public class FilesController {
 		
 		return new AjaxResult("success", null);
 	}
+	
+	/*@RequestMapping(value="upload", method=RequestMethod.POST)
+	public Object add(
+	    Diary diary,
+	    Files files,
+	    @RequestParam("files") MultipartFile[] file
+	    ) throws Exception {
+	  ArrayList<String> filenames = new ArrayList<>();
+
+    for (MultipartFile filez : file) {
+      if (filez.getSize() > 0) {
+        String newFileName = MultipartHelper.generateFilename(filez.getOriginalFilename());  
+
+        filenames.add(newFileName);
+      }
+    }
+
+	  
+	  System.out.println("diary= " + diary.toString());
+	  System.out.println("files= " + files.toString());
+	  System.out.println(filenames);
+	  
+	  return 0;
+	}*/
 	
 	@RequestMapping(value="delOneImg", method=RequestMethod.POST)
 	public Object delOneImg(int fno) throws Exception {
