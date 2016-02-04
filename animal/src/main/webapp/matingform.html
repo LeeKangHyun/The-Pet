@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="icon/1.ico" type="image/x-icon" />
+<title>짝짓기</title>
+
+<link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+<link href="lib/jquery-uploadfile/css/uploadfile.css" rel="stylesheet" />
+  
+<!--  내가만든 css들  -->
+<link href="css/sh_slidmenu_header_mating.less" type="style.less" rel="stylesheet/less" />
+<link href="css/sh_mating_form.css" rel="stylesheet" />
+  
+<!--  폰트아이콘 링크  -->
+<link href="lib/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href="css/icon-font.min.css" type="text/css" rel="stylesheet" />
+  
+<!-- 부트스트랩 -->
+<script src='lib/jquery/jquery.min.js' type="text/javascript"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+<script src="lib/less/less.js" type="text/javascript"></script>
+
+<script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+<script src="lib/jquery-uploadfile/js/jquery.uploadfile.js" type="text/javascript"></script>
+  
+</head>
+
+<body>
+  <header id="menu">
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="mating.html">
+        짝짓기
+      </a>
+      <div id="user_info"></div>
+    </div>
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
+
+    <div id="sideMenu">
+      <label for="menuToggle" id="menu-icon"><i
+        class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
+
+      <nav id="menu-nav">
+        <ul id="menu-nav-ul">
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
+              자랑해요</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
+  </header>
+
+  <section id="main-body">
+    <div id="left">
+
+      <div class='mheader'>
+        <h3>짝짓기 새글</h3>
+      </div>
+
+      <div class='mbody'>
+        
+        <input type="hidden" name="lastDno" id="lastDno">
+
+        <div class='form-group'>
+          <label class='col-sm-3 control-label'>제목</label>
+          <div class="col-sm-9">
+            <input type='text' name='mat_content' id='mat_title' class="form-control"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">구분</label>
+          <div class="col-sm-9">
+            <select id="mat_spec" name="mat_spec" class="form-control">
+              <option value="DOG" selected="selected">강아지</option>
+              <option value="CAT">고양이</option>
+              <option value="FISH">물고기</option>
+              <option value="BIRD">새</option>
+              <option value="ETC">ETC..</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mat_gen" class="col-sm-3 control-label">펫 종류</label>
+          <div class="col-sm-9">
+            <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"/>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <label for="pdType" class="col-sm-3 control-label">펫 성별</label>
+          <div class="col-sm-9">
+            <div class="radio-inline">
+              <label>
+                <input type="radio" class='mat_gen' name='MAT_GENDER' value="0" checked>
+                <span>수컷</span>
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" class='mat_gen' name='MAT_GENDER' value="1">
+                <span>암컷</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class='form-group'>
+          <label for="pdType" class="control-label cont">내용</label>
+          <textarea class="form-control" name='MAT_CONTENT' id='mat_content' style="height: 100px;"></textarea>
+        </div>
+
+      </div>
+
+      <div class="mfooter">
+        <button type="button" id="addMat" class="btn btn-warning">등록</button>
+      </div>
+    
+    </div>
+    
+    <div id="right">
+      <div id="fileuploader">upload</div>
+    </div>
+    
+  </section>
+<script>
+$(document).ready(function() {
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  var div = $('#user_info');
+  var ul = $('#menu-nav-ul');
+  if (no == undefined) {
+//    location.href = "mating.html"
+  } else {
+    $('#myMno1').val(no);
+    $('#myMno2').val(no);
+
+    div.append(
+      "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+        "<i class='fa fa-envelope-o'></i>" +
+        "<span class='badge' id='userBadge'>0</span>" +
+      "</a>" +
+      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a role='button' id='outBtn' class='logout'>" +
+        "<i class='fa fa-unlock fa-lg'></i>" +
+      "</a>")
+    ul.append(
+      "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+  }
+
+  // 로그아웃
+  $(document).on("click", "#outBtn", function() {
+        $.session.clear();
+        location.href = "login.html"
+    });
+
+  // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/noReadMsg.do',
+    type: 'post',
+  //    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      $('#userBadge').html(ajaxResult.data.noReadCount)
+    }
+  })
+  
+  $.getJSON('mating/ajax/pages.do', function(resultObj) {
+    var ajaxResult = resultObj.ajaxResult;
+    if(ajaxResult.data == 1) {
+      $('#more').empty();
+    } 
+  })
+  
+  var uploadObj = $("#fileuploader").uploadFile({
+    url : "files/ajax/matUpload.do",
+    autoSubmit: false,
+    multiple: true,
+    dragDrop: true,
+    fileName : "file",
+    returnType: "json",
+    enctype: "multipart/form-data",
+    uploadStr: "이미지 추가",
+    dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
+    cancelStr: "선택취소",
+    dynamicFormData: function() {
+        var data = {
+            file: "files",
+            fileName: "files.name",
+            matNo: $('#lastDno').val()
+        };
+        return data;
+    }
+  });
+
+
+  // 짝짓기 추가
+  $(document).on('click', '#addMat', function() {
+    var no = $.session.get('mno');
+    var mgen = $('input[name=MAT_GENDER]:checked').val();
+    var form_data = new FormData();
+
+    console.log('등러갔다')
+    console.log($('#mafile'))
+    
+
+    form_data.append("mno", no)
+    form_data.append("matTitle", $('#mat_title').val())
+    form_data.append("matSpec", $('#mat_spec').val())
+    form_data.append("matType", $('#mat_type').val())
+    form_data.append("matGender", mgen)
+    form_data.append("matContent", $('#mat_content').val())
+
+    $.ajax({
+      url: 'mating/ajax/add.do',
+      dataType: 'json',
+      type: 'post',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(re) {
+        console.log('성공')
+        var lastDno = re.ajaxResult.data;
+        $('#lastDno').val(lastDno);
+
+        uploadObj.startUpload();
+      }
+    })
+  });
+});
+</script>
+  
+</body>
+</html>

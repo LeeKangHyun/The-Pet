@@ -1,0 +1,51 @@
+#left {
+  width: 600px;
+  float: left;
+  padding-left: 30px;
+}
+
+#right {
+  width: 600px;
+  float: right;
+  padding-right: 30px;
+}
+
+.control-label {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.form-control {
+  margin-bottom: 23px;
+  border-radius: 0;
+}
+
+.mat_gen {
+  position: relative;
+  top: 5px;
+}
+
+.radio-inline {  
+  margin-bottom: 30px;
+}
+
+.radio-inline span {
+  position: relative;
+  top: 4px;
+  left: 5px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.cont {
+  margin-left: 15px;
+}
+
+#mat_content {
+  margin-left: 150px;
+  margin-top: -30px;
+  height: 130px;
+  width: 400px;
+  resize: none;
+}
+

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="icon/1.ico" type="image/x-icon" />
-<title>Slid Menu</title>
+<title>짝짓기</title>
 
 <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -45,15 +45,6 @@
 $(function(){
     $('#Container').mixItUp();
 });
-</script>
-
-<script src="js/autosize.js" type="text/javascript"></script>
-<script>
-  (function(e, t, n) {
-    var r = e.querySelectorAll("html")[0];
-    r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
-  })
-  (document, window, 0);
 </script>
 
 </head>
@@ -115,82 +106,6 @@ $(function(){
   </section>
 
 <!-- 새글 모달 -->
-<div id='addModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
-    <div class='modal-dialog'>
-        <div class='modal-content'>
-            <div class='modal-header'>
-                <button id='closeAdd' type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h3>짝짓기 새글</h3>
-            </div>
-
-            <div class='modal-body'>
-
-                <div class='form-group'>
-                    <label class='col-sm-3 control-label'>제목</label>
-                    <div class="col-sm-9">
-                        <input type='text' name='mat_content' id='mat_title' class="form-control"/>
-                    </div>
-                </div>
-              
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">구분</label>
-                  <div class="col-sm-9">
-                    <select id="mat_spec" name="mat_spec" class="form-control">
-                      <option value="DOG" selected="selected">강아지</option>
-                      <option value="CAT">고양이</option>
-                      <option value="FISH">물고기</option>
-                      <option value="BIRD">새</option>
-                      <option value="ETC">ETC..</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="mat_gen" class="col-sm-3 control-label">펫 종류</label>
-                  <div class="col-sm-9">
-                    <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"/>
-                  </div>
-                </div>
-
-                <div class='form-group'>
-                    <label for="pdType" class="col-sm-3 control-label">펫 성별</label>
-                    <div class="col-sm-9">
-                        <div class="radio-inline">
-                          <label>
-                            <input type="radio" class='mat_gen' name='MAT_GENDER' value="0" checked>
-                            수컷
-                          </label>
-                        </div>
-                        <div class="radio-inline">
-                          <label>
-                            <input type="radio" class='mat_gen' name='MAT_GENDER' value="1">
-                            암컷
-                          </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class='form-group'>
-                    <label for="pdType" class="col-sm-3 control-label">내용</label>
-                    <textarea class="form-control" name='MAT_CONTENT' id='mat_content' style="height: 100px;"></textarea>
-                </div>
-
-                <div class="box1">
-                  <input type="file" name="fileName" id="mafile" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다" multiple />
-                  <label for="mafile">
-                    <i class="fa fa-upload"></i>
-                    <span>이미지 추가</span>
-                  </label>
-                </div>
-
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" id="addMat" class="btn btn-warning">등록</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--짝짓기 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
@@ -414,58 +329,7 @@ $.ajax({
     }
 });
 
-// 짝짓기 추가
-$(document).on('click', '#addMat', function() {
-    var no = $.session.get('mno');
-    var mgen = $('input[name=MAT_GENDER]:checked').val();
-    var form_data = new FormData();
 
-    console.log('등러갔다')
-    console.log($('#mafile'))
-    console.log($('#mafile').prop('files')[0].name)
-
-    form_data.append("mno", no)
-    form_data.append("matTitle", $('#mat_title').val())
-    form_data.append("matSpec", $('#mat_spec').val())
-    form_data.append("matType", $('#mat_type').val())
-    form_data.append("matGender", mgen)
-    form_data.append("matContent", $('#mat_content').val())
-
-    $.ajax({
-        url: 'mating/ajax/add.do',
-        dataType: 'json',
-        type: 'post',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        success: function(re) {
-            console.log('성공')
-            var lastDno = re.ajaxResult.data;
-            for (var i = 0; i < $("#mafile").prop("files").length; i++) {
-              var file_data = $("#mafile").prop("files")[i];
-              var file_name = file_data.name;
-              var form_data = new FormData();
-              form_data.append("file", file_data)
-              form_data.append("fName", file_name)
-              form_data.append("matNo", lastDno)
-              $.ajax({
-                url: "files/ajax/matUpload.do",
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(resultObj) {
-                    console.log(file_name)
-                    location.href='mating.html';
-                }
-              })
-            }
-        }
-    })
-});
 
 // 짝짓기 디테일
 function detail(id) {

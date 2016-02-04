@@ -129,3 +129,12 @@ body {
 #explain {
   margin-left: 15px;
 }
+
+.ajax-upload-dragdrop {
+  border: 2px solid #2d335e;
+  width: 600px;
+  color: #DADCE3;
+  text-align: left;
+  vertical-align: middle;
+  padding: 10px 10px 0px 10px;
+}
