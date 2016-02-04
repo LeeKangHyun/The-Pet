@@ -19,10 +19,10 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 		topcheck1 = topcheck1.slice(1,2).toString().toLowerCase();
 		
 		if(topcheck1 == "jpg" ||
-				topcheck1 == "jpeg" ||
-				topcheck1 == "png" ||
-				topcheck1 == "gif" ||
-				topcheck1 == "bmp") {
+      topcheck1 == "jpeg" ||
+      topcheck1 == "png" ||
+      topcheck1 == "gif" ||
+      topcheck1 == "bmp") {
 			
 			console.log("가로 : " + resultObj.size[i].width);
 			console.log("세로 : " + resultObj.size[i].height);

@@ -5,8 +5,8 @@
 }
 
 #map {
-  border-left: 2px solid #2d335e;
-  border-right: 2px solid #2d335e;
+  border: 2px solid #2d335e;
+/*  border-right: 2px solid #2d335e;*/
   width: 49%;
   height: 480px;
   margin: 0 auto;
@@ -21,10 +21,14 @@
   margin: 0 auto;
   overflow-y: auto;
   z-index: 1;
-  border-top: 2px solid #d06a79;
-  border-bottom: 2px solid #d06a79;
+/*  border-top: 2px solid #d06a79;*/
+  border-bottom: 2px solid #2d335e;
   height: 480px;
   float: right;
+}
+
+#map-header {
+  background-color: #2d335e;
 }
 
 #menu_wrap hr {
@@ -45,6 +49,7 @@
 
 #menu_wrap .option button {
   margin-left: 5px;
+  background-color: #fff;
 }
 
 
@@ -203,7 +208,8 @@ ul, menu, dir {
   border: 0px;
   padding: 5px 15px;
   text-decoration: none;
- background-color: #2d335e;
+  background-color: #2d335e;
+  border: 1px solid #fff;
   color: #fff;
 }
 
@@ -223,7 +229,8 @@ ul, menu, dir {
   border: 0px;
   padding: 5px 15px;
   text-decoration: none;
- background-color: #2d335e;
+  background-color: #2d335e;
+  border: 1px solid #fff;
   color: #fff;
 }
 
