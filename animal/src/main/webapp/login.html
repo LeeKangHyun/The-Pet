@@ -78,25 +78,10 @@
   <section id="main-body">
     <div>
 
-<!--
-      <div class="dog">
-        <div class="dog_ear left"></div>
-        <div class="dog_ear right"></div>
-        <div class="dog_eye_right"></div>
-        <div class="dog_eye"></div>
-        <div class="dog_eye"></div>
-        <div class="dog_mouth_2"></div>
-        <div class="dog_nose"></div>
-        <div class="dog_mouth"></div>
-      </div>
--->
-
       <div class="container">
 
         <h3 class="sign-in">로그인</h3>
         <a data-toggle="modal" data-target="#registerModal" class="button" role="button">회원가입</a>
-
-        <form>
 
           <div class="group1">
             <input name="mEmail" id="lmEmail" class="iput" type="text" required>
@@ -125,24 +110,6 @@
           </div>
 
           <input type="button" id="loginBtn" value="로그인" />
-
-        </form>
-
-<!--
-        <div class="cat">
-          <div class="cat_eye_left"></div>
-          <div class="cat_eye_right"></div>
-          <div class="cat_ear left"></div>
-          <div class="cat_ear right"></div>
-          <div class="cat_eye_l"></div>
-          <div class="cat_eye_in_l"></div>
-          <div class="cat_eye_r"></div>
-          <div class="cat_eye_in_r"></div>
-          <div class="cat_nose"></div>
-          <div class="cat_mouth"></div>
-          <div class="cat_mouth_tooth"></div>
-        </div>
--->
 
         <p class="footer">
 
@@ -239,6 +206,25 @@
     </div>
   </div>
   <!-- /회원가입 구간 -->
+  
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-info"></i>
+          알림
+        </div>
+
+        <div class="modal-body">
+          <span id="modoinfo"></span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- 파일 업로드 파일 이름뜨는부분 -->
 <script src="js/sh_custom-file-input.js"></script>
@@ -258,12 +244,18 @@ $(document).ready(function() {
     
     $('#loginBtn').click(function(event) {
         if ($('#lmEmail').val() == "") {
-            alert("아이디를 입력하세요")
-            return;
+          
+          $('#modoinfo').html('아이디를 입력하세요.');
+          $('#modo').modal('show')
+          
+          return false;
         }
         if ($('#lpassword').val() == "") {
-            alert("패스워드를 입력하세요")
-            return;
+          
+          $('#modoinfo').html('패스워드를 입력하세요.');
+          $('#modo').modal('show')
+          
+          return false;
         }
 
         var saveEmail = $('#lsaveEmail').is(':checked');
@@ -288,7 +280,8 @@ $(document).ready(function() {
                 
                 location.href = "pet.html"
             } else {
-                alert("로그인에 실패했습니다.")
+              $('#modoinfo').html('로그인에 실패했습니다.');
+              $('#modo').modal('show')
             }
         }, 'json');
     });
@@ -321,52 +314,59 @@ $(document).ready(function() {
         if ($('#mEmail').val() == "" || 
             $('#mEmailForm').attr('class') == "form-group has-feedback" ||
             $('#mEmailForm').attr('class') == "form-group has-feedback has-error") {
-            alert("이메일을 입력해주세요")
-            $('#mEmail').focus();
-            return false;
+          $('#modoinfo').html('이메일을 입력해주세요');
+          $('#modo').modal('show')
+          $('#mEmail').focus();
+          return false;
         } else if ($('#password').val() == "" || 
             $('#passwordForm').attr('class') == "form-group has-feedback" ||
             $('#passwordForm').attr('class') == "form-group has-feedback has-error") {
-            alert("패스워드를 입력해주세요")
-            $('#password').focus();
-            return false;
+          $('#modoinfo').html('패스워드를 입력해주세요.');
+          $('#modo').modal('show')
+          $('#password').focus();
+          return false;
         } else if ($('#password2').val() == "" || 
             $('#password2Form').attr('class') == "form-group has-feedback" ||
             $('#password2Form').attr('class') == "form-group has-feedback has-error") {
-            alert("패스워드를 재입력해주세요")
-            $('#password2').focus();
-            return false;
+          $('#modoinfo').html('패스워드를 재입력해주세요.');
+          $('#modo').modal('show')
+          $('#password2').focus();
+          return false;
         } else if ($('#mName').val() == "" || 
             $('#mNameForm').attr('class') == "form-group has-feedback" ||
             $('#mNameForm').attr('class') == "form-group has-feedback has-error") {
-            alert("이름을 입력해주세요")
-            $('#mName').focus();
-            return false;
+          $('#modoinfo').html('이름을 입력해주세요.');
+          $('#modo').modal('show')
+          $('#mName').focus();
+          return false;
         } else if ($('#tel').val() == "" || 
             $('#telForm').attr('class') == "form-group has-feedback" ||
             $('#telForm').attr('class') == "form-group has-feedback has-error") {
-            alert("전화번호를 입력해주세요")
-            $('#tel').focus();
-            return false;
+          $('#modoinfo').html('전화번호를 입력해주세요.');
+          $('#modo').modal('show')
+          $('#tel').focus();
+          return false;
         } else {
             $.getJSON('member/ajax/checkEmail.do?mEmail=' + $('#mEmail').val(), 
                 function(resultObj) {
                     var ajaxResult = resultObj.ajaxResult;
                     if (ajaxResult.status == "success") {
-                        alert("중복 이메일입니다.")
-                        $('#mEmail').val('');
-                        $(':password').val('');
+                      $('#modoinfo').html('중복 이메일입니다.');
+                      $('#modo').modal('show')
 
-                        $('#mEmailForm').removeClass("has-success");
-                        $('#passwordForm').removeClass("has-success");
-                        $('#password2Form').removeClass("has-success");
+                      $('#mEmail').val('');
+                      $(':password').val('');
 
-                        $('#mEmailMsg').html("");
-                        $('#passwordMsg').html("");
-                        $('#password2Msg').html("");
-                        return false;
+                      $('#mEmailForm').removeClass("has-success");
+                      $('#passwordForm').removeClass("has-success");
+                      $('#password2Form').removeClass("has-success");
+
+                      $('#mEmailMsg').html("");
+                      $('#passwordMsg').html("");
+                      $('#password2Msg').html("");
+                      return false;
                     }
-    //                alert("사용가능")
+    
                     var file_data = $("#file-1").prop("files")[0];
                     var file;
 
@@ -398,7 +398,8 @@ $(document).ready(function() {
                         type : 'post',
                         success : function(re) {
                             $('#registerModal').modal('hide')
-                            alert("회원가입을 축하합니다")
+                            $('#modoinfo').html('회원가입을 축하합니다.');
+                            $('#modo').modal('show')
                         }
                     })
                 }, 'json');

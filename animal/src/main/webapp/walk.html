@@ -65,6 +65,25 @@
     <a role="button" class="moreBtn" id="moreBtn"><div id="more">더보기</div></a>
   </div>
 
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-info"></i>
+          알림
+        </div>
+
+        <div class="modal-body">
+          <span id="modoinfo"></span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 
 
@@ -416,8 +435,8 @@ $(document).ready(function(){
       }
 
     } else if(currentPage == totalPage) {
-      alert("더이상 페이지가 존재하지 않습니다.");
-      console.log("더이상 페이지가 존재하지 않습니다.");
+      $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+      $('#modo').modal('show')
     }
   });
 

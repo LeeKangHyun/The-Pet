@@ -155,6 +155,25 @@
       <div id="fileuploader">upload</div>
     </div>
   </section>
+  
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-exclamation-triangle"></i>
+        에러!
+      </div>
+      
+      <div class="modal-body">
+        모두 입력해주세요
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 <script type='text/javascript' src='js/kh_map_walk.js'></script>
@@ -254,8 +273,10 @@ $(document).ready(function() {
         $('#startDate').val() == "" ||
         $('#endDate').val() == "" ||
         $('#fContent').val() == "") {
-        alert("모두 입력해주세요")
+        
+        $('#modo').modal('show');
         return false;
+        
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -288,23 +309,20 @@ $(document).ready(function() {
 
             uploadObj.startUpload();
 
-            alert("다이어리에 일정이 추가되었습니다.")
 //            location.href = "diary.html"
           }
         })
       }
     } else if (sel === 'SANCHE') {
-        console.log($(".ajax-file-upload-statusbar"))
-        console.log($(".ajax-file-upload-statusbar").context)
-        console.log($(".ajax-file-upload-statusbar").selector)
-
       if ($('#pno').val() == "" ||
         $('#title').val() == "" ||
         $('#fContent').val() == "" ||
   //      $('#fileuploader').val() == "" ||
         $('#subtitle').val() =="") {
-        alert("모두 입력해주세요")
+        
+        $('#modo').modal('show');
         return false;
+        
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -357,7 +375,6 @@ $(document).ready(function() {
 
                     uploadObj.startUpload();
 
-                    alert("다이어리에 산책코스가 추가되었습니다.")
                     // location.href = "diary.html"
                   }
                 })
@@ -370,8 +387,10 @@ $(document).ready(function() {
       if ($('#pno').val() == "" ||
         $('#title').val() == "" ||
         $('#fContent').val() == "") {
-        alert("모두 입력해주세요")
+        
+        $('#modo').modal('show');
         return false;
+        
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -404,7 +423,6 @@ $(document).ready(function() {
 
             uploadObj.startUpload();
 
-            alert("다이어리에 자랑하기가 추가되었습니다.")
 //            location.href = "diary.html"
           }
         })
