@@ -135,18 +135,6 @@
     <div id="right">
       <h4>더 많은 리스트</h4>
 
-      <!-- 리스트 항목 -->
-      <!-- <a class="listbox" role="button">
-        <img class="boximg" src="images/h11.gif">
-        <div class="content">
-          <div class="boxtitle">titletitletitletitletitletitletitletitletitletitletitletitletitletitle</div>
-          <div class="boxwriter">writer</div>
-          <div class="boxview">조회수 1010회</div>
-          <div class="boxlike"><i class="fa fa-thumbs-o-up"></i> 30</div>
-        </div>
-      </a> -->
-
-
     </div>
 
     <!-- 댓글 삭제 확인 모달 -->
@@ -169,6 +157,25 @@
     </div>
   </section>
 
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-info"></i>
+          알림
+        </div>
+
+        <div class="modal-body">
+          <span id="modoinfo"></span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 <script type="text/javascript" src='js/kh_map_walkDetail.js'></script>
 
@@ -461,7 +468,9 @@ $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
 // 댓글 추가
 $(document).on('click', '#comAddBtn', function() {
     if ($('#comcontent').val() == "") {
-      alert("댓글을 입력해 주세요")
+      $('#modoinfo').html('댓글을 입력해 주세요.');
+      $('#modo').modal('show')
+      
     } else {
         var form_data = new FormData();
         form_data.append("dno", mapno)
@@ -690,7 +699,8 @@ $('#likes').click(function(event) {
 
   if ($.session.get('mno') == undefined) {
 
-    alert("로그인 후 이용해주십시오.");
+    $('#modoinfo').html('로그인 후 이용해 주세요.');
+    $('#modo').modal('show')
 
   } else {
     $.ajax({

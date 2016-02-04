@@ -105,7 +105,25 @@ $(function(){
 
   </section>
 
-<!-- 새글 모달 -->
+<!-- 오류 모달 -->
+<div id="noCom" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-exclamation-triangle"></i>
+        에러!
+      </div>
+      
+      <div class="modal-body">
+        댓글을 입력해주세요
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--짝짓기 디테일 모달-->
 <div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
@@ -466,7 +484,10 @@ function detail(id) {
 // 펫 디테일 -> 댓글게시 클릭
 $(document).on("click", "#comDelBtn", function() {
   if ($('#comcontent').val() == "") {
-    alert("댓글을 입력해 주세요")
+    
+    $('#noCom').modal('show');
+    return false;
+    
   } else {
     var form_data = new FormData();
     form_data.append("matNo", $('#mmatno').val())
