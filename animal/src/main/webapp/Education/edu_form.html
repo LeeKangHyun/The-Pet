@@ -101,6 +101,7 @@
   <script>
     var eduNo = location.href.split('?')[1].split('=')[1];
     var id = eduNo;
+    console.log(eduNo);
     $.ajax({
       url : 'education/ajax/detail.do',
       dataType : 'json',
@@ -127,6 +128,38 @@
         		"</div>")
         .appendTo(ca);
         $("#eduContent").val(education.eduContent);
+        alert('ajax전');
+        console.log(education.eduSpec);
+        $.ajax({
+        	    url : 'education/ajax/slist.do',
+            dataType : 'json',
+            type : 'post',
+            cache : true,
+            data : {
+                eduSpec : education.eduSpec
+            },
+            success : function(resultObj) {
+            	  console.log(resultObj);
+              var j = 0;
+              var file;
+              var sa = $("#sa");
+              for(var education of resultObj.educations) {
+                file = resultObj.filesMap[j];
+                j++;
+                var fname = file[0].fileName;
+                var url = fname.split('?')[1].split('=')[1];
+                sa.append(
+                  "<div>" + url +
+                "</div>");
+              }
+              $("a.detailLnk").click(clickDetailLnk);
+            }
+            
+          });
+        function clickDetailLnk(event) {
+            event.preventDefault(); 
+            location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
+        }
       }
     })
   </script>
