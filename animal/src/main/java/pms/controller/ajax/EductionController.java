@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
+import pms.service.CommentService;
 import pms.service.EducationService;
 import pms.service.FilesService;
 
@@ -26,6 +27,7 @@ public class EductionController {
 	@Autowired EducationService educationService;
 	@Autowired FilesService filesService;
 	@Autowired ServletContext servletContext;
+	@Autowired CommentService commentService;
 	
 	
 	@RequestMapping("pages")
@@ -108,13 +110,14 @@ public class EductionController {
 //		return new AjaxResult("success", files);
 //	}
 //	
-//	@RequestMapping("delete")
-//	public AjaxResult delete(
-//			int eduNo,
-//			int mNo) throws Exception {
-//		if (educationService.remove(eduNo, mNo) <= 0) {
-//			return new AjaxResult("failure", null);
-//		}
-//		return new AjaxResult("success", null);
-//	}
+	@RequestMapping("delete")
+	public AjaxResult delete(int eduNo) throws Exception {
+		filesService.removeEduFile(eduNo);
+		commentService.removeedu(eduNo);
+		
+		if (educationService.remove(eduNo) <= 0) {
+			return new AjaxResult("failure", null);
+		}
+		return new AjaxResult("success", null);
+	}
 }

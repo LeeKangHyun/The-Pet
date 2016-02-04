@@ -175,4 +175,15 @@ public class CommentController {
     
     return new AjaxResult("success", null);
   }
+  
+  @RequestMapping("deleteedu")
+  public AjaxResult deleteedu(
+      int eduNo) throws Exception {
+    
+    if (commentService.remove(eduNo) <= 0) {
+      return new AjaxResult("failure", null);
+    } 
+    
+    return new AjaxResult("success", null);
+  }
 }

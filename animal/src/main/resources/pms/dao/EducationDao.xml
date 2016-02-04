@@ -57,4 +57,9 @@
     values(#{mno},now(),#{eduTitle},#{eduContent},#{eduSpec})
   </insert>
   
+  <delete id="delete" parameterType="int">
+    delete from education
+    where EDU_NUM=#{eduNo}
+  </delete>
+  
 </mapper>

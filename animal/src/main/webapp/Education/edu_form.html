@@ -44,7 +44,7 @@
           <li><a href="education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
           <li><a href=#><i class="lnr lnr-store"></i> 분양</a></li>
           <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
-          <li><a href="#"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="../walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="../BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
         </ul>
       </nav>
@@ -137,6 +137,7 @@
 	  var div = $('#user_info');
 	  var btn = $('#scheduleAdd');
 	  var ul = $('#menu-nav-ul');
+	  var va = $('#ca');
 	  if (no == undefined) {
 	    div.append("<a href='../login.html' id='loginBtn'>로그인</a>");
 	  } else if (no == 1) {
@@ -158,6 +159,11 @@
 	    ul.append(
 	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
 	    $('#comimg').attr('src', '../files/' + $.session.get('mimg'));
+	    
+	    va.append(
+	      "<a class='btn btn-default' id='deleteBtn' role='button'"
+	      + ">삭제</a>"
+	    )
 	  } else {
 	    div.append(
 	      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
@@ -180,7 +186,21 @@
 	    $.session.clear();
 	    location.href = "../login.html"
 	  });
-
+	  
+	//삭제 버튼을 위한 이벤트 리스너 추가하기
+	  $('#deleteBtn').click(function(event) {
+	    $.getJSON('education/ajax/delete.do?eduNo=' + eduNo,
+	      function(resultObj) {
+	        var ajaxResult = resultObj.ajaxResult;
+	        if (ajaxResult.status == "success") {
+	        	  alert('게시물이 삭제 되었습니다.');
+	          location.href = "education.html";
+	        } else {
+	            alert("게시물 삭제에 실패했습니다.");
+	        }
+	    });
+	  });
+	  
 	  // 안읽은 받은쪽지 갯수 출력
 	  var no = $.session.get('mno');
 	  var form_data = new FormData();

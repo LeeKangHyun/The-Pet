@@ -58,6 +58,10 @@ public class DefaultCommentService implements CommentService {
     return commentDao.delete(dno);
   }
   
+  public int removeedu(int eduNo) {
+  		return commentDao.deleteedu(eduNo);
+  }
+  
   public int change(Comment comment) {
   	return commentDao.update(comment);
   }

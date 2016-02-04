@@ -17,7 +17,7 @@ public interface EducationService {
 	
 	void insert(Education education);
 	
-	void remove(int eduNo, int mno);
+	int remove(int eduNo);
 	
-	void change(Education education);
+	int change(Education education);
 }
