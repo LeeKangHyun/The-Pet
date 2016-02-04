@@ -1,0 +1,49 @@
+#map {
+  border-left: 2px solid #d06a79;
+  border-right: 2px solid #d06a79;
+  width: 445px;
+  height: 400px;
+  margin: 0 auto;
+  position:relative;
+  left: 15px;
+  overflow:hidden;
+  float: left;
+}
+
+#where {
+    border: 1px solid black;
+    padding: 3px;
+    position: relative;
+    background-color: #FFF;
+    top: 15px;
+    right: 425px;
+    z-index: 2;
+}
+
+.dot {
+    overflow: hidden;
+    float: left;
+    width: 12px;
+    height: 12px;
+    background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
+}
+
+.dotOverlay {
+    position: relative;
+    bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    border-bottom: 2px solid #ddd;
+    float: left;
+    font-size: 12px;
+    padding: 5px;
+    background: #fff;
+}
+
+.dotOverlay:nth-of-type(n) {
+    border: 0;
+    box-shadow: 0px 1px 2px #888;
+}
+.form-footer {
+  
+}
