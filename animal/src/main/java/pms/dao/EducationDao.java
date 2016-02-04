@@ -6,6 +6,7 @@ import pms.domain.Education;
 
 public interface EducationDao {
 	List<Education> educationList(int pageNo);
+	List<Education> educationSList(String eduSpec);
 	List<Education> educationLast();
 	
 	Education count();

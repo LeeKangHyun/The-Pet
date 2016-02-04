@@ -220,6 +220,7 @@ $(document).ready(function() {
     uploadStr: "이미지 추가",
     dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
     cancelStr: "선택취소",
+    abortStr: "전송취소",
     dynamicFormData: function() {
         var data = {
             file: "files",
@@ -227,6 +228,9 @@ $(document).ready(function() {
             dno: $('#lastDno').val()
         };
         return data;
+    },
+    afterUploadAll: function() {
+        location.href='diary.html';
     }
   });
 
