@@ -321,7 +321,7 @@ function comment() {
 	    	    success : function(resultObj) {
 	    	    	
 	    	    	
-	    	        $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span>"+resultObj.count+"</span> <i class='fa fa-angle-down'></i></a>");
+	    	    	$("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
 	    	        toggle = 1;
 	    	    	
 	    	    	
@@ -398,6 +398,8 @@ function comment() {
 		    	
 		    	  $("#reset").trigger("click");
 		    	  $('#commentSection').empty();
+		    	  
+		    	  $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
 		          for (var i = 0; i < resultObj.count; i++) {
 		              if ($.session.get('mno') == resultObj.comment[i].mno) {
 		                   $('#commentSection').append(
