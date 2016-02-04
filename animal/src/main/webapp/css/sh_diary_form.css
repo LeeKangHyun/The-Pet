@@ -130,6 +130,39 @@ body {
   margin-left: 15px;
 }
 
+#modo .modal-dialog, #modo .modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  border-radius: 0;
+}
+
+#modo .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#modo .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#modo .modal-body {
+  font-size: 16px;
+}
+
+#okok {
+  position: relative;
+  bottom: 10px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
+  background-color: #2d335e;
+}
+
 .ajax-upload-dragdrop
 {
   margin-left: 5px;
