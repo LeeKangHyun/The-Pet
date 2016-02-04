@@ -22,6 +22,7 @@ public interface CommentDao {
   
   int deleteComment(int comNo);
   int delete(int dno);
+  int deleteedu(int eduNo);
   
   int update(Comment comment);
 }

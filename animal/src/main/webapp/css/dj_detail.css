@@ -14,6 +14,7 @@
 	width : 700px;
 	height : 450px;
 	background-color: #fff;
+	box-shadow: 1px 1px 1px 1px grey;
 }
 
 #va > iframe {
@@ -46,6 +47,18 @@
   text-align: right;
 }
 
+.title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.da {
+	font-size: 15px;
+}
+
+
+
+
 .contents {
 	  position : absolute;
 	  top: 700px;
@@ -53,6 +66,7 @@
 	  background-color: #fff;
     padding-bottom: 1px;
     border-bottom: 2px solid #d06a79;
+    box-shadow: 1px 1px 1px 1px grey;
 }
 
 .contents > .input {

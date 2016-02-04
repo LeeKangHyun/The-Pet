@@ -23,6 +23,7 @@ public interface CommentService {
 
   int removeComment(int comNo);
   int remove(int dno);
+  int removeedu(int eduNo);
   
   int change(Comment comment);
 }
