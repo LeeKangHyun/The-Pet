@@ -13,6 +13,7 @@ public interface WalkService {
   List<Walk> list(int dno);
   
   List<Diary> top3();
+  List<Diary> top10();
   
   List<Diary> selectList(Map<String, Object> paramMap);
   

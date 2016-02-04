@@ -72,6 +72,35 @@ public class WalkController {
     return resultMap;
 
   }
+
+  @RequestMapping(value="ranklist", method=RequestMethod.POST)
+  public Object ranklist() throws Exception {
+    
+    List<Files> files = null;
+    Member member = null;    
+    
+    List<Diary> walks = walkService.top10();
+    List<List<Files>> filesMap = new ArrayList<>();
+    List<Member> memberMap = new ArrayList<>();
+    List<Walk> walkname = walkService.selectName();
+    
+    for (Diary d : walks) {
+      files = filesService.getDiaryFile(d.getDno());
+      member = memberService.oneMember(d.getMno());
+      filesMap.add(files);
+      memberMap.add(member);
+    }
+    
+    HashMap<String, Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", walks);
+    resultMap.put("filesMap", filesMap);
+    resultMap.put("memberMap", memberMap);
+    resultMap.put("name", walkname);
+    
+    return resultMap;
+    
+  }
   
   @RequestMapping(value="selectList", method=RequestMethod.POST)
   public Object selectList(

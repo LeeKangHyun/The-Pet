@@ -56,6 +56,25 @@
   	order by rank asc
   	limit 0, 3
   </select>
+  
+  <select id="ranklist" resultMap="diaryMap">
+    select
+      SCH_NUM,
+      SCH_CRE,
+      SCH_TITLE,
+      CATE_CODE,
+      NOTI_LIKES,
+      NOTI_VIEWS,
+      PET_SPEC,
+      MEM_NUM,
+        (select count(*) + 1 
+           from schedule 
+           where NOTI_LIKES > s.NOTI_LIKES) as rank
+    from schedule as s
+    where CATE_CODE='SANCHE' and NOTI_HIDE=1
+    order by rank asc
+    limit 0, 10
+  </select>
 	
   <select id="list" resultMap="walkMap" parameterType="int">
     select *
@@ -105,9 +124,6 @@
   <delete id="delete" parameterType="int">
   	delete from location where SCH_NUM=#{dno}
   </delete>
-  
-  
-  
   
   <insert id="like_add" parameterType="map">
   	insert into LIKES(SCH_NUM,MEM_NUM) 
