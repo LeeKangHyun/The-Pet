@@ -268,7 +268,7 @@ delete from comment where CMT_NUM = #{comNo}
     from Comment co 
     left outer join member me on co.MEM_NUM = me.MEM_NUM
     where co.SCH_NUM = #{dno}
-    order by CMT_NUM asc
+    order by CMT_NUM desc
   </select>
   
 </mapper>
