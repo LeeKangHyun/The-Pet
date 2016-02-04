@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="icon/1.ico" type="image/x-icon" />
+  <title>Slid Menu</title>
+  <!--  내가만든 less들  -->
+  <link href="css/sh_diary.less" type="style.less" rel="stylesheet/less" />
+  <link href="css/sh_slidmenu_header_diary.less" type="style.less" rel="stylesheet/less" />
+
+  <!--  폰트아이콘 링크  -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/icon-font.min.css" rel="stylesheet" />
+
+  <link href='css/kh_map_walk.css' rel='stylesheet' />
+  
+  <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <header id="menu">
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="diary.html">
+        다이어리
+      </a>
+      <div id="user_info"></div>
+    </div>
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
+
+    <div id="sideMenu">
+      <label for="menuToggle" id="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
+
+      <nav id="menu-nav">
+        <ul id="menu-nav-ul">
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
+          <li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
+  </header>
+
+  <section id="main-body">
+  </section>
+  
+</body>
+</html>
