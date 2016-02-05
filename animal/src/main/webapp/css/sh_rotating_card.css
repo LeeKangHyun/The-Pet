@@ -335,6 +335,7 @@ a:hover {
   margin: 0 auto;
   font-size: 18px;
   width: 1024px;
+  height: 25px;
   background-color: #2d335e;
 }
 
@@ -343,7 +344,7 @@ a:hover {
   color: #fff;
 }
 
-a#moreBtn:visited {
+#moreBtn:visited {
   color:inherit;
 }
 

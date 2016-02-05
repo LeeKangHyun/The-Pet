@@ -104,13 +104,22 @@ body {
   font-size: 25px;
 }
 
+.categorys {
+  padding-bottom: 25px;
+}
+
+.radios {
+  margin-top: 4px;
+}
+
 .control-label {
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: -3px;
+  padding-top: 6px;
 }
 
 .form-control {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 0;
 }
 

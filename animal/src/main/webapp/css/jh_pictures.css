@@ -544,11 +544,6 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 
 
-
-
-
-
-
 /**** Transitions ****/
 
 .transitions-enabled.masonry,
@@ -577,121 +572,90 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 /* more scroll button */
 #more {
-    position:relative;
+  position:relative;
   text-align: center;
-    margin: 0 auto;
-    font-size: 18px;
-    width: 1024px;
-    background-color: #2d335e;
-    border: 1px #2d335e solid;
+  margin: 0 auto;
+  font-size: 18px;
+  width: 1024px;
+  background-color: #2d335e;
+  border: 1px #2d335e solid;
 }
 
 #moreSearch {
-    position:relative;
+  position:relative;
   text-align: center;
-    margin: 0 auto;
-    font-size: 18px;
-    width: 1024px;
-    background-color: #2d335e;
-    border: 1px #2d335e solid;
+  margin: 0 auto;
+  font-size: 18px;
+  width: 1024px;
+  background-color: #2d335e;
+  border: 1px #2d335e solid;
 }
 
 #moreBtn {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 a#moreBtn:visited {
-    color:inherit;
+  color:inherit;
 }
 
 #filterBtn {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 a#filterBtn:visited {
-    color:inherit;
+  color:inherit;
 }
 
 
 
 .quick-menu {
-border: 1px #DBDBDB solid;
-border-radius: 10px;
-padding-left: 5px;
-padding-right: 5px;
-position: absolute;
+border: 1px #cBcBcB solid;
+/*padding-left: 5px;*/
+/*padding-right: 5px;*/
+position: fixed;
 text-align: center;
-width: 100px;
-height: 130px;
+width: 41px;
+height: 38px;
 right:30px;
-top: 150px;
+bottom: 25%;
 }
 
+/*
 #quick-header {
-    margin-top: 10px;
-    border-bottom: 1px #DBDBDB solid;
-    font-weight: 900;
+  margin-top: 10px;
+  border-bottom: 1px #DBDBDB solid;
+  font-weight: 900;
 }
+*/
 
 .fa-chevron-up {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .fa-chevron-down {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 #quick-top {
-    margin-top: 15px;
-    font-weight: 500;
+  font-size: 20px;
+  margin-top: 2px;
+  margin-left: 6px;
+  color: #2d335e;
 }
 
+/*
 #quick-bottom {
-    margin-top: 15px;
-    font-weight: 500;
+  margin-top: 15px;
+  font-weight: 500;
 }
+*/
 
 #quick-top-a:hover, 
 #quick-bottom-a:hover,
 #quick-top-a:FOCUS,
-#quick-bottom-a:FOCUS
- {
+#quick-bottom-a:FOCUS {
   text-decoration: none;
 }
-
-
-/*
-.boxsub1 {
-    border: 1px red solid;
-    width:  500px;
-    height: 500px;
-    overflow: visible;
-}
-
-.card {
-    border : 5px yellow solid;
-    width:  500px;
-    height: 500px;
-    overflow: visible;
-}
-
-.background {
-    border : 10px green solid;
-    width:  500px;
-    height: 500px;
-    z-index: 1000;
-    overflow: visible;
-    
-}
-
-.background img {
-    border : 1px black solid;
-    overflow: visible;
-}
-*/
-
-
-
-
