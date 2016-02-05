@@ -120,12 +120,12 @@
               </div>
           </div>
 
-          <!-- <div class="form-group">
-              <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
+          <div class="form-group">
+              <label for="dtagColor" class="col-sm-2 control-label">카테고리</label>
               <div class="col-sm-2">
-                  <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
+                  <input type="input" name="cateCode" id="mColor" disabled>
               </div>
-          </div> -->
+          </div>
 
           <div class="form-group">
               <label for="fcontent" class="col-sm-2 control-label">내용</label>
@@ -466,6 +466,17 @@ $(document).ready(function() {
         var frontEnd;
         var backEnd;
         var fullEnd;
+        console.log(event)
+        var category = '';
+        if (event.cateCode == 'JARANG') {
+            category = '자랑하기';
+        }
+        else if (event.cateCode == 'SANCHE') {
+            category = '산책하기';
+        }
+        else {
+            category = '펫 일정';
+        }
 
         if (event.end) {
           frontEnd = event.end.format().substring(0,8);
@@ -481,7 +492,7 @@ $(document).ready(function() {
           $('#modalTitle').html(event.title);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(fullEnd);
-        //   $('#mColor').val(event.color);
+          $('#mColor').val(category);
           $('#mDes').html(event.description);
           if($('#scate').val() == 'JARANG') {
               $('.cDate').css('display', 'none');
@@ -530,7 +541,7 @@ $(document).ready(function() {
           $('#scate').val(event.cateCode);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(event.start.format().substring(0,10));
-        //   $('#mColor').val(event.color);
+          $('#mColor').val(category);
           $('#mDes').html(event.description);
 
           if($('#scate').val() == 'JARANG') {
