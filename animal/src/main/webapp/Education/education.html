@@ -68,7 +68,7 @@
 	</header>
 
 	<section id="main-body">
-		<div class="m_content" style="width: 973px; margin-top: 30px;">
+		<div class="m_content" style="width: 1024px; margin-top: 30px;">
 
 			<div style="text-align: left; margin-bottom: 30px;">
 				<button id="All" class="filter" data-filter="*">All</button>
@@ -78,7 +78,7 @@
 				<button id="BIRD" class="filter" data-filter=".BIRD"></button>
 				<button id="ETC" class="filter" data-filter=".ETC">ETC</button>
 				<button id="hidden" class="filter" data-filter="*" hidden="">All</button>
-				<span id='scheduleAdd' style='margin-left: 587px;'></span>
+				<span id='scheduleAdd' style='margin-left: 630px;'></span>
 			</div>
 
 			<!-- 사진 게시물 영역 -->
@@ -252,22 +252,15 @@ $.ajax({
 	      var url = fname.split('?')[1].split('=')[1];
 	      show.append(
 	        "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" + 
-	        "<div class='card'>"+
-	        "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
+	        "<div class='background detailLnk' eduNo='" + education.eduNo + "'>"+
 	        "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
 	        "</div>"+
-	        "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
-	        "<i class='fa fa-youtube-play'></i>"+
-	        "</a> <a class='thumb' href='#'></a>"+
-	        "<div class='infosub'>"+
 	        "<h2>"+
 	        "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
 	        "</h2>"+
-	        "<div class='foot'>"+
 	        "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
 	        "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
 	        "</span>"+
-	        "</div>"+
 	        "</div>"+
 	      "</div>");
 	    }
