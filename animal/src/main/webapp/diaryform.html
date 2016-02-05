@@ -79,7 +79,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
           <div class="col-sm-10">
             <select id="cateCode" name="cateCode" class="form-control">
@@ -87,7 +87,31 @@
               <option value="JARANG">자랑해요</option>
               <option value="ILJUNG">펫 일정</option>
             </select>
-        </div>
+          </div>
+        </div> -->
+
+        <div class='form-group'>
+          <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
+          <div class="col-sm-10">
+            <div class="radio-inline">
+              <label>
+                <input type="radio" class='mat_gen' name='MAT_GENDER' value="SANCHE">
+                <span>산책코스</span>
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" class='mat_gen' name='MAT_GENDER' value="JARANG">
+                <span>자랑해요</span>
+              </label>
+            </div>
+            <div class="radio-inline">
+              <label>
+                <input type="radio" class='mat_gen' name='MAT_GENDER' value="ILJUNG" checked>
+                <span>일정</span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -154,7 +178,7 @@
       <div id="fileuploader">upload</div>
     </div>
   </section>
-  
+
   <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -162,11 +186,11 @@
         <i class="fa fa-exclamation-triangle"></i>
         에러!
       </div>
-      
+
       <div class="modal-body">
         모두 입력해주세요
       </div>
-      
+
       <div class="modal-footer">
         <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
       </div>
@@ -253,16 +277,34 @@ $(document).ready(function() {
   });
 
   $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
+    console.log(resultObj)
     var sel = $("#pno");
+    var i = 0;
     for (var pet of resultObj.pets) {
-      sel.append("<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+      if (i == 0) {
+        sel.append("<option value='" + pet.pno + "' selected='selected'>" + pet.pName + "</option>")
+        i++;
+      }
+      else {
+        sel.append("<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+        i++;
+      }
     }
+    i=0;
   })
 
   // 다이어리 추가
   var sel;
-  $("#cateCode").change(function() {
-      sel = $('#cateCode').val();
+  $(".mat_gen").change(function() {
+      sel = $(this).val();
+    //   console.log(sel)
+  }).change();
+
+  var sd;
+  $('#startDate').change(function() {
+      sd = $(this).val();
+      console.log(sd)
+      $('#endDate').val(sd);
   }).change();
 
   $(document).on("click", "#addBtn", function(event) {
@@ -272,10 +314,10 @@ $(document).ready(function() {
         $('#startDate').val() == "" ||
         $('#endDate').val() == "" ||
         $('#fContent').val() == "") {
-        
+
         $('#modo').modal('show');
         return false;
-        
+
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -318,10 +360,10 @@ $(document).ready(function() {
         $('#fContent').val() == "" ||
   //      $('#fileuploader').val() == "" ||
         $('#subtitle').val() =="") {
-        
+
         $('#modo').modal('show');
         return false;
-        
+
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -386,10 +428,10 @@ $(document).ready(function() {
       if ($('#pno').val() == "" ||
         $('#title').val() == "" ||
         $('#fContent').val() == "") {
-        
+
         $('#modo').modal('show');
         return false;
-        
+
       } else {
         var form_data = new FormData();
         var x = document.getElementById("dmhide").checked;
@@ -429,22 +471,39 @@ $(document).ready(function() {
     }
   });
 })
-
+var cate;
 // 글쓰기 카테고리 선택 부분
-$("#cateCode").change(function() {
-  if ($('#cateCode').val() == "JARANG") { // 자랑 해요
-    $('.pDate').css('display', 'none');
-    $('.pMap').css('display', 'none');
-  }
-  else if ($('#cateCode').val() == "SANCHE") {
-    $('.pDate').css('display', 'none');
-    $('.pMap').css('display', '');
-  }
-  else if ($('#cateCode').val() == 'ILJUNG'){
-    $('.pDate').css('display', '');
-    $('.pMap').css('display', 'none');
-  }
+$('.mat_gen').change(function(re) {
+    // console.log(re);
+    cate = $(this).val();
+    if (cate === "JARANG") { // 자랑 해요
+      $('.pDate').css('display', 'none');
+      $('.pMap').css('display', 'none');
+    }
+    else if (cate === "SANCHE") {
+      $('.pDate').css('display', 'none');
+      $('.pMap').css('display', '');
+    }
+    else if (cate === 'ILJUNG'){
+      $('.pDate').css('display', '');
+      $('.pMap').css('display', 'none');
+    }
 }).change();
+
+// $("#cateCode").change(function() {
+  // if ($('#cateCode').val() == "JARANG") { // 자랑 해요
+  //   $('.pDate').css('display', 'none');
+  //   $('.pMap').css('display', 'none');
+  // }
+  // else if ($('#cateCode').val() == "SANCHE") {
+  //   $('.pDate').css('display', 'none');
+  //   $('.pMap').css('display', '');
+  // }
+  // else if ($('#cateCode').val() == 'ILJUNG'){
+  //   $('.pDate').css('display', '');
+  //   $('.pMap').css('display', 'none');
+  // }
+// }).change();
 </script>
 
 </body>
