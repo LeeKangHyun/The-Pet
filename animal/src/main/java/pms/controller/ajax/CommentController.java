@@ -60,7 +60,6 @@ public class CommentController {
     paramMap.put("dno", dno);
     
     List<Comment> comments = commentService.getWalkComment(paramMap);
-    System.out.println(comments);
     
     List<Member> memberMap = new ArrayList<>();
 

@@ -74,12 +74,12 @@ public class WalkController {
   }
 
   @RequestMapping(value="ranklist", method=RequestMethod.POST)
-  public Object ranklist() throws Exception {
+  public Object ranklist(int dno) throws Exception {
     
     List<Files> files = null;
     Member member = null;    
     
-    List<Diary> walks = walkService.top10();
+    List<Diary> walks = walkService.top10(dno);
     List<List<Files>> filesMap = new ArrayList<>();
     List<Member> memberMap = new ArrayList<>();
     List<Walk> walkname = walkService.selectName();

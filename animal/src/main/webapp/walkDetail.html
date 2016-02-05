@@ -175,7 +175,7 @@
       </div>
     </div>
   </div>
-  
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 <script type="text/javascript" src='js/kh_map_walkDetail.js'></script>
 
@@ -279,6 +279,9 @@ $.ajax({
     dataType: 'json',
     type: 'post',
     async: false,
+    data: {
+        dno: mapno
+    },
     cache: false,
     success: function(re) {
         console.log(re)
@@ -289,7 +292,7 @@ $.ajax({
         var setClass;
         for (var i = 0; i < re.top10.length; i++) {
             file = re.files[i];
-            console.log(re.files[i]);
+            // console.log(re.files[i]);
             imgWidth = file[0].width;
 
             imgHeight = file[0].height;
@@ -470,7 +473,7 @@ $(document).on('click', '#comAddBtn', function() {
     if ($('#comcontent').val() == "") {
       $('#modoinfo').html('댓글을 입력해 주세요.');
       $('#modo').modal('show')
-      
+
     } else {
         var form_data = new FormData();
         form_data.append("dno", mapno)
