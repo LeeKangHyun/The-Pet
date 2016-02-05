@@ -508,7 +508,7 @@ $(document).ready(function() {
               var img = $("#scrollImg");
               var ajaxResult = re.ajaxResult;
               console.log(ajaxResult.data.length)
-              if (ajaxResult.data.length == 0) {
+              if (ajaxResult.data.length < 1) {
                   $('#imgContainer').css('display', 'none');
               }
               else if (ajaxResult.data.length <= 1) {
