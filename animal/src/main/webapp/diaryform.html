@@ -295,8 +295,16 @@ $(document).ready(function() {
 
   // 다이어리 추가
   var sel;
-  $("#cateCode").change(function() {
-      sel = $('#cateCode').val();
+  $(".mat_gen").change(function() {
+      sel = $(this).val();
+    //   console.log(sel)
+  }).change();
+
+  var sd;
+  $('#startDate').change(function() {
+      sd = $(this).val();
+      console.log(sd)
+      $('#endDate').val(sd);
   }).change();
 
   $(document).on("click", "#addBtn", function(event) {
