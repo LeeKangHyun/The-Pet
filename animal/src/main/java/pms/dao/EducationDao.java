@@ -1,12 +1,13 @@
 package pms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import pms.domain.Education;
 
 public interface EducationDao {
 	List<Education> educationList(int pageNo);
-	List<Education> educationSList(String eduSpec);
+	List<Education> educationSList(HashMap<String,Object> educationMap);
 	List<Education> educationLast();
 	
 	Education count();

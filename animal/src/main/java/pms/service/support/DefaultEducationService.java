@@ -1,5 +1,6 @@
 package pms.service.support;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class DefaultEducationService implements EducationService {
     return educationDao.educationList(pageNo);
 	}
 	
-	public List<Education> getEducationSList(String eduSpec) {
-		return educationDao.educationSList(eduSpec);
+	public List<Education> getEducationSList(HashMap<String,Object> educationMap) {
+		return educationDao.educationSList(educationMap);
 	}
 	
 	public List<Education> getEducationLast() {
