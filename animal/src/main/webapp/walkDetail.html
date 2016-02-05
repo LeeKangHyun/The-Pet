@@ -175,7 +175,7 @@
       </div>
     </div>
   </div>
-  
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
 <script type="text/javascript" src='js/kh_map_walkDetail.js'></script>
 
@@ -225,14 +225,10 @@ $.ajax({
     async: false,
     cache: false,
     data: {
-        "dno": mapno
+      "dno": mapno
     },
     type: 'post',
     success: function(re) {
-      // var con = $('#m-list');
-      // var tit = $('#detailTitle h3');
-      // console.log(re);
-      // console.log(re.diary.content);
 
       $('#m-list').html(re.diary.content)
       $('h3').html(re.diary.title)
@@ -240,7 +236,6 @@ $.ajax({
 
       var mno = $.session.get('mno');
       var dno = location.href.split('?')[1].split('=')[1];
-      //console.log(dno)
       if (mno != undefined) {
 
         var form_data = new FormData();
@@ -257,8 +252,6 @@ $.ajax({
           data : form_data,
           success : function(resultObj) {
 
-            // console.log("resultObj.like : " + resultObj.like)
-
             if (resultObj.like != null ) {
               $('#likes').css("color","blue");
               like_toggle = 1;
@@ -266,7 +259,6 @@ $.ajax({
               $('#likes').css("color","#767475");
               like_toggle = 0;
             }
-            // console.log("like_toggle : " + like_toggle)
           }
         });
       }
@@ -279,6 +271,9 @@ $.ajax({
     dataType: 'json',
     type: 'post',
     async: false,
+    data: {
+        dno: mapno
+    },
     cache: false,
     success: function(re) {
         console.log(re)
@@ -289,9 +284,8 @@ $.ajax({
         var setClass;
         for (var i = 0; i < re.top10.length; i++) {
             file = re.files[i];
-            console.log(re.files[i]);
+            
             imgWidth = file[0].width;
-
             imgHeight = file[0].height;
 
             if (imgWidth > imgHeight) {
@@ -376,7 +370,6 @@ $.ajax({
         }
         i++;
       }
-    //   console.log(re);
     }
 });
 
@@ -391,7 +384,6 @@ $.ajax({
   type: "get",
   dataType: "json",
   success: function(re) {
-    // console.log(re);
     coord = new daum.maps.LatLng(re.walkList[0].locLat, re.walkList[0].locLng);
     bounds.extend(coord);
     map.setBounds(bounds)
@@ -426,7 +418,6 @@ $.ajax({
     data: form_data,
     type: 'post',
     success: function(re) {
-        // console.log(re);
         $('#comComment').empty();
         var commen = re.comments;
         var comdiv = $('#comComment');
@@ -686,7 +677,7 @@ function moree(id) {
 
 <script>
 
-	 <!-- 좋아요(Likes) Toggle 기능 -->
+// 좋아요(Likes) Toggle 기능
 $('#likes').click(function(event) {
 
   var mno = $.session.get('mno');

@@ -15,7 +15,11 @@
 	<result column="MAT_TYPE" 		property="matType"/>
 	<result column="MAT_GEN" 		property="matGender"/>
 	<result column="MAT_COST" 		property="matCost"/>	
-	<result column="MEM_NUM" 		property="mno"/>	
+	<result column="FILE_NAME"     property="filename"/>
+	<result column="MEM_NUM" 		property="mno"/>
+	<result column="MEM_NAME"     property="mname"/>
+	<result column="MEM_EMAIL"     property="memail"/>
+	<result column="MEM_IMG"     property="mimg"/>
  </resultMap>
 
  	<select id="count" resultMap="matingMap">
@@ -25,6 +29,38 @@
   <select id='views' resultMap='matingMap' parameterType="int">
     select MAT_VIEWS from mating where MAT_NUM=#{value}
   </select>
+  
+  
+  <select id="filter_list" resultMap="matingMap" parameterType="map">
+    select
+     ma.MAT_NUM,
+     MAX(ma.MAT_VIEWS) as MAT_VIEWS, 
+     MAX(ma.MAT_CRE)as MAT_CRE, 
+     MAX(ma.MAT_TITLE)as MAT_TITLE,
+     MAX(ma.MAT_CONTENT)as MAT_CONTENT,
+     MAX(ma.MAT_SPEC)as NOTI_VIEWS,
+     MAX(ma.MAT_TYPE)as MAT_TYPE,
+     MAX(ma.MAT_GEN)as MAT_GEN,
+     MAX(ma.MEM_NUM)as MEM_NUM,
+     MAX(fi.FILE_NAME)as FILE_NAME,
+     MAX(me.MEM_NAME)as MEM_NAME,
+     MAX(me.MEM_EMAIL)as MEM_EMAIL,
+     MAX(me.MEM_IMG)as MEM_IMG
+    from mating ma
+    left outer join files fi on ma.MAT_NUM = fi.MAT_NUM
+    left outer join member me on ma.MEM_NUM = me.MEM_NUM
+    <if test="filter_id != 'All'">where MAT_SPEC = #{filter_id}</if>
+    group by ma.MAT_NUM
+    order by ma.MAT_NUM desc limit #{startIndex}, #{length}
+  </select>
+  
+    <select id="filterCount" resultType="double" parameterType="map">
+      select
+      count(*) as count
+    from mating
+    <if test="filter_id != 'All'">where MAT_SPEC = #{filter_id}</if>
+    </select>
+  
  
 	<select id="matingList" resultMap="matingMap" parameterType="int">
 		select * 

@@ -1,7 +1,9 @@
 package pms.service;
 
+import java.util.HashMap;
 import java.util.List;
 
+import pms.domain.Files;
 import pms.domain.Mating;
 
 public interface MatingService {
@@ -22,6 +24,13 @@ public interface MatingService {
   int change(Mating mating);
   
   void addviews(int matNo);
+  
+  double filterCount(HashMap<String,Object> paramMap);
+  
+  List<Mating> filter_list(HashMap<String,Object> paramMap);
+  
+  Files getsize(String filename);
+  
 }
 
 

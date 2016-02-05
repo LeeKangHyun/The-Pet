@@ -71,7 +71,7 @@
            from schedule 
            where NOTI_LIKES > s.NOTI_LIKES) as rank
     from schedule as s
-    where CATE_CODE='SANCHE' and NOTI_HIDE=1
+    where CATE_CODE='SANCHE' and NOTI_HIDE=1 and SCH_NUM != #{dno}
     order by rank asc
     limit 0, 10
   </select>

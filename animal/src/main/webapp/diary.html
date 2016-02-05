@@ -120,12 +120,12 @@
               </div>
           </div>
 
-          <!-- <div class="form-group">
-              <label for="dtagColor" class="col-sm-2 control-label">태그 색</label>
+          <div class="form-group">
+              <label for="dtagColor" class="col-sm-2 control-label">카테고리</label>
               <div class="col-sm-2">
-                  <input type="color" name="tagColor" id="mColor" value="#ff0000" disabled>
+                  <input type="input" name="cateCode" id="mColor" disabled>
               </div>
-          </div> -->
+          </div>
 
           <div class="form-group">
               <label for="fcontent" class="col-sm-2 control-label">내용</label>
@@ -375,8 +375,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
 <!-- 파일 업로드 파일 이름뜨는부분 -->
 <script src="js/sh_custom-file-input.js"></script>
 
@@ -466,7 +466,18 @@ $(document).ready(function() {
         var frontEnd;
         var backEnd;
         var fullEnd;
-        
+        console.log(event)
+        var category = '';
+        if (event.cateCode == 'JARANG') {
+            category = '자랑하기';
+        }
+        else if (event.cateCode == 'SANCHE') {
+            category = '산책하기';
+        }
+        else {
+            category = '펫 일정';
+        }
+
         if (event.end) {
           frontEnd = event.end.format().substring(0,8);
           backEnd = Number(event.end.format().substring(8,10)) - 1;
@@ -481,7 +492,7 @@ $(document).ready(function() {
           $('#modalTitle').html(event.title);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(fullEnd);
-        //   $('#mColor').val(event.color);
+          $('#mColor').val(category);
           $('#mDes').html(event.description);
           if($('#scate').val() == 'JARANG') {
               $('.cDate').css('display', 'none');
@@ -507,9 +518,12 @@ $(document).ready(function() {
             success: function(re) {
               var img = $("#scrollImg");
               var ajaxResult = re.ajaxResult;
-
-              if (ajaxResult.data.length <= 1) {
-                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;;
+              console.log(ajaxResult.data.length)
+              if (ajaxResult.data.length < 1) {
+                  $('#imgContainer').css('display', 'none');
+              }
+              else if (ajaxResult.data.length <= 1) {
+                document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
               } else {
                 document.getElementById("mainImage").src = 'files/' + ajaxResult.data[0].fileName;
                 for (var file of ajaxResult.data) {
@@ -527,7 +541,7 @@ $(document).ready(function() {
           $('#scate').val(event.cateCode);
           $('#mStart').val(event.start.format().substring(0,10)); // 2015-12-31
           $('#mEnd').val(event.start.format().substring(0,10));
-        //   $('#mColor').val(event.color);
+          $('#mColor').val(category);
           $('#mDes').html(event.description);
 
           if($('#scate').val() == 'JARANG') {
@@ -622,7 +636,7 @@ $(document).on("click", "#editPet", function() {
         $('#petDetailModal').modal('hide')
         $('#modoinfo').html('펫의 정보가 변경되었습니다.');
         $('#modo').modal('show')
-        
+
         $('#modo').on('hidden.bs.modal', function(e) {
           location.href = "diary.html"
         })
@@ -635,11 +649,11 @@ $(document).on("click", "#addPetBtn", function() {
   if ($('#pName').val() == "" ||
     $('#pType').val() == "" ||
     $('#medicine').val() == "") {
-    
+
     $('#modoinfo').html('펫의 정보를 입력해주세요.');
     $('#modo').modal('show')
     return false;
-    
+
   } else {
     var file_data = $("#file").prop("files")[0];
     var file;
@@ -675,12 +689,12 @@ $(document).on("click", "#addPetBtn", function() {
       type: 'post',
       success: function(re) {
         $('#AddPet').modal('hide')
-        
+
         $('#modoinfo').html('펫이 추가되었습니다.');
         $('#modo').modal('show')
-        
+
         $('#modo').on('hidden.bs.modal', function(e) {
-        
+
           $("#myPets").empty();
           $("#pno").html("");
           var showpet = $('#myPets');
@@ -728,10 +742,10 @@ $(document).on("click", "#delPet", function() {
       data: form_data,
       type: 'post',
       success: function(re) {
-        
+
         $('#modoinfo').html('펫이 삭제되었습니다.');
         $('#modo').modal('show')
-        
+
         $('#modo').on('hidden.bs.modal', function(e) {
           location.href="diary.html"
         })
@@ -742,11 +756,11 @@ $(document).on("click", "#delPet", function() {
 // 다이어리 변경
 $(document).on("click", "#editSchedule", function() {
     if ($('#mDes').val() == '') {
-      
+
         $('#modoinfo').html('내용이 비었습니다.');
         $('#modo').modal('show')
         return false;
-      
+
     } else {
 
         var sdno = $('#sdno').val();
@@ -768,7 +782,7 @@ $(document).on("click", "#editSchedule", function() {
                 endDate: edate
             },
             success: function() {
-                
+
                 for (var i = 0; i < $("#mFile").prop("files").length; i++) {
                   var file_data = $("#mFile").prop("files")[i];
                   var file_name = file_data.name;
@@ -785,13 +799,13 @@ $(document).on("click", "#editSchedule", function() {
                     data: form_data,
                     type: 'post',
                     success: function(resultObj) {
-                        
+
                     }
                   })
                 }
                 $('#modoinfo').html('다이어리가 변경되었습니다.');
                 $('#modo').modal('show')
-               
+
                 $('#modo').on('hidden.bs.modal', function(e) {
                   location.href="diary.html"
                 })
@@ -845,7 +859,7 @@ $('#fullCalModal').on('hidden.bs.modal', function(e) {
 
 // 펫 디테일
 function detail(id) {
-  
+
   var form_data = new FormData();
   form_data.append("pno", id)
 
@@ -898,7 +912,7 @@ $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
 
 // 캘린더 모달 속 이미지 하나하나 지우기
 function imgDel(id) {
-  
+
   var form_data = new FormData();
   form_data.append("fno", id)
   $.ajax({
@@ -912,7 +926,7 @@ function imgDel(id) {
     success: function(re) {
 
       var form_data = new FormData();
-      
+
       form_data.append("dno", $('#sdno').val())
       $.ajax({
         url: "files/ajax/list.do",

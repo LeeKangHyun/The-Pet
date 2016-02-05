@@ -1,11 +1,13 @@
 package pms.service.support;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pms.dao.MatingDao;
+import pms.domain.Files;
 import pms.domain.Mating;
 import pms.service.MatingService;
 
@@ -22,6 +24,18 @@ public class DefaultMatingService implements MatingService {
 	public List<Mating> getMatingLast() {	
 	  return matingDao.matingLast();
 	}
+	
+	public double filterCount(HashMap<String,Object> paramMap) {
+	  return matingDao.filterCount(paramMap);
+	}
+	
+  public List<Mating> filter_list(HashMap<String,Object> paramMap) {
+    return matingDao.filter_list(paramMap);
+  }
+  
+  public Files getsize(String filename) {
+    return matingDao.getsize(filename);
+  }
   
 	public Mating getMatingOne(int matNo) {
 		return matingDao.selectOne(matNo);

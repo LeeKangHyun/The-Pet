@@ -281,14 +281,6 @@ a.listbox {
   height: 110px;
   overflow:hidden;
 }
-/*
-.boximg {
-  width: 120px;
-  height: 90px;
-  float: left;
-  margin-right: 10px;
-}
-*/
 a.listbox div.imgsize {
   width: 120px;
   height: 90px;

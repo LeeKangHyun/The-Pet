@@ -1,7 +1,9 @@
 package pms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
+import pms.domain.Files;
 import pms.domain.Mating;
 
 public interface MatingDao {
@@ -21,6 +23,13 @@ public interface MatingDao {
   int delete(int matNo);
   
   int update(Mating mating);
+  
+  double filterCount(HashMap<String,Object> paramMap);
+  
+  List<Mating> filter_list(HashMap<String,Object> paramMap);
+  
+  Files getsize(String filename);
+  
 }
 
 
