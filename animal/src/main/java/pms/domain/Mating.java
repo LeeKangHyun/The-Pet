@@ -19,78 +19,131 @@ public class Mating implements Serializable {
 	protected boolean matGender;		// 애완 동물 성별   남: false 0  	여: true 1
 	protected int matCost;					// 중매금
 	protected double count;
+	protected String filename;
+	protected String mname;
+	protected String memail;
+	protected String mimg;
 	
 	public Mating () {}
 
+  public int getMatNo() {
+    return matNo;
+  }
+
+  public void setMatNo(int matNo) {
+    this.matNo = matNo;
+  }
+
+  public int getMno() {
+    return mno;
+  }
+
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
+
+  public int getMatViews() {
+    return matViews;
+  }
+
+  public void setMatViews(int matViews) {
+    this.matViews = matViews;
+  }
+
+  public Date getMatCreateDate() {
+    return matCreateDate;
+  }
+
+  public void setMatCreateDate(Date matCreateDate) {
+    this.matCreateDate = matCreateDate;
+  }
+
+  public String getMatTitle() {
+    return matTitle;
+  }
+
+  public void setMatTitle(String matTitle) {
+    this.matTitle = matTitle;
+  }
+
+  public String getMatContent() {
+    return matContent;
+  }
+
+  public void setMatContent(String matContent) {
+    this.matContent = matContent;
+  }
+
+  public String getMatSpec() {
+    return matSpec;
+  }
+
+  public void setMatSpec(String matSpec) {
+    this.matSpec = matSpec;
+  }
+
+  public String getMatType() {
+    return matType;
+  }
+
+  public void setMatType(String matType) {
+    this.matType = matType;
+  }
+
+  public boolean isMatGender() {
+    return matGender;
+  }
+
+  public void setMatGender(boolean matGender) {
+    this.matGender = matGender;
+  }
+
+  public int getMatCost() {
+    return matCost;
+  }
+
+  public void setMatCost(int matCost) {
+    this.matCost = matCost;
+  }
+
+  public double getCount() {
+    return count;
+  }
+
+  public void setCount(double count) {
+    this.count = count;
+  }
+
+  public String getFilename() {
+    return filename;
+  }
+
+  public void setFilename(String filename) {
+    this.filename = filename;
+  }
+
+  public String getMname() {
+    return mname;
+  }
+
+  public void setMname(String mname) {
+    this.mname = mname;
+  }
+
+  public String getMemail() {
+    return memail;
+  }
+
+  public void setMemail(String memail) {
+    this.memail = memail;
+  }
+
+  public String getMimg() {
+    return mimg;
+  }
+
+  public void setMimg(String mimg) {
+    this.mimg = mimg;
+  }
 	
-	public double getCount() {
-		return count;
-	}
-	public void setCount(double count) {
-		this.count = count;
-	}
-	public int getMatNo() {
-		return matNo;
-	}
-	public void setMatNo(int matNo) {
-		this.matNo = matNo;
-	}
-	public int getMno() {
-		return mno;
-	}
-	public void setMno(int mno) {
-		this.mno = mno;
-	}
-	public int getMatViews() {
-		return matViews;
-	}
-	public void setMatViews(int matViews) {
-		this.matViews = matViews;
-	}
-	public Date getMatCreateDate() {
-		return matCreateDate;
-	}
-	public void setMatCreateDate(Date matCreateDate) {
-		this.matCreateDate = matCreateDate;
-	}
-	public String getMatTitle() {
-		return matTitle;
-	}
-	public void setMatTitle(String matTitle) {
-		this.matTitle = matTitle;
-	}
-	public String getMatContent() {
-		return matContent;
-	}
-	public void setMatContent(String matContent) {
-		this.matContent = matContent;
-	}
-	public String getMatSpec() {
-		return matSpec;
-	}
-	public void setMatSpec(String matSpec) {
-		this.matSpec = matSpec;
-	}
-	public String getMatType() {
-		return matType;
-	}
-	public void setMatType(String matType) {
-		this.matType = matType;
-	}
-
-	public boolean isMatGender() {
-		return matGender;
-	}
-
-	public void setMatGender(boolean matGender) {
-		this.matGender = matGender;
-	}
-
-	public int getMatCost() {
-		return matCost;
-	}
-
-	public void setMatCost(int matCost) {
-		this.matCost = matCost;
-	}	
 }
