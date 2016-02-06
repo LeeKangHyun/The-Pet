@@ -79,20 +79,9 @@
           </div>
         </div>
 
-        <!-- <div class="form-group">
+        <div class='form-group categorys'>
           <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
-          <div class="col-sm-10">
-            <select id="cateCode" name="cateCode" class="form-control">
-              <option value="SANCHE" selected="selected">산책코스</option>
-              <option value="JARANG">자랑해요</option>
-              <option value="ILJUNG">펫 일정</option>
-            </select>
-          </div>
-        </div> -->
-
-        <div class='form-group'>
-          <label for="cateCode" class="col-sm-2 control-label">카테고리</label>
-          <div class="col-sm-10">
+          <div class="col-sm-10 radios">
             <div class="radio-inline">
               <label>
                 <input type="radio" class='mat_gen' name='MAT_GENDER' value="SANCHE">
@@ -203,7 +192,8 @@
 
 <script>
 $(document).ready(function() {
-
+    $('#startDate').val(Date.now('yyyy-MM-dd'));
+console.log($("#startDate").val());
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
@@ -303,7 +293,7 @@ $(document).ready(function() {
   var sd;
   $('#startDate').change(function() {
       sd = $(this).val();
-      console.log(sd)
+    //   console.log(sd)
       $('#endDate').val(sd);
   }).change();
 
@@ -330,7 +320,7 @@ $(document).ready(function() {
         console.log(q)
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", q)
-        form_data.append("cateCode", $('#cateCode').val())
+        form_data.append("cateCode", sel)
         form_data.append("pno", $('#pno').val())
         form_data.append("startDate", $('#startDate').val())
         form_data.append("endDate", $('#endDate').val())
@@ -376,7 +366,7 @@ $(document).ready(function() {
         console.log(q)
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", q)
-        form_data.append("cateCode", $('#cateCode').val())
+        form_data.append("cateCode", sel)
         form_data.append("pno", $('#pno').val())
         form_data.append("startDate", $('#startDate').val())
         form_data.append("endDate", $('#endDate').val())
@@ -444,7 +434,7 @@ $(document).ready(function() {
         console.log(q)
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", q)
-        form_data.append("cateCode", $('#cateCode').val())
+        form_data.append("cateCode", sel)
         form_data.append("pno", $('#pno').val())
         form_data.append("title", $('#title').val())
         form_data.append("content", $('#fContent').val())

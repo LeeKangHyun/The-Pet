@@ -13,7 +13,7 @@ public interface WalkDao {
   List<Walk> list(int dno);
   
   List<Diary> rank();
-  List<Diary> ranklist();
+  List<Diary> ranklist(int dno);
   
   List<Diary> selectList(Map<String, Object> paramMap);
   

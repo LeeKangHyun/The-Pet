@@ -232,11 +232,15 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   float: right;
 }
 
+.card {
+	border : 1px solid black;
+	margin-bottom : 20px;
+	text-align: center;
+}
+
 .gallery {
 	width : 350px;
 	height : 200px;
-	border : 1px solid red;
-	
 }
 
 /**** Transitions ****/

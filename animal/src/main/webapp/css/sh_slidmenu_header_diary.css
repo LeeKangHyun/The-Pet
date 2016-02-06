@@ -1,17 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Righteous);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-.clearfix {
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
 
 #menu {
   z-index: 1000;
@@ -41,6 +29,7 @@
 }
 .headerSubTitle:hover {
   text-decoration: none;
+  color: #fff;
 }
 #the {
   letter-spacing: px;

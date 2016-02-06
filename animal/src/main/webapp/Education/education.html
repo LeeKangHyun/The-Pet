@@ -9,7 +9,7 @@
 	type='text/css' />
 
 <!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
+<link href="../css/sh_slidmenu_header_diary.css" rel="stylesheet" />
 
 <!--  폰트아이콘 링크  -->
 <link href="../lib/font-awesome/css/font-awesome.min.css"
@@ -81,7 +81,7 @@
 
 			<!-- 사진 게시물 영역 -->
 			<div id="Container" class="container"
-				style="margin-left: -10px; padding: 0px;">
+				style="margin-left: -10px; padding: 0px; margin-bottom: 30px;">
 				<div id="subtable" style="text-align: left;"></div>
 			</div>
 			<!-- 사진 게시물 영역 끝 -->
@@ -250,8 +250,9 @@ $.ajax({
 	      var url = fname.split('?')[1].split('=')[1];
 	      show.append(
 	        "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" + 
-	        "<div class='background detailLnk' eduNo='" + education.eduNo + "'>"+
-	        "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
+	        "<div class='card' roll='button'>" +
+	        "<div role='button' class='detailLnk' eduNo='" + education.eduNo + "'>"+
+	        "<img class='detailLnk' eduNo='" + education.eduNo + "' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
 	        "</div>"+
 	        "<h2>"+
 	        "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
@@ -260,9 +261,10 @@ $.ajax({
 	        "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
 	        "</span>"+
 	        "</div>"+
-	      "</div>");
+	      "</div></div>");
 	    }
 	    $("a.detailLnk").click(clickDetailLnk);
+	    $("div.detailLnk").click(clickDetailLnk);
 	  }
 	  
 	});

@@ -60,8 +60,12 @@ public class EductionController {
 	}
 	
 	@RequestMapping("slist")
-	public Object slist(@RequestParam String eduSpec) throws Exception {
-		List<Education> educations = educationService.getEducationSList(eduSpec);
+	public Object slist(@RequestParam String eduSpec,
+			@RequestParam int eduNo) throws Exception {
+		HashMap<String,Object> educationMap = new HashMap<>();
+		educationMap.put("eduSpec", eduSpec);
+		educationMap.put("eduNo", eduNo);
+		List<Education> educations = educationService.getEducationSList(educationMap);
 		System.out.println(eduSpec);
 		List<Files> files = null;
 		List<List<Files>> filesMap = new ArrayList<>();

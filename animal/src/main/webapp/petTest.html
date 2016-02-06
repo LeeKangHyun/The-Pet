@@ -13,7 +13,7 @@
 
   <!--  상훈 css  -->
   <link href="css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
-  <link href="css/sh_rotating_card.css" type="text/css" rel="stylesheet">
+  <link href="css/sh_pet_sancheck.css" type="text/css" rel="stylesheet">
   <link href="css/sh_pet_main.css" type="text/css" rel="stylesheet">
 
   <!--  폰트아이콘 링크  -->
@@ -83,17 +83,17 @@
               </a>
               <a class='thumb' href='#' onclick='detailBoastBoard(" + resultObj.data[i].dno + ")'></a>
               <div class='info'>
-              <h2>
-              <a href='#' onclick='detailBoastBoard(" + resultObj.data[i].dno + ")'>title</a>
-              </h2>
-              <div class='foot'>
-              <i class='line'></i>
-              <span class='date'>2015-11-11</span>
-              <span class='view-like'>
-              <i class='fa fa-eye'></i>325
-              <i class='fa fa-thumbs-o-up'></i>135
-              </span>
-              </div>
+                <h2>
+                  <a href='#' onclick='detailBoastBoard(" + resultObj.data[i].dno + ")'>titledfdfdsdwfefwfwfwdsffsdfsssfsf</a>
+                </h2>
+                <div class='foot'>
+                  <i class='line'></i>
+                  <span class='date'>2015-11-11</span>
+                  <span class='view-like'>
+                    <i class='fa fa-eye'></i>325
+                    <i class='fa fa-thumbs-o-up'></i>135
+                  </span>
+                </div>
               </div>
               </div>
             
@@ -170,24 +170,24 @@
             <div class='front'>
 
               <div class='cover'>
-                <img src='files/" + file[0].fileName + "' class='" + setClass + "'/>
+                <img src='files/p6.jpeg' class='landscape'/>
               </div>
 
               <div class='user'>
-                <img class='img-circle' src='files/" + mem.mImg + "'/>
+                <img class='img-circle' src='files/p1.jpeg'/>
               </div>
 
               <div class='content'>
 
                 <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
                   <div class='main'>
-                    <h3 class='name'>" + mem.mName + "</h3>
+                    <h3 class='name'>mem.mName</h3>
 
                     <div class='creDate'>
-                      resultObj.data[i].createDate +
+                      createDate
                     </div>
 
-                    <h5 class='title'>" + resultObj.data[i].title + "</h5>
+                    <h5 class='title'>title</h5>
                     <h5 id='jibun" + i + "'>
                       <i class='fa fa-map-marker fa-fw text-muted'></i>
                       jibun 
@@ -197,15 +197,15 @@
 
                 <div class='footer'>
                   <div class='like'>
-                    <i class='fa fa-thumbs-o-up'></i> resultObj.data[i].like 
+                    <i class='fa fa-thumbs-o-up'></i> 325
                   </div>
 
                   <div class='view'>
-                    <i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                    <i class='fa fa-eye'></i> 2352
                   </div>
 
                   <button class='btn btn-simple summary' onclick='rotateCard(this)'>
-                    <i class='fa fa-mail-forward'></i> 간략정보" 
+                    <i class='fa fa-mail-forward'></i> 간략정보
                   </button>
                 </div>  <!-- end footer -->
 
@@ -245,24 +245,24 @@
             <div class='front'>
 
               <div class='cover'>
-                <img src='files/" + file[0].fileName + "' class='" + setClass + "'/>
+                <img src='files/p6.jpeg' class='landscape'/>
               </div>
 
               <div class='user'>
-                <img class='img-circle' src='files/" + mem.mImg + "'/>
+                <img class='img-circle' src='files/p1.jpeg'/>
               </div>
 
               <div class='content'>
 
                 <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
                   <div class='main'>
-                    <h3 class='name'>" + mem.mName + "</h3>
+                    <h3 class='name'>mem.mName</h3>
 
                     <div class='creDate'>
-                      resultObj.data[i].createDate +
+                      createDate
                     </div>
 
-                    <h5 class='title'>" + resultObj.data[i].title + "</h5>
+                    <h5 class='title'>title</h5>
                     <h5 id='jibun" + i + "'>
                       <i class='fa fa-map-marker fa-fw text-muted'></i>
                       jibun 
@@ -272,15 +272,15 @@
 
                 <div class='footer'>
                   <div class='like'>
-                    <i class='fa fa-thumbs-o-up'></i> resultObj.data[i].like 
+                    <i class='fa fa-thumbs-o-up'></i> like
                   </div>
 
                   <div class='view'>
-                    <i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                    <i class='fa fa-eye'></i> view
                   </div>
 
                   <button class='btn btn-simple summary' onclick='rotateCard(this)'>
-                    <i class='fa fa-mail-forward'></i> 간략정보" 
+                    <i class='fa fa-mail-forward'></i> 간략정보
                   </button>
                 </div>  <!-- end footer -->
 
@@ -306,38 +306,36 @@
                 </button>
 
                 <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
-                  <i class='fa fa-sign-in'></i> 상세정보" 
+                  <i class='fa fa-sign-in'></i> 상세정보
                 </button>
               </div>  <!-- end footer -->
 
             </div> <!-- end back panel -->
 
           </div> <!-- end card -->
-        </div> <!-- end card-container -->
-          
-        <div class='card-container manual-flip'>
+        </div> <!-- end card-container --><div class='card-container manual-flip'>
           <div class='card'>
             <div class='front'>
 
               <div class='cover'>
-                <img src='files/" + file[0].fileName + "' class='" + setClass + "'/>
+                <img src='files/p6.jpeg' class='landscape'/>
               </div>
 
               <div class='user'>
-                <img class='img-circle' src='files/" + mem.mImg + "'/>
+                <img class='img-circle' src='files/p1.jpeg'/>
               </div>
 
               <div class='content'>
 
                 <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
                   <div class='main'>
-                    <h3 class='name'>" + mem.mName + "</h3>
+                    <h3 class='name'>mem.mName</h3>
 
                     <div class='creDate'>
-                      resultObj.data[i].createDate +
+                      createDate
                     </div>
 
-                    <h5 class='title'>" + resultObj.data[i].title + "</h5>
+                    <h5 class='title'>title</h5>
                     <h5 id='jibun" + i + "'>
                       <i class='fa fa-map-marker fa-fw text-muted'></i>
                       jibun 
@@ -347,15 +345,15 @@
 
                 <div class='footer'>
                   <div class='like'>
-                    <i class='fa fa-thumbs-o-up'></i> resultObj.data[i].like 
+                    <i class='fa fa-thumbs-o-up'></i> like
                   </div>
 
                   <div class='view'>
-                    <i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                    <i class='fa fa-eye'></i> view
                   </div>
 
                   <button class='btn btn-simple summary' onclick='rotateCard(this)'>
-                    <i class='fa fa-mail-forward'></i> 간략정보" 
+                    <i class='fa fa-mail-forward'></i> 간략정보
                   </button>
                 </div>  <!-- end footer -->
 
@@ -381,7 +379,7 @@
                 </button>
 
                 <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
-                  <i class='fa fa-sign-in'></i> 상세정보" 
+                  <i class='fa fa-sign-in'></i> 상세정보
                 </button>
               </div>  <!-- end footer -->
 
