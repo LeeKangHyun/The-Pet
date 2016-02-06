@@ -10,7 +10,7 @@
     <link href="css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
     <!-- 강현 css -->
     <link href="css/kh_walk_detail.css" type="text/css" rel="stylesheet">
-    
+
     <!--  폰트아이콘 링크  -->
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/icon-font.min.css" rel="stylesheet" />
@@ -284,7 +284,7 @@ $.ajax({
         var setClass;
         for (var i = 0; i < re.top10.length; i++) {
             file = re.files[i];
-            
+
             imgWidth = file[0].width;
             imgHeight = file[0].height;
 
@@ -299,7 +299,7 @@ $.ajax({
 
                     right.append(
                         '<a onclick="detailWalk(' + re.top10[i].dno + ')" class="listbox" role="button">' +
-                          '<div class="imgsize">' + 
+                          '<div class="imgsize">' +
                             '<img class="' + setClass + ' boximg" src="files/' + file[0].fileName + '">' +
                           '</div>' +
                           '<div class="content">' +
