@@ -26,7 +26,7 @@
       limit #{startIndex}, 6
   </select>
   
-  <select id="educationSList" resultMap="educationMap" parameterType="String">
+  <select id="educationSList" resultMap="educationMap" parameterType="map">
     select
       EDU_NUM as eduNo,
       EDU_TITLE as eduTitle,
@@ -34,7 +34,7 @@
       EDU_CRE as eduCreateDate,
       EDU_VIEWS as eduViews
     from Education 
-    where EDU_SPEC=#{eduSpec}
+    where EDU_SPEC=#{eduSpec} and EDU_NUM!=#{eduNo}
     order by EDU_VIEWS desc
   </select>
   

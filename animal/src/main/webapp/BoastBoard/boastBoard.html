@@ -141,15 +141,19 @@ $(function() {
 
 <!-- Quick-menu -->
 <div class="quick-menu">
+<!--
   <div id="quick-header">
     <p>Quick Menu</p>
   </div>
+-->
   <div id="quick-top">
-    <a href="#quick-top" id="quick-top-a"> Top <i class="fa fa-chevron-up"></i> </a><br>
+    <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> </a><br>
   </div>
+<!--
   <div id="quick-bottom">
     <a href="#quick-bottom" id="quick-bottom-a"> Bottom <i class="fa fa-chevron-down"></i></a>
   </div>
+-->
 </div>
 
 <script>
@@ -182,23 +186,23 @@ function detailBoastBoard(dno) {
 // Top으로 이동
 $(document).ready(function() { 
   $('a[href=#quick-top]').click(function(){
-    $('html, body').animate({scrollTop:50},'slow');
+    $('html, body').animate({scrollTop:0}, 1000);
     return false;
   });
 
   // Bottom으로 이동
-  $('a[href=#quick-bottom]').click(function(){
-    $('html, body').animate({ scrollTop: $(document).height()},'slow');
-    return false;
-  });
+//  $('a[href=#quick-bottom]').click(function(){
+//    $('html, body').animate({ scrollTop: $(document).height()},'500');
+//    return false;
+//  });
 
   // Quick Menu 따라오는 스크립트
-  $(function() {
-    $(window).scroll(function() {
-      var top = $(window).scrollTop();
-      $(".quick-menu").animate({"top" : top + 150 + "px"}, 30);
-    });
-  });
+//  $(function() {
+//    $(window).scroll(function() {
+//      var top = $(window).scrollTop();
+//      $(".quick-menu").animate({"top" : top + 50 + "px"}, 30);
+//    });
+//  });
 
 });
 </script>

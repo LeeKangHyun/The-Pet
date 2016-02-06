@@ -1,5 +1,6 @@
 package pms.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import pms.domain.Education;
@@ -7,7 +8,7 @@ import pms.domain.Education;
 public interface EducationService {
 	
 	List<Education> getEducationList(int pageNo);
-	List<Education> getEducationSList(String eduSpec);
+	List<Education> getEducationSList(HashMap<String,Object> educationMap);
 	List<Education> getEducationLast();
 	
 	Education getOneEducation(int eduNo);
