@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pms.domain.AjaxResult;
 import pms.domain.Education;
 import pms.domain.Files;
+import pms.domain.Likes;
 import pms.service.CommentService;
 import pms.service.EducationService;
 import pms.service.FilesService;
@@ -144,4 +145,67 @@ public class EductionController {
 		}
 		return new AjaxResult("success", null);
 	}
+	
+	
+	 @RequestMapping("like_add")
+	  public Object like_add(String mno, String eno) throws Exception {
+	   
+	    int like_mno = Integer.valueOf(mno);
+	    int like_eno= Integer.valueOf(eno);
+
+	    HashMap<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("mno", like_mno);
+	    paramMap.put("eno", like_eno);
+
+	    educationService.like_add(paramMap);
+	    int like = educationService.like_select(like_eno);
+	    
+	    HashMap<String, Object> resultMap = new HashMap<>();
+	    resultMap.put("status", "success");
+	    resultMap.put("like", like);
+
+	    return resultMap;
+	  }
+	 
+   @RequestMapping("like_delete")
+   public Object like_delete(String mno, String eno) throws Exception {
+    
+     int like_mno = Integer.valueOf(mno);
+     int like_eno= Integer.valueOf(eno);
+
+     HashMap<String, Object> paramMap = new HashMap<>();
+     paramMap.put("mno", like_mno);
+     paramMap.put("eno", like_eno);
+
+     educationService.like_delete(paramMap);
+     int like = educationService.like_select(like_eno);
+     
+     HashMap<String, Object> resultMap = new HashMap<>();
+     resultMap.put("status", "success");
+     resultMap.put("like", like);
+
+     return resultMap;
+   }
+   
+   @RequestMapping(value="like_check", method=RequestMethod.POST)
+   public Object detail_like_check(String mno, String eno) throws Exception {
+
+     int like_mno = Integer.valueOf(mno);
+     int like_eno= Integer.valueOf(eno);
+
+     HashMap<String, Object> paramMap = new HashMap<>();
+     paramMap.put("mno", like_mno);
+     paramMap.put("eno", like_eno);
+
+     Likes like = educationService.like_check(paramMap);
+     int like_count = educationService.like_select(like_eno);
+
+     HashMap<String, Object> resultMap = new HashMap<>();
+     resultMap.put("status", "success");
+     resultMap.put("like", like);
+     resultMap.put("like_count", like_count);
+
+     return resultMap;
+   }
+	
 }

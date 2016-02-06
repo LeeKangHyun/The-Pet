@@ -2,8 +2,10 @@ package pms.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pms.domain.Education;
+import pms.domain.Likes;
 
 public interface EducationService {
 	
@@ -22,4 +24,12 @@ public interface EducationService {
 	int remove(int eduNo);
 	
 	int change(Education education);
+	
+	int like_add(Map<String, Object> paramMap);
+	
+	int like_delete(Map<String, Object> paramMap);
+	
+	int like_select(int like_eno);
+	
+	Likes like_check(Map<String, Object> paramMap);
 }

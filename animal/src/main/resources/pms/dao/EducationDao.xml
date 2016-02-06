@@ -14,6 +14,15 @@
     <result column="EDU_TYPE" property="eduType" /> 
   </resultMap>
   
+     <resultMap type="Likes" id="likesMap">
+    <id   column="LIKE_NUM"    property="lno"/>
+  <result column="MEM_NUM"    property="memno"/>    
+  <result column="EDU_NUM"   property="eduno"/>
+  <result column="MAT_NUM"     property="matno"/>
+  <result column="S_NUM"    property="sno"/>
+  <result column="SCH_NUM"  property="dno"/>
+ </resultMap>
+  
   <select id="educationList" resultMap="educationMap" parameterType="int">
     select
       EDU_NUM as eduNo,
@@ -74,5 +83,24 @@
     delete from education
     where EDU_NUM=#{eduNo}
   </delete>
+  
+   <insert id="like_add" parameterType="map">
+  insert into LIKES(EDU_NUM,MEM_NUM) value(#{eno},#{mno})
+  </insert>
+  
+   <insert id="like_delete" parameterType="map">
+  delete from LIKES where EDU_NUM = #{eno} and MEM_NUM = #{mno}
+  </insert>
+  
+    <select id="like_select" resultType="int" parameterType="int">
+    select
+      count(*) as count
+    from likes
+    where EDU_NUM = #{like_eno}
+   </select>
+   
+   <select id="like_check" resultMap="likesMap" parameterType="map">
+   select LIKE_NUM from Likes where EDU_NUM = #{eno} and MEM_NUM = #{mno}
+  </select>
   
 </mapper>

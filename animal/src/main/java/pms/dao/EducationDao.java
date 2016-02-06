@@ -2,8 +2,10 @@ package pms.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pms.domain.Education;
+import pms.domain.Likes;
 
 public interface EducationDao {
 	List<Education> educationList(int pageNo);
@@ -21,4 +23,13 @@ public interface EducationDao {
   void addViews(int eduNo);
     
 	Education selectOne(int eduNo);
+	
+	int like_add(Map<String, Object> paramMap);
+	
+	int like_delete(Map<String, Object> paramMap);
+	
+	int like_select(int like_eno);
+	
+  public Likes like_check(Map<String, Object> paramMap);
+	
 }
