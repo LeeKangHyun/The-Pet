@@ -21,6 +21,17 @@
 	<result column="MEM_EMAIL"     property="memail"/>
 	<result column="MEM_IMG"     property="mimg"/>
  </resultMap>
+ 
+  <resultMap type="Files" id="filesMap">
+    <id   column="FILE_NUM"    property="fno"/>
+  <result column="FILE_NAME"    property="fileName"/>    
+  <result column="EDU_NUM"   property="eduNo"/>
+  <result column="MAT_NUM"     property="matNo"/>
+  <result column="S_NUM"    property="sno"/>
+  <result column="SCH_NUM"  property="dno"/>
+  <result column="width"  property="width"/>
+  <result column="height"  property="height"/>
+ </resultMap>
 
  	<select id="count" resultMap="matingMap">
  		select count(*) as count from mating
@@ -38,7 +49,7 @@
      MAX(ma.MAT_CRE)as MAT_CRE, 
      MAX(ma.MAT_TITLE)as MAT_TITLE,
      MAX(ma.MAT_CONTENT)as MAT_CONTENT,
-     MAX(ma.MAT_SPEC)as NOTI_VIEWS,
+     MAX(ma.MAT_SPEC)as matSpec,
      MAX(ma.MAT_TYPE)as MAT_TYPE,
      MAX(ma.MAT_GEN)as MAT_GEN,
      MAX(ma.MEM_NUM)as MEM_NUM,
@@ -59,6 +70,10 @@
       count(*) as count
     from mating
     <if test="filter_id != 'All'">where MAT_SPEC = #{filter_id}</if>
+    </select>
+    
+    <select id="getsize" resultMap="filesMap" parameterType="String">
+   select FILE_NAME ,width, height from Files where FILE_NAME = #{filename}
     </select>
   
  

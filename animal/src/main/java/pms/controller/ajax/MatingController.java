@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pms.domain.AjaxResult;
-import pms.domain.Diary;
 import pms.domain.Files;
 import pms.domain.Mating;
 import pms.domain.Member;
@@ -39,7 +38,7 @@ public class MatingController {
 	
 	@RequestMapping(value="filterCount", method=RequestMethod.POST)
   public Object filterCount(
-      @RequestParam(defaultValue="12") int pageSize,
+      @RequestParam(defaultValue="4") int pageSize,
       String filter_id
       ) throws Exception {
     
@@ -61,7 +60,7 @@ public class MatingController {
   @RequestMapping(value="filter_list", method=RequestMethod.POST)
   public Object filter_list(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="12") int pageSize,
+      @RequestParam(defaultValue="4") int pageSize,
       String filter_id
       ) throws Exception {
 
