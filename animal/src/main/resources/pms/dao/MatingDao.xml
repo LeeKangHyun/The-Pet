@@ -81,7 +81,7 @@
 		select * 
 		from mating
 		order by MAT_NUM desc
-	    limit #{startIndex}, 4
+	    limit #{startIndex}, 12
 	</select>
   
   <select id="matingLast" resultMap="matingMap">

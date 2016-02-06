@@ -38,7 +38,7 @@ public class MatingController {
 	
 	@RequestMapping(value="filterCount", method=RequestMethod.POST)
   public Object filterCount(
-      @RequestParam(defaultValue="4") int pageSize,
+      @RequestParam(defaultValue="12") int pageSize,
       String filter_id
       ) throws Exception {
     
@@ -60,7 +60,7 @@ public class MatingController {
   @RequestMapping(value="filter_list", method=RequestMethod.POST)
   public Object filter_list(
       @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="4") int pageSize,
+      @RequestParam(defaultValue="12") int pageSize,
       String filter_id
       ) throws Exception {
 
