@@ -1,6 +1,6 @@
 
 $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
-
+    console.log(resultObj);
 	var div = $("#section-img");
 	var topcheck1;
 
@@ -12,18 +12,18 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 		length = 2;
 	} else if (resultObj.data.length >= 3) {
 		length = 3;
-	}  
+	}
 	var setClass;
 	for(var i = 0; i < length; i++ ) {
 		topcheck1 = resultObj.data[i].filename.split(".");
 		topcheck1 = topcheck1.slice(1,2).toString().toLowerCase();
-		
+
 		if(topcheck1 == "jpg" ||
       topcheck1 == "jpeg" ||
       topcheck1 == "png" ||
       topcheck1 == "gif" ||
       topcheck1 == "bmp") {
-			
+
 			console.log("가로 : " + resultObj.size[i].width);
 			console.log("세로 : " + resultObj.size[i].height);
 			if (resultObj.size[i].width > resultObj.size[i].height) {
@@ -38,7 +38,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<div class='background'>" +
 					"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "'>" +
 					"</div>" +
-					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" + 
+					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
 					"<i class='fa fa-camera-retro'></i>" +
 					"</a>" +
@@ -48,11 +48,11 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
 					"</h2>" +
 					"<div class='foot'>" +
-					"<i class='line'></i>" + 
+					"<i class='line'></i>" +
 					"<span class='date'>"+resultObj.data[i].createDate+"</span>" +
-					"<span class='view-like'>" + 
-					"<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
-					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+					"<span class='view-like'>" +
+					"<i class='fa fa-eye'></i> "+resultObj.data[i].view +
+					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like +
 					"</span>" +
 					"</div>" +
 					"</div>" +
@@ -65,7 +65,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 				topcheck1 == "mp4" ||
 				topcheck1 == "mkv" ||
 				topcheck1 == "wav") {
-			
+
 			console.log("가로 : " + resultObj.size[i].width);
 			console.log("세로 : " + resultObj.size[i].height);
 			if (resultObj.size[i].width > resultObj.size[i].height) {
@@ -78,7 +78,7 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			.html(
 					"<div class='card'>" +
 					"<div class='background'>" +
-					"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "'>" + 
+					"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "'>" +
 					"</div>" +
 					"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
 					"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
@@ -90,11 +90,11 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 					"<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" + resultObj.data[i].title + "</a>" +
 					"</h2>" +
 					"<div class='foot'>" +
-					"<i class='line'></i>" + 
+					"<i class='line'></i>" +
 					"<span class='date'>" + resultObj.data[i].createDate + "</span>" +
 					"<span class='view-like'>" +
-					"<i class='fa fa-eye'></i> "+resultObj.data[i].view + 
-					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like + 
+					"<i class='fa fa-eye'></i> "+resultObj.data[i].view +
+					" <i class='fa fa-thumbs-o-up'></i> "+resultObj.data[i].like +
 					"</span>" +
 					"</div>" +
 					"</div>" +
@@ -149,7 +149,7 @@ $(document).ready(function() {
 							"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "' />" +
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> " +
-							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
+							"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+
 							"<i class='fa fa-camera-retro'></i>"+
 							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
@@ -183,7 +183,7 @@ $(document).ready(function() {
 							"<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
 							"</div>"+
 							"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
-							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
+							"</a> <a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+
 							"<i class='fa fa-youtube-play'></i>"+
 							"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 							"<div class='infosub'>"+
@@ -221,7 +221,7 @@ $(document).ready(function() {
 		dataType: "json",
 		async: "json",
 		type: "GET",
-		success: function(resultObj) {			
+		success: function(resultObj) {
 			totalPage = resultObj.count;
 			if(totalPage == 1) {
 				$('#moreBtn-Origin').empty();
@@ -236,7 +236,7 @@ $(document).ready(function() {
 			currentPage = currentPage + 1;
 			console.log("List/현재 currentPage...." + currentPage);
 
-			/*Paging ajax 실행*/		
+			/*Paging ajax 실행*/
 			$.ajax({
 
 				url:"../boastboard/ajax/list.do?pageNo="+currentPage,
@@ -257,7 +257,7 @@ $(document).ready(function() {
 								check1 == "jpeg" ||
 								check1 == "png" ||
 								check1 == "gif" ||
-								check1 == "bmp") { 
+								check1 == "bmp") {
 
 							console.log("가로 : " + resultObj.size[i].width);
 							console.log("세로 : " + resultObj.size[i].height);
@@ -274,7 +274,7 @@ $(document).ready(function() {
 									"<img src='../files/" + resultObj.data[i].filename + "' class='" + setClass + "' />" +
 									"</div>"+
 									"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
-									"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
+									"<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+
 									"<i class='fa fa-camera-retro'></i>"+
 									"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 									"<div class='infosub'>"+
@@ -309,7 +309,7 @@ $(document).ready(function() {
 									"<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
 									"</div>"+
 									"<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a> "+
-									"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+ 
+									"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"+
 									"<i class='fa fa-youtube-play'></i>"+
 									"</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"+
 									"<div class='infosub'>"+
@@ -330,7 +330,7 @@ $(document).ready(function() {
 
 				}/* List Load function(resultObj) 끝 */
 
-			})/*List Load ajax 끝*/  
+			})/*List Load ajax 끝*/
 
 			if(currentPage == totalPage) {
 				$('#more').css({"border":"0px"});
@@ -347,5 +347,3 @@ $(document).ready(function() {
 
 	})
 });/*마지막지점*/
-
-

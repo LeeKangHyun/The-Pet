@@ -192,7 +192,8 @@
 
 <script>
 $(document).ready(function() {
-
+    $('#startDate').val(Date.now('yyyy-MM-dd'));
+console.log($("#startDate").val());
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
