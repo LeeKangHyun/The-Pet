@@ -5,39 +5,6 @@
   height: auto;
 }
 
-#modo .modal-dialog, #modo .modal-content {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  height: 150px;
-  border-radius: 0;
-}
-
-#modo .modal-header {
-  height: 50px;
-  font-size: 20px;
-}
-
-#modo .modal-header i {
-  color: #ff0000;
-  font-size: 25px;
-}
-
-#modo .modal-body {
-  font-size: 16px;
-}
-
-#okok {
-  position: relative;
-  bottom: 10px;
-  width: 70px;
-  height: 35px;
-  border-radius: 0;
-  background-color: #2d335e;
-}
-
 .btn:hover,
 .btn:focus,
 .btn:active{
@@ -180,8 +147,9 @@ a:hover {
 }
 
 .card .front .content .main {
-  margin: 10px 20px 10px 20px;
-  height: 90px;
+  margin: 35px 20px 10px 20px;
+  width: 310px;
+  height: 117px;
   color: #000;
 }
 
@@ -223,9 +191,12 @@ a:hover {
 .card .footer {
   border-top: 1px solid #EEEEEE;
   color: #666;
-  margin: 30px 0 0 0;
+/*  margin: 10px 0 0 0;*/
   padding: 10px 0 0 0;
   text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .card .footer .like {
@@ -247,7 +218,9 @@ a:hover {
   color: #555;
   background-color: transparent;
   margin-right: 5px;
-  float: right
+  float: right;
+  position: relative;
+  bottom: 2px;
 }
 
 .card .footer .social-links {
@@ -283,10 +256,13 @@ a:hover {
 }
 
 /*      Just for presentation        */
-.btn-simple.backBtn {
+.backBtn {
   opacity: .7;
   color: #555555;
   background-color: transparent;
+  position: relative;
+  top: 8px;
+  margin-left: 250px;
 }
 
 .detail {
@@ -294,8 +270,11 @@ a:hover {
   color: #555555;
   background-color: transparent;
   font-size: 15px;
-  margin-top: -2px;
+  margin-top: 2px;
   border: 0;
+  position: relative;
+  bottom:6px;
+  left: 2px;
 }
 
 .detail:hover {
@@ -320,32 +299,6 @@ a:hover {
 }
 .btn-simple i{
   font-size: 16px;
-}
-
-#moreBtn-Origin {
-  position: relative;
-  width: 1024px;
-  margin: 0 auto;
-  bottom: 150px;
-}
-
-#more {
-  position:relative;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 18px;
-  width: 1024px;
-  height: 25px;
-  background-color: #2d335e;
-}
-
-#moreBtn {
-  text-decoration: none;
-  color: #fff;
-}
-
-#moreBtn:visited {
-  color:inherit;
 }
 
 

@@ -10,6 +10,8 @@
   width: 49%;
   height: 480px;
   margin: 0 auto;
+  margin-top: 20px;
+  
   position:relative;
   overflow:hidden;
   float: left;
