@@ -104,7 +104,7 @@ public class DiaryController {
 		
 		if (diary.getStartDate().equals("")) {
 			Date d = new Date();
-      SimpleDateFormat now = new SimpleDateFormat("YYYY-MM-dd");
+      SimpleDateFormat now = new SimpleDateFormat("yyyy-MM-dd");
 			diary.setStartDate(now.format(d));
 			diary.setEndDate(now.format(d));
 			System.out.println(now.format(d));

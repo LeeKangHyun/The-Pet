@@ -455,6 +455,7 @@ $(document).ready(function() {
 
             var event = eval(doc.events);
             callback(event);
+            console.log(event)
           }
         });
       },
@@ -480,13 +481,15 @@ $(document).ready(function() {
 
         if (event.end) {
           frontEnd = event.end.format().substring(0,8);
+          console.log(frontEnd);
           backEnd = Number(event.end.format().substring(8,10)) - 1;
+          console.log(backEnd);
           if (backEnd > 0 && backEnd < 10) {
             fullEnd = frontEnd + 0 + backEnd;
           } else {
             fullEnd = frontEnd + backEnd;
           }
-
+          console.log(fullEnd);
           $('#sdno').val(event.no);
           $('#scate').val(event.cateCode);
           $('#modalTitle').html(event.title);
@@ -518,7 +521,7 @@ $(document).ready(function() {
             success: function(re) {
               var img = $("#scrollImg");
               var ajaxResult = re.ajaxResult;
-              console.log(ajaxResult.data.length)
+            //   console.log(ajaxResult.data.length)
               if (ajaxResult.data.length < 1) {
                   $('#imgContainer').css('display', 'none');
               }
