@@ -52,7 +52,7 @@ public interface BoastBoardDao {
   
   double comment_count(int dno);
   
-  List<Comment> comment_list(int dno);
+  List<Comment> comment_list(Map<String, Object> paramMap);
   
   Files getsize(String filename);
   

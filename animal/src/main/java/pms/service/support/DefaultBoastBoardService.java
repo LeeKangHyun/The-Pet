@@ -175,8 +175,8 @@ public class DefaultBoastBoardService implements BoastBoardService {
   };
   
   
-  public List<Comment> comment_list(int dno){
-    return boastboardDao.comment_list(dno);
+  public List<Comment> comment_list(Map<String, Object> paramMap){
+    return boastboardDao.comment_list(paramMap);
   };
   
   

@@ -66,8 +66,8 @@ min-height: 0px;
 	position: relative;
 	float: right;
 	right: 15px;
-	font-size: 18px;
-	font-weight: 400;
+	font-size: 15px;
+	font-weight: 100;
 	cursor: pointer;
 }
 
@@ -225,6 +225,10 @@ min-height: 0px;
 		</div>
 		<!-- 댓글 더보기 버튼 -->
 		<!-- 댓글과 버튼을 포함한 구역 끝 -->
+		
+		<div id="comment-more">
+        
+   </div>
 
 	</section>
 
@@ -280,15 +284,19 @@ min-height: 0px;
 	<!-- 댓글 펼치기 -->
 <script>
 var toggle = 0;
+
+var totalPage = 0;
+var currentPage = 1;
+
+var url = location.href;
+var dno = url.split('?')[1].split('=')[1];
+var like_toggle = 0;
+
+var detail_data = new FormData();
+detail_data.append("dno", dno);
+
 function comment() {
 	
-	  var url = location.href;
-	  var dno = url.split('?')[1].split('=')[1];
-	  var like_toggle = 0;
-
-	  var detail_data = new FormData();
-	  detail_data.append("dno", dno);
-	  
 	  if (toggle == 0) {
 		  // 댓글 입력 창 생성 
 		  $('.input').append("<div id='input'>"+
@@ -308,7 +316,7 @@ function comment() {
 	      
 	      
  	      $.ajax({
-	    	    url : "../boastboard/ajax/detail_content.do",
+	    	    url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
 	    	    dataType : "json",
 	    	    type : "POST",
 	    	    contentType : false,
@@ -321,8 +329,12 @@ function comment() {
 	    	    	$("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
 	    	        toggle = 1;
 	    	    	
+	    	    totalPage = resultObj.totalPage;
+	    	    if (totalPage > 1) {
+	    	    $("#comment-more").append("<div id='more'><a role='button' class='moreBtn' id='moreBtn' onclick='more()'>댓글 더보기</a></div>");
+	    	    }
 	    	    	
-          for (var i = 0; i < resultObj.count; i++) {
+          for (var i = 0; i < resultObj.comment.length; i++) {
               if ($.session.get('mno') == resultObj.comment[i].mno) {
                    $('#commentSection').append(
                            "<div class='comment'>"+
@@ -367,6 +379,52 @@ function comment() {
 	            } })
 	            }
 };
+
+
+function more() {
+	
+	currentPage = currentPage + 1;
+	
+	$.ajax({
+        url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        async: "true",
+        data : detail_data,
+        success : function(resultObj) {
+        	
+        	for (var i = 0; i < resultObj.comment.length; i++) {
+                if ($.session.get('mno') == resultObj.comment[i].mno) {
+                     $('#commentSection').append(
+                             "<div class='comment'>"+
+                           "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+                           "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+                           "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+                           "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+                           "</a>"+ 
+                           "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+                         "</div>"
+                         );
+                } else {
+                      $('#commentSection').append(
+                              "<div class='comment'>"+
+                            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+                            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+                            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+                          "</div>"
+                      );
+                }
+                  }
+        }
+	});
+	
+	if(currentPage >= totalPage) {
+		$("#more").empty();
+	}
+	
+}
 </script>
 
 	<!-- 댓글 입력 시 댓글 생성 -->
@@ -382,6 +440,9 @@ function comment() {
 	  comment_data.append("dno", dno);
 	  comment_data.append("mno", mno);
 	  comment_data.append("content", content);
+		
+	  $('#commentSection').empty();
+	  $("#reset").trigger("click");
 	  
 	  $.ajax({
 		    url : "../boastboard/ajax/comment_add.do",
@@ -393,11 +454,8 @@ function comment() {
 		    data : comment_data,
 		    success : function(resultObj) { 
 		    	
-		    	  $("#reset").trigger("click");
-		    	  $('#commentSection').empty();
-		    	  
 		    	  $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
-		          for (var i = 0; i < resultObj.count; i++) {
+		          for (var i = 0; i < resultObj.comment.length; i++) {
 		              if ($.session.get('mno') == resultObj.comment[i].mno) {
 		                   $('#commentSection').append(
 		                           "<div class='comment'>"+
@@ -419,7 +477,7 @@ function comment() {
 		                    );
 		              }
 		                }
-		    	  
+		          
 		    } });
 	  
  }
@@ -443,9 +501,11 @@ var dno = url.split('?')[1].split('=')[1];
 
 	comment_del.append("comNo", $('#comno').val());
 	comment_del.append("dno", dno);
+	$('#commentSection').empty();
+	$('#Comment-Delete-Check-Modal').modal('hide');
 	
 	$.ajax({
-		url: "../boastboard/ajax/comment_delete.do",
+		url: "../boastboard/ajax/comment_delete.do?pageNo="+page,
 		dataType: 'json',
 		cache: false,
 		contentType: false,
@@ -453,10 +513,9 @@ var dno = url.split('?')[1].split('=')[1];
 		data: comment_del,
 		type: 'post',
 		success: function(resultObj) {
-		    $('#Comment-Delete-Check-Modal').modal('hide');
-		    
-            $('#commentSection').empty();
-            for (var i = 0; i < resultObj.count; i++) {
+			
+			$("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
+            for (var i = 0; i < resultObj.comment.length; i++) {
                 if ($.session.get('mno') == resultObj.comment[i].mno) {
                      $('#commentSection').append(
                              "<div class='comment'>"+
@@ -479,8 +538,7 @@ var dno = url.split('?')[1].split('=')[1];
                 }
                   }
 		}
-	})
-	
+	});
 })
 </script>
 

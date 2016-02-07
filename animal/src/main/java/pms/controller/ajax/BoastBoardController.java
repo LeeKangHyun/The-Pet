@@ -246,19 +246,31 @@ public class BoastBoardController {
 
 
   @RequestMapping(value="detail_content", method=RequestMethod.POST)
-  public Object detail_content(Diary diary, int dno) throws Exception {
+  public Object detail_content(Diary diary, int dno,
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="10") int pageSize
+      ) throws Exception {
 
     log.debug("Diary.dno..............?"+diary.getDno());
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("dno", dno);
 
     List<Diary> boastboards = boastBoardDao.detail_content(diary);
     double count = boastBoardDao.comment_count(dno);
-    List<Comment> comment = boastBoardDao.comment_list(dno);
+    
+    double totalPage = Math.ceil(count / pageSize);
+    
+    List<Comment> comment = boastBoardDao.comment_list(paramMap);
 
     HashMap<String, Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     resultMap.put("data", boastboards);
     resultMap.put("count", count);
     resultMap.put("comment", comment);
+    resultMap.put("totalPage", totalPage);
 
     return resultMap;
   }
@@ -330,9 +342,17 @@ public class BoastBoardController {
 
 
   @RequestMapping(value="delete", method=RequestMethod.POST)
-  public AjaxResult like_delete(int dno) throws Exception {
+  public AjaxResult like_delete(int dno,
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="10") int pageSize
+      ) throws Exception {
     
-    List<Comment> comment = boastBoardDao.comment_list(dno);
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("dno", dno);
+    
+    List<Comment> comment = boastBoardDao.comment_list(paramMap);
     
     if (comment.isEmpty()) {
       boastBoardDao.delete_notcmt(dno);
@@ -346,17 +366,21 @@ public class BoastBoardController {
 
 
   @RequestMapping(value="comment_add", method=RequestMethod.POST)
-  public Object comment_add(int mno, int dno, String content) throws Exception {
+  public Object comment_add(int mno, int dno, String content, 
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="10") int pageSize) throws Exception {
 
 
     HashMap<String, Object> paramMap = new HashMap<>();
     paramMap.put("mno", mno);
     paramMap.put("dno", dno);
     paramMap.put("content", content);
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
 
     boastBoardDao.comment_add(paramMap);
     double count = boastBoardDao.comment_count(dno);
-    List<Comment> comment = boastBoardDao.comment_list(dno);
+    List<Comment> comment = boastBoardDao.comment_list(paramMap);
     
         HashMap<String, Object> resultMap = new HashMap<>();
         resultMap.put("status", "success");
@@ -367,11 +391,18 @@ public class BoastBoardController {
   }
   
   @RequestMapping(value="comment_delete", method=RequestMethod.POST)
-  public Object comment_delete(int comNo, int dno) throws Exception {
+  public Object comment_delete(int comNo, int dno,
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="10") int pageSize) throws Exception {
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("dno", dno);
 
     boastBoardDao.comment_delete(comNo);
     double count = boastBoardDao.comment_count(dno);
-    List<Comment> comment = boastBoardDao.comment_list(dno);
+    List<Comment> comment = boastBoardDao.comment_list(paramMap);
     
         HashMap<String, Object> resultMap = new HashMap<>();
         resultMap.put("status", "success");

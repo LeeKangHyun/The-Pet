@@ -1,6 +1,7 @@
 package pms.service;
 
 import java.util.List;
+import java.util.Map;
 
 import pms.domain.Comment;
 import pms.domain.Diary;
@@ -55,7 +56,7 @@ public interface BoastBoardService {
   
   public double comment_count(int dno);
   
-  public List<Comment> comment_list(int dno);
+  public List<Comment> comment_list(Map<String, Object> paramMap);
   
   public Files getsize(String filename);
   

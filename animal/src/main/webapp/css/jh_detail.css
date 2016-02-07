@@ -291,8 +291,13 @@ div.item img {
   padding-top: 30px;
 }
 
+#comment-more {
+	position: relative;
+	bottom: 160px;
+}
+
 #more {
-  width: 96%;
+  width: 1024px;
   font-weight: bold;
   text-align: center;
   margin: 10px auto;
