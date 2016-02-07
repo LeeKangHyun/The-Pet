@@ -9,10 +9,10 @@
 	type='text/css' />
 
 <!--  상훈 css  -->
-<link href="../css/sh_slidmenu_header_diary.css" type="text/css"
-	rel="stylesheet" />
-<link href='../css/kh_walk_detail.css' type="text/css"
-	rel='stylesheet' />
+<link href="../css/sh_slidmenu_header_diary.less" type="style.less"
+	rel="stylesheet/less" />
+<link href='../css/kh_walk_detail.less' type="style.less"
+	rel='stylesheet/less' />
 <!--  폰트아이콘 링크  -->
 <link href="../lib/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" />
@@ -27,22 +27,6 @@
 <!-- 대진 css & js -->
 <link href="../css/dj_main.css" type="text/css" rel="stylesheet">
 <link href="../css/dj_detail.css" type="text/css" rel="stylesheet">
-
-<style>
-
-#views {
-display: inline;
-float: right;
-}
-
-#likes {
-display: inline;
-float: right;
-font-size: 17px;
-cursor: pointer;
-}
-
-</style>
 
 </head>
 <body style="background-color: #efefdc;">
@@ -143,12 +127,10 @@ cursor: pointer;
 			</div>
 		</div>
 	</section>
-	
+
 	<script>
     var eduNo = location.href.split('?')[1].split('=')[1];
     var id = eduNo;
-    var toggle = 0;
-    
     console.log(eduNo);
     $.ajax({
       url : 'education/ajax/detail.do',
@@ -171,55 +153,10 @@ cursor: pointer;
         		"' frameborder='0' allowfullscreen></iframe>'")	
         .appendTo(va);
         $("<div class='title'>" + education.eduTitle +
-        		"<div id='views'><i class='fa fa-eye' style='margin-left: 5px;'></i> " + education.eduViews + " </div>" +
-        		"<div id='likes'  onclick='likes()'>  </div>"+
+        		"<div id='views'><i class='fa fa-eye' style='padding-right:30px;'></i>" + education.eduViews + "</div>" +
         	  "<hr>" + "<div class='da'>작성일 : " + education.eduCreateDate + "</div>" +
         		"</div>")
         .appendTo(ca);
-        
-        
-        
-        
-        // likes check
-        var url = location.href;
-        var eno = url.split('?')[1].split('=')[1];
-        var mno = $.session.get('mno');
-        
-        var like_data = new FormData();
-        like_data.append("mno", mno);
-        like_data.append("eno", eno);
-          
-        $.ajax({
-            url : "education/ajax/like_check.do",
-            dataType : "json",
-            type : "POST",
-            contentType : false,
-            processData : false,
-            async: false,
-            data : like_data,
-            success : function(resultObj) {
-
-            	$('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like_count+"")
-              
-              if (resultObj.like != null ) {
-                $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
-                toggle = 1;
-              } else {
-                $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
-                toggle = 0;
-              }
-            } 
-          });
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         $("#eduContent").val(education.eduContent);
         console.log(education.eduSpec);
         $.ajax({
@@ -247,8 +184,6 @@ cursor: pointer;
                       "<a class='detailLnk' style='margin-top:20px; text-decoration:none;' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
                       "</div>");
               }
-              
-              
               $("a.detailLnk").click(clickDetailLnk);
               $('div.detailLnk').click(clickDetailLnk);
             }
@@ -260,8 +195,6 @@ cursor: pointer;
         }
       }
     })
-    
-    
   </script>
 
 	<script>
@@ -623,62 +556,6 @@ cursor: pointer;
 	        }
 	    })
 	};
-  </script>
-  
-  
-  
-    <!-- likes -->
-  <script>
-  var url = location.href;
-  var eno = url.split('?')[1].split('=')[1];
-  var mno = $.session.get('mno');
-  
-  var like_data = new FormData();
-  like_data.append("mno", mno);
-  like_data.append("eno", eno);
-    
-  function likes() {
-    
-      if ($.session.get('mno') == undefined) { 
-        alert("로그인 후 이용해주십시오.");
-      } else {
-    
-      if(toggle == 0) {
-          $.ajax({
-              url : "education/ajax/like_add.do",
-              dataType : "json",
-              type : "POST",
-              contentType : false,
-              processData : false,
-              async: false,
-              data : like_data,
-              success : function(resultObj) {
-                $('#likes').empty();
-                $('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"  ")
-              }
-            }); 
-        $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
-        toggle = 1;
-      } else if(toggle == 1) {
-            $.ajax({
-                url : "education/ajax/like_delete.do",
-                dataType : "json",
-                type : "POST",
-                contentType : false,
-                processData : false,
-                async: false,
-                data : like_data,
-                success : function(resultObj) {
-                  $('#likes').empty();
-                  $('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"  ")
-                }
-              }); 
-        
-        $('.fa-thumbs-o-up').css({"color":"black","font-size": "17px"});
-        toggle = 0;
-      }
-    }
-  }
   </script>
 </body>
 </html>
