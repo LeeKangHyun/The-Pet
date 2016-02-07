@@ -21,6 +21,10 @@ public interface EducationService {
 	
 	void insert(Education education);
 	
+	void addLikes(int eduNo);
+	
+	void deleteLikes(int eduNo);
+	
 	int remove(int eduNo);
 	
 	int change(Education education);

@@ -163,7 +163,8 @@ public class EductionController {
 	    HashMap<String, Object> resultMap = new HashMap<>();
 	    resultMap.put("status", "success");
 	    resultMap.put("like", like);
-
+	    
+	    educationService.addLikes(like_eno);
 	    return resultMap;
 	  }
 	 
@@ -184,6 +185,7 @@ public class EductionController {
      resultMap.put("status", "success");
      resultMap.put("like", like);
 
+     educationService.deleteLikes(like_eno);
      return resultMap;
    }
    

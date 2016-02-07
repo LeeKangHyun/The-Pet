@@ -107,4 +107,15 @@
    select LIKE_NUM from Likes where EDU_NUM = #{eno} and MEM_NUM = #{mno}
   </select>
   
+  <insert id="addLikes" parameterType="int">
+  update Education set
+      EDU_LIKES=EDU_LIKES+1
+    where EDU_NUM=#{eduNo}
+  </insert>
+  <insert id="deleteLikes" parameterType="int">
+  update Education set
+      EDU_LIKES=EDU_LIKES-1
+    where EDU_NUM=#{eduNo}
+  </insert>
+  
 </mapper>
