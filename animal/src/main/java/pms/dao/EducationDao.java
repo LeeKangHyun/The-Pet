@@ -35,5 +35,9 @@ public interface EducationDao {
 	int like_select(int like_eno);
 	
   public Likes like_check(Map<String, Object> paramMap);
-	
+
+  double filterCount(Map<String, Object> paramMap);
+  
+  double filter_list(Map<String, Object> paramMap);
+  
 }

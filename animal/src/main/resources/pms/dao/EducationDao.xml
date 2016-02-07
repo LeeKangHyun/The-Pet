@@ -118,4 +118,26 @@
     where EDU_NUM=#{eduNo}
   </insert>
   
+  
+  <select id="filterCount" resultType="double" parameterType="map">
+      select
+      count(*) as count
+    from education
+    <if test="filter_id != 'All'">where EDU_SPEC = #{filter_id}</if>
+    </select>
+    
+    
+    <select id="filter_list" resultMap="educationMap" parameterType="int">
+    select
+      EDU_NUM as eduNo,
+      EDU_TITLE as eduTitle,
+      EDU_SPEC as eduSpec,
+      EDU_CRE as eduCreateDate,
+      EDU_VIEWS as eduViews,
+      EDU_LIKES as eduLikes
+    from Education 
+    order by EDU_NUM desc
+      limit #{startIndex}, 6
+  </select>
+  
 </mapper>

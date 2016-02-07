@@ -77,4 +77,12 @@ public class DefaultEducationService implements EducationService {
 	 public void deleteLikes(int eduNo) {
 		 educationDao.deleteLikes(eduNo);
 	 }
+	 
+	  public double filterCount(Map<String, Object> paramMap) {
+	    return educationDao.filterCount(paramMap);
+	  }
+	  
+	  public double filter_list(Map<String, Object> paramMap) {
+      return educationDao.filter_list(paramMap);
+    }
 }
