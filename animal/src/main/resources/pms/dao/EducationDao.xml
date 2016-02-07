@@ -12,6 +12,7 @@
     <result column="CRE_TITLE" property="eduTitle" />
     <result column="EDU_CONTENT" property="eduContent" />
     <result column="EDU_TYPE" property="eduType" /> 
+    <result column="EDU_LIKES" property="eduLikes" />
   </resultMap>
   
      <resultMap type="Likes" id="likesMap">
@@ -29,7 +30,8 @@
       EDU_TITLE as eduTitle,
       EDU_SPEC as eduSpec,
       EDU_CRE as eduCreateDate,
-      EDU_VIEWS as eduViews
+      EDU_VIEWS as eduViews,
+      EDU_LIKES as eduLikes
     from Education 
     order by EDU_NUM desc
       limit #{startIndex}, 6
@@ -42,6 +44,7 @@
       EDU_SPEC as eduSpec,
       EDU_CRE as eduCreateDate,
       EDU_VIEWS as eduViews
+      EDU_LIKES as eduLikes
     from Education 
     where EDU_SPEC=#{eduSpec} and EDU_NUM!=#{eduNo}
     order by EDU_VIEWS desc

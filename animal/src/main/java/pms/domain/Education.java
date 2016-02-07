@@ -15,9 +15,18 @@ public class Education implements Serializable {
 	protected String eduContent; // 교육 게시물 내용
 	protected String eduSpec;     // 교육 게시물 동물 구분 -> 개, 고양이, 물고기, 새, etc
 															 //                 DIV01,DIV02,DIV03,DIV04,DIV05
+  protected int eduLikes;  	  // 교육 게시물 좋아요 수
 	protected String attachFile;	// 컬럼명 = fileName
 	protected double count;
 	
+	public int getEduLikes() {
+		return eduLikes;
+	}
+
+	public void setEduLikes(int eduLikes) {
+		this.eduLikes = eduLikes;
+	}
+
 	public double getCount() {
 		return count;
 	}
