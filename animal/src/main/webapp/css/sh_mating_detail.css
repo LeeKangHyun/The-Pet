@@ -1,0 +1,527 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+#main-body {
+  position: relative;
+/*  top: 50px;*/
+  width: 1280px;
+  padding-bottom: 200px;
+}
+
+button {
+  display: inline-block;
+  padding: .4em .8em;
+  background: #666;
+  border: 0;
+  color: #ddd;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.active {
+  background: #68b8c4;
+}
+
+button:focus { /* 활성화 시 버튼 주변의 라인을 없애줌 */
+  outline: 0 none;
+}
+
+/* -- 디테일 모달 css -- */
+.main-body {
+  height: 510px;
+}
+
+/* 왼쪽 이미지 슬라이드 -> (디테일 모달)*/
+#carousel-example-generic {
+  float: left !important;
+  width: 640px;
+  height: 640px;
+  background-color: #fff;
+}
+
+div.item {
+  height: 640px;
+  position: relative;
+}
+
+div.item img {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slideimg {
+  max-width: 640px;
+  max-height: 640px;
+  padding-right: auto;
+  padding-left: auto;
+}
+
+#carousel-example-generic li {
+  border: 1px solid #2d335e;
+  padding: 1px;
+  zoom: 1;
+}
+
+#carousel-example-generic li.active {
+    background-color: #d06a79;
+}
+
+.carousel-control {
+    
+}
+
+/* 오른쪽 컨텐트들 -> (디테일 모달)*/
+.contents {
+  border-top: 1px solid #d06a79;
+  float: right !important;
+  width: 640px;
+  min-height: 640px;
+  background-color: #2d335e;
+}
+
+.title {
+  height: 40px;
+  text-align: center;
+  font-size: 21px;
+  color: #fff;
+  line-height: 40px;
+}
+
+.content {
+  height: 225px;
+  margin: 10px;    
+}
+
+.content textarea {
+  color: #fff;
+  background-color: #2d335e;
+  font-size: 16px;
+  font-weight: 200;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  overflow-y: scroll;
+  border: 0;
+}
+
+#sendmsg a {
+  color: #fff;
+  margin-left: 10px;
+  margin-bottom: 2px;
+}
+
+.input {
+  font-size: 13px;
+  height: 65px;
+  border-top: 1px solid #d06a79;
+  border-bottom: 1px solid #d06a79;
+  background-color: #2d335e;
+  padding: 0 9px;
+}
+
+.input > textarea {
+  margin: 10px auto;
+  padding: 7px;
+  width: 565px;
+  height: 40px;
+  overflow: visible;
+  border: 2px solid #d06a79;
+  border-radius: 8px;
+  resize: none;
+}
+
+.input > #comDelBtn {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 16px;
+  background-color: #d06a79;
+  color: #fff;
+  border: 2px solid #d06a79;
+  border-radius: 8px;
+}
+
+.input > #comDelBtn:hover {
+  color: #a12141;
+  border: 2px solid #a12141;
+}
+
+.commentin:focus {
+  outline-style: solid;
+  outline-width: 0px;
+}
+
+.comments {
+  width: 640px;
+/*  height: 220px;*/
+  overflow-y: scroll; 
+  background-color: #2d335e;
+}
+
+.comment {
+  margin-top: 5px;
+  min-height: 50px;
+  margin-bottom: 7px;
+  color: #fff;
+}
+
+.commentimg {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+.commentname {
+  float: left;
+  font-size: 15px;
+  font-weight: 900;
+  max-width: 360px;
+  margin-left: 10px;
+  color: #d06a79;
+}
+
+#delImg {
+  width: 480px;
+  height: 220px;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+#delImg img {
+  max-height: 100px;
+  margin-bottom: 10px;
+}
+
+#delImg a {
+  position: relative;
+  bottom: 92px;
+  right: 25px;
+  font-size: 1.4em;
+}
+
+.fa-close {
+  float: right;
+  color: #d06a79;
+  margin-right: 20px;
+  margin-top: 3px;
+  font-size: 22px;
+}
+
+.commenttext {
+  width: 510px;
+  font-size: 14px;
+  white-space: pre-line;
+  word-break: break-all;
+  border-bottom: 1px solid #fff;
+  background-color: rgba(0,0,0,0);
+  margin-left: 70px;
+  padding-bottom: 7px;
+  padding-top: 20px;
+  border: 0;
+}
+
+#checkModal .modal-content, #checkModal .modal-dialog {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  border-radius: 0;
+}
+
+#checkModal .modal-header {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: -5px; 
+  padding-bottom: 10px;
+}
+
+#checkModal .modal-body {
+  height: 40px;
+  padding-top: 14px;
+  font-size: 15px;
+}
+
+#checkModal .modal-footer {
+  height: 45px;
+}
+
+#checkModal .modal-footer button {
+  margin-top: -8px;
+  height: 30px;
+  font-size: 13px;
+  border-radius: 0;
+}
+
+#checkModal .modal-footer #closeDel {
+  font-weight: bold;
+  color: #2d335e;
+}
+
+
+/* 맨아래 더보기 버튼 */
+#more {
+  width: 1000px;
+  margin: 0 auto;
+  height: 30px;
+  text-align: center;
+}
+
+.moreBtn {
+  font-size: 15px;
+  padding: 5px 479px;
+  background: #2d335e;
+  color: #fff;
+}
+
+.moreBtn:hover {
+  background: #d06a79;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-footer {
+  position: absolute;
+  top: 700px;
+/*  padding: 10px;*/
+  width: 640px;
+/*  height: 82px;*/
+}
+
+#editPet {
+  position: absolute;
+/*  bottom: 24px;*/
+  right: 70px;
+}
+
+#editEnd {
+  position: absolute;
+/*  bottom: 24px;*/
+  right: 70px;
+}
+
+#matDelBtn {
+  position: absolute;
+/*  bottom: 24px;*/
+  right: 10px;
+}
+
+#editCancel {
+  position: absolute;
+  right: 10px;
+}
+
+.box {
+  width: 70%;
+}
+
+.inputfile {
+  position: absolute;
+  left: 10px;
+  overflow: hidden;
+  width: 0.1px;
+}
+
+.js .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  max-width: 80%;
+  font-size: 15px;
+  /* 20px */
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 10px;
+  position: absolute;
+  left: 10px;
+}
+
+.no-js .inputfile + label {
+  display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+  /* pointer-events: none; */
+  /* in case of FastClick lib use */
+  font-size: 17px
+}
+
+.inputfile + label i {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  /* 4px */
+  margin-right: 0.25em;
+  /* 4px */
+}
+
+
+/* style 1 */
+
+.inputfile-1 + label {
+  color: #f1e5e6;
+  background-color: #d3394c;
+  border-radius: 4px;
+/*  width: 200px;*/
+  height: 40px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 15px;
+  float: left;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #722040;
+}
+
+.gg {
+  color: #fff;
+  float: left;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-left: 10px;
+  margin-top: 21px;
+}
+
+#mmspec {
+  float: left;
+  margin-right: 15px;
+}
+
+#forms .form-control {
+  width: 80%;
+  position: relative;
+  top: 14px;
+  left: 5px;
+}
+
+#noCom .modal-dialog, #noCom .modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  border-radius: 0;
+}
+
+#noCom .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#noCom .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#noCom .modal-body {
+  font-size: 16px;
+}
+
+#okok {
+  position: relative;
+  bottom: 7px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
+  background-color: #2d335e;
+}
+
+#sendMsg .modal-dialog, #sendMsg .modal-content {
+  border-radius: 0;
+  width: 400px;
+}
+
+#sendMsg .modal-header {
+  height: 50px
+}
+
+#sendMsg .modal-title {
+  line-height: 20px;
+}
+
+#sendMsg .modal-body {
+  height: 400px;
+}
+
+#sendName {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 0;
+}
+
+#msgText {
+  min-height: 250px;
+  max-height: 250px;
+  resize: none;
+  border-radius: 0;
+  margin-top: 10px;
+}
+
+#sendMsg .modal-footer {
+  height: 55px;
+}
+
+#sendMsg .modal-footer #sendMsgBtn {
+  margin-top: -5px;
+  margin-right: 15px;
+  width: 100px;
+  border-radius: 0;
+}
+
+#modo .modal-dialog, #modo .modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  border-radius: 0;
+}
+
+#modo .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#modo .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#modo .modal-body {
+  font-size: 16px;
+}
+
+
+

@@ -37,153 +37,6 @@
   })
   (document, window, 0);
 </script>
-  
-
-<!-- <script>
-$(function(){
-    $('#Container').mixItUp();
-});
-</script> -->
-
-<style>
-
-button#All{
-  display: inline-block;
-  padding: .4em .8em;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #000;
-  font-weight: 900;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button#DOG{
-  display: inline-block;
-  padding: .4em .8em;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #ddd;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 4px;
-  cursor: pointer;
-  background-image: url(images/dog.png);
-  background-size: cover;
-}
-
-button#CAT{
-  display: inline-block;
-  padding: .4em .8em;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #ddd;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 4px;
-  cursor: pointer;
-  background-image: url(images/cat.png);
-  background-size: cover;
-}
-
-button#FISH{
-  display: inline-block;
-  padding: .4em .8em;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #ddd;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 4px;
-  cursor: pointer;
-  background-image: url(images/fish.png);
-  background-size: cover;
-  background-position: center;
-}
-
-button#BIRD{
-  display: inline-block;
-  padding: .4em .8em;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #ddd;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 4px;
-  cursor: pointer;
-  background-image: url(images/bird.png);
-  background-size: 45px 35px;
-  background-position: center;
-}
-
-button#ETC{
-  display: inline-block;
-  padding: 6px;
-  background: #fff;
-  width: 50px;
-  height: 30px;
-  border: 0;
-  color: #000;
-  font-weight: 900;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button#All.active{
-  background: #d06a79;
-}
-
-button#DOG.active{
-  background: #d06a79;
-  background-image: url(images/dog.png);
-  background-size: cover;
-}
-
-button#CAT.active{
-  background: #d06a79;
-  background-image: url(images/cat.png);
-  background-size: cover;   
-}
-
-button#FISH.active{
-  background: #d06a79;
-  background-image: url(images/fish.png);
-  background-size: cover;
-  background-position: center;
-}
-
-button#BIRD.active{
-  background: #d06a79;
-  background-image: url(images/bird.png);
-  background-size: 45px 35px;
-  background-position: center;
-}
-
-button#ETC.active{
-  background: #d06a79;
-}
-
-button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
-  outline: 0 none;
-}
-
-.portfoliocard {
-display: block;
-float: left;
-}
-</style>
 
 </head>
 
@@ -235,7 +88,42 @@ float: left;
 
 
     <!-- 사진 게시물 영역 -->
-    <div id='Container' class='container'></div>
+    <div id='Container' class='container'>
+    
+    
+<!--
+    
+      <a class='portfoliocard  DOG' role='button' href='matingDetail.html?matNo=1'>
+
+        <div class='coverphoto'>
+          <img src='files/p4.jpeg' class='landscape'>
+        </div>
+
+        <div class='profile_picture'>
+          <img src='files/p3.jpeg'>
+        </div>
+
+        <div class='left_col'>
+          <div class='views'>
+            <div class='view_count' id='v" +  resultObj.data[i].matNo + "'> 33</div>
+            VIEW
+          </div>
+        </div>
+        <div class='right_col'>
+          <ul class='contact_information'>
+            <li class='website'>DOG</li>
+            <li class='website'>포메라이안</li>
+            <li class='gender'>암컷</li>
+            <li class='title'>제목</li>
+            <li class='resume'>2016-02-15</li>
+            <li class='name'>작성자</li>
+          </ul>
+        </div>
+      </a>
+    
+-->
+    
+    </div>
 
     <div id="more">
       <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
@@ -361,216 +249,216 @@ float: left;
 
 <script>
 function filter(id) { 
-	   if(id == "All") {
-		      $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
-		      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-		    }else if(id == "DOG") {
-		        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-		        $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
-		        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-		    }else if(id == "CAT") {
-		        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-		        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		        $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
-		        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-		    }else if(id == "FISH") {
-		        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-		        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		        $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
-		        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-		    }else if(id == "BIRD") {
-		        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-		        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		        $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
-		        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-		    }else if(id ==  "ETC") {
-		        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-		        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		        $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
-		    }
+  if(id == "All") {
+    $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "DOG") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "CAT") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "FISH") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "BIRD") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id ==  "ETC") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
+  }
 	   
-	   $('#Container').empty();
-	      var currentPage = 1;
-	      var totalCount = 0;
-	      
-	      var filter_data = new FormData();
-	      filter_data.append("filter_id", id);
-	      
-	      
-	      $.ajax({
-	          url : "mating/ajax/filterCount.do",
-	          dataType : 'json',
-	          contentType : false,
-	          processData : false,
-	          data : filter_data,
-	          async : false,
-	          type : 'POST',
-	          success : function(resultObj) {
-	        	  totalCount =  resultObj.count;	        	  
-	          }
-	        })
-	        
-	        $('#more').empty();
-	      if(totalCount > 1){
-	    	  $('#more').append("<a role='button' class='moreBtn' id='filterBtn'>더보기</a>");
-	   }
+  $('#Container').empty();
+    var currentPage = 1;
+    var totalCount = 0;
 
-	      $.ajax({
-	          url : "mating/ajax/filter_list.do?pageNo="+currentPage,
-	          dataType : "json",
-	          type : "POST",
-	          contentType : false,
-	          processData : false,
-	          data : filter_data,
-	          async : false,
-	          success : function(resultObj) {
-	        	  
-	              var gen;
-	              var imgWidth;
-	              var imgHeight;
-	              var setClass;
-	              
-	              for (var i = 0; i < resultObj.data.length; i++) {
-	            	  
-	                  if(resultObj.data[i].matGender == 0) {
-	                      gen = "수컷";
-	                  } else {
-	                      gen = "암컷";
-	                  }
-	                  
-	                  imgWidth = resultObj.size[i].width;
-	                  imgHeight = resultObj.size[i].height;
-	                  
-	                  
-	                  if (imgWidth > imgHeight) {
-	                    setClass = "landscape"
-	                  } else {
-	                    setClass = "portrait"
-	                  }
-	                  
-	                  $('#Container').append(
-	                		  "<div class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' data-target='#saleModal' data-toggle='modal' id='" + resultObj.data[i].matNo + "' onclick='detail(this.id);'>" +
-	                    "<div class='coverphoto'>" +
-	                		 "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
-	                    "</div>" +
-	                    "<div class='profile_picture'>" +
-	                    "<img src='files/" + resultObj.data[i].mimg + "'>" +
-	                    "</div>" +
-	                    "<div class='left_col'>" +
-	                    "<div class='views'>" +
-	                    "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
-	                    "VIEW" +
-	                    "</div>" +
-	                    "</div>" +
-	                    "<div class='right_col'>" +
-	                    "<ul class='contact_information'>" +
-	                    "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
-	                    "<li class='website'>" + resultObj.data[i].matType + "</li>" +
-	                    "<li class='gender'>" + gen + "</li>" +
-	                    "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
-	                    "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
-	                    "<li class='name'>" + resultObj.data[i].mname + "</li>" +
-	                    "</ul>" +
-	                    "</div>" +
-	                    "</div>")
-	                          
-	                  
-	              }
-	          }
-	      })
+    var filter_data = new FormData();
+    filter_data.append("filter_id", id);
+
+
+    $.ajax({
+      url : "mating/ajax/filterCount.do",
+      dataType : 'json',
+      contentType : false,
+      processData : false,
+      data : filter_data,
+      async : false,
+      type : 'POST',
+      success : function(resultObj) {
+        totalCount =  resultObj.count;	        	  
+      }
+    })
+
+    $('#more').empty();
+    if(totalCount > 1){
+      $('#more').append("<a role='button' class='moreBtn' id='filterBtn'>더보기</a>");
+  }
+
+  $.ajax({
+    url : "mating/ajax/filter_list.do?pageNo="+currentPage,
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : filter_data,
+    async : false,
+    success : function(resultObj) {
+
+      var gen;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
+
+      for (var i = 0; i < resultObj.data.length; i++) {
+
+        if(resultObj.data[i].matGender == 0) {
+          gen = "수컷";
+        } else {
+          gen = "암컷";
+        }
+
+        imgWidth = resultObj.size[i].width;
+        imgHeight = resultObj.size[i].height;
+
+
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
+
+        $('#Container').append(
+        "<a class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' href='matingDetail.html?matNo=" + resultObj.data[i].matNo + "'>" +
+
+          "<div class='coverphoto'>" +
+            "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
+          "</div>" +
+
+          "<div class='profile_picture'>" +
+            "<img src='files/" + resultObj.data[i].mimg + "'>" +
+          "</div>" +
+
+          "<div class='left_col'>" +
+            "<div class='views'>" +
+              "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
+              "VIEW" +
+            "</div>" +
+          "</div>" +
+          "<div class='right_col'>" +
+            "<ul class='contact_information'>" +
+              "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
+              "<li class='website'>" + resultObj.data[i].matType + "</li>" +
+              "<li class='gender'>" + gen + "</li>" +
+              "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
+              "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
+              "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+            "</ul>" +
+          "</div>" +
+        "</a>")
+      }
+    }
+  })
 	      
-	      $('#filterBtn').click(function(event) {
-	    	  
-	    	  if(currentPage < totalCount) {
-	    		  currentPage = currentPage + 1;
-	    		  
-	    		  
-	    	       $.ajax({
-	    	            url : "mating/ajax/filter_list.do?pageNo="+currentPage,
-	    	            dataType : "json",
-	    	            type : "POST",
-	    	            contentType : false,
-	    	            processData : false,
-	    	            data : filter_data,
-	    	            async : false,
-	    	            success : function(resultObj) {
-	    	              
-	    	                var gen;
-	    	                var imgWidth;
-	    	                var imgHeight;
-	    	                var setClass;
-	    	                
-	    	                for (var i = 0; i < resultObj.data.length; i++) {
-	    	                  
-	    	                    if(resultObj.data[i].matGender == 0) {
-	    	                        gen = "수컷";
-	    	                    } else {
-	    	                        gen = "암컷";
-	    	                    }
-	    	                    
-	    	                    imgWidth = resultObj.size[i].width;
-	    	                    imgHeight = resultObj.size[i].height;
-	    	                    
-	    	                    
-	    	                    if (imgWidth > imgHeight) {
-	    	                      setClass = "landscape"
-	    	                    } else {
-	    	                      setClass = "portrait"
-	    	                    }
-	    	                    
-	    	                    $('#Container').append(
-	    	                        "<div class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' data-target='#saleModal' data-toggle='modal' id='" + resultObj.data[i].matNo + "' onclick='detail(this.id);'>" +
-	    	                      "<div class='coverphoto'>" +
-	    	                       "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
-	    	                      "</div>" +
-	    	                      "<div class='profile_picture'>" +
-	    	                      "<img src='files/" + resultObj.data[i].mimg + "'>" +
-	    	                      "</div>" +
-	    	                      "<div class='left_col'>" +
-	    	                      "<div class='views'>" +
-	    	                      "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
-	    	                      "VIEW" +
-	    	                      "</div>" +
-	    	                      "</div>" +
-	    	                      "<div class='right_col'>" +
-	    	                      "<ul class='contact_information'>" +
-	    	                      "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
-	    	                      "<li class='website'>" + resultObj.data[i].matType + "</li>" +
-	    	                      "<li class='gender'>" + gen + "</li>" +
-	    	                      "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
-	    	                      "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
-	    	                      "<li class='name'>" + resultObj.data[i].mname + "</li>" +
-	    	                      "</ul>" +
-	    	                      "</div>" +
-	    	                      "</div>")
-	    	                            
-	    	                    
-	    	                }
-	    	            }
-	    	        })
-	    	  } // if문 끝
-	    	  
-	    	  if(currentPage >= totalCount) {
-	    		  $('#more').empty();
-	    	  }
-	    	  
-	      })
+  $('#filterBtn').click(function(event) {
+
+    if(currentPage < totalCount) {
+      currentPage = currentPage + 1;
+
+      $.ajax({
+        url : "mating/ajax/filter_list.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        data : filter_data,
+        async : false,
+        success : function(resultObj) {
+
+          var gen;
+          var imgWidth;
+          var imgHeight;
+          var setClass;
+
+          for (var i = 0; i < resultObj.data.length; i++) {
+
+            if(resultObj.data[i].matGender == 0) {
+              gen = "수컷";
+            } else {
+              gen = "암컷";
+            }
+
+            imgWidth = resultObj.size[i].width;
+            imgHeight = resultObj.size[i].height;
+
+
+            if (imgWidth > imgHeight) {
+              setClass = "landscape"
+            } else {
+              setClass = "portrait"
+            }
+
+            $('#Container').append(
+            "<a class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' href='matingDetail.html?matNo=" + resultObj.data[i].matNo + "'>" +
+
+              "<div class='coverphoto'>" +
+                "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
+              "</div>" +
+
+              "<div class='profile_picture'>" +
+                "<img src='files/" + resultObj.data[i].mimg + "'>" +
+              "</div>" +
+
+              "<div class='left_col'>" +
+                "<div class='views'>" +
+                  "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
+                  "VIEW" +
+                "</div>" +
+              "</div>" +
+              "<div class='right_col'>" +
+                "<ul class='contact_information'>" +
+                  "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
+                  "<li class='website'>" + resultObj.data[i].matType + "</li>" +
+                  "<li class='gender'>" + gen + "</li>" +
+                  "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
+                  "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
+                  "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+                "</ul>" +
+              "</div>" +
+            "</a>")
+          }
+        }
+      })
+    } // if문 끝
+
+    if(currentPage >= totalCount) {
+      $('#more').empty();
+    }
+  })
 }
 </script>
 
@@ -602,32 +490,32 @@ $(document).ready(function() {
       "</a>")
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    
+    // 안읽은 받은쪽지 갯수 출력
+    var no = $.session.get('mno');
+    var form_data = new FormData();
+    form_data.append("recvMno", no)
+    $.ajax({
+      url: 'message/ajax/noReadMsg.do',
+      type: 'post',
+    //    async: false,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        $('#userBadge').html(ajaxResult.data.noReadCount)
+      }
+    })
   }
 
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "login.html"
-    });
-
-  // 안읽은 받은쪽지 갯수 출력
-  var no = $.session.get('mno');
-  var form_data = new FormData();
-  form_data.append("recvMno", no)
-  $.ajax({
-    url: 'message/ajax/noReadMsg.do',
-    type: 'post',
-  //    async: false,
-    dataType: 'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    success: function(resultObj) {
-      var ajaxResult = resultObj.ajaxResult;
-      $('#userBadge').html(ajaxResult.data.noReadCount)
-    }
-  })
+    $.session.clear();
+    location.href = "login.html"
+  });
   
   $.getJSON('mating/ajax/pages.do', function(resultObj) {
     var ajaxResult = resultObj.ajaxResult;
@@ -639,321 +527,67 @@ $(document).ready(function() {
 
 // 분양 리스트 출력
 $.ajax({
-    url: 'mating/ajax/list.do',
-    async: false,
-    type: 'post',
-    dataType: 'json',
-    success: function(resultObj) {
-        var show = $('#Container');
-        var j = 0;
-        var file;
-        var mem;
-        var gen;
-        var imgWidth;
-        var imgHeight;
-        var setClass;
-        for (var mating of resultObj.mating) {
-            file = resultObj.filesMap[j];
-            mem = resultObj.memberMap[j];
-            if(mating.matGender == 0) {
-                gen = "수컷";
-            } else {
-                gen = "암컷";
-            }
-            imgWidth = file[0].width;
-
-            imgHeight = file[0].height;
-
-            if (imgWidth > imgHeight) {
-              setClass = "landscape"
-            } else {
-              setClass = "portrait"
-            }
-            j++;
-            show.append("<div class='portfoliocard " + mating.matSpec + "' role='button' " +
-            "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
-            "' onclick='detail(this.id);'>" +
-
-            "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
-
-            "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
-
-            "<div class='left_col'>" +
-            "<div class='views'>" +
-            "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
-            "VIEW" +
-            "</div>" +
-            "</div>" +
-
-            "<div class='right_col'>" +
-            "<ul class='contact_information'>" +
-            "<li class='website'>" + mating.matSpec + "</li>" +
-            "<li class='website'>" + mating.matType + "</li>" +
-            "<li class='gender'>" + gen + "</li>" +
-            "<li class='title'>" + mating.matTitle + "</li>" +
-            "<li class='resume'>" + mating.matCreateDate + "</li>" +
-            "<li class='name'>" + mem.mName + "</li>" +
-            "</ul>" +
-            "</div>" +
-            "</div>")
-        }
-    }
-});
-
-
-
-// 짝짓기 디테일
-function detail(id) {
-  var view = $("#v" + id);
-  var form_data = new FormData();
-  form_data.append("matNo", id)
-  $.ajax({
-    url: "mating/ajax/detail.do",
-    dataType: 'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      var matinfo = re.ajaxResult.data;
-      $('#modalTitle').html(matinfo.matTitle);
-      $('#contentText').val(matinfo.matContent);
-      $('#mmatno').val(matinfo.matNo);
-      $('#mmtype').val(matinfo.matType);
-      
-      var form_data = new FormData();
-      form_data.append("matNo", id)
-      $.ajax({
-        url: "files/ajax/matlist.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          var files = re.ajaxResult.data;
-          
-          var imgs = $('#imgs');
-          var dots = $('#dots');
-          var showDel = $('#delImg');
-          var i = 0;
-          for (var file of files) {
-            if (i == 0) {
-              imgs.append(
-              "<div class='item active'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "' class='active'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-            } else {
-              imgs.append(
-              "<div class='item'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-            }
-            i++;
-          }
-          var form_data = new FormData();
-          form_data.append("matNo", id)
-          $.ajax({
-            url: "comment/ajax/matcomlist.do",
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(re) {
-              var commen = re.comments;
-              var comdiv = $('#comComment');
-              var mem;
-              var j = 0;
-              for (var com of commen) {
-                mem = re.memberMap[j];
-                if($.session.get('mno') == mem.mno) {
-                  comdiv.append(
-                  "<div class='comment'>" +
-                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-                    "<i class='fa fa-close'></i></a>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                  "</div>")
-                } else {
-                  comdiv.append(
-                  "<div class='comment'>" +
-                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                  "</div>")
-                }
-                    j++;
-              }
-            }
-          })
-        }
-      })
-    },
-    complete: function() {
-      $.ajax({
-          url: 'mating/ajax/views.do',
-          data: {
-              "matNo": id
-          },
-          async: false,
-          dataType: 'json',
-          type: "post",
-          success: function(re) {
-            console.log()
-            console.log(re.ajaxResult.data.matViews)
-            view.html(re.ajaxResult.data.matViews)
-          }
-      })
-    }
-  })
-
-}
-
-// 펫 디테일 -> 댓글게시 클릭
-$(document).on("click", "#comDelBtn", function() {
-  if ($('#comcontent').val() == "") {
-    
-    $('#noCom').modal('show');
-    return false;
-    
-  } else {
-    var form_data = new FormData();
-    form_data.append("matNo", $('#mmatno').val())
-    form_data.append("comComment", $('#comcontent').val())
-    form_data.append("mno", $.session.get('mno'))
-    $.ajax({
-      url: "comment/ajax/add.do",
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-      success: function(re) {
-        $('#comcontent').val('')
-        var form_data = new FormData();
-        form_data.append("matNo", $('#mmatno').val())
-        $.ajax({
-          url: "comment/ajax/matcomlist.do",
-          dataType: 'json',
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(re) {
-            $('#comComment').empty();
-            var commen = re.comments;
-            var comdiv = $('#comComment');
-            var mem;
-            var j = 0;
-            for (var com of commen) {
-              mem = re.memberMap[j];
-              if($.session.get('mno') == mem.mno) {
-                comdiv.append(
-                "<div class='comment'>" +
-                  "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                  "<div class='commentname'>" + mem.mName + "</div>" +
-                  "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-                  "<i class='fa fa-close'></i></a>" +
-                  "<div class='commenttext'>" + com.comComment + "</div>" +
-                "</div>")
-              } else {
-                comdiv.append(
-                "<div class='comment'>" +
-                  "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                  "<div class='commentname'>" + mem.mName + "</div>" +
-                  "<div class='commenttext'>" + com.comComment + "</div>" +
-                "</div>")
-              }
-              j++;
-            }
-          }
-        })
+  url: 'mating/ajax/list.do',
+  async: false,
+  type: 'post',
+  dataType: 'json',
+  success: function(resultObj) {
+    var show = $('#Container');
+    var j = 0;
+    var file;
+    var mem;
+    var gen;
+    var imgWidth;
+    var imgHeight;
+    var setClass;
+    for (var mating of resultObj.mating) {
+      file = resultObj.filesMap[j];
+      mem = resultObj.memberMap[j];
+      if(mating.matGender == 0) {
+        gen = "수컷";
+      } else {
+        gen = "암컷";
       }
-    })
-  }
-})
+       
+      imgWidth = file[0].width;
+      imgHeight = file[0].height;
 
-//댓글 삭제 도우미
-function del(id) {
-  $('#comno').val(id)
-  $('#checkModal').modal('show')
-}
+      if (imgWidth > imgHeight) {
+        setClass = "landscape"
+      } else {
+        setClass = "portrait"
+      }
+      j++;
+      show.append(
+      "<a class='portfoliocard " + mating.matSpec + "' role='button' " +
+      "href='matingDetail.html?matNo=" + mating.matNo +
+      "' onclick='detail(this.id);'>" +
 
-// 댓글 삭제
-$(document).on("click", "#delCom", function() {
-  var form_data = new FormData();
-  console.log($('#comno').val())
-  form_data.append("comNo", $('#comno').val())
-  $.ajax({
-    url: "comment/ajax/delete.do",
-    dataType: 'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      $('#checkModal').modal('hide')
-      var form_data = new FormData();
-      form_data.append("matNo", $('#mmatno').val())
-      $.ajax({
-        url: "comment/ajax/matcomlist.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          $('#comComment').empty();
-          var commen = re.comments;
-          var comdiv = $('#comComment');
-          var mem;
-          var j = 0;
-          for (var com of commen) {
-            mem = re.memberMap[j];
-            comdiv.append(
-            "<div class='comment'>" +
-              "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-              "<div class='commentname'>" + mem.mName + "</div>" +
-              "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-              "<i class='fa fa-close'></i></a>" +
-              "<div class='commenttext'>" + com.comComment + "</div>" +
-            "</div>")
-            j++;
-          }
-        }
-      })
+      "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
+
+      "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+
+      "<div class='left_col'>" +
+      "<div class='views'>" +
+      "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
+      "VIEW" +
+      "</div>" +
+      "</div>" +
+
+      "<div class='right_col'>" +
+      "<ul class='contact_information'>" +
+      "<li class='website'>" + mating.matSpec + "</li>" +
+      "<li class='website'>" + mating.matType + "</li>" +
+      "<li class='gender'>" + gen + "</li>" +
+      "<li class='title'>" + mating.matTitle + "</li>" +
+      "<li class='resume'>" + mating.matCreateDate + "</li>" +
+      "<li class='name'>" + mem.mName + "</li>" +
+      "</ul>" +
+      "</div>" +
+      "</a>")
     }
-  })
-})
+  }
+});
 
 // 새글 모달 닫고 초기화
 $('#saleModal').on('hidden.bs.modal', function(e) {
@@ -962,201 +596,6 @@ $('#saleModal').on('hidden.bs.modal', function(e) {
   $('#mat_title').val('');
   $('#mat_type').val('');
 })
-
-// 디테일 모달 닫고 초기화
-$('#saleModal').on('hidden.bs.modal', function(e) {
-  $('#comComment').empty();
-  $('#dots').empty();
-  $('#imgs').empty();
-  $('#delImg').empty();
-  $('#modalTitle').val('');
-  $('#mcontent').val('');
-  $('#mmatno').val('');
-  $('#file-1').val('');
-  
-  $("textarea[id=contentText]").attr("readonly",true);
-  $("textarea[class=commentin]").attr("readonly",false);
-  $('.box').css('display', 'none');
-  $('.commentin').css('display', '');
-  $('#comDelBtn').css('display', '');
-  $('#forms').css('display', 'none');
-  $("button[id=comDelBtn]").attr("disabled",false);
-  $('#editPet').css('display', '');
-  $('#editEnd').css('display', 'none');
-  $('.comments').css('display', '');
-  $('#delImg').css('display', 'none');
-  $('#contentText').css('background-color', '#2d335e');
-  $('#contentText').css('color', '#fff');
-})
-
-// 짝짓기 삭제
-$(document).on('click', '#matDelBtn', function() {
-    $.ajax({
-        url: 'mating/ajax/delete.do',
-        dataType: 'json',
-        type: 'get',
-        data: {
-            "matNo": $('#mmatno').val()
-        },
-        success: function (ro) {
-            console.log(ro)
-            location.href='mating.html';
-        }
-    })
-});
-
-// 디테일 변경 누르면 발생
-$(document).on("click", "#editPet", function() {
-  $("textarea[id=contentText]").attr("readonly",false);
-  $("textarea[class=commentin]").attr("readonly",true);
-  $('.box').css('display', '');
-  $('.commentin').css('display', 'none');
-  $('#comDelBtn').css('display', 'none');
-  $('#forms').css('display', '');
-  $("button[id=comDelBtn]").attr("disabled",true);
-  $('#editPet').css('display', 'none');
-  $('#editEnd').css('display', '');
-  $('.comments').css('display', 'none');
-  $('#delImg').css('display', '');
-  $('#contentText').css('background-color', '#ffffff');
-  $('#contentText').css('color', '#2d335e');
-})
-
-// 디테일 변경완료 누르면 발생
-$(document).on("click", "#editEnd", function() {
-  $("textarea[id=contentText]").attr("readonly",true);
-  $("textarea[class=commentin]").attr("readonly",false);
-  $('.box').css('display', 'none');
-  $('.commentin').css('display', '');
-  $('#comDelBtn').css('display', '');
-  $('#forms').css('display', 'none');
-  $("button[id=comDelBtn]").attr("disabled",false);
-  $('#editPet').css('display', '');
-  $('#editEnd').css('display', 'none');
-  $('.comments').css('display', '');
-  $('#delImg').css('display', 'none');
-  $('#contentText').css('background-color', '#2d335e');
-  $('#contentText').css('color', '#fff');
-  
-  var form_data = new FormData();
-  form_data.append("matNo", $('#mmatno').val())
-  form_data.append("matContent", $('#contentText').val())
-  form_data.append("matType", $('#mmtype').val())
-  $.ajax({
-    url: "mating/ajax/update.do",
-    dataType: 'json',
-    cache: false,
-    async: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      console.log("디테일 변경 성공")
-      for (var i = 0; i < $("#file-1").prop("files").length; i++) {
-        var file_data = $("#file-1").prop("files")[i];
-        var file_name = file_data.name;
-        var form_data = new FormData();
-        form_data.append("file", file_data)
-        form_data.append("fName", file_name)
-        form_data.append("matNo", $('#mmatno').val())
-        $.ajax({
-          url: "files/ajax/matUpload.do",
-          dataType: 'json',
-          cache: false,
-          async: false,
-          contentType: false,
-          processData: false,
-          data: form_data,
-          type: 'post',
-          success: function(resultObj) {
-              console.log(file_name)
-              
-          }
-        })
-      }
-      location.href='mating.html';
-    }
-  })
-})
-
-// 디테일 모달 속 이미지 하나하나 지우기
-function imgDel(id) {
-  console.log("fno : " + id)
-  var form_data = new FormData();
-  form_data.append("fno", id)
-  $.ajax({
-    url: "files/ajax/delOneImg.do",
-    dataType: 'json',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function(re) {
-      console.log("이미지 삭제 성공")
-
-      var form_data = new FormData();
-      form_data.append("matNo", $('#mmatno').val())
-      console.log("matNo : " + $('#mmatno').val())
-      $.ajax({
-        url: "files/ajax/matlist.do",
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(re) {
-          var files = re.ajaxResult.data;
-          console.log(files);
-          $('#imgs').empty();
-          $('#dots').empty();
-          $('#delImg').empty();
-          var imgs = $('#imgs');
-          var dots = $('#dots');
-          var showDel = $('#delImg');
-          var i = 0;
-          for (var file of files) {
-            if (i == 0) {
-              imgs.append(
-              "<div class='item active'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "' class='active'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-              
-            } else {
-              imgs.append(
-              "<div class='item'>" +
-                "<img class='slideimg' src='files/" + file.fileName + "'>" +
-              "</div>")
-              dots.append(
-              "<li data-target='#carousel-example-generic' data-slide-to='" + i +
-              "'></li>")
-              if (files.length == 1) {
-                showDel.append("<img src='files/" + file.fileName + "'>")
-              } else {
-                showDel.append(
-                "<img src='files/" + file.fileName + "'>" +
-                "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
-              }
-            }
-            i++;
-          }
-        }
-      })
-    }
-  });
-}
 
 //더보기
 function moree(id) {
@@ -1198,9 +637,9 @@ function moree(id) {
         }
         j++;
         
-        show.append("<div class='portfoliocard " + mating.matSpec + "' role='button' " +
-        "data-target='#saleModal' data-toggle='modal' id='" + mating.matNo +
-        "' onclick='detail(this.id);'>" +
+        show.append(
+        "<a class='portfoliocard " + mating.matSpec + "' role='button' " +
+        "href='matingDetail.html?matNo=" + mating.matNo +"'>" +
 
         "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
 
@@ -1223,7 +662,7 @@ function moree(id) {
         "<li class='name'>" + mem.mName + "</li>" +
         "</ul>" +
         "</div>" +
-        "</div>")
+        "</a>")
       }
 
       $.getJSON('mating/ajax/pages.do', function(resultObj) {
@@ -1243,7 +682,6 @@ function moree(id) {
         }
       })
     }
-
   })
 }
 

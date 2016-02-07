@@ -125,7 +125,8 @@
   color: #3333ff;
 }
 
-#sendMsg .modal-dialog {
+#sendMsg .modal-dialog, #sendMsg .modal-content {
+  border-radius: 0;
   width: 400px;
 }
 
@@ -143,12 +144,14 @@
 
 #sendName {
   margin-bottom: 20px;
+  border-radius: 0;
 }
 
 #msgText {
   min-height: 250px;
   max-height: 250px;
   resize: none;
+  border-radius: 0;
 }
 
 #sendMsg .modal-footer {
@@ -159,6 +162,7 @@
   margin-top: -5px;
   margin-right: 15px;
   width: 100px;
+  border-radius: 0;
 }
 
 

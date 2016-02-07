@@ -136,7 +136,15 @@ public class MatingController {
 
 		Mating mating = matingService.getMatingOne(matNo);
 		matingService.addviews(matNo);
-		return new AjaxResult("success", mating);
+		Member member = memberService.oneMember(mating.getMno());
+		
+		HashMap<String,Object> resultMap = new HashMap<>();
+		resultMap.put("status", "success");
+		resultMap.put("mating", mating);
+		resultMap.put("member", member);
+		
+
+		return resultMap;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)

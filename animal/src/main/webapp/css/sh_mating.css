@@ -3,9 +3,141 @@
 
 #main-body {
   position: relative;
-  top: 130px;
+  top: 30px;
   width: 1024px;
   padding-bottom: 200px;
+}
+
+button#All{
+  display: inline-block;
+  padding: .4em .8em;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#DOG{
+  display: inline-block;
+  padding: .4em .8em;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #ddd;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: url(../images/dog.png);
+  background-size: cover;
+}
+
+button#CAT{
+  display: inline-block;
+  padding: .4em .8em;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #ddd;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: url(../images/cat.png);
+  background-size: cover;
+}
+
+button#FISH{
+  display: inline-block;
+  padding: .4em .8em;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #ddd;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: url(../images/fish.png);
+  background-size: cover;
+  background-position: center;
+}
+
+button#BIRD{
+  display: inline-block;
+  padding: .4em .8em;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #ddd;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: url(../images/bird.png);
+  background-size: 45px 35px;
+  background-position: center;
+}
+
+button#ETC{
+  display: inline-block;
+  padding: 6px;
+  background: #fff;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  color: #000;
+  font-weight: 900;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button#All.active{
+  background: #d06a79;
+}
+
+button#DOG.active{
+  background: #d06a79;
+  background-image: url(../images/dog.png);
+  background-size: cover;
+}
+
+button#CAT.active{
+  background: #d06a79;
+  background-image: url(../images/cat.png);
+  background-size: cover;   
+}
+
+button#FISH.active{
+  background: #d06a79;
+  background-image: url(../images/fish.png);
+  background-size: cover;
+  background-position: center;
+}
+
+button#BIRD.active{
+  background: #d06a79;
+  background-image: url(../images/bird.png);
+  background-size: 45px 35px;
+  background-position: center;
+}
+
+button#ETC.active{
+  background: #d06a79;
+}
+
+button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
+  outline: 0 none;
 }
 
 #boastname {
@@ -24,6 +156,7 @@
   padding-left: 0;
   width: 1024px;
   margin-left: 5px;
+  margin-top: 30px;
 }
 
 button {
@@ -53,7 +186,9 @@ button:focus { /* 활성화 시 버튼 주변의 라인을 없애줌 */
   margin-top: 20px;
 }
 
-div.portfoliocard {
+.portfoliocard {
+  display: block;
+  float: left;
   position:relative;
   height:500px;
   width:240px;
@@ -66,12 +201,12 @@ div.portfoliocard {
   z-index:100;
 }
 
-div.portfoliocard div.coverphoto {
+.portfoliocard div.coverphoto {
   height: 250px;
   overflow: hidden;
 }
 
-div.portfoliocard div.coverphoto img {
+.portfoliocard div.coverphoto img {
 	width:100%;
 	height:100%;
   margin: 0 auto;
@@ -82,20 +217,20 @@ div.portfoliocard div.coverphoto img {
 }
 
 /* 세로가 긴 이미지 */
-div.portfoliocard div.coverphoto img.portrait {
+.portfoliocard div.coverphoto img.portrait {
   width: 100%;
   max-width: none;
   height: auto;
 }
 
 /* 가로가 긴 이미지 */
-div.portfoliocard div.coverphoto img.landscape {
+.portfoliocard div.coverphoto img.landscape {
   width: auto;
   max-width: none;
   height: 100%;
 }
 
-div.portfoliocard div.profile_picture img {
+.portfoliocard div.profile_picture img {
 	width:110px;
 	height:110px;
 	position:absolute;
@@ -105,19 +240,19 @@ div.portfoliocard div.profile_picture img {
 	border:4px solid #fff
 }
 
-div.portfoliocard div.left_col, div.portfoliocard div.right_col {
+.portfoliocard div.left_col, .portfoliocard div.right_col {
 	float:left;
 	height:250px;
 }
 
-div.portfoliocard div.left_col {
+.portfoliocard div.left_col {
   width:31%;
   padding-top:85px;
   box-sizing:border-box;
   background:rgba(245,245,245,1);
 }
 
-div.portfoliocard div.right_col {
+.portfoliocard div.right_col {
 	width:69%;
 	background:rgba(245,245,245,1);
 	border-left:1px solid rgba(230,230,230,1);
@@ -126,13 +261,13 @@ div.portfoliocard div.right_col {
 }
 
 
-div.portfoliocard ul.contact_information {
+.portfoliocard ul.contact_information {
 	margin-top: 40px;
 	padding-left:13px;
 	list-style-type:none;
 }
 
-div.portfoliocard ul.contact_information li {
+.portfoliocard ul.contact_information li {
   margin-top: 5px;
 	height:25px;
 	width:140px;
@@ -146,7 +281,7 @@ div.portfoliocard ul.contact_information li {
   overflow: hidden;
 }
 
-div.portfoliocard div.views {
+.portfoliocard div.views {
 	margin:20px auto;
   text-align: center;
 	font-weight:500;
@@ -154,265 +289,11 @@ div.portfoliocard div.views {
 	color:rgba(30,30,30,0.5);
 }
 
-div.portfoliocard div.view_count {
+.portfoliocard div.view_count {
 	font-weight:400;
 	font-size:20px;
 	color:rgba(140,140,140,1);
 }
-
-/* -- 디테일 모달 css -- */
-#saleModal .modal-content, #saleModal .modal-dialog {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1024px;
-/*  height: 630px;*/
-  background-color: #2d335e;
-  border-radius: 0;
-}
-
-#closeBtn {
-  font-size: 32px;
-  color: #fff;
-  opacity: 0.8;
-}
-
-#closeBtn:hover {
-  opacity: 1;
-}
-
-#saleModal .modal-body {
-  height: 510px;
-}
-
-/* 왼쪽 이미지 슬라이드 -> (디테일 모달)*/
-#saleModal #carousel-example-generic {
-  float: left !important;
-  width: 500px;
-  height: 480px;
-  background-color: #fff;
-}
-
-div.item {
-  height: 480px;
-  position: relative;
-}
-
-div.item img {
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.slideimg {
-  max-width: 480px;
-  max-height: 480px;
-  padding-right: auto;
-  padding-left: auto;
-}
-
-#carousel-example-generic li {
-  border: 1px solid #2d335e;
-  padding: 1px;
-  zoom: 1;
-}
-
-#carousel-example-generic li.active {
-    background-color: #d06a79;
-}
-
-.carousel-control {
-    
-}
-
-/* 오른쪽 컨텐트들 -> (디테일 모달)*/
-.contents {
-  border-top: 1px solid #d06a79;
-  float: right !important;
-  width: 480px;
-  background-color: #2d335e;
-}
-
-.title {
-  height: 30px;
-  text-align: center;
-  font-size: 21px;
-  color: #fff;
-}
-
-.content {
-  height: 175px;
-  margin: 10px;    
-}
-
-.content textarea {
-  color: #fff;
-  background-color: #2d335e;
-  font-size: 16px;
-  font-weight: 200;
-  height: 100%;
-  width: 100%;
-  resize: none;
-  overflow-y: scroll;
-  border: 0;
-}
-
-.input {
-  font-size: 13px;
-  height: 65px;
-  border-top: 1px solid #d06a79;
-  border-bottom: 1px solid #d06a79;
-  background-color: #2d335e;
-  padding: 0 9px;
-}
-
-.input > textarea {
-  margin: 10px auto;
-  padding: 7px;
-  width: 405px;
-  height: 40px;
-  overflow: visible;
-  border: 2px solid #d06a79;
-  border-radius: 8px;
-  resize: none;
-}
-
-.input > #comDelBtn {
-  position: absolute;
-  margin-top: 10px;
-  margin-left: 5px;
-  padding: 10px 10px 10px 10px;
-  text-decoration: none;
-  font-weight: 300;
-  font-size: 16px;
-  background-color: #d06a79;
-  color: #fff;
-  border: 2px solid #d06a79;
-  border-radius: 8px;
-}
-
-.input > #comDelBtn:hover {
-  color: #a12141;
-  border: 2px solid #a12141;
-}
-
-.commentin:focus {
-  outline-style: solid;
-  outline-width: 0px;
-}
-
-.comments {
-  
-  width: 480px;
-  height: 220px;
-  overflow-y: scroll; 
-  border-bottom: 1px solid #d06a79;
-  background-color: #2d335e;
-}
-
-.comment {
-  margin-top: 5px;
-  min-height: 50px;
-  margin-bottom: 7px;
-  color: #fff;
-}
-
-.commentimg {
-  float: left;
-  width: 50px;
-  height: 50px;
-  margin-left: 10px;
-}
-
-.commentname {
-  float: left;
-  font-size: 15px;
-  font-weight: 900;
-  max-width: 360px;
-  margin-left: 10px;
-  color: #d06a79;
-}
-
-#delImg {
-  width: 480px;
-  height: 220px;
-  padding-top: 10px;
-  overflow-y: scroll;
-}
-
-#delImg img {
-  max-height: 100px;
-  margin-bottom: 10px;
-}
-
-#delImg a {
-  position: relative;
-  bottom: 92px;
-  right: 25px;
-  font-size: 1.4em;
-}
-
-.fa-close {
-  float: right;
-  color: #d06a79;
-  margin-right: 20px;
-  margin-top: 3px;
-  font-size: 22px;
-}
-
-.commenttext {
-  width: 390px;
-  min-height: 55px;
-  font-size: 14px;
-  word-break: break-all;
-  border-bottom: 1px solid #fff;
-  background-color: rgba(0,0,0,0);
-  margin-left: 70px;
-  padding-bottom: 7px;
-  padding-top: 20px;
-}
-
-#checkModal .modal-content, #checkModal .modal-dialog {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  border-radius: 0;
-}
-
-#checkModal .modal-header {
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: -5px; 
-  padding-bottom: 10px;
-}
-
-#checkModal .modal-body {
-  height: 40px;
-  padding-top: 14px;
-  font-size: 15px;
-}
-
-#checkModal .modal-footer {
-  height: 45px;
-}
-
-#checkModal .modal-footer button {
-  margin-top: -8px;
-  height: 30px;
-  font-size: 13px;
-  border-radius: 0;
-}
-
-#checkModal .modal-footer #closeDel {
-  font-weight: bold;
-  color: #2d335e;
-}
-
 
 /* 맨아래 더보기 버튼 */
 #more {
