@@ -30,7 +30,7 @@
 	type="text/javascript"></script>
 
 <!-- filter 및 sort Test 중 -->
-<script src="../mixitup-master/build/jquery.mixitup.min.js"></script>
+<!-- <script src="../mixitup-master/build/jquery.mixitup.min.js"></script> -->
 
 </head>
 <body>
@@ -70,13 +70,12 @@
 	<section id="main-body">
 
 			<div id="selecter">
-				<button id="All" class="filter" data-filter="*">All</button>
-				<button id="DOG" class="filter" data-filter=".DOG"></button>
-				<button id="CAT" class="filter" data-filter=".CAT"></button>
-				<button id="FISH" class="filter" data-filter=".FISH"></button>
-				<button id="BIRD" class="filter" data-filter=".BIRD"></button>
-				<button id="ETC" class="filter" data-filter=".ETC">ETC</button>
-				<button id="hidden" class="filter" data-filter="*" hidden="">All</button>
+				<button id="All" class="active" onclick="filter(this.id)">All</button>
+        <button id="DOG" onclick="filter(this.id)"></button>
+        <button id="CAT" onclick="filter(this.id)"></button>
+        <button id="FISH" onclick="filter(this.id)"></button>
+        <button id="BIRD" onclick="filter(this.id)"></button>
+        <button id="ETC" onclick="filter(this.id)">ETC</button>
 				<span id='scheduleAdd' style='float:right; margin-right:35px;'></span>
 			</div>
 
@@ -231,6 +230,201 @@
     </div>
   </div>
 </div>
+	
+	
+	<!-- Filter -->
+  <script>
+  function filter(id) {
+    
+    if(id == "All") {
+      $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
+      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+    }else if(id == "DOG") {
+        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+        $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
+        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+    }else if(id == "CAT") {
+        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+        $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
+        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+    }else if(id == "FISH") {
+        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+        $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
+        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+    }else if(id == "BIRD") {
+        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+        $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
+        $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+    }else if(id ==  "ETC") {
+        $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+        $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+        $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+        $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+        $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+        $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
+    }
+    
+      $('#cardSection').empty();
+      var currentPage = 1;
+      var totalCount = 0;
+      
+      var filter_data = new FormData();
+      filter_data.append("filter_id", id);
+      
+      $.ajax({
+          url : 'education/ajax/filterCount.do',
+          dataType : 'json',
+          contentType : false,
+          processData : false,
+          data : filter_data,
+          async : false,
+          type : 'POST',
+          success : function(resultObj) {
+            totalCount = resultObj.count;
+            console.log("Title filter totalCount........." + totalCount);
+          }
+        })
+        
+       $('#more').empty();
+      if(totalCount > 1) {
+          $('#more')
+            .append(
+            "<a role='button' style='color:#fff;' id='filterBtn'>더보기</a>");
+        }
+      
+      $.ajax({
+          url : "education/ajax/filter_list.do?pageNo=" + currentPage,
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          data : filter_data,
+          async : false,
+          success : function(resultObj) {
+        	  
+        	  var show = $("#cardSection");
+              var file;
+              for(var education of resultObj.educations) {
+                file = education.filename;
+                var url = file.split('?')[1].split('=')[1];
+                show.append(
+                "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+                  "<div class='mix all " + education.eduSpec + "'>" +
+                    "<div class='slider'>" +
+                        "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                      "<div class='widget'>" +
+                        "<span>" +
+                        education.eduTitle +
+                        "</span>" +
+                      "</div>" +
+                      "<div class='play'>" +
+                        "▶" +
+                      "</div>" +
+                      "<div class='bottom'>" +
+                        "<hr />" +
+                        "<div class='buttons'>" +
+                          "<span class='like'>" +
+                            "<i class='fa fa-thumbs-up'></i> " + education.eduLikes +
+                          "</span>" +
+                          "<span class='view'>" +
+                            "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                          "</span>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>" +
+                  "</div>" +
+                "</a>");
+              }
+        	  
+          }
+        }); <!-- Ajax 끝 -->
+        
+        $('#filterBtn').click(function(event) {
+          
+          console.log("currentPage = "+currentPage);
+          console.log("totalCount = "+totalCount);
+          
+          if(currentPage < totalCount) {
+          currentPage = currentPage + 1;
+          console.log("Title Filter Page......"+currentPage);
+            $.ajax({
+            	    url : "education/ajax/filter_list.do?pageNo=" + currentPage,
+                dataType : "json",
+                type : "POST",
+                contentType : false,
+                processData : false,
+                data : filter_data,
+                async : false,
+                success : function(resultObj) {
+                	
+                	var show = $("#cardSection");
+                    var file;
+                    for(var education of resultObj.educations) {
+                      file = education.filename;
+                      var url = file.split('?')[1].split('=')[1];
+                      show.append(
+                      "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+                        "<div class='mix all " + education.eduSpec + "'>" +
+                          "<div class='slider'>" +
+                              "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                            "<div class='widget'>" +
+                              "<span>" +
+                              education.eduTitle +
+                              "</span>" +
+                            "</div>" +
+                            "<div class='play'>" +
+                              "▶" +
+                            "</div>" +
+                            "<div class='bottom'>" +
+                              "<hr />" +
+                              "<div class='buttons'>" +
+                                "<span class='like'>" +
+                                  "<i class='fa fa-thumbs-up'></i> " + education.eduLikes +
+                                "</span>" +
+                                "<span class='view'>" +
+                                  "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                                "</span>" +
+                              "</div>" +
+                            "</div>" +
+                          "</div>" +
+                        "</div>" +
+                      "</a>");
+                    }
+                	
+                }
+              }); <!-- Ajax 끝 -->
+              
+              if(currentPage >= totalCount) {
+                  $('#more').empty();                               
+                }
+          }
+          
+            else if(currentPage >= totalCount) {
+                alert("더이상 페이지가 존재하지 않습니다.");
+                console.log("더이상 페이지가 존재하지 않습니다.");
+              }
+          
+        })
+    
+  }
+  </script>
+	
 
 <script>
 $(document).ready(function() {
@@ -311,8 +505,6 @@ $(document).ready(function() {
 	  cache : true,
 	  success : function(resultObj) {
           console.log(resultObj.educations);
-		  $("#hidden").trigger("click");
-		  $("button:first").trigger("click");
 	    var show = $("#cardSection");
 	    var j = 0;
 	    var file;
@@ -414,8 +606,6 @@ $(document).ready(function() {
       type: 'post',
       dataType: 'json',
       success: function(resultObj) {
-        $("#hidden").trigger("click");
-        $("button:first").trigger("click");
         var show = $('#cardSection');
         var j = 0;
         var file;
@@ -490,11 +680,11 @@ $(document).ready(function() {
     }
   })
 </script>
-<script>
+<!-- <script>
 $(function(){
     $('#Container').mixItUp();
 });
-</script>
+</script> -->
 
 </body>
 

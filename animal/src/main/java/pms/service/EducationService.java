@@ -36,4 +36,9 @@ public interface EducationService {
 	int like_select(int like_eno);
 	
 	Likes like_check(Map<String, Object> paramMap);
+	
+	double filterCount(Map<String, Object> paramMap);
+	
+	List<Education> filter_list(Map<String, Object> paramMap);
+	
 }
