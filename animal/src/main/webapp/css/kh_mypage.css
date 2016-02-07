@@ -4,8 +4,6 @@ body {
 }
 
 #page {
-    border: 1px solid black;
-
     width: 1280px;
     display: block;
     margin-left: auto;
@@ -20,18 +18,20 @@ body {
 
 #left {
     border: 1px solid black;
-    width: 600px;
+    width: 500px;
     float: left;
     padding-left: 30px;
+    margin-left: 30px;
 }
 
 #right {
     border: 1px solid black;
-    width: 600px;
+    width: 500px;
     float: right;
     padding-right: 30px;
 }
 
-.button {
+#button {
+    float: left;
     text-align: center;
 }
