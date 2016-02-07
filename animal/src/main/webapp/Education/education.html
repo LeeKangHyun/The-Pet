@@ -9,8 +9,8 @@
 	type='text/css' />
 
 <!--  내가만든 css들  -->
-<link href="../css/sh_slidmenu_header_diary.less" type="style.less"
-	rel="stylesheet/less" />
+<link href="../css/sh_slidmenu_header_diary.css" rel="stylesheet" />
+<link href="../css/sh_edu_card.css" rel="stylesheet" />
 
 <!--  폰트아이콘 링크  -->
 <link href="../lib/font-awesome/css/font-awesome.min.css"
@@ -68,9 +68,8 @@
 	</header>
 
 	<section id="main-body">
-		<div class="m_content" style="width: 1024px; margin-top: 30px;">
-
-			<div style="text-align: left; margin-bottom: 30px;">
+		
+			<div id="selecter">
 				<button id="All" class="filter" data-filter="*">All</button>
 				<button id="DOG" class="filter" data-filter=".DOG"></button>
 				<button id="CAT" class="filter" data-filter=".CAT"></button>
@@ -82,15 +81,84 @@
 			</div>
 
 			<!-- 사진 게시물 영역 -->
-			<div id="Container" class="container"
-				style="margin-left: -10px; padding: 0px; margin-bottom: 30px;">
-				<div id="subtable" style="text-align: left;"></div>
-			</div>
+			<div id="cardSection">
+
+        <a role='button' class='card' href='edu_form.html?eduNo=2'>
+          <div class='boxsub1 gallery mix all DOG'>
+          <div class="slider">
+            <div class="widget">
+              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
+              <span>
+                [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
+              </span>
+            </div>
+            <div class="play">
+              ▶ 
+            </div>
+            <div class="bottom">
+              <hr />
+              <div class="buttons">
+                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
+                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </a>
+    
+    <a role='button' class='card' href='edu_form.html?eduNo=2'>
+          <div class='boxsub1 gallery mix all DOG'>
+          <div class="slider">
+            <div class="widget">
+              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
+              <span>
+                [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
+              </span>
+            </div>
+            <div class="play">
+              ▶ 
+            </div>
+            <div class="bottom">
+              <hr />
+              <div class="buttons">
+                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
+                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </a>
+  
+  <a role='button' class='card' href='edu_form.html?eduNo=2'>
+          <div class='boxsub1 gallery mix all DOG'>
+          <div class="slider">
+            <div class="widget">
+              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
+              <span>
+                [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
+              </span>
+            </div>
+            <div class="play">
+              ▶ 
+            </div>
+            <div class="bottom">
+              <hr />
+              <div class="buttons">
+                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
+                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </a>
+        
+      </div>
 			<!-- 사진 게시물 영역 끝 -->
+    
 			<div id="more">
 				<a role="button" style='color:#fff;' class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
 			</div>
-		</div>
+    
 	</section>
 
 
@@ -233,7 +301,7 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$.ajax({
+  $.ajax({
 	  url : 'education/ajax/list.do',
 	  dataType : 'json',
 	  type : 'post',
@@ -242,7 +310,7 @@ $.ajax({
 	  success : function(resultObj) {
 		  $("#hidden").trigger("click");
 		  $("button:first").trigger("click");
-	    var show = $("#subtable");
+	    var show = $("#cardSection");
 	    var j = 0;
 	    var file;
 	    for(var education of resultObj.educations) {
@@ -250,121 +318,136 @@ $.ajax({
 	      j++;
 	      var fname = file[0].fileName;
 	      var url = fname.split('?')[1].split('=')[1];
-	      show.append(
-	        "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" + 
-	        "<div class='card' roll='button'>" +
-	        "<div role='button' class='detailLnk' eduNo='" + education.eduNo + "'>"+
-	        "<img class='detailLnk' eduNo='" + education.eduNo + "' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
-	        "</div>"+
-	        "<h2>"+
-	        "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
-	        "</h2>"+
-	        "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
-	        "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
-	        "</span>"+
-	        "</div>"+
-	      "</div></div>");
+        console.log(education.eduTitle)
+        show.append(
+        "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+          "<div class='mix all " + education.eduSpec + "'>" + 
+            "<div class='slider'>" +
+              "<div class='widget'>" +
+                "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                "<span>" +
+                  education.eduTitle +
+                "</span>" +
+              "</div>" +
+              "<div class='play'>" +
+                "▶" +
+              "</div>" +
+              "<div class='bottom'>" +
+                "<hr />" +
+                "<div class='buttons'>" +
+                  "<span class='like'>" +
+                    "<i class='fa fa-thumbs-up'></i> 0" + 
+                  "</span>" +
+                  "<span class='view'>" +
+                    "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                  "</span>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+          "</div>" +
+        "</a>");
 	    }
-	    $("a.detailLnk").click(clickDetailLnk);
-	    $("div.detailLnk").click(clickDetailLnk);
 	  }
 	  
 	});
-function clickDetailLnk(event) {
-    event.preventDefault(); 
-    location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
-}
-
-	$(document).on("click", "#addBtn", function(event) {
-	    if ($('#eduTitle').val() == "" ||
-	      $('#eduContent').val() == "" ||
-	      $('#fileUrl').val() == "") {
-	      alert("모두 입력해주세요");
-	      return false;
-	    } else {
-	      var form_data = new FormData();
-	      form_data.append("mno", 1)
-	      form_data.append("eduSpec", $('#eduSpec').val())
-	      form_data.append("eduTitle", $('#eduTitle').val())
-	      form_data.append("eduContent", $('#eduContent').val())
-	      $.ajax({
-	        url: "education/ajax/add.do",
-	        dataType: 'json',
-	        cache: false,
-	        contentType: false,
-	        processData: false,
-	        data: form_data,
-	        type: 'post',
-	        success: function(re) {
-	          var eduNo = re.ajaxResult.data;
-	          var file_name = $("#fileUrl").val();
-	          console.log(file_name);
-	          var form_data = new FormData();
-	          form_data.append("file_name", file_name)
-	          form_data.append("eduNo", eduNo)
-	          $.ajax({
-	            url: "../files/ajax/eduupload.do",
-	            dataType: 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
-	            data: form_data,
-	            type: 'post',
-	            success: function(resultObj) {
-	            }
-	        })
-	        alert("게시물이 추가되었습니다.")
-	        location.href = "education.html"
-	      }
-	    })
-	  }
-	});
+  
+ $(document).on("click", "#addBtn", function(event) {
+    if ($('#eduTitle').val() == "" ||
+      $('#eduContent').val() == "" ||
+      $('#fileUrl').val() == "") {
+      alert("모두 입력해주세요");
+      return false;
+    } else {
+      var form_data = new FormData();
+      form_data.append("mno", 1)
+      form_data.append("eduSpec", $('#eduSpec').val())
+      form_data.append("eduTitle", $('#eduTitle').val())
+      form_data.append("eduContent", $('#eduContent').val())
+      $.ajax({
+        url: "education/ajax/add.do",
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(re) {
+          var eduNo = re.ajaxResult.data;
+          var file_name = $("#fileUrl").val();
+          console.log(file_name);
+          var form_data = new FormData();
+          form_data.append("file_name", file_name)
+          form_data.append("eduNo", eduNo)
+          $.ajax({
+            url: "../files/ajax/eduupload.do",
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(resultObj) {
+            }
+          })
+          alert("게시물이 추가되었습니다.")
+          location.href = "education.html"
+        }
+      })
+    }
+  });
 	  
 	//더보기
 	function moree(id) {
 	  console.log(id)
 	  var page = id.substring(1);
 	  $.ajax({
-	  url: 'education/ajax/list.do',
-	  data: {
-	    pageNo: page
-	  },
-	  type: 'post',
-	  dataType: 'json',
-	  success: function(resultObj) {
-		$("#hidden").trigger("click");
-	  $("button:first").trigger("click");
-	  var show = $('#subtable');
-	  var j = 0;
-	  var file;
-	  for (var education of resultObj.educations) {
-	      console.log(education);
-	    file = resultObj.filesMap[j];
-	    j++;
-	    var fname = file[0].fileName;
-	    var url = fname.split('?')[1].split('=')[1];
-	    show.append(
-	      "<div class='boxsub1 gallery mix all " + education.eduSpec + "'>" +
-	      "<div class='card'>"+
-	      "<div class='background detailLnk' eduNo='" + education.eduNo + "'></a>"+
-	      "<img src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />"+
-	      "</div>"+
-	      "<a class='overlay detailLnk' eduNo='" + education.eduNo + "'></a>" + 
-	      "<i class='fa fa-youtube-play'></i>"+
-	      "</a> <a class='thumb' href='#'></a>"+
-	      "<div class='infosub'>"+
-	      "<h2>"+
-	      "<a class='detailLnk' eduNo='" + education.eduNo + "' href='#'>" + education.eduTitle + "</a>"+
-	      "</h2>"+
-	      "<div class='foot'>"+
-	      "<i class='line'></i> <span class='date' style='padding-right:120px;'>" + education.eduCreateDate + "</span>"+
-	      "<span id='view-like'><i class='fa fa-eye'></i> " + education.eduViews + 
-	      "</span>"+
-	      "</div>"+
-	      "</div>"+
-	    "</div>")
-	  };
-	  $("a.detailLnk").click(clickDetailLnk);
+      url: 'education/ajax/list.do',
+      data: {
+        pageNo: page
+      },
+      type: 'post',
+      dataType: 'json',
+      success: function(resultObj) {
+        $("#hidden").trigger("click");
+        $("button:first").trigger("click");
+        var show = $('#cardSection');
+        var j = 0;
+        var file;
+        for (var education of resultObj.educations) {
+          file = resultObj.filesMap[j];
+          j++;
+          var fname = file[0].fileName;
+          var url = fname.split('?')[1].split('=')[1];
+          show.append(
+          "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+            "<div class='mix all " + education.eduSpec + "'>" + 
+              "<div class='slider'>" +
+                "<div class='widget'>" +
+                  "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                  "<span>" +
+                    education.eduTitle +
+                  "</span>" +
+                "</div>" +
+                "<div class='play'>" +
+                  "▶" +
+                "</div>" +
+                "<div class='bottom'>" +
+                  "<hr />" +
+                  "<div class='buttons'>" +
+                    "<span class='like'>" +
+                      "<i class='fa fa-thumbs-up'></i> 0" + 
+                    "</span>" +
+                    "<span class='view'>" +
+                      "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                    "</span>" +
+                  "</div>" +
+                "</div>" +
+              "</div>" +
+            "</div>" +
+          "</a>");
+        }
+      }
+    });
 
 	  $.getJSON('education/ajax/pages.do', function(resultObj) {
 	    var ajaxResult = resultObj.ajaxResult;
@@ -381,13 +464,6 @@ function clickDetailLnk(event) {
 	        "<a role='button' style='color:#fff;' class='moreBtn' id='m" + i + "' onclick='moree(this.pid);'>더보기</a>")
 	    }
 	  })
-	}
-
-	});
-	  function clickDetailLnk(event) {
-	      event.preventDefault(); 
-	      location.href = "edu_form.html?eduNo=" + $(event.target).attr("eduNo");
-	  }
 	}
 </script>
 <script>

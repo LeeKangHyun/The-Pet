@@ -1,5 +1,4 @@
 @import url(http://fonts.googleapis.com/css?family=Gafata);
-@import url(http://c.boylett.uk/fonts/fontawesome/fontawesome.css);
 
 /*
 #cardSection {
@@ -19,7 +18,7 @@
   width: 400px;
   height: 224px;
   overflow: hidden;
-  margin: 50px auto;
+  margin: 20px auto;
   background-color: #000;
 }
 .slider img {
@@ -42,7 +41,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 20px 25%;
+  padding: 20px 20%;
   text-align: center;
 }
 .bottom label {
@@ -53,7 +52,7 @@
 }
 .bottom hr {
   display: block;
-  margin: 13px 0;
+  margin: 15px 0;
   height: 1px;
   background: transparent;
   border: none;
@@ -62,6 +61,8 @@
 }
 .buttons {
   margin: 0 15px;
+  margin-top: -7px;
+  margin-bottom: -10px;
   text-decoration: none;
   font-size: 18px;
   color: #FFF;
@@ -78,7 +79,7 @@
   top: 30px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 10px;
   width: 60px;
   height: 60px;
   line-height: 60px;

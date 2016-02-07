@@ -1,14 +1,17 @@
 .modal-body {
   height: 385px;
 }
-
 .form-control {
   margin-bottom: 14px;
 }
-
 .control-label {
   padding-top: 5px;
   margin-bottom: 15px;
+}
+
+#selecter {
+  margin-top: 30px;
+  padding-left: 30px;
 }
 
 #addBtn {
@@ -18,7 +21,6 @@
   font-weight: 300;
   background-color: #2d335e;
 }
-
 #subtable {
   position: relative;
   margin-left: -15px ;
@@ -26,15 +28,12 @@
   /* border: 1px red solid;  */
   top: 10px;
 }
-
 #rank-section {
   padding-left: 10px;
 }
-
 #button-form {
   display: inline;
 }
-
 button#All{
   display: inline-block;
   padding: .4em .8em;
@@ -48,7 +47,6 @@ button#All{
   border-radius: 4px;
   cursor: pointer;
 }
-
 button#DOG{
   display: inline-block;
   padding: .4em .8em;
@@ -64,7 +62,6 @@ button#DOG{
   background-image: url(../images/dog.png);
   background-size: cover;
 }
-
 button#CAT{
   display: inline-block;
   padding: .4em .8em;
@@ -80,7 +77,6 @@ button#CAT{
   background-image: url(../images/cat.png);
   background-size: cover;
 }
-
 button#FISH{
   display: inline-block;
   padding: .4em .8em;
@@ -97,7 +93,6 @@ button#FISH{
   background-size: cover;
   background-position: center;
 }
-
 button#BIRD{
   display: inline-block;
   padding: .4em .8em;
@@ -114,7 +109,6 @@ button#BIRD{
   background-size: 45px 35px;
   background-position: center;
 }
-
 button#ETC{
   display: inline-block;
   padding: 6px;
@@ -128,49 +122,40 @@ button#ETC{
   border-radius: 4px;
   cursor: pointer;
 }
-
 button#All.active{
   background: #d06a79;
 }
-
 button#DOG.active{
   background: #d06a79;
   background-image: url(../images/dog.png);
   background-size: cover;
 }
-
 button#CAT.active{
   background: #d06a79;
   background-image: url(../images/cat.png);
   background-size: cover;   
 }
-
 button#FISH.active{
   background: #d06a79;
   background-image: url(../images/fish.png);
   background-size: cover;
   background-position: center;
 }
-
 button#BIRD.active{
   background: #d06a79;
   background-image: url(../images/bird.png);
   background-size: 45px 35px;
   background-position: center;
 }
-
 button#ETC.active{
   background: #d06a79;
 }
-
 button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   outline: 0 none;
 }
 
 
 /* search form style */
-
-
 .search-form {
   position:relative;
   width:auto;
@@ -179,13 +164,11 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   right: -25px;
       /* border:1px blue solid; */
 }
-
 .form-control:focus {
   outline: 0 none;
   border: 1px #d06a79 solid;
   box-shadow: 0px 0px 5px 1px #C07C86;
 }
-
 .form-search {
   position: relative;
   border-radius: 6px;
@@ -197,13 +180,11 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   padding-right: 30px;
   padding-left: 5px;
 }
-
 .form-search:focus {
   outline: 0 none;
   border: 1px #d06a79 solid;
   box-shadow: 0px 0px 5px 1px #C07C86;
 }
-
 .form-submit {
   position: relative;
   background-color: transparent;
@@ -221,54 +202,6 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   color: #d06a79;
 }
 
-
-
-
-.container .mix{
-  display: none;
-} 
-
-.view-like {
-  float: right;
-}
-
-.card {
-	border : 1px solid black;
-	margin-bottom : 20px;
-	text-align: center;
-}
-
-.gallery {
-	width : 350px;
-	height : 200px;
-}
-
-/**** Transitions ****/
-
-.transitions-enabled.masonry,
-.transitions-enabled.masonry .masonry-brick {
-  -webkit-transition-duration: 0.7s;
-  -moz-transition-duration: 0.7s;
-  -o-transition-duration: 0.7s;
-  transition-duration: 0.7s;
-}
-
-.transitions-enabled.masonry {
-  -webkit-transition-property: height, width;
-  -moz-transition-property: height, width;
-  -o-transition-property: height, width;
-  transition-property: height, width;
-}
-
-.transitions-enabled.masonry  .masonry-brick {
-  -webkit-transition-property: left, right, top;
-  -moz-transition-property: left, right, top;
-  -o-transition-property: left, right, top;
-  transition-property: left, right, top;
-}
-
-
-
 /* more scroll button */
 #more {
   position:relative;
@@ -282,48 +215,4 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 #moreBtn {
   text-decoration: none;
   color: #000;
-}
-
-.quick-menu {
-  border: 1px #DBDBDB solid;
-  border-radius: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  position: absolute;
-  text-align: center;
-  width: 100px;
-  height: 130px;
-  right:30px;
-  top: 150px;
-}
-
-#quick-header {
-  margin-top: 10px;
-  border-bottom: 1px #DBDBDB solid;
-  font-weight: 900;
-}
-
-.fa-chevron-up {
-  font-size: 15px;
-}
-
-.fa-chevron-down {
-  font-size: 15px;
-}
-
-#quick-top {
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-#quick-bottom {
-  margin-top: 15px;
-  font-weight: 500;
-}
-
-#quick-top-a:hover, 
-#quick-bottom-a:hover,
-#quick-top-a:FOCUS,
-#quick-bottom-a:FOCUS {
-  text-decoration: none;
 }
