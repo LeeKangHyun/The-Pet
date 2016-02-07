@@ -47,6 +47,19 @@ public class MemberController {
 		} 
 		return new AjaxResult("success", member);
 	}
+
+	@RequestMapping(value="checkPwd", method=RequestMethod.GET)
+	public Object checkPWd(int mno) throws Exception {
+	  
+	  Member member = memberService.checkPwd(mno);
+	  
+	  if (member == null) {
+	    return new AjaxResult("failure", null);
+	  } 
+	  return new AjaxResult("success", member);
+	}
+	
+	
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public Object add(

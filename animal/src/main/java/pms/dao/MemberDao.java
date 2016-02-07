@@ -18,6 +18,8 @@ public interface MemberDao {
 
   Member selectEmail(String mEmail);
   
+  Member selectPwd(int mno);
+  
   Member selectOne(int mno);
 
   Member selectOneByEmailPassword(Map<String,Object> paramMap);

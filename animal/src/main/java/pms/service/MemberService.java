@@ -14,6 +14,7 @@ public interface MemberService {
   int change(Member member);
   Member findNum(String mEmail);
   Member checkEmail(String mEmail);
+  Member checkPwd(int mno);
   Member oneMember(int mno);
   Member login(String mEmail, String password);
 
