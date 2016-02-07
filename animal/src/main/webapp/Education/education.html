@@ -68,7 +68,7 @@
 	</header>
 
 	<section id="main-body">
-		
+
 			<div id="selecter">
 				<button id="All" class="filter" data-filter="*">All</button>
 				<button id="DOG" class="filter" data-filter=".DOG"></button>
@@ -83,7 +83,30 @@
 			<!-- 사진 게시물 영역 -->
 			<div id="cardSection">
 
-        <a role='button' class='card' href='edu_form.html?eduNo=2'>
+                <a role='button' class='card' href='edu_form.html?eduNo=2'>
+                  <div class='boxsub1 gallery mix all DOG'>
+                  <div class="slider">
+                    <div class="widget">
+                      <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
+                      <span>
+                        [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
+                      </span>
+                    </div>
+                    <div class="play">
+                      ▶
+                    </div>
+                    <div class="bottom">
+                      <hr />
+                      <div class="buttons">
+                        <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
+                        <span class="view"><i class="fa fa-eye"></i></i> 30</span>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </a>
+
+    <!-- <a role='button' class='card' href='edu_form.html?eduNo=2'>
           <div class='boxsub1 gallery mix all DOG'>
           <div class="slider">
             <div class="widget">
@@ -93,7 +116,7 @@
               </span>
             </div>
             <div class="play">
-              ▶ 
+              ▶
             </div>
             <div class="bottom">
               <hr />
@@ -105,30 +128,7 @@
           </div>
           </div>
         </a>
-    
-    <a role='button' class='card' href='edu_form.html?eduNo=2'>
-          <div class='boxsub1 gallery mix all DOG'>
-          <div class="slider">
-            <div class="widget">
-              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
-              <span>
-                [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
-              </span>
-            </div>
-            <div class="play">
-              ▶ 
-            </div>
-            <div class="bottom">
-              <hr />
-              <div class="buttons">
-                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
-                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
-              </div>
-            </div>
-          </div>
-          </div>
-        </a>
-  
+
   <a role='button' class='card' href='edu_form.html?eduNo=2'>
           <div class='boxsub1 gallery mix all DOG'>
           <div class="slider">
@@ -139,7 +139,7 @@
               </span>
             </div>
             <div class="play">
-              ▶ 
+              ▶
             </div>
             <div class="bottom">
               <hr />
@@ -150,15 +150,15 @@
             </div>
           </div>
           </div>
-        </a>
-        
-      </div>
+        </a> -->
+
+            </div>
 			<!-- 사진 게시물 영역 끝 -->
-    
+
 			<div id="more">
 				<a role="button" style='color:#fff;' class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
 			</div>
-    
+
 	</section>
 
 
@@ -251,14 +251,14 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
-    
+
     btn.append(
       "<a class='btn btn-default' id='scheduleAdd' role='button'"
       + "data-toggle='modal' data-target='#AddBoard'>New</a>")
-    
+
     ul.append(
       "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-    
+
   } else {
     div.append(
       "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
@@ -270,7 +270,7 @@ $(document).ready(function() {
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
-    
+
     ul.append(
       "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
   }
@@ -300,7 +300,9 @@ $(document).ready(function() {
   })
 });
 </script>
+
 <script>
+ // 교육영상 리스트
   $.ajax({
 	  url : 'education/ajax/list.do',
 	  dataType : 'json',
@@ -308,6 +310,7 @@ $(document).ready(function() {
 	  async : false,
 	  cache : true,
 	  success : function(resultObj) {
+          console.log(resultObj.educations);
 		  $("#hidden").trigger("click");
 		  $("button:first").trigger("click");
 	    var show = $("#cardSection");
@@ -321,12 +324,12 @@ $(document).ready(function() {
         console.log(education.eduTitle)
         show.append(
         "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
-          "<div class='mix all " + education.eduSpec + "'>" + 
+          "<div class='mix all " + education.eduSpec + "'>" +
             "<div class='slider'>" +
-              "<div class='widget'>" +
                 "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+              "<div class='widget'>" +
                 "<span>" +
-                  education.eduTitle +
+                education.eduTitle +
                 "</span>" +
               "</div>" +
               "<div class='play'>" +
@@ -336,7 +339,7 @@ $(document).ready(function() {
                 "<hr />" +
                 "<div class='buttons'>" +
                   "<span class='like'>" +
-                    "<i class='fa fa-thumbs-up'></i> 0" + 
+                    "<i class='fa fa-thumbs-up'></i> 0" +
                   "</span>" +
                   "<span class='view'>" +
                     "<i class='fa fa-eye'></i></i>" + education.eduViews +
@@ -348,9 +351,9 @@ $(document).ready(function() {
         "</a>");
 	    }
 	  }
-	  
+
 	});
-  
+
  $(document).on("click", "#addBtn", function(event) {
     if ($('#eduTitle').val() == "" ||
       $('#eduContent').val() == "" ||
@@ -395,7 +398,7 @@ $(document).ready(function() {
       })
     }
   });
-	  
+
 	//더보기
 	function moree(id) {
 	  console.log(id)
@@ -420,7 +423,7 @@ $(document).ready(function() {
           var url = fname.split('?')[1].split('=')[1];
           show.append(
           "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
-            "<div class='mix all " + education.eduSpec + "'>" + 
+            "<div class='mix all " + education.eduSpec + "'>" +
               "<div class='slider'>" +
                 "<div class='widget'>" +
                   "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
@@ -435,7 +438,7 @@ $(document).ready(function() {
                   "<hr />" +
                   "<div class='buttons'>" +
                     "<span class='like'>" +
-                      "<i class='fa fa-thumbs-up'></i> 0" + 
+                      "<i class='fa fa-thumbs-up'></i> 0" +
                     "</span>" +
                     "<span class='view'>" +
                       "<i class='fa fa-eye'></i></i>" + education.eduViews +
