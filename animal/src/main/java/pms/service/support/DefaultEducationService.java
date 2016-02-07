@@ -82,7 +82,7 @@ public class DefaultEducationService implements EducationService {
 	    return educationDao.filterCount(paramMap);
 	  }
 	  
-	  public double filter_list(Map<String, Object> paramMap) {
+	  public List<Education> filter_list(Map<String, Object> paramMap) {
       return educationDao.filter_list(paramMap);
     }
 }

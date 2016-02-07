@@ -292,7 +292,7 @@
       if(totalCount > 1) {
           $('#more')
             .append(
-            "<a role='button' style='color:#fff;' class='filterBtn'>더보기</a>");
+            "<a role='button' style='color:#fff;' id='filterBtn'>더보기</a>");
         }
       
       $.ajax({
@@ -305,6 +305,39 @@
           async : false,
           success : function(resultObj) {
         	  
+        	  var show = $("#cardSection");
+              var file;
+              for(var education of resultObj.educations) {
+                file = education.filename;
+                var url = file.split('?')[1].split('=')[1];
+                show.append(
+                "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+                  "<div class='mix all " + education.eduSpec + "'>" +
+                    "<div class='slider'>" +
+                        "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                      "<div class='widget'>" +
+                        "<span>" +
+                        education.eduTitle +
+                        "</span>" +
+                      "</div>" +
+                      "<div class='play'>" +
+                        "▶" +
+                      "</div>" +
+                      "<div class='bottom'>" +
+                        "<hr />" +
+                        "<div class='buttons'>" +
+                          "<span class='like'>" +
+                            "<i class='fa fa-thumbs-up'></i> " + education.eduLikes +
+                          "</span>" +
+                          "<span class='view'>" +
+                            "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                          "</span>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>" +
+                  "</div>" +
+                "</a>");
+              }
         	  
           }
         }); <!-- Ajax 끝 -->
@@ -318,7 +351,7 @@
           currentPage = currentPage + 1;
           console.log("Title Filter Page......"+currentPage);
             $.ajax({
-                url : "../boastboard/ajax/filter_list.do?pageNo="+currentPage,
+            	    url : "education/ajax/filter_list.do?pageNo=" + currentPage,
                 dataType : "json",
                 type : "POST",
                 contentType : false,
@@ -326,104 +359,46 @@
                 data : filter_data,
                 async : false,
                 success : function(resultObj) {
-                  var div = $("#subtable");
-                  console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-                  var setClass;
-                  for (var i = 0; i < resultObj.data.length; i++) {
-                    var check1 = resultObj.data[i].filename.split(".");
-                    check1 = check1.slice(1,2).toString().toLowerCase();
-                    if (check1 == "jpg"
-                        || check1 == "jpeg"
-                        || check1 == "png"
-                        || check1 == "gif"
-                        || check1 == "bmp") {
-                        console.log("가로 : " + resultObj.size[i].width);
-                        console.log("세로 : " + resultObj.size[i].height);
-                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                          setClass="landscape"
-                        } else {
-                          setClass="portrait"
-                        }
-                      $(
-                          "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                          .html(
-                              "<div class='card'>"
-                                  + "<div class='background'>"
-                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                  + "</div>"
-                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + "<i class='fa fa-camera-retro'></i>"
-                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<div class='infosub'>"
-                                  + "<h2>"
-                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + resultObj.data[i].title
-                                  + "</a>"
-                                  + "</h2>"
-                                  + "<div class='foot'>"
-                                  + "<i class='line'></i> <span class='date'>"
-                                  + resultObj.data[i].createDate
-                                  + "</span>"
-                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                  + resultObj.data[i].view
-                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                  + resultObj.data[i].like
-                                  + " </span>"
-                                  + "</div>"
-                                  + "</div>"
-                                  + "</div>")
-                          .appendTo(div);
-                    } else if (check1 == "avi"
-                        || check1 == "wmv"
-                        || check1 == "mp4"
-                        || check1 == "mkv"
-                        || check1 == "wav") {
-                        console.log("가로 : " + resultObj.size[i].width);
-                        console.log("세로 : " + resultObj.size[i].height);
-                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                          setClass="landscape"
-                        } else {
-                          setClass="portrait"
-                        }
-                      $(
-                          "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                          .html(
-                              "<div class='card'>"
-                                  + "<div class='background'>"
-                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                  + "</div>"
-                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + "<i class='fa fa-youtube-play'></i>"
-                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<div class='infosub'>"
-                                  + "<h2>"
-                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + resultObj.data[i].title
-                                  + "</a>"
-                                  + "</h2>"
-                                  + "<div class='foot'>"
-                                  + "<i class='line'></i> <span class='date'>"
-                                  + resultObj.data[i].createDate
-                                  + "</span>"
-                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                  + resultObj.data[i].view
-                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                  + resultObj.data[i].like
-                                  + " </span>"
-                                  + "</div>"
-                                  + "</div>"
-                                  + "</div>")
-                          .appendTo(div);
+                	
+                	var show = $("#cardSection");
+                    var file;
+                    for(var education of resultObj.educations) {
+                      file = education.filename;
+                      var url = file.split('?')[1].split('=')[1];
+                      show.append(
+                      "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
+                        "<div class='mix all " + education.eduSpec + "'>" +
+                          "<div class='slider'>" +
+                              "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
+                            "<div class='widget'>" +
+                              "<span>" +
+                              education.eduTitle +
+                              "</span>" +
+                            "</div>" +
+                            "<div class='play'>" +
+                              "▶" +
+                            "</div>" +
+                            "<div class='bottom'>" +
+                              "<hr />" +
+                              "<div class='buttons'>" +
+                                "<span class='like'>" +
+                                  "<i class='fa fa-thumbs-up'></i> " + education.eduLikes +
+                                "</span>" +
+                                "<span class='view'>" +
+                                  "<i class='fa fa-eye'></i></i>" + education.eduViews +
+                                "</span>" +
+                              "</div>" +
+                            "</div>" +
+                          "</div>" +
+                        "</div>" +
+                      "</a>");
                     }
-                  }
+                	
                 }
-
               }); <!-- Ajax 끝 -->
               
               if(currentPage >= totalCount) {
-                  $('#moreBtn-Origin').empty();                               
+                  $('#more').empty();                               
                 }
           }
           

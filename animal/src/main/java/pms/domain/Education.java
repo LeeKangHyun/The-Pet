@@ -18,8 +18,19 @@ public class Education implements Serializable {
   protected int eduLikes;  	  // 교육 게시물 좋아요 수
 	protected String attachFile;	// 컬럼명 = fileName
 	protected double count;
+	protected String filename;
 	
-	public int getEduLikes() {
+	
+	
+	public String getFilename() {
+    return filename;
+  }
+
+  public void setFilename(String filename) {
+    this.filename = filename;
+  }
+
+  public int getEduLikes() {
 		return eduLikes;
 	}
 

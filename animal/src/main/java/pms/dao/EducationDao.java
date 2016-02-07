@@ -38,6 +38,6 @@ public interface EducationDao {
 
   double filterCount(Map<String, Object> paramMap);
   
-  double filter_list(Map<String, Object> paramMap);
+  List<Education> filter_list(Map<String, Object> paramMap);
   
 }

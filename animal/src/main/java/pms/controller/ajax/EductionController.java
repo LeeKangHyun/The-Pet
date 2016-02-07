@@ -246,16 +246,11 @@ public class EductionController {
      paramMap.put("length", pageSize);
      paramMap.put("filter_id", filter_id);
 
-     List<Education> boastboards = educationService.filter_list(paramMap);
-     List<Files> fileMap = new ArrayList<Files>();
-     for(int i = 0; i < boastboards.size(); i++) {
-       fileMap.add(boastBoardDao.getsize(boastboards.get(i).getFilename()));
-     }
-
+     List<Education> educations = educationService.filter_list(paramMap);
+     
      HashMap<String, Object> resultMap = new HashMap<>();
      resultMap.put("status", "success");
-     resultMap.put("data", boastboards);
-     resultMap.put("size", fileMap);
+     resultMap.put("educations", educations);
      
      return resultMap;
    }

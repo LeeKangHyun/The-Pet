@@ -6,13 +6,15 @@
 <mapper namespace="pms.dao.EducationDao">
   <resultMap type="education" id="educationMap">
     <id column="EDU_NUM" property="eduNo" />
-    <result column="MEM_NUM" property="mno" />
     <result column="EDU_VIEWS" property="eduViews" />
     <result column="EDU_CRE" property="eduCreateDate" />
-    <result column="CRE_TITLE" property="eduTitle" />
+    <result column="EDU_TITLE" property="eduTitle" />
     <result column="EDU_CONTENT" property="eduContent" />
-    <result column="EDU_TYPE" property="eduType" /> 
+        <result column="EDU_SPEC" property="eduSpec" />
+    <result column="MEM_NUM" property="mno" />
     <result column="EDU_LIKES" property="eduLikes" />
+    <result column="EDU_TYPE" property="eduType" /> 
+    <result column="FILE_NAME"   property="filename"/> <!-- 파일이랑 조인을 위해서 추가 by.JH -->
   </resultMap>
   
      <resultMap type="Likes" id="likesMap">
@@ -129,15 +131,18 @@
     
     <select id="filter_list" resultMap="educationMap" parameterType="int">
     select
-      EDU_NUM as eduNo,
-      EDU_TITLE as eduTitle,
-      EDU_SPEC as eduSpec,
-      EDU_CRE as eduCreateDate,
-      EDU_VIEWS as eduViews,
-      EDU_LIKES as eduLikes
-    from Education 
+      ed.EDU_NUM,
+      ed.EDU_TITLE,
+      ed.EDU_SPEC,
+      ed.EDU_CRE,
+      ed.EDU_VIEWS,
+      ed.EDU_LIKES,
+      fi.FILE_NAME
+    from Education ed
+    left outer join Files fi on ed.EDU_NUM = fi.EDU_NUM
+    <if test="filter_id != 'All'">where EDU_SPEC = #{filter_id}</if>
     order by EDU_NUM desc
-      limit #{startIndex}, 6
+      limit #{startIndex}, #{length}
   </select>
   
 </mapper>
