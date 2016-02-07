@@ -69,4 +69,12 @@ public class DefaultEducationService implements EducationService {
 	 public Likes like_check(Map<String, Object> paramMap) {
 	    return educationDao.like_check(paramMap);
 	  }
+	 
+	 public void addLikes(int eduNo) {
+		 educationDao.addLikes(eduNo);
+	 }
+	 
+	 public void deleteLikes(int eduNo) {
+		 educationDao.deleteLikes(eduNo);
+	 }
 }

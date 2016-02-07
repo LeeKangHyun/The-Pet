@@ -24,6 +24,10 @@ public interface EducationDao {
     
 	Education selectOne(int eduNo);
 	
+	void addLikes(int eduNo);
+	
+	void deleteLikes(int eduNo);
+	
 	int like_add(Map<String, Object> paramMap);
 	
 	int like_delete(Map<String, Object> paramMap);
