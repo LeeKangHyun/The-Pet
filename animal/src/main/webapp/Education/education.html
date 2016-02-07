@@ -32,6 +32,7 @@
 <!-- filter 및 sort Test 중 -->
 <!-- <script src="../mixitup-master/build/jquery.mixitup.min.js"></script> -->
 
+
 </head>
 <body>
 	<header id="menu">
@@ -301,12 +302,10 @@
           }
         })
         
-       $('#more').empty();
+      $('#more').empty();
       if(totalCount > 1) {
-          $('#more')
-            .append(
-            "<a role='button' style='color:#fff;' id='filterBtn'>더보기</a>");
-        }
+          $('#more').append("<a role='button' style='color:#fff;' id='filterBtn'>더보기</a>");
+          }
       
       $.ajax({
           url : "education/ajax/filter_list.do?pageNo=" + currentPage,

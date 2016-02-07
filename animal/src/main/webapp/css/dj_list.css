@@ -220,7 +220,20 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   color: #000;
 }
 
+#filterBtn {
+  background-color: #2d335e;
+  padding: 2px 550px;
+  font-size: 20px;
+  height: 30px;
+  text-decoration: none;
+  color: #000;
+}
+
 .moreBtn:hover {
+  text-decoration: none;
+}
+
+#filterBtn:hover {
   text-decoration: none;
 }
 
