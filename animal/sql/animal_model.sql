@@ -210,6 +210,7 @@ CREATE TABLE Education (
   EDU_TITLE   VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   EDU_CONTENT TEXT         NOT NULL COMMENT '내용', -- 내용
   EDU_SPEC    char(5)      NOT NULL COMMENT '구분', -- 구분
+  EDU_LIKES   INTEGER      NOT NULL DEFAULT 0 COMMENT '새 컬럼', -- 새 컬럼
   MEM_NUM     INTEGER      NULL     COMMENT '회원번호' -- 회원번호
 )
 COMMENT '교육';
