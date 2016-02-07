@@ -1,12 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Gafata);
 
-/*
 #cardSection {
-  width: 1260px;
-  height: auto;
-  margin: 0 auto;
+  margin-bottom: 47px;
 }
-*/
 
 .card {
   float: left;

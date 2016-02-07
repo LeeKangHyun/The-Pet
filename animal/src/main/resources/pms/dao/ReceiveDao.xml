@@ -64,7 +64,7 @@
 	</insert>
 	
 	<delete id="delete" parameterType="int">
-		delete from recievebox where MSG_NUM=#{msgNo}
+		delete from receivebox where MSG_NUM=#{msgNo}
 	</delete>
 	
 	<delete id="deleteAll" parameterType="int">

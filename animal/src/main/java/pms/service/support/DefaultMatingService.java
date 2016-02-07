@@ -17,7 +17,7 @@ public class DefaultMatingService implements MatingService {
 	@Autowired MatingDao matingDao;
 	
 	public List<Mating> getMatingList(int pageNo) {	
-		pageNo = (pageNo - 1) * 4;
+		pageNo = (pageNo - 1) * 12;
 		return matingDao.matingList(pageNo);
 	}
 	

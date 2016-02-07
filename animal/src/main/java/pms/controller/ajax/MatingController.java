@@ -90,7 +90,7 @@ public class MatingController {
 
 		Mating pages = matingService.pages();
 		
-		double page = Math.ceil(pages.getCount()/4);
+		double page = Math.ceil(pages.getCount()/12);
 		
 		return new AjaxResult("success", page);
 	}

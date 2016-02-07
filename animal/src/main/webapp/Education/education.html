@@ -77,7 +77,7 @@
 				<button id="BIRD" class="filter" data-filter=".BIRD"></button>
 				<button id="ETC" class="filter" data-filter=".ETC">ETC</button>
 				<button id="hidden" class="filter" data-filter="*" hidden="">All</button>
-				<span id='scheduleAdd' style='margin-left: 630px;'></span>
+				<span id='scheduleAdd' style='float:right; margin-right:35px;'></span>
 			</div>
 
 			<!-- 사진 게시물 영역 -->
@@ -211,6 +211,26 @@
 		</div>
 	</div>
 	<!-- //게시글 추가 모달 -->
+  
+  <!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 $(document).ready(function() {
@@ -234,7 +254,7 @@ $(document).ready(function() {
 
     btn.append(
       "<a class='btn btn-default' id='scheduleAdd' role='button'"
-      + "data-toggle='modal' data-target='#AddBoard'>New</a>")
+      + "data-toggle='modal' data-target='#AddBoard'>새 교육</a>")
 
     ul.append(
       "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
@@ -338,7 +358,9 @@ $(document).ready(function() {
     if ($('#eduTitle').val() == "" ||
       $('#eduContent').val() == "" ||
       $('#fileUrl').val() == "") {
-      alert("모두 입력해주세요");
+
+      $('#modoinfo').html('모두 입력해주세요.');
+      $('#modo').modal('show')
       return false;
     } else {
       var form_data = new FormData();
@@ -372,7 +394,8 @@ $(document).ready(function() {
             success: function(resultObj) {
             }
           })
-          alert("게시물이 추가되었습니다.")
+          $('#modoinfo').html('게시물이 추가되었습니다.');
+          $('#modo').modal('show')
           location.href = "education.html"
         }
       })
@@ -434,6 +457,8 @@ $(document).ready(function() {
 
 	  $.getJSON('education/ajax/pages.do', function(resultObj) {
 	    var ajaxResult = resultObj.ajaxResult;
+      console.log("page : " + page)
+      console.log(ajaxResult.data)
 	    if (ajaxResult.data == page) {
 	      console.log("더보기 끝")
 	      $('#more').empty();
@@ -444,10 +469,26 @@ $(document).ready(function() {
 	      $('#more').empty();
 	      var i = parseInt(page)+1;
 	      more.append(
-	        "<a role='button' style='color:#fff;' class='moreBtn' id='m" + i + "' onclick='moree(this.pid);'>더보기</a>")
+	        "<a role='button' style='color:#fff;' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
 	    }
 	  })
 	}
+  
+  $.getJSON('education/ajax/pages.do', function(resultObj) {
+    var ajaxResult = resultObj.ajaxResult;
+    console.log(ajaxResult.data)
+    if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+//      console.log("더보기 끝")
+      $('#more').empty();
+
+    } else {
+      console.log("더보기 생성")
+      var more = $('#more');
+      $('#more').empty();
+      more.append(
+        "<a role='button' style='color:#fff;' class='moreBtn' id='m2' onclick='moree(this.id);'>더보기</a>")
+    }
+  })
 </script>
 <script>
 $(function(){

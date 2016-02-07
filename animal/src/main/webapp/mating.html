@@ -519,7 +519,7 @@ $(document).ready(function() {
   
   $.getJSON('mating/ajax/pages.do', function(resultObj) {
     var ajaxResult = resultObj.ajaxResult;
-    if(ajaxResult.data == 1) {
+    if(ajaxResult.data == 1 || ajaxResult.data == 0) {
       $('#more').empty();
     } 
   })

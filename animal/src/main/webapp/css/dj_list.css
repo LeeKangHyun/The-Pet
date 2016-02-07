@@ -1,10 +1,10 @@
-.modal-body {
+#AddBoard .modal-body {
   height: 385px;
 }
-.form-control {
+#AddBoard .form-control {
   margin-bottom: 14px;
 }
-.control-label {
+#AddBoard .control-label {
   padding-top: 5px;
   margin-bottom: 15px;
 }
@@ -164,10 +164,10 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   right: -25px;
       /* border:1px blue solid; */
 }
-.form-control:focus {
+#AddBoard .form-control:focus {
   outline: 0 none;
-  border: 1px #d06a79 solid;
-  box-shadow: 0px 0px 5px 1px #C07C86;
+/*  border: 1px #d06a79 solid;*/
+/*  box-shadow: 0px 0px 5px 1px #C07C86;*/
 }
 .form-search {
   position: relative;
@@ -182,10 +182,10 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 }
 .form-search:focus {
   outline: 0 none;
-  border: 1px #d06a79 solid;
-  box-shadow: 0px 0px 5px 1px #C07C86;
+/*  border: 1px #d06a79 solid;*/
+/*  box-shadow: 0px 0px 5px 1px #C07C86;*/
 }
-.form-submit {
+#AddBoard .form-submit {
   position: relative;
   background-color: transparent;
   border-radius: 6px;
@@ -197,22 +197,75 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   z-index: 1;
 }
 
-.form-submit:active {
+#AddBoard .form-submit:active {
   font-size: 15px;
-  color: #d06a79;
+/*  color: #d06a79;*/
 }
 
 /* more scroll button */
 #more {
   position:relative;
-  text-align: center;
   margin: 0 auto;
+  text-align: center;
+/*  width: 992px;*/
+/*  background-color: #2d335e;*/
+}
+
+.moreBtn {
+  background-color: #2d335e;
+  padding: 2px 550px;
   font-size: 20px;
-  width: 992px;
+  height: 30px;
+  text-decoration: none;
+  color: #000;
+}
+
+.moreBtn:hover {
+  text-decoration: none;
+}
+
+#modo .modal-dialog, #modo .modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  border-radius: 0;
+}
+
+#modo .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#modo .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#modo .modal-body {
+  font-size: 16px;
+}
+
+#modo .modal-footer {
+  height: 40px;
+}
+
+#okok {
+  position: relative;
+  bottom: 10px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
   background-color: #2d335e;
 }
 
-#moreBtn {
-  text-decoration: none;
-  color: #000;
+
+#AddBoard .modal-dialog, #AddBoard .modal-content {
+  border-radius: 0;
+}
+
+#eduContent {
+  resize: none;
 }

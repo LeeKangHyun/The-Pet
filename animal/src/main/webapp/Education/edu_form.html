@@ -155,13 +155,34 @@
         이 게시물을 삭제하시겠어요? <input type='hidden' id='comno'>
       </div>
       <div class='modal-footer'>
-        <button type='button' id='closeDel' class='btn btn-default'
+        <button type='button' id='closeDel2' class='btn btn-default'
           data-dismiss='modal'>취소</button>
         <button type='button' id='deleteBtn' class='btn btn-danger'>삭제</button>
       </div>
     </div>
   </div>
 </div>
+  
+ <!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
 
 	<script>
     var eduNo = location.href.split('?')[1].split('=')[1];
@@ -382,10 +403,12 @@
 	      function(resultObj) {
 	        var ajaxResult = resultObj.ajaxResult;
 	        if (ajaxResult.status == "success") {
-	        	  alert('게시물이 삭제 되었습니다.');
+            $('#modoinfo').html('게시물이 삭제 되었습니다.');
+            $('#modo').modal('show')
 	          location.href = "education.html";
 	        } else {
-	            alert("게시물 삭제에 실패했습니다.");
+            $('#modoinfo').html('게시물 삭제에 실패했습니다.');
+            $('#modo').modal('show')
 	        }
 	    });
 	  });
@@ -448,7 +471,8 @@
   
   $(document).on('click', '#comAddBtn', function() {
     if ($('#comcontent').val() == "") {
-      alert("댓글을 입력해 주세요")
+      $('#modoinfo').html('댓글을 입력해 주세요');
+      $('#modo').modal('show')
     } else {
       var form_data = new FormData();
       form_data.append("eduNo", eduNo)
@@ -679,7 +703,8 @@
   function likes() {
     
       if ($.session.get('mno') == undefined) { 
-        alert("로그인 후 이용해주십시오.");
+        $('#modoinfo').html('로그인 후 이용해주십시오.');
+        $('#modo').modal('show')
       } else {
     
       if(toggle == 0) {
