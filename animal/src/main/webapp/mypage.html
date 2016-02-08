@@ -21,13 +21,7 @@
 
     <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script>
-        (function(e, t, n) {
-            var r = e.querySelectorAll("html")[0];
-            r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
-        })
-        (document, window, 0);
-    </script>
+    <script src='lib/jquery-uploadfile/js/jquery.uploadfile.js'></script>
 
     <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
 
@@ -95,29 +89,29 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-6">
+                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="email" placeholder="Email" value='' readonly>
                     </div>
                 </div>
 
                 <div class="checkp form-group">
-                    <label for="password" class="col-sm-2 control-label">패스워드</label>
-                    <div class="col-sm-6">
+                    <label for="password" class="col-sm-3 control-label">패스워드</label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" placeholder="PASSWORD">
                     </div>
                 </div>
 
                 <div class="checkp form-group">
-                    <label for="password2" class="col-sm-2 control-label">패스워드확인</label>
-                    <div class="col-sm-6">
+                    <label for="password2" class="col-sm-3 control-label">패스워드확인</label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" id="password2" placeholder="PASSWORD">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="tel" class="col-sm-2 control-label">전화번호</label>
-                    <div class="col-sm-6">
+                    <label for="tel" class="col-sm-3 control-label">전화번호</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="tel" placeholder="000-0000-0000" value=''
                             readonly>
                     </div>
@@ -159,7 +153,6 @@
 
     <script>
         $(document).ready(function() {
-
             // 로그인 회원 정보출력 세션없으면 로그인페이지로
             var no = $.session.get('mno');
             if (no == undefined) {
@@ -233,7 +226,7 @@
             })
 
             var uploadObj = $("#fileuploader").uploadFile({
-                url: "files/ajax/upload.do",
+                url: "member/ajax/update.do",
                 autoSubmit: false,
                 multiple: false,
                 dragDrop: true,
@@ -247,9 +240,9 @@
                 abortStr: "전송취소",
                 dynamicFormData: function() {
                     var data = {
-                        file: "files",
-                        fileName: "files.name",
-                        dno: $('#lastDno').val()
+                        tel: $('#tel').val(),
+                        password: $('#password').val(),
+                        mno: $.session.get('mno')
                     };
                     return data;
                 },
@@ -257,6 +250,7 @@
                     location.href = 'mypage.html';
                 }
             });
+
             $('#fileuploader').css('display', 'none');
 
             $(document).on('click', '#checkBtn', function() {
@@ -289,29 +283,40 @@
                     }
                 })
             })
+
+            // 변경 버튼 클릭
+            $(document).on('click', '#changeBtn', function() {
+                $('#changeBtn').css('display', 'none');
+                $('#deleteBtn').css('display', 'none');
+                $('#updateBtn').css('display', '');
+                $('#before').css('display', 'none');
+                $('#after').css('display', '');
+                $('#fileuploader').css('display', '');
+                $('.checkp').css('display', '');
+
+                $('#tel').attr('readonly', false);
+            })
+
+            // 완료 버튼 클릭
+            $(document).on('click', '#updateBtn', function() {
+                $('#changeBtn').css('display', '');
+                $('#deleteBtn').css('display', '');
+                $('#updateBtn').css('display', 'none');
+                $('#before').css('display', '');
+                $('#after').css('display', 'none');
+                $('#fileuploader').css('display', 'none');
+                $('.ajax-file-upload-container').empty();
+                $('.checkp').css('display', 'none');
+
+                $('#tel').attr('readonly', true);
+                uploadObj.startUpload();
+            })
+
+            // 탈퇴 버튼 클릭
+            $(document).on('click', '#deleteBtn', function() {
+
+            })
         });
-
-
-        // 변경 버튼 클릭
-        $(document).on('click', '#changeBtn', function() {
-            $('#changeBtn').css('display', 'none');
-            $('#deleteBtn').css('display', 'none');
-            $('#updateBtn').css('display', '');
-            $('#before').css('display', 'none');
-            $('#after').css('display', '');
-            $('#fileuploader').css('display', '');
-        })
-
-        // 완료 버튼 클릭
-        $(document).on('click', '#updateBtn', function() {
-            $('#changeBtn').css('display', '');
-            $('#deleteBtn').css('display', '');
-            $('#updateBtn').css('display', 'none');
-            $('#before').css('display', '');
-            $('#after').css('display', 'none');
-            $('#fileuploader').css('display', 'none');
-            $('.ajax-file-upload-container').empty();
-        })
     </script>
 </body>
 

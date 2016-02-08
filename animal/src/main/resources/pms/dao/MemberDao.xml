@@ -42,11 +42,10 @@
 	
 	<update id="update" parameterType="member">
 		update member set
-			MEM_EMAIL=#{mEmail},
 			MEM_TEL=#{tel},
 			MEM_IMG=#{mImg},
       MEM_PWD=#{password}
-		where MEM_EMAIL=#{mEmail}
+		where MEM_NUM=#{mno}
 	</update>
 	
 	<select id="selectOne" resultMap="memberMap" parameterType="int">
