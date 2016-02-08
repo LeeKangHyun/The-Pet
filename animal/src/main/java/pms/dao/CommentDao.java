@@ -9,7 +9,7 @@ public interface CommentDao {
   List<Comment> DiaryCommentList(int dno);
   List<Comment> EduCommentList(Map<String,Object> paramMap);
   List<Comment> MatCommentList(int matNo);
-  List<Comment> SaleCommentList(int sno);
+  List<Comment> SaleCommentList(Map<String,Object> paramMap);
   List<Comment> WalkCommentList(Map<String,Object> paramMap);
   
   Comment count(int dno);

@@ -24,8 +24,8 @@ public class DefaultCommentService implements CommentService {
   public List<Comment> getMatComment(int matNo) {
 		return commentDao.MatCommentList(matNo);
   }
-  public List<Comment> getSaleComment(int sno) {
-		return commentDao.SaleCommentList(sno);
+  public List<Comment> getSaleComment(Map<String,Object> paramMap) {
+		return commentDao.SaleCommentList(paramMap);
   }
   
   public List<Comment> getWalkComment(Map<String,Object> paramMap) {

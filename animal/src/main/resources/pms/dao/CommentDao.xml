@@ -40,6 +40,8 @@
   	select * 
   	from comment
   	where S_NUM=#{sno}
+    order by CMT_NUM desc
+    limit #{startIndex}, 10
   </select>
   
   <select id="WalkCommentList" resultMap="commentMap" parameterType="map">
@@ -57,6 +59,12 @@
   <select id='educount' resultMap="commentMap" parameterType="int">
     select count(*) as count from comment where EDU_NUM=${value}
   </select>
+
+  <select id='salecount' resultMap="commentMap" parameterType="int">
+    select count(*) as count from comment where S_NUM=${value}
+  </select>
+  
+  
   <!-- matinsert -->
   <insert id="insert" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,MAT_NUM) 

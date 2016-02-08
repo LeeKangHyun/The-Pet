@@ -10,7 +10,7 @@ public interface CommentService {
   List<Comment> getDiaryComment(int dno);
   List<Comment> getEduComment(Map<String,Object> paramMap);
   List<Comment> getMatComment(int eduNo);
-  List<Comment> getSaleComment(int sno);
+  List<Comment> getSaleComment(Map<String,Object> paramMap);
   List<Comment> getWalkComment(Map<String,Object> paramMap);
   
   Comment pages(int dno);
