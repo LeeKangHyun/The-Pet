@@ -180,7 +180,7 @@ public class FilesController {
 	@RequestMapping("slist")
 	public Object salelist(int sno) throws Exception {
 		 
-		List<Files> files = filesService.getMatFile(sno);
+		List<Files> files = filesService.getSaleFile(sno);
 
 		return new AjaxResult("success", files);
 	}
