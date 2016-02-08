@@ -276,6 +276,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   width: 100%;
   max-width: none;
   height: auto;
+  min-height: 330px;
 }
 
 /* 가로로 긴 사진 */
@@ -300,6 +301,10 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 #section-img {
 /*	border: 1px black solid;*/
+/*
+  height: 440px;
+  width: 320px;
+*/
 }
 
 #section-img img {
@@ -314,6 +319,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   width: 100%;
   max-width: none;
   height: auto;
+  min-height: 440px;
 }
 
 #section-img img.landscape {
@@ -324,7 +330,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
 
 .box1 .card .background {
 /*  border: 1px solid #d06a79;*/
-  background-color: #2d335e;
+/*  background-color: #2d335e;*/
   height: 440px;
   width: 320px;
   position: relative;
@@ -619,6 +625,7 @@ width: 70px;
 height: 30px;
 right:30px;
 bottom: 25%;
+  background-color: #fff;
 }
 
 .fa-chevron-up {
