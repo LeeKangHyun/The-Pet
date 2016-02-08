@@ -157,52 +157,72 @@
 	</section>
 
 
-	<!-- Delete Check Modal -->
-	<div class="modal fade" id="Delete-Check-Modal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">게시물 삭제</h4>
-				</div>
-				<div class="modal-body">이 게시글을 삭제하시겠어요?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" id="delete-no"
-						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-danger" id="delete-yes">삭제</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Delete Check Modal -->
+<div class="modal fade" id="Delete-Check-Modal" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">게시물 삭제</h4>
+      </div>
+      <div class="modal-body">이 게시글을 삭제하시겠어요?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="delete-no"
+          data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-danger" id="delete-yes">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-	<!-- Comment Delete Check Modal -->
-	<div class="modal fade" id="Comment-Delete-Check-Modal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">댓글 삭제</h4>
-				</div>
-				<div class="modal-body">이 댓글을 삭제하시겠어요?</div>
-				<input type="hidden" id="comno">
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default"
-						id="comment-delete-no" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-danger"
-						id="comment-delete-yes">삭제</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Comment Delete Check Modal -->
+<div class="modal fade" id="Comment-Delete-Check-Modal" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">댓글 삭제</h4>
+      </div>
+      <div class="modal-body">이 댓글을 삭제하시겠어요?</div>
+      <input type="hidden" id="comno">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+          id="comment-delete-no" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-danger"
+          id="comment-delete-yes">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 	<!-- 댓글 펼치기 -->
@@ -592,7 +612,8 @@ $(document).ready(function() {
     like_data.append("SCH_NUM", dno);
 
     if ($.session.get('mno') == undefined) {
-      alert("로그인 후 이용해주십시오.");
+      $('#modoinfo').html('로그인 후 이용해주세요.');
+      $('#modo').modal('show')
     } else {
       if(like_toggle == 0) {
         $.ajax({

@@ -401,6 +401,28 @@ min-height: 0px;
 	color: #2d335e;
 }
 
+#modo .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#modo .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#modo .modal-body {
+  font-size: 16px;
+}
+
+#okok {
+  position: relative;
+  bottom: 10px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
+  background-color: #2d335e;
+}
 
 
 

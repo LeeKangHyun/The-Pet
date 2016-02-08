@@ -170,19 +170,41 @@
         <input type="hidden" id="deltypea">
       </div>
       <div class='modal-footer'>
-        <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" id="closeDel2" class="btn btn-default" data-dismiss="modal">취소</button>
         <button type="button" id="delMsgAll" class="btn btn-danger">삭제</button>
       </div>
     </div>
   </div>
 </div>
+  
+<!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
 <script>
 $(document).ready(function() {
 
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
-    location.href = "login.html"
+//    location.href = "login.html"
   }
 
   var div = $('#user_info');
@@ -397,9 +419,9 @@ $(document).on("click", "#sendMsgBtn", function() {
           processData: false,
           data: form_data,
           success: function(resultObj) {
-            alert("메시지를 성공적으로 보냈습니다.")
-
             $('#sendMsg').modal('hide')
+            $('#modoinfo').html('메시지를 성공적으로 보냈습니다.');
+            $('#modo').modal('show')
 
             var myEmail = $.session.get('memail')
 
@@ -485,7 +507,8 @@ $(document).on("click", "#sendMsgBtn", function() {
           }
         });
       } else {
-        alert("존재하지 않는 사용자입니다.")
+        $('#modoinfo').html('존재하지 않는 사용자입니다.');
+        $('#modo').modal('show')
       }
     }
   })
@@ -506,9 +529,10 @@ $(document).on("click", "#delMsg", function() {
     processData: false,
     data: form_data,
     success: function(resultObj) {
-      alert("삭제에 성공했습니다.")
       $('#checkModal').modal('hide')
-
+      $('#modoinfo').html('삭제에 성공했습니다.');
+      $('#modo').modal('show')
+    
       $('#tableBody').empty();
       var no = $.session.get('mno');
       var form_data = new FormData();
@@ -609,8 +633,9 @@ $(document).on("click", "#delMsgAll", function() {
     processData: false,
     data: form_data,
     success: function(resultObj) {
-      alert("삭제에 성공했습니다.")
       $('#delAll').modal('hide')
+      $('#modoinfo').html('삭제에 성공했습니다.');
+      $('#modo').modal('show')
 
       $('#tableBody').empty();
       var no = $.session.get('mno');

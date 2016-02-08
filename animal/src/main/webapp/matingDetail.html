@@ -301,9 +301,9 @@ $(document).ready(function() {
 
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "login.html"
-    });
+    $.session.clear();
+    location.href = "login.html"
+  });
 
   
 })
@@ -330,9 +330,6 @@ var matNo = location.href.split('?')[1].split('=')[1];
       $('#contentText').val(matinfo.matContent);
       $('#mmatno').val(matinfo.matNo);
       $('#mmtype').val(matinfo.matType);
-      
-      console.log(matinfo.mno)
-      console.log($.session.get('mno'))
       
       if (matinfo.mno != $.session.get('mno')) {
         $('#editPet').css('display', 'none');
