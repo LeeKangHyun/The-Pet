@@ -9,13 +9,14 @@ public interface CommentService {
 	
   List<Comment> getDiaryComment(int dno);
   List<Comment> getEduComment(Map<String,Object> paramMap);
-  List<Comment> getMatComment(int eduNo);
+  List<Comment> getMatComment(Map<String,Object> paramMap);
   List<Comment> getSaleComment(Map<String,Object> paramMap);
   List<Comment> getWalkComment(Map<String,Object> paramMap);
   
   Comment pages(int dno);
   Comment edupages(int eduNo);
   Comment salepages(int sno);
+  Comment matpages(int matNo);
   
   int add(Comment comment);
   int walkcom(Comment comment);

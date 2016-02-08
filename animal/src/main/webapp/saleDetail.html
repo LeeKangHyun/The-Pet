@@ -513,13 +513,9 @@
               data: form_data,
               type: 'post',
               success: function(re) {
-                $('#comComment')
-                  .empty();
-                var commen = re
-                  .comments;
-                var comdiv = $(
-                  '#comComment'
-                );
+                $('#comComment').empty();
+                var commen = re.comments;
+                var comdiv = $('#comComment');
                 var mem;
                 var j = 0;
                 for (var com of commen) {

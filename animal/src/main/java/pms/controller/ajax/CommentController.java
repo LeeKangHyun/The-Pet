@@ -30,9 +30,15 @@ public class CommentController {
   @Autowired ServletContext servletContext;
 
   @RequestMapping("matcomlist")
-  public Object list(int matNo) throws Exception {
+  public Object list(
+      @RequestParam(defaultValue="0") int pageNo, 
+      int matNo) throws Exception {
+    
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", pageNo);
+    paramMap.put("matNo", matNo);
 
-    List<Comment> comments = commentService.getMatComment(matNo);
+    List<Comment> comments = commentService.getMatComment(paramMap);
 
     List<Member> memberMap = new ArrayList<>();
 
@@ -186,6 +192,16 @@ public class CommentController {
   public Object salepages(int sno) throws Exception {
     
     Comment pages = commentService.salepages(sno);
+    
+    double page = Math.ceil(pages.getCount()/10);
+    
+    return new AjaxResult("success", page);
+  }
+
+  @RequestMapping("matpages")
+  public Object matpages(int matNo) throws Exception {
+    
+    Comment pages = commentService.matpages(matNo);
     
     double page = Math.ceil(pages.getCount()/10);
     

@@ -21,8 +21,8 @@ public class DefaultCommentService implements CommentService {
   public List<Comment> getEduComment(Map<String,Object> paramMap) {
 		return commentDao.EduCommentList(paramMap);
   }
-  public List<Comment> getMatComment(int matNo) {
-		return commentDao.MatCommentList(matNo);
+  public List<Comment> getMatComment(Map<String,Object> paramMap) {
+		return commentDao.MatCommentList(paramMap);
   }
   public List<Comment> getSaleComment(Map<String,Object> paramMap) {
 		return commentDao.SaleCommentList(paramMap);
@@ -42,6 +42,9 @@ public class DefaultCommentService implements CommentService {
   
   public Comment salepages(int sno) {
   		return commentDao.salecount(sno);
+  }
+  public Comment matpages(int matNo) {
+    return commentDao.matcount(matNo);
   }
   
   public int add(Comment comment) {
