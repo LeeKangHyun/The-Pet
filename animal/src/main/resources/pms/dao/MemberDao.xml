@@ -44,7 +44,14 @@
 		update member set
 			MEM_TEL=#{tel},
 			MEM_IMG=#{mImg},
-      MEM_PWD=#{password}
+      		MEM_PWD=#{password}
+		where MEM_NUM=#{mno}
+	</update>
+	
+	<update id="update2" parameterType="member">
+		update member set
+			MEM_TEL=#{tel},
+      		MEM_PWD=#{password}
 		where MEM_NUM=#{mno}
 	</update>
 	

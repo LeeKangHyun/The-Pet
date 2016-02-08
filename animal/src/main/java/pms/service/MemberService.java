@@ -12,6 +12,7 @@ public interface MemberService {
   int register(Member member);
   int remove(int mno);
   int change(Member member);
+  int change2(Member member);
   Member findNum(String mEmail);
   Member checkEmail(String mEmail);
   Member checkPwd(int mno);

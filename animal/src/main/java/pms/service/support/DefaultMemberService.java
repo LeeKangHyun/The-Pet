@@ -30,6 +30,10 @@ public class DefaultMemberService implements MemberService {
   public int change(Member member) {
   	return memberDao.update(member);
   }
+  
+  public int change2(Member member) {
+  	return memberDao.update2(member);
+  }
 
   public Member findNum(String mEmail) {
   	return memberDao.findMno(mEmail);

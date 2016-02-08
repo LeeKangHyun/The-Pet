@@ -13,6 +13,8 @@ public interface MemberDao {
   int delete(int mno);
   
   int update(Member member);
+
+  int update2(Member member);
   
   Member findMno(String mEmail);
 

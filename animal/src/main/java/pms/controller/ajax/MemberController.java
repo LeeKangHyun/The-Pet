@@ -108,6 +108,17 @@ public class MemberController {
 		
 		return new AjaxResult("success", null);
 	}
+	
+	@RequestMapping(value="updateWithoutImg", method=RequestMethod.POST)
+	public AjaxResult updateWithoutImg(
+			Member member) throws Exception {
+		
+		if (memberService.change2(member) <= 0) {
+			return new AjaxResult("failure", null);
+		} 
+		
+		return new AjaxResult("success", null);
+	}
 
 	@RequestMapping("delete")
 	public AjaxResult delete(
