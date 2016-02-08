@@ -357,12 +357,13 @@ $(document).ready(function() {
   $('.box').css('display', 'none');
   $('#forms').css('display', 'none');
   
-  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  // 로그인 회원 정보출력 세션없으면 로그인버튼 출력
   var no = $.session.get('mno');
   var div = $('#user_info');
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+    $('#addBtn').css('display', 'none');
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);
