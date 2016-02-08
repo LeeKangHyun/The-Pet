@@ -1,71 +1,101 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #page {
-    width: 1280px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    padding-top: 45px;
+  width: 1280px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 45px;
 }
 
 #head {
-    text-align: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.info {
+  text-align: right;
+  color: gray;
+  margin-bottom: 10px;
 }
 
 #checkmem {
-    border: 1px solid white;
-    margin-top: 100px;
-    width: 640px;
-    margin: 0 auto;
-    text-align: center;
+  border: 1px solid white;
+  margin-top: 100px;
+  width: 340px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #check {
-    margin-top: 60px;
-    text-align: center;
+  margin-top: 60px;
+  text-align: center;
+}
+.pw {
+  margin-top: 10px;
+}
+.pws {
+  line-height: 34px;
+}
+#checkBtn {
+  border-radius: 0;
+  width: 100px;
+  background-color: #2d335e;
 }
 
 #left {
-    padding-top: 25px;
-    padding-left: 100px;
-    width: 600px;
-    float: left;
-    padding-left: 10px;
-    margin-left: 40px;
+  margin-top: 30px;
+  width: 400px;
+  float: left;
+  margin-left: 190px;
 }
 
 #button {
-    /*float: left;*/
-    text-align: center;
+  text-align: right;
+}
+
+#button .btn {
+  border-radius: 0;
+  width: 80px;
+  margin-left: 10px;
 }
 
 #right {
-    width: 600px;
-    float: right;
-    padding-right: 30px;
-    margin-right: 40px;
+  width: 400px;
+  height: 300px;
+  float: right;
+  margin-top: 30px;
+  margin-right: 190px;
 }
 
 #right img {
-    max-width: 300px;
-    max-height: 300px;
-
+  max-width: 300px;
+  max-height: 300px;
 }
 
-.ajax-upload-dragdrop
-{
-  margin-left: 5px;
-  margin-top: 60px;
+.ajax-upload-dragdrop {
 	border:2px solid #2d335e;
-	width:600px;
+	width:400px;
 	color: #DADCE3;
 	text-align:left;
 	vertical-align:middle;
 	padding:8px 10px 0px 10px;
+  position: absolute;
+  top: 450px;
+}
+
+.ajax-file-upload-container {
+  position: absolute;
+  top: 480px;
+  margin-left: -5px;
+}
+
+.ajax-upload-dragdrop span {
+  position: relative;
+  bottom: 3px;
 }
 
 .ajax-file-upload {
@@ -74,13 +104,14 @@ body {
   -webkit-box-shadow: 0 2px 0 0 #2d335e;
   box-shadow: 0 2px 0 0 #2d335e;
   height: 30px;
+  border-radius: 0;
 }
 
 .ajax-file-upload:hover {
-      background: #2d335e;
-      -moz-box-shadow: 0 2px 0 0 #2d335e;
-      -webkit-box-shadow: 0 2px 0 0 #2d335e;
-      box-shadow: 0 2px 0 0 #2d335e;
+    background: #2d335e;
+    -moz-box-shadow: 0 2px 0 0 #2d335e;
+    -webkit-box-shadow: 0 2px 0 0 #2d335e;
+    box-shadow: 0 2px 0 0 #2d335e;
 }
 
 .ajax-file-upload-red {
@@ -93,4 +124,27 @@ body {
 .ajax-file-upload-statusbar {
   border: 1px solid #2d335e;
   border-radius: 0;
+}
+
+#modo .modal-header {
+  height: 50px;
+  font-size: 20px;
+}
+
+#modo .modal-header i {
+  color: #ff0000;
+  font-size: 25px;
+}
+
+#modo .modal-body {
+  font-size: 16px;
+}
+
+#okok {
+  position: relative;
+  bottom: 10px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
+  background-color: #2d335e;
 }

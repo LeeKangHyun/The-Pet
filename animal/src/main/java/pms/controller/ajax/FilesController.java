@@ -2,7 +2,6 @@ package pms.controller.ajax;
 
 import java.awt.Image;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import pms.domain.AjaxResult;
@@ -56,6 +54,30 @@ public class FilesController {
 		files.setHeight(img.getHeight(null));
 		
 		filesService.add(files);
+		
+		return new AjaxResult("success", null);
+	}
+	
+	@RequestMapping(value="sUpload", method=RequestMethod.POST)
+	public Object sadd(
+				Files files,
+			  MultipartFile file
+			) throws Exception {
+ 
+	 	String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
+		File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
+															+ "/" + newFileName);
+		file.transferTo(attachfile);
+		files.setFileName(newFileName);
+		
+		Image img = new ImageIcon(servletContext.getRealPath(SAVED_DIR) 
+				+ "/" + newFileName).getImage();
+		
+		System.out.println(img.getWidth(null) + " x " + img.getHeight(null) );
+		files.setWidth(img.getWidth(null));
+		files.setHeight(img.getHeight(null));
+		
+		filesService.sadd(files);
 		
 		return new AjaxResult("success", null);
 	}
@@ -151,6 +173,14 @@ public class FilesController {
 	public Object edulist(int eduNo) throws Exception {
 		 
 		List<Files> files = filesService.getMatFile(eduNo);
+
+		return new AjaxResult("success", files);
+	}
+	
+	@RequestMapping("slist")
+	public Object salelist(int sno) throws Exception {
+		 
+		List<Files> files = filesService.getSaleFile(sno);
 
 		return new AjaxResult("success", files);
 	}

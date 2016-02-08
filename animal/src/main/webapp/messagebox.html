@@ -5,8 +5,8 @@
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
   
   <link href="css/sh_slidmenu_header.css" type="text/css" rel="stylesheet" />
-  
   <link href="css/sh_msg.css" rel='stylesheet' type='text/css' />
+  
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
   <script src='lib/jquery/jquery.js' type="text/javascript"></script>
@@ -35,7 +35,7 @@
       <nav id="menu-nav">
         <ul id="menu-nav-ul">
           <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
           <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
@@ -170,12 +170,34 @@
         <input type="hidden" id="deltypea">
       </div>
       <div class='modal-footer'>
-        <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" id="closeDel2" class="btn btn-default" data-dismiss="modal">취소</button>
         <button type="button" id="delMsgAll" class="btn btn-danger">삭제</button>
       </div>
     </div>
   </div>
 </div>
+  
+<!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
 <script>
 $(document).ready(function() {
 
@@ -397,9 +419,9 @@ $(document).on("click", "#sendMsgBtn", function() {
           processData: false,
           data: form_data,
           success: function(resultObj) {
-            alert("메시지를 성공적으로 보냈습니다.")
-
             $('#sendMsg').modal('hide')
+            $('#modoinfo').html('메시지를 성공적으로 보냈습니다.');
+            $('#modo').modal('show')
 
             var myEmail = $.session.get('memail')
 
@@ -485,7 +507,8 @@ $(document).on("click", "#sendMsgBtn", function() {
           }
         });
       } else {
-        alert("존재하지 않는 사용자입니다.")
+        $('#modoinfo').html('존재하지 않는 사용자입니다.');
+        $('#modo').modal('show')
       }
     }
   })
@@ -506,9 +529,10 @@ $(document).on("click", "#delMsg", function() {
     processData: false,
     data: form_data,
     success: function(resultObj) {
-      alert("삭제에 성공했습니다.")
       $('#checkModal').modal('hide')
-
+      $('#modoinfo').html('삭제에 성공했습니다.');
+      $('#modo').modal('show')
+    
       $('#tableBody').empty();
       var no = $.session.get('mno');
       var form_data = new FormData();
@@ -609,8 +633,9 @@ $(document).on("click", "#delMsgAll", function() {
     processData: false,
     data: form_data,
     success: function(resultObj) {
-      alert("삭제에 성공했습니다.")
       $('#delAll').modal('hide')
+      $('#modoinfo').html('삭제에 성공했습니다.');
+      $('#modo').modal('show')
 
       $('#tableBody').empty();
       var no = $.session.get('mno');

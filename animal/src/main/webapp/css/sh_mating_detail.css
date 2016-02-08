@@ -39,6 +39,7 @@ button:focus { /* 활성화 시 버튼 주변의 라인을 없애줌 */
   width: 640px;
   height: 640px;
   background-color: #fff;
+  color: #000;
 }
 
 div.item {
@@ -72,34 +73,69 @@ div.item img {
 }
 
 .carousel-control {
-    
+  opacity: 1;
+  color: #000;
+  text-shadow: 0 0 3px #fff;
+}
+
+.carousel-control:hover {
+  color: #000;
+}
+.glyphicon-chevron-left {
+  position: relative;
+  top: 200px;
+}
+.glyphicon-chevron-right {
+  position: relative;
+  top: 200px;
+  left: 45px;
+}
+.glyphicon-chevron-left:before {
+/*  content: "";*/
+  color: #000;
+}
+.glyphicon-chevron-right:before {
+  color: #000;
+/*  content: "";*/
+}
+.carousel-control.left {
+  background-image: none;
+}
+.carousel-control.right {
+  background-image: none;
 }
 
 /* 오른쪽 컨텐트들 -> (디테일 모달)*/
 .contents {
-  border-top: 1px solid #d06a79;
+/*  border-top: 1px solid #d06a79;*/
+/*  margin-top: 50px;*/
   float: right !important;
   width: 640px;
   min-height: 640px;
-  background-color: #2d335e;
+  background-color: #ffd800;
 }
-
+#titlesize {
+  background-color: #8fda57;
+}
 .title {
   height: 40px;
   text-align: center;
   font-size: 21px;
-  color: #fff;
+  color: #2d335e;
   line-height: 40px;
+  margin-right: 40px;
+/*  background-color: #fff;*/
 }
 
 .content {
-  height: 225px;
-  margin: 10px;    
+  height: 215px;
+  margin: 10px;
 }
 
 .content textarea {
-  color: #fff;
-  background-color: #2d335e;
+  background-color: #ffd800;
+/*  padding: 10px;    */
+  color: #2d335e;
   font-size: 16px;
   font-weight: 200;
   height: 100%;
@@ -109,18 +145,27 @@ div.item img {
   border: 0;
 }
 
+#sendmsg {
+  background-color: #ffd800;
+/*  height: 30px;*/
+}
+
 #sendmsg a {
-  color: #fff;
-  margin-left: 10px;
-  margin-bottom: 2px;
+  color: #2d335e;
+  position: absolute;
+  right: 10px;
+  top: 52px;
+  font-size: 23px;
 }
 
 .input {
   font-size: 13px;
   height: 65px;
+/*
   border-top: 1px solid #d06a79;
   border-bottom: 1px solid #d06a79;
-  background-color: #2d335e;
+*/
+  background-color: #8fda57;
   padding: 0 9px;
 }
 
@@ -128,10 +173,10 @@ div.item img {
   margin: 10px auto;
   padding: 7px;
   width: 565px;
-  height: 40px;
+  height: 45px;
   overflow: visible;
   border: 2px solid #d06a79;
-  border-radius: 8px;
+/*  border-radius: 8px;*/
   resize: none;
 }
 
@@ -139,14 +184,14 @@ div.item img {
   position: absolute;
   margin-top: 10px;
   margin-left: 5px;
-  padding: 10px 10px 10px 10px;
+  padding: 13px 10px 12px 10px;
   text-decoration: none;
   font-weight: 300;
   font-size: 16px;
   background-color: #d06a79;
   color: #fff;
   border: 2px solid #d06a79;
-  border-radius: 8px;
+/*  border-radius: 8px;*/
 }
 
 .input > #comDelBtn:hover {
@@ -163,14 +208,15 @@ div.item img {
   width: 640px;
 /*  height: 220px;*/
   overflow-y: scroll; 
-  background-color: #2d335e;
+/*  background-color: #2d335e;*/
+  background-color: #ffd800;
 }
 
 .comment {
   margin-top: 5px;
   min-height: 50px;
   margin-bottom: 7px;
-  color: #fff;
+  color: #2d335e;
 }
 
 .commentimg {
@@ -187,6 +233,19 @@ div.item img {
   max-width: 360px;
   margin-left: 10px;
   color: #d06a79;
+}
+
+.commenttext {
+  width: 510px;
+  font-size: 14px;
+  white-space: pre-line;
+  word-break: break-all;
+  border-bottom: 1px solid #2d335e;
+  background-color: rgba(0,0,0,0);
+  margin-left: 70px;
+  padding-bottom: 7px;
+  padding-top: 20px;
+  border: 0;
 }
 
 #delImg {
@@ -214,19 +273,6 @@ div.item img {
   margin-right: 20px;
   margin-top: 3px;
   font-size: 22px;
-}
-
-.commenttext {
-  width: 510px;
-  font-size: 14px;
-  white-space: pre-line;
-  word-break: break-all;
-  border-bottom: 1px solid #fff;
-  background-color: rgba(0,0,0,0);
-  margin-left: 70px;
-  padding-bottom: 7px;
-  padding-top: 20px;
-  border: 0;
 }
 
 #checkModal .modal-content, #checkModal .modal-dialog {

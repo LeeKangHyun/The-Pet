@@ -28,7 +28,6 @@
   <script src='lib/moment/moment.min.js'></script>
   <script src='lib/fullcalendar/fullcalendar.js'></script>
   <script src="lib/fullcalendar/lang/ko.js"></script>
-  <script src="lib/less/less.js" type="text/javascript"></script>
 
   <!--  파일 업로드  -->
   <link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />
@@ -698,32 +697,34 @@ $(document).on("click", "#addPetBtn", function() {
 
         $('#modo').on('hidden.bs.modal', function(e) {
 
-          $("#myPets").empty();
-          $("#pno").html("");
-          var showpet = $('#myPets');
-          var sel = $("#pno");
-          var ajaxResult = re.ajaxResult;
-
-          for (var pet of ajaxResult.data) {
-            showpet.append(
-              "<a class='petdetailBtn' id='" + pet.pno +
-                "' onclick='detail(this.id);'" +
-                "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-                "<div class='myPet'>" +
-                  "<input type='hidden' class='pno'>" +
-                  "<img class='mImg' src='files/" + pet.pImg + "'>" +
-                  "<input class='petName' type='text' value='" + pet.pName +
-                  "' disabled>" +
-                  "<label class='pName'>이름 : </label>" +
-                  "<input class='pColor' type='color' value='" + pet.tagColor +
-                  "' disabled>" +
-                  "<label class='pInfo'>태그색 : </label>" +
-                "</div>" +
-              "</a>")
-
-            sel.append(
-              "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
-          }
+//          $("#myPets").empty();
+//          $("#pno").html("");
+//          var showpet = $('#myPets');
+//          var sel = $("#pno");
+//          var ajaxResult = re.ajaxResult;
+//
+//          for (var pet of ajaxResult.data) {
+//            showpet.append(
+//              "<a class='petdetailBtn' id='" + pet.pno +
+//                "' onclick='detail(this.id);'" +
+//                "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
+//                "<div class='myPet'>" +
+//                  "<input type='hidden' class='pno'>" +
+//                  "<img class='mImg' src='files/" + pet.pImg + "'>" +
+//                  "<input class='petName' type='text' value='" + pet.pName +
+//                  "' disabled>" +
+//                  "<label class='pName'>이름 : </label>" +
+//                  "<input class='pColor' type='color' value='" + pet.tagColor +
+//                  "' disabled>" +
+//                  "<label class='pInfo'>태그색 : </label>" +
+//                "</div>" +
+//              "</a>")
+//
+//            sel.append(
+//              "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
+//          }
+          
+          location.href="diary.html"
         })
       }
     })

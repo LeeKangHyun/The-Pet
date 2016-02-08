@@ -46,8 +46,8 @@
       <a class="headerTitle" href="pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
       </a>
-      <a class="headerSubTitle" href="mating.html">
-        짝짓기
+      <a class="headerSubTitle" href="sale.html">
+        분양
       </a>
       <div id="user_info"></div>
     </div>
@@ -63,7 +63,7 @@
         <ul id="menu-nav-ul">
           <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
           <li><a href="sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
-          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
               자랑해요</a></li>
@@ -83,7 +83,7 @@
       <button id="ETC" onclick="filter(this.id)">ETC</button>
       <button id="hidden" hidden="">All</button>
 
-      <button onclick="location.href='matingform.html'" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
+      <button onclick="location.href='saleform.html'" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
@@ -93,7 +93,7 @@
     
 <!--
     
-      <a class='portfoliocard  DOG' role='button' href='matingDetail.html?matNo=1'>
+      <a class='portfoliocard  DOG' role='button' href='saleDetail.html?sno=1'>
 
         <div class='coverphoto'>
           <img src='files/p4.jpeg' class='landscape'>
@@ -105,7 +105,7 @@
 
         <div class='left_col'>
           <div class='views'>
-            <div class='view_count' id='v" +  resultObj.data[i].matNo + "'> 33</div>
+            <div class='view_count' id='v" +  resultObj.data[i].sno + "'> 33</div>
             VIEW
           </div>
         </div>
@@ -131,119 +131,6 @@
 
   </section>
 
-<!-- 오류 모달 -->
-<div id="noCom" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <i class="fa fa-exclamation-triangle"></i>
-        에러!
-      </div>
-      
-      <div class="modal-body">
-        댓글을 입력해주세요
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--짝짓기 디테일 모달-->
-<div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
-        <h3 id='modalTitle' class='title'></h3>
-      </div>
-
-      <div class='modal-body'>
-
-        <input type="hidden" id="mmatno">
-        
-        <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
-            <!-- Indicators -->
-            <ol class='carousel-indicators' id="dots"></ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" id="imgs"></div>
-
-            <!-- Controls -->
-            <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
-                <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
-                <span class='sr-only'>Previous</span>
-            </a>
-            <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
-                <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
-                <span class='sr-only'>Next</span>
-            </a>
-        </div>
-
-        <div class='contents'>
-
-          <div class='content' id="mcontent">
-            <textarea id="contentText" readonly></textarea>
-          </div>
-
-          <div class='input'>
-            
-            <div id="forms">
-              <span class="gg">펫 종류</span>
-              <input type="text" name="mat_gen" placeholder="ex) 포메라니안" id="mmtype" class="form-control">
-            </div>
-            
-            <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
-            <a id="comDelBtn" role='button'>게시</a>
-          </div>
-
-          <div class='comments' id="comComment"></div>
-          <div id="delImg"></div>
-        </div>
-
-
-      </div>
-
-      <div class="modal-footer">
-
-        <div class="box">
-          <input type="file" name="files" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-          multiple />
-          <label for="file-1">
-            <i class="fa fa-upload"></i>
-            <span>이미지 추가</span>
-          </label>
-        </div>
-
-        <button type="button" id="editPet" class="btn btn-warning">변경</button>
-        <button type="button" id="editEnd" class="btn btn-warning" style="display:none;">변경완료</button>
-        <button type="button" id="matDelBtn" class="btn btn-danger">삭제</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- 댓글 삭제 확인 모달 -->
-<div id="checkModal" class="modal fade bs-example-modal-sm" data-keyboard='false' data-backdrop='static'>
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class='modal-header'>
-        댓글 삭제
-      </div>
-      <div class='modal-body'>
-        이 댓글을 삭제하시겠어요?
-        <input type="hidden" id="comno">
-      </div>
-      <div class='modal-footer'>
-        <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
-        <button type="button" id="delCom" class="btn btn-danger">삭제</button>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="js/sh_custom-file-input.js"></script>
 
 
@@ -298,11 +185,11 @@ function filter(id) {
     var totalCount = 0;
 
     var filter_data = new FormData();
-    filter_data.append("filter_id", id);
+    filter_data.append("sfilter_id", id);
 
 
     $.ajax({
-      url : "mating/ajax/filterCount.do",
+      url : "sale/ajax/filterCount.do",
       dataType : 'json',
       contentType : false,
       processData : false,
@@ -320,7 +207,7 @@ function filter(id) {
   }
 
   $.ajax({
-    url : "mating/ajax/filter_list.do?pageNo="+currentPage,
+    url : "sale/ajax/filter_list.do?pageNo="+currentPage,
     dataType : "json",
     type : "POST",
     contentType : false,
@@ -336,10 +223,10 @@ function filter(id) {
 
       for (var i = 0; i < resultObj.data.length; i++) {
 
-        if(resultObj.data[i].matGender == 0) {
-          gen = "수컷";
+        if(resultObj.data[i].sGender == 0) {
+          gender = "수컷";
         } else {
-          gen = "암컷";
+          gender = "암컷";
         }
 
         imgWidth = resultObj.size[i].width;
@@ -353,7 +240,7 @@ function filter(id) {
         }
 
         $('#Container').append(
-        "<a class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' href='matingDetail.html?matNo=" + resultObj.data[i].matNo + "'>" +
+        "<a class='portfoliocard  " + resultObj.data[i].sSpec + "' role='button' href='saleDetail.html?sno=" + resultObj.data[i].sno + "'>" +
 
           "<div class='coverphoto'>" +
             "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
@@ -365,18 +252,19 @@ function filter(id) {
 
           "<div class='left_col'>" +
             "<div class='views'>" +
-              "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
+              "<div class='view_count' id='v" +  resultObj.data[i].sno + "'>" + resultObj.data[i].sViews + "</div>" +
               "VIEW" +
             "</div>" +
           "</div>" +
           "<div class='right_col'>" +
             "<ul class='contact_information'>" +
-              "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
-              "<li class='website'>" + resultObj.data[i].matType + "</li>" +
-              "<li class='gender'>" + gen + "</li>" +
-              "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
-              "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
+              "<li class='website'>" + resultObj.data[i].sSpec + "</li>" +
+              "<li class='website'>" + resultObj.data[i].sType + "</li>" +
+              "<li class='gender'>" + gender + "</li>" +
+              "<li class='title'>" + resultObj.data[i].sTitle + "</li>" +
+              "<li class='resume'>" + resultObj.data[i].sCreateDate + "</li>" +
               "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+              "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
             "</ul>" +
           "</div>" +
         "</a>")
@@ -390,7 +278,7 @@ function filter(id) {
       currentPage = currentPage + 1;
 
       $.ajax({
-        url : "mating/ajax/filter_list.do?pageNo="+currentPage,
+        url : "sale/ajax/filter_list.do?pageNo="+currentPage,
         dataType : "json",
         type : "POST",
         contentType : false,
@@ -406,10 +294,10 @@ function filter(id) {
 
           for (var i = 0; i < resultObj.data.length; i++) {
 
-            if(resultObj.data[i].matGender == 0) {
-              gen = "수컷";
+            if(resultObj.data[i].sGender == 0) {
+              gender = "수컷";
             } else {
-              gen = "암컷";
+              gender = "암컷";
             }
 
             imgWidth = resultObj.size[i].width;
@@ -423,7 +311,7 @@ function filter(id) {
             }
 
             $('#Container').append(
-            "<a class='portfoliocard  " + resultObj.data[i].matSpec + "' role='button' href='matingDetail.html?matNo=" + resultObj.data[i].matNo + "'>" +
+            "<a class='portfoliocard  " + resultObj.data[i].sSpec + "' role='button' href='saleDetail.html?sno=" + resultObj.data[i].sno + "'>" +
 
               "<div class='coverphoto'>" +
                 "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
@@ -435,18 +323,19 @@ function filter(id) {
 
               "<div class='left_col'>" +
                 "<div class='views'>" +
-                  "<div class='view_count' id='v" +  resultObj.data[i].matNo + "'>" + resultObj.data[i].matViews + "</div>" +
+                  "<div class='view_count' id='v" +  resultObj.data[i].sno + "'>" + resultObj.data[i].sViews + "</div>" +
                   "VIEW" +
                 "</div>" +
               "</div>" +
               "<div class='right_col'>" +
                 "<ul class='contact_information'>" +
-                  "<li class='website'>" + resultObj.data[i].matSpec + "</li>" +
-                  "<li class='website'>" + resultObj.data[i].matType + "</li>" +
-                  "<li class='gender'>" + gen + "</li>" +
-                  "<li class='title'>" + resultObj.data[i].matTitle + "</li>" +
-                  "<li class='resume'>" + resultObj.data[i].matCreateDate + "</li>" +
+                  "<li class='website'>" + resultObj.data[i].sSpec + "</li>" +
+                  "<li class='website'>" + resultObj.data[i].sType + "</li>" +
+                  "<li class='gender'>" + gender + "</li>" +
+                  "<li class='title'>" + resultObj.data[i].sTitle + "</li>" +
+                  "<li class='resume'>" + resultObj.data[i].sCreateDate + "</li>" +
                   "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+                  "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
                 "</ul>" +
               "</div>" +
             "</a>")
@@ -518,9 +407,9 @@ $(document).ready(function() {
     location.href = "login.html"
   });
   
-  $.getJSON('mating/ajax/pages.do', function(resultObj) {
+  $.getJSON('sale/ajax/pages.do', function(resultObj) {
     var ajaxResult = resultObj.ajaxResult;
-    if(ajaxResult.data == 1 || ajaxResult.data == 0) {
+    if(ajaxResult.data == 1) {
       $('#more').empty();
     } 
   })
@@ -528,7 +417,7 @@ $(document).ready(function() {
 
 // 분양 리스트 출력
 $.ajax({
-  url: 'mating/ajax/list.do',
+  url: 'sale/ajax/list.do',
   async: false,
   type: 'post',
   dataType: 'json',
@@ -541,13 +430,13 @@ $.ajax({
     var imgWidth;
     var imgHeight;
     var setClass;
-    for (var mating of resultObj.mating) {
+    for (var sale of resultObj.sale) {
       file = resultObj.filesMap[j];
       mem = resultObj.memberMap[j];
-      if(mating.matGender == 0) {
-        gen = "수컷";
+      if(sale.sGender == 0) {
+        gender = "수컷";
       } else {
-        gen = "암컷";
+        gender = "암컷";
       }
        
       imgWidth = file[0].width;
@@ -560,8 +449,8 @@ $.ajax({
       }
       j++;
       show.append(
-      "<a class='portfoliocard " + mating.matSpec + "' role='button' " +
-      "href='matingDetail.html?matNo=" + mating.matNo +
+      "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
+      "href='saleDetail.html?sno=" + sale.sno +
       "' onclick='detail(this.id);'>" +
 
       "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
@@ -570,19 +459,20 @@ $.ajax({
 
       "<div class='left_col'>" +
       "<div class='views'>" +
-      "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
+      "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
       "VIEW" +
       "</div>" +
       "</div>" +
 
       "<div class='right_col'>" +
       "<ul class='contact_information'>" +
-      "<li class='website'>" + mating.matSpec + "</li>" +
-      "<li class='website'>" + mating.matType + "</li>" +
-      "<li class='gender'>" + gen + "</li>" +
-      "<li class='title'>" + mating.matTitle + "</li>" +
-      "<li class='resume'>" + mating.matCreateDate + "</li>" +
+      "<li class='website'>" + sale.sSpec + "</li>" +
+      "<li class='website'>" + sale.sType + "</li>" +
+      "<li class='gender'>" + gender + "</li>" +
+      "<li class='title'>" + sale.sTitle + "</li>" +
+      "<li class='resume'>" + sale.sCreateDate + "</li>" +
       "<li class='name'>" + mem.mName + "</li>" +
+      "<li class='name'>" + sale.sCost + "원</li>" +
       "</ul>" +
       "</div>" +
       "</a>")
@@ -590,20 +480,12 @@ $.ajax({
   }
 });
 
-// 새글 모달 닫고 초기화
-$('#saleModal').on('hidden.bs.modal', function(e) {
-  $('#mafile').val('');
-  $('#mat_content').val('');
-  $('#mat_title').val('');
-  $('#mat_type').val('');
-})
-
 //더보기
 function moree(id) {
   console.log(id)
   var page = id.substring(1);
   $.ajax({
-    url: 'mating/ajax/list.do?',
+    url: 'sale/ajax/list.do?',
     data: {
       pageNo: page
     },
@@ -618,11 +500,11 @@ function moree(id) {
       var imgWidth;
       var imgHeight;
       var setClass;
-      for (var mating of resultObj.mating) {
+      for (var sale of resultObj.sale) {
         file = resultObj.filesMap[j];
         mem = resultObj.memberMap[j];
         
-        if(mating.matGender == 0) {
+        if(sale.sGender == 0) {
           gen = "수컷";
         } else {
           gen = "암컷";
@@ -639,8 +521,8 @@ function moree(id) {
         j++;
         
         show.append(
-        "<a class='portfoliocard " + mating.matSpec + "' role='button' " +
-        "href='matingDetail.html?matNo=" + mating.matNo +"'>" +
+        "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
+        "href='saleDetail.html?sno=" + sale.sno +"'>" +
 
         "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
 
@@ -648,25 +530,26 @@ function moree(id) {
 
         "<div class='left_col'>" +
         "<div class='views'>" +
-        "<div class='view_count' id='v" + mating.matNo + "'>" + mating.matViews + "</div>" +
+        "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
         "VIEW" +
         "</div>" +
         "</div>" +
 
         "<div class='right_col'>" +
         "<ul class='contact_information'>" +
-        "<li class='website'>" + mating.matSpec + "</li>" +
-        "<li class='website'>" + mating.matType + "</li>" +
+        "<li class='website'>" + sale.sSpec + "</li>" +
+        "<li class='website'>" + sale.sType + "</li>" +
         "<li class='gender'>" + gen + "</li>" +
-        "<li class='title'>" + mating.matTitle + "</li>" +
-        "<li class='resume'>" + mating.matCreateDate + "</li>" +
+        "<li class='title'>" + sale.sTitle + "</li>" +
+        "<li class='resume'>" + sale.sCreateDate + "</li>" +
         "<li class='name'>" + mem.mName + "</li>" +
+        "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
         "</ul>" +
         "</div>" +
         "</a>")
       }
 
-      $.getJSON('mating/ajax/pages.do', function(resultObj) {
+      $.getJSON('sale/ajax/pages.do', function(resultObj) {
         var ajaxResult = resultObj.ajaxResult;
         console.log(ajaxResult.data)
         if (ajaxResult.data == page) {

@@ -44,15 +44,20 @@
 
 
 #myPets {
+  width: 320px;
   max-height: 520px;
-  overflow-y: scroll;      
+  overflow-y: scroll;
+  background-color: #8fda57;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .myPet {
   width: 300px;
   height: 120px;
-  border-top: 2px solid #d06a79;
-  border-bottom: 2px solid #d06a79;
-  margin-bottom: 10px;
+/*  border-top: 2px solid #d06a79;*/
+/*  border-bottom: 2px solid #d06a79;*/
+  background-color: #ffd800;
+  margin: 10px;
 }
 .mImg {
   float: left;
@@ -72,9 +77,9 @@
   color: #000000;
   width: 130px;
   text-align: left;
-  background-color: #fff;
+  background-color: #ffd800;
   border: none;
-  margin-top: 24px;
+  margin-top: 28px;
   margin-left: 10px;
   margin-right: 10px;
 }

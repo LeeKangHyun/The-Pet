@@ -228,11 +228,13 @@ ALTER TABLE Education
 -- 분양
 CREATE TABLE Sale (
   S_NUM     INTEGER     NOT NULL COMMENT '분양번호', -- 분양번호
+  S_VIEWS   INTEGER     NULL     DEFAULT 0 COMMENT '새 컬럼2', -- 새 컬럼2
   S_CRE     DATETIME    NOT NULL COMMENT '작성일', -- 작성일
   S_TITLE   VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
   S_CONTENT TEXT        NOT NULL COMMENT '내용', -- 내용
   S_SPEC    char(5)     NOT NULL COMMENT '구분', -- 구분
   S_TYPE    TEXT        NOT NULL COMMENT '종류', -- 종류
+  S_GEN     BOOLEAN     NULL     COMMENT '새 컬럼', -- 새 컬럼
   S_COST    INTEGER     NULL     COMMENT '판매금', -- 판매금
   MEM_NUM   INTEGER     NULL     COMMENT '회원번호' -- 회원번호
 )

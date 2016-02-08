@@ -32,8 +32,8 @@
       <a class="headerTitle" href="pet.html">
         <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
       </a>
-      <a class="headerSubTitle" href="mating.html">
-        짝짓기
+      <a class="headerSubTitle" href="sale.html">
+        분양
       </a>
       <div id="user_info"></div>
     </div>
@@ -63,7 +63,7 @@
     <div id="left">
 
       <div class='mheader'>
-        <h3>짝짓기 새글</h3>
+        <h3>분양 새글</h3>
       </div>
 
       <div class='mbody'>
@@ -73,14 +73,14 @@
         <div class='form-group'>
           <label class='col-sm-3 control-label'>제목</label>
           <div class="col-sm-9">
-            <input type='text' name='mat_content' id='mat_title' class="form-control"/>
+            <input type='text' name='s_content' id='s_title' class="form-control"/>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-sm-3 control-label">구분</label>
           <div class="col-sm-9">
-            <select id="mat_spec" name="mat_spec" class="form-control">
+            <select id="s_spec" name="s_spec" class="form-control">
               <option value="DOG" selected="selected">강아지</option>
               <option value="CAT">고양이</option>
               <option value="FISH">물고기</option>
@@ -91,9 +91,16 @@
         </div>
 
         <div class="form-group">
-          <label for="mat_gen" class="col-sm-3 control-label">펫 종류</label>
+          <label for="s_gen" class="col-sm-3 control-label">펫 종류</label>
           <div class="col-sm-9">
-            <input type="text" name="mat_gen" placeholder="ex) 포메라니안" class="form-control" id="mat_type"/>
+            <input type="text" name="s_gen" placeholder="ex) 포메라니안" class="form-control" id="s_type"/>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="s_cost" class="col-sm-3 control-label">보증금</label>
+          <div class="col-sm-9">
+            <input type="text" name="s_cost" placeholder="ex) 30000" class="form-control" id="s_cost"/>
           </div>
         </div>
 
@@ -102,13 +109,13 @@
           <div class="col-sm-9">
             <div class="radio-inline">
               <label>
-                <input type="radio" class='mat_gen' name='MAT_GENDER' value="0" checked>
+                <input type="radio" class='s_gen' name='S_GENDER' value="0" checked>
                 <span>수컷</span>
               </label>
             </div>
             <div class="radio-inline">
               <label>
-                <input type="radio" class='mat_gen' name='MAT_GENDER' value="1">
+                <input type="radio" class='s_gen' name='S_GENDER' value="1">
                 <span>암컷</span>
               </label>
             </div>
@@ -117,13 +124,13 @@
 
         <div class='form-group'>
           <label for="pdType" class="control-label cont">내용</label>
-          <textarea class="form-control" name='MAT_CONTENT' id='mat_content' style="height: 100px;"></textarea>
+          <textarea class="form-control" name='S_CONTENT' id='s_content' style="height: 100px;"></textarea>
         </div>
 
       </div>
 
       <div class="mfooter">
-        <button type="button" id="addMat" class="btn btn btn-primary">등록</button>
+        <button type="button" id="addS" class="btn btn btn-primary">등록</button>
       </div>
     
     </div>
@@ -161,7 +168,7 @@ $(document).ready(function() {
   var div = $('#user_info');
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
-//    location.href = "mating.html"
+//    location.href = "sale.html"
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);
@@ -205,15 +212,8 @@ $(document).ready(function() {
     }
   })
   
-  $.getJSON('mating/ajax/pages.do', function(resultObj) {
-    var ajaxResult = resultObj.ajaxResult;
-    if(ajaxResult.data == 1) {
-      $('#more').empty();
-    } 
-  })
-  
   var uploadObj = $("#fileuploader").uploadFile({
-    url : "files/ajax/matUpload.do",
+    url : "files/ajax/sUpload.do",
     autoSubmit: false,
     multiple: true,
     dragDrop: true,
@@ -228,21 +228,22 @@ $(document).ready(function() {
         var data = {
             file: "files",
             fileName: "files.name",
-            matNo: $('#lastDno').val()
+            sno: $('#lastDno').val()
         };
         return data;
     },
     afterUploadAll: function() {
-        location.href='mating.html';
+        location.href='sale.html';
     }
   });
 
 
-  // 짝짓기 추가
-  $(document).on('click', '#addMat', function() {
-    if ($('#mat_title').val() == "" ||
-        $('#mat_content').val() == "" ||
-        $('#mat_type').val() == "") {
+  // 분양 추가
+  $(document).on('click', '#addS', function() {
+    if ($('#s_title').val() == "" ||
+        $('#s_content').val() == "" ||
+        $('#s_type').val() == "" || 
+        $('#s_cost').val() == ""){
       
       $('#modo').modal('show');
       return false;
@@ -250,7 +251,7 @@ $(document).ready(function() {
     } else {
         
       var no = $.session.get('mno');
-      var mgen = $('input[name=MAT_GENDER]:checked').val();
+      var sgen = $('input[name=S_GENDER]:checked').val();
       var form_data = new FormData();
 
       console.log('등러갔다')
@@ -258,14 +259,15 @@ $(document).ready(function() {
 
 
       form_data.append("mno", no)
-      form_data.append("matTitle", $('#mat_title').val())
-      form_data.append("matSpec", $('#mat_spec').val())
-      form_data.append("matType", $('#mat_type').val())
-      form_data.append("matGender", mgen)
-      form_data.append("matContent", $('#mat_content').val())
-
+      form_data.append("sTitle", $('#s_title').val())
+      form_data.append("sSpec", $('#s_spec').val())
+      form_data.append("sType", $('#s_type').val())
+      form_data.append("sGen", sgen)
+      form_data.append("sContent", $('#s_content').val())
+      form_data.append("sCost", $('#s_cost').val())
+      console.log(form_data);
       $.ajax({
-        url: 'mating/ajax/add.do',
+        url: 'sale/ajax/add.do',
         dataType: 'json',
         type: 'post',
         cache: false,

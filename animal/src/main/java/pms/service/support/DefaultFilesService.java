@@ -49,6 +49,10 @@ public class DefaultFilesService implements FilesService {
   }
   ///////////////////////////////////////////
   
+  public void sadd(Files files) {
+  		filesDao.sadd(files);
+  }
+  
   public int removeOne(int fno) {
   	return filesDao.delOne(fno);
   }

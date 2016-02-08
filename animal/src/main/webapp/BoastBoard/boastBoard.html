@@ -64,7 +64,7 @@ $(function() {
       <nav id="menu-nav">
         <ul id="menu-nav-ul">
           <li><a href="../Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
-          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="../sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
           <li><a href="../mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
           <li><a href="../walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
           <li><a href="boastBoard.html"><i class="lnr lnr-paw"></i>
@@ -154,6 +154,26 @@ $(function() {
   </div>
 -->
 </div>
+  
+<!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
+
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 function detailBoastBoard(dno) {
@@ -180,7 +200,7 @@ function detailBoastBoard(dno) {
 }
 </script>
   
-<!-- Top & Bottom Quick Menu -->
+
 <script type="text/javascript">
 // Top으로 이동
 $(document).ready(function() { 
@@ -188,38 +208,507 @@ $(document).ready(function() {
     $('html, body').animate({scrollTop:0}, 1000);
     return false;
   });
-
-  // Bottom으로 이동
-//  $('a[href=#quick-bottom]').click(function(){
-//    $('html, body').animate({ scrollTop: $(document).height()},'500');
-//    return false;
-//  });
-
-  // Quick Menu 따라오는 스크립트
-//  $(function() {
-//    $(window).scroll(function() {
-//      var top = $(window).scrollTop();
-//      $(".quick-menu").animate({"top" : top + 50 + "px"}, 30);
-//    });
-//  });
-
 });
 </script>
 
 <!-- search script -->
 <script>
-  var searchPage = 0;
-  $('.form-submit').click(function(event) {
-	  
-	  $("#All").trigger("click");
-	  
+var searchPage = 0;
+$('.form-submit').click(function(event) {
+
+  $("#All").trigger("click");
+
+  if ($('.form-control').val() == 'title') {
+    var search_data = new FormData();
+    search_data.append("title", $('.form-search').val());
+
+    var totalCount = 0;
+
+    // search 시 count
+    $.ajax({
+      url : "../boastboard/ajax/searchCount.do",
+      dataType : 'json',
+      contentType : false,
+      processData : false,
+      data : search_data,
+      async : false,
+      type : 'POST',
+      success : function(resultObj) {
+        totalCount = resultObj.count;
+      }
+    })
+
+    // moreBtn 삭제 후 재 생성
+    $('#moreBtn-Origin').empty();
+
+    if(totalCount > 1) {
+      $('#moreBtn-Origin')
+      .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
+    }
+
+
+    // 1페이지 Ajax로 출력
+    $.ajax({
+      url : "../boastboard/ajax/search.do?pageNo=1",
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      data : search_data,
+      async : false,
+      success : function(resultObj) {
+        $("#subtable").empty();
+        var div = $("#subtable");
+        var setClass;
+        for (var i = 0; i < resultObj.data.length; i++) {
+          var check1 = resultObj.data[i].filename.split(".");
+          check1 = check1.slice(1,2).toString().toLowerCase();
+          if (check1 == "jpg"
+              || check1 == "jpeg"
+              || check1 == "png"
+              || check1 == "gif"
+              || check1 == "bmp") {
+
+            if (resultObj.size[i].width > resultObj.size[i].height) {
+              setClass="landscape"
+            } else {
+              setClass="portrait"
+            }
+            $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+            .html(
+            "<div class='card'>" +
+              "<div class='background'>" +
+              "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
+              "</div>" +
+              "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+              "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+                "<i class='fa fa-camera-retro'></i>" +
+              "</a>" +
+              "<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+              "<div class='infosub'>" +
+                "<h2>" +
+                  "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+                resultObj.data[i].title + "</a>" +
+                "</h2>" +
+                "<div class='foot'>" +
+                  "<i class='line'></i> <span class='date'>" + resultObj.data[i].createDate + "</span>" +
+                  "<span class='view-like'><i class='fa fa-eye'></i> " +
+                  resultObj.data[i].view +
+                  " <i class='fa fa-thumbs-o-up'></i> " +
+                  resultObj.data[i].like +
+                  " </span>" +
+                "</div>" +
+              "</div>" +
+            "</div>")
+            .appendTo(div);         
+          } else if (check1 == "avi"
+            || check1 == "wmv"
+            || check1 == "mp4"
+            || check1 == "mkv"
+            || check1 == "wav") {
+
+            if (resultObj.size[i].width > resultObj.size[i].height) {
+              setClass="landscape"
+            } else {
+              setClass="portrait"
+            }
+
+            $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+            .html("<div class='card'>"
+              + "<div class='background'>"
+              + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+              + "</div>"
+              + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              +"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + "<i class='fa fa-youtube-play'></i>"
+              + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              + "<div class='infosub'>"
+              + "<h2>"
+              + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + resultObj.data[i].title
+              + "</a>"
+              + "</h2>"
+              + "<div class='foot'>"
+              + "<i class='line'></i> <span class='date'>"
+              + resultObj.data[i].createDate
+              + "</span>"
+              + "<span class='view-like'><i class='fa fa-eye'></i> "
+              + resultObj.data[i].view
+              + " <i class='fa fa-thumbs-o-up'></i> "
+              + resultObj.data[i].like
+              + " </span>"
+              + "</div>"
+              + "</div>"
+              + "</div>")
+            .appendTo(div);
+          }
+        }
+        searchPage = 1;
+      }
+    });
+    // more 버튼 클릭 시 이벤트 발생 
+    $('.moreBtn').click(function(event) {
+      if(searchPage < totalCount) {
+        searchPage = searchPage + 1;
+        $.ajax({
+          url : "../boastboard/ajax/search.do?pageNo="+searchPage,
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          data : search_data,
+          async : false,
+          success : function(resultObj) {
+            var div = $("#subtable");
+            var setClass;
+            for (var i = 0; i < resultObj.data.length; i++) {
+              var check1 = resultObj.data[i].filename.split(".");
+              check1 = check1.slice(1,2).toString().toLowerCase();
+              if (check1 == "jpg"
+                  || check1 == "jpeg"
+                  || check1 == "png"
+                  || check1 == "gif"
+                  || check1 == "bmp") {
+
+                if (resultObj.size[i].width > resultObj.size[i].height) {
+                  setClass="landscape"
+                } else {
+                  setClass="portrait"
+                }
+                $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+                .html("<div class='card'>"
+                  + "<div class='background'>"
+                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                  + "</div>"
+                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  +" <a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + "<i class='fa fa-camera-retro'></i>"
+                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<div class='infosub'>"
+                  + "<h2>"
+                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + resultObj.data[i].title
+                  + "</a>"
+                  + "</h2>"
+                  + "<div class='foot'>"
+                  + "<i class='line'></i> <span class='date'>"
+                  + resultObj.data[i].createDate
+                  + "</span>"
+                  + "<span class='view-like'><i class='fa fa-eye'></i> "
+                  + resultObj.data[i].view
+                  + " <i class='fa fa-thumbs-o-up'></i> "
+                  + resultObj.data[i].like
+                  + " </span>"
+                  + "</div>"
+                  + "</div>"
+                  + "</div>")
+                .appendTo(div);
+              } else if (check1 == "avi"
+                  || check1 == "wmv"
+                  || check1 == "mp4"
+                  || check1 == "mkv"
+                  || check1 == "wav") {
+
+                if (resultObj.size[i].width > resultObj.size[i].height) {
+                  setClass="landscape"
+                } else {
+                  setClass="portrait"
+                }
+                $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+                .html("<div class='card'>"
+                  + "<div class='background'>"
+                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                  + "</div>"
+                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + "<i class='fa fa-youtube-play'></i>"
+                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<div class='infosub'>"
+                  + "<h2>"
+                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + resultObj.data[i].title
+                  + "</a>"
+                  + "</h2>"
+                  + "<div class='foot'>"
+                  + "<i class='line'></i> <span class='date'>"
+                  + resultObj.data[i].createDate
+                  + "</span>"
+                  + "<span class='view-like'><i class='fa fa-eye'></i> "
+                  + resultObj.data[i].view
+                  + " <i class='fa fa-thumbs-o-up'></i> "
+                  + resultObj.data[i].like
+                  + " </span>"
+                  + "</div>"
+                  + "</div>"
+                  + "</div>")
+                .appendTo(div);
+              }
+            }
+          }
+        });
+        if(searchPage == totalCount) {
+          $('#moreBtn-Origin').empty();                               
+        }
+      } else if(searchPage == totalCount) {
+        $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+        $('#modo').modal('show')
+      }
+    })
+  } else if ($('.form-control').val() == 'member') {
+    var search_data = new FormData();
+    search_data.append("member", $('.form-search').val());
+    var totalCount = 0;
+
+    // search 시 count 
+    $.ajax({
+      url : "../boastboard/ajax/searchCount.do",
+      dataType : 'json',
+      contentType : false,
+      processData : false,
+      data : search_data,
+      async : false,
+      type : 'POST',
+      success : function(resultObj) {
+        totalCount = resultObj.count;
+      }
+    })
+
+
+    // moreBtn 삭제 후 재 생성 
+    $('#moreBtn-Origin').empty();
+
+    if(totalCount > 1) {
+      $('#moreBtn-Origin')
+      .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
+    }
+
+
+    <!-- 1페이지 Ajax로 출력 -->
+    $.ajax({
+      url : "../boastboard/ajax/search.do?pageNo=1",
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      data : search_data,
+      async : false,
+      success : function(resultObj) {
+        $("#subtable").empty();
+        var div = $("#subtable");
+        var setClass;
+        for (var i = 0; i < resultObj.data.length; i++) {
+          var check1 = resultObj.data[i].filename.split(".");
+          check1 = check1.slice(1,2).toString().toLowerCase();
+          if (check1 == "jpg"
+              || check1 == "jpeg"
+              || check1 == "png"
+              || check1 == "gif"
+              || check1 == "bmp") {
+
+            if (resultObj.size[i].width > resultObj.size[i].height) {
+              setClass="landscape"
+            } else {
+              setClass="portrait"
+            }
+            $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+            .html("<div class='card'>"
+              + "<div class='background'>"
+              + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+              + "</div>"
+              + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + "<i class='fa fa-camera-retro'></i>"
+              + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              + "<div class='infosub'>"
+              + "<h2>"
+              + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + resultObj.data[i].title
+              + "</a>"
+              + "</h2>"
+              + "<div class='foot'>"
+              + "<i class='line'></i> <span class='date'>"
+              + resultObj.data[i].createDate
+              + "</span>"
+              + "<span class='view-like'><i class='fa fa-eye'></i> "
+              + resultObj.data[i].view
+              + " <i class='fa fa-thumbs-o-up'></i> "
+              + resultObj.data[i].like
+              + " </span>"
+              + "</div>"
+              + "</div>"
+              + "</div>")
+            .appendTo(div);
+          } else if (check1 == "avi"
+              || check1 == "wmv"
+              || check1 == "mp4"
+              || check1 == "mkv"
+              || check1 == "wav") {
+
+            if (resultObj.size[i].width > resultObj.size[i].height) {
+              setClass="landscape"
+            } else {
+              setClass="portrait"
+            }
+
+            $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+            .html("<div class='card'>"
+              + "<div class='background'>"
+              + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+              + "</div>"
+              + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + "<i class='fa fa-youtube-play'></i>"
+              + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+              + "<div class='infosub'>"
+              + "<h2>"
+              + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+              + resultObj.data[i].title
+              + "</a>"
+              + "</h2>"
+              + "<div class='foot'>"
+              + "<i class='line'></i> <span class='date'>"
+              + resultObj.data[i].createDate
+              + "</span>"
+              + "<span class='view-like'><i class='fa fa-eye'></i> "
+              + resultObj.data[i].view
+              + " <i class='fa fa-thumbs-o-up'></i> "
+              + resultObj.data[i].like
+              + " </span>"
+              + "</div>"
+              + "</div>"
+              + "</div>")
+            .appendTo(div);
+          }
+        }
+        searchPage = 1;
+      }
+    });
+    // more 버튼 클릭 시 이벤트 발생 
+    $('.moreBtn').click(function(event) {
+      if(searchPage < totalCount) {
+        searchPage = searchPage + 1;
+        $.ajax({
+          url : "../boastboard/ajax/search.do?pageNo="+searchPage,
+          dataType : "json",
+          type : "POST",
+          contentType : false,
+          processData : false,
+          data : search_data,
+          async : false,
+          success : function(resultObj) {
+
+            var div = $("#subtable");
+            console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
+
+            var setClass;
+            for (var i = 0; i < resultObj.data.length; i++) {
+              var check1 = resultObj.data[i].filename.split(".");
+              check1 = check1.slice(1,2).toString().toLowerCase();
+              if (check1 == "jpg"
+                  || check1 == "jpeg"
+                  || check1 == "png"
+                  || check1 == "gif"
+                  || check1 == "bmp") {
+
+                if (resultObj.size[i].width > resultObj.size[i].height) {
+                  setClass="landscape"
+                } else {
+                  setClass="portrait"
+                }
+                $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+                .html("<div class='card'>"
+                  + "<div class='background'>"
+                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                  + "</div>"
+                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + "<i class='fa fa-camera-retro'></i>"
+                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<div class='infosub'>"
+                  + "<h2>"
+                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + resultObj.data[i].title
+                  + "</a>"
+                  + "</h2>"
+                  + "<div class='foot'>"
+                  + "<i class='line'></i> <span class='date'>"
+                  + resultObj.data[i].createDate
+                  + "</span>"
+                  + "<span class='view-like'><i class='fa fa-eye'></i> "
+                  + resultObj.data[i].view
+                  + " <i class='fa fa-thumbs-o-up'></i> "
+                  + resultObj.data[i].like
+                  + " </span>"
+                  + "</div>"
+                  + "</div>"
+                  + "</div>")
+                .appendTo(div);
+              } else if (check1 == "avi"
+                  || check1 == "wmv"
+                  || check1 == "mp4"
+                  || check1 == "mkv"
+                  || check1 == "wav") {
+
+                if (resultObj.size[i].width > resultObj.size[i].height) {
+                  setClass="landscape"
+                } else {
+                  setClass="portrait"
+                }
+                $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+                .html("<div class='card'>"
+                  + "<div class='background'>"
+                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                  + "</div>"
+                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + "<i class='fa fa-youtube-play'></i>"
+                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                  + "<div class='infosub'>"
+                  + "<h2>"
+                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                  + resultObj.data[i].title
+                  + "</a>"
+                  + "</h2>"
+                  + "<div class='foot'>"
+                  + "<i class='line'></i> <span class='date'>"
+                  + resultObj.data[i].createDate
+                  + "</span>"
+                  + "<span class='view-like'><i class='fa fa-eye'></i> "
+                  + resultObj.data[i].view
+                  + " <i class='fa fa-thumbs-o-up'></i> "
+                  + resultObj.data[i].like
+                  + " </span>"
+                  + "</div>"
+                  + "</div>"
+                  + "</div>")
+                .appendTo(div);
+              }
+            }
+          }
+        });
+        if(searchPage == totalCount) {
+          $('#moreBtn-Origin').empty();                               
+        }
+      } else if(searchPage == totalCount) {
+       $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+       $('#modo').modal('show')
+     }
+   })
+  }
+})
+
+
+<!-- Enter Key press 시 Search Event -->         
+$('.form-search').keypress(function(event) {
+  if (event.which == 13) {
+    $("#All").trigger("click");
+
     if ($('.form-control').val() == 'title') {
       var search_data = new FormData();
       search_data.append("title", $('.form-search').val());
-
       var totalCount = 0;
 
-      // search 시 count
+      // search 시 count 
       $.ajax({
         url : "../boastboard/ajax/searchCount.do",
         dataType : 'json',
@@ -230,22 +719,18 @@ $(document).ready(function() {
         type : 'POST',
         success : function(resultObj) {
           totalCount = resultObj.count;
-          console.log("Title Search totalCount........." + totalCount);
         }
       })
-
 
       // moreBtn 삭제 후 재 생성
       $('#moreBtn-Origin').empty();
 
       if(totalCount > 1) {
-        $('#moreBtn-Origin')
-          .append(
-          "<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
+      $('#moreBtn-Origin')
+      .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
       }
 
-
-      // 1페이지 Ajax로 출력
+      // 1페이지 Ajax로 출력 
       $.ajax({
         url : "../boastboard/ajax/search.do?pageNo=1",
         dataType : "json",
@@ -257,7 +742,7 @@ $(document).ready(function() {
         success : function(resultObj) {
           $("#subtable").empty();
           var div = $("#subtable");
-          console.log("Title Search 불러온 데이터 갯수....." + resultObj.data.length);
+          console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
 
           var setClass;
           for (var i = 0; i < resultObj.data.length; i++) {
@@ -268,1087 +753,435 @@ $(document).ready(function() {
                 || check1 == "png"
                 || check1 == "gif"
                 || check1 == "bmp") {
-            	
-                console.log("가로 : " + resultObj.size[i].width);
-                console.log("세로 : " + resultObj.size[i].height);
-                if (resultObj.size[i].width > resultObj.size[i].height) {
-                  setClass="landscape"
-                } else {
-                  setClass="portrait"
-                }
-            	
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
+              }
               $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-              .html(
-              "<div class='card'>" +
-                "<div class='background'>" +
-                "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"+
-                "</div>" +
-                "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
-                "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
-                  "<i class='fa fa-camera-retro'></i>" +
-                "</a>" +
-                "<a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
-                "<div class='infosub'>" +
-                  "<h2>" +
-                    "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
-                  resultObj.data[i].title + "</a>" +
-                  "</h2>" +
-                  "<div class='foot'>" +
-                    "<i class='line'></i> <span class='date'>" + resultObj.data[i].createDate + "</span>" +
-                    "<span class='view-like'><i class='fa fa-eye'></i> " +
-                    resultObj.data[i].view +
-                    " <i class='fa fa-thumbs-o-up'></i> " +
-                    resultObj.data[i].like +
-                    " </span>" +
-                  "</div>" +
-                "</div>" +
-              "</div>")
-              .appendTo(div);         
+              .html("<div class='card'>"
+                + "<div class='background'>"
+                + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                + "</div>"
+                + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + "<i class='fa fa-camera-retro'></i>"
+                + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<div class='infosub'>"
+                + "<h2>"
+                + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + resultObj.data[i].title
+                + "</a>"
+                + "</h2>"
+                + "<div class='foot'>"
+                + "<i class='line'></i> <span class='date'>"
+                + resultObj.data[i].createDate
+                + "</span>"
+                + "<span class='view-like'><i class='fa fa-eye'></i> "
+                + resultObj.data[i].view
+                + " <i class='fa fa-thumbs-o-up'></i> "
+                + resultObj.data[i].like
+                + " </span>"
+                + "</div>"
+                + "</div>"
+                + "</div>")
+              .appendTo(div);
             } else if (check1 == "avi"
                 || check1 == "wmv"
                 || check1 == "mp4"
                 || check1 == "mkv"
                 || check1 == "wav") {
-            	
-                console.log("가로 : " + resultObj.size[i].width);
-                console.log("세로 : " + resultObj.size[i].height);
-                if (resultObj.size[i].width > resultObj.size[i].height) {
-                  setClass="landscape"
-                } else {
-                  setClass="portrait"
-                }
-            	
-              $(
-                  "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                  .html(
-                      "<div class='card'>"
-                          + "<div class='background'>"
-                          + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                          + "</div>"
-                          + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                          +"<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                          + "<i class='fa fa-youtube-play'></i>"
-                          + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                          + "<div class='infosub'>"
-                          + "<h2>"
-                          + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                          + resultObj.data[i].title
-                          + "</a>"
-                          + "</h2>"
-                          + "<div class='foot'>"
-                          + "<i class='line'></i> <span class='date'>"
-                          + resultObj.data[i].createDate
-                          + "</span>"
-                          + "<span class='view-like'><i class='fa fa-eye'></i> "
-                          + resultObj.data[i].view
-                          + " <i class='fa fa-thumbs-o-up'></i> "
-                          + resultObj.data[i].like
-                          + " </span>"
-                          + "</div>"
-                          + "</div>"
-                          + "</div>")
-                  .appendTo(div);
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
+              }
+              $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+              .html("<div class='card'>"
+                + "<div class='background'>"
+                + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                + "</div>"
+                + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + "<i class='fa fa-youtube-play'></i>"
+                + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<div class='infosub'>"
+                + "<h2>"
+                + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + resultObj.data[i].title
+                + "</a>"
+                + "</h2>"
+                + "<div class='foot'>"
+                + "<i class='line'></i> <span class='date'>"
+                + resultObj.data[i].createDate
+                + "</span>"
+                + "<span class='view-like'><i class='fa fa-eye'></i> "
+                + resultObj.data[i].view
+                + " <i class='fa fa-thumbs-o-up'></i> "
+                + resultObj.data[i].like
+                + " </span>"
+                + "</div>"
+                + "</div>"
+                + "</div>")
+              .appendTo(div);
             }
           }
-
-          
-                      searchPage = 1;
-
+          searchPage = 1;
         }
-
       });
-
-
-
-              <!-- more 버튼 클릭 시 이벤트 발생 -->
-              $('.moreBtn').click(function(event) {
-                if(searchPage < totalCount) {
-
-                  searchPage = searchPage + 1;
-                  console.log("Title Search searchPage......"+searchPage);
-
-                          $.ajax({
-                                url : "../boastboard/ajax/search.do?pageNo="+searchPage,
-                                dataType : "json",
-                                type : "POST",
-                                contentType : false,
-                                processData : false,
-                                data : search_data,
-                                async : false,
-                                success : function(resultObj) {
-                                  var div = $("#subtable");
-                                  console.log("Title Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                                  var setClass;
-                                  for (var i = 0; i < resultObj.data.length; i++) {
-                                    var check1 = resultObj.data[i].filename.split(".");
-                                    check1 = check1.slice(1,2).toString().toLowerCase();
-                                    if (check1 == "jpg"
-                                        || check1 == "jpeg"
-                                        || check1 == "png"
-                                        || check1 == "gif"
-                                        || check1 == "bmp") {
-                                    	
-                                        console.log("가로 : " + resultObj.size[i].width);
-                                        console.log("세로 : " + resultObj.size[i].height);
-                                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                                          setClass="landscape"
-                                        } else {
-                                          setClass="portrait"
-                                        }
-                                    	
-                                      $(
-                                          "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                          .html(
-                                              "<div class='card'>"
-                                                  + "<div class='background'>"
-                                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                  + "</div>"
-                                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  +" <a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + "<i class='fa fa-camera-retro'></i>"
-                                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<div class='infosub'>"
-                                                  + "<h2>"
-                                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + resultObj.data[i].title
-                                                  + "</a>"
-                                                  + "</h2>"
-                                                  + "<div class='foot'>"
-                                                  + "<i class='line'></i> <span class='date'>"
-                                                  + resultObj.data[i].createDate
-                                                  + "</span>"
-                                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                  + resultObj.data[i].view
-                                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                                  + resultObj.data[i].like
-                                                  + " </span>"
-                                                  + "</div>"
-                                                  + "</div>"
-                                                  + "</div>")
-                                          .appendTo(div);
-                                    } else if (check1 == "avi"
-                                        || check1 == "wmv"
-                                        || check1 == "mp4"
-                                        || check1 == "mkv"
-                                        || check1 == "wav") {
-                                    	
-                                        console.log("가로 : " + resultObj.size[i].width);
-                                        console.log("세로 : " + resultObj.size[i].height);
-                                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                                          setClass="landscape"
-                                        } else {
-                                          setClass="portrait"
-                                        }
-                                    	
-                                      $(
-                                          "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                          .html(
-                                              "<div class='card'>"
-                                                  + "<div class='background'>"
-                                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                  + "</div>"
-                                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + "<i class='fa fa-youtube-play'></i>"
-                                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<div class='infosub'>"
-                                                  + "<h2>"
-                                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + resultObj.data[i].title
-                                                  + "</a>"
-                                                  + "</h2>"
-                                                  + "<div class='foot'>"
-                                                  + "<i class='line'></i> <span class='date'>"
-                                                  + resultObj.data[i].createDate
-                                                  + "</span>"
-                                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                  + resultObj.data[i].view
-                                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                                  + resultObj.data[i].like
-                                                  + " </span>"
-                                                  + "</div>"
-                                                  + "</div>"
-                                                  + "</div>")
-                                          .appendTo(div);
-                                    }
-                                  }
-                                }
-
-                              }); <!-- Ajax 끝 -->
-
-                              if(searchPage == totalCount) {
-                                $('#moreBtn-Origin').empty();                               
-                              }
-
-                }<!-- if문 끝 -->
-
-                     else if(searchPage == totalCount) {
-                         alert("더이상 페이지가 존재하지 않습니다.");
-                         console.log("더이상 페이지가 존재하지 않습니다.");
-                       }
-
-               })<!-- more 클릭 이벤트 끝 -->
-
-
-            } else if ($('.form-control').val() == 'member') {
-
-
-
-
-                      var search_data = new FormData();
-                      search_data.append("member", $('.form-search').val());
-
-                      var totalCount = 0;
-
-                      <!-- search 시 count -->
-                      $.ajax({
-                        url : "../boastboard/ajax/searchCount.do",
-                        dataType : 'json',
-                        contentType : false,
-                        processData : false,
-                        data : search_data,
-                        async : false,
-                        type : 'POST',
-                        success : function(resultObj) {
-
-                          totalCount = resultObj.count;
-                          console.log("Member Search totalCount........." + totalCount);
-                        }
-                      })
-
-
-                      <!-- moreBtn 삭제 후 재 생성 -->
-                      $('#moreBtn-Origin').empty();
-
-                      if(totalCount > 1) {
-                                $('#moreBtn-Origin')
-                                  .append(
-                                      "<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
-                      }
-
-
-                      <!-- 1페이지 Ajax로 출력 -->
-                      $.ajax({
-                            url : "../boastboard/ajax/search.do?pageNo=1",
-                            dataType : "json",
-                            type : "POST",
-                            contentType : false,
-                            processData : false,
-                            data : search_data,
-                            async : false,
-                            success : function(resultObj) {
-                              $("#subtable").empty();
-                              var div = $("#subtable");
-                              console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                              var setClass;
-                              for (var i = 0; i < resultObj.data.length; i++) {
-                                var check1 = resultObj.data[i].filename.split(".");
-                                check1 = check1.slice(1,2).toString().toLowerCase();
-                                if (check1 == "jpg"
-                                    || check1 == "jpeg"
-                                    || check1 == "png"
-                                    || check1 == "gif"
-                                    || check1 == "bmp") {
-                                	
-                                    console.log("가로 : " + resultObj.size[i].width);
-                                    console.log("세로 : " + resultObj.size[i].height);
-                                    if (resultObj.size[i].width > resultObj.size[i].height) {
-                                      setClass="landscape"
-                                    } else {
-                                      setClass="portrait"
-                                    }
-                                	
-                                  $(
-                                      "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                      .html(
-                                          "<div class='card'>"
-                                              + "<div class='background'>"
-                                              + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                              + "</div>"
-                                              + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                              + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                              + "<i class='fa fa-camera-retro'></i>"
-                                              + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                              + "<div class='infosub'>"
-                                              + "<h2>"
-                                              + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                              + resultObj.data[i].title
-                                              + "</a>"
-                                              + "</h2>"
-                                              + "<div class='foot'>"
-                                              + "<i class='line'></i> <span class='date'>"
-                                              + resultObj.data[i].createDate
-                                              + "</span>"
-                                              + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                              + resultObj.data[i].view
-                                              + " <i class='fa fa-thumbs-o-up'></i> "
-                                              + resultObj.data[i].like
-                                              + " </span>"
-                                              + "</div>"
-                                              + "</div>"
-                                              + "</div>")
-                                      .appendTo(div);
-                                } else if (check1 == "avi"
-                                    || check1 == "wmv"
-                                    || check1 == "mp4"
-                                    || check1 == "mkv"
-                                    || check1 == "wav") {
-                                	
-                                    console.log("가로 : " + resultObj.size[i].width);
-                                    console.log("세로 : " + resultObj.size[i].height);
-                                    if (resultObj.size[i].width > resultObj.size[i].height) {
-                                      setClass="landscape"
-                                    } else {
-                                      setClass="portrait"
-                                    }
-                                	
-                                  $(
-                                      "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                      .html(
-                                          "<div class='card'>"
-                                              + "<div class='background'>"
-                                              + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                              + "</div>"
-                                              + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                              + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                              + "<i class='fa fa-youtube-play'></i>"
-                                              + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                              + "<div class='infosub'>"
-                                              + "<h2>"
-                                              + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                              + resultObj.data[i].title
-                                              + "</a>"
-                                              + "</h2>"
-                                              + "<div class='foot'>"
-                                              + "<i class='line'></i> <span class='date'>"
-                                              + resultObj.data[i].createDate
-                                              + "</span>"
-                                              + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                              + resultObj.data[i].view
-                                              + " <i class='fa fa-thumbs-o-up'></i> "
-                                              + resultObj.data[i].like
-                                              + " </span>"
-                                              + "</div>"
-                                              + "</div>"
-                                              + "</div>")
-                                      .appendTo(div);
-                                }
-                              }
-
-                                          searchPage = 1;
-
-                            }
-
-                          });
-
-
-
-                      <!-- more 버튼 클릭 시 이벤트 발생 -->
-                      $('.moreBtn').click(function(event) {
-                        if(searchPage < totalCount) {
-
-                          searchPage = searchPage + 1;
-                          console.log("Member Search 현재 searchPage......"+searchPage);
-
-                                  $.ajax({
-                                        url : "../boastboard/ajax/search.do?pageNo="+searchPage,
-                                        dataType : "json",
-                                        type : "POST",
-                                        contentType : false,
-                                        processData : false,
-                                        data : search_data,
-                                        async : false,
-                                        success : function(resultObj) {
-                                        	
-                                          var div = $("#subtable");
-                                          console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                                          var setClass;
-                                          for (var i = 0; i < resultObj.data.length; i++) {
-                                            var check1 = resultObj.data[i].filename.split(".");
-                                            check1 = check1.slice(1,2).toString().toLowerCase();
-                                            if (check1 == "jpg"
-                                                || check1 == "jpeg"
-                                                || check1 == "png"
-                                                || check1 == "gif"
-                                                || check1 == "bmp") {
-                                                console.log("가로 : " + resultObj.size[i].width);
-                                                console.log("세로 : " + resultObj.size[i].height);
-                                                if (resultObj.size[i].width > resultObj.size[i].height) {
-                                                  setClass="landscape"
-                                                } else {
-                                                  setClass="portrait"
-                                                }
-                                              $(
-                                                  "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                                  .html(
-                                                      "<div class='card'>"
-                                                          + "<div class='background'>"
-                                                          + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                          + "</div>"
-                                                          + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                          + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                          + "<i class='fa fa-camera-retro'></i>"
-                                                          + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                          + "<div class='infosub'>"
-                                                          + "<h2>"
-                                                          + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                          + resultObj.data[i].title
-                                                          + "</a>"
-                                                          + "</h2>"
-                                                          + "<div class='foot'>"
-                                                          + "<i class='line'></i> <span class='date'>"
-                                                          + resultObj.data[i].createDate
-                                                          + "</span>"
-                                                          + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                          + resultObj.data[i].view
-                                                          + " <i class='fa fa-thumbs-o-up'></i> "
-                                                          + resultObj.data[i].like
-                                                          + " </span>"
-                                                          + "</div>"
-                                                          + "</div>"
-                                                          + "</div>")
-                                                  .appendTo(div);
-                                            } else if (check1 == "avi"
-                                                || check1 == "wmv"
-                                                || check1 == "mp4"
-                                                || check1 == "mkv"
-                                                || check1 == "wav") {
-                                                console.log("가로 : " + resultObj.size[i].width);
-                                                console.log("세로 : " + resultObj.size[i].height);
-                                                if (resultObj.size[i].width > resultObj.size[i].height) {
-                                                  setClass="landscape"
-                                                } else {
-                                                  setClass="portrait"
-                                                }
-                                              $(
-                                                  "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                                  .html(
-                                                      "<div class='card'>"
-                                                          + "<div class='background'>"
-                                                          + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                          + "</div>"
-                                                          + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                          + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                          + "<i class='fa fa-youtube-play'></i>"
-                                                          + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                          + "<div class='infosub'>"
-                                                          + "<h2>"
-                                                          + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                          + resultObj.data[i].title
-                                                          + "</a>"
-                                                          + "</h2>"
-                                                          + "<div class='foot'>"
-                                                          + "<i class='line'></i> <span class='date'>"
-                                                          + resultObj.data[i].createDate
-                                                          + "</span>"
-                                                          + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                          + resultObj.data[i].view
-                                                          + " <i class='fa fa-thumbs-o-up'></i> "
-                                                          + resultObj.data[i].like
-                                                          + " </span>"
-                                                          + "</div>"
-                                                          + "</div>"
-                                                          + "</div>")
-                                                  .appendTo(div);
-                                            }
-                                          }
-
-                                        }
-
-                                      }); <!-- Ajax 끝 -->
-
-                                      if(searchPage == totalCount) {
-                                        $('#moreBtn-Origin').empty();                               
-                                      }
-
-                        }<!-- if문 끝 -->
-
-                             else if(searchPage == totalCount) {
-                                 alert("더이상 페이지가 존재하지 않습니다.");
-                                 console.log("더이상 페이지가 존재하지 않습니다.");
-                               }
-
-                       })<!-- more 클릭 이벤트 끝 -->
-
-
-
-
-            }
-
-          })
-
-
-<!-- Enter Key press 시 Search Event -->         
-  $('.form-search').keypress(function(event) {
-    if (event.which == 13) {
-    	
-    	$("#All").trigger("click");
-    	
-      if ($('.form-control').val() == 'title') {
-        var search_data = new FormData();
-        search_data.append("title", $('.form-search').val());
-
-        var totalCount = 0;
-
-                 <!-- search 시 count -->
-                  $.ajax({
-                    url : "../boastboard/ajax/searchCount.do",
-                    dataType : 'json',
-                    contentType : false,
-                    processData : false,
-                    data : search_data,
-                    async : false,
-                    type : 'POST',
-                    success : function(resultObj) {
-
-                        totalCount = resultObj.count;
-                        console.log("TItle Search totalCount........." + totalCount);
-
-                      }
-                    })
-
-            <!-- moreBtn 삭제 후 재 생성 -->
-              $('#moreBtn-Origin').empty();
-
-              if(totalCount > 1) {
-                        $('#moreBtn-Origin')
-                          .append(
-                              "<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
-              }
-
-
-
-
-              <!-- 1페이지 Ajax로 출력 -->
-              $.ajax({
-                    url : "../boastboard/ajax/search.do?pageNo=1",
-                    dataType : "json",
-                    type : "POST",
-                    contentType : false,
-                    processData : false,
-                    data : search_data,
-                    async : false,
-                    success : function(resultObj) {
-                      $("#subtable").empty();
-                      var div = $("#subtable");
-                      console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                      var setClass;
-                      for (var i = 0; i < resultObj.data.length; i++) {
-                        var check1 = resultObj.data[i].filename.split(".");
-                        check1 = check1.slice(1,2).toString().toLowerCase();
-                        if (check1 == "jpg"
-                            || check1 == "jpeg"
-                            || check1 == "png"
-                            || check1 == "gif"
-                            || check1 == "bmp") {
-                            console.log("가로 : " + resultObj.size[i].width);
-                            console.log("세로 : " + resultObj.size[i].height);
-                            if (resultObj.size[i].width > resultObj.size[i].height) {
-                              setClass="landscape"
-                            } else {
-                              setClass="portrait"
-                            }
-                          $(
-                              "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                              .html(
-                                  "<div class='card'>"
-                                      + "<div class='background'>"
-                                      + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                      + "</div>"
-                                      + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                      + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                      + "<i class='fa fa-camera-retro'></i>"
-                                      + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                      + "<div class='infosub'>"
-                                      + "<h2>"
-                                      + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                      + resultObj.data[i].title
-                                      + "</a>"
-                                      + "</h2>"
-                                      + "<div class='foot'>"
-                                      + "<i class='line'></i> <span class='date'>"
-                                      + resultObj.data[i].createDate
-                                      + "</span>"
-                                      + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                      + resultObj.data[i].view
-                                      + " <i class='fa fa-thumbs-o-up'></i> "
-                                      + resultObj.data[i].like
-                                      + " </span>"
-                                      + "</div>"
-                                      + "</div>"
-                                      + "</div>")
-                              .appendTo(div);
-                        } else if (check1 == "avi"
-                            || check1 == "wmv"
-                            || check1 == "mp4"
-                            || check1 == "mkv"
-                            || check1 == "wav") {
-                            console.log("가로 : " + resultObj.size[i].width);
-                            console.log("세로 : " + resultObj.size[i].height);
-                            if (resultObj.size[i].width > resultObj.size[i].height) {
-                              setClass="landscape"
-                            } else {
-                              setClass="portrait"
-                            }
-                          $(
-                              "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                              .html(
-                                  "<div class='card'>"
-                                      + "<div class='background'>"
-                                      + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                      + "</div>"
-                                      + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                      + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                      + "<i class='fa fa-youtube-play'></i>"
-                                      + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                      + "<div class='infosub'>"
-                                      + "<h2>"
-                                      + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                      + resultObj.data[i].title
-                                      + "</a>"
-                                      + "</h2>"
-                                      + "<div class='foot'>"
-                                      + "<i class='line'></i> <span class='date'>"
-                                      + resultObj.data[i].createDate
-                                      + "</span>"
-                                      + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                      + resultObj.data[i].view
-                                      + " <i class='fa fa-thumbs-o-up'></i> "
-                                      + resultObj.data[i].like
-                                      + " </span>"
-                                      + "</div>"
-                                      + "</div>"
-                                      + "</div>")
-                              .appendTo(div);
-                        }
-                      }
-
-                                  searchPage = 1;
-
-                    }
-
-                  });
-
-
-
-
-
-              <!-- more 버튼 클릭 시 이벤트 발생 -->
-              $('.moreBtn').click(function(event) {
-                if(searchPage < totalCount) {
-
-                  searchPage = searchPage + 1;
-                  console.log("TItle Search 현재 searchPage......"+searchPage);
-
-                          $.ajax({
-                                url : "../boastboard/ajax/search.do?pageNo="+searchPage,
-                                dataType : "json",
-                                type : "POST",
-                                contentType : false,
-                                processData : false,
-                                data : search_data,
-                                async : false,
-                                success : function(resultObj) {
-                                  var div = $("#subtable");
-                                  console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                                  var setClass;
-                                  for (var i = 0; i < resultObj.data.length; i++) {
-                                    var check1 = resultObj.data[i].filename.split(".");
-                                    check1 = check1.slice(1,2).toString().toLowerCase();
-                                    if (check1 == "jpg"
-                                        || check1 == "jpeg"
-                                        || check1 == "png"
-                                        || check1 == "gif"
-                                        || check1 == "bmp") {
-                                        console.log("가로 : " + resultObj.size[i].width);
-                                        console.log("세로 : " + resultObj.size[i].height);
-                                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                                          setClass="landscape"
-                                        } else {
-                                          setClass="portrait"
-                                        }
-                                      $(
-                                          "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                          .html(
-                                              "<div class='card'>"
-                                                  + "<div class='background'>"
-                                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                  + "</div>"
-                                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + "<i class='fa fa-camera-retro'></i>"
-                                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<div class='infosub'>"
-                                                  + "<h2>"
-                                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + resultObj.data[i].title
-                                                  + "</a>"
-                                                  + "</h2>"
-                                                  + "<div class='foot'>"
-                                                  + "<i class='line'></i> <span class='date'>"
-                                                  + resultObj.data[i].createDate
-                                                  + "</span>"
-                                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                  + resultObj.data[i].view
-                                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                                  + resultObj.data[i].like
-                                                  + " </span>"
-                                                  + "</div>"
-                                                  + "</div>"
-                                                  + "</div>")
-                                          .appendTo(div);
-                                    } else if (check1 == "avi"
-                                        || check1 == "wmv"
-                                        || check1 == "mp4"
-                                        || check1 == "mkv"
-                                        || check1 == "wav") {
-                                        console.log("가로 : " + resultObj.size[i].width);
-                                        console.log("세로 : " + resultObj.size[i].height);
-                                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                                          setClass="landscape"
-                                        } else {
-                                          setClass="portrait"
-                                        }
-                                      $(
-                                          "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                          .html(
-                                              "<div class='card'>"
-                                                  + "<div class='background'>"
-                                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                  + "</div>"
-                                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + "<i class='fa fa-youtube-play'></i>"
-                                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                  + "<div class='infosub'>"
-                                                  + "<h2>"
-                                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                  + resultObj.data[i].title
-                                                  + "</a>"
-                                                  + "</h2>"
-                                                  + "<div class='foot'>"
-                                                  + "<i class='line'></i> <span class='date'>"
-                                                  + resultObj.data[i].createDate
-                                                  + "</span>"
-                                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                  + resultObj.data[i].view
-                                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                                  + resultObj.data[i].like
-                                                  + " </span>"
-                                                  + "</div>"
-                                                  + "</div>"
-                                                  + "</div>")
-                                          .appendTo(div);
-                                    }
-                                  }
-
-                                }
-
-                              }); <!-- Ajax 끝 -->
-
-                              if(searchPage == totalCount) {
-                                $('#moreBtn-Origin').empty();                               
-                              }
-
-                }<!-- if문 끝 -->
-
-                     else if(searchPage == totalCount) {
-                         alert("더이상 페이지가 존재하지 않습니다.");
-                         console.log("더이상 페이지가 존재하지 않습니다.");
-                       }
-
-               })<!-- more 클릭 이벤트 끝 -->
-
-
-
-      } else if ($('.form-control').val() == 'member') {
-
-
-
-                  var search_data = new FormData();
-                  search_data.append("member", $('.form-search').val());
-
-                  var totalCount = 0;
-
-                  <!-- search 시 count -->
-                  $.ajax({
-                    url : "../boastboard/ajax/searchCount.do",
-                    dataType : 'json',
-                    contentType : false,
-                    processData : false,
-                    data : search_data,
-                    async : false,
-                    type : 'POST',
-                    success : function(resultObj) {
-
-                      totalCount = resultObj.count;
-                      console.log("Member Search totalCount........." + totalCount);
-                    }
-                  })
-
-
-                  <!-- moreBtn 삭제 후 재 생성 -->
-                  $('#moreBtn-Origin').empty();
-
-                  if(totalCount > 1) {
-                            $('#moreBtn-Origin')
-                              .append(
-                                  "<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
+      // more 버튼 클릭 시 이벤트 발생 
+      $('.moreBtn').click(function(event) {
+        if(searchPage < totalCount) {
+          searchPage = searchPage + 1;
+          $.ajax({
+            url : "../boastboard/ajax/search.do?pageNo="+searchPage,
+            dataType : "json",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : search_data,
+            async : false,
+            success : function(resultObj) {
+              var div = $("#subtable");
+              console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
+
+              var setClass;
+              for (var i = 0; i < resultObj.data.length; i++) {
+                var check1 = resultObj.data[i].filename.split(".");
+                check1 = check1.slice(1,2).toString().toLowerCase();
+                if (check1 == "jpg"
+                    || check1 == "jpeg"
+                    || check1 == "png"
+                    || check1 == "gif"
+                    || check1 == "bmp") {
+
+                  if (resultObj.size[i].width > resultObj.size[i].height) {
+                    setClass="landscape"
+                  } else {
+                    setClass="portrait"
                   }
+                  $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+                  .html("<div class='card'>"
+                    + "<div class='background'>"
+                    + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                    + "</div>"
+                    + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + "<i class='fa fa-camera-retro'></i>"
+                    + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<div class='infosub'>"
+                    + "<h2>"
+                    + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + resultObj.data[i].title
+                    + "</a>"
+                    + "</h2>"
+                    + "<div class='foot'>"
+                    + "<i class='line'></i> <span class='date'>"
+                    + resultObj.data[i].createDate
+                    + "</span>"
+                    + "<span class='view-like'><i class='fa fa-eye'></i> "
+                    + resultObj.data[i].view
+                    + " <i class='fa fa-thumbs-o-up'></i> "
+                    + resultObj.data[i].like
+                    + " </span>"
+                    + "</div>"
+                    + "</div>"
+                    + "</div>")
+                  .appendTo(div);
+                } else if (check1 == "avi"
+                    || check1 == "wmv"
+                    || check1 == "mp4"
+                    || check1 == "mkv"
+                    || check1 == "wav") {
 
+                  if (resultObj.size[i].width > resultObj.size[i].height) {
+                    setClass="landscape"
+                  } else {
+                    setClass="portrait"
+                  }
+                  $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+                  .html("<div class='card'>"
+                    + "<div class='background'>"
+                    + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                    + "</div>"
+                    + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + "<i class='fa fa-youtube-play'></i>"
+                    + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<div class='infosub'>"
+                    + "<h2>"
+                    + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + resultObj.data[i].title
+                    + "</a>"
+                    + "</h2>"
+                    + "<div class='foot'>"
+                    + "<i class='line'></i> <span class='date'>"
+                    + resultObj.data[i].createDate
+                    + "</span>"
+                    + "<span class='view-like'><i class='fa fa-eye'></i> "
+                    + resultObj.data[i].view
+                    + " <i class='fa fa-thumbs-o-up'></i> "
+                    + resultObj.data[i].like
+                    + " </span>"
+                    + "</div>"
+                    + "</div>"
+                    + "</div>")
+                  .appendTo(div);
+                }
+              }
+            }
+          }); // Ajax 끝 
+          if(searchPage == totalCount) {
+            $('#moreBtn-Origin').empty();                               
+          }
+        } else if(searchPage == totalCount) {
+           $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+           $('#modo').modal('show')
+         }
+       }) // more 클릭 이벤트 끝 
+    } else if ($('.form-control').val() == 'member') {
+      var search_data = new FormData();
+      search_data.append("member", $('.form-search').val());
 
-                  <!-- 1페이지 Ajax로 출력 -->
-                  $.ajax({
-                        url : "../boastboard/ajax/search.do?pageNo=1",
-                        dataType : "json",
-                        type : "POST",
-                        contentType : false,
-                        processData : false,
-                        data : search_data,
-                        async : false,
-                        success : function(resultObj) {
-                          $("#subtable").empty();
-                          var div = $("#subtable");
-                          console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
+      var totalCount = 0;
 
-                          var setClass;
-                          for (var i = 0; i < resultObj.data.length; i++) {
-                            var check1 = resultObj.data[i].filename.split(".");
-                            check1 = check1.slice(1,2).toString().toLowerCase();
-                            if (check1 == "jpg"
-                                || check1 == "jpeg"
-                                || check1 == "png"
-                                || check1 == "gif"
-                                || check1 == "bmp") {
-                                console.log("가로 : " + resultObj.size[i].width);
-                                console.log("세로 : " + resultObj.size[i].height);
-                                if (resultObj.size[i].width > resultObj.size[i].height) {
-                                  setClass="landscape"
-                                } else {
-                                  setClass="portrait"
-                                }
-                              $(
-                                  "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                  .html(
-                                      "<div class='card'>"
-                                          + "<div class='background'>"
-                                          + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                          + "</div>"
-                                          + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                          + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                          + "<i class='fa fa-camera-retro'></i>"
-                                          + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                          + "<div class='infosub'>"
-                                          + "<h2>"
-                                          + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                          + resultObj.data[i].title
-                                          + "</a>"
-                                          + "</h2>"
-                                          + "<div class='foot'>"
-                                          + "<i class='line'></i> <span class='date'>"
-                                          + resultObj.data[i].createDate
-                                          + "</span>"
-                                          + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                          + resultObj.data[i].view
-                                          + " <i class='fa fa-thumbs-o-up'></i> "
-                                          + resultObj.data[i].like
-                                          + " </span>"
-                                          + "</div>"
-                                          + "</div>"
-                                          + "</div>")
-                                  .appendTo(div);
-                            } else if (check1 == "avi"
-                                || check1 == "wmv"
-                                || check1 == "mp4"
-                                || check1 == "mkv"
-                                || check1 == "wav") {
-                                console.log("가로 : " + resultObj.size[i].width);
-                                console.log("세로 : " + resultObj.size[i].height);
-                                if (resultObj.size[i].width > resultObj.size[i].height) {
-                                  setClass="landscape"
-                                } else {
-                                  setClass="portrait"
-                                }
-                              $(
-                                  "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                  .html(
-                                      "<div class='card'>"
-                                          + "<div class='background'>"
-                                          + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                          + "</div>"
-                                          + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                          + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                          + "<i class='fa fa-youtube-play'></i>"
-                                          + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                          + "<div class='infosub'>"
-                                          + "<h2>"
-                                          + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                          + resultObj.data[i].title
-                                          + "</a>"
-                                          + "</h2>"
-                                          + "<div class='foot'>"
-                                          + "<i class='line'></i> <span class='date'>"
-                                          + resultObj.data[i].createDate
-                                          + "</span>"
-                                          + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                          + resultObj.data[i].view
-                                          + " <i class='fa fa-thumbs-o-up'></i> "
-                                          + resultObj.data[i].like
-                                          + " </span>"
-                                          + "</div>"
-                                          + "</div>"
-                                          + "</div>")
-                                  .appendTo(div);
-                            }
-                          }
+      <!-- search 시 count -->
+      $.ajax({
+        url : "../boastboard/ajax/searchCount.do",
+        dataType : 'json',
+        contentType : false,
+        processData : false,
+        data : search_data,
+        async : false,
+        type : 'POST',
+        success : function(resultObj) {
 
+          totalCount = resultObj.count;
+          console.log("Member Search totalCount........." + totalCount);
+        }
+      })
 
-                                      searchPage = 1;
+      // moreBtn 삭제 후 재 생성 
+      $('#moreBtn-Origin').empty();
 
-                        }
-
-                      });
-
-
-
-                  <!-- more 버튼 클릭 시 이벤트 발생 -->
-                  $('.moreBtn').click(function(event) {
-                    if(searchPage < totalCount) {
-
-                      searchPage = searchPage + 1;
-                      console.log("Member Search 현재 searchPage......"+searchPage);
-
-                              $.ajax({
-                                    url : "../boastboard/ajax/search.do?pageNo="+searchPage,
-                                    dataType : "json",
-                                    type : "POST",
-                                    contentType : false,
-                                    processData : false,
-                                    data : search_data,
-                                    async : false,
-                                    success : function(resultObj) {
-                                      var div = $("#subtable");
-                                      console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-
-                                      var setClass;
-                                      for (var i = 0; i < resultObj.data.length; i++) {
-                                        var check1 = resultObj.data[i].filename.split(".");
-                                        check1 = check1.slice(1,2).toString().toLowerCase();
-                                        if (check1 == "jpg"
-                                            || check1 == "jpeg"
-                                            || check1 == "png"
-                                            || check1 == "gif"
-                                            || check1 == "bmp") {
-                                            console.log("가로 : " + resultObj.size[i].width);
-                                            console.log("세로 : " + resultObj.size[i].height);
-                                            if (resultObj.size[i].width > resultObj.size[i].height) {
-                                              setClass="landscape"
-                                            } else {
-                                              setClass="portrait"
-                                            }
-                                          $(
-                                              "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                                              .html(
-                                                  "<div class='card'>"
-                                                      + "<div class='background'>"
-                                                      + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                      + "</div>"
-                                                      + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                      + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                      + "<i class='fa fa-camera-retro'></i>"
-                                                      + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                      + "<div class='infosub'>"
-                                                      + "<h2>"
-                                                      + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                      + resultObj.data[i].title
-                                                      + "</a>"
-                                                      + "</h2>"
-                                                      + "<div class='foot'>"
-                                                      + "<i class='line'></i> <span class='date'>"
-                                                      + resultObj.data[i].createDate
-                                                      + "</span>"
-                                                      + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                      + resultObj.data[i].view
-                                                      + " <i class='fa fa-thumbs-o-up'></i> "
-                                                      + resultObj.data[i].like
-                                                      + " </span>"
-                                                      + "</div>"
-                                                      + "</div>"
-                                                      + "</div>")
-                                              .appendTo(div);
-                                        } else if (check1 == "avi"
-                                            || check1 == "wmv"
-                                            || check1 == "mp4"
-                                            || check1 == "mkv"
-                                            || check1 == "wav") {
-                                            console.log("가로 : " + resultObj.size[i].width);
-                                            console.log("세로 : " + resultObj.size[i].height);
-                                            if (resultObj.size[i].width > resultObj.size[i].height) {
-                                              setClass="landscape"
-                                            } else {
-                                              setClass="portrait"
-                                            }
-                                          $(
-                                              "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                                              .html(
-                                                  "<div class='card'>"
-                                                      + "<div class='background'>"
-                                                      + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                                      + "</div>"
-                                                      + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                      + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                      + "<i class='fa fa-youtube-play'></i>"
-                                                      + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                                      + "<div class='infosub'>"
-                                                      + "<h2>"
-                                                      + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                                      + resultObj.data[i].title
-                                                      + "</a>"
-                                                      + "</h2>"
-                                                      + "<div class='foot'>"
-                                                      + "<i class='line'></i> <span class='date'>"
-                                                      + resultObj.data[i].createDate
-                                                      + "</span>"
-                                                      + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                                      + resultObj.data[i].view
-                                                      + " <i class='fa fa-thumbs-o-up'></i> "
-                                                      + resultObj.data[i].like
-                                                      + " </span>"
-                                                      + "</div>"
-                                                      + "</div>"
-                                                      + "</div>")
-                                              .appendTo(div);
-                                        }
-                                      }
-
-
-                                    }
-
-                                  }); <!-- Ajax 끝 -->
-
-                                  if(searchPage == totalCount) {
-                                    $('#moreBtn-Origin').empty();                               
-                                  }
-
-                    }<!-- if문 끝 -->
-
-                         else if(searchPage == totalCount) {
-                             alert("더이상 페이지가 존재하지 않습니다.");
-                             console.log("더이상 페이지가 존재하지 않습니다.");
-                           }
-
-                   })<!-- more 클릭 이벤트 끝 -->
-
-
-
+      if(totalCount > 1) {
+        $('#moreBtn-Origin')
+        .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
       }
+
+      // 1페이지 Ajax로 출력 
+      $.ajax({
+        url : "../boastboard/ajax/search.do?pageNo=1",
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        data : search_data,
+        async : false,
+        success : function(resultObj) {
+          $("#subtable").empty();
+          var div = $("#subtable");
+
+          var setClass;
+          for (var i = 0; i < resultObj.data.length; i++) {
+            var check1 = resultObj.data[i].filename.split(".");
+            check1 = check1.slice(1,2).toString().toLowerCase();
+            if (check1 == "jpg"
+                || check1 == "jpeg"
+                || check1 == "png"
+                || check1 == "gif"
+                || check1 == "bmp") {
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
+              }
+              $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+              .html("<div class='card'>"
+                + "<div class='background'>"
+                + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                + "</div>"
+                + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + "<i class='fa fa-camera-retro'></i>"
+                + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<div class='infosub'>"
+                + "<h2>"
+                + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + resultObj.data[i].title
+                + "</a>"
+                + "</h2>"
+                + "<div class='foot'>"
+                + "<i class='line'></i> <span class='date'>"
+                + resultObj.data[i].createDate
+                + "</span>"
+                + "<span class='view-like'><i class='fa fa-eye'></i> "
+                + resultObj.data[i].view
+                + " <i class='fa fa-thumbs-o-up'></i> "
+                + resultObj.data[i].like
+                + " </span>"
+                + "</div>"
+                + "</div>"
+                + "</div>")
+              .appendTo(div);
+            } else if (check1 == "avi"
+                || check1 == "wmv"
+                || check1 == "mp4"
+                || check1 == "mkv"
+                || check1 == "wav") {
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
+              }
+              $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+              .html("<div class='card'>"
+                + "<div class='background'>"
+                + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                + "</div>"
+                + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + "<i class='fa fa-youtube-play'></i>"
+                + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<div class='infosub'>"
+                + "<h2>"
+                + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + resultObj.data[i].title
+                + "</a>"
+                + "</h2>"
+                + "<div class='foot'>"
+                + "<i class='line'></i> <span class='date'>"
+                + resultObj.data[i].createDate
+                + "</span>"
+                + "<span class='view-like'><i class='fa fa-eye'></i> "
+                + resultObj.data[i].view
+                + " <i class='fa fa-thumbs-o-up'></i> "
+                + resultObj.data[i].like
+                + " </span>"
+                + "</div>"
+                + "</div>"
+                + "</div>")
+              .appendTo(div);
+            }
+          }
+          searchPage = 1;
+        }
+      });
+      // more 버튼 클릭 시 이벤트 발생 
+      $('.moreBtn').click(function(event) {
+        if(searchPage < totalCount) {
+          searchPage = searchPage + 1;
+          $.ajax({
+            url : "../boastboard/ajax/search.do?pageNo="+searchPage,
+            dataType : "json",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : search_data,
+            async : false,
+            success : function(resultObj) {
+              var div = $("#subtable");
+              var setClass;
+              for (var i = 0; i < resultObj.data.length; i++) {
+                var check1 = resultObj.data[i].filename.split(".");
+                check1 = check1.slice(1,2).toString().toLowerCase();
+                if (check1 == "jpg"
+                    || check1 == "jpeg"
+                    || check1 == "png"
+                    || check1 == "gif"
+                    || check1 == "bmp") {
+
+                  if (resultObj.size[i].width > resultObj.size[i].height) {
+                    setClass="landscape"
+                  } else {
+                    setClass="portrait"
+                  }
+                  $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+                  .html("<div class='card'>"
+                    + "<div class='background'>"
+                    + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                    + "</div>"
+                    + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + "<i class='fa fa-camera-retro'></i>"
+                    + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<div class='infosub'>"
+                    + "<h2>"
+                    + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + resultObj.data[i].title
+                    + "</a>"
+                    + "</h2>"
+                    + "<div class='foot'>"
+                    + "<i class='line'></i> <span class='date'>"
+                    + resultObj.data[i].createDate
+                    + "</span>"
+                    + "<span class='view-like'><i class='fa fa-eye'></i> "
+                    + resultObj.data[i].view
+                    + " <i class='fa fa-thumbs-o-up'></i> "
+                    + resultObj.data[i].like
+                    + " </span>"
+                    + "</div>"
+                    + "</div>"
+                    + "</div>")
+                  .appendTo(div);
+                } else if (check1 == "avi"
+                    || check1 == "wmv"
+                    || check1 == "mp4"
+                    || check1 == "mkv"
+                    || check1 == "wav") {
+
+                  if (resultObj.size[i].width > resultObj.size[i].height) {
+                    setClass="landscape"
+                  } else {
+                    setClass="portrait"
+                  }
+                  $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+                  .html("<div class='card'>"
+                    + "<div class='background'>"
+                    + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                    + "</div>"
+                    + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + "<i class='fa fa-youtube-play'></i>"
+                    + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                    + "<div class='infosub'>"
+                    + "<h2>"
+                    + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                    + resultObj.data[i].title
+                    + "</a>"
+                    + "</h2>"
+                    + "<div class='foot'>"
+                    + "<i class='line'></i> <span class='date'>"
+                    + resultObj.data[i].createDate
+                    + "</span>"
+                    + "<span class='view-like'><i class='fa fa-eye'></i> "
+                    + resultObj.data[i].view
+                    + " <i class='fa fa-thumbs-o-up'></i> "
+                    + resultObj.data[i].like
+                    + " </span>"
+                    + "</div>"
+                    + "</div>"
+                    + "</div>")
+                  .appendTo(div);
+                }
+              }
+            }
+          });
+          if(searchPage == totalCount) {
+            $('#moreBtn-Origin').empty();                               
+          }
+        } else if(searchPage == totalCount) {
+          $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+          $('#modo').modal('show')
+        }
+     })
     }
-  })
+  }
+})
 </script>
   
   
@@ -1357,364 +1190,341 @@ $(document).ready(function() {
   
   
 
-  <script>
-  $(document).ready(function() {
-	  // 로그인 회원 정보출력 세션없으면 로그인페이지로
-	  var no = $.session.get('mno');
-	  var div = $('#user_info');
-	  var ul = $('#menu-nav-ul');
-	  if (no == undefined) {
-	    div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
-	  } else {
-	    $('#myMno1').val(no);
-	    $('#myMno2').val(no);
-	    div.append(
-	      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
-	        "<i class='fa fa-envelope-o'></i>" +
-	        "<span class='badge' id='userBadge'>0</span>" +
-	      "</a>" +
-	      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-	      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
-	      "<a role='button' id='outBtn' class='logout'>" +
-	        "<i class='fa fa-unlock fa-lg'></i>" +
-	      "</a>")
-	    ul.append(
-	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-	  }
-	  
-	  // 로그아웃
-	  $(document).on("click", "#outBtn", function() {
-	        $.session.clear();
-	        location.href = "../login.html"
-	    });
-	  
-	  // 안읽은 받은쪽지 갯수 출력
-	  var no = $.session.get('mno');
-	  var form_data = new FormData();
-	  form_data.append("recvMno", no)
-	  $.ajax({
-	    url: '../message/ajax/noReadMsg.do',
-	    type: 'post',
-	    dataType: 'json',
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    data: form_data,
-	    success: function(resultObj) {
-	      var ajaxResult = resultObj.ajaxResult;
-	      $('#userBadge').html(ajaxResult.data.noReadCount)
-	    }
-	  })
-	    });
-  </script>
+<script>
+$(document).ready(function() {
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  var div = $('#user_info');
+  var ul = $('#menu-nav-ul');
+  if (no == undefined) {
+    div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
+    
+  } else {
+    $('#myMno1').val(no);
+    $('#myMno2').val(no);
+    div.append(
+      "<a role='button' id='msgBtn' class='Msg' href='../messagebox.html'>" +
+        "<i class='fa fa-envelope-o'></i>" +
+        "<span class='badge' id='userBadge'>0</span>" +
+      "</a>" +
+      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a role='button' id='outBtn' class='logout'>" +
+        "<i class='fa fa-unlock fa-lg'></i>" +
+      "</a>")
+    ul.append("<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
   
-  <!-- Filter -->
-  <script>
-  function filter(id) {
-	  
-	  if(id == "All") {
-		  $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
-		  $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-		  $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-		  $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-		  $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-		  $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-	  }else if(id == "DOG") {
-	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-	      $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
-	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-	  }else if(id == "CAT") {
-	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-	      $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
-	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-	  }else if(id == "FISH") {
-	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-	      $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
-	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-	  }else if(id == "BIRD") {
-	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-	      $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
-	      $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
-	  }else if(id ==  "ETC") {
-	      $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
-	      $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
-	      $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
-	      $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
-	      $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
-	      $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
-	  }
-	  
-      $('#subtable').empty();
-      var currentPage = 1;
-      var totalCount = 0;
-      
-      var filter_data = new FormData();
-      filter_data.append("filter_id", id);
-      
-      $.ajax({
-          url : "../boastboard/ajax/filterCount.do",
-          dataType : 'json',
-          contentType : false,
-          processData : false,
-          data : filter_data,
-          async : false,
-          type : 'POST',
-          success : function(resultObj) {
-            totalCount = resultObj.count;
-            console.log("Title filter totalCount........." + totalCount);
+    // 안읽은 받은쪽지 갯수 출력
+    var no = $.session.get('mno');
+    var form_data = new FormData();
+    form_data.append("recvMno", no)
+    $.ajax({
+      url: '../message/ajax/noReadMsg.do',
+      type: 'post',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        $('#userBadge').html(ajaxResult.data.noReadCount)
+      }
+    })
+  }
+
+  // 로그아웃
+  $(document).on("click", "#outBtn", function() {
+    $.session.clear();
+    location.href = "../login.html"
+  });
+});
+</script>
+  
+<!-- Filter -->
+<script>
+function filter(id) {
+
+  if(id == "All") {
+    $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "DOG") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "CAT") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "FISH") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "BIRD") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id ==  "ETC") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
+  }
+
+  $('#subtable').empty();
+  var currentPage = 1;
+  var totalCount = 0;
+
+  var filter_data = new FormData();
+  filter_data.append("filter_id", id);
+
+  $.ajax({
+    url : "../boastboard/ajax/filterCount.do",
+    dataType : 'json',
+    contentType : false,
+    processData : false,
+    data : filter_data,
+    async : false,
+    type : 'POST',
+    success : function(resultObj) {
+      totalCount = resultObj.count;
+    }
+  })
+
+  $('#moreBtn-Origin').empty();
+  if(totalCount > 1) {
+    $('#moreBtn-Origin')
+    .append("<a role='button' class='moreBtn' id='filterBtn'><div id='more'>더보기</div></a>");
+  }
+
+  $.ajax({
+    url : "../boastboard/ajax/filter_list.do?pageNo="+currentPage,
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : filter_data,
+    async : false,
+    success : function(resultObj) {
+      var div = $("#subtable");
+      var setClass;
+      for (var i = 0; i < resultObj.data.length; i++) {
+        var check1 = resultObj.data[i].filename.split(".");
+        check1 = check1.slice(1,2).toString().toLowerCase();
+        if (check1 == "jpg"
+            || check1 == "jpeg"
+            || check1 == "png"
+            || check1 == "gif"
+            || check1 == "bmp") {
+
+          if (resultObj.size[i].width > resultObj.size[i].height) {
+            setClass="landscape"
+          } else {
+            setClass="portrait"
           }
-        })
-        
-       $('#moreBtn-Origin').empty();
-      if(totalCount > 1) {
-          $('#moreBtn-Origin')
-            .append(
-            "<a role='button' class='moreBtn' id='filterBtn'><div id='more'>더보기</div></a>");
+          $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+          .html("<div class='card'>"
+            + "<div class='background'>"
+            + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+            + "</div>"
+            + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+            + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+            + "<i class='fa fa-camera-retro'></i>"
+            + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+            + "<div class='infosub'>"
+            + "<h2>"
+            + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+            + resultObj.data[i].title
+            + "</a>"
+            + "</h2>"
+            + "<div class='foot'>"
+            + "<i class='line'></i> <span class='date'>"
+            + resultObj.data[i].createDate
+            + "</span>"
+            + "<span class='view-like'><i class='fa fa-eye'></i> "
+            + resultObj.data[i].view
+            + " <i class='fa fa-thumbs-o-up'></i> "
+            + resultObj.data[i].like
+            + " </span>"
+            + "</div>"
+            + "</div>"
+            + "</div>")
+          .appendTo(div);
+        } else if (check1 == "avi"
+            || check1 == "wmv"
+            || check1 == "mp4"
+            || check1 == "mkv"
+            || check1 == "wav") {
+            console.log("가로 : " + resultObj.size[i].width);
+            console.log("세로 : " + resultObj.size[i].height);
+            if (resultObj.size[i].width > resultObj.size[i].height) {
+              setClass="landscape"
+            } else {
+              setClass="portrait"
+            }
+          $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+          .html("<div class='card'>"
+            + "<div class='background'>"
+            + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+            + "</div>"
+            + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+            + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+            + "<i class='fa fa-youtube-play'></i>"
+            + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+            + "<div class='infosub'>"
+            + "<h2>"
+            + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+            + resultObj.data[i].title
+            + "</a>"
+            + "</h2>"
+            + "<div class='foot'>"
+            + "<i class='line'></i> <span class='date'>"
+            + resultObj.data[i].createDate
+            + "</span>"
+            + "<span class='view-like'><i class='fa fa-eye'></i> "
+            + resultObj.data[i].view
+            + " <i class='fa fa-thumbs-o-up'></i> "
+            + resultObj.data[i].like
+            + " </span>"
+            + "</div>"
+            + "</div>"
+            + "</div>")
+          .appendTo(div);
         }
-      
+      }
+    }
+  });
+
+  $('#filterBtn').click(function(event) {
+
+    if(currentPage < totalCount) {
+      currentPage = currentPage + 1;
       $.ajax({
-          url : "../boastboard/ajax/filter_list.do?pageNo="+currentPage,
-          dataType : "json",
-          type : "POST",
-          contentType : false,
-          processData : false,
-          data : filter_data,
-          async : false,
-          success : function(resultObj) {
-            var div = $("#subtable");
-            console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-            var setClass;
-            for (var i = 0; i < resultObj.data.length; i++) {
-              var check1 = resultObj.data[i].filename.split(".");
-              check1 = check1.slice(1,2).toString().toLowerCase();
-              if (check1 == "jpg"
-                  || check1 == "jpeg"
-                  || check1 == "png"
-                  || check1 == "gif"
-                  || check1 == "bmp") {
-                  console.log("가로 : " + resultObj.size[i].width);
-                  console.log("세로 : " + resultObj.size[i].height);
-                  if (resultObj.size[i].width > resultObj.size[i].height) {
-                    setClass="landscape"
-                  } else {
-                    setClass="portrait"
-                  }
-                $(
-                    "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                    .html(
-                        "<div class='card'>"
-                            + "<div class='background'>"
-                            + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                            + "</div>"
-                            + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                            + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                            + "<i class='fa fa-camera-retro'></i>"
-                            + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                            + "<div class='infosub'>"
-                            + "<h2>"
-                            + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                            + resultObj.data[i].title
-                            + "</a>"
-                            + "</h2>"
-                            + "<div class='foot'>"
-                            + "<i class='line'></i> <span class='date'>"
-                            + resultObj.data[i].createDate
-                            + "</span>"
-                            + "<span class='view-like'><i class='fa fa-eye'></i> "
-                            + resultObj.data[i].view
-                            + " <i class='fa fa-thumbs-o-up'></i> "
-                            + resultObj.data[i].like
-                            + " </span>"
-                            + "</div>"
-                            + "</div>"
-                            + "</div>")
-                    .appendTo(div);
-              } else if (check1 == "avi"
-                  || check1 == "wmv"
-                  || check1 == "mp4"
-                  || check1 == "mkv"
-                  || check1 == "wav") {
-                  console.log("가로 : " + resultObj.size[i].width);
-                  console.log("세로 : " + resultObj.size[i].height);
-                  if (resultObj.size[i].width > resultObj.size[i].height) {
-                    setClass="landscape"
-                  } else {
-                    setClass="portrait"
-                  }
-                $(
-                    "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                    .html(
-                        "<div class='card'>"
-                            + "<div class='background'>"
-                            + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                            + "</div>"
-                            + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                            + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                            + "<i class='fa fa-youtube-play'></i>"
-                            + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                            + "<div class='infosub'>"
-                            + "<h2>"
-                            + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                            + resultObj.data[i].title
-                            + "</a>"
-                            + "</h2>"
-                            + "<div class='foot'>"
-                            + "<i class='line'></i> <span class='date'>"
-                            + resultObj.data[i].createDate
-                            + "</span>"
-                            + "<span class='view-like'><i class='fa fa-eye'></i> "
-                            + resultObj.data[i].view
-                            + " <i class='fa fa-thumbs-o-up'></i> "
-                            + resultObj.data[i].like
-                            + " </span>"
-                            + "</div>"
-                            + "</div>"
-                            + "</div>")
-                    .appendTo(div);
+        url : "../boastboard/ajax/filter_list.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        data : filter_data,
+        async : false,
+        success : function(resultObj) {
+          var div = $("#subtable");
+          console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
+          var setClass;
+          for (var i = 0; i < resultObj.data.length; i++) {
+            var check1 = resultObj.data[i].filename.split(".");
+            check1 = check1.slice(1,2).toString().toLowerCase();
+            if (check1 == "jpg"
+                || check1 == "jpeg"
+                || check1 == "png"
+                || check1 == "gif"
+                || check1 == "bmp") {
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
               }
+              $("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
+              .html("<div class='card'>"
+                + "<div class='background'>"
+                + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
+                + "</div>"
+                + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + "<i class='fa fa-camera-retro'></i>"
+                + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
+                + "<div class='infosub'>"
+                + "<h2>"
+                + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
+                + resultObj.data[i].title
+                + "</a>"
+                + "</h2>"
+                + "<div class='foot'>"
+                + "<i class='line'></i> <span class='date'>"
+                + resultObj.data[i].createDate
+                + "</span>"
+                + "<span class='view-like'><i class='fa fa-eye'></i> "
+                + resultObj.data[i].view
+                + " <i class='fa fa-thumbs-o-up'></i> "
+                + resultObj.data[i].like
+                + " </span>"
+                + "</div>"
+                + "</div>"
+                + "</div>")
+              .appendTo(div);
+            } else if (check1 == "avi"
+                || check1 == "wmv"
+                || check1 == "mp4"
+                || check1 == "mkv"
+                || check1 == "wav") {
+
+              if (resultObj.size[i].width > resultObj.size[i].height) {
+                setClass="landscape"
+              } else {
+                setClass="portrait"
+              }
+              $("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
+              .html("<div class='card'>" +
+                "<div class='background'>" +
+                "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />" +
+                "</div>" +
+                "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+                "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+                "<i class='fa fa-youtube-play'></i>" +
+                "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>" +
+                "<div class='infosub'>" +
+                "<h2>" +
+                "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>" +
+                resultObj.data[i].title +
+                "</a>" +
+                "</h2>" +
+                "<div class='foot'>" +
+                "<i class='line'></i> <span class='date'>" +
+                resultObj.data[i].createDate +
+                "</span>" +
+                "<span class='view-like'><i class='fa fa-eye'></i> " +
+                resultObj.data[i].view +
+                " <i class='fa fa-thumbs-o-up'></i> " +
+                resultObj.data[i].like +
+                " </span>" +
+                "</div>" +
+                "</div>" +
+                "</div>")
+              .appendTo(div);
             }
           }
+        }
+      });
 
-        }); <!-- Ajax 끝 -->
-        
-        $('#filterBtn').click(function(event) {
-        	
-        	console.log("currentPage = "+currentPage);
-        	console.log("totalCount = "+totalCount);
-        	
-        	if(currentPage < totalCount) {
-        	currentPage = currentPage + 1;
-        	console.log("Title Filter Page......"+currentPage);
-            $.ajax({
-                url : "../boastboard/ajax/filter_list.do?pageNo="+currentPage,
-                dataType : "json",
-                type : "POST",
-                contentType : false,
-                processData : false,
-                data : filter_data,
-                async : false,
-                success : function(resultObj) {
-                  var div = $("#subtable");
-                  console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
-                  var setClass;
-                  for (var i = 0; i < resultObj.data.length; i++) {
-                    var check1 = resultObj.data[i].filename.split(".");
-                    check1 = check1.slice(1,2).toString().toLowerCase();
-                    if (check1 == "jpg"
-                        || check1 == "jpeg"
-                        || check1 == "png"
-                        || check1 == "gif"
-                        || check1 == "bmp") {
-                        console.log("가로 : " + resultObj.size[i].width);
-                        console.log("세로 : " + resultObj.size[i].height);
-                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                          setClass="landscape"
-                        } else {
-                          setClass="portrait"
-                        }
-                      $(
-                          "<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
-                          .html(
-                              "<div class='card'>"
-                                  + "<div class='background'>"
-                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                  + "</div>"
-                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<a href='#' class='icon-camera' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + "<i class='fa fa-camera-retro'></i>"
-                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<div class='infosub'>"
-                                  + "<h2>"
-                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + resultObj.data[i].title
-                                  + "</a>"
-                                  + "</h2>"
-                                  + "<div class='foot'>"
-                                  + "<i class='line'></i> <span class='date'>"
-                                  + resultObj.data[i].createDate
-                                  + "</span>"
-                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                  + resultObj.data[i].view
-                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                  + resultObj.data[i].like
-                                  + " </span>"
-                                  + "</div>"
-                                  + "</div>"
-                                  + "</div>")
-                          .appendTo(div);
-                    } else if (check1 == "avi"
-                        || check1 == "wmv"
-                        || check1 == "mp4"
-                        || check1 == "mkv"
-                        || check1 == "wav") {
-                        console.log("가로 : " + resultObj.size[i].width);
-                        console.log("세로 : " + resultObj.size[i].height);
-                        if (resultObj.size[i].width > resultObj.size[i].height) {
-                          setClass="landscape"
-                        } else {
-                          setClass="portrait"
-                        }
-                      $(
-                          "<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
-                          .html(
-                              "<div class='card'>"
-                                  + "<div class='background'>"
-                                  + "<img src='../files/"+resultObj.data[i].filename+"' class='" + setClass + "' />"
-                                  + "</div>"
-                                  + "<a href='#' class='overlay' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<a href='#' class='icon-youtube' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + "<i class='fa fa-youtube-play'></i>"
-                                  + "</a> <a class='thumb' href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'></a>"
-                                  + "<div class='infosub'>"
-                                  + "<h2>"
-                                  + "<a href='#' onclick='detailBoastBoard("+resultObj.data[i].dno+")'>"
-                                  + resultObj.data[i].title
-                                  + "</a>"
-                                  + "</h2>"
-                                  + "<div class='foot'>"
-                                  + "<i class='line'></i> <span class='date'>"
-                                  + resultObj.data[i].createDate
-                                  + "</span>"
-                                  + "<span class='view-like'><i class='fa fa-eye'></i> "
-                                  + resultObj.data[i].view
-                                  + " <i class='fa fa-thumbs-o-up'></i> "
-                                  + resultObj.data[i].like
-                                  + " </span>"
-                                  + "</div>"
-                                  + "</div>"
-                                  + "</div>")
-                          .appendTo(div);
-                    }
-                  }
-                }
-
-              }); <!-- Ajax 끝 -->
-              
-              if(currentPage >= totalCount) {
-                  $('#moreBtn-Origin').empty();                               
-                }
-        	}
-        	
-            else if(currentPage >= totalCount) {
-                alert("더이상 페이지가 존재하지 않습니다.");
-                console.log("더이상 페이지가 존재하지 않습니다.");
-              }
-        	
-        })
-	  
-  }
-  </script>
+      if(currentPage >= totalCount) {
+        $('#moreBtn-Origin').empty();                               
+      }
+    } else if(currentPage >= totalCount) {
+      $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+      $('#modo').modal('show')
+      console.log("더이상 페이지가 존재하지 않습니다.");
+    }
+  })
+}
+</script>
 </body>
 </html>
