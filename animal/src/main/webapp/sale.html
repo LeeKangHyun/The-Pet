@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="icon/1.ico" type="image/x-icon" />
+<title>짝짓기</title>
+
+<link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+<!--  내가만든 css들  -->
+<link href="css/sh_slidmenu_header_mating.css" type="text/css" rel="stylesheet">
+<link href="css/sh_mating.css" type="text/css" rel="stylesheet">
+<link href="css/CSSreset.min.css" type="text/css"	rel="stylesheet" />
+
+<!--  폰트아이콘 링크  -->
+<link href="lib/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link href="css/icon-font.min.css" type="text/css" rel="stylesheet" />
+
+<!-- 부트스트랩 -->
+<script src='lib/jquery/jquery.min.js' type="text/javascript"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+
+<script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+
+<!-- filter 및 sort Test 중 -->
+<!-- <script src="mixitup-master/build/jquery.mixitup.min.js" type="text/javascript"></script> -->
+
+<script src="js/sh_custom-file-input.js"></script>
+
+<!--  파일 업로드  -->
+<!--<link href="css/sh_file_upload.css" rel="stylesheet" type="text/css" />-->
+<script>
+  (function(e, t, n) {
+    var r = e.querySelectorAll("html")[0];
+    r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
+  })
+  (document, window, 0);
+</script>
+
+</head>
+
+<body>
+  <header id="menu">
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="sale.html">
+        분양
+      </a>
+      <div id="user_info"></div>
+    </div>
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
+
+    <div id="sideMenu">
+      <label for="menuToggle" id="menu-icon"><i
+        class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
+
+      <nav id="menu-nav">
+        <ul id="menu-nav-ul">
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="#"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i>
+              자랑해요</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
+  </header>
+
+  <section id="main-body">
+    <!-- 위의 제목 부분 -->
+      <button id="All" class="active" onclick="filter(this.id)">All</button>
+      <button id="DOG" onclick="filter(this.id)"></button>
+      <button id="CAT" onclick="filter(this.id)"></button>
+      <button id="FISH" onclick="filter(this.id)"></button>
+      <button id="BIRD" onclick="filter(this.id)"></button>
+      <button id="ETC" onclick="filter(this.id)">ETC</button>
+      <button id="hidden" hidden="">All</button>
+
+      <button onclick="location.href='saleform.html'" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
+        <!--  Filter 영역 시작 -->
+
+
+    <!-- 사진 게시물 영역 -->
+    <div id='Container' class='container'>
+    
+    
+<!--
+    
+      <a class='portfoliocard  DOG' role='button' href='saleDetail.html?sno=1'>
+
+        <div class='coverphoto'>
+          <img src='files/p4.jpeg' class='landscape'>
+        </div>
+
+        <div class='profile_picture'>
+          <img src='files/p3.jpeg'>
+        </div>
+
+        <div class='left_col'>
+          <div class='views'>
+            <div class='view_count' id='v" +  resultObj.data[i].sno + "'> 33</div>
+            VIEW
+          </div>
+        </div>
+        <div class='right_col'>
+          <ul class='contact_information'>
+            <li class='website'>DOG</li>
+            <li class='website'>포메라이안</li>
+            <li class='gender'>암컷</li>
+            <li class='title'>제목</li>
+            <li class='resume'>2016-02-15</li>
+            <li class='name'>작성자</li>
+          </ul>
+        </div>
+      </a>
+    
+-->
+    
+    </div>
+
+    <div id="more">
+      <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
+    </div>
+
+  </section>
+
+<script src="js/sh_custom-file-input.js"></script>
+
+
+<script>
+function filter(id) { 
+  if(id == "All") {
+    $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "DOG") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' class='active' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "CAT") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' class='active'  onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "FISH") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' class='active'  onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id == "BIRD") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' class='active' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' onclick='filter(this.id)'>ETC</button>");
+  }else if(id ==  "ETC") {
+    $("#All").replaceWith("<button id='All' onclick='filter(this.id)'>All</button>");
+    $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
+    $("#CAT").replaceWith("<button id='CAT' onclick='filter(this.id)'></button>");
+    $("#FISH").replaceWith("<button id='FISH' onclick='filter(this.id)'></button>");
+    $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
+    $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
+  }
+	   
+  $('#Container').empty();
+    var currentPage = 1;
+    var totalCount = 0;
+
+    var filter_data = new FormData();
+    filter_data.append("sfilter_id", id);
+
+
+    $.ajax({
+      url : "sale/ajax/filterCount.do",
+      dataType : 'json',
+      contentType : false,
+      processData : false,
+      data : filter_data,
+      async : false,
+      type : 'POST',
+      success : function(resultObj) {
+        totalCount =  resultObj.count;	        	  
+      }
+    })
+
+    $('#more').empty();
+    if(totalCount > 1){
+      $('#more').append("<a role='button' class='moreBtn' id='filterBtn'>더보기</a>");
+  }
+
+  $.ajax({
+    url : "sale/ajax/filter_list.do?pageNo="+currentPage,
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : filter_data,
+    async : false,
+    success : function(resultObj) {
+
+      var gen;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
+
+      for (var i = 0; i < resultObj.data.length; i++) {
+
+        if(resultObj.data[i].sGender == 0) {
+          gender = "수컷";
+        } else {
+          gender = "암컷";
+        }
+
+        imgWidth = resultObj.size[i].width;
+        imgHeight = resultObj.size[i].height;
+
+
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
+
+        $('#Container').append(
+        "<a class='portfoliocard  " + resultObj.data[i].sSpec + "' role='button' href='saleDetail.html?sno=" + resultObj.data[i].sno + "'>" +
+
+          "<div class='coverphoto'>" +
+            "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
+          "</div>" +
+
+          "<div class='profile_picture'>" +
+            "<img src='files/" + resultObj.data[i].mimg + "'>" +
+          "</div>" +
+
+          "<div class='left_col'>" +
+            "<div class='views'>" +
+              "<div class='view_count' id='v" +  resultObj.data[i].sno + "'>" + resultObj.data[i].sViews + "</div>" +
+              "VIEW" +
+            "</div>" +
+          "</div>" +
+          "<div class='right_col'>" +
+            "<ul class='contact_information'>" +
+              "<li class='website'>" + resultObj.data[i].sSpec + "</li>" +
+              "<li class='website'>" + resultObj.data[i].sType + "</li>" +
+              "<li class='gender'>" + gender + "</li>" +
+              "<li class='title'>" + resultObj.data[i].sTitle + "</li>" +
+              "<li class='resume'>" + resultObj.data[i].sCreateDate + "</li>" +
+              "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+              "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
+            "</ul>" +
+          "</div>" +
+        "</a>")
+      }
+    }
+  })
+	      
+  $('#filterBtn').click(function(event) {
+
+    if(currentPage < totalCount) {
+      currentPage = currentPage + 1;
+
+      $.ajax({
+        url : "sale/ajax/filter_list.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        data : filter_data,
+        async : false,
+        success : function(resultObj) {
+
+          var gen;
+          var imgWidth;
+          var imgHeight;
+          var setClass;
+
+          for (var i = 0; i < resultObj.data.length; i++) {
+
+            if(resultObj.data[i].sGender == 0) {
+              gender = "수컷";
+            } else {
+              gender = "암컷";
+            }
+
+            imgWidth = resultObj.size[i].width;
+            imgHeight = resultObj.size[i].height;
+
+
+            if (imgWidth > imgHeight) {
+              setClass = "landscape"
+            } else {
+              setClass = "portrait"
+            }
+
+            $('#Container').append(
+            "<a class='portfoliocard  " + resultObj.data[i].sSpec + "' role='button' href='saleDetail.html?sno=" + resultObj.data[i].sno + "'>" +
+
+              "<div class='coverphoto'>" +
+                "<img src='files/" + resultObj.data[i].filename + "' class='" + setClass + "'>"+
+              "</div>" +
+
+              "<div class='profile_picture'>" +
+                "<img src='files/" + resultObj.data[i].mimg + "'>" +
+              "</div>" +
+
+              "<div class='left_col'>" +
+                "<div class='views'>" +
+                  "<div class='view_count' id='v" +  resultObj.data[i].sno + "'>" + resultObj.data[i].sViews + "</div>" +
+                  "VIEW" +
+                "</div>" +
+              "</div>" +
+              "<div class='right_col'>" +
+                "<ul class='contact_information'>" +
+                  "<li class='website'>" + resultObj.data[i].sSpec + "</li>" +
+                  "<li class='website'>" + resultObj.data[i].sType + "</li>" +
+                  "<li class='gender'>" + gender + "</li>" +
+                  "<li class='title'>" + resultObj.data[i].sTitle + "</li>" +
+                  "<li class='resume'>" + resultObj.data[i].sCreateDate + "</li>" +
+                  "<li class='name'>" + resultObj.data[i].mname + "</li>" +
+                  "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
+                "</ul>" +
+              "</div>" +
+            "</a>")
+          }
+        }
+      })
+    } // if문 끝
+
+    if(currentPage >= totalCount) {
+      $('#more').empty();
+    }
+  })
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  $('#delImg').css('display', 'none');
+  $('.box').css('display', 'none');
+  $('#forms').css('display', 'none');
+  
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  var div = $('#user_info');
+  var ul = $('#menu-nav-ul');
+  if (no == undefined) {
+    div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+  } else {
+    $('#myMno1').val(no);
+    $('#myMno2').val(no);
+
+    div.append(
+      "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+        "<i class='fa fa-envelope-o'></i>" +
+        "<span class='badge' id='userBadge'>0</span>" +
+      "</a>" +
+      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a role='button' id='outBtn' class='logout'>" +
+        "<i class='fa fa-unlock fa-lg'></i>" +
+      "</a>")
+    ul.append(
+      "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    
+    // 안읽은 받은쪽지 갯수 출력
+    var no = $.session.get('mno');
+    var form_data = new FormData();
+    form_data.append("recvMno", no)
+    $.ajax({
+      url: 'message/ajax/noReadMsg.do',
+      type: 'post',
+    //    async: false,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      success: function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        $('#userBadge').html(ajaxResult.data.noReadCount)
+      }
+    })
+  }
+
+  // 로그아웃
+  $(document).on("click", "#outBtn", function() {
+    $.session.clear();
+    location.href = "login.html"
+  });
+  
+  $.getJSON('sale/ajax/pages.do', function(resultObj) {
+    var ajaxResult = resultObj.ajaxResult;
+    if(ajaxResult.data == 1) {
+      $('#more').empty();
+    } 
+  })
+});
+
+// 분양 리스트 출력
+$.ajax({
+  url: 'sale/ajax/list.do',
+  async: false,
+  type: 'post',
+  dataType: 'json',
+  success: function(resultObj) {
+    var show = $('#Container');
+    var j = 0;
+    var file;
+    var mem;
+    var gen;
+    var imgWidth;
+    var imgHeight;
+    var setClass;
+    for (var sale of resultObj.sale) {
+      file = resultObj.filesMap[j];
+      mem = resultObj.memberMap[j];
+      if(sale.sGender == 0) {
+        gender = "수컷";
+      } else {
+        gender = "암컷";
+      }
+       
+      imgWidth = file[0].width;
+      imgHeight = file[0].height;
+
+      if (imgWidth > imgHeight) {
+        setClass = "landscape"
+      } else {
+        setClass = "portrait"
+      }
+      j++;
+      show.append(
+      "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
+      "href='saleDetail.html?sno=" + sale.sno +
+      "' onclick='detail(this.id);'>" +
+
+      "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
+
+      "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+
+      "<div class='left_col'>" +
+      "<div class='views'>" +
+      "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
+      "VIEW" +
+      "</div>" +
+      "</div>" +
+
+      "<div class='right_col'>" +
+      "<ul class='contact_information'>" +
+      "<li class='website'>" + sale.sSpec + "</li>" +
+      "<li class='website'>" + sale.sType + "</li>" +
+      "<li class='gender'>" + gender + "</li>" +
+      "<li class='title'>" + sale.sTitle + "</li>" +
+      "<li class='resume'>" + sale.sCreateDate + "</li>" +
+      "<li class='name'>" + mem.mName + "</li>" +
+      "<li class='name'>" + sale.sCost + "원</li>" +
+      "</ul>" +
+      "</div>" +
+      "</a>")
+    }
+  }
+});
+
+//더보기
+function moree(id) {
+  console.log(id)
+  var page = id.substring(1);
+  $.ajax({
+    url: 'sale/ajax/list.do?',
+    data: {
+      pageNo: page
+    },
+    type: 'post',
+    dataType: 'json',
+    success: function(resultObj) {
+      var show = $('#Container');
+      var j = 0;
+      var file;
+      var mem;
+      var gen;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
+      for (var sale of resultObj.sale) {
+        file = resultObj.filesMap[j];
+        mem = resultObj.memberMap[j];
+        
+        if(sale.sGender == 0) {
+          gen = "수컷";
+        } else {
+          gen = "암컷";
+        }
+        
+        imgWidth = file[0].width;
+        imgHeight = file[0].height;
+
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
+        j++;
+        
+        show.append(
+        "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
+        "href='saleDetail.html?sno=" + sale.sno +"'>" +
+
+        "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
+
+        "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+
+        "<div class='left_col'>" +
+        "<div class='views'>" +
+        "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
+        "VIEW" +
+        "</div>" +
+        "</div>" +
+
+        "<div class='right_col'>" +
+        "<ul class='contact_information'>" +
+        "<li class='website'>" + sale.sSpec + "</li>" +
+        "<li class='website'>" + sale.sType + "</li>" +
+        "<li class='gender'>" + gen + "</li>" +
+        "<li class='title'>" + sale.sTitle + "</li>" +
+        "<li class='resume'>" + sale.sCreateDate + "</li>" +
+        "<li class='name'>" + mem.mName + "</li>" +
+        "<li class='name'>" + resultObj.data[i].sCost + "원</li>" +
+        "</ul>" +
+        "</div>" +
+        "</a>")
+      }
+
+      $.getJSON('sale/ajax/pages.do', function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        console.log(ajaxResult.data)
+        if (ajaxResult.data == page) {
+          console.log("더보기 끝")
+          $('#more').empty();
+
+        } else {
+          console.log("더보기 생성")
+          var more = $('#more');
+          $('#more').empty();
+          var i = parseInt(page)+1;
+          more.append(
+            "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+        }
+      })
+    }
+  })
+}
+
+</script>
+
+</body>
+
+</html>

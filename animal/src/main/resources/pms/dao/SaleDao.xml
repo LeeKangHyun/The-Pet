@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pms.dao.SaleDao">
+	
+  <resultMap type="sale" id="saleMap">
+    <id 	column="S_NUM" 		property="sno"/>
+	<result column="S_VIEWS" 		property="sViews"/>    
+    <result column="S_CRE" 		property="sCreateDate"/>
+	<result column="S_TITLE" 		property="sTitle"/>    
+    <result column="S_CONTENT" 	property="sContent"/>
+	<result column="S_SPEC" 		property="sSpec"/>
+	<result column="S_TYPE" 		property="sType"/>
+	<result column="S_GEN" 		property="sGender"/>
+	<result column="S_COST" 		property="sCost"/>	
+	<result column="FILE_NAME"     property="filename"/>
+	<result column="MEM_NUM" 		property="mno"/>
+	<result column="MEM_NAME"     property="mname"/>
+	<result column="MEM_EMAIL"     property="memail"/>
+	<result column="MEM_IMG"     property="mimg"/>
+ </resultMap>
+ 
+  <resultMap type="Files" id="filesMap">
+    <id   column="FILE_NUM"    property="fno"/>
+  <result column="FILE_NAME"    property="fileName"/>    
+  <result column="EDU_NUM"   property="eduNo"/>
+  <result column="MAT_NUM"     property="matNo"/>
+  <result column="S_NUM"    property="sno"/>
+  <result column="SCH_NUM"  property="dno"/>
+  <result column="width"  property="width"/>
+  <result column="height"  property="height"/>
+ </resultMap>
+
+ 	<select id="scount" resultMap="saleMap">
+ 		select count(*) as count from sale
+ 	</select>
+  
+  <select id='sviews' resultMap='saleMap' parameterType="int">
+    select S_VIEWS from sale where S_NUM=#{value}
+  </select>
+  
+  
+  <select id="sfilter_list" resultMap="saleMap" parameterType="map">
+    select
+     s.S_NUM,
+     MAX(s.S_VIEWS) as S_VIEWS, 
+     MAX(s.S_CRE)as S_CRE, 
+     MAX(s.S_TITLE)as S_TITLE,
+     MAX(s.S_CONTENT)as S_CONTENT,
+     MAX(s.S_SPEC)as S_Spec,
+     MAX(s.S_TYPE)as S_TYPE,
+     MAX(s.S_GEN)as S_GEN,
+     MAX(s.MEM_NUM)as MEM_NUM,
+     MAX(fi.FILE_NAME)as FILE_NAME,
+     MAX(me.MEM_NAME)as MEM_NAME,
+     MAX(me.MEM_EMAIL)as MEM_EMAIL,
+     MAX(me.MEM_IMG)as MEM_IMG
+    from sale s
+    left outer join files fi on s.S_NUM = fi.S_NUM
+    left outer join member me on s.MEM_NUM = me.MEM_NUM
+    <if test="sfilter_id != 'All'">where S_SPEC = #{sfilter_id}</if>
+    group by s.S_NUM
+    order by s.S_NUM desc limit #{startIndex}, #{length}
+  </select>
+  
+    <select id="sfilterCount" resultType="double" parameterType="map">
+      select
+      count(*) as count
+    from sale
+    <if test="sfilter_id != 'All'">where S_SPEC = #{sfilter_id}</if>
+    </select>
+    
+    <select id="sgetsize" resultMap="filesMap" parameterType="String">
+   select FILE_NAME ,width, height from Files where FILE_NAME = #{filename}
+    </select>
+  
+ 
+	<select id="saleList" resultMap="saleMap" parameterType="int">
+		select * 
+		from sale
+		order by S_NUM desc
+	    limit #{startIndex}, 12
+	</select>
+  
+  <select id="saleLast" resultMap="saleMap">
+    select * 
+    from sale
+  </select>
+ 
+	<select id="sselectOne" resultMap="saleMap" parameterType="int">
+		select 
+  		S_NUM, 
+  		S_VIEWS,
+  		S_CRE,
+  		S_TITLE,
+  		S_CONTENT,
+			S_SPEC,
+			S_TYPE,
+			S_GEN,
+			S_COST,
+			MEM_NUM
+		from sale
+		where S_NUM=#{sno}
+	</select>
+  
+	<insert id="sinsert" parameterType="sale">
+		insert into sale(S_TITLE,S_CONTENT,S_SPEC,S_TYPE,S_GEN,S_CRE,S_COST,MEM_NUM) 
+		values(#{sTitle},#{sContent},#{sSpec},#{sType},#{sGender},now(),#{sCost},#{mno})
+	</insert>
+	
+	<delete id="sdelete" parameterType="int">
+		delete from sale 
+		where S_NUM=#{sno}
+	</delete>
+	
+	<update id="supdate" parameterType="sale">
+	update sale set 
+		S_CONTENT=#{sContent},
+		S_TYPE=#{sType}
+	where S_NUM=#{sno}
+	</update>
+
+	<update id="supdateviews" parameterType="int">
+		update sale set 
+			S_VIEWS=S_VIEWS+1
+		where S_NUM=#{sno} 
+	</update>
+  
+</mapper>
+
+
+
+
+
+
