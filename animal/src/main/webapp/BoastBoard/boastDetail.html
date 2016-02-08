@@ -39,83 +39,7 @@
 
 <style>
 
-.input {
-border: 0px;
-}
 
-
-#comComment {
-border:0px;
-border-top: 1px #d06a79 solid;
-min-height: 0px;
-} 
-
-#comment-list-num {
-	font-size: 14px;
-	font-weight: 500;
-}
-
-#comment-list {
-	position: relative;
-	top: 20px;
-	left: 5px;
-	cursor: pointer;
-}
-
-#comment-delete {
-	position: relative;
-	float: right;
-	right: 15px;
-	font-size: 15px;
-	font-weight: 100;
-	cursor: pointer;
-}
-
-.comment-delete {
-	color: white;
-}
-
-.comment-delete:hover {
-	color: white;
-}
-
-.modal-content, .modal-dialog {
-	position: absolute;
-	top: 40%;
-	left: 40%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	border-radius: 0;
-}
-
-.modal-header {
-	font-size: 15px;
-	font-weight: 700;
-	margin-top: -5px;
-	padding-bottom: 10px;
-}
-
-.modal-body {
-	height: 40px;
-	padding-top: 14px;
-	font-size: 15px;
-}
-
-.modal-footer {
-	height: 45px;
-}
-
-.modal-footer button {
-	margin-top: -8px;
-	height: 30px;
-	font-size: 13px;
-	border-radius: 0;
-}
-
-.modal-footer {
-	font-weight: bold;
-	color: #2d335e;
-}
 </style>
 
 </head>
@@ -297,87 +221,82 @@ detail_data.append("dno", dno);
 
 function comment() {
 	
-	  if (toggle == 0) {
-		  // 댓글 입력 창 생성 
-		  $('.input').append("<div id='input'>"+
-			        "</div>"+
-			          "<form>"+
-			            "<textarea id='comcontent' class='commentin' cols='30' rows='2'"+
-			              "placeholder='댓글을 입력하세요...'></textarea>"+
-			            "<a id='comAddBtn' role='button' onclick='detailBoastBoard()'>게시</a>"+
-			            "<button type='reset' id='reset' hidden=''/>"+
-			          "</form>");
-		  //댓글 입력 창 이미지 생성
-	      if ($.session.get('mname') != undefined) {
-	          $('#input').append("<img id='comimg' src='../files/"+$.session.get('mimg')+"'>");
-	        } else {
-	          $('#input').append("<img id='comimg' src='../files/default.jpg'>");
-	        }
-	      
-	      
- 	      $.ajax({
-	    	    url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
-	    	    dataType : "json",
-	    	    type : "POST",
-	    	    contentType : false,
-	    	    processData : false,
-	    	    async: "true",
-	    	    data : detail_data,
-	    	    success : function(resultObj) {
-	    	    	
-	    	    	
-	    	    	$("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
-	    	        toggle = 1;
-	    	    	
-	    	    totalPage = resultObj.totalPage;
-	    	    if (totalPage > 1) {
-	    	    $("#comment-more").append("<div id='more'><a role='button' class='moreBtn' id='moreBtn' onclick='more()'>댓글 더보기</a></div>");
-	    	    }
-	    	    	
-          for (var i = 0; i < resultObj.comment.length; i++) {
-              if ($.session.get('mno') == resultObj.comment[i].mno) {
-                   $('#commentSection').append(
-                           "<div class='comment'>"+
-                         "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                         "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                         "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
-                         "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
-                         "</a>"+ 
-                         "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                       "</div>"
-                       );
-              } else {
-                    $('#commentSection').append(
-                            "<div class='comment'>"+
-                          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                        "</div>"
-                    );
-              }
-                }
-	    	    }
- 	      });
-	  } 
+  if (toggle == 0) {
+    // 댓글 입력 창 생성 
+    $('.input').append("<div id='input'>"+
+      "</div>"+
+        "<form>"+
+          "<textarea id='comcontent' class='commentin' cols='30' rows='2'"+
+            "placeholder='댓글을 입력하세요...'></textarea>"+
+          "<a id='comAddBtn' role='button' onclick='detailBoastBoard()'>게시</a>"+
+          "<button type='reset' id='reset' hidden=''/>"+
+        "</form>");
+    //댓글 입력 창 이미지 생성
+    if ($.session.get('mname') != undefined) {
+      $('#input').append("<img id='comimg' src='../files/"+$.session.get('mimg')+"'>");
+    } else {
+      $('#input').append("<img id='comimg' src='../files/default.jpg'>");
+    }
+
+
+    $.ajax({
+      url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      async: "true",
+      data : detail_data,
+      success : function(resultObj) {
+        $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
+        toggle = 1;
+
+        totalPage = resultObj.totalPage;
+        if (totalPage > 1) {
+         $("#comment-more").append("<div id='more'><a role='button' class='moreBtn' id='moreBtn' onclick='more()'>댓글 더보기</a></div>");
+        }
+
+        for (var i = 0; i < resultObj.comment.length; i++) {
+          if ($.session.get('mno') == resultObj.comment[i].mno) {
+            $('#commentSection').append(
+            "<div class='comment'>"+
+            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+            "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+            "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+            "</a>"+ 
+            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+            "</div>");
+          } else {
+            $('#commentSection').append(
+            "<div class='comment'>"+
+              "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+              "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+              "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+            "</div>");
+          }
+        }
+      }
+    });
+  } 
 	  
-	  
-	  else if (toggle == 1) {
-		  
-		  $.ajax({
-	            url : "../boastboard/ajax/detail_content.do",
-	            dataType : "json",
-	            type : "POST",
-	            contentType : false,
-	            processData : false,
-	            async: "true",
-	            data : detail_data,
-	            success : function(resultObj) { 
-		  $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-up'></i></a>");
-	      toggle = 0;
-	      $('.input').empty();
-	      $('#commentSection').empty();
-	            } })
-	            }
+  else if (toggle == 1) {
+    $.ajax({
+      url : "../boastboard/ajax/detail_content.do",
+      dataType : "json",
+      type : "POST",
+      contentType : false,
+      processData : false,
+      async: "true",
+      data : detail_data,
+      success : function(resultObj) { 
+        $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-up'></i></a>");
+        toggle = 0;
+        $('.input').empty();
+        $('#commentSection').empty();
+      } 
+    })
+  }
 };
 
 
@@ -386,126 +305,116 @@ function more() {
 	currentPage = currentPage + 1;
 	
 	$.ajax({
-        url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
-        dataType : "json",
-        type : "POST",
-        contentType : false,
-        processData : false,
-        async: "true",
-        data : detail_data,
-        success : function(resultObj) {
-        	
-        	for (var i = 0; i < resultObj.comment.length; i++) {
-                if ($.session.get('mno') == resultObj.comment[i].mno) {
-                     $('#commentSection').append(
-                             "<div class='comment'>"+
-                           "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                           "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                           "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
-                           "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
-                           "</a>"+ 
-                           "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                         "</div>"
-                         );
-                } else {
-                      $('#commentSection').append(
-                              "<div class='comment'>"+
-                            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                          "</div>"
-                      );
-                }
-                  }
+    url : "../boastboard/ajax/detail_content.do?pageNo="+currentPage,
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    async: "true",
+    data : detail_data,
+    success : function(resultObj) {
+      for (var i = 0; i < resultObj.comment.length; i++) {
+        if ($.session.get('mno') == resultObj.comment[i].mno) {
+          $('#commentSection').append(
+          "<div class='comment'>"+
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+          "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
+          "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
+          "</a>"+ 
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+          "</div>");
+        } else {
+          $('#commentSection').append(
+          "<div class='comment'>"+
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
+          "</div>");
         }
+      }
+    }
 	});
 	
 	if(currentPage >= totalPage) {
 		$("#more").empty();
 	}
-	
 }
 </script>
 
 	<!-- 댓글 입력 시 댓글 생성 -->
-	<script>
- function detailBoastBoard() {
-	  var url = location.href;
-	  var dno = url.split('?')[1].split('=')[1];
-	  
-	  var mno = $.session.get('mno');
-	  var content = $('#comcontent').val();
-	
-	  var comment_data = new FormData();
-	  comment_data.append("dno", dno);
-	  comment_data.append("mno", mno);
-	  comment_data.append("content", content);
-		
-	  $('#commentSection').empty();
-	  $("#reset").trigger("click");
-	  
-	  $.ajax({
-		    url : "../boastboard/ajax/comment_add.do",
-		    dataType : "json",
-		    type : "POST",
-		    contentType : false,
-		    processData : false,
-		    async: false,
-		    data : comment_data,
-		    success : function(resultObj) { 
-		    	
-		    	  $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
-		          for (var i = 0; i < resultObj.comment.length; i++) {
-		              if ($.session.get('mno') == resultObj.comment[i].mno) {
-		                   $('#commentSection').append(
-		                           "<div class='comment'>"+
-		                         "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-		                         "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-		                         "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
-		                         "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
-		                         "</a>"+ 
-		                         "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-		                       "</div>"
-		                       );
-		              } else {
-		                    $('#commentSection').append(
-		                            "<div class='comment'>"+
-		                          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-		                          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-		                          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-		                        "</div>"
-		                    );
-		              }
-		                }
-		          
-		    } });
-	  
- }
-</script>
+<script>
+function detailBoastBoard() {
+  var url = location.href;
+  var dno = url.split('?')[1].split('=')[1];
 
-	<!--  댓글 삭제 -->
+  var mno = $.session.get('mno');
+  var content = $('#comcontent').val();
 
-	<!-- 댓글 삭제 도우미 -->
-	<script>
-function del(id) {
-    $('#comno').val(id)
+  var comment_data = new FormData();
+  comment_data.append("dno", dno);
+  comment_data.append("mno", mno);
+  comment_data.append("content", content);
+
+  $('#commentSection').empty();
+  $("#reset").trigger("click");
+
+  $.ajax({
+    url : "../boastboard/ajax/comment_add.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    async: false,
+    data : comment_data,
+    success : function(resultObj) { 
+
+      $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
+      for (var i = 0; i < resultObj.comment.length; i++) {
+        if ($.session.get('mno') == resultObj.comment[i].mno) {
+          $('#commentSection').append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>" +
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>" +
+          "<a id='" + resultObj.comment[i].comNo + "' class='comment-delete' onclick='del(this.id)'>" +
+          "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>" +
+          "</a>"+ 
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>" +
+          "</div>");
+        } else {
+          $('#commentSection').append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>" +
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>" +
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>" +
+          "</div>");
+        }
+      }  
+    } 
+  });	  
 }
 </script>
 
-	<!-- 댓글 삭제 -->
-	<script>
-$(document).on("click", "#comment-delete-yes", function() {
-var comment_del = new FormData();
-var url = location.href;
-var dno = url.split('?')[1].split('=')[1];
+<!-- 댓글 삭제 도우미 -->
+<script>
+function del(id) {
+  $('#comno').val(id)
+}
+</script>
 
+<!-- 댓글 삭제 -->
+<script>
+$(document).on("click", "#comment-delete-yes", function() {
+  var comment_del = new FormData();
+  var url = location.href;
+  var dno = url.split('?')[1].split('=')[1];
 	comment_del.append("comNo", $('#comno').val());
 	comment_del.append("dno", dno);
 	$('#commentSection').empty();
 	$('#Comment-Delete-Check-Modal').modal('hide');
 	
 	$.ajax({
-		url: "../boastboard/ajax/comment_delete.do?pageNo="+page,
+		url: "../boastboard/ajax/comment_delete.do?pageNo=" + page,
 		dataType: 'json',
 		cache: false,
 		contentType: false,
@@ -514,35 +423,33 @@ var dno = url.split('?')[1].split('=')[1];
 		type: 'post',
 		success: function(resultObj) {
 			
-			$("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
-            for (var i = 0; i < resultObj.comment.length; i++) {
-                if ($.session.get('mno') == resultObj.comment[i].mno) {
-                     $('#commentSection').append(
-                             "<div class='comment'>"+
-                           "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                           "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                           "<a id='"+resultObj.comment[i].comNo+"' class='comment-delete' onclick='del(this.id)'>"+
-                           "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>"+
-                           "</a>"+ 
-                           "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                         "</div>"
-                         );
-                } else {
-                      $('#commentSection').append(
-                              "<div class='comment'>"+
-                            "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>"+
-                            "<div class='commentname'>" + resultObj.comment[i].mName + "</div>"+
-                            "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>"+
-                          "</div>"
-                      );
-                }
-                  }
+      $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>" + resultObj.count + "</span> </span><i class='fa fa-angle-down'></i></a>");
+      for (var i = 0; i < resultObj.comment.length; i++) {
+        if ($.session.get('mno') == resultObj.comment[i].mno) {
+          $('#commentSection').append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>" +
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>" +
+          "<a id='" + resultObj.comment[i].comNo + "' class='comment-delete' onclick='del(this.id)'>" +
+          "<i class='fa fa-times' id='comment-delete' data-toggle='modal' data-target='#Comment-Delete-Check-Modal'></i>" +
+          "</a>" + 
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>" +
+          "</div>");
+        } else {
+          $('#commentSection').append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='../files/" + resultObj.comment[i].mImg + "'>" +
+          "<div class='commentname'>" + resultObj.comment[i].mName + "</div>" +
+          "<div class='commenttext'>" + resultObj.comment[i].comComment + "</div>" +
+          "</div>");
+        }
+      }
 		}
 	});
 })
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {
   var url = location.href;
   var dno = url.split('?')[1].split('=')[1];
@@ -612,7 +519,6 @@ $(document).ready(function() {
     async: "true",
     data : detail_data,
     success : function(resultObj) {
-
       $('#title').append("<span>" + resultObj.data[0].title + "</span>")
       $('#writer').append("<span><i class='fa fa-user'></i> " + resultObj.data[0].member + "</span>")
       $('#cre_dt').append("<span><i class='fa fa-calendar'></i> " + resultObj.data[0].createDate + "</span>")
@@ -625,7 +531,7 @@ $(document).ready(function() {
       
       
       if ($.session.get('mno') == resultObj.data[0].mno) {
-       $('#delete').append("<button type='button' class='btn btn-success' id='delete-Btn' data-toggle='modal' data-target='#Delete-Check-Modal'>삭제</button>");
+        $('#delete').append("<button type='button' class='btn btn-success' id='delete-Btn' data-toggle='modal' data-target='#Delete-Check-Modal'>삭제</button>");
       }
 
       // Detail 접속 시 Like 눌렀는지 확인 유무
@@ -646,7 +552,6 @@ $(document).ready(function() {
           async: false,
           data : like_check_data,
           success : function(resultObj) {
-
             if (resultObj.like != "" ) {
               $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
               like_toggle = 1;
@@ -682,17 +587,14 @@ $(document).ready(function() {
   $('#likes').click(function(event) { 
 
     var mno = $.session.get('mno');
-
     var like_data = new FormData();
     like_data.append("mno", mno);
     like_data.append("SCH_NUM", dno);
-
 
     if ($.session.get('mno') == undefined) {
       alert("로그인 후 이용해주십시오.");
     } else {
       if(like_toggle == 0) {
-
         $.ajax({
           url : "../boastboard/ajax/like_add.do",
           dataType : "json",
@@ -711,7 +613,6 @@ $(document).ready(function() {
         like_toggle = 1;
 
       } else if(like_toggle == 1) {
-
         $.ajax({
           url : "../boastboard/ajax/like_delete.do",
           dataType : "json",
@@ -730,7 +631,6 @@ $(document).ready(function() {
         like_toggle = 0;
       }
     }
-
   });
 
   /* List 돌아가는 이벤트 */
@@ -743,8 +643,8 @@ $(document).ready(function() {
 
 
 
-	<!-- Log In/Out Script -->
-	<script>
+<!-- Log In/Out Script -->
+<script>
 $(document).ready(function() {
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
@@ -768,36 +668,35 @@ $(document).ready(function() {
       "</a>")
     ul.append(
       "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    
+    // 안읽은 받은쪽지 갯수 출력
+    var no = $.session.get('mno');
+
+    if (no != undefined) {
+
+      var form_data = new FormData();
+      form_data.append("recvMno", no)
+      $.ajax({
+        url: '../message/ajax/noReadMsg.do',
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        success: function(resultObj) {
+          var ajaxResult = resultObj.ajaxResult;
+          $('#userBadge').html(ajaxResult.data.noReadCount)
+        }
+      })
+    }
   }
 
   // 로그아웃
   $(document).on("click", "#outBtn", function() {
-        $.session.clear();
-        location.href = "../login.html"
-    });
-
-  // 안읽은 받은쪽지 갯수 출력
-  var no = $.session.get('mno');
-
-  if (no != undefined) {
-
-    var form_data = new FormData();
-    form_data.append("recvMno", no)
-    $.ajax({
-      url: '../message/ajax/noReadMsg.do',
-      type: 'post',
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      success: function(resultObj) {
-        var ajaxResult = resultObj.ajaxResult;
-        $('#userBadge').html(ajaxResult.data.noReadCount)
-      }
-    })
-  }
-
+    $.session.clear();
+    location.href = "../login.html"
+  });
 });
 </script>
 </body>
