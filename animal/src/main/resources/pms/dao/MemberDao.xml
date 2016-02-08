@@ -43,9 +43,9 @@
 	<update id="update" parameterType="member">
 		update member set
 			MEM_EMAIL=#{mEmail},
-			MEM_NAME=#{mName},
 			MEM_TEL=#{tel},
-			MEM_IMG=#{mImg}
+			MEM_IMG=#{mImg},
+      MEM_PWD=#{password}
 		where MEM_EMAIL=#{mEmail}
 	</update>
 	
