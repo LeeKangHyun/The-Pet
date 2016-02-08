@@ -40,6 +40,10 @@ public class DefaultCommentService implements CommentService {
     return commentDao.educount(eduNo);
   }
   
+  public Comment salepages(int sno) {
+  		return commentDao.salecount(sno);
+  }
+  
   public int add(Comment comment) {
   	return commentDao.insert(comment);
   }
@@ -48,6 +52,9 @@ public class DefaultCommentService implements CommentService {
   }
   public int educom(Comment comment) {
   		return commentDao.eduinsert(comment);
+  }
+  public int salecom(Comment comment) {
+  		return commentDao.salecom(comment);
   }
 
   public int removeComment(int comNo) {
@@ -60,6 +67,10 @@ public class DefaultCommentService implements CommentService {
   
   public int removeedu(int eduNo) {
   		return commentDao.deleteedu(eduNo);
+  }
+  
+  public int removesale(int sno) {
+  		return commentDao.deletesale(sno);
   }
   
   public int change(Comment comment) {

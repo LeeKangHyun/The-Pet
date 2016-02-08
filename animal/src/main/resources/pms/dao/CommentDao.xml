@@ -75,6 +75,11 @@
     values(#{comComment},#{comImg},#{mno},#{eduNo})
   </insert>
   
+  <insert id='salecom' parameterType='comment'>
+    insert into comment(CMT_CONTENT, CMT_IMG, MEM_NUM, S_NUM)
+    values(#{comComment}, #{comImg}, ${mno}, #{sno})
+  </insert>
+  
   <insert id="insert2" parameterType="comment">
     insert into comment(CMT_CONTENT,CMT_IMG,MEM_NUM,SCH_NUM,EDU_NUM,S_NUM,MAT_NUM) 
     values(#{comComment},#{comImg},#{mno},#{dno},#{eduNo},#{sno},#{matNo})
@@ -93,6 +98,11 @@
   <delete id="deleteedu" parameterType="int">
     delete from comment
     where EDU_NUM=#{value}
+  </delete>
+  
+  <delete id="deletesale" parameterType="int">
+    delete from comment
+    where S_NUM=#{value}
   </delete>
   
   <!--       update 수정해야함       -->

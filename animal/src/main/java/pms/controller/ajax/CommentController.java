@@ -100,6 +100,29 @@ public class CommentController {
 
     return resultMap;
   }
+  
+  @RequestMapping("salecomlist")
+  public Object salecomlist(
+      @RequestParam(defaultValue="0") int pageNo, 
+      int sno
+      ) throws Exception {
+
+  	List<Comment> comments = commentService.getSaleComment(sno);
+
+    List<Member> memberMap = new ArrayList<>();
+
+    for (Comment c : comments) {
+      Member member = memberService.oneMember(c.getMno());
+      memberMap.add(member);
+    }
+
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("comments", comments);
+    resultMap.put("memberMap", memberMap);
+
+    return resultMap;
+  }
 
   @RequestMapping(value="add", method=RequestMethod.POST)
   public AjaxResult add(
@@ -133,7 +156,18 @@ public class CommentController {
 
     return new AjaxResult("success", null);
   }
+  
+  @RequestMapping(value="salecom", method=RequestMethod.POST)
+  public AjaxResult salecom(
+      Comment comment) throws Exception {
 
+    if (commentService.salecom(comment) <= 0) {
+      return new AjaxResult("failure", null);
+    } 
+
+    return new AjaxResult("success", null);
+  }
+  
   @RequestMapping("pages")
   public Object pages(int dno) throws Exception {
 

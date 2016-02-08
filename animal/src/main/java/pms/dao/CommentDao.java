@@ -14,15 +14,17 @@ public interface CommentDao {
   
   Comment count(int dno);
   Comment educount(int eduNo);
+  Comment salecount(int sno);
   
   int insert(Comment comment);
   int walkcom(Comment comment);
-  
   int eduinsert(Comment comment);
+  int salecom(Comment comment);
   
   int deleteComment(int comNo);
   int delete(int dno);
   int deleteedu(int eduNo);
+  int deletesale(int sno);
   
   int update(Comment comment);
 }

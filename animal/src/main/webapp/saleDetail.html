@@ -464,7 +464,7 @@ $(document).on("click", "#comDelBtn", function() {
     form_data.append("comComment", $('#comcontent').val())
     form_data.append("mno", $.session.get('mno'))
     $.ajax({
-      url: "comment/ajax/add.do",
+      url: "comment/ajax/salecom.do",
       dataType: 'json',
       cache: false,
       contentType: false,
