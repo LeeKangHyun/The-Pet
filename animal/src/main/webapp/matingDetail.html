@@ -80,8 +80,8 @@
       <input type="hidden" id="mmatno">
 
       <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='true' data-interval="false">
-        
-       
+
+
           <!-- Indicators -->
           <ol class='carousel-indicators' id="dots"></ol>
 
@@ -110,7 +110,7 @@
         <div class='content' id="mcontent">
           <textarea id="contentText" readonly>textarea</textarea>
         </div>
-        
+
 
         <div class='input'>
 
@@ -124,8 +124,11 @@
         </div>
 
         <div class='comments' id="comComment"></div>
-        
-        
+
+        <div id="more">
+            <a role="button" class="moreBtn" id="m10" onclick='moree(this.id);'>더보기</a>
+        </div>
+
         <div id="delImg"></div>
       </div>
 
@@ -168,7 +171,7 @@
     </div>
   </div>
 </div>
-  
+
   <!-- 오류 모달 -->
 <div id="noCom" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
@@ -177,11 +180,11 @@
         <i class="fa fa-exclamation-triangle"></i>
         에러!
       </div>
-      
+
       <div class="modal-body">
         댓글을 입력해주세요
       </div>
-      
+
       <div class="modal-footer">
         <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
       </div>
@@ -227,7 +230,7 @@
     </div>
   </div>
 </div>
-  
+
   <!-- 알림 모달 -->
 <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm">
@@ -247,15 +250,15 @@
     </div>
   </div>
 </div>
-  
+
 <script src="js/sh_custom-file-input.js"></script>
-  
+
 <script>
 $(document).ready(function() {
   $('#delImg').css('display', 'none');
   $('.box').css('display', 'none');
   $('#forms').css('display', 'none');
-  
+
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   var div = $('#user_info');
@@ -272,13 +275,13 @@ $(document).ready(function() {
         "<span class='badge' id='userBadge'>0</span>" +
       "</a>" +
       "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
-      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a id='userName' href='mypage.html'>" + $.session.get('mname') + "</a>" +
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-    
+
     // 안읽은 받은쪽지 갯수 출력
     var no = $.session.get('mno');
     var form_data = new FormData();
@@ -305,7 +308,7 @@ $(document).ready(function() {
     location.href = "login.html"
   });
 
-  
+
 })
 
 // 짝짓기 디테일
@@ -324,20 +327,20 @@ var matNo = location.href.split('?')[1].split('=')[1];
     success: function(re) {
       var matinfo = re.mating;
       var mem = re.member;
-      
+
       $('#sendName').val(mem.mEmail);
       $('#modalTitle').html(matinfo.matTitle);
       $('#contentText').val(matinfo.matContent);
       $('#mmatno').val(matinfo.matNo);
       $('#mmtype').val(matinfo.matType);
-      
+
       if (matinfo.mno != $.session.get('mno')) {
         $('#editPet').css('display', 'none');
         $('#matDelBtn').css('display', 'none');
         $('#editEnd').css('display', 'none');
         $('#editCancel').css('display', 'none');
       }
-      
+
       var form_data = new FormData();
       form_data.append("matNo", matNo)
       $.ajax({
@@ -350,7 +353,7 @@ var matNo = location.href.split('?')[1].split('=')[1];
         type: 'post',
         success: function(re) {
           var files = re.ajaxResult.data;
-          
+
           var imgs = $('#imgs');
           var dots = $('#dots');
           var showDel = $('#delImg');
@@ -389,44 +392,6 @@ var matNo = location.href.split('?')[1].split('=')[1];
             }
             i++;
           }
-          var form_data = new FormData();
-          form_data.append("matNo", matNo)
-          $.ajax({
-            url: "comment/ajax/matcomlist.do",
-            dataType: 'json',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-            success: function(re) {
-              var commen = re.comments;
-              var comdiv = $('#comComment');
-              var mem;
-              var j = 0;
-              for (var com of commen) {
-                mem = re.memberMap[j];
-                if($.session.get('mno') == mem.mno) {
-                  comdiv.append(
-                  "<div class='comment'>" +
-                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
-                    "<i class='fa fa-close'></i></a>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                  "</div>")
-                } else {
-                  comdiv.append(
-                  "<div class='comment'>" +
-                    "<img class='commentimg' src='files/" + mem.mImg + "'>" +
-                    "<div class='commentname'>" + mem.mName + "</div>" +
-                    "<div class='commenttext'>" + com.comComment + "</div>" +
-                  "</div>")
-                }
-                    j++;
-              }
-            }
-          })
         }
       })
     }
@@ -448,14 +413,67 @@ var matNo = location.href.split('?')[1].split('=')[1];
 //    }
   })
 
-  
-// 펫 디테일 -> 댓글게시 클릭
+  var i = 0;
+  // 댓글 리스트
+  var form_data = new FormData();
+  form_data.append("matNo", matNo)
+  $.ajax({
+    url: "comment/ajax/matcomlist.do",
+    dataType: 'json',
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      var commen = re.comments;
+      var comdiv = $('#comComment');
+      var mem;
+      var j = 0;
+      for (var com of commen) {
+        mem = re.memberMap[j];
+        if($.session.get('mno') == mem.mno) {
+          comdiv.append(
+          "<div class='comment'>" +
+            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+            "<div class='commentname'>" + mem.mName + "</div>" +
+            "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+            "<i class='fa fa-close'></i></a>" +
+            "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        } else {
+          comdiv.append(
+          "<div class='comment'>" +
+            "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+            "<div class='commentname'>" + mem.mName + "</div>" +
+            "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        }
+        j++;
+      }
+    },
+    complete: function() {
+      i++;
+    }
+  })
+
+  $.getJSON('comment/ajax/matpages.do?matNo=' + matNo, function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult
+      console.log(resultObj)
+      if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+          $('#more').empty();
+      }
+  })
+
+
+// 댓글 추가
 $(document).on("click", "#comDelBtn", function() {
   if ($('#comcontent').val() == "") {
-    
+
     $('#noCom').modal('show');
     return false;
-    
+
   } else {
     var form_data = new FormData();
     form_data.append("matNo", $('#mmatno').val())
@@ -508,6 +526,19 @@ $(document).on("click", "#comDelBtn", function() {
               }
               j++;
             }
+            $('#more').empty();
+            $.getJSON('comment/ajax/matpages.do?matNo=' + matNo, function(resultObj) {
+              var ajaxResult = resultObj.ajaxResult
+              console.log(resultObj)
+              if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+                $('#more').empty();
+              }
+              else {
+                $('#more').append(
+                  '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>');
+              }
+            })
+            i=1;
           }
         })
       }
@@ -574,11 +605,93 @@ $(document).on("click", "#delCom", function() {
             "</div>")
             j++;
           }
+          $('#more').empty();
+          $.getJSON('comment/ajax/matpages.do?matNo=' + matNo, function(resultObj) {
+            var ajaxResult = resultObj.ajaxResult
+            console.log(resultObj)
+            if (ajaxResult.data == 0 || ajaxResult.data == 1) {
+              $('#more').empty();
+            }
+            else {
+              $('#more').append(
+                '<a role="button" class="moreBtn" id="m10" onclick="moree(this.id);">더보기</a>'
+              );
+            }
+          })
+          i=1;
         }
       })
     }
   })
 })
+
+// 더보기 부분
+function moree(id) {
+  i++;
+  console.log(id);
+  var page = id.substring(1);
+  console.log(page);
+  var cpage = i;
+  var form_data = new FormData();
+  form_data.append("matNo", matNo)
+  form_data.append("pageNo", page)
+  $.ajax({
+    url: "comment/ajax/matcomlist.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      var commen = re.comments;
+      var comdiv = $('#comComment');
+      var mem;
+      var j = 0;
+      for (var com of commen) {
+        mem = re.memberMap[j];
+        if($.session.get('mno') == mem.mno) {
+          comdiv.append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+          "<div class='commentname'>" + mem.mName + "</div>" +
+          "<a class='commentDel' id='" + com.comNo + "' onclick='del(this.id)'>" +
+          "<i class='fa fa-close'></i></a>" +
+          "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        } else {
+          comdiv.append(
+          "<div class='comment'>" +
+          "<img class='commentimg' src='files/" + mem.mImg + "'>" +
+          "<div class='commentname'>" + mem.mName + "</div>" +
+          "<div class='commenttext'>" + com.comComment + "</div>" +
+          "</div>")
+        }
+        j++;
+      }
+      $("#hidden").trigger("click");
+      $("button:first").trigger("click");
+
+      $.getJSON('comment/ajax/matpages.do?matNo=' + matNo, function(resultObj) {
+        var ajaxResult = resultObj.ajaxResult;
+        console.log(cpage);
+        if (ajaxResult.data == cpage) {
+          console.log("더보기 끝")
+          $('#more').empty();
+
+        } else {
+          console.log("더보기 생성")
+          var more = $('#more');
+          $('#more').empty();
+          var i = parseInt(page)+10;
+          console.log(i);
+          more.append(
+            "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
+        }
+      })
+    }
+  })
+};
 
 // 디테일 변경 누르면 발생
 $(document).on("click", "#editPet", function() {
@@ -635,7 +748,7 @@ $(document).on("click", "#editEnd", function() {
   $('#delImg').css('display', 'none');
   $('#contentText').css('background-color', '#ffd800');
   $('#contentText').css('color', '#2d335e');
-  
+
   var form_data = new FormData();
   form_data.append("matNo", $('#mmatno').val())
   form_data.append("matContent", $('#contentText').val())
@@ -669,7 +782,7 @@ $(document).on("click", "#editEnd", function() {
           type: 'post',
           success: function(resultObj) {
               console.log(file_name)
-              
+
           }
         })
       }
@@ -737,7 +850,7 @@ function imgDel(id) {
                 "<img src='files/" + file.fileName + "'>" +
                 "<a role='button' id='" + file.fno + "' onclick='imgDel(this.id)'><i class='fa fa-times'></i></a>")
               }
-              
+
             } else {
               imgs.append(
               "<div class='item'>" +
@@ -761,7 +874,7 @@ function imgDel(id) {
     }
   });
 }
-  
+
 //쪽지보내기
 $(document).on("click", "#sendMsgBtn", function() {
 
@@ -785,7 +898,7 @@ $(document).on("click", "#sendMsgBtn", function() {
       $('#modoinfo').html('메시지를 성공적으로 보냈습니다.');
       $('#modo').modal('show')
     }
-  }) 
+  })
 })
 </script>
 </body>

@@ -89,10 +89,10 @@
 
     <!-- 사진 게시물 영역 -->
     <div id='Container' class='container'>
-    
-    
+
+
 <!--
-    
+
       <a class='portfoliocard  DOG' role='button' href='matingDetail.html?matNo=1'>
 
         <div class='coverphoto'>
@@ -120,9 +120,9 @@
           </ul>
         </div>
       </a>
-    
+
 -->
-    
+
     </div>
 
     <div id="more">
@@ -139,11 +139,11 @@
         <i class="fa fa-exclamation-triangle"></i>
         에러!
       </div>
-      
+
       <div class="modal-body">
         댓글을 입력해주세요
       </div>
-      
+
       <div class="modal-footer">
         <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
       </div>
@@ -163,7 +163,7 @@
       <div class='modal-body'>
 
         <input type="hidden" id="mmatno">
-        
+
         <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
             <!-- Indicators -->
             <ol class='carousel-indicators' id="dots"></ol>
@@ -189,12 +189,12 @@
           </div>
 
           <div class='input'>
-            
+
             <div id="forms">
               <span class="gg">펫 종류</span>
               <input type="text" name="mat_gen" placeholder="ex) 포메라니안" id="mmtype" class="form-control">
             </div>
-            
+
             <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
             <a id="comDelBtn" role='button'>게시</a>
           </div>
@@ -248,7 +248,7 @@
 
 
 <script>
-function filter(id) { 
+function filter(id) {
   if(id == "All") {
     $("#All").replaceWith("<button id='All' class='active' onclick='filter(this.id)'>All</button>");
     $("#DOG").replaceWith("<button id='DOG' onclick='filter(this.id)'></button>");
@@ -292,7 +292,7 @@ function filter(id) {
     $("#BIRD").replaceWith("<button id='BIRD' onclick='filter(this.id)'></button>");
     $("#ETC").replaceWith("<button id='ETC' class='active' onclick='filter(this.id)'>ETC</button>");
   }
-	   
+
   $('#Container').empty();
     var currentPage = 1;
     var totalCount = 0;
@@ -310,7 +310,7 @@ function filter(id) {
       async : false,
       type : 'POST',
       success : function(resultObj) {
-        totalCount =  resultObj.count;	        	  
+        totalCount =  resultObj.count;
       }
     })
 
@@ -383,7 +383,7 @@ function filter(id) {
       }
     }
   })
-	      
+
   $('#filterBtn').click(function(event) {
 
     if(currentPage < totalCount) {
@@ -467,7 +467,7 @@ $(document).ready(function() {
   $('#delImg').css('display', 'none');
   $('.box').css('display', 'none');
   $('#forms').css('display', 'none');
-  
+
   // 로그인 회원 정보출력 세션없으면 로그인버튼 출력
   var no = $.session.get('mno');
   var div = $('#user_info');
@@ -485,13 +485,13 @@ $(document).ready(function() {
         "<span class='badge' id='userBadge'>0</span>" +
       "</a>" +
       "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
-      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a id='userName' href='mypage.html'>" + $.session.get('mname') + "</a>" +
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-    
+
     // 안읽은 받은쪽지 갯수 출력
     var no = $.session.get('mno');
     var form_data = new FormData();
@@ -517,12 +517,12 @@ $(document).ready(function() {
     $.session.clear();
     location.href = "login.html"
   });
-  
+
   $.getJSON('mating/ajax/pages.do', function(resultObj) {
     var ajaxResult = resultObj.ajaxResult;
     if(ajaxResult.data == 1 || ajaxResult.data == 0) {
       $('#more').empty();
-    } 
+    }
   })
 });
 
@@ -549,7 +549,7 @@ $.ajax({
       } else {
         gen = "암컷";
       }
-       
+
       imgWidth = file[0].width;
       imgHeight = file[0].height;
 
@@ -621,13 +621,13 @@ function moree(id) {
       for (var mating of resultObj.mating) {
         file = resultObj.filesMap[j];
         mem = resultObj.memberMap[j];
-        
+
         if(mating.matGender == 0) {
           gen = "수컷";
         } else {
           gen = "암컷";
         }
-        
+
         imgWidth = file[0].width;
         imgHeight = file[0].height;
 
@@ -637,7 +637,7 @@ function moree(id) {
           setClass = "portrait"
         }
         j++;
-        
+
         show.append(
         "<a class='portfoliocard " + mating.matSpec + "' role='button' " +
         "href='matingDetail.html?matNo=" + mating.matNo +"'>" +
