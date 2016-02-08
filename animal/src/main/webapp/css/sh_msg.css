@@ -167,8 +167,9 @@
 
 
 
-#viewContent .modal-dialog {
+#viewContent .modal-dialog, #viewContent .modal-content {
   width: 400px;
+  border-radius: 0;
 }
 
 #viewContent .modal-header {
