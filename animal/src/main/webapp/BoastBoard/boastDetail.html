@@ -378,6 +378,9 @@ function detailBoastBoard() {
 
   $('#commentSection').empty();
   $("#reset").trigger("click");
+  
+  currentPage = 1;
+  $("#comment-more").empty();
 
   $.ajax({
     url : "../boastboard/ajax/comment_add.do",
@@ -387,7 +390,12 @@ function detailBoastBoard() {
     processData : false,
     async: false,
     data : comment_data,
-    success : function(resultObj) { 
+    success : function(resultObj) {
+    	
+    	totalPage = resultObj.totalPage;
+        if (totalPage > 1) {
+         $("#comment-more").append("<div id='more'><a role='button' class='moreBtn' id='moreBtn' onclick='more()'>댓글 더보기</a></div>");
+        }
 
       $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>"+resultObj.count+"</span> </span><i class='fa fa-angle-down'></i></a>");
       for (var i = 0; i < resultObj.comment.length; i++) {
@@ -433,8 +441,11 @@ $(document).on("click", "#comment-delete-yes", function() {
 	$('#commentSection').empty();
 	$('#Comment-Delete-Check-Modal').modal('hide');
 	
+	currentPage = 1;
+	$("#comment-more").empty();
+	
 	$.ajax({
-		url: "../boastboard/ajax/comment_delete.do?pageNo=" + page,
+		url: "../boastboard/ajax/comment_delete.do",
 		dataType: 'json',
 		cache: false,
 		contentType: false,
@@ -442,6 +453,11 @@ $(document).on("click", "#comment-delete-yes", function() {
 		data: comment_del,
 		type: 'post',
 		success: function(resultObj) {
+			
+			totalPage = resultObj.totalPage;
+	        if (totalPage > 1) {
+	         $("#comment-more").append("<div id='more'><a role='button' class='moreBtn' id='moreBtn' onclick='more()'>댓글 더보기</a></div>");
+	        }
 			
       $("#comment-list").replaceWith("<a id='comment-list' onclick='comment()'><span>댓글</span> <span id='comment-list-num'> <span>" + resultObj.count + "</span> </span><i class='fa fa-angle-down'></i></a>");
       for (var i = 0; i < resultObj.comment.length; i++) {

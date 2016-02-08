@@ -380,12 +380,14 @@ public class BoastBoardController {
 
     boastBoardDao.comment_add(paramMap);
     double count = boastBoardDao.comment_count(dno);
+    double totalPage = Math.ceil(count / pageSize);
     List<Comment> comment = boastBoardDao.comment_list(paramMap);
     
         HashMap<String, Object> resultMap = new HashMap<>();
         resultMap.put("status", "success");
         resultMap.put("count", count);
         resultMap.put("comment", comment);
+        resultMap.put("totalPage", totalPage);
 
     return resultMap;
   }
@@ -402,12 +404,14 @@ public class BoastBoardController {
 
     boastBoardDao.comment_delete(comNo);
     double count = boastBoardDao.comment_count(dno);
+    double totalPage = Math.ceil(count / pageSize);
     List<Comment> comment = boastBoardDao.comment_list(paramMap);
     
         HashMap<String, Object> resultMap = new HashMap<>();
         resultMap.put("status", "success");
         resultMap.put("count", count);
         resultMap.put("comment", comment);
+        resultMap.put("totalPage", totalPage);
 
     return resultMap;
   }
