@@ -10,8 +10,8 @@
     <link href="css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
     <link href='lib/bootstrap/dist/css/bootstrap.css' rel='stylesheet' />
 
-    <link href='css/kh_mypage.css' type='text/css' rel='stylesheet' />
     <link href="lib/jquery-uploadfile/css/uploadfile.css" rel="stylesheet" />
+    <link href='css/kh_mypage.css' type='text/css' rel='stylesheet' />
 
 
     <!--  폰트아이콘 링크  -->
@@ -62,9 +62,10 @@
         <h3 id='head'>My Page</h3>
 
         <div id='checkmem'>
-            <div class="form-group">
-                <label for="checkpwd" class="col-sm-2 control-label">본인확인</label>
-                <div class="col-sm-5">
+            <span>본인확인을 위해 비밀번호를 입력해주세요</span>
+            <div class="form-group pw">
+                <label for="checkpwd" class="col-sm-3 control-label pws">비밀번호</label>
+                <div class="col-sm-9">
                     <input type="password" class="form-control" id="checkpwd" placeholder="PASSWORD">
                 </div>
             </div>
@@ -74,178 +75,228 @@
         </div>
 
         <div id='left' class="check">
+          <div class="info col-sm-12">
+            <span id="before">정보를 변경하시려면 변경하기를 눌러주세요</span>
+            <span id="after">변경사항을 저장하시려면 변경완료를 눌러주세요</span>
+          </div>
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">이름</label>
-                    <div class="col-sm-6">
+                    <label for="name" class="col-sm-3 control-label">이름</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="name" placeholder="이름" value='' readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">ID</label>
-                    <div class="col-sm-6">
+                    <label for="email" class="col-sm-3 control-label">ID</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="email" placeholder="Email" value='' readonly>
                     </div>
                 </div>
 
                 <div class="checkp form-group">
-                    <label for="password" class="col-sm-2 control-label">패스워드</label>
-                    <div class="col-sm-6">
+                    <label for="password" class="col-sm-3 control-label">패스워드</label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" id="password" placeholder="PASSWORD" value='' readonly>
                     </div>
                 </div>
 
                 <div class="checkp form-group">
-                    <label for="password2" class="col-sm-2 control-label">패스워드확인</label>
-                    <div class="col-sm-6">
+                    <label for="password2" class="col-sm-3 control-label">패스워드확인</label>
+                    <div class="col-sm-9">
                         <input type="password" class="form-control" id="password2" placeholder="PASSWORD" value='' readonly>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="tel" class="col-sm-2 control-label">전화번호</label>
-                    <div class="col-sm-6">
+                    <label for="tel" class="col-sm-3 control-label">전화번호</label>
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="tel" placeholder="000-0000-0000" value='' readonly>
                     </div>
                 </div>
             </form>
             <div id='button'>
-                <button class="btn btn-default" id='changeBtn'>변경</button>
-                <button class="btn btn-default" id='updateBtn'>완료</button>
+                <button class="btn btn-default" id='changeBtn'>변경하기</button>
+                <button class="btn btn-success" id='updateBtn'>변경완료</button>
                 <button class="btn btn-danger" id='deleteBtn'>탈퇴</button>
             </div>
         </div>
 
 
         <div id='right' class='check'>
-            <div id='profile'></div>
-            <div id="fileuploader">upload</div>
+          <div id='profile'></div>
+          <div id="fileuploader">upload</div>
         </div>
 
     </section>
 
-    <script>
-        $(document).ready(function() {
-            // 로그인 회원 정보출력 세션없으면 로그인페이지로
-            var no = $.session.get('mno');
-            if (no == undefined) {
-//                location.href = "login.html"
-            }
+  
+<!-- 알림 모달 -->
+<div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fa fa-info"></i>
+        알림
+      </div>
 
-            var div = $('#user_info');
-            div.append(
-                "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
-                "<i class='fa fa-envelope-o'></i>" +
-                "<span class='badge' id='userBadge'>0</span>" +
-                "</a>" +
-                "<img src='files/" + $.session.get('mimg') +
-                "' id='userImg' />" +
-                "<a id='userName' href='mypage.html'>" + $.session.get(
-                    'mname') + "</a>" +
-                "<a role='button' id='outBtn' class='logout'>" +
-                "<i class='fa fa-unlock fa-lg'></i>" +
-                "</a>")
+      <div class="modal-body">
+        <span id="modoinfo"></span>
+      </div>
 
-            //    로그아웃
-            $(document).on("click", "#outBtn", function() {
-                $.session.clear();
-                location.href = "login.html"
-            });
+      <div class="modal-footer">
+        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<script>
+$(document).ready(function() {
+  
+  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+  var no = $.session.get('mno');
+  if (no == undefined) {
+//              location.href = "login.html"
+  }
 
-            // 안읽은 받은쪽지 갯수 출력
-            var no = $.session.get('mno');
-            var form_data = new FormData();
-            form_data.append("recvMno", no);
+  var div = $('#user_info');
+  div.append(
+    "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+    "<i class='fa fa-envelope-o'></i>" +
+    "<span class='badge' id='userBadge'>0</span>" +
+    "</a>" +
+    "<img src='files/" + $.session.get('mimg') +
+    "' id='userImg' />" +
+    "<a id='userName' href='mypage.html'>" + $.session.get(
+        'mname') + "</a>" +
+    "<a role='button' id='outBtn' class='logout'>" +
+    "<i class='fa fa-unlock fa-lg'></i>" +
+    "</a>")
 
-            $.ajax({
-                url: 'message/ajax/noReadMsg.do',
-                type: 'post', // async: false, dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                success: function(resultObj) {
-                    var ajaxResult = resultObj.ajaxResult;
-                    $('#count').html(ajaxResult.data.noReadCount)
-                    $('#userBadge').html(ajaxResult.data.noReadCount)
-                }
-            });
+  //    로그아웃
+  $(document).on("click", "#outBtn", function() {
+    $.session.clear();
+    location.href = "login.html"
+  });
 
-            $('.check').css('display', 'none');
+   // 안읽은 받은쪽지 갯수 출력
+  var no = $.session.get('mno');
+  var form_data = new FormData();
+  form_data.append("recvMno", no)
+  $.ajax({
+    url: 'message/ajax/noReadMsg.do',
+    type: 'post',
+//    async: false,
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    success: function(resultObj) {
+      var ajaxResult = resultObj.ajaxResult;
+      $('#count').html(ajaxResult.data.noReadCount)
+      $('#userBadge').html(ajaxResult.data.noReadCount)
+    }
+  })
+  $('#checkmem').css('display', 'none');
+//  $('.check').css('display', 'none');
+  $('#updateBtn').css('display', 'none');
+  $('#after').css('display', 'none');
+  
+  $.ajax({
+    url: 'member/ajax/detail.do',
+    data: {
+      "mno": $.session.get('mno')
+    },
+    dataType: 'json',
+    async: false,
+    cache: false,
+    type: 'get',
+    success: function(re) {
+      var mem = re.ajaxResult.data;
+      // console.log(mem);
+      $("#name").val(mem.mName);
+      $("#email").val(mem.mEmail);
+      $("#tel").val(mem.tel);
+      $("#profile").html("<img src='files/" + mem.mImg + "' />").appendTo("#right")
+      $("#fileuploader").css('display', '')
+    }
+  })
 
-            var uploadObj = $("#fileuploader").uploadFile({
-              url : "files/ajax/upload.do",
-              autoSubmit: false,
-              multiple: true,
-              dragDrop: true,
-              fileName : "file",
-              returnType: "json",
-              enctype: "multipart/form-data",
-              uploadStr: "이미지 추가",
-              dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
-              cancelStr: "선택취소",
-              abortStr: "전송취소",
-              dynamicFormData: function() {
-                  var data = {
-                      file: "files",
-                      fileName: "files.name",
-                      dno: $('#lastDno').val()
-                  };
-                  return data;
-              },
-              afterUploadAll: function() {
-                  location.href='mypage.html';
-              }
-            });
+  var uploadObj = $("#fileuploader").uploadFile({
+    url : "files/ajax/upload.do",
+    autoSubmit: false,
+    multiple: false,
+    dragDrop: true,
+    fileName : "file",
+    returnType: "json",
+    enctype: "multipart/form-data",
+    uploadStr: "이미지 추가",
+    dragDropStr: "<span><b>드래그 & 드랍 파일</b></span>",
+    multiDragErrorStr: "하나의 사진만 넣을수 있습니다.",
+    cancelStr: "선택취소",
+    abortStr: "전송취소",
+    dynamicFormData: function() {
+      var data = {
+        file: "files",
+        fileName: "files.name",
+        dno: $('#lastDno').val()
+      };
+      return data;
+    },
+    afterUploadAll: function() {
+      location.href='mypage.html';
+    }
+  });
+  $('#fileuploader').css('display', 'none');
+  
+  $(document).on('click', '#checkBtn', function() {
+    $.ajax({
+      url: 'member/ajax/checkPwd.do',
+      type: 'get',
+      data: {
+        mno: no
+      },
+      dataType: 'json',
+      success: function(re) {
+        var pwd = re.ajaxResult.data.password;
+        if ($('#checkpwd').val() == pwd) {
+          $('#checkmem').css('display', 'none');
+          $('.check').css('display', '');
+          $('.checkp').css('display', 'none');
+        }
+        else {
+          $('#modoinfo').html('비밀번호가 틀렸으니 다시 입력해주세요.');
+          $('#modo').modal('show')
+        }
+      }
+    })
+  })
+});
 
-            $(document).on('click', '#checkBtn', function() {
-                $.ajax({
-                    url: 'member/ajax/checkPwd.do',
-                    type: 'get',
-                    data: {
-                        mno: no
-                    },
-                    dataType: 'json',
-                    success: function(re) {
-                        var pwd = re.ajaxResult.data.password;
-                        if ($('#checkpwd').val() == pwd) {
-                            $('#checkmem').css('display', 'none');
-                            $('.check').css('display', '');
-                            $('.checkp').css('display', 'none');
-                        }
-                        else {
-                            location.href='diary.html';
-                        }
-                    }
-                })
-            })
-        });
 
-        $.ajax({
-            url: 'member/ajax/detail.do',
-            data: {
-                "mno": $.session.get('mno')
-            },
-            dataType: 'json',
-            async: false,
-            cache: false,
-            type: 'get',
-            success: function(re) {
-                var mem = re.ajaxResult.data;
-                // console.log(mem);
-                $("#name").val(mem.mName);
-                $("#email").val(mem.mEmail);
-                $("#tel").val(mem.tel);
-                $("#profile").html("<img src='files/" + mem.mImg + "' />").appendTo("#right")
-                $("#fileuploader").css('display', 'none')
-            }
-        })
+// 변경 버튼 클릭
+$(document).on('click', '#changeBtn', function() {
+  $('#changeBtn').css('display', 'none');
+  $('#deleteBtn').css('display', 'none');
+  $('#updateBtn').css('display', '');
+  $('#before').css('display', 'none');
+  $('#after').css('display', '');
+  $('#fileuploader').css('display', '');
+})
 
-        $(document).on('click', '#changeBtn', function() {
-
-        })
-    </script>
+// 완료 버튼 클릭
+$(document).on('click', '#updateBtn', function() {
+  $('#changeBtn').css('display', '');
+  $('#deleteBtn').css('display', '');
+  $('#updateBtn').css('display', 'none');
+  $('#before').css('display', '');
+  $('#after').css('display', 'none');
+  $('#fileuploader').css('display', 'none');
+  $('.ajax-file-upload-container').empty();
+})
+</script>
 </body>
 
 </html>
