@@ -83,7 +83,7 @@
       <button id="ETC" onclick="filter(this.id)">ETC</button>
       <button id="hidden" hidden="">All</button>
 
-      <button onclick="location.href='matingform.html'" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
+      <button onclick="location.href='matingform.html'" class="btn btn-default" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
@@ -474,7 +474,7 @@ $(document).ready(function() {
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-    $('#addBtn').css('display', 'none');
+//    $('#addBtn').css('display', 'none');
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);

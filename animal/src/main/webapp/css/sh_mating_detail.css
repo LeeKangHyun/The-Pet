@@ -113,6 +113,7 @@ div.item img {
   width: 640px;
   min-height: 640px;
   background-color: #ffd800;
+  margin-bottom: 150px;
 }
 #titlesize {
   background-color: #8fda57;
@@ -210,6 +211,7 @@ div.item img {
   overflow-y: scroll; 
 /*  background-color: #2d335e;*/
   background-color: #ffd800;
+  padding-bottom: 20px;
 }
 
 .comment {
@@ -316,17 +318,19 @@ div.item img {
 
 /* 맨아래 더보기 버튼 */
 #more {
-  width: 1000px;
+/*  width: 640px;*/
   margin: 0 auto;
-  height: 30px;
+/*  height: 30px;*/
   text-align: center;
 }
 
 .moreBtn {
   font-size: 15px;
-  padding: 5px 479px;
+  padding: 2px 290px;
   background: #2d335e;
   color: #fff;
+  position: relative;
+  bottom: 10px;
 }
 
 .moreBtn:hover {
