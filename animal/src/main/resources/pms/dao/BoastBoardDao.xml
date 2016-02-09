@@ -232,8 +232,8 @@
 delete co, fi, sc    
 from comment as co    
 left join files as fi on co.SCH_NUM = fi.SCH_NUM   
-left join schedule sc on fi.SCH_NUM = sc.SCH_NUM   
-where fi.SCH_NUM = #{dno}
+left join schedule as sc on fi.SCH_NUM = sc.SCH_NUM   
+where co.SCH_NUM = #{dno}
   </delete>
   
     <delete id="delete_notcmt" parameterType="int">
