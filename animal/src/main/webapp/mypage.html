@@ -147,6 +147,8 @@
 
                 <div class="modal-footer">
                     <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+                    <button type='button' id='delmem' class='btn btn-danger' data-dismiss='modal' style='display: none;'>탈퇴</button>
+                    <button type='button' id='cancle' class='btn btn-primary' data-dismiss='modal' style='display: none;'>취소</button>
                 </div>
             </div>
         </div>
@@ -159,7 +161,10 @@ $(document).ready(function() {
   $('#updateBtn').css('display', 'none');
   $('#cancelBtn').css('display', 'none');
   $('#after').css('display', 'none');
-  
+  $('#okok').css("display", '');
+  $('#delmem').css("display", 'none');
+  $('#cancle').css("display", 'none');
+
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
@@ -264,7 +269,10 @@ $(document).ready(function() {
       $('#password2').val('')
       $('#tel').val('')
       $('#tel').attr('readonly', true);
-      
+      $('#okok').css("display", '');
+      $('#delmem').css("display", 'none');
+      $('#cancle').css("display", 'none');
+
       $.ajax({
         url: 'member/ajax/detail.do',
         data: {
@@ -302,6 +310,9 @@ $(document).ready(function() {
           $('#checkmem').css('display', 'none');
           $('.check').css('display', '');
           $('.checkp').css('display', 'none');
+          $('#okok').css("display", '');
+          $('#delmem').css("display", 'none');
+          $('#cancle').css("display", 'none');
         } else {
           $('#modoinfo').html('패스워드가 틀렸으니 다시 입력해주세요.');
           $('#modo').modal('show')
@@ -320,7 +331,9 @@ $(document).ready(function() {
     $('#after').css('display', '');
     $('#fileuploader').css('display', '');
     $('.checkp').css('display', '');
-
+    $('#okok').css("display", '');
+    $('#delmem').css("display", 'none');
+    $('#cancle').css("display", 'none');
     $('#tel').attr('readonly', false);
   })
 
@@ -329,20 +342,20 @@ $(document).ready(function() {
     if ($('#password').val() != $('#password2').val()) {
       $('#modoinfo').html('패스워드가 다릅니다.');
       $('#modo').modal('show')
-      
+
     } else if ($('#password').val() == "") {
       $('#modoinfo').html('패스워드를 입력해주세요.');
       $('#modo').modal('show')
-      
+
     } else if ($('#password2').val() == "") {
       $('#modoinfo').html('패스워드 확인을 입력해주세요.');
       $('#modo').modal('show')
-      
+
     } else {
       console.log($(".ajax-file-upload-filename").html())
-      if ($(".ajax-file-upload-filename").html() != undefined) { 
+      if ($(".ajax-file-upload-filename").html() != undefined) {
         uploadObj.startUpload();
-    
+
       } else {
         $.ajax({
           url: 'member/ajax/updateWithoutImg.do',
@@ -357,7 +370,7 @@ $(document).ready(function() {
             console.log("update ajax 성공")
             $('#modoinfo').html('정보가 변경되었습니다.');
             $('#modo').modal('show')
-            
+
             $('#changeBtn').css('display', '');
             $('#deleteBtn').css('display', '');
             $('#updateBtn').css('display', 'none');
@@ -370,7 +383,10 @@ $(document).ready(function() {
             $('#password2').val('')
             $('#tel').val('')
             $('#tel').attr('readonly', true);
-            
+            $('#okok').css("display", '');
+            $('#delmem').css("display", 'none');
+            $('#cancle').css("display", 'none');
+
             $.ajax({
               url: 'member/ajax/detail.do',
               data: {
@@ -410,10 +426,21 @@ $(document).ready(function() {
     $('#password2').val('')
     $('#tel').val('')
     $('#tel').attr('readonly', true);
+    $('#okok').css("display", '');
+    $('#delmem').css("display", 'none');
+    $('#cancle').css("display", 'none');
   })
-  
+
   // 탈퇴 버튼 클릭
   $(document).on('click', '#deleteBtn', function() {
+    $('#modoinfo').html('회원탈퇴 하시겠습니까?');
+    $('#modo').modal('show');
+    $('#okok').css("display", 'none');
+    $('#delmem').css("display", '');
+    $('#cancle').css("display", '');
+  })
+
+  $(document).on('click', '#delmem', function() {
     $.ajax({
       url: 'member/ajax/delete.do',
       data: {
@@ -425,9 +452,7 @@ $(document).ready(function() {
       type: 'post',
       success: function(re) {
         $.session.clear();
-        $('#modoinfo').html('회원탈퇴 되셨습니다.');
-        $('#modo').modal('show')
-        $('#saleModal').on('hidden.bs.modal', function(e) {
+        $('#modo').on('hidden.bs.modal', function(e) {
           location.href = 'pet.html';
         })
       }
