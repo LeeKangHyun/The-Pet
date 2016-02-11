@@ -25,15 +25,20 @@
 
 <style>
 #rightTitle {
-border: 1px red solid;
+position: relative;
+float: right;
 }
 
 #share {
 position: relative;
 display: inline;
 float: right;
-margin-right: 10px;
-top: 12px;
+margin-right: 5px;
+}
+
+#leftTitle {
+display: inline;
+width: 600px;
 }
 </style>
 </head>
@@ -78,7 +83,7 @@ top: 12px;
 			<div id="title">
         <div id="leftTitle"></div>
         <div id="rightTitle"></div>
-        <div><a name="fb_share" type="button_count" onclick="sharing();">공유하기</a></div>
+        <div id="share"><a name="fb_share" type="button_count" onclick="sharing();">공유하기</a></div>
       </div>
       <div id="btns"></div>
 
