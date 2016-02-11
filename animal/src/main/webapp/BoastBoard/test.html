@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<span onclick="sharing();">페이스북 공유하기</span>
+
+<a name="fb_share" type="button_count" onclick="sharing();">공유하기</a>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">
+</script>
+
+<script>
+function sharing () {
+    window.open('http://www.facebook.com/sharer/sharer.php?u=http://192.168.0.31:8080/animal/pet.html');
+}
+</script>
+
+</body>
+</html>

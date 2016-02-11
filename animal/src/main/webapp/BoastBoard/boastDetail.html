@@ -39,7 +39,17 @@
   </script>
 
 <style>
+#btn-Section {
 
+}
+
+#share {
+position: relative;
+display: inline;
+float: right;
+margin-right: 10px;
+top: 12px;
+}
 
 </style>
 
@@ -132,6 +142,7 @@
 				<button type="button" class="btn btn-success" id="list-Btn">목록</button>
 			</div>
 			<div id="delete"></div>
+			<div id="share"><a name="fb_share" type="button_count" onclick="sharing();">공유하기</a></div>
 			<a id="comment-list" onclick='comment()'><span>댓글</span> <span id="comment-list-num"></span>
 				<i class="fa fa-angle-up"></i></a>
 		</div>
@@ -225,6 +236,9 @@
   </div>
 </div>
 
+
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">
+</script>
 
 	<!-- 댓글 펼치기 -->
 <script>

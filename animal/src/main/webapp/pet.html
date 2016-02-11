@@ -451,6 +451,31 @@ $(document).ready(function() {
   }
 </script>
 
+<script>
+function detailBoastBoard(dno) {
+  
+  var view_data = new FormData();
+  view_data.append("dno", dno);
+
+  $.ajax({
+    url : "../boastboard/ajax/view.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : view_data,
+    success : function(resultObj) {
+
+    }
+  });
+
+  console.log("넘어가는 Detail Page Dno = "+dno);
+
+  location.href='BoastBoard/boastDetail.html?dno='+dno;
+  location.replace('BoastBoard/boastDetail.html?dno='+dno);
+}
+</script>
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services,clusterer"></script>
 <script src="js/kh_map.js"></script>
 
