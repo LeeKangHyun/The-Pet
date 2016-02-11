@@ -222,7 +222,7 @@ $(document).ready(function() {
 		type: "GET",
 		success: function(resultObj) {
 			totalPage = resultObj.count;
-			if(totalPage == 1) {
+			if(totalPage == 1 || totalPage == 0) {
 				$('#moreBtn-Origin').empty();
 			}
 		}
