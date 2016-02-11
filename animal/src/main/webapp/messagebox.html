@@ -278,30 +278,48 @@ $(document).ready(function() {
                 } else {
                     status = "read";
                 }
-
                 mem = resultObj.memberMap[j];
                 j++;
-
-                $("<tr>")
-                .html(
-                "<td class='del'>" +
-                  "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
-                    "<i class='fa fa-trash'></i>" +
-                  "</a>" +
-                "</td>" +
-                "<td class='sender'>" +
-                  "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" +
-                    mem.mName + " (" + mem.mEmail +
-                  ")</a>" +
-                "</td>" +
-                "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
-                  "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
-                    msg.msgContent +
-                  "</a>" +
-                "</td>" +
-                "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
-                .appendTo(table);
-
+                
+                if (mem == null) {
+                	$("<tr>")
+                    .html(
+                    "<td class='del'>" +
+                      "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+                        "<i class='fa fa-trash'></i>" +
+                      "</a>" +
+                    "</td>" +
+                    "<td class='sender'>" +
+                      "<a role='button' id='null' class='reply' onclick='reply(this.id)'>알수없음 (알수없음)</a>" +
+                    "</td>" +
+                    "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+                      "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+                        msg.msgContent +
+                      "</a>" +
+                    "</td>" +
+                    "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+                    .appendTo(table);
+                } else {
+	                	$("<tr>")
+	                    .html(
+	                    "<td class='del'>" +
+	                      "<a role='button' id='r" + msg.msgNo + "' data-toggle='modal' data-target='#checkModal' onclick='del(this.id);'>" +
+	                        "<i class='fa fa-trash'></i>" +
+	                      "</a>" +
+	                    "</td>" +
+	                    "<td class='sender'>" +
+	                      "<a role='button' id='" + mem.mEmail + "' class='reply' onclick='reply(this.id)'>" +
+	                        mem.mName + " (" + mem.mEmail +
+	                      ")</a>" +
+	                    "</td>" +
+	                    "<td id='msg" + msg.msgNo + "' class='msgContent " + status + "'>" +
+	                      "<a id='" + msg.msgNo + "' role='button' data-toggle='modal' data-target='#viewContent' onclick='detail(this.id);'>" +
+	                        msg.msgContent +
+	                      "</a>" +
+	                    "</td>" +
+	                    "<td class='msgDate'>" + msg.msgCreateDate + "</td>")
+	                    .appendTo(table);
+                }
               }
             }
           });
