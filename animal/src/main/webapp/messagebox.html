@@ -407,7 +407,7 @@ $(document).on("click", "#sendMsgBtn", function() {
 
       var ajaxResult = resultObj.ajaxResult;
 
-      if(ajaxResult.status == "success") {
+      if(ajaxResult.status == "success" && $('#msgText').val() != '') {
         var form_data = new FormData();
         form_data.append("sendMno", no)
         form_data.append("mEmail", sendEmail)
@@ -509,6 +509,9 @@ $(document).on("click", "#sendMsgBtn", function() {
             });
           }
         });
+      } else if (ajaxResult.status == "success" && $('#msgText').val() == '') {
+        $('#modoinfo').html('내용을 입력해 주세요');
+        $('#modo').modal('show')
       } else {
         $('#modoinfo').html('존재하지 않는 사용자입니다.');
         $('#modo').modal('show')

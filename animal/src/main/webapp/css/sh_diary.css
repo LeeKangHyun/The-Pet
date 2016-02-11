@@ -47,7 +47,7 @@
   width: 320px;
   max-height: 520px;
   overflow-y: scroll;
-  background-color: #8fda57;
+/*  background-color: #8fda57;*/
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -56,7 +56,8 @@
   height: 120px;
 /*  border-top: 2px solid #d06a79;*/
 /*  border-bottom: 2px solid #d06a79;*/
-  background-color: #ffd800;
+/*  background-color: #ffd800;*/
+  background-color: #8fda57;
   margin: 10px;
 }
 .mImg {
@@ -77,7 +78,8 @@
   color: #000000;
   width: 130px;
   text-align: left;
-  background-color: #ffd800;
+/*  background-color: #ffd800;*/
+  background-color: #8fda57;
   border: none;
   margin-top: 28px;
   margin-left: 10px;
@@ -218,11 +220,16 @@
 #modo .modal-body {
   font-size: 16px;
 }
-#okok {
+
+#modo .modal-footer {
+  border-radius: 0;
+}
+
+#modo .okok {
   position: relative;
   bottom: 10px;
   width: 70px;
   height: 35px;
   border-radius: 0;
-  background-color: #2d335e;
+/*  background-color: #2d335e;*/
 }
