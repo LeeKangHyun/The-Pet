@@ -68,7 +68,7 @@ bottom: 25%;
   color: #2d335e;
 }
 
-#quick-top-a:hover, 
+#quick-top-a:hover,
 #quick-bottom-a:hover,
 #quick-top-a:FOCUS,
 #quick-bottom-a:FOCUS {
@@ -124,8 +124,7 @@ bottom: 25%;
 
       <button onclick="location.href='matingform.html'" class="btn btn-default" id='addBtn'>새 글</button>
         <!--  Filter 영역 시작 -->
-
-
+        
     <!-- 사진 게시물 영역 -->
     <div id='Container' class='container'></div>
 
@@ -135,134 +134,10 @@ bottom: 25%;
 
   </section>
 
-<!-- 오류 모달 -->
-<div id="noCom" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <i class="fa fa-exclamation-triangle"></i>
-        에러!
-      </div>
-
-      <div class="modal-body">
-        댓글을 입력해주세요
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--짝짓기 디테일 모달-->
-<div id='saleModal' class='modal fade' data-keyboard='false' data-backdrop='static'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button id="closeBtn" type='button' class='close' data-dismiss='modal'>&times;</button>
-        <h3 id='modalTitle' class='title'></h3>
-      </div>
-
-      <div class='modal-body'>
-
-        <input type="hidden" id="mmatno">
-
-        <div id='carousel-example-generic' class='carousel slide' data-ride='carousel' data-wrap='false' data-interval="false">
-            <!-- Indicators -->
-            <ol class='carousel-indicators' id="dots"></ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" id="imgs"></div>
-
-            <!-- Controls -->
-            <a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>
-                <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
-                <span class='sr-only'>Previous</span>
-            </a>
-            <a class='right carousel-control' href='#carousel-example-generic' role="button" data-slide='next'>
-                <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
-                <span class='sr-only'>Next</span>
-            </a>
-        </div>
-
-        <div class='contents'>
-
-          <div class='content' id="mcontent">
-            <textarea id="contentText" readonly></textarea>
-          </div>
-
-          <div class='input'>
-
-            <div id="forms">
-              <span class="gg">펫 종류</span>
-              <input type="text" name="mat_gen" placeholder="ex) 포메라니안" id="mmtype" class="form-control">
-            </div>
-
-            <textarea id="comcontent" class='commentin' cols='30' rows='2' placeholder='댓글을 입력하세요...'></textarea>
-            <a id="comDelBtn" role='button'>게시</a>
-          </div>
-
-          <div class='comments' id="comComment"></div>
-          <div id="delImg"></div>
-        </div>
-
-
-      </div>
-
-      <div class="modal-footer">
-
-        <div class="box">
-          <input type="file" name="files" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count}개의 파일이 선택되었습니다"
-          multiple />
-          <label for="file-1">
-            <i class="fa fa-upload"></i>
-            <span>이미지 추가</span>
-          </label>
-        </div>
-
-        <button type="button" id="editPet" class="btn btn-warning">변경</button>
-        <button type="button" id="editEnd" class="btn btn-warning" style="display:none;">변경완료</button>
-        <button type="button" id="matDelBtn" class="btn btn-danger">삭제</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- 댓글 삭제 확인 모달 -->
-<div id="checkModal" class="modal fade bs-example-modal-sm" data-keyboard='false' data-backdrop='static'>
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class='modal-header'>
-        댓글 삭제
-      </div>
-      <div class='modal-body'>
-        이 댓글을 삭제하시겠어요?
-        <input type="hidden" id="comno">
-      </div>
-      <div class='modal-footer'>
-        <button type="button" id="closeDel" class="btn btn-default" data-dismiss="modal">취소</button>
-        <button type="button" id="delCom" class="btn btn-danger">삭제</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="quick-menu">
-<!--
-  <div id="quick-header">
-    <p>Quick Menu</p>
-  </div>
--->
   <div id="quick-top">
     <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
   </div>
-<!--
-  <div id="quick-bottom">
-    <a href="#quick-bottom" id="quick-bottom-a"> Bottom <i class="fa fa-chevron-down"></i></a>
-  </div>
--->
 </div>
 <script src="js/sh_custom-file-input.js"></script>
 
@@ -548,7 +423,7 @@ $(document).ready(function() {
   })
 });
 
-// 분양 리스트 출력
+// 짝짓기 리스트 출력
 $.ajax({
   url: 'mating/ajax/list.do',
   async: false,
@@ -712,7 +587,7 @@ function moree(id) {
 
 <script type="text/javascript">
 // Top으로 이동
-$(document).ready(function() { 
+$(document).ready(function() {
   $('a[href=#quick-top]').click(function(){
     $('html, body').animate({scrollTop:0}, 1000);
     return false;

@@ -245,7 +245,8 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        <button type="button" id="cancle" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" id="delmat" class="btn btn-danger" data-dismiss="modal">삭제</button>
       </div>
     </div>
   </div>
@@ -307,8 +308,6 @@ $(document).ready(function() {
     $.session.clear();
     location.href = "login.html"
   });
-
-
 })
 
 // 짝짓기 디테일
@@ -395,22 +394,6 @@ var matNo = location.href.split('?')[1].split('=')[1];
         }
       })
     }
-//    ,
-//    complete: function() {
-//      $.ajax({
-//          url: 'mating/ajax/views.do',
-//          data: {
-//              "matNo": matNo
-//          },
-//          async: false,
-//          dataType: 'json',
-//          type: "post",
-//          success: function(re) {
-//            console.log()
-//            console.log(re.ajaxResult.data.matViews)
-//          }
-//      })
-//    }
   })
 
   var i = 0;
@@ -466,14 +449,11 @@ var matNo = location.href.split('?')[1].split('=')[1];
       }
   })
 
-
 // 댓글 추가
 $(document).on("click", "#comDelBtn", function() {
   if ($('#comcontent').val() == "") {
-
     $('#noCom').modal('show');
     return false;
-
   } else {
     var form_data = new FormData();
     form_data.append("matNo", $('#mmatno').val())
@@ -548,19 +528,26 @@ $(document).on("click", "#comDelBtn", function() {
 
 // 짝짓기 삭제
 $(document).on('click', '#matDelBtn', function() {
+  $('#modoinfo').html('삭제 하시겠습니까?');
+  $('#modo').modal('show');
+  $('#okok').css('display', 'none');
+  $("#delmat").css('display', '');
+  $("#cancle").css('display', '');
+});
+
+$(document).on('click', '#delmat', function() {
   $.ajax({
     url: 'mating/ajax/delete.do',
     dataType: 'json',
     type: 'get',
     data: {
       "matNo": matNo
-//      $('#mmatno').val()
     },
-    success: function (ro) {
+    success: function () {
       location.href='mating.html';
     }
   })
-});
+})
 
 // 댓글 삭제
 $(document).on("click", "#delCom", function() {
