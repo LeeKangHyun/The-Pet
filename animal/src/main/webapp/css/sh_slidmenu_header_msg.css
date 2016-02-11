@@ -51,7 +51,7 @@
 /* 로그인 & 회원정보 영역 */
 #user_info {
   position: relative;
-  top: 2px;
+  top: -5px;
   right: 10px;
   float: right;
 }
