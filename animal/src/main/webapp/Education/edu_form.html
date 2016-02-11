@@ -42,7 +42,7 @@ top: 12px;
 	<header id="menu">
 		<div id="header_title">
 			<a class="headerTitle" href="../pet.html"> <span id="the">THE</span>
-				<span id="P">P</span><span id="et">ET</span> 
+				<span id="P">P</span><span id="et">ET</span>
 				<a	 class="headerSubTitle" href="education.html"> 교육 </a>
 			</a>
 			<div id="user_info"></div>
@@ -71,7 +71,7 @@ top: 12px;
 			<!--  //메뉴 내용  -->
 		</div>
 	</header>
-  
+
 	<section id="main-body">
 		<div id="left">
 			<div id="video"></div>
@@ -82,7 +82,7 @@ top: 12px;
       </div>
       <div id="btns"></div>
 
-      
+
 			<div class='contents'>
 
 				<!-- 댓글 입력부분 -->
@@ -104,7 +104,7 @@ top: 12px;
 			</div>
 			<!-- contents 클래스 끝 -->
 		</div>
-    
+
     <div id="right">
       <div id='rname'>관련된 동영상</div>
     </div>
@@ -145,7 +145,7 @@ top: 12px;
     </div>
   </div>
 </div>
-  
+
  <!-- 알림 모달 -->
 <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm">
@@ -165,7 +165,7 @@ top: 12px;
     </div>
   </div>
 </div>
-  
+
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">
 </script>
 
@@ -173,7 +173,7 @@ top: 12px;
     var eduNo = location.href.split('?')[1].split('=')[1];
     var id = eduNo;
     var toggle = 0;
-    
+
     $.ajax({
       url : 'education/ajax/detail.do',
       dataType : 'json',
@@ -190,29 +190,29 @@ top: 12px;
         var ca = $("#leftTitle");  // content area
         var btn = $("#btns");  // content area
         var sa = $("#right");  // side area
-        
-        $("<iframe class='videoarea' src='https://www.youtube.com/embed/" 
+
+        $("<iframe class='videoarea' src='https://www.youtube.com/embed/"
         		+ url + "?rel=0'" +
         		"' frameborder='0' allowfullscreen></iframe>'").appendTo(va);
         ca.html(education.eduTitle)
         $(
         		"<div id='views'><i class='fa fa-eye' style='margin-left: 5px;'></i>" + education.eduViews + "</div>" +
-          
+
         	  "<div id='likes' onclick='likes()'> </div>" +
-          
+
         		"<div class='da'>작성일 : " + education.eduCreateDate + "</div>"
-          
+
         		)
         .appendTo(btn);
-        
+
         var url = location.href;
         var eno = url.split('?')[1].split('=')[1];
         var mno = $.session.get('mno');
-        
+
         var like_data = new FormData();
         like_data.append("mno", mno);
         like_data.append("eno", eno);
-          
+
         $.ajax({
             url : "education/ajax/like_check.do",
             dataType : "json",
@@ -224,7 +224,7 @@ top: 12px;
             success : function(resultObj) {
 
               $('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like_count+"")
-              
+
               if (resultObj.like != null ) {
                 $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
                 toggle = 1;
@@ -232,10 +232,10 @@ top: 12px;
                 $('.fa-thumbs-o-up').css({"color":"#767475","font-size": "17px"});
                 toggle = 0;
               }
-            } 
+            }
           });
 
-        
+
         $("#eduContent").val(education.eduContent);
         console.log(education.eduSpec);
         $.ajax({
@@ -311,19 +311,19 @@ top: 12px;
 	      "<a role='button' id='outBtn' class='logout'>" +
 	        "<i class='fa fa-unlock fa-lg'></i>" +
 	      "</a>")
-	    
+
 	    btn.append(
 	      "<a class='btn btn-default' id='scheduleAdd' role='button'"
 	      + "data-toggle='modal' data-target='#AddBoard'>New</a>")
-	    
+
 	    ul.append(
 	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
 	    $('#comimg').attr('src', '../files/' + $.session.get('mimg'));
-	    
+
 	    va.append(
 	    		 "<a class='eduDel btn btn-danger' id='" + eduNo + "' onclick='deleteedu(this.id)'>게시물 삭제</a>"
 	    );
-      
+
       // 안읽은 받은쪽지 갯수 출력
       var no = $.session.get('mno');
       var form_data = new FormData();
@@ -348,15 +348,15 @@ top: 12px;
 	        "<span class='badge' id='userBadge'>0</span>" +
 	      "</a>" +
 	      "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-	      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+	      "<a id='userName' href='../mypage.html'>" + $.session.get('mname') + "</a>" +
 	      "<a role='button' id='outBtn' class='logout'>" +
 	        "<i class='fa fa-unlock fa-lg'></i>" +
 	      "</a>")
-	    
+
 	    ul.append(
 	      "<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
 	    $('#comimg').attr('src', '../files/' + $.session.get('mimg'));
-      
+
       // 안읽은 받은쪽지 갯수 출력
       var no = $.session.get('mno');
       var form_data = new FormData();
@@ -381,7 +381,7 @@ top: 12px;
 	    $.session.clear();
 	    location.href = "../login.html"
 	  });
-	  
+
 	//삭제 버튼을 위한 이벤트 리스너 추가하기
 	  $('#deleteBtn').click(function(event) {
 	    $.getJSON('education/ajax/delete.do?eduNo=' + eduNo,
@@ -398,9 +398,9 @@ top: 12px;
 	    });
 	  });
   });
-	  
-	  
-  
+
+
+
   var i = 0;
   var form_data = new FormData();
   form_data.append("eduNo", eduNo)
@@ -445,7 +445,7 @@ top: 12px;
     	  i++;
     }
   });
-  
+
   $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
       var ajaxResult = resultObj.ajaxResult
       console.log('resultObj : ' + ajaxResult.data)
@@ -453,7 +453,7 @@ top: 12px;
           $('#more').empty();
       }
   })
-  
+
   $(document).on('click', '#comAddBtn', function() {
     if ($('#comcontent').val() == "") {
       $('#modoinfo').html('댓글을 입력해 주세요');
@@ -531,18 +531,18 @@ top: 12px;
     })
   }
 });
-	
+
 	// 댓글 삭제 도우미
 	function del(id) {
     $('#comno').val(id)
     $('#checkModal').modal('show')
 	}
-	 
+
 	function deleteedu(eduNo) {
 		$('#eduNo').val(eduNo)
 		$('#deleteEdu').modal('show')
 	}
-	
+
 	// 댓글 삭제
 	$(document).on("click", "#delCom", function() {
     var form_data = new FormData();
@@ -674,24 +674,24 @@ top: 12px;
 	    })
 	};
   </script>
-  
+
   <!-- likes -->
   <script>
   var url = location.href;
   var eno = url.split('?')[1].split('=')[1];
   var mno = $.session.get('mno');
-  
+
   var like_data = new FormData();
   like_data.append("mno", mno);
   like_data.append("eno", eno);
-    
+
   function likes() {
-    
-      if ($.session.get('mno') == undefined) { 
+
+      if ($.session.get('mno') == undefined) {
         $('#modoinfo').html('로그인 후 이용해주십시오.');
         $('#modo').modal('show')
       } else {
-    
+
       if(toggle == 0) {
           $.ajax({
               url : "education/ajax/like_add.do",
@@ -705,7 +705,7 @@ top: 12px;
                 $('#likes').empty();
                 $('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"  ")
               }
-            }); 
+            });
         $('.fa-thumbs-o-up').css({"color":"blue","font-size": "20px"});
         toggle = 1;
       } else if(toggle == 1) {
@@ -721,8 +721,8 @@ top: 12px;
                   $('#likes').empty();
                   $('#likes').append("<i class='fa fa-thumbs-o-up'></i> "+resultObj.like+"  ")
                 }
-              }); 
-        
+              });
+
         $('.fa-thumbs-o-up').css({"color":"black","font-size": "17px"});
         toggle = 0;
       }
