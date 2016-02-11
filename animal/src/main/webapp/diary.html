@@ -369,7 +369,10 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+          <button type="button" id="okok" class="okok btn btn-primary" data-dismiss="modal">확인</button>
+          <button type='button' id='cancle' class='okok btn btn-primary' data-dismiss='modal' style='display: none;'>취소</button>
+          <button type='button' id='deletepet' class='okok btn btn-danger' data-dismiss='modal' style='display: none;'>삭제</button>
+          <button type='button' id='delsch' class='okok btn btn-danger' data-dismiss='modal' style='display: none;'>삭제</button>
         </div>
       </div>
     </div>
@@ -382,7 +385,10 @@
 <!-- 캘린더 스크립트 -->
 <script>
 $(document).ready(function() {
-
+  $('#okok').css("display", '');
+  $('#deletepet').css("display", 'none');
+  $('#delsch').css("display", 'none');
+  $('#cancle').css("display", 'none');
   // 로그인 회원 정보출력 세션없으면 로그인페이지로
   var no = $.session.get('mno');
   if (no == undefined) {
@@ -416,7 +422,6 @@ $(document).ready(function() {
   $.ajax({
     url: 'message/ajax/noReadMsg.do',
     type: 'post',
-//    async: false,
     dataType: 'json',
     cache: false,
     contentType: false,
@@ -696,34 +701,6 @@ $(document).on("click", "#addPetBtn", function() {
         $('#modo').modal('show')
 
         $('#modo').on('hidden.bs.modal', function(e) {
-
-//          $("#myPets").empty();
-//          $("#pno").html("");
-//          var showpet = $('#myPets');
-//          var sel = $("#pno");
-//          var ajaxResult = re.ajaxResult;
-//
-//          for (var pet of ajaxResult.data) {
-//            showpet.append(
-//              "<a class='petdetailBtn' id='" + pet.pno +
-//                "' onclick='detail(this.id);'" +
-//                "role='button' data-toggle='modal' data-target='#petDetailModal'>" +
-//                "<div class='myPet'>" +
-//                  "<input type='hidden' class='pno'>" +
-//                  "<img class='mImg' src='files/" + pet.pImg + "'>" +
-//                  "<input class='petName' type='text' value='" + pet.pName +
-//                  "' disabled>" +
-//                  "<label class='pName'>이름 : </label>" +
-//                  "<input class='pColor' type='color' value='" + pet.tagColor +
-//                  "' disabled>" +
-//                  "<label class='pInfo'>태그색 : </label>" +
-//                "</div>" +
-//              "</a>")
-//
-//            sel.append(
-//              "<option value='" + pet.pno + "'>" + pet.pName + "</option>")
-//          }
-
           location.href="diary.html"
         })
       }
@@ -733,29 +710,35 @@ $(document).on("click", "#addPetBtn", function() {
 
 // 펫 삭제
 $(document).on("click", "#delPet", function() {
+    $('#okok').css("display", 'none');
+    $('#deletepet').css("display", '');
+    $('#delsch').css("display", 'none');
+    $('#cancle').css("display", '');
+    $('#modoinfo').html('펫을 삭제하시겠습니까?.');
+    $('#modo').modal('show');
 
-    var form_data = new FormData();
-    form_data.append("pno", $('#myPno').val())
-
-    $.ajax({
-      url: "pet/ajax/delete.do",
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-      success: function(re) {
-
-        $('#modoinfo').html('펫이 삭제되었습니다.');
-        $('#modo').modal('show')
-
-        $('#modo').on('hidden.bs.modal', function(e) {
-          location.href="diary.html"
-        })
-      }
-    })
   });
+
+$(document).on('click', '#deletepet', function() {
+  var form_data = new FormData();
+  form_data.append("pno", $('#myPno').val())
+
+  $.ajax({
+    url: "pet/ajax/delete.do",
+    dataType: 'json',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: form_data,
+    type: 'post',
+    success: function(re) {
+      $('#modoinfo').html('펫이 삭제되었습니다.');
+      $('#modo').on('hidden.bs.modal', function(e) {
+        location.href="diary.html"
+      })
+    }
+  })
+})
 
 // 다이어리 변경
 $(document).on("click", "#editSchedule", function() {
@@ -820,7 +803,14 @@ $(document).on("click", "#editSchedule", function() {
 
 // 다이어리 삭제
 $(document).on("click", "#delSchedule", function() {
-
+  $('#okok').css("display", 'none');
+  $('#deletepet').css("display", 'none');
+  $('#delsch').css("display", '');
+  $('#cancle').css("display", '');
+  $('#modoinfo').html('다이어리를 삭제하시겠습니까?.');
+  $('#modo').modal('show');
+});
+$(document).on('click', "#delsch", function() {
   var form_data = new FormData();
   form_data.append("dno", $('#sdno').val())
 
@@ -834,14 +824,13 @@ $(document).on("click", "#delSchedule", function() {
     type: 'post',
     success: function(re) {
       $('#modoinfo').html('게시글이 삭제되었습니다.');
-      $('#modo').modal('show')
 
       $('#modo').on('hidden.bs.modal', function(e) {
         location.href="diary.html"
       })
     }
   })
-});
+})
 
 // 펫추가 모달 닫으면 입력 초기화
 $('#AddPet').on('hidden.bs.modal', function(e) {
