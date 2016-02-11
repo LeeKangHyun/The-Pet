@@ -1,11 +1,3 @@
--- 쪽지
-ALTER TABLE RECEIVEBOX
-  DROP FOREIGN KEY FK_Member_TO_RECEIVEBOX; -- 회원 -> 쪽지
-
--- 쪽지
-ALTER TABLE RECEIVEBOX
-  DROP FOREIGN KEY FK_Member_TO_RECEIVEBOX2; -- 회원 -> 쪽지2
-
 -- 교육
 ALTER TABLE Education
   DROP FOREIGN KEY FK_Member_TO_Education; -- 회원 -> 교육
@@ -228,13 +220,13 @@ ALTER TABLE Education
 -- 분양
 CREATE TABLE Sale (
   S_NUM     INTEGER     NOT NULL COMMENT '분양번호', -- 분양번호
-  S_VIEWS   INTEGER     NULL     DEFAULT 0 COMMENT '새 컬럼2', -- 새 컬럼2
   S_CRE     DATETIME    NOT NULL COMMENT '작성일', -- 작성일
+  S_VIEWS   INTEGER     NULL     DEFAULT 0 COMMENT '새 컬럼', -- 새 컬럼
+  S_LIKES   INTEGER     NULL     DEFAULT 0 COMMENT '새 컬럼2', -- 새 컬럼2
   S_TITLE   VARCHAR(50) NOT NULL COMMENT '제목', -- 제목
   S_CONTENT TEXT        NOT NULL COMMENT '내용', -- 내용
   S_SPEC    char(5)     NOT NULL COMMENT '구분', -- 구분
   S_TYPE    TEXT        NOT NULL COMMENT '종류', -- 종류
-  S_GEN     BOOLEAN     NULL     COMMENT '새 컬럼', -- 새 컬럼
   S_COST    INTEGER     NULL     COMMENT '판매금', -- 판매금
   MEM_NUM   INTEGER     NULL     COMMENT '회원번호' -- 회원번호
 )
@@ -436,26 +428,6 @@ ALTER TABLE LOCATION
 ALTER TABLE LOCATION
   MODIFY COLUMN LOC_NUM INTEGER NOT NULL AUTO_INCREMENT COMMENT '새 컬럼3';
 
--- 쪽지
-ALTER TABLE RECEIVEBOX
-  ADD CONSTRAINT FK_Member_TO_RECEIVEBOX -- 회원 -> 쪽지
-    FOREIGN KEY (
-      MEM_NUM -- 보내는이
-    )
-    REFERENCES Member ( -- 회원
-      MEM_NUM -- 회원번호
-    )ON DELETE CASCADE;
-
--- 쪽지
-ALTER TABLE RECEIVEBOX
-  ADD CONSTRAINT FK_Member_TO_RECEIVEBOX2 -- 회원 -> 쪽지2
-    FOREIGN KEY (
-      MEM_NUM2 -- 받는이
-    )
-    REFERENCES Member ( -- 회원
-      MEM_NUM -- 회원번호
-    )ON DELETE CASCADE;
-
 -- 교육
 ALTER TABLE Education
   ADD CONSTRAINT FK_Member_TO_Education -- 회원 -> 교육
@@ -474,7 +446,7 @@ ALTER TABLE Sale
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    )ON DELETE CASCADE;
+    )on delete cascade;
 
 -- 짝짓기
 ALTER TABLE Mating
@@ -554,7 +526,7 @@ ALTER TABLE Schedule
     )
     REFERENCES Category ( -- 카테고리
       CATE_CODE -- 카테고리코드
-    )ON DELETE CASCADE;
+    )on delete cascade;
 
 -- 다이어리 - 일정
 ALTER TABLE Schedule
@@ -564,7 +536,7 @@ ALTER TABLE Schedule
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    )ON DELETE CASCADE;
+    )on delete cascade;
 
 -- 파일
 ALTER TABLE Files
@@ -614,4 +586,4 @@ ALTER TABLE LOCATION
     )
     REFERENCES Schedule ( -- 다이어리 - 일정
       SCH_NUM -- 일정번호
-    )on delete cascade; 
+    )on delete cascade;
