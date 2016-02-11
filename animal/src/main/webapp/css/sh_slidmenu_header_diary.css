@@ -129,8 +129,9 @@
   padding: 14px 18px;
   color: #fff;
   cursor: pointer;
-  top: -2px;
+  top: -4.5px;
   z-index: 1000;
+  font-size: 17px;
 }
 #menu-icon:hover {
   color: #d06a79;
