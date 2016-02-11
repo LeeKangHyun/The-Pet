@@ -117,7 +117,7 @@ public class SaleController {
 
 		for (Sale s : sale) {
 			files = filesService.getSaleFile(s.getSno());
-			member = memberService.oneMember(s.getSno());
+			member = memberService.oneMember(s.getMno());
 			filesMap.add(files);
 			memberMap.add(member);
 		}

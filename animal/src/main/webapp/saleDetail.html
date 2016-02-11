@@ -240,7 +240,8 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+          <button type="button" id="cancle" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" id="delsale" class="btn btn-danger" data-dismiss="modal">삭제</button>
         </div>
       </div>
     </div>
@@ -736,6 +737,11 @@
 
     // 짝짓기 삭제
     $(document).on('click', '#matDelBtn', function() {
+      $('#modoinfo').html('삭제 하시겠습니까?');
+      $('#modo').modal('show');
+    });
+
+    $(document).on('click', '#delsale', function() {
       $.ajax({
         url: 'sale/ajax/delete.do',
         dataType: 'json',
@@ -747,7 +753,7 @@
           location.href = 'sale.html';
         }
       })
-    });
+    })
 
     // 디테일 변경 누르면 발생
     $(document).on("click", "#editPet", function() {
