@@ -68,7 +68,7 @@ bottom: 25%;
   color: #2d335e;
 }
 
-#quick-top-a:hover, 
+#quick-top-a:hover,
 #quick-bottom-a:hover,
 #quick-top-a:FOCUS,
 #quick-bottom-a:FOCUS {
@@ -121,7 +121,7 @@ bottom: 25%;
       <button id="ETC" onclick="filter(this.id)">ETC</button>
       <button id="hidden" hidden="">All</button>
 
-      <button onclick="location.href='saleform.html'" class="btn btn-default" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
+      <button onclick="location.href='saleform.html'" class="btn btn-default" id='addBtn'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
@@ -168,7 +168,7 @@ bottom: 25%;
     </div>
 
   </section>
-  
+
   <div class="quick-menu">
 <!--
   <div id="quick-header">
@@ -417,7 +417,7 @@ $(document).ready(function() {
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-//    $('#addBtn').css('display', 'none');
+   $('#addBtn').css('display', 'none');
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);
@@ -434,6 +434,7 @@ $(document).ready(function() {
       "</a>")
     ul.append(
       "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+    $('#addBtn').css('display', '');
 
     // 안읽은 받은쪽지 갯수 출력
     var no = $.session.get('mno');
@@ -627,7 +628,7 @@ function moree(id) {
 
 <script type="text/javascript">
 // Top으로 이동
-$(document).ready(function() { 
+$(document).ready(function() {
   $('a[href=#quick-top]').click(function(){
     $('html, body').animate({scrollTop:0}, 1000);
     return false;
