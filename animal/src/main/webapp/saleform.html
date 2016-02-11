@@ -100,7 +100,7 @@
         <div class="form-group">
           <label for="s_cost" class="col-sm-3 control-label">보증금</label>
           <div class="col-sm-9">
-            <input type="text" name="s_cost" placeholder="ex) 30000" class="form-control" id="s_cost"/>
+            <input type="number" name="s_cost" placeholder="ex) 30000" class="form-control" id="s_cost"/>
           </div>
         </div>
 
@@ -254,10 +254,6 @@ $(document).ready(function() {
       var sgen = $('input[name=S_GENDER]:checked').val();
       var form_data = new FormData();
 
-      console.log('등러갔다')
-      console.log($('#mafile'))
-
-
       form_data.append("mno", no)
       form_data.append("sTitle", $('#s_title').val())
       form_data.append("sSpec", $('#s_spec').val())
@@ -265,7 +261,6 @@ $(document).ready(function() {
       form_data.append("sGen", sgen)
       form_data.append("sContent", $('#s_content').val())
       form_data.append("sCost", $('#s_cost').val())
-      console.log(form_data);
       $.ajax({
         url: 'sale/ajax/add.do',
         dataType: 'json',
@@ -275,7 +270,6 @@ $(document).ready(function() {
         processData: false,
         data: form_data,
         success: function(re) {
-          console.log('성공')
           var lastDno = re.ajaxResult.data;
           $('#lastDno').val(lastDno);
 
