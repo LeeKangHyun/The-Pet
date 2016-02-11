@@ -83,47 +83,12 @@
       <button id="ETC" onclick="filter(this.id)">ETC</button>
       <button id="hidden" hidden="">All</button>
 
-      <button onclick="location.href='matingform.html'" class="btn btn-default" id='addBtn' data-target='#addModal' data-toggle='modal'>새 글</button>
+      <button onclick="location.href='matingform.html'" class="btn btn-default" id='addBtn'>새 글</button>
         <!--  Filter 영역 시작 -->
 
 
     <!-- 사진 게시물 영역 -->
-    <div id='Container' class='container'>
-
-
-<!--
-
-      <a class='portfoliocard  DOG' role='button' href='matingDetail.html?matNo=1'>
-
-        <div class='coverphoto'>
-          <img src='files/p4.jpeg' class='landscape'>
-        </div>
-
-        <div class='profile_picture'>
-          <img src='files/p3.jpeg'>
-        </div>
-
-        <div class='left_col'>
-          <div class='views'>
-            <div class='view_count' id='v" +  resultObj.data[i].matNo + "'> 33</div>
-            VIEW
-          </div>
-        </div>
-        <div class='right_col'>
-          <ul class='contact_information'>
-            <li class='website'>DOG</li>
-            <li class='website'>포메라이안</li>
-            <li class='gender'>암컷</li>
-            <li class='title'>제목</li>
-            <li class='resume'>2016-02-15</li>
-            <li class='name'>작성자</li>
-          </ul>
-        </div>
-      </a>
-
--->
-
-    </div>
+    <div id='Container' class='container'></div>
 
     <div id="more">
       <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
@@ -474,10 +439,12 @@ $(document).ready(function() {
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
     div.append("<a href='login.html' id='loginBtn'>로그인</a>")
-//    $('#addBtn').css('display', 'none');
+
+   $('#addBtn').css('display', 'none');
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);
+    $('#addBtn').css('display', '');
 
     div.append(
       "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
