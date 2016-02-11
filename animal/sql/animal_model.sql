@@ -444,7 +444,7 @@ ALTER TABLE RECEIVEBOX
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )ON DELETE CASCADE;
 
 -- 쪽지
 ALTER TABLE RECEIVEBOX
@@ -454,7 +454,7 @@ ALTER TABLE RECEIVEBOX
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )ON DELETE CASCADE;
 
 -- 교육
 ALTER TABLE Education
@@ -464,7 +464,7 @@ ALTER TABLE Education
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )on delete cascade;
 
 -- 분양
 ALTER TABLE Sale
@@ -474,7 +474,7 @@ ALTER TABLE Sale
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )ON DELETE CASCADE;
 
 -- 짝짓기
 ALTER TABLE Mating
@@ -484,7 +484,7 @@ ALTER TABLE Mating
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )on delete cascade;
 
 -- 댓글
 ALTER TABLE Comment
@@ -494,7 +494,7 @@ ALTER TABLE Comment
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )on delete cascade;
 
 -- 댓글
 ALTER TABLE Comment
@@ -504,7 +504,7 @@ ALTER TABLE Comment
     )
     REFERENCES Education ( -- 교육
       EDU_NUM -- 교육번호
-    );
+    )on delete cascade;
 
 -- 댓글
 ALTER TABLE Comment
@@ -514,7 +514,7 @@ ALTER TABLE Comment
     )
     REFERENCES Sale ( -- 분양
       S_NUM -- 분양번호
-    );
+    )on delete cascade;
 
 -- 댓글
 ALTER TABLE Comment
@@ -524,7 +524,7 @@ ALTER TABLE Comment
     )
     REFERENCES Mating ( -- 짝짓기
       MAT_NUM -- 짝짓기번호
-    );
+    )on delete cascade;
 
 -- 댓글
 ALTER TABLE Comment
@@ -534,7 +534,7 @@ ALTER TABLE Comment
     )
     REFERENCES Schedule ( -- 다이어리 - 일정
       SCH_NUM -- 일정번호
-    );
+    )on delete cascade;
 
 -- 팻
 ALTER TABLE Pet
@@ -544,7 +544,7 @@ ALTER TABLE Pet
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )on delete cascade;
 
 -- 다이어리 - 일정
 ALTER TABLE Schedule
@@ -554,7 +554,7 @@ ALTER TABLE Schedule
     )
     REFERENCES Category ( -- 카테고리
       CATE_CODE -- 카테고리코드
-    );
+    )ON DELETE CASCADE;
 
 -- 다이어리 - 일정
 ALTER TABLE Schedule
@@ -564,7 +564,7 @@ ALTER TABLE Schedule
     )
     REFERENCES Member ( -- 회원
       MEM_NUM -- 회원번호
-    );
+    )ON DELETE CASCADE;
 
 -- 파일
 ALTER TABLE Files
@@ -574,7 +574,7 @@ ALTER TABLE Files
     )
     REFERENCES Sale ( -- 분양
       S_NUM -- 분양번호
-    );
+    )on delete cascade;
 
 -- 파일
 ALTER TABLE Files
@@ -584,7 +584,7 @@ ALTER TABLE Files
     )
     REFERENCES Mating ( -- 짝짓기
       MAT_NUM -- 짝짓기번호
-    );
+    )on delete cascade;
 
 -- 파일
 ALTER TABLE Files
@@ -594,7 +594,7 @@ ALTER TABLE Files
     )
     REFERENCES Education ( -- 교육
       EDU_NUM -- 교육번호
-    );
+    )on delete cascade;
 
 -- 파일
 ALTER TABLE Files
@@ -604,7 +604,7 @@ ALTER TABLE Files
     )
     REFERENCES Schedule ( -- 다이어리 - 일정
       SCH_NUM -- 일정번호
-    );
+    )on delete cascade;
 
 -- 새 테이블
 ALTER TABLE LOCATION
@@ -614,5 +614,4 @@ ALTER TABLE LOCATION
     )
     REFERENCES Schedule ( -- 다이어리 - 일정
       SCH_NUM -- 일정번호
-    );
-    
+    )on delete cascade; 
