@@ -2,6 +2,7 @@
   padding-top: 50px;
   margin: 0 auto;
   width: 1200px;
+  height: 100%;
   height: auto;
 }
 
@@ -325,24 +326,30 @@ a:hover {
 
 #moreBtn-Origin {
   position: relative;
-  width: 1024px;
+/*  width: 1024px;*/
   margin: 0 auto;
-  bottom: 150px;
+/*  bottom: 150px;*/
 }
 
 #more {
-  position:relative;
-  text-align: center;
+/*  position:relative;*/
   margin: 0 auto;
-  font-size: 18px;
-  width: 1024px;
-  height: 25px;
+  width: 1150px;
+/*  height: 25px;*/
+/*  padding: 10px 400px;*/
+/*  max-width: 1024px;*/
   background-color: #2d335e;
 }
 
 #moreBtn {
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 600px;
+/*  margin-left: 10px;*/
+/*  margin-right: 10px;*/
   text-decoration: none;
   color: #fff;
+/*  max-width: 1024px;*/
 }
 
 #moreBtn:visited {

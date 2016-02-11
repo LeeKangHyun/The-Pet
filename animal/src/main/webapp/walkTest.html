@@ -1,0 +1,1078 @@
+<html>
+<head>
+
+  <link rel="icon" href="icon/1.ico" type="image/x-icon" />
+  <meta charset="UTF-8">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <title>산책코스</title>
+
+  <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+  <!--  상훈 css  -->
+  <link href="css/sh_slidmenu_header_walk.css" type="text/css" rel="stylesheet">
+  <link href="css/sh_sancheck_card.css" type="text/css" rel="stylesheet">
+
+  <!--  폰트아이콘 링크  -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/icon-font.min.css" rel="stylesheet" />
+
+  <script src='lib/jquery/jquery.min.js'></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+  <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
+  
+  <style>
+  #quick-top {
+    font-size: 17px;
+    margin-top: 2px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  #quick-top a {
+    color: #2d335e;
+  }
+
+  #quick-top-a:hover, 
+  #quick-bottom-a:hover,
+  #quick-top-a:FOCUS,
+  #quick-bottom-a:FOCUS {
+    text-decoration: none;
+  }
+  .quick-menu {
+    border: 1px #cBcBcB solid;
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+    position: fixed;
+    text-align: center;
+    width: 70px;
+    height: 30px;
+    right:30px;
+    bottom: 25%;
+    background-color: #fff;
+  }
+
+  .fa-chevron-up {
+    font-size: 15px;
+    color: #2d335e;
+  }
+  </style>
+
+</head>
+<body>
+  <header id="menu">
+    <div id="header_title">
+      <a class="headerTitle" href="pet.html">
+        <span id="the">THE</span> <span id="P">P</span><span id="et">ET</span>
+      </a>
+      <a class="headerSubTitle" href="walk.html">
+        산책
+      </a>
+      <div id="user_info">
+<!--          <a href='login.html' id='loginBtn'>로그인</a>-->
+      </div>
+    </div>
+    <!--  메뉴 버튼  -->
+    <input type="checkbox" id="menuToggle" />
+
+    <div id="sideMenu">
+      <label for="menuToggle" id="menu-icon"><i class="fa fa-bars fa-lg"></i></label>
+      <!--  메뉴 내용  -->
+
+      <nav id="menu-nav">
+        <ul id="menu-nav-ul">
+          <li><a href="Education/education.html"><i class="lnr lnr-pencil"></i> 교육</a></li>
+          <li><a href="sale.html"><i class="lnr lnr-store"></i> 분양</a></li>
+          <li><a href="mating.html"><i class="lnr lnr-heart"></i> 짝짓기</a></li>
+          <li><a href="walk.html"><i class="lnr lnr-leaf"></i> 산책코스</a></li>
+          <li><a href="BoastBoard/boastBoard.html"><i class="lnr lnr-paw"></i> 자랑해요</a></li>
+        </ul>
+      </nav>
+      <!--  //메뉴 내용  -->
+    </div>
+  </header>
+
+  <section id="main-body"  style="padding-bottom:150px;">
+    <div id="cardSection">
+  
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+ <div class='card-container manual-flip'>
+        <div class='card'>
+          <div class='front'>
+            <div class='cover'>
+              <img src='files/p4.jpeg' class='portrait'/>
+            </div>
+            <div class='user'>
+              <img class='img-circle' src='files/p1.jpeg'/>
+            </div>
+            <div class='content'>
+              <a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <div class='main'>
+                  <h3 class='name'>mName</h3>
+                  <div class='creDate'>
+                    createDate
+                  </div>
+                  <h5 class='title'>title</h5>
+                  <h5 id='jibun" + i + "'>
+                    <i class='fa fa-map-marker fa-fw text-muted'></i>
+                    jibun
+                  </h5>
+                </div>
+              </a>
+              <div class='footer'>
+                <div class='like'>
+                  <i class='fa fa-thumbs-o-up'></i>30
+                </div>
+                <div class='view'>
+                  <i class='fa fa-eye'></i>315
+                </div>
+                <button class='btn btn-simple summary' onclick='rotateCard(this)'>
+                  <i class='fa fa-mail-forward'></i> 간략정보
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='back'>
+            <div class='header'>
+              <div class='map' id='map" + i + "'></div>
+            </div>
+            <div class='content'>
+              <div class='main'>
+                <h4 class='text-center'>" + content + "</h4>
+              </div>
+            </div>
+            <div class='footer'>
+              <button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>
+                <i class='fa fa-reply'></i> 돌아가기
+              </button>
+
+              <button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>
+                <i class='fa fa-sign-in'></i> 상세정보
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div> <!-- cardSection 끝 -->
+    
+
+  </section>
+  <div id="moreBtn-Origin">
+    <a role="button" class="moreBtn" id="moreBtn">
+      <div id="more">더보기</div>
+    </a>
+  </div>
+        <!-- 더보기 버튼 -->
+
+<!-- 알림 모달 -->
+  <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="fa fa-info"></i>
+          알림
+        </div>
+
+        <div class="modal-body">
+          <span id="modoinfo"></span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="okok" class="btn btn-primary" data-dismiss="modal">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="quick-menu">
+
+  <div id="quick-top">
+    <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=d6f32883b1f882092688e8062e26dd77&libraries=services"></script>
+
+
+<script type="text/javascript">
+// Top으로 이동
+$(document).ready(function() { 
+  $('a[href=#quick-top]').click(function(){
+    $('html, body').animate({scrollTop:0}, 1000);
+    return false;
+  });
+});
+</script>
+
+<script>
+function detailWalk(dno) {
+
+  var view_data = new FormData();
+  view_data.append("dno", dno);
+
+  $.ajax({
+    url : "walk/ajax/view.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    data : view_data,
+    success : function(resultObj) {
+
+    }
+  });
+
+  location.href = 'walkDetail.html?dno=' + dno;
+}
+</script>
+
+<script type="text/javascript">
+var m = 0;
+$(document).ready(function(){
+  $.ajax({
+    url : "walk/ajax/selectList.do",
+    dataType : "json",
+    type : "POST",
+    contentType : false,
+    processData : false,
+    async: false,
+    success : function(resultObj) {
+      console.log(resultObj);
+      var div = $("#cardSection");
+      var file;
+      var mem;
+      var j = 0;
+      var imgWidth;
+      var imgHeight;
+      var setClass;
+      for (var i = 0; i < resultObj.data.length; i++) {
+        file = resultObj.filesMap[i];
+        mem = resultObj.memberMap[i];
+        var content = '';
+        var jibun = '';
+        for (var j = 0; j < resultObj.name.length; j++) {
+          if (resultObj.data[i].dno == resultObj.name[j].dno) {
+            content = resultObj.name[j].locName;
+            jibun = resultObj.name[j].locDong;
+          }
+        }
+
+        imgWidth = file[0].width;
+        imgHeight = file[0].height;
+
+        if (imgWidth > imgHeight) {
+          setClass = "landscape"
+        } else {
+          setClass = "portrait"
+        }
+
+        $("<div class='card-container manual-flip'>").html(
+          "<div class='card'>" +
+            "<div class='front'>" +
+
+              "<div class='cover'>" +
+                "<img src='files/" + file[0].fileName + "' class='" + setClass + "'/>"+
+              "</div>" +
+
+              "<div class='user'>" +
+                "<img class='img-circle' src='files/" + mem.mImg + "'/>" +
+              "</div>" +
+
+              "<div class='content'>" +
+
+                "<a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<div class='main'>" +
+                    "<h3 class='name'>" + mem.mName + "</h3>" +
+
+                    "<div class='creDate'>" +
+                      resultObj.data[i].createDate +
+                    "</div>" +
+
+                    "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
+                    "<h5 id='jibun" + i + "'>" +
+                      "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                      jibun +
+                    "</h5>" +
+                  "</div>" +
+                "</a>" +
+
+                "<div class='footer'>" +
+                  "<div class='like'>" +
+                    "<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like +
+                  "</div>" +
+
+                  "<div class='view'>" +
+                    "<i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                  "</div>" +
+
+                  "<button class='btn btn-simple summary' onclick='rotateCard(this)'>" +
+                    "<i class='fa fa-mail-forward'></i> 간략정보" +
+                  "</button>" +
+                "</div>" +  <!-- end footer -->
+
+              "</div> " +   <!-- end content -->
+
+            "</div>" + <!-- end front panel -->
+
+            "<div class='back'>" +
+
+              "<div class='header'>" +
+                "<div class='map' id='map" + i + "'></div>" +
+              "</div>" +
+
+              "<div class='content'>" +
+                "<div class='main'>" +
+                  "<h4 class='text-center'>" + content + "</h4>" +
+                "</div>" +
+              "</div>" +
+
+              "<div class='footer'>" +
+                "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>" +
+                  "<i class='fa fa-reply'></i> 돌아가기" +
+                "</button>" +
+
+                "<button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                  "<i class='fa fa-sign-in'></i> 상세정보" +
+                "</button>" +
+              "</div>" +  <!-- end footer -->
+
+            "</div>" + <!-- end back panel -->
+
+          "</div>" + <!-- end card -->
+        "</div>" <!-- end card-container -->
+        ).appendTo(div);
+
+      }
+
+      //    <!-- 지도 나오기 -->
+      for (var i=0; i < resultObj.data.length; i++) {
+          console.log(m)
+        var ids = 'map' + m++;
+        var coord = new daum.maps.LatLng();
+        for (var j = 0; j < resultObj.name.length; j++) {
+            if (resultObj.data[i].dno === resultObj.name[j].dno) {
+                var mapContainer = document.getElementById(ids),
+                // 지도를 표시할 div
+                mapOption = {
+                    center: new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng),
+                    level: 3,
+                    draggable: false,
+                    scrollwheel: false
+                };
+                coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
+                break;
+            }
+        }
+        var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        // map.relayout();
+        var marker = new daum.maps.Marker({
+            map: map,
+            position: coord
+        });
+      }
+    }
+  });
+
+  //첫번째 리스트 출력
+
+
+  // 더 보기 생성
+
+  /* more 페이징 */
+  /* count ajax 실행 */
+  var currentPage = 1;
+  var totalPage = 0;
+
+
+  $.ajax({
+    url:"walk/ajax/count.do",
+    dataType: "json",
+    async: false,
+    type: "GET",
+    success: function(resultObj) {
+      totalPage = resultObj.count;
+      if(totalPage == 1 || totalPage == 0) {
+          $('#moreBtn-Origin').empty();
+      }
+    }
+  })
+
+
+
+  $('.moreBtn').click(function(event) {
+
+    if(currentPage < totalPage) {
+      currentPage = currentPage + 1;
+      console.log("List/현재 currentPage...." + currentPage);
+      var m2 = m;
+      $.ajax({
+        url : "walk/ajax/selectList.do?pageNo="+currentPage,
+        dataType : "json",
+        type : "POST",
+        contentType : false,
+        processData : false,
+        async: false,
+        success : function(resultObj) {
+          var div = $("#cardSection");
+          var file;
+          var mem;
+          var j = 0;
+          var imgWidth;
+          var imgHeight;
+          var setClass;
+          for (var i = 0; i < resultObj.data.length; i++) {
+            file = resultObj.filesMap[i];
+            mem = resultObj.memberMap[i];
+            var content = '';
+            var jibun = '';
+            for (var j = 0; j < resultObj.name.length; j++) {
+              if (resultObj.data[i].dno == resultObj.name[j].dno) {
+                content = resultObj.name[j].locName;
+                jibun = resultObj.name[j].locDong;
+              }
+            }
+            imgWidth = file[0].width;
+            imgHeight = file[0].height;
+
+            if (imgWidth > imgHeight) {
+              setClass = "landscape"
+            } else {
+              setClass = "portrait"
+            }
+
+            $("<div class='card-container manual-flip'>").html(
+              "<div class='card'>" +
+                "<div class='front'>" +
+
+                  "<div class='cover'>" +
+                    "<img src='files/" + file[0].fileName + "' class='" + setClass + "'/>"+
+                  "</div>" +
+
+                  "<div class='user'>" +
+                    "<img class='img-circle' src='files/" + mem.mImg + "'/>" +
+                  "</div>" +
+
+                  "<div class='content'>" +
+
+                    "<a role='button' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                      "<div class='main'>" +
+                        "<h3 class='name'>" + mem.mName + "</h3>" +
+
+                        "<div class='creDate'>" +
+                          resultObj.data[i].createDate +
+                        "</div>" +
+
+                        "<h5 class='title'>" + resultObj.data[i].title + "</h5>" +
+                        "<h5 id='jibun" + i + "'>" +
+                          "<i class='fa fa-map-marker fa-fw text-muted'></i>" +
+                          jibun +
+                        "</h5>" +
+                      "</div>" +
+                    "</a>" +
+
+                    "<div class='footer'>" +
+                      "<div class='like'>" +
+                        "<i class='fa fa-thumbs-o-up'></i>" + resultObj.data[i].like +
+                      "</div>" +
+
+                      "<div class='view'>" +
+                        "<i class='fa fa-eye'></i>" + resultObj.data[i].view +
+                      "</div>" +
+
+                      "<button class='btn btn-simple summary' onclick='rotateCard(this)'>" +
+                        "<i class='fa fa-mail-forward'></i> 간략정보" +
+                      "</button>" +
+                    "</div>" +  <!-- end footer -->
+
+                  "</div> " +   <!-- end content -->
+
+                "</div>" + <!-- end front panel -->
+
+                "<div class='back'>" +
+
+                  "<div class='header'>" +
+                    "<div class='map' id='map" + m++ + "'></div>" +
+                  "</div>" +
+
+                  "<div class='content'>" +
+                    "<div class='main'>" +
+                      "<h4 class='text-center'>" + content + "</h4>" +
+                    "</div>" +
+                  "</div>" +
+
+                  "<div class='footer'>" +
+                    "<button class='btn btn-simple backBtn' rel='tooltip' title='앞면으로..' onclick='rotateCard(this)'>" +
+                      "<i class='fa fa-reply'></i> 돌아가기" +
+                    "</button>" +
+
+                    "<button type='button' class='detail' onclick='detailWalk(" + resultObj.data[i].dno + ")'>" +
+                      "<i class='fa fa-sign-in'></i> 상세정보" +
+                    "</button>" +
+                  "</div>" +  <!-- end footer -->
+
+                "</div>" + <!-- end back panel -->
+
+              "</div>" + <!-- end card -->
+            "</div>" <!-- end card-container -->
+            ).appendTo(div);
+
+          }
+          //    <!-- 지도 나오기 -->
+          for (var i=0; i < resultObj.data.length; i++) {
+              console.log(m2)
+            var ids = 'map' + m2++;
+            var coord = new daum.maps.LatLng();
+            for (var j = 0; j < resultObj.name.length; j++) {
+                if (resultObj.data[i].dno === resultObj.name[j].dno) {
+                    var mapContainer = document.getElementById(ids),
+                    // 지도를 표시할 div
+                    mapOption = {
+                        center: new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng),
+                        level: 3,
+                        draggable: false,
+                        scrollwheel: false
+                    };
+                    coord = new daum.maps.LatLng(resultObj.name[j].locLat, resultObj.name[j].locLng);
+                    break;
+                }
+            }
+            var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            // map.relayout();
+            var marker = new daum.maps.Marker({
+                map: map,
+                position: coord
+            });
+          }
+        }
+      });
+
+
+      if(currentPage == totalPage) {
+        $('#more').css({"border":"0px"});
+        $('#moreBtn-Origin').empty();
+      }
+
+    } else if(currentPage == totalPage) {
+      $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
+      $('#modo').modal('show')
+    }
+  });
+
+
+  $('[rel="tooltip"]').tooltip();
+
+});
+
+function rotateCard(btn){
+  var $card = $(btn).closest('.card-container');
+  console.log($card);
+  if($card.hasClass('hover')){
+    $card.removeClass('hover');
+  } else {
+    $card.addClass('hover');
+  }
+}
+
+
+$(document).ready(function() {
+	  // 로그인 회원 정보출력 세션없으면 로그인페이지로
+	  var no = $.session.get('mno');
+	  var div = $('#user_info');
+	  var ul = $('#menu-nav-ul');
+	  if (no == undefined) {
+	    div.append("<a href='login.html' id='loginBtn'>로그인</a>")
+	  } else {
+	    $('#myMno1').val(no);
+	    $('#myMno2').val(no);
+
+	    div.append(
+	      "<a role='button' id='msgBtn' class='Msg' href='messagebox.html'>" +
+	        "<i class='fa fa-envelope-o'></i>" +
+	        "<span class='badge' id='userBadge'>0</span>" +
+	      "</a>" +
+	      "<img src='files/" + $.session.get('mimg') + "' id='userImg' />" +
+	      "<a id='userName' href='mypage.html'>" + $.session.get('mname') + "</a>" +
+	      "<a role='button' id='outBtn' class='logout'>" +
+	        "<i class='fa fa-unlock fa-lg'></i>" +
+	      "</a>")
+	    ul.append(
+	      "<li><a href='diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
+	  }
+
+	  // 로그아웃
+	  $(document).on("click", "#outBtn", function() {
+	    $.session.clear();
+	    location.href = "login.html"
+	  });
+
+	});
+
+</script>
+</body>
+</html>
