@@ -10,7 +10,7 @@
 
 <!--  내가만든 css들  -->
 <link href="../css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
-  
+
 <!-- 지호가 만든 css -->
 <link href="../css/jh_pictures.css" type="text/css" rel="stylesheet">
 
@@ -123,19 +123,19 @@ $(function() {
     <div id="Container" class="container">
       <div id=subtable></div> <!-- 사진 게시물 영역 끝 -->
     </div>
-    
+
     <div>
-    
+
     </div>
-    
+
   </section>
-  
+
     <br><br>
-  
+
   <div id="moreBtn-Origin">
-    
+
       <a role="button" class="moreBtn" id="moreBtn"><div id="more">더보기</div></a>
-    
+
   </div>
 
 
@@ -155,7 +155,7 @@ $(function() {
   </div>
 -->
 </div>
-  
+
 <!-- 알림 모달 -->
 <div id="modo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
@@ -178,7 +178,7 @@ $(function() {
 
 <script>
 function detailBoastBoard(dno) {
-  
+
   var view_data = new FormData();
   view_data.append("dno", dno);
 
@@ -200,11 +200,11 @@ function detailBoastBoard(dno) {
   location.replace('boastDetail.html?dno='+dno);
 }
 </script>
-  
+
 
 <script type="text/javascript">
 // Top으로 이동
-$(document).ready(function() { 
+$(document).ready(function() {
   $('a[href=#quick-top]').click(function(){
     $('html, body').animate({scrollTop:0}, 1000);
     return false;
@@ -301,7 +301,7 @@ $('.form-submit').click(function(event) {
                 "</div>" +
               "</div>" +
             "</div>")
-            .appendTo(div);         
+            .appendTo(div);
           } else if (check1 == "avi"
             || check1 == "wmv"
             || check1 == "mp4"
@@ -347,7 +347,7 @@ $('.form-submit').click(function(event) {
         searchPage = 1;
       }
     });
-    // more 버튼 클릭 시 이벤트 발생 
+    // more 버튼 클릭 시 이벤트 발생
     $('.moreBtn').click(function(event) {
       if(searchPage < totalCount) {
         searchPage = searchPage + 1;
@@ -448,7 +448,7 @@ $('.form-submit').click(function(event) {
           }
         });
         if(searchPage == totalCount) {
-          $('#moreBtn-Origin').empty();                               
+          $('#moreBtn-Origin').empty();
         }
       } else if(searchPage == totalCount) {
         $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
@@ -460,7 +460,7 @@ $('.form-submit').click(function(event) {
     search_data.append("member", $('.form-search').val());
     var totalCount = 0;
 
-    // search 시 count 
+    // search 시 count
     $.ajax({
       url : "../boastboard/ajax/searchCount.do",
       dataType : 'json',
@@ -475,7 +475,7 @@ $('.form-submit').click(function(event) {
     })
 
 
-    // moreBtn 삭제 후 재 생성 
+    // moreBtn 삭제 후 재 생성
     $('#moreBtn-Origin').empty();
 
     if(totalCount > 1) {
@@ -584,7 +584,7 @@ $('.form-submit').click(function(event) {
         searchPage = 1;
       }
     });
-    // more 버튼 클릭 시 이벤트 발생 
+    // more 버튼 클릭 시 이벤트 발생
     $('.moreBtn').click(function(event) {
       if(searchPage < totalCount) {
         searchPage = searchPage + 1;
@@ -688,7 +688,7 @@ $('.form-submit').click(function(event) {
           }
         });
         if(searchPage == totalCount) {
-          $('#moreBtn-Origin').empty();                               
+          $('#moreBtn-Origin').empty();
         }
       } else if(searchPage == totalCount) {
        $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
@@ -699,7 +699,7 @@ $('.form-submit').click(function(event) {
 })
 
 
-<!-- Enter Key press 시 Search Event -->         
+<!-- Enter Key press 시 Search Event -->
 $('.form-search').keypress(function(event) {
   if (event.which == 13) {
     $("#All").trigger("click");
@@ -709,7 +709,7 @@ $('.form-search').keypress(function(event) {
       search_data.append("title", $('.form-search').val());
       var totalCount = 0;
 
-      // search 시 count 
+      // search 시 count
       $.ajax({
         url : "../boastboard/ajax/searchCount.do",
         dataType : 'json',
@@ -731,7 +731,7 @@ $('.form-search').keypress(function(event) {
       .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
       }
 
-      // 1페이지 Ajax로 출력 
+      // 1페이지 Ajax로 출력
       $.ajax({
         url : "../boastboard/ajax/search.do?pageNo=1",
         dataType : "json",
@@ -832,7 +832,7 @@ $('.form-search').keypress(function(event) {
           searchPage = 1;
         }
       });
-      // more 버튼 클릭 시 이벤트 발생 
+      // more 버튼 클릭 시 이벤트 발생
       $('.moreBtn').click(function(event) {
         if(searchPage < totalCount) {
           searchPage = searchPage + 1;
@@ -933,15 +933,15 @@ $('.form-search').keypress(function(event) {
                 }
               }
             }
-          }); // Ajax 끝 
+          }); // Ajax 끝
           if(searchPage == totalCount) {
-            $('#moreBtn-Origin').empty();                               
+            $('#moreBtn-Origin').empty();
           }
         } else if(searchPage == totalCount) {
            $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
            $('#modo').modal('show')
          }
-       }) // more 클릭 이벤트 끝 
+       }) // more 클릭 이벤트 끝
     } else if ($('.form-control').val() == 'member') {
       var search_data = new FormData();
       search_data.append("member", $('.form-search').val());
@@ -964,7 +964,7 @@ $('.form-search').keypress(function(event) {
         }
       })
 
-      // moreBtn 삭제 후 재 생성 
+      // moreBtn 삭제 후 재 생성
       $('#moreBtn-Origin').empty();
 
       if(totalCount > 1) {
@@ -972,7 +972,7 @@ $('.form-search').keypress(function(event) {
         .append("<a role='button' class='moreBtn' id='moreBtn'><div id='more'>더보기</div></a>");
       }
 
-      // 1페이지 Ajax로 출력 
+      // 1페이지 Ajax로 출력
       $.ajax({
         url : "../boastboard/ajax/search.do?pageNo=1",
         dataType : "json",
@@ -1072,7 +1072,7 @@ $('.form-search').keypress(function(event) {
           searchPage = 1;
         }
       });
-      // more 버튼 클릭 시 이벤트 발생 
+      // more 버튼 클릭 시 이벤트 발생
       $('.moreBtn').click(function(event) {
         if(searchPage < totalCount) {
           searchPage = searchPage + 1;
@@ -1173,7 +1173,7 @@ $('.form-search').keypress(function(event) {
             }
           });
           if(searchPage == totalCount) {
-            $('#moreBtn-Origin').empty();                               
+            $('#moreBtn-Origin').empty();
           }
         } else if(searchPage == totalCount) {
           $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
@@ -1184,12 +1184,6 @@ $('.form-search').keypress(function(event) {
   }
 })
 </script>
-  
-  
-  
-  
-  
-  
 
 <script>
 $(document).ready(function() {
@@ -1199,7 +1193,7 @@ $(document).ready(function() {
   var ul = $('#menu-nav-ul');
   if (no == undefined) {
     div.append("<a href='../login.html' id='loginBtn'>로그인</a>")
-    
+
   } else {
     $('#myMno1').val(no);
     $('#myMno2').val(no);
@@ -1209,12 +1203,12 @@ $(document).ready(function() {
         "<span class='badge' id='userBadge'>0</span>" +
       "</a>" +
       "<img src='../files/" + $.session.get('mimg') + "' id='userImg' />" +
-      "<a id='userName' href='#'>" + $.session.get('mname') + "</a>" +
+      "<a id='userName' href='../mypage.html'>" + $.session.get('mname') + "</a>" +
       "<a role='button' id='outBtn' class='logout'>" +
         "<i class='fa fa-unlock fa-lg'></i>" +
       "</a>")
     ul.append("<li><a href='../diary.html'><i class='lnr lnr-book'></i> 다이어리</a></li>")
-  
+
     // 안읽은 받은쪽지 갯수 출력
     var no = $.session.get('mno');
     var form_data = new FormData();
@@ -1241,7 +1235,7 @@ $(document).ready(function() {
   });
 });
 </script>
-  
+
 <!-- Filter -->
 <script>
 function filter(id) {
@@ -1517,7 +1511,7 @@ function filter(id) {
       });
 
       if(currentPage >= totalCount) {
-        $('#moreBtn-Origin').empty();                               
+        $('#moreBtn-Origin').empty();
       }
     } else if(currentPage >= totalCount) {
       $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
