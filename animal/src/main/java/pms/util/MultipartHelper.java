@@ -8,7 +8,7 @@ public class MultipartHelper {
       ext = originFilename.substring(dotPos);
     }
     
-    return String.format("file-%d-%d%s", 
+    return String.format("pet-%d-%d%s", 
             System.currentTimeMillis(), count(), ext); 
   }
   

@@ -126,42 +126,7 @@ bottom: 25%;
 
 
     <!-- 사진 게시물 영역 -->
-    <div id='Container' class='container'>
-
-
-<!--
-
-      <a class='portfoliocard  DOG' role='button' href='saleDetail.html?sno=1'>
-
-        <div class='coverphoto'>
-          <img src='files/p4.jpeg' class='landscape'>
-        </div>
-
-        <div class='profile_picture'>
-          <img src='files/p3.jpeg'>
-        </div>
-
-        <div class='left_col'>
-          <div class='views'>
-            <div class='view_count' id='v" +  resultObj.data[i].sno + "'> 33</div>
-            VIEW
-          </div>
-        </div>
-        <div class='right_col'>
-          <ul class='contact_information'>
-            <li class='website'>DOG</li>
-            <li class='website'>포메라이안</li>
-            <li class='gender'>암컷</li>
-            <li class='title'>제목</li>
-            <li class='resume'>2016-02-15</li>
-            <li class='name'>작성자</li>
-          </ul>
-        </div>
-      </a>
-
--->
-
-    </div>
+    <div id='Container' class='container'></div>
 
     <div id="more">
       <a role="button" class="moreBtn" id="m2" onclick='moree(this.id);'>더보기</a>
@@ -170,20 +135,10 @@ bottom: 25%;
   </section>
 
   <div class="quick-menu">
-<!--
-  <div id="quick-header">
-    <p>Quick Menu</p>
+    <div id="quick-top">
+      <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
+    </div>
   </div>
--->
-  <div id="quick-top">
-    <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
-  </div>
-<!--
-  <div id="quick-bottom">
-    <a href="#quick-bottom" id="quick-bottom-a"> Bottom <i class="fa fa-chevron-down"></i></a>
-  </div>
--->
-</div>
 
 <script src="js/sh_custom-file-input.js"></script>
 
@@ -477,6 +432,7 @@ $.ajax({
   type: 'post',
   dataType: 'json',
   success: function(resultObj) {
+    console.log(resultObj);
     var show = $('#Container');
     var j = 0;
     var file;
@@ -487,7 +443,17 @@ $.ajax({
     var setClass;
     for (var sale of resultObj.sale) {
       file = resultObj.filesMap[j];
-      mem = resultObj.memberMap[j];
+
+      var mName;
+      var mImg;
+
+      for (var i = 0; i < resultObj.memberMap.length; i++) {
+        if (sale.mno == resultObj.memberMap[i].mno) {
+          mImg = resultObj.memberMap[i].mImg;
+          mName = resultObj.memberMap[i].mName;
+        }
+      }
+
       if(sale.sGender == 0) {
         gender = "수컷";
       } else {
@@ -502,35 +468,37 @@ $.ajax({
       } else {
         setClass = "portrait"
       }
+
       j++;
+
       show.append(
-      "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
-      "href='saleDetail.html?sno=" + sale.sno +
-      "' onclick='detail(this.id);'>" +
+        "<a class='portfoliocard " + sale.sSpec + "' role='button' " +
+        "href='saleDetail.html?sno=" + sale.sno +
+        "' onclick='detail(this.id);'>" +
 
-      "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
+        "<div class='coverphoto'><img src='files/" + file[0].fileName + "' class='" + setClass + "'></div>" +
 
-      "<div class='profile_picture'><img src='files/" + mem.mImg + "'></div>" +
+        "<div class='profile_picture'><img src='files/" + mImg + "'></div>" +
 
-      "<div class='left_col'>" +
-      "<div class='views'>" +
-      "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
-      "VIEW" +
-      "</div>" +
-      "</div>" +
+        "<div class='left_col'>" +
+        "<div class='views'>" +
+        "<div class='view_count' id='v" + sale.sno + "'>" + sale.sViews + "</div>" +
+        "VIEW" +
+        "</div>" +
+        "</div>" +
 
-      "<div class='right_col'>" +
-      "<ul class='contact_information'>" +
-      "<li class='website'>" + sale.sSpec + "</li>" +
-      "<li class='website'>" + sale.sType + "</li>" +
-      "<li class='gender'>" + gender + "</li>" +
-      "<li class='title'>" + sale.sTitle + "</li>" +
-      "<li class='resume'>" + sale.sCreateDate + "</li>" +
-      "<li class='name'>" + mem.mName + "</li>" +
-      "<li class='name'>" + sale.sCost + "원</li>" +
-      "</ul>" +
-      "</div>" +
-      "</a>")
+        "<div class='right_col'>" +
+        "<ul class='contact_information'>" +
+        "<li class='website'>" + sale.sSpec + "</li>" +
+        "<li class='website'>" + sale.sType + "</li>" +
+        "<li class='gender'>" + gender + "</li>" +
+        "<li class='title'>" + sale.sTitle + "</li>" +
+        "<li class='resume'>" + sale.sCreateDate + "</li>" +
+        "<li class='name'>" + mName + "</li>" +
+        "<li class='name'>" + sale.sCost + "원</li>" +
+        "</ul>" +
+        "</div>" +
+        "</a>")
     }
   }
 });
