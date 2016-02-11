@@ -573,5 +573,12 @@ div.item img {
   font-size: 16px;
 }
 
-
+.okok {
+  position: relative;
+  bottom: 7px;
+  width: 70px;
+  height: 35px;
+  border-radius: 0;
+/*  background-color: #2d335e;*/
+}
 
