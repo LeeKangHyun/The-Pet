@@ -1,128 +1,13 @@
 /* 회원 정보 입력 */
 insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD,MEM_IMG) 
   values('관리자1','admin1@test.com','rpdlek','default.jpg');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자2','admin2@test.com','rpdlek');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자3','admin3@test.com','rpdlek');
-insert into Member(MEM_NAME,MEM_EMAIL,MEM_PWD) 
-  values('관리자4','admin4@test.com','rpdlek');
 
 /* 수신함 내용 입력 */
-insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,2,'HIHI',true,now());
-insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,1,'HELLO',true,now());
-insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(3,2,'GAY',false,now());
-insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(2,4,'YO',true,now());
-insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(4,1,'CSS',false,now());
-
+insert into RECEIVEBOX(MEM_NUM,MEM_NUM2,MSG_CONTENT,CHECKED,SEND_DATE) values(1,1,'HIHI',false,now());
 
 /* 내 펫 추가하기 */
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('1','강현찡','DIV01','포메라이안','#FF1122');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('1','상훈찡','DIV01','시베리안허스키','#FF0000');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('2','지호찡','DIV05','자라','#FF1234');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('3','대진꽁','DIV04','앵무새','#FF1122');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('3','냥냥이','DIV02','페르시안','#FF0000');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('4','갓쥐','DIV03','상어','#FF1211');
-insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR)
-  values('4','야꽐라','DIV05','코알라','#123421');
-
-  
-/* 짝짓기 내용 추가 */
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~1','서울 강남역 근처로 부탁드려요~','DOG','포메라이안',true,now(),1);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~2','서울 강남역 근처로 부탁드려요~','CAT','페르시안',false,now(),1);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~3','서울 강남역 근처로 부탁드려요~','DOG','시베리안허스키',true,now(),1);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~4','서울 강남역 근처로 부탁드려요~','DOG','슈나우져',true,now(),1);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~5','서울 강남역 근처로 부탁드려요~','DOG','불독',true,now(),2);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~6','서울 강남역 근처로 부탁드려요~','CAT','집고양이',false,now(),2);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~7','우리 아이 부탁드려요~~~~','FISH','악어',true,now(),2);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~8','나이는 어려용~~~','DIV04','BIRD',false,now(),3);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~9','서울 강남역 근처로 부탁드려요~','BIRD','앵무새',true,now(),3);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 짝짓기 부탁해요~~~10','서울 강남역 근처로 부탁드려요~','DOG','누렁이',true,now(),4);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 한번 하게 해주~~~11','서울 강남역 근처로 부탁드려요~','DOG','진돗개',true,now(),4);
-insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
-  values('우리 아이 한번 하게 해주~~~12','서울 강남역 근처로 부탁드려요~','CAT','냥이',true,now(),4);
-
-  
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 1);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h4.jpg', 1);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h7.jpg', 1);
-insert into files(FILE_NAME,MAT_NUM)
-values ('a8.jpg', 1);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h9.jpg', 2);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h8.jpg', 2);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 2);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h4.jpg', 3);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h5.jpg', 3);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h6.jpg', 3);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 4);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 5);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h6.jpg', 5);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 6);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h8.jpg', 6);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h7.jpg', 6);
-insert into files(FILE_NAME,MAT_NUM)
-values ('a8.jpg', 7);
-insert into files(FILE_NAME,MAT_NUM)
-values ('a6.jpg', 8);
-insert into files(FILE_NAME,MAT_NUM)
-values ('a2.jpg', 8);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h9.jpg', 9);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 9);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h3.jpg', 10);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h6.jpg', 10);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h4.jpg', 10);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 11);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h4.jpg', 11);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h5.jpg', 11);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h2.jpg', 12);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h5.jpg', 12);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h7.jpg', 12);
-insert into files(FILE_NAME,MAT_NUM)
-values ('h4.jpg', 12);
-  
+insert into Pet(MEM_NUM,PET_NAME,PET_SPEC,PET_TYPE,TAG_COLOR,PET_IMG,INJECTION)
+  values('1','상훈찡','DOG','포메라이안','#4ed15d','dog.png','접종완료');
   
 /* 카테고리 명 등록 */
 insert into Category(CATE_CODE,CATE_NAME) values('ILJUNG','일정');
@@ -131,68 +16,42 @@ insert into Category(CATE_CODE,CATE_NAME) values('SANCHE','산책코스');
 
 /* 일정등록 */
 insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
-  values(6,4,'2016-01-01','2016-01-10','2016-01-10','주사맞자~','1차예방접종','ILJUNG','#988752','DIV03');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
-  values(5,3,'2016-01-01','2016-01-10','2016-01-10','예방접종','3차예방접종','ILJUNG','#120982','DIV02');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
-  values(2,1,'2016-01-01','2016-01-10','2016-01-10','검진받기','종합 검진 받기','ILJUNG','#123456','DIV01');
-insert into Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-01','2016-01-10','2016-01-10','약 받기','약받으러 병원으로','ILJUNG','#001122','DIV05');
-
+  values(1,1,'2016-02-17','2016-02-17',now(),'주사맞자~','1차예방접종','ILJUNG','#4ed15d','DOG');
   
 /* 자랑하기 등록 */
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(4,3,'2016-01-25','2016-02-25',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',false,'#123098','DIV04');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(2,1,'2016-01-25','2016-01-25',now(),'반해버렸어요','너무 이쁜거 있죠?','JARANG',true,'#123456','DIV01');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(1,1,'2016-01-20','2016-01-20',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','JARANG',true,'#000000','DIV01');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(1,1,'2016-01-28','2016-01-28',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','JARANG',false,'#000000','DIV01');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-29','2016-01-29',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#001122','DIV05');
-
+  values(1,1,'2016-02-17','2016-02-17',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','JARANG',true,'#4ed15d','CAT');
 
 /* 산책코스 등록 */
 insert into 
   Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(5,3,'2016-01-20','2016-01-20',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',false,'#120982','DIV02');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-19','2016-01-19',now(),'반해버렸어요','너무 이쁜거 있죠?','SANCHE',true,'#001122','DIV05');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(3,2,'2016-01-09','2016-01-09',now(),'너무 이쁘죠~~?','얄라리 얄라 얄라리얄라','SANCHE',false,'#001122','DIV05');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(7,4,'2016-01-11','2016-01-11',now(),'심쿵해~~~~~','제 말을 너무 잘 들어요~','SANCHE',false,'#572985','DIV05');
-insert into 
-  Schedule(PET_NUM,MEM_NUM,START_DATE,END_DATE,SCH_CRE,SCH_TITLE,SCH_CONTENT,CATE_CODE,NOTI_HIDE,TAG_COLOR,PET_SPEC)
-  values(6,4,'2016-01-02','2016-01-02',now(),'너무 이쁘죠~~?','제 말을 너무 잘 들어요~','SANCHE',true,'#988752','DIV03');
+  values(1,1,'2016-02-17','2016-02-17',now(),'콩이랑 다녀왔어요~','너무 이쁜거 있죠? 여러분도 다녀오세요','SANCHE',true,'#4ed15d','DOG');
+
+/* 산책코스 좌표 */
+insert into
+  location(LOC_LAT,LOC_LNG,LOC_NAME,LOC_DONG,SCH_NUM)
+  values(37.56527502361826, 126.98184460880351, '여기는 어디', '서울시 강남구?', 3);
+
+/* 짝짓기 내용 추가 */
+insert into Mating(MAT_TITLE,MAT_CONTENT,MAT_SPEC,MAT_TYPE,MAT_GEN,MAT_CRE,MEM_NUM)
+  values('짝짓기 시즌이에요~','서울 강남역 근처','DOG','포메라이안', true, now(), 1);  
   
-/* Comment */
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-values('너무 이뻐요~',1,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-values('너무 이뻐요~',3,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-values('너무 이뻐요~',4,2);
+/* 분양 내용 추가 */
+insert into sale(S_TITLE,S_CONTENT,S_SPEC,S_TYPE,S_GEN,S_CRE,S_COST,MEM_NUM) 
+    values('분양합니다~','말티즈에용','DOG','말티즈',false,now(),30000,1);
+  
+/* 파일 등록 */   
+insert into files(FILE_NAME,SCH_NUM,width,height)
+values ('dog.png', 1, 512, 512);
+insert into files(FILE_NAME,SCH_NUM,width,height)
+values ('cat.png', 2, 512, 512);
+insert into files(FILE_NAME,SCH_NUM,width,height)
+values ('dog.png', 3, 512, 512);
+
+insert into files(FILE_NAME,MAT_NUM,width,height)
+values ('dog.png', 1, 512, 512);
+insert into files(FILE_NAME,S_NUM,width,height)
+values ('dog.png', 1, 512, 512);
 
 
-insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
-  values('저희 아가랑 짝짓기 하실래요?',1,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
-  values('네 ~ 좋아요~',1,2);
-insert into Comment(CMT_CONTENT,MEM_NUM,MAT_NUM) 
-  values('꽐라꽐라~~~~',3,9);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-  values('너무 이뻐요~?',1,7);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-  values('어쩜 이리 이뻐요~?',1,9);
-insert into Comment(CMT_CONTENT,MEM_NUM,SCH_NUM) 
-  values('길이 너무 좋은 것 같아요 꼭 가볼게요~',3,11);

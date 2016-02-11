@@ -76,7 +76,6 @@
     <select id="getsize" resultMap="filesMap" parameterType="String">
    select FILE_NAME ,width, height from Files where FILE_NAME = #{filename}
     </select>
-  
 
   <select id="count" resultType="double">
       select
@@ -84,8 +83,6 @@
     from schedule
     where CATE_CODE='JARANG' and NOTI_HIDE=1
     </select>
-    
-  
   
   <select id="rankList" resultMap="diaryMap">
   select 
@@ -103,9 +100,6 @@
      group by sc.SCH_NUM
      order by rank asc
   </select>
-  
-  
-  
   
 <select id="searchList" resultMap="diaryMap" parameterType="map">
     select

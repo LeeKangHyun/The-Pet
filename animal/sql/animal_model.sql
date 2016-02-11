@@ -615,3 +615,4 @@ ALTER TABLE LOCATION
     REFERENCES Schedule ( -- 다이어리 - 일정
       SCH_NUM -- 일정번호
     );
+    

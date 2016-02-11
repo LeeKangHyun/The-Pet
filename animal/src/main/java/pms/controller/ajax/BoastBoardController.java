@@ -65,10 +65,6 @@ public class BoastBoardController {
     return resultMap;
   }
 
-
-
-
-
   @RequestMapping(value="count", method=RequestMethod.GET)
   public Object count(
       @RequestParam(defaultValue="12") int pageSize
@@ -86,8 +82,6 @@ public class BoastBoardController {
 
     return resultMap;
   }
-
-
 
   @RequestMapping(value="rank", method=RequestMethod.GET)
   public Object rank() throws Exception {
@@ -108,7 +102,6 @@ public class BoastBoardController {
 
     return resultMap;
   }
-
 
   @RequestMapping(value="search", method=RequestMethod.POST)
   public Object search(
@@ -216,14 +209,12 @@ public class BoastBoardController {
     return resultMap;
   }
 
-
   @RequestMapping(value="view", method=RequestMethod.POST)
   public AjaxResult view(Diary diary) throws Exception {
     log.debug("Diary.dno..............?"+diary.getDno());
     boastBoardDao.view(diary);
     return new AjaxResult("success", null);
   }
-
 
   @RequestMapping(value="detail_image", method=RequestMethod.POST)
   public Object detail_image(Diary diary) throws Exception {
@@ -243,7 +234,6 @@ public class BoastBoardController {
 
     return resultMap;
   }
-
 
   @RequestMapping(value="detail_content", method=RequestMethod.POST)
   public Object detail_content(Diary diary, int dno,
@@ -275,7 +265,6 @@ public class BoastBoardController {
     return resultMap;
   }
 
-
   @RequestMapping(value="like_add", method=RequestMethod.POST)
   public Object like_add(String mno, String SCH_NUM) throws Exception {
 
@@ -298,7 +287,6 @@ public class BoastBoardController {
     return resultMap;
   }
 
-
   @RequestMapping(value="like_delete", method=RequestMethod.POST)
   public Object like_delete(String mno, String SCH_NUM) throws Exception {
 
@@ -320,7 +308,6 @@ public class BoastBoardController {
     return resultMap;
   }
 
-
   @RequestMapping(value="detail_like_check", method=RequestMethod.POST)
   public Object detail_like_check(int mno, String SCH_NUM) throws Exception {
 
@@ -339,7 +326,6 @@ public class BoastBoardController {
 
     return resultMap;
   }
-
 
   @RequestMapping(value="delete", method=RequestMethod.POST)
   public AjaxResult like_delete(int dno,
@@ -362,8 +348,6 @@ public class BoastBoardController {
 
     return new AjaxResult("success", null);
   }
-
-
 
   @RequestMapping(value="comment_add", method=RequestMethod.POST)
   public Object comment_add(int mno, int dno, String content, 

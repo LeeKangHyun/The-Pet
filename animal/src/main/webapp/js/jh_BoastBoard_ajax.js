@@ -27,9 +27,9 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			console.log("가로 : " + resultObj.size[i].width);
 			console.log("세로 : " + resultObj.size[i].height);
 			if (resultObj.size[i].width > resultObj.size[i].height) {
-				setClass="landscape"
+				setClass="landscape";
 			} else {
-				setClass="portrait"
+				setClass="portrait";
 			}
 
 			$("<div class='box1 gallery'>")
@@ -69,9 +69,9 @@ $.getJSON('../boastboard/ajax/rank.do', function(resultObj) {
 			console.log("가로 : " + resultObj.size[i].width);
 			console.log("세로 : " + resultObj.size[i].height);
 			if (resultObj.size[i].width > resultObj.size[i].height) {
-				setClass="landscape"
+				setClass="landscape";
 			} else {
-				setClass="portrait"
+				setClass="portrait";
 			}
 
 			$("<div class='box1 gallery'>")
@@ -112,8 +112,7 @@ $(document).ready(function() {
 
 	/* list Ajax 시작 */
 	$.ajax({
-
-		url: "../boastboard/ajax/list.do?pageNo=1",
+		url: "../boastboard/ajax/list.do?",
 		dataType: "json",
 		type: "POST",
 		async: "false",
@@ -137,9 +136,9 @@ $(document).ready(function() {
 					console.log("가로 : " + resultObj.size[i].width);
 					console.log("세로 : " + resultObj.size[i].height);
 					if (resultObj.size[i].width > resultObj.size[i].height) {
-						setClass="landscape"
+						setClass="landscape";
 					} else {
-						setClass="portrait"
+						setClass="portrait";
 					}
 
 					$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
@@ -172,9 +171,9 @@ $(document).ready(function() {
 					console.log("가로 : " + resultObj.size[i].width);
 					console.log("세로 : " + resultObj.size[i].height);
 					if (resultObj.size[i].width > resultObj.size[i].height) {
-						setClass="landscape"
+						setClass="landscape";
 					} else {
-						setClass="portrait"
+						setClass="portrait";
 					}
 					$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
 					.html(
@@ -227,7 +226,7 @@ $(document).ready(function() {
 				$('#moreBtn-Origin').empty();
 			}
 		}
-	})
+	});
 
 	$('.moreBtn').click(function(event) {
 
@@ -262,9 +261,9 @@ $(document).ready(function() {
 							console.log("가로 : " + resultObj.size[i].width);
 							console.log("세로 : " + resultObj.size[i].height);
 							if (resultObj.size[i].width > resultObj.size[i].height) {
-								setClass="landscape"
+								setClass="landscape";
 							} else {
-								setClass="portrait"
+								setClass="portrait";
 							}
 
 							$("<div class='boxsub1 gallery mix " +resultObj.data[i].pSpec + "'>")
@@ -297,9 +296,9 @@ $(document).ready(function() {
 							console.log("가로 : " + resultObj.size[i].width);
 							console.log("세로 : " + resultObj.size[i].height);
 							if (resultObj.size[i].width > resultObj.size[i].height) {
-								setClass="landscape"
+								setClass="landscape";
 							} else {
-								setClass="portrait"
+								setClass="portrait";
 							}
 
 							$("<div class='boxsub1 gallery mix "+resultObj.data[i].pSpec+"'>")
@@ -330,7 +329,7 @@ $(document).ready(function() {
 
 				}/* List Load function(resultObj) 끝 */
 
-			})/*List Load ajax 끝*/
+			});/*List Load ajax 끝*/
 
 			if(currentPage == totalPage) {
 				$('#more').css({"border":"0px"});
@@ -345,5 +344,5 @@ $(document).ready(function() {
 		}
 
 
-	})
+	});
 });/*마지막지점*/
