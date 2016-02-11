@@ -38,6 +38,45 @@
   (document, window, 0);
 </script>
 
+<style>
+.quick-menu {
+border: 1px #cBcBcB solid;
+/*padding-left: 5px;*/
+/*padding-right: 5px;*/
+position: fixed;
+text-align: center;
+width: 70px;
+height: 30px;
+right:30px;
+bottom: 25%;
+  background-color: #fff;
+}
+
+.fa-chevron-up {
+  font-size: 15px;
+  color: #2d335e;
+}
+
+#quick-top {
+  font-size: 17px;
+  margin-top: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+#quick-top a {
+  color: #2d335e;
+}
+
+#quick-top-a:hover, 
+#quick-bottom-a:hover,
+#quick-top-a:FOCUS,
+#quick-bottom-a:FOCUS {
+  text-decoration: none;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -208,6 +247,22 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="quick-menu">
+<!--
+  <div id="quick-header">
+    <p>Quick Menu</p>
+  </div>
+-->
+  <div id="quick-top">
+    <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
+  </div>
+<!--
+  <div id="quick-bottom">
+    <a href="#quick-bottom" id="quick-bottom-a"> Bottom <i class="fa fa-chevron-down"></i></a>
+  </div>
+-->
 </div>
 <script src="js/sh_custom-file-input.js"></script>
 
@@ -653,6 +708,16 @@ function moree(id) {
   })
 }
 
+</script>
+
+<script type="text/javascript">
+// Top으로 이동
+$(document).ready(function() { 
+  $('a[href=#quick-top]').click(function(){
+    $('html, body').animate({scrollTop:0}, 1000);
+    return false;
+  });
+});
 </script>
 
 </body>
