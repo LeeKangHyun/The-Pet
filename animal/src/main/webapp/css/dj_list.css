@@ -207,6 +207,7 @@ button:focus{ /* 활성화 시 버튼 주변의 라인을 없애줌 */
   position:relative;
   margin: 0 auto;
   text-align: center;
+  height: 10px;
 /*  width: 992px;*/
 /*  background-color: #2d335e;*/
 }
