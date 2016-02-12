@@ -28,7 +28,7 @@ function check(id) {
     }
     
     if (id == "password" || id == "password2") {
-        var isPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+.?]).{8,20}$/;
+        var isPassword = /^(?=.*[a-zA-Z])((?=.*[0-9])(?=.*[!@#$%^&*()_-+.?])).{8,20}$/;
         if (!isPassword.test(oid)) {
             oDiv.removeClass("has-success");
             oDiv.addClass("has-error");
