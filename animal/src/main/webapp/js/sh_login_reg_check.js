@@ -24,16 +24,16 @@ function check(id) {
         oDiv.removeClass("has-error");
         oDiv.addClass("has-success");
         oMsg.css("display", "block");
-        oMsg.html("OK");
+        oMsg.html("");
     }
     
     if (id == "password" || id == "password2") {
-        var isPassword = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{3,20}$/;
+        var isPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+.?]).{8,20}$/;
         if (!isPassword.test(oid)) {
             oDiv.removeClass("has-success");
             oDiv.addClass("has-error");
             oMsg.css("display", "block");
-            oMsg.html("최소 1개의 숫자 혹은 특수문자를 포함하는 3~20 영문으로 입력해주세요");
+            oMsg.html("최소 1개의 숫자 혹은 특수문자를 포함하는 8~20 영문으로 입력해주세요");
             return false;
         }  
     }
@@ -74,7 +74,7 @@ function check(id) {
         oDiv.removeClass("has-error");
         oDiv.addClass("has-success");
         oMsg.css("display", "block");
-        oMsg.html("OK");
+        oMsg.html("");
         return true;
     }
     
@@ -90,7 +90,7 @@ function check(id) {
         oDiv.removeClass("has-error");
         oDiv.addClass("has-success");
         oMsg.css("display", "block");
-        oMsg.html("OK");
+        oMsg.html("");
         return true;
     }
 };
