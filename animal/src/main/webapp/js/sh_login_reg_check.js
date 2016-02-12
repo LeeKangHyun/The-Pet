@@ -27,19 +27,16 @@ function check(id) {
         oMsg.html("");
     }
     
-    if (id == "password" || id == "password2") {
-//        var isPassword = /^(?=.*[a-zA-Z])((?=.*[0-9])(?=.*[!@#$%^&*()_-+.?])).{8,20}$/;
-        var isPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    if (id == "password") {
+        var isPassword = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#%^&*_+.?]).{8,20}$/;
+//        var isPassword = /^(?=.*\d)(?=.*[a-zA-Z]){8,20}$/;
         if (!isPassword.test(oid)) {
             oDiv.removeClass("has-success");
             oDiv.addClass("has-error");
             oMsg.css("display", "block");
             oMsg.html("최소 1개의 숫자 혹은 특수문자를 포함하는 8~20 영문으로 입력해주세요");
             return false;
-        }  
-    }
-    
-    if (id == "password") {
+        }
         oDiv.removeClass("has-error");
         oDiv.addClass("has-success");
         oMsg.css("display", "block");
