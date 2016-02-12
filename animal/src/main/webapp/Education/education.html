@@ -120,59 +120,7 @@ bottom: 25%;
 			</div>
 
 			<!-- 사진 게시물 영역 -->
-			<div id="cardSection">
-
-
-<!--
-     <a role='button' class='card' href='edu_form.html?eduNo=2'>
-          <div class='boxsub1 gallery mix all DOG'>
-          <div class="slider">
-            <div class="widget">
-              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
-              <span>
-                [펫트윈♥Pet과사전]
-              </span>
-            </div>
-            <div class="play">
-              ▶
-            </div>
-            <div class="bottom">
-              <hr />
-              <div class="buttons">
-                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
-                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
-              </div>
-            </div>
-          </div>
-          </div>
-        </a>
-
-  <a role='button' class='card' href='edu_form.html?eduNo=2'>
-          <div class='boxsub1 gallery mix all DOG'>
-          <div class="slider">
-            <div class="widget">
-              <img class='thumimg' eduNo='1' src='//i.ytimg.com/vi/Fh5M2Bgt6MM/mqdefault.jpg' />
-              <span>
-                [펫트윈♥Pet과사전] 비숑프리제 (Bichon Frise)어디까지 알고있니?
-              </span>
-            </div>
-            <div class="play">
-              ▶
-            </div>
-            <div class="bottom">
-              <hr />
-              <div class="buttons">
-                <span class="like"><i class="fa fa-thumbs-up"></i> 30</span>
-                <span class="view"><i class="fa fa-eye"></i></i> 30</span>
-              </div>
-            </div>
-          </div>
-          </div>
-        </a>
--->
-
-
-            </div>
+			<div id="cardSection"></div>
 			<!-- 사진 게시물 영역 끝 -->
 
 			<div id="more">
@@ -272,20 +220,10 @@ bottom: 25%;
 </div>
 
   <div class="quick-menu">
-<!--
-  <div id="quick-header">
-    <p>Quick Menu</p>
+    <div id="quick-top">
+      <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
+    </div>
   </div>
--->
-  <div id="quick-top">
-    <a href="#quick-top" id="quick-top-a"><i class="fa fa-chevron-up"></i> TOP</a><br>
-  </div>
-<!--
-  <div id="quick-bottom">
-    <a href="#quick-bottom" id="quick-bottom-a"> Bottom <i class="fa fa-chevron-down"></i></a>
-  </div>
--->
-</div>
 
 
 <!-- Filter -->
@@ -651,8 +589,8 @@ $(document).ready(function() {
           "<a role='button' class='card' href='edu_form.html?eduNo=" + education.eduNo + "'>" +
             "<div class='mix all " + education.eduSpec + "'>" +
               "<div class='slider'>" +
+              "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
                 "<div class='widget'>" +
-                  "<img class='thumimg' src='//i.ytimg.com/vi/" + url + "/mqdefault.jpg' />" +
                   "<span>" +
                     education.eduTitle +
                   "</span>" +
