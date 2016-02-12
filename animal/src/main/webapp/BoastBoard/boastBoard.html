@@ -194,8 +194,6 @@ function detailBoastBoard(dno) {
     }
   });
 
-  console.log("넘어가는 Detail Page Dno = "+dno);
-
   location.href='boastDetail.html?dno='+dno;
   location.replace('boastDetail.html?dno='+dno);
 }
@@ -599,7 +597,6 @@ $('.form-submit').click(function(event) {
           success : function(resultObj) {
 
             var div = $("#subtable");
-            console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
 
             var setClass;
             for (var i = 0; i < resultObj.data.length; i++) {
@@ -743,7 +740,6 @@ $('.form-search').keypress(function(event) {
         success : function(resultObj) {
           $("#subtable").empty();
           var div = $("#subtable");
-          console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
 
           var setClass;
           for (var i = 0; i < resultObj.data.length; i++) {
@@ -846,7 +842,6 @@ $('.form-search').keypress(function(event) {
             async : false,
             success : function(resultObj) {
               var div = $("#subtable");
-              console.log("TItle Search 불러온 데이터 갯수....." + resultObj.data.length);
 
               var setClass;
               for (var i = 0; i < resultObj.data.length; i++) {
@@ -960,7 +955,6 @@ $('.form-search').keypress(function(event) {
         success : function(resultObj) {
 
           totalCount = resultObj.count;
-          console.log("Member Search totalCount........." + totalCount);
         }
       })
 
@@ -1368,8 +1362,6 @@ function filter(id) {
             || check1 == "mp4"
             || check1 == "mkv"
             || check1 == "wav") {
-            console.log("가로 : " + resultObj.size[i].width);
-            console.log("세로 : " + resultObj.size[i].height);
             if (resultObj.size[i].width > resultObj.size[i].height) {
               setClass="landscape"
             } else {
@@ -1422,7 +1414,6 @@ function filter(id) {
         async : false,
         success : function(resultObj) {
           var div = $("#subtable");
-          console.log("Member Search 불러온 데이터 갯수....." + resultObj.data.length);
           var setClass;
           for (var i = 0; i < resultObj.data.length; i++) {
             var check1 = resultObj.data[i].filename.split(".");
@@ -1515,8 +1506,7 @@ function filter(id) {
       }
     } else if(currentPage >= totalCount) {
       $('#modoinfo').html('더이상 페이지가 존재하지 않습니다.');
-      $('#modo').modal('show')
-      console.log("더이상 페이지가 존재하지 않습니다.");
+      $('#modo').modal('show');
     }
   })
 }

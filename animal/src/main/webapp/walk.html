@@ -175,7 +175,6 @@ $(document).ready(function(){
     processData : false,
     async: false,
     success : function(resultObj) {
-      console.log(resultObj);
       var div = $("#cardSection");
       var file;
       var mem;
@@ -284,7 +283,6 @@ $(document).ready(function(){
 
       //    <!-- 지도 나오기 -->
       for (var i=0; i < resultObj.data.length; i++) {
-          console.log(m)
         var ids = 'map' + m++;
         var coord = new daum.maps.LatLng();
         for (var j = 0; j < resultObj.name.length; j++) {
@@ -341,7 +339,6 @@ $(document).ready(function(){
 
     if(currentPage < totalPage) {
       currentPage = currentPage + 1;
-      console.log("List/현재 currentPage...." + currentPage);
       var m2 = m;
       $.ajax({
         url : "walk/ajax/selectList.do?pageNo="+currentPage,
@@ -457,7 +454,6 @@ $(document).ready(function(){
           }
           //    <!-- 지도 나오기 -->
           for (var i=0; i < resultObj.data.length; i++) {
-              console.log(m2)
             var ids = 'map' + m2++;
             var coord = new daum.maps.LatLng();
             for (var j = 0; j < resultObj.name.length; j++) {
@@ -503,7 +499,6 @@ $(document).ready(function(){
 
 function rotateCard(btn){
   var $card = $(btn).closest('.card-container');
-  console.log($card);
   if($card.hasClass('hover')){
     $card.removeClass('hover');
   } else {

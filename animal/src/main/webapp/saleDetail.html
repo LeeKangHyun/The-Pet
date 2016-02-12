@@ -327,15 +327,11 @@
       success: function(re) {
         var saleinfo = re.sale;
         var mem = re.member;
-        console.log(mem.mEmail);
         $('#sendName').val(mem.mEmail);
         $('#modalTitle').html(saleinfo.sTitle);
         $('#contentText').val(saleinfo.sContent);
         $('#msno').val(saleinfo.sno);
         $('#mmtype').val(saleinfo.sType);
-
-        console.log(saleinfo.sno)
-        console.log($.session.get('mno'))
 
         if (saleinfo.mno != $.session.get('mno')) {
           $('#editPet').css('display', 'none');
@@ -475,7 +471,6 @@
 
     $.getJSON('comment/ajax/salepages.do?sno=' + sno, function(resultObj) {
       var ajaxResult = resultObj.ajaxResult
-        // console.log(resultObj)
       if (ajaxResult.data == 0 || ajaxResult.data == 1) {
         $('#more').empty();
       }
@@ -586,9 +581,7 @@
     // 더보기
     function moree(id) {
       i++;
-      console.log(id);
       var page = id.substring(1);
-      console.log(page);
       var cpage = i;
       var form_data = new FormData();
       form_data.append("sno", sno)
@@ -639,17 +632,13 @@
             sno,
             function(resultObj) {
               var ajaxResult = resultObj.ajaxResult;
-              console.log(cpage);
               if (ajaxResult.data == cpage) {
-                console.log("더보기 끝")
                 $('#more').empty();
 
               } else {
-                console.log("더보기 생성")
                 var more = $('#more');
                 $('#more').empty();
                 var i = parseInt(page) + 10;
-                console.log(i);
                 more.append(
                   "<a role='button' class='moreBtn' id='m" +
                   i +
@@ -665,7 +654,6 @@
     // 댓글 삭제
     $(document).on("click", "#delCom", function() {
       var form_data = new FormData();
-      console.log($('#comno').val())
       form_data.append("comNo", $('#comno').val())
       $.ajax({
         url: "comment/ajax/delete.do",
@@ -825,7 +813,6 @@
         data: form_data,
         type: 'post',
         success: function(re) {
-          console.log("디테일 변경 성공")
           for (var i = 0; i < $("#file-1").prop(
               "files").length; i++) {
             var file_data = $("#file-1").prop(
@@ -844,11 +831,7 @@
               processData: false,
               data: form_data,
               type: 'post',
-              success: function(
-                resultObj) {
-                console.log(
-                  file_name
-                )
+              success: function(resultObj) {
 
               }
             })
@@ -867,7 +850,6 @@
 
     // 디테일 모달 속 이미지 하나하나 지우기
     function imgDel(id) {
-      console.log("fno : " + id)
       var form_data = new FormData();
       form_data.append("fno", id)
       $.ajax({
@@ -879,11 +861,9 @@
         data: form_data,
         type: 'post',
         success: function(re) {
-          console.log("이미지 삭제 성공")
 
           var form_data = new FormData();
           form_data.append("sno", $('#msno').val())
-          console.log("sno : " + $('#msno').val())
           $.ajax({
             url: "files/ajax/slist.do",
             dataType: 'json',
@@ -894,7 +874,6 @@
             type: 'post',
             success: function(re) {
               var files = re.ajaxResult.data;
-              console.log(files);
               $('#imgs').empty();
               $('#dots').empty();
               $('#delImg').empty();

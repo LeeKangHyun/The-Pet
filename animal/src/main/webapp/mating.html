@@ -497,7 +497,6 @@ $('#saleModal').on('hidden.bs.modal', function(e) {
 
 //더보기
 function moree(id) {
-  console.log(id)
   var page = id.substring(1);
   $.ajax({
     url: 'mating/ajax/list.do?',
@@ -565,13 +564,10 @@ function moree(id) {
 
       $.getJSON('mating/ajax/pages.do', function(resultObj) {
         var ajaxResult = resultObj.ajaxResult;
-        console.log(ajaxResult.data)
         if (ajaxResult.data == page) {
-          console.log("더보기 끝")
           $('#more').empty();
 
         } else {
-          console.log("더보기 생성")
           var more = $('#more');
           $('#more').empty();
           var i = parseInt(page)+1;

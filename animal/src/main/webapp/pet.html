@@ -199,8 +199,6 @@ $(document).ready(function() {
     processData : false,
 //    async: false,
     success : function(resultObj) {
-      console.log("rank 진입");
-      console.log(resultObj);
       var div = $("#cardSection");
       var file;
       var mem;
@@ -366,8 +364,6 @@ $(document).ready(function() {
         topcheck1 == "gif" ||
         topcheck1 == "bmp") {
 
-        console.log("가로 : " + resultObj.size[i].width);
-        console.log("세로 : " + resultObj.size[i].height);
         if (resultObj.size[i].width > resultObj.size[i].height) {
           setClass="landscape"
         } else {
@@ -442,7 +438,6 @@ $(document).ready(function() {
 
   function rotateCard(btn){
     var $card = $(btn).closest('.card-container');
-    console.log($card);
     if($card.hasClass('hover')){
       $card.removeClass('hover');
     } else {
@@ -468,8 +463,6 @@ function detailBoastBoard(dno) {
 
     }
   });
-
-  console.log("넘어가는 Detail Page Dno = "+dno);
 
   location.href='BoastBoard/boastDetail.html?dno='+dno;
   location.replace('BoastBoard/boastDetail.html?dno='+dno);

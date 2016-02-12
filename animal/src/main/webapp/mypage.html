@@ -222,7 +222,6 @@ $(document).ready(function() {
     type: 'get',
     success: function(re) {
       var mem = re.ajaxResult.data;
-      // console.log(mem);
       $("#name").val(mem.mName);
       $("#email").val(mem.mEmail);
       $("#tel").val(mem.tel);
@@ -284,7 +283,6 @@ $(document).ready(function() {
         type: 'get',
         success: function(re) {
           var mem = re.ajaxResult.data;
-          // console.log(mem);
           $("#name").val(mem.mName);
           $("#email").val(mem.mEmail);
           $("#tel").val(mem.tel);
@@ -352,7 +350,6 @@ $(document).ready(function() {
       $('#modo').modal('show')
 
     } else {
-      console.log($(".ajax-file-upload-filename").html())
       if ($(".ajax-file-upload-filename").html() != undefined) {
         uploadObj.startUpload();
 
@@ -367,7 +364,6 @@ $(document).ready(function() {
           },
           dataType: 'json',
           success: function(re) {
-            console.log("update ajax 성공")
             $('#modoinfo').html('정보가 변경되었습니다.');
             $('#modo').modal('show')
 
@@ -398,7 +394,6 @@ $(document).ready(function() {
               type: 'get',
               success: function(re) {
                 var mem = re.ajaxResult.data;
-                // console.log(mem);
                 $("#name").val(mem.mName);
                 $("#email").val(mem.mEmail);
                 $("#tel").val(mem.tel);

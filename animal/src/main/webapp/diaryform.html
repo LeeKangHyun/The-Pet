@@ -265,7 +265,6 @@ $(document).ready(function() {
   });
 
   $.getJSON('pet/ajax/list.do?mno=' + no, function(resultObj) {
-    console.log(resultObj)
     var sel = $("#pno");
     var i = 0;
     for (var pet of resultObj.pets) {
@@ -285,13 +284,11 @@ $(document).ready(function() {
   var sel;
   $(".mat_gen").change(function() {
       sel = $(this).val();
-    //   console.log(sel)
   }).change();
 
   var sd;
   $('#startDate').change(function() {
       sd = $(this).val();
-    //   console.log(sd)
       $('#endDate').val(sd);
   }).change();
 
@@ -360,7 +357,6 @@ $(document).ready(function() {
         } else {
           q = 0;
         }
-        console.log(q)
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", q)
         form_data.append("cateCode", sel)
@@ -381,7 +377,6 @@ $(document).ready(function() {
 
             var lastDno = re.ajaxResult.data;
             $('#lastDno').val(lastDno);
-            console.log("lastDno : " + $('#lastDno').val());
 
             var geocoder = new daum.maps.services.Geocoder();
             geocoder.coord2detailaddr({
@@ -428,7 +423,6 @@ $(document).ready(function() {
         } else {
           q = 0;
         }
-        console.log(q)
         form_data.append("mno", $('#myMno2').val())
         form_data.append("dhide", q)
         form_data.append("cateCode", sel)
@@ -461,7 +455,6 @@ $(document).ready(function() {
 var cate;
 // 글쓰기 카테고리 선택 부분
 $('.mat_gen').change(function(re) {
-    // console.log(re);
     cate = $(this).val();
     if (cate === "JARANG") { // 자랑 해요
       $('.pDate').css('display', 'none');

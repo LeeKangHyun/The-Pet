@@ -253,10 +253,6 @@ $(document).ready(function() {
       var mgen = $('input[name=MAT_GENDER]:checked').val();
       var form_data = new FormData();
 
-      console.log('등러갔다')
-      console.log($('#mafile'))
-
-
       form_data.append("mno", no)
       form_data.append("matTitle", $('#mat_title').val())
       form_data.append("matSpec", $('#mat_spec').val())
@@ -273,7 +269,6 @@ $(document).ready(function() {
         processData: false,
         data: form_data,
         success: function(re) {
-          console.log('성공')
           var lastDno = re.ajaxResult.data;
           $('#lastDno').val(lastDno);
 
