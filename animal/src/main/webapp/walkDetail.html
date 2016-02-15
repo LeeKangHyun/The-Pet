@@ -390,15 +390,11 @@ $.ajax({
     map.panBy(0, -55);
     overlay.setPosition(coord);
     var content =
-    '<div class="wrap">' +
-        '<div class="info">' +
-            '<div class="title">' +
+    '<div class="wrap"><div class="info"><div class="title">' +
                 re.walkList[0].locName +
                 '<div class="close" onclick="closeOverlay()" title="닫기"></div>' +
             '</div>' +
-            '<div style="margin-top: 3px;"><i class="fa fa-map-marker fa-fw text-muted"></i>' + re.walkList[0].locDong + '</div>' +
-        '</div>' +
-    '</div>';
+            '<div style="margin-top: 3px;"><i class="fa fa-map-marker fa-fw text-muted"></i>' + re.walkList[0].locDong + '</div></div></div>';
     overlay.setContent(content);
   }
 });
