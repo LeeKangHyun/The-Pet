@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="icon/1.ico" type="image/x-icon" />
-<title>짝짓기</title>
+<title>The Pet - 분양</title>
 
 <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -432,7 +432,6 @@ $.ajax({
   type: 'post',
   dataType: 'json',
   success: function(resultObj) {
-    console.log(resultObj);
     var show = $('#Container');
     var j = 0;
     var file;
@@ -505,7 +504,6 @@ $.ajax({
 
 //더보기
 function moree(id) {
-  console.log(id)
   var page = id.substring(1);
   $.ajax({
     url: 'sale/ajax/list.do?',
@@ -574,13 +572,10 @@ function moree(id) {
 
       $.getJSON('sale/ajax/pages.do', function(resultObj) {
         var ajaxResult = resultObj.ajaxResult;
-        console.log(ajaxResult.data)
         if (ajaxResult.data == page) {
-          console.log("더보기 끝")
           $('#more').empty();
 
         } else {
-          console.log("더보기 생성")
           var more = $('#more');
           $('#more').empty();
           var i = parseInt(page)+1;

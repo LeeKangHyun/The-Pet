@@ -4,7 +4,7 @@
   <link rel="icon" href="icon/1.ico" type="image/x-icon" />
   <meta charset="UTF-8">
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-  <title>산책코스</title>
+  <title>The Pet - 산책</title>
 
   <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -20,7 +20,7 @@
   <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 
   <script src="lib/jquery-session-plugin/jquery.session.js" type="text/javascript"></script>
-  
+
   <style>
   #quick-top {
     font-size: 17px;
@@ -33,7 +33,7 @@
     color: #2d335e;
   }
 
-  #quick-top-a:hover, 
+  #quick-top-a:hover,
   #quick-bottom-a:hover,
   #quick-top-a:FOCUS,
   #quick-bottom-a:FOCUS {
@@ -120,7 +120,7 @@
       </div>
     </div>
   </div>
-  
+
 <div class="quick-menu">
 
   <div id="quick-top">
@@ -134,7 +134,7 @@
 
 <script type="text/javascript">
 // Top으로 이동
-$(document).ready(function() { 
+$(document).ready(function() {
   $('a[href=#quick-top]').click(function(){
     $('html, body').animate({scrollTop:0}, 1000);
     return false;
@@ -175,7 +175,6 @@ $(document).ready(function(){
     processData : false,
     async: false,
     success : function(resultObj) {
-      console.log(resultObj);
       var div = $("#cardSection");
       var file;
       var mem;
@@ -284,7 +283,6 @@ $(document).ready(function(){
 
       //    <!-- 지도 나오기 -->
       for (var i=0; i < resultObj.data.length; i++) {
-          console.log(m)
         var ids = 'map' + m++;
         var coord = new daum.maps.LatLng();
         for (var j = 0; j < resultObj.name.length; j++) {
@@ -341,7 +339,6 @@ $(document).ready(function(){
 
     if(currentPage < totalPage) {
       currentPage = currentPage + 1;
-      console.log("List/현재 currentPage...." + currentPage);
       var m2 = m;
       $.ajax({
         url : "walk/ajax/selectList.do?pageNo="+currentPage,
@@ -457,7 +454,6 @@ $(document).ready(function(){
           }
           //    <!-- 지도 나오기 -->
           for (var i=0; i < resultObj.data.length; i++) {
-              console.log(m2)
             var ids = 'map' + m2++;
             var coord = new daum.maps.LatLng();
             for (var j = 0; j < resultObj.name.length; j++) {
@@ -503,7 +499,6 @@ $(document).ready(function(){
 
 function rotateCard(btn){
   var $card = $(btn).closest('.card-container');
-  console.log($card);
   if($card.hasClass('hover')){
     $card.removeClass('hover');
   } else {

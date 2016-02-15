@@ -4,7 +4,7 @@
 <head>
     <link rel="icon" href="icon/1.ico" type="image/x-icon" />
     <meta charset="UTF-8">
-    <title>산책코스</title>
+    <title>The Pet - 산책</title>
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!--  상훈 css  -->
     <link href="css/sh_slidmenu_header_diary.css" type="text/css" rel="stylesheet">
@@ -276,7 +276,6 @@ $.ajax({
     },
     cache: false,
     success: function(re) {
-        console.log(re)
         var right = $('#right');
         var file;
         var imgWidth;
@@ -452,7 +451,6 @@ $.ajax({
 
 $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
     var ajaxResult = resultObj.ajaxResult
-    // console.log(resultObj)
     if (ajaxResult.data == 0 || ajaxResult.data == 1) {
         $('#more').empty();
     }
@@ -520,7 +518,6 @@ $(document).on('click', '#comAddBtn', function() {
             $('#more').empty();
             $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
               var ajaxResult = resultObj.ajaxResult
-              console.log(resultObj)
               if (ajaxResult.data == 0 || ajaxResult.data == 1) {
                 $('#more').empty();
               }
@@ -546,7 +543,6 @@ function del(id) {
 // 댓글 삭제
 $(document).on("click", "#delCom", function() {
   var form_data = new FormData();
-  console.log($('#comno').val())
   form_data.append("comNo", $('#comno').val())
   $.ajax({
     url: "comment/ajax/delete.do",
@@ -589,7 +585,6 @@ $(document).on("click", "#delCom", function() {
           $('#more').empty();
           $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
             var ajaxResult = resultObj.ajaxResult
-            console.log(resultObj)
             if (ajaxResult.data == 0 || ajaxResult.data == 1) {
               $('#more').empty();
             }
@@ -609,9 +604,7 @@ $(document).on("click", "#delCom", function() {
 // 더보기 부분
 function moree(id) {
   i++;
-  console.log(id);
   var page = id.substring(1);
-  console.log(page);
   var cpage = i;
   var form_data = new FormData();
   form_data.append("dno", mapno)
@@ -655,17 +648,13 @@ function moree(id) {
 
       $.getJSON('comment/ajax/pages.do?dno=' + mapno, function(resultObj) {
         var ajaxResult = resultObj.ajaxResult;
-        console.log(cpage);
         if (ajaxResult.data == cpage) {
-          console.log("더보기 끝")
           $('#more').empty();
 
         } else {
-          console.log("더보기 생성")
           var more = $('#more');
           $('#more').empty();
           var i = parseInt(page)+10;
-          console.log(i);
           more.append(
             "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
         }
@@ -704,13 +693,11 @@ $('#likes').click(function(event) {
       async: false,
       data : form_data,
       success : function(resultObj) {
-        console.log("resultObj.like : " + resultObj.like)
         if (resultObj.like != null ) {
           like_toggle = 1;
         } else {
           like_toggle = 0;
         }
-        console.log("like_toggle : " + like_toggle)
         if(like_toggle == 0) {
           $.ajax({
             url : "walk/ajax/likeAdd.do",

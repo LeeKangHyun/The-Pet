@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="../icon/1.ico" type="image/x-icon" />
-<title>Slid Menu</title>
+<title>The Pet - 교육</title>
 
 <link href="../lib/bootstrap/dist/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- sh css -->
@@ -242,7 +242,6 @@ width: 600px;
 
 
         $("#eduContent").val(education.eduContent);
-        console.log(education.eduSpec);
         $.ajax({
           url : 'education/ajax/slist.do',
           dataType : 'json',
@@ -253,7 +252,6 @@ width: 600px;
             eduNo : education.eduNo
           },
           success : function(resultObj) {
-            console.log(resultObj);
             var j = 0;
             var file;
             var sa = $("#right");
@@ -453,7 +451,6 @@ width: 600px;
 
   $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
       var ajaxResult = resultObj.ajaxResult
-      console.log('resultObj : ' + ajaxResult.data)
       if (ajaxResult.data == 1 || ajaxResult.data == 0) {
           $('#more').empty();
       }
@@ -519,7 +516,6 @@ width: 600px;
               $('#more').empty();
               $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
                 var ajaxResult = resultObj.ajaxResult
-                console.log(resultObj)
                 if (ajaxResult.data == 0 || ajaxResult.data == 1) {
                   $('#more').empty();
                 }
@@ -551,7 +547,6 @@ width: 600px;
 	// 댓글 삭제
 	$(document).on("click", "#delCom", function() {
     var form_data = new FormData();
-    console.log($('#comno').val())
     form_data.append("comNo", $('#comno').val())
     $.ajax({
       url: "../comment/ajax/delete.do",
@@ -594,7 +589,6 @@ width: 600px;
             $('#more').empty();
             $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
               var ajaxResult = resultObj.ajaxResult
-              console.log('resultObj : ' + resultObj)
               if (ajaxResult.data == 0 || ajaxResult.data == 1) {
                 $('#more').empty();
               }
@@ -614,11 +608,8 @@ width: 600px;
 	// 더보기 부분
 	function moree(id) {
 	    i++;
-	    console.log(id);
 	    var page = id.substring(1);
-	    console.log('page : ' + page);
 	    var cpage = i;
-	    console.log('cpage : ' + cpage);
 	    var form_data = new FormData();
 	    form_data.append("eduNo", eduNo)
 	    form_data.append("pageNo", page)
@@ -659,18 +650,13 @@ width: 600px;
 
 	            $.getJSON('../comment/ajax/edupages.do?eduNo=' + eduNo, function(resultObj) {
 	                var ajaxResult = resultObj.ajaxResult;
-	                console.log('cpage : ' + cpage);
-	                console.log('ajaxResult.data : ' + ajaxResult.data);
 	                if (ajaxResult.data == cpage) {
-	                    console.log("더보기 끝")
 	                    $('#more').empty();
 
 	                } else {
-	                    console.log("더보기 생성")
 	                    var more = $('#more');
 	                    $('#more').empty();
 	                    var i = parseInt(page)+10;
-	                    console.log(i);
 	                    more.append(
 	                          "<a role='button' class='moreBtn' id='m" + i + "' onclick='moree(this.id);'>더보기</a>")
 	                }
